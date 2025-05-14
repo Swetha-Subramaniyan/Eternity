@@ -8,14 +8,25 @@ import {
   DialogContent,
   DialogActions,
   TextField,
+  IconButton,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableContainer,
   Paper,
 } from "@mui/material";
+import { Edit, Delete } from "@mui/icons-material";
+
 
 function MasterCustomer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customers, setCustomers] = useState([]);
   const [customerName, setCustomerName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [editIndex, setEditIndex] = useState(null);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -23,10 +34,50 @@ function MasterCustomer() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    clearForm();
+  };
+
+  const clearForm = () => {
+    setCustomerName("");
+    setPhoneNumber("");
+    setAddress("");
+    setEditIndex(null);
+  };
+
+  const handleSave = () => {
+    if (editIndex !== null) {
+      const updatedCustomers = [...customers];
+      updatedCustomers[editIndex] = {
+        customerName,
+        phoneNumber,
+        address,
+      };
+      setCustomers(updatedCustomers);
+    } else {
+      setCustomers([
+        ...customers,
+        { customerName, phoneNumber, address },
+      ]);
+    }
+    closeModal();
+  };
+
+  const handleEdit = (index) => {
+    const customer = customers[index];
+    setCustomerName(customer.customerName);
+    setPhoneNumber(customer.phoneNumber);
+    setAddress(customer.address);
+    setEditIndex(index);
+    openModal();
+  };
+
+  const handleDelete = (index) => {
+    const updatedCustomers = [...customers];
+    updatedCustomers.splice(index, 1);
+    setCustomers(updatedCustomers);
   };
 
   return (
-    <> 
     <div className="customer-container">
       <Button
         style={{
@@ -35,15 +86,18 @@ function MasterCustomer() {
           borderColor: "#25274D",
           borderStyle: "solid",
           borderWidth: "2px",
+          
         }}
         variant="contained"
         onClick={openModal}
       >
         Add Customer
       </Button>
-
+     
       <Dialog open={isModalOpen} onClose={closeModal}>
-        <DialogTitle style={{ color: "#a33768" }}>Add New Customer</DialogTitle>
+        <DialogTitle style={{ color: "#a33768" }}>
+          {editIndex !== null ? "Edit Customer" : "Add New Customer"}
+        </DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -77,16 +131,44 @@ function MasterCustomer() {
           <Button onClick={closeModal} color="secondary">
             Cancel
           </Button>
-          <Button onClick={closeModal} color="primary">
+          <Button onClick={handleSave} color="primary">
             Save
           </Button>
         </DialogActions>
       </Dialog>
 
-     
+      {customers.length > 0 && (
+        <TableContainer component={Paper} style={{ marginTop: "20px" }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell><strong>Name</strong></TableCell>
+                <TableCell><strong>Phone</strong></TableCell>
+                <TableCell><strong>Address</strong></TableCell>
+                <TableCell><strong>Actions</strong></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {customers.map((customer, index) => (
+                <TableRow key={index}>
+                  <TableCell>{customer.customerName}</TableCell>
+                  <TableCell>{customer.phoneNumber}</TableCell>
+                  <TableCell>{customer.address}</TableCell>
+                  <TableCell>
+                    <IconButton onClick={() => handleEdit(index)} color="primary">
+                      <Edit />
+                    </IconButton>
+                    <IconButton onClick={() => handleDelete(index)} color="error">
+                      <Delete />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </div>
-
-    </>
   );
 }
 

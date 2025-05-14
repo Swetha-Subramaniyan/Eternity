@@ -1,26 +1,13 @@
+
 import React, { useState } from "react";
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextField,
-  Snackbar,
-} from "@mui/material";
+import {Button,Dialog, DialogTitle,DialogContent,DialogActions,TextField,Snackbar} from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import Navbar from "../Navbar/Navbar";
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import ListItemText from '@mui/material/ListItemText';
-import Select from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
-import './Setting.css';
-
-
-
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -30,96 +17,77 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
-
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
+import './Filing.css'
 
 const Setting = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [personName, setPersonName] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
+
+  const [date, setDate] = useState("");
+  const [name, setName] = useState("");
   const [beforeWeight, setBeforeWeight] = useState("");
   const [purity, setPurity] = useState("");
   const [touch, setTouch] = useState("");
   const [difference, setDifference] = useState("");
   const [afterWeight, setAfterWeight] = useState("");
-  const [date,setDate] = useState("");
-  const [editIndex, setEditIndex] = useState(null);
+  const [entries, setEntries] = useState([]);
 
-  const [settingsList, setSettingsList] = useState([]); // Table data
+  // Toast state
+  const [openToast, setOpenToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
-
-
-   // Toast state
-   const [openToast, setOpenToast] = useState(false);
-   const [toastMessage, setToastMessage] = useState("");
- 
-   const handleToast = (message) => {
-     setToastMessage(message);
-     setOpenToast(true);
-   };
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
+  const handleToast = (message) => {
+    setToastMessage(message);
+    setOpenToast(true);
   };
 
+  const openModal = () => {
+    clearFields();
+    setEditIndex(null); // new entry
+    setIsModalOpen(true);
+  };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    clearFields();
+    setEditIndex(null);
+  };
+
+  const clearFields = () => {
+    setDate("");
+    setName("");
+    setBeforeWeight("");
+    setPurity("");
+    setTouch("");
+    setDifference("");
+    setAfterWeight("");
+  };
 
   const handleSave = () => {
-    // Check if at least one value is filled
-    const hasData = date || personName.length > 0 || beforeWeight || purity || touch || difference || afterWeight;
-  
+    const hasData =
+      date || name || beforeWeight || purity || touch || difference || afterWeight;
+
     if (!hasData) {
       handleToast("Please fill in at least one field before saving.");
       return;
+
+      
     }
 
- 
-  
-    const updatedSetting = {
-      settingName: personName.join(", "),
+    const newEntry = {
       date,
+      name,
       beforeWeight,
       purity,
       touch,
       difference,
       afterWeight,
     };
-  
+
     if (editIndex !== null) {
-      // Update existing item
-      const updatedList = [...settingsList];
-      updatedList[editIndex] = updatedSetting;
-      setSettingsList(updatedList);      
-      setEditIndex(null); // Reset edit index
+      const updatedEntries = [...entries];
+      updatedEntries[editIndex] = newEntry;
+      setEntries(updatedEntries);
       toast.success("Updated successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -129,8 +97,7 @@ const Setting = () => {
         draggable: true,
       });
     } else {
-      // Add new item
-      setSettingsList([...settingsList, updatedSetting]);
+      setEntries([...entries, newEntry]);
       toast.success("Saved successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -139,56 +106,49 @@ const Setting = () => {
         pauseOnHover: true,
         draggable: true,
       });
+
     }
-  
-    // Clear form
-    setPersonName([]);
-    setBeforeWeight("");
-    setPurity("");
-    setTouch("");
-    setDifference("");
-    setAfterWeight("");
-    setDate("");
-  
+
     closeModal();
   };
-  
 
   const handleViewEdit = (index) => {
-    const item = settingsList[index];
-    setDate(item.date);
-    setPersonName(item.settingName.split(", "));
-    setBeforeWeight(item.beforeWeight);
-    setPurity(item.purity);
-    setTouch(item.touch);
-    setDifference(item.difference);
-    setAfterWeight(item.afterWeight);
-    setIsModalOpen(true);
+    const entry = entries[index];
+    setDate(entry.date);
+    setName(entry.name);
+    setBeforeWeight(entry.beforeWeight);
+    setPurity(entry.purity);
+    setTouch(entry.touch);
+    setDifference(entry.difference);
+    setAfterWeight(entry.afterWeight);
     setEditIndex(index);
+    setIsModalOpen(true);
   };
-  
 
   return (
     <>
       <Navbar />
       <ToastContainer />
-      <div className="customer-container">
+      <div className="filing-container">
         <br />
-        <TextField
+        {/* <TextField
           id="date-filter"
           label="From Date"
           type="date"
-          InputLabelProps={{ shrink: true }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+         
         />
-
         <TextField
           id="date-filter"
           label="To Date"
           type="date"
-          InputLabelProps={{ shrink: true }}
-          sx={{marginLeft:'1rem'}}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          sx={{ marginLeft: "1rem" }}
         />
-
         <Button
           style={{
             backgroundColor: "#F5F5F5",
@@ -196,151 +156,233 @@ const Setting = () => {
             borderColor: "#25274D",
             borderStyle: "solid",
             borderWidth: "2px",
-            marginLeft: "50rem",
-            position:"absolute"
+            marginLeft: "60rem",
+            position: "absolute",
           }}
           variant="contained"
           onClick={openModal}
         >
           Add Setting Items
+        </Button> */}
+
+<Box display="flex" alignItems="center" gap="1rem" mb={2}>
+  <TextField
+    id="from-date"
+    label="From Date"
+    type="date"
+    InputLabelProps={{ shrink: true }}
+  />
+  <TextField
+    id="to-date"
+    label="To Date"
+    type="date"
+    InputLabelProps={{ shrink: true }}
+  />
+  <FormControl>
+    <InputLabel id="status-label">Status</InputLabel>
+    <Select
+      labelId="status-label"
+      id="status"
+      value={name}
+      label="Status"
+      onChange={(e) => setName(e.target.value)}
+      style={{ minWidth: 150 }}
+    >
+      <MenuItem value="Processing">Processing</MenuItem>
+      <MenuItem value="Completed">Completed</MenuItem>
+    </Select>
+  </FormControl>
+  <Button
+          style={{
+            backgroundColor: "#F5F5F5",
+            color: "black",
+            borderColor: "#25274D",
+            borderStyle: "solid",
+            borderWidth: "2px",
+            marginLeft: "81rem",
+            position: "absolute",
+          }}
+          variant="contained"
+          onClick={openModal}
+        >
+          Add Filing Items
         </Button>
+</Box>
 
-        {/* Dialog */}
-        <Dialog open={isModalOpen} onClose={closeModal}>
-          <DialogTitle style={{ color: "#a33768" }}>Setting Items</DialogTitle>
-          <DialogContent>
-<br/> 
-          <TextField
-              id="date"
-              label="Date"
-              type="date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              fullWidth
-            />
+        <Dialog open={isModalOpen} onClose={closeModal} 
+        >
+          <DialogTitle style={{ color: "#a33768" }}>Setting</DialogTitle>
+
+          <Dialog
+  open={isModalOpen}
+  onClose={closeModal}
+  maxWidth="lg"
+  fullWidth
+  PaperProps={{
+    style: { minHeight: "300px", padding: "1rem",minWidth:"60%" , height:"fit-content"},
+  }}
+>
+  <DialogTitle style={{ color: "#a33768", textAlign: "center" }}>
+    Setting Entry
+  </DialogTitle>
+
+  <DialogContent>
+    <Box display="flex" gap={4}>
+      {/* Left Column - Filing Section */}
+      <Box flex={1} p={2} borderRight="1px solid #ccc">
+        <h3 style={{ textAlign: "center", marginBottom: "1rem" }}>Setting</h3>
+        <TextField
+          id="date"
+          label="Date"
+          type="date"
+          InputLabelProps={{ shrink: true }}
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          fullWidth
+          style={{ marginBottom: "1rem" }}
+        />
+        <FormControl fullWidth>
+          <InputLabel id="name-label">Name</InputLabel>
+          <Select
+            labelId="name-label"
+            id="name"
+            value={name}
+            label="Name"
+            onChange={(e) => setName(e.target.value)}
+          >
+            <MenuItem value="Dhanusha">Dhanusha</MenuItem>
+            <MenuItem value="Saranya">Saranya</MenuItem>
+            <MenuItem value="Boobalan">Boobalan</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+
+      {/* Right Column - Casting Items */}
+      <Box flex={2} p={2}>
+        <h3 style={{ textAlign: "center" }}>Filing Items</h3>
+        <br/>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>S.No</TableCell>
+                <TableCell>Item Name</TableCell>
+                <TableCell>Weight</TableCell>
+                <TableCell>Touch</TableCell>
+                <TableCell>Purity</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* Example rows — replace with your dynamic data */}
+              <TableRow>
+                <TableCell>1</TableCell>
+                <TableCell>Ring</TableCell>
+                <TableCell>10g</TableCell>
+                <TableCell>92</TableCell>
+                <TableCell>22K</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>2</TableCell>
+                <TableCell>Chain</TableCell>
+                <TableCell>15g</TableCell>
+                <TableCell>91.6</TableCell>
+                <TableCell>22K</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+    </Box>
+  </DialogContent>
+
+  <DialogActions>
+    <Button onClick={closeModal} color="secondary">
+      Cancel
+    </Button>
+    <Button onClick={handleSave} color="primary">
+      {editIndex !== null ? "Update" : "Save"}
+    </Button>
+  </DialogActions>
+</Dialog>
 
 
-            <FormControl sx={{ m: 0, width: 351, marginTop: 1 }}>
-              <InputLabel id="demo-multiple-checkbox-label">Setting Name</InputLabel>
-              <Select
-                labelId="demo-multiple-checkbox-label"
-                id="demo-multiple-checkbox"
-                multiple
-                value={personName}
-                onChange={handleChange}
-                input={<OutlinedInput label="Casting Name" />}
-                renderValue={(selected) => selected.join(", ")}
-                MenuProps={MenuProps}
-              >
-                {names.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    <Checkbox checked={personName.includes(name)} />
-                    <ListItemText primary={name} />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
 
-            <TextField
-              margin="dense"
-              label="Before Weight"
-              type="number"
-              fullWidth
-              value={beforeWeight}
-              onChange={(e) => setBeforeWeight(e.target.value)}
-            />
-            <TextField
-              margin="dense"
-              label="Purity"
-              type="number"
-              fullWidth
-              value={purity}
-              onChange={(e) => setPurity(e.target.value)}
-            />
-            <TextField
-              margin="dense"
-              label="Touch"
-              type="number"
-              fullWidth
-              value={touch}
-              onChange={(e) => setTouch(e.target.value)}
-            />
-            <TextField
-              margin="dense"
-              label="Difference"
-              type="number"
-              fullWidth
-              value={difference}
-              onChange={(e) => setDifference(e.target.value)}
-            />
-            <TextField
-              margin="dense"
-              label="After Weight"
-              type="number"
-              fullWidth
-              value={afterWeight}
-              onChange={(e) => setAfterWeight(e.target.value)}
-            />
-          </DialogContent>
           <DialogActions>
-            <Button onClick={closeModal} color="secondary">Cancel</Button>
-            {/* <Button onClick={handleSave} color="primary">Save</Button> */}
-
+            <Button onClick={closeModal} color="secondary">
+              Cancel
+            </Button>
             <Button onClick={handleSave} color="primary">
               {editIndex !== null ? "Update" : "Save"}
             </Button>
           </DialogActions>
         </Dialog>
 
-        {/* Table */}
-        <br />
 
-        <TableContainer component={Paper} style={{ marginTop: "2rem" }}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>S.No</TableCell>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Before Weight</TableCell>
-                  <TableCell>Purity</TableCell>
-                  <TableCell>Touch</TableCell>
-                  <TableCell>Difference</TableCell>
-                  <TableCell>After Weight</TableCell>
-                  <TableCell>Actions</TableCell>
+        <div className="tables-container">
+        <div className="left-table"> 
+        <h3 style={{textAlign:'center'}}> Setting </h3>
+        <TableContainer component={Paper} style={{ marginTop: "1rem",width:"60rem"}}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>S.No</TableCell>
+                <TableCell>Date</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Before Weight</TableCell>
+                <TableCell>Purity</TableCell>
+                <TableCell>Touch</TableCell>
+                <TableCell>Difference</TableCell>
+                <TableCell>After Weight</TableCell>
+                <TableCell>Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {entries.map((entry, index) => (
+                <TableRow key={index}>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{entry.date}</TableCell>
+                  <TableCell>{entry.name}</TableCell>
+                  <TableCell>{entry.beforeWeight}</TableCell>
+                  <TableCell>{entry.purity}</TableCell>
+                  <TableCell>{entry.touch}</TableCell>
+                  <TableCell>{entry.difference}</TableCell>
+                  <TableCell>{entry.afterWeight}</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      onClick={() => handleViewEdit(index)}
+                    >
+                      View
+                    </Button>
+                  </TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {settingsList.map((item, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{index + 1}</TableCell>
-                    <TableCell>{item.date}</TableCell>
-                    <TableCell>{item.settingName}</TableCell>
-                    <TableCell>{item.beforeWeight}</TableCell>
-                    <TableCell>{item.purity}</TableCell>
-                    <TableCell>{item.touch}</TableCell>
-                    <TableCell>{item.difference}</TableCell>
-                    <TableCell>{item.afterWeight}</TableCell>
-                    <TableCell>
-                      <Button
-                        variant="outlined"
-                        size="small"
-                        onClick={() => handleViewEdit(index)}
-                      >
-                        View
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        </div>
+        <div className="right-table">  
+<h3 style={{textAlign:'center'}} > Setting Items </h3>
+        <TableContainer component={Paper} style={{ marginTop: "1rem",width:"30rem"}} > 
+          <Table> 
+            <TableHead> 
+              <TableRow> 
+                <TableCell> S.No</TableCell>
+                <TableCell> Item Name</TableCell>
+                <TableCell> Weight</TableCell>
+                <TableCell> Touch</TableCell>
+                <TableCell> Purity</TableCell>              
+              </TableRow>
+            </TableHead>
+          </Table>
+        </TableContainer>
+        </div>
 
+        </div>
+   
 
-           {/* Snackbar for Toast */}
+        {/* Snackbar for Toast */}
         <Snackbar
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
           open={openToast}
@@ -356,11 +398,7 @@ const Setting = () => {
             {toastMessage}
           </MuiAlert>
         </Snackbar>
-
-
       </div>
-
-      
     </>
   );
 };

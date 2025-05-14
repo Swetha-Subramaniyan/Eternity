@@ -28,9 +28,10 @@
   .popup {
     background: #fff;
     padding: 40px;
-    width: 95%;
-    max-width: 1000px;
+    /* width: 95%; */
+    max-width: 2000px;
     border-radius: 8px;
+
   }
   
   .popup-header {
@@ -106,10 +107,6 @@
 
 
 
-
-
-
-
   .scroll-table {
     max-height: 200px;
     overflow-y: auto;
@@ -127,9 +124,10 @@
   }
   
   .casting-table table {
-    width: 100%;
+    width: 95%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin-left: 2rem;
   }
   
   .casting-table th,
