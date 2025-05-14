@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextField,
-  Snackbar,
-} from "@mui/material";
+import {Button,Dialog, DialogTitle,DialogContent,DialogActions,TextField,Snackbar} from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import Navbar from "../Navbar/Navbar";
 import Box from "@mui/material/Box";
@@ -24,6 +16,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import './Filing.css'
 
 const Filing = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -135,34 +128,45 @@ const Filing = () => {
     <>
       <Navbar />
       <ToastContainer />
-      <div className="customer-container">
+      <div className="filing-container">
         <br />
-        <TextField
-          id="date-filter"
-          label="From Date"
-          type="date"
-          InputLabelProps={{
-            shrink: true,
-          }}
-         
-        />
-        <TextField
-          id="date-filter"
-          label="To Date"
-          type="date"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          sx={{ marginLeft: "1rem" }}
-        />
-        <Button
+       
+
+<Box display="flex" alignItems="center" gap="1rem" mb={2}>
+  <TextField
+    id="from-date"
+    label="From Date"
+    type="date"
+    InputLabelProps={{ shrink: true }}
+  />
+  <TextField
+    id="to-date"
+    label="To Date"
+    type="date"
+    InputLabelProps={{ shrink: true }}
+  />
+  <FormControl>
+    <InputLabel id="status-label">Status</InputLabel>
+    <Select
+      labelId="status-label"
+      id="status"
+      value={name}
+      label="Status"
+      onChange={(e) => setName(e.target.value)}
+      style={{ minWidth: 150 }}
+    >
+      <MenuItem value="Processing">Processing</MenuItem>
+      <MenuItem value="Completed">Completed</MenuItem>
+    </Select>
+  </FormControl>
+  <Button
           style={{
             backgroundColor: "#F5F5F5",
             color: "black",
             borderColor: "#25274D",
             borderStyle: "solid",
             borderWidth: "2px",
-            marginLeft: "50rem",
+            marginLeft: "81rem",
             position: "absolute",
           }}
           variant="contained"
@@ -170,81 +174,108 @@ const Filing = () => {
         >
           Add Filing Items
         </Button>
+</Box>
 
-        <Dialog open={isModalOpen} onClose={closeModal}>
+        
+
+        <Dialog open={isModalOpen} onClose={closeModal} 
+        >
           <DialogTitle style={{ color: "#a33768" }}>Filing</DialogTitle>
-          <DialogContent>
-            <br />
-            <TextField
-              id="date"
-              label="Date"
-              type="date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              fullWidth
-            />
 
-            <Box sx={{ minWidth: 120, marginTop: 1 }}>
-              <FormControl fullWidth>
-                <InputLabel id="name-label">Name</InputLabel>
-                <Select
-                  labelId="name-label"
-                  id="name"
-                  value={name}
-                  label="Name"
-                  onChange={(e) => setName(e.target.value)}
-                >
-                  <MenuItem value="Dhanusha">Dhanusha</MenuItem>
-                  <MenuItem value="Saranya">Saranya</MenuItem>
-                  <MenuItem value="Boobalan">Boobalan</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
+          <Dialog
+  open={isModalOpen}
+  onClose={closeModal}
+  maxWidth="lg"
+  fullWidth
+  PaperProps={{
+    style: { minHeight: "300px", padding: "1rem",minWidth:"60%" , height:"fit-content"},
+  }}
+>
+  <DialogTitle style={{ color: "#a33768", textAlign: "center" }}>
+    Filing Entry
+  </DialogTitle>
 
-            <TextField
-              margin="dense"
-              label="Before Weight"
-              type="number"
-              fullWidth
-              value={beforeWeight}
-              onChange={(e) => setBeforeWeight(e.target.value)}
-            />
-            <TextField
-              margin="dense"
-              label="Purity"
-              type="number"
-              fullWidth
-              value={purity}
-              onChange={(e) => setPurity(e.target.value)}
-            />
-            <TextField
-              margin="dense"
-              label="Touch"
-              type="number"
-              fullWidth
-              value={touch}
-              onChange={(e) => setTouch(e.target.value)}
-            />
-            <TextField
-              margin="dense"
-              label="Difference"
-              type="number"
-              fullWidth
-              value={difference}
-              onChange={(e) => setDifference(e.target.value)}
-            />
-            <TextField
-              margin="dense"
-              label="After Weight"
-              type="number"
-              fullWidth
-              value={afterWeight}
-              onChange={(e) => setAfterWeight(e.target.value)}
-            />
-          </DialogContent>
+  <DialogContent>
+    <Box display="flex" gap={4}>
+      {/* Left Column - Filing Section */}
+      <Box flex={1} p={2} borderRight="1px solid #ccc">
+        <h3 style={{ textAlign: "center", marginBottom: "1rem" }}>Filing</h3>
+        <TextField
+          id="date"
+          label="Date"
+          type="date"
+          InputLabelProps={{ shrink: true }}
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          fullWidth
+          style={{ marginBottom: "1rem" }}
+        />
+        <FormControl fullWidth>
+          <InputLabel id="name-label">Name</InputLabel>
+          <Select
+            labelId="name-label"
+            id="name"
+            value={name}
+            label="Name"
+            onChange={(e) => setName(e.target.value)}
+          >
+            <MenuItem value="Dhanusha">Dhanusha</MenuItem>
+            <MenuItem value="Saranya">Saranya</MenuItem>
+            <MenuItem value="Boobalan">Boobalan</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+
+      {/* Right Column - Casting Items */}
+      <Box flex={2} p={2}>
+        <h3 style={{ textAlign: "center" }}>Casting Items</h3>
+        <br/>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>S.No</TableCell>
+                <TableCell>Item Name</TableCell>
+                <TableCell>Weight</TableCell>
+                <TableCell>Touch</TableCell>
+                <TableCell>Purity</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* Example rows — replace with your dynamic data */}
+              <TableRow>
+                <TableCell>1</TableCell>
+                <TableCell>Ring</TableCell>
+                <TableCell>10g</TableCell>
+                <TableCell>92</TableCell>
+                <TableCell>22K</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>2</TableCell>
+                <TableCell>Chain</TableCell>
+                <TableCell>15g</TableCell>
+                <TableCell>91.6</TableCell>
+                <TableCell>22K</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+    </Box>
+  </DialogContent>
+
+  <DialogActions>
+    <Button onClick={closeModal} color="secondary">
+      Cancel
+    </Button>
+    <Button onClick={handleSave} color="primary">
+      {editIndex !== null ? "Update" : "Save"}
+    </Button>
+  </DialogActions>
+</Dialog>
+
+
+
           <DialogActions>
             <Button onClick={closeModal} color="secondary">
               Cancel
@@ -255,7 +286,11 @@ const Filing = () => {
           </DialogActions>
         </Dialog>
 
-        <TableContainer component={Paper} style={{ marginTop: "2rem" }}>
+
+        <div className="tables-container">
+        <div className="left-table"> 
+        <h3 style={{textAlign:'center'}}> Filing </h3>
+        <TableContainer component={Paper} style={{ marginTop: "1rem",width:"60rem"}}>
           <Table>
             <TableHead>
               <TableRow>
@@ -295,6 +330,26 @@ const Filing = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        </div>
+        <div className="right-table">  
+<h3 style={{textAlign:'center'}} > Filing Items </h3>
+        <TableContainer component={Paper} style={{ marginTop: "1rem",width:"30rem"}} > 
+          <Table> 
+            <TableHead> 
+              <TableRow> 
+                <TableCell> S.No</TableCell>
+                <TableCell> Item Name</TableCell>
+                <TableCell> Weight</TableCell>
+                <TableCell> Touch</TableCell>
+                <TableCell> Purity</TableCell>              
+              </TableRow>
+            </TableHead>
+          </Table>
+        </TableContainer>
+        </div>
+
+        </div>
+   
 
         {/* Snackbar for Toast */}
         <Snackbar

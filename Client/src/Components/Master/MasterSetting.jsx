@@ -1,18 +1,96 @@
-// import React from 'react'
+// import React, { useState } from "react";
+// import "./MasterSetting.css"; // You can reuse the same CSS
+// import {
+//   Button,
+//   Dialog,
+//   DialogTitle,
+//   DialogContent,
+//   DialogActions,
+//   TextField,
+// } from "@mui/material";
 
 // const MasterSetting = () => {
-//   return (
-//     <div>MasterSetting</div>
-//   )
-// }
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [goldsmithName, setGoldsmithName] = useState("");
+//   const [phoneNumber, setPhoneNumber] = useState("");
+//   const [address, setAddress] = useState("");
 
-// export default MasterSetting
+//   const openModal = () => {
+//     setIsModalOpen(true);
+//   };
+
+//   const closeModal = () => {
+//     setIsModalOpen(false);
+//   };
+
+//   return (
+//     <div className="customer-container">
+//       <Button
+//         style={{
+//           backgroundColor: "#F5F5F5",
+//           color: "black",
+//           borderColor: "#25274D",
+//           borderStyle: "solid",
+//           borderWidth: "2px",
+//         }}
+//         variant="contained"
+//         onClick={openModal}
+//       >
+//         Add Setting Customer
+//       </Button>
+
+//       <Dialog open={isModalOpen} onClose={closeModal}>
+//         <DialogTitle style={{ color: "#a33768" }}>Add New Setting</DialogTitle>
+//         <DialogContent>
+//           <TextField
+//             autoFocus
+//             margin="dense"
+//             label="Setting Name"
+//             type="text"
+//             fullWidth
+//             value={goldsmithName}
+//             onChange={(e) => setGoldsmithName(e.target.value)}
+//           />
+//           <TextField
+//             margin="dense"
+//             label="Phone Number"
+//             type="tel"
+//             fullWidth
+//             value={phoneNumber}
+//             onChange={(e) => setPhoneNumber(e.target.value)}
+//           />
+//           <TextField
+//             margin="dense"
+//             label="Address"
+//             type="text"
+//             fullWidth
+//             multiline
+//             rows={4}
+//             value={address}
+//             onChange={(e) => setAddress(e.target.value)}
+//           />
+//         </DialogContent>
+//         <DialogActions>
+//           <Button onClick={closeModal} color="secondary">
+//             Cancel
+//           </Button>
+//           <Button onClick={closeModal} color="primary">
+//             Save
+//           </Button>
+//         </DialogActions>
+//       </Dialog>
+//     </div>
+//   );
+// };
+
+// export default MasterSetting;
+
 
 
 
 
 import React, { useState } from "react";
-import "./MasterSetting.css"; // You can reuse the same CSS
+import "./MasterSetting.css";
 import {
   Button,
   Dialog,
@@ -20,13 +98,24 @@ import {
   DialogContent,
   DialogActions,
   TextField,
+  IconButton,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableContainer,
+  Paper,
 } from "@mui/material";
+import { Edit, Delete } from "@mui/icons-material";
 
-const MasterSetting = () => {
+function Setting() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [goldsmithName, setGoldsmithName] = useState("");
+  const [customers, setCustomers] = useState([]);
+  const [customerName, setCustomerName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [editIndex, setEditIndex] = useState(null);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -34,6 +123,47 @@ const MasterSetting = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    clearForm();
+  };
+
+  const clearForm = () => {
+    setCustomerName("");
+    setPhoneNumber("");
+    setAddress("");
+    setEditIndex(null);
+  };
+
+  const handleSave = () => {
+    if (editIndex !== null) {
+      const updatedCustomers = [...customers];
+      updatedCustomers[editIndex] = {
+        customerName,
+        phoneNumber,
+        address,
+      };
+      setCustomers(updatedCustomers);
+    } else {
+      setCustomers([
+        ...customers,
+        { customerName, phoneNumber, address },
+      ]);
+    }
+    closeModal();
+  };
+
+  const handleEdit = (index) => {
+    const customer = customers[index];
+    setCustomerName(customer.customerName);
+    setPhoneNumber(customer.phoneNumber);
+    setAddress(customer.address);
+    setEditIndex(index);
+    openModal();
+  };
+
+  const handleDelete = (index) => {
+    const updatedCustomers = [...customers];
+    updatedCustomers.splice(index, 1);
+    setCustomers(updatedCustomers);
   };
 
   return (
@@ -49,20 +179,22 @@ const MasterSetting = () => {
         variant="contained"
         onClick={openModal}
       >
-        Add Setting Customer
+        Add Setting Workers
       </Button>
 
       <Dialog open={isModalOpen} onClose={closeModal}>
-        <DialogTitle style={{ color: "#a33768" }}>Add New Setting</DialogTitle>
+        <DialogTitle style={{ color: "#a33768" }}>
+          {editIndex !== null ? "Edit Customer" : "Add New Customerrr"}
+        </DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
-            label="Setting Name"
+            label="Worker Name"
             type="text"
             fullWidth
-            value={goldsmithName}
-            onChange={(e) => setGoldsmithName(e.target.value)}
+            value={customerName}
+            onChange={(e) => setCustomerName(e.target.value)}
           />
           <TextField
             margin="dense"
@@ -87,13 +219,45 @@ const MasterSetting = () => {
           <Button onClick={closeModal} color="secondary">
             Cancel
           </Button>
-          <Button onClick={closeModal} color="primary">
+          <Button onClick={handleSave} color="primary">
             Save
           </Button>
         </DialogActions>
       </Dialog>
+
+      {customers.length > 0 && (
+        <TableContainer component={Paper} style={{ marginTop: "20px" }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell><strong>Name</strong></TableCell>
+                <TableCell><strong>Phone</strong></TableCell>
+                <TableCell><strong>Address</strong></TableCell>
+                <TableCell><strong>Actions</strong></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {customers.map((customer, index) => (
+                <TableRow key={index}>
+                  <TableCell>{customer.customerName}</TableCell>
+                  <TableCell>{customer.phoneNumber}</TableCell>
+                  <TableCell>{customer.address}</TableCell>
+                  <TableCell>
+                    <IconButton onClick={() => handleEdit(index)} color="primary">
+                      <Edit />
+                    </IconButton>
+                    <IconButton onClick={() => handleDelete(index)} color="error">
+                      <Delete />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </div>
   );
-};
+}
 
-export default MasterSetting;
+export default Setting;

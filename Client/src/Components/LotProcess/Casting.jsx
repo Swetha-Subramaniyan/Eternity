@@ -4,6 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import { Button, TextField } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { Edit, Delete } from "@mui/icons-material";
 
 export default function CastingPage() {
   const [showPopup, setShowPopup] = useState(false);
@@ -35,11 +36,6 @@ export default function CastingPage() {
 
   const wastage = beforeWeight - afterWeight;
 
-  const handleItemChange = (index, field, value) => {
-    const newItems = [...items];
-    newItems[index][field] = value;
-    setItems(newItems);
-  };
 
   const addItem = () => {
     setItems([...items, { name: "", weight: "", touch: "" }]);
@@ -59,13 +55,17 @@ export default function CastingPage() {
   };
 
   const handleSave = () => {
+    const filteredItems = items.filter(
+      (item) => item.name.trim() !== ""
+    );
+  
     const newEntry = {
       ...form,
       beforeWeight: beforeWeight.toFixed(3),
       afterWeight: afterWeight.toFixed(3),
-      items: [...items],
+      items: [...filteredItems],
     };
-
+  
     if (editIndex !== null) {
       const updated = [...savedCastings];
       updated[editIndex] = newEntry;
@@ -73,26 +73,19 @@ export default function CastingPage() {
       toast.success("Updated successfully!", {
         position: "top-right",
         autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
       });
     } else {
       setSavedCastings([...savedCastings, newEntry]);
       toast.success("Saved successfully!", {
         position: "top-right",
         autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
       });
     }
-
+  
     resetPopup();
     setShowPopup(false);
   };
+  
 
   const handleEdit = (index) => {
     const data = savedCastings[index];
@@ -108,6 +101,26 @@ export default function CastingPage() {
     setEditIndex(index);
     setShowPopup(true);
   };
+
+
+
+  const handleItemChange = (index, field, value) => {
+    const updatedItems = [...items];
+    updatedItems[index][field] = value;
+    setItems(updatedItems);
+  };
+  
+  const handleEditItem = (index) => {
+    // Editing is inline, so no logic needed unless using modal
+    console.log("Edit requested for item at index", index);
+  };
+  
+  const handleDeleteItem = (index) => {
+    const updatedItems = [...items];
+    updatedItems.splice(index, 1);
+    setItems(updatedItems);
+  };
+  
 
   return (
     <>
@@ -203,7 +216,8 @@ export default function CastingPage() {
                     }
                   />
 
-                  <p>Purity: <strong>{givenPurity.toFixed(3)}</strong></p>
+                  <p>Purity: <strong>{(givenPurity / 100).toFixed(3)}</strong></p>
+                  
                 </div>
 
                 {/* Column 2 */}
@@ -230,7 +244,7 @@ export default function CastingPage() {
                     }
                   />
 
-                  <p>Purity: <strong>{copperPurity.toFixed(3)}</strong></p>
+                  <p>Purity: <strong>{(copperPurity/100).toFixed(3)}</strong></p>
                 </div>
 
                 {/* Column 3 */}
@@ -241,9 +255,10 @@ export default function CastingPage() {
                       <thead>
                         <tr>
                           <th>Item</th>
-                          <th>Wt</th>
+                          <th>Weight</th>
                           <th>Touch</th>
                           <th>Purity</th>
+                          <th> Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -254,7 +269,7 @@ export default function CastingPage() {
                                 type="text"
                                 value={item.name}
                                 onChange={(e) =>
-                                  handleItemChange(idx, "name", e.target.value)
+                                  handleItemChange(index, "name", e.target.value)
                                 }
                               />
                             </td>
@@ -263,7 +278,7 @@ export default function CastingPage() {
                                 type="number"
                                 value={item.weight}
                                 onChange={(e) =>
-                                  handleItemChange(idx, "weight", e.target.value)
+                                  handleItemChange(index, "weight", e.target.value)
                                 }
                               />
                             </td>
@@ -272,16 +287,30 @@ export default function CastingPage() {
                                 type="number"
                                 value={item.touch}
                                 onChange={(e) =>
-                                  handleItemChange(idx, "touch", e.target.value)
+                                  handleItemChange(index, "touch", e.target.value)
                                 }
                               />
                             </td>
+                        
+
                             <td>
-                              {(
-                                parseFloat(item.weight || 0) *
-                                parseFloat(item.touch || 0)
-                              ).toFixed(3)}
-                            </td>
+  {(
+    (parseFloat(item.weight || 0) *
+     parseFloat(item.touch || 0)) / 100
+  ).toFixed(3)}
+</td>
+
+<td>
+        <div style={{ display: 'flex', gap: '0px' }}>
+    <Button onClick={() => handleEditItem(index)} color="primary">
+      <Edit />
+    </Button>
+    <Button onClick={() => handleDeleteItem(index)} color="error">
+      <Delete />
+    </Button>
+  </div>
+      </td>
+
                           </tr>
                         ))}
                       </tbody>
@@ -311,7 +340,7 @@ export default function CastingPage() {
                 <th>Before Weight</th>
                 <th>After Weight</th>
                 <th>Items Qty</th>
-                <th>Edit</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
