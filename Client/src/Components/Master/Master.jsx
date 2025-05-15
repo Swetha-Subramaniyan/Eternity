@@ -1,15 +1,15 @@
-
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import {useNavigate } from "react-router-dom"; 
 import "./Master.css";
 import MasterCustomer from "./MasterCustomer";
 import MasterGoldsmith from "./MasterGoldsmith";
 import LogoutIcon from '@mui/icons-material/Logout';
-import MasterAddItems from "./Masteradditems";
+import MasterAddItems from "./MasterAddItems";
 import MasterSetting from "./MasterSetting";
 import MasterBuffing from "./MasterBuffing";
 import MasterFiling from "./MasterFiling";
 import logo from '../../assets/logo.jpg';
+import MasterPurchaseStock from "./MasterPurchaseStock";
 
 
 const Master = () => {
@@ -19,6 +19,7 @@ const Master = () => {
   const [showSettingDetails, setShowSettingDetails] = useState(false);
   const [showBuffingDetails, setShowBuffingDetails] = useState(false);
   const [showAddItemsDetails, setShowAddItemsDetails] = useState(false);
+  const [showPurchaseDetails,setShowPurchaseDetails] = useState(false)
 
   const navigate = useNavigate(); 
 
@@ -30,6 +31,7 @@ const Master = () => {
     setShowCastingDetails(false);
     setShowFilingDetails(false);
     setShowAddItemsDetails(false);
+    setShowPurchaseDetails(false);
   };
 
   const handleAddCasting = () => {
@@ -40,6 +42,7 @@ const Master = () => {
     setShowFilingDetails(false);
     setShowBuffingDetails(false)
     setShowAddItemsDetails(false);
+    setShowPurchaseDetails(false);
   };
 
   const handleAddFiling =()=>{
@@ -49,6 +52,7 @@ const Master = () => {
     setShowAddItemsDetails(false);
     setShowSettingDetails(false)
     setShowAddItemsDetails(false);
+    setShowPurchaseDetails(false);
 
   }
 
@@ -59,6 +63,7 @@ const Master = () => {
     setShowFilingDetails(false);
     setShowBuffingDetails(false)
     setShowAddItemsDetails(false);
+    setShowPurchaseDetails(false);
   }
 
   const handleAddBuffing = ()=>{
@@ -69,6 +74,7 @@ const Master = () => {
     setShowFilingDetails(false);
     setShowCastingDetails(false);
     setShowAddItemsDetails(false);
+    setShowPurchaseDetails(false);
   }
 
   const handleAddItemsClick = () => {
@@ -79,11 +85,17 @@ const Master = () => {
     setShowSettingDetails(false)
     setShowFilingDetails(false);
     setShowCastingDetails(false);
+    setShowPurchaseDetails(false);
   };
 
   const handleStockClick = () => {
+    setShowPurchaseDetails(true)
     setShowCustomerDetails(false);
     setShowGoldsmithDetails(false);
+    setShowBuffingDetails(false);
+    setShowSettingDetails(false)
+    setShowFilingDetails(false);
+    setShowCastingDetails(false);
   };
 
 
@@ -211,6 +223,7 @@ const Master = () => {
       {showAddItemsDetails && <MasterAddItems/>}
       {showSettingDetails && <MasterSetting/>}
       {showBuffingDetails && <MasterBuffing/>}
+      {showPurchaseDetails && <MasterPurchaseStock/>}
       
       <button
         onClick={handleLogout}

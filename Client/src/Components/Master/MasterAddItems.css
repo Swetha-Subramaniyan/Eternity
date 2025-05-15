@@ -1,77 +1,82 @@
-
 .master-container {
-    display: flex;
-    align-items: flex-start;
-    padding: 20px;
-    gap: 60px;
-  }
-  
-  .add-item-form {
-    width: 25%;  
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: #f9f9f9;
-  }
-  
-  .add-item-form h2 {
-    margin-bottom: 10px;
-  }
-  
-  .add-item-form label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-  }
-  
-  .add-item-form input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .add-item-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #1DA3A3;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .add-item-form button:hover {
-    background-color: #1DA3A3;
-  }
-  
-  
-  .item-list {
-    width: 30%;  
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: #fff;
-  }
-  
-  .item-list h2 {
-    margin-bottom: 10px;
-  }
-  
-  .item-list table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .item-list th, .item-list td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .item-list th {
-    background: #1DA3A3;
-    color: white;
-  }
-  
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.split-container {
+  display: flex;
+  width: 100%;
+}
+
+.left-panel {
+  width: 20rem;
+  padding: 2rem;
+}
+
+.right-panel {
+  width: 70rem;
+  padding-left: 2rem;
+}
+
+.divider {
+  width: 2px;
+  background-color: #ccc;
+  height: auto;
+  margin: 0 1rem;
+}
+
+.add-item-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-item-form input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.add-item-form button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cards-wrapper {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-height: 80vh;
+  gap: 12px;
+}
+
+.item-card {
+  background-color: #bdb9b9;
+  background-color: #5a595b;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  font-weight: 500;
+  width: fit-content;
+}
+
+
+.right-panel h2{
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.add-item-form h2{
+  text-align: center;
+
+}
+
+.add-item-form label{
+  font-weight: bold;
+}

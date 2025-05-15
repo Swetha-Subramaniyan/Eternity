@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import "./Mastercustomer.css";
 import {
@@ -16,9 +15,9 @@ import {
   TableCell,
   TableContainer,
   Paper,
+  InputAdornment,
 } from "@mui/material";
-import { Edit, Delete } from "@mui/icons-material";
-
+import { Edit, Delete, Search } from "@mui/icons-material";
 
 function MasterCustomer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,10 +26,9 @@ function MasterCustomer() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [editIndex, setEditIndex] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  const openModal = () => setIsModalOpen(true);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -47,53 +45,72 @@ function MasterCustomer() {
   const handleSave = () => {
     if (editIndex !== null) {
       const updatedCustomers = [...customers];
-      updatedCustomers[editIndex] = {
-        customerName,
-        phoneNumber,
-        address,
-      };
+      updatedCustomers[editIndex] = { customerName, phoneNumber, address };
       setCustomers(updatedCustomers);
     } else {
-      setCustomers([
-        ...customers,
-        { customerName, phoneNumber, address },
-      ]);
+      setCustomers([...customers, { customerName, phoneNumber, address }]);
     }
     closeModal();
   };
 
   const handleEdit = (index) => {
-    const customer = customers[index];
+    const customer = filteredCustomers[index];
+    const originalIndex = customers.findIndex(
+      (c) => c.customerName === customer.customerName && c.phoneNumber === customer.phoneNumber
+    );
     setCustomerName(customer.customerName);
     setPhoneNumber(customer.phoneNumber);
     setAddress(customer.address);
-    setEditIndex(index);
+    setEditIndex(originalIndex);
     openModal();
   };
 
   const handleDelete = (index) => {
+    const customerToDelete = filteredCustomers[index];
+    const originalIndex = customers.findIndex(
+      (c) => c.customerName === customerToDelete.customerName && c.phoneNumber === customerToDelete.phoneNumber
+    );
     const updatedCustomers = [...customers];
-    updatedCustomers.splice(index, 1);
+    updatedCustomers.splice(originalIndex, 1);
     setCustomers(updatedCustomers);
   };
 
+  const filteredCustomers = customers.filter((customer) =>
+    customer.customerName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="customer-container">
-      <Button
-        style={{
-          backgroundColor: "#F5F5F5",
-          color: "black",
-          borderColor: "#25274D",
-          borderStyle: "solid",
-          borderWidth: "2px",
-          
-        }}
-        variant="contained"
-        onClick={openModal}
-      >
-        Add Customer
-      </Button>
-     
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+        <Button
+          style={{
+            backgroundColor: "#F5F5F5",
+            color: "black",
+            borderColor: "#25274D",
+            borderStyle: "solid",
+            borderWidth: "2px",
+          }}
+          variant="contained"
+          onClick={openModal}
+        >
+          Add Customer
+        </Button>
+        <TextField
+          placeholder="Search by Name"
+          variant="outlined"
+          size="small"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </div>
+
       <Dialog open={isModalOpen} onClose={closeModal}>
         <DialogTitle style={{ color: "#a33768" }}>
           {editIndex !== null ? "Edit Customer" : "Add New Customer"}
@@ -137,20 +154,22 @@ function MasterCustomer() {
         </DialogActions>
       </Dialog>
 
-      {customers.length > 0 && (
-        <TableContainer component={Paper} style={{ marginTop: "20px" }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell><strong>Name</strong></TableCell>
-                <TableCell><strong>Phone</strong></TableCell>
-                <TableCell><strong>Address</strong></TableCell>
-                <TableCell><strong>Actions</strong></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {customers.map((customer, index) => (
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell><strong>S.No</strong></TableCell>
+              <TableCell><strong>Name</strong></TableCell>
+              <TableCell><strong>Phone</strong></TableCell>
+              <TableCell><strong>Address</strong></TableCell>
+              <TableCell><strong>Actions</strong></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredCustomers.length > 0 ? (
+              filteredCustomers.map((customer, index) => (
                 <TableRow key={index}>
+                  <TableCell>{index + 1}</TableCell>
                   <TableCell>{customer.customerName}</TableCell>
                   <TableCell>{customer.phoneNumber}</TableCell>
                   <TableCell>{customer.address}</TableCell>
@@ -163,11 +182,17 @@ function MasterCustomer() {
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5} align="center">
+                  Name not found
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }
