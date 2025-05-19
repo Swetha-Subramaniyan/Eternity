@@ -220,6 +220,7 @@ import React, { useState } from "react";
 import "./MasterPurchaseStock.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Master from "./Master";
 
 const MasterPurchaseStock = () => {
   const [showModal, setShowModal] = useState(false);
@@ -279,6 +280,8 @@ const MasterPurchaseStock = () => {
   };
 
   return (
+    <> 
+    <Master/>
     <div className="stock-page">
       <ToastContainer />
 
@@ -419,6 +422,7 @@ const MasterPurchaseStock = () => {
         </table>
       )}
     </div>
+    </>
   );
 };
 

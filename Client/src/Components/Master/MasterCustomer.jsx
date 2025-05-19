@@ -18,6 +18,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
+import Master from "./Master";
 
 function MasterCustomer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -80,8 +81,10 @@ function MasterCustomer() {
   );
 
   return (
+    <> 
+    <Master/>
     <div className="customer-container">
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", marginTop:"2rem"}}>
         <Button
           style={{
             backgroundColor: "#F5F5F5",
@@ -89,6 +92,7 @@ function MasterCustomer() {
             borderColor: "#25274D",
             borderStyle: "solid",
             borderWidth: "2px",
+            
           }}
           variant="contained"
           onClick={openModal}
@@ -194,6 +198,7 @@ function MasterCustomer() {
         </Table>
       </TableContainer>
     </div>
+    </>
   );
 }
 

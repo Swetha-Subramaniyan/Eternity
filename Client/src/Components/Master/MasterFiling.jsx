@@ -18,6 +18,7 @@ import {
   InputAdornment 
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
+import Master from "./Master";
 
 function MasterFiling() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -79,6 +80,8 @@ function MasterFiling() {
   );
 
   return (
+    <>
+    <Master/>
     <div className="customer-container">
       <Button
         style={{
@@ -199,6 +202,7 @@ function MasterFiling() {
         </Table>
       </TableContainer>
     </div>
+    </>
   );
 }
 

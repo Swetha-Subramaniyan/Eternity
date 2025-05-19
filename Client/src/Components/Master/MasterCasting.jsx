@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./MasterGoldsmith.css";
+import "./MasterCasting.css";
 import {
   Button,
   Dialog,
@@ -18,8 +18,9 @@ import {
   InputAdornment
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
+import Master from "./Master";
 
-function MasterGoldsmith() {
+function MasterCasting() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customers, setCustomers] = useState([]);
   const [customerName, setCustomerName] = useState("");
@@ -79,6 +80,8 @@ function MasterGoldsmith() {
   );
 
   return (
+    <> 
+    <Master/>
     <div className="customer-container">
       <Button
         style={{
@@ -86,7 +89,8 @@ function MasterGoldsmith() {
           color: "black",
           borderColor: "#25274D",
           borderStyle: "solid",
-          borderWidth: "2px",
+          borderWidth: "2px"
+         
         }}
         variant="contained"
         onClick={openModal}
@@ -203,7 +207,8 @@ sx={{marginLeft:'47.3rem'}}
         </Table>
       </TableContainer>
     </div>
+    </>
   );
 }
 
-export default MasterGoldsmith;
+export default MasterCasting;

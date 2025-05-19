@@ -193,6 +193,7 @@ import {
   InputAdornment 
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
+import Master from "./Master";
 
 function MasterBuffing() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -254,6 +255,8 @@ function MasterBuffing() {
   );
 
   return (
+    <> 
+    <Master/>
     <div className="customer-container">
       <Button
         style={{
@@ -374,6 +377,7 @@ function MasterBuffing() {
         </Table>
       </TableContainer>
     </div>
+    </>
   );
 }
 

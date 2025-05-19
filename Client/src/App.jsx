@@ -9,7 +9,13 @@ import Casting from './Components/LotProcess/Casting';
 import Filing from './Components/LotProcess/Filing';
 import Setting from './Components/LotProcess/Setting';
 import Buffing from './Components/LotProcess/Buffing';
-
+import MasterCustomer from './Components/Master/MasterCustomer';
+import MasterFiling from './Components/Master/MasterFiling';
+import MasterSetting from './Components/Master/MasterSetting';
+import MasterBuffing from './Components/Master/MasterBuffing';
+import MasterGoldsmith from './Components/Master/MasterCasting';
+import MasterAddItems from './Components/Master/MasterAddItems';
+import MasterPurchaseStock from './Components/Master/MasterPurchaseStock';
 
 
 
@@ -27,12 +33,24 @@ const App = () => {
     <Route path='/casting' element={<Casting/>} />
     <Route path='/filing' element={<Filing/>}/>
     <Route path='/setting' element={<Setting/>}/>
-    <Route path='/buffing' element={<Buffing/>}/>
+    <Route path='/buffing' element={<Buffing/>}/> 
+    <Route path='/mastercustomer' element={<MasterCustomer/>} />
+    <Route path='/masterfiling' element={<MasterFiling/>} />
+    <Route path='/mastersetting' element={<MasterSetting/>} />
+    <Route path='/masterbuffing' element={<MasterBuffing/>} />
+    <Route path='/mastercasting' element={<MasterGoldsmith/>}/>
+    <Route path='/masteritems' element={<MasterAddItems/>} />
+    <Route path='/masterpurchasestock' element={<MasterPurchaseStock/>} />
   
-  
+   
+    <Route/>
+    <Route/>
+    <Route/>
+    <Route/>
 
-  
-    </Routes>
+
+
+   </Routes>
     </BrowserRouter>
    
   )

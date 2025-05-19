@@ -5,6 +5,16 @@ import { Button, TextField } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Edit, Delete } from "@mui/icons-material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+
+} from "@mui/material";
 
 export default function CastingPage() {
   const [showPopup, setShowPopup] = useState(false);
@@ -128,24 +138,8 @@ export default function CastingPage() {
       <ToastContainer />
       <div className="casting-container">
         <div className="top-bar">
-          <Button
-            style={{
-              backgroundColor: "#F5F5F5",
-              color: "black",
-              borderColor: "#25274D",
-              borderStyle: "solid",
-              borderWidth: "2px",
-              marginLeft: "78rem",
-              position: "absolute",
-              marginTop: "1rem",
-            }}
-            variant="contained"
-            onClick={() => setShowPopup(true)}
-          >
-            Add Casting Items
-          </Button>
 
-          <div className="date-fields">
+        <div className="date-fields">
             <TextField
               id="from-date"
               label="From Date"
@@ -160,13 +154,33 @@ export default function CastingPage() {
               sx={{ marginLeft: "1rem" }}
             />
           </div>
+          <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginTop: "1rem",
+              marginRight:'2.5rem',
+              height:"3rem",
+              
+             
+            }}
+            variant="contained"
+            onClick={() => setShowPopup(true)}
+          >
+            Add Casting Items
+          </Button>
+
+        
         </div>
 
         {showPopup && (
           <div className="popup-overlay">
             <div className="popup">
               <div className="popup-header">
-                <h2>Casting / Melting </h2>
+                <h2 style={{color:'#d40b4e'}}>Casting / Melting </h2>
                 <button
                   onClick={() => {
                     setShowPopup(false);
@@ -222,7 +236,7 @@ export default function CastingPage() {
 
                 {/* Column 2 */}
                 <div className="popup-column">
-                  <h3>After Adding Copper</h3>
+                  <h3 className="copper">After Adding Copper</h3>
 
                   <label>Copper</label>
                   <input
@@ -329,37 +343,47 @@ export default function CastingPage() {
           </div>
         )}
 
-        <div className="casting-table">
-          <br />
-          <table>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Date</th>
-                <th>Name</th>
-                <th>Before Weight</th>
-                <th>After Weight</th>
-                <th>Items Qty</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {savedCastings.map((entry, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{entry.date}</td>
-                  <td>{entry.name}</td>
-                  <td>{entry.beforeWeight}</td>
-                  <td>{entry.afterWeight}</td>
-                  <td>{entry.items.length}</td>
-                  <td>
-                    <button onClick={() => handleEdit(index)}>Edit</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+
+<h3 style={{textAlign:'center',color:'#d40b4e',fontSize:'1.3rem',fontWeight:'bold'}}> Casting / Melting </h3>
+<TableContainer component={Paper} style={{ marginTop: "1rem", width: "96%",marginLeft:'1.6rem'}}>
+  <Table>
+    <TableHead >
+      <TableRow>
+        <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >S.No</TableCell>
+        <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Date</TableCell>
+        <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Name</TableCell>
+        <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Before Weight</TableCell>
+        <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >After Weight</TableCell>
+        <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Items Qty</TableCell>
+        <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Action</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {savedCastings.map((entry, index) => (
+        <TableRow key={index} className="table-body-row">
+          <TableCell>{index + 1}</TableCell>
+          <TableCell>{entry.date}</TableCell>
+          <TableCell>{entry.name}</TableCell>
+          <TableCell>{entry.beforeWeight}</TableCell>
+          <TableCell>{entry.afterWeight}</TableCell>
+          <TableCell>{entry.items.length}</TableCell>
+          <TableCell>
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={() => handleEdit(index)}
+              sx={{ textTransform: 'none' }}
+            >
+              Edit
+            </Button>
+          </TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+</TableContainer>
+
       </div>
     </>
   );
