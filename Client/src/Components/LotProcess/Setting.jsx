@@ -131,39 +131,6 @@ const Setting = () => {
       <ToastContainer />
       <div className="filing-container">
         <br />
-        {/* <TextField
-          id="date-filter"
-          label="From Date"
-          type="date"
-          InputLabelProps={{
-            shrink: true,
-          }}
-         
-        />
-        <TextField
-          id="date-filter"
-          label="To Date"
-          type="date"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          sx={{ marginLeft: "1rem" }}
-        />
-        <Button
-          style={{
-            backgroundColor: "#F5F5F5",
-            color: "black",
-            borderColor: "#25274D",
-            borderStyle: "solid",
-            borderWidth: "2px",
-            marginLeft: "60rem",
-            position: "absolute",
-          }}
-          variant="contained"
-          onClick={openModal}
-        >
-          Add Setting Items
-        </Button> */}
 
 <Box display="flex" alignItems="center" gap="1rem" mb={2}>
   <TextField
@@ -320,20 +287,20 @@ const Setting = () => {
 
         <div className="tables-container">
         <div className="left-table"> 
-        <h3 style={{textAlign:'center'}}> Setting </h3>
+        <h3 style={{textAlign:'center',color:'#d40b4e',fontSize:'1.3rem',fontWeight:'bold'}}> Setting </h3>
         <TableContainer component={Paper} style={{ marginTop: "1rem",width:"60rem"}}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>S.No</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Before Weight</TableCell>
-                <TableCell>Purity</TableCell>
-                <TableCell>Touch</TableCell>
-                <TableCell>Difference</TableCell>
-                <TableCell>After Weight</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}>S.No</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}>Date</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}>Name</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}>Before Weight</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}>Purity</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}>Touch</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}>Difference</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}>After Weight</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}>Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -363,16 +330,16 @@ const Setting = () => {
         </TableContainer>
         </div>
         <div className="right-table">  
-<h3 style={{textAlign:'center'}} > Setting Items </h3>
+<h3 style={{textAlign:'center',color:'#d40b4e',fontSize:'1.3rem',fontWeight:'bold'}} > Setting Items </h3>
         <TableContainer component={Paper} style={{ marginTop: "1rem",width:"30rem"}} > 
           <Table> 
             <TableHead> 
               <TableRow> 
-                <TableCell> S.No</TableCell>
-                <TableCell> Item Name</TableCell>
-                <TableCell> Weight</TableCell>
-                <TableCell> Touch</TableCell>
-                <TableCell> Purity</TableCell>              
+                <TableCell sx={{fontSize:'1rem'}}> S.No</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}> Item Name</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}> Weight</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}> Touch</TableCell>
+                <TableCell sx={{fontSize:'1rem'}}> Purity</TableCell>              
               </TableRow>
             </TableHead>
           </Table>

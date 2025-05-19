@@ -289,20 +289,20 @@ const Filing = () => {
 
         <div className="tables-container">
         <div className="left-table"> 
-        <h3 style={{textAlign:'center'}}> Filing </h3>
+        <h3 style={{textAlign:'center', color:'#d40b4e',fontSize:'1.3rem',fontWeight:'bold'}}> Filing </h3>
         <TableContainer component={Paper} style={{ marginTop: "1rem",width:"60rem"}}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>S.No</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Before Weight</TableCell>
-                <TableCell>Purity</TableCell>
-                <TableCell>Touch</TableCell>
-                <TableCell>Difference</TableCell>
-                <TableCell>After Weight</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >S.No</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Date</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Name</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Before Weight</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Purity</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Touch</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Difference</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >After Weight</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -332,16 +332,16 @@ const Filing = () => {
         </TableContainer>
         </div>
         <div className="right-table">  
-<h3 style={{textAlign:'center'}} > Filing Items </h3>
+<h3 style={{textAlign:'center',color:'#d40b4e',fontSize:'1.3rem',fontWeight:'bold'}}> Filing Items </h3>
         <TableContainer component={Paper} style={{ marginTop: "1rem",width:"30rem"}} > 
           <Table> 
             <TableHead> 
               <TableRow> 
-                <TableCell> S.No</TableCell>
-                <TableCell> Item Name</TableCell>
-                <TableCell> Weight</TableCell>
-                <TableCell> Touch</TableCell>
-                <TableCell> Purity</TableCell>              
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} > S.No</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} > Item Name</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} > Weight</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} > Touch</TableCell>
+                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} > Purity</TableCell>              
               </TableRow>
             </TableHead>
           </Table>
