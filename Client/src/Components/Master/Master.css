@@ -66,6 +66,9 @@
   background:#DAA520 ;
   background:#a57402 ;
   background: linear-gradient(to left,  #674903 ,#DAA520 );
+     
+  background: linear-gradient(to right,  #b88915 ,#b18c3c, #a94b1d);
+
 }
 
 .navbar-left {

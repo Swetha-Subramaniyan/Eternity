@@ -14,13 +14,86 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Customer {
+model AddCustomer {
   id    Int    @id @default(autoincrement())
   name  String
-  phone_number  Int
+  phoneNumber  String
   address String
+  email String? @unique
 
 }
+
+model AddCasting {
+  id Int @id @default(autoincrement())
+  name String
+  phoneNumber String 
+  address String 
+  email String @unique
+
+  Castings Casting[]
+}
+
+model AddFiling{
+  id Int @id @default(autoincrement())
+  name String
+  phoneNumber String 
+  address String 
+  email String @unique
+}
+
+model AddSetting{
+  id Int @id @default(autoincrement())
+  name String
+  phoneNumber String 
+  address String 
+  email String @unique
+}
+
+model AddBuffing{
+  id Int @id @default(autoincrement())
+  name String
+  phoneNumber String 
+  address String 
+  email String @unique
+}
+
+model AddItem{
+  id Int @id @default(autoincrement())
+  name String
+  
+}
+
+model AddPurchaseStock{
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  item String
+  quantity Int
+  purchasePrice Int
+  phoneNumber String
+}
+
+model Casting{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name String
+  givenGold Float
+  givenTouch Float
+  purity Float
+  finalTouch Float
+  pureValue Float
+  finalWeight Float
+  copper Float
+
+  castingId Int
+  addcasting AddCasting @relation(fields: [castingId], references: [id])
+
+}
+
+
+
+
+
 
 
 
