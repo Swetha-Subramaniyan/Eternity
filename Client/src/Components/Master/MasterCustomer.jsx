@@ -204,47 +204,45 @@ function MasterCustomer() {
           </DialogActions>
         </Dialog>
 
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell><strong>S.No</strong></TableCell>
-                <TableCell><strong>Name</strong></TableCell>
-                <TableCell><strong>Phone</strong></TableCell>
-                <TableCell><strong>Email</strong></TableCell>
-                <TableCell><strong>Address</strong></TableCell>
-                <TableCell><strong>Actions</strong></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredCustomers.length > 0 ? (
-                filteredCustomers.map((customer, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{index + 1}</TableCell>
-                    <TableCell>{customer.name}</TableCell>
-                    <TableCell>{customer.phoneNumber}</TableCell>
-                    <TableCell>{customer.email}</TableCell>
-                    <TableCell>{customer.address}</TableCell>
-                    <TableCell>
-                      <IconButton onClick={() => handleEdit(index)} color="primary">
-                        <Edit />
-                      </IconButton>
-                      <IconButton onClick={() => handleDelete(index)} color="error">
-                        <Delete />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell colSpan={6} align="center">
-                    Name not found
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+
+<div className="item-listt"> 
+<table >
+  <thead>
+    <tr>
+      <th><strong>S.No</strong></th>
+      <th><strong>Name</strong></th>
+      <th><strong>Phone</strong></th>
+      <th><strong>Email</strong></th>
+      <th><strong>Address</strong></th>
+      <th><strong>Actions</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredCustomers.length > 0 ? (
+      filteredCustomers.map((customer, index) => (
+        <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{customer.name}</td>
+          <td>{customer.phoneNumber}</td>
+          <td>{customer.email}</td>
+          <td>{customer.address}</td>
+          <td style={{width:"7rem"}}>
+           <Edit onClick={() => handleEdit(index)} style={{ marginRight: "8px" }} />
+           <Delete  onClick={() => handleDelete(index)} style={{ color: "red", marginLeft:'0.5rem' }} />  
+          </td>
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="6" style={{ textAlign: "center" }}>
+          Name not found
+        </td>
+      </tr>
+    )}
+  </tbody>
+</table>
+</div>
+
       </div>
     </>
   );
