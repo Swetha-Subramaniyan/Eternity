@@ -17,6 +17,9 @@ import Paper from "@mui/material/Paper";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './Filing.css'
+import { Checkbox, FormControlLabel } from '@mui/material';
+import { Edit, Delete } from "@mui/icons-material";
+
 
 const Filing = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,6 +33,57 @@ const Filing = () => {
   const [difference, setDifference] = useState("");
   const [afterWeight, setAfterWeight] = useState("");
   const [entries, setEntries] = useState([]);
+  const [castingItems, setCastingItems] = useState([
+    { name: "", weight: "", touch: "", hasStone: false }
+  ]);
+  
+  const addItem = () => {
+    setItems([...items, { name: "", weight: "", touch: "" }]);
+  };
+
+  const [items, setItems] = useState([
+    {
+      id: 1,
+      name: "Ring A",
+      date: "2025-05-19",
+      hasStone: "",
+      nextProcess: "",
+      status: "Pending",
+    },
+    {
+      id: 2,
+      name: "Pendant B",
+      date: "2025-05-20",
+      hasStone: "",
+      nextProcess: "",
+      status: "Pending",
+    },
+  ]);
+
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleStoneChange = (index, value) => {
+    const updated = [...items];
+    updated[index].hasStone = value;
+    updated[index].nextProcess = value === "Yes" ? "Setting" : value === "No" ? "Buffing" : "";
+    setItems(updated);
+  };
+
+  const handleMoveToNext = (index) => {
+    const updated = [...items];
+    updated[index].status = "Moved to " + updated[index].nextProcess;
+    setItems(updated);
+  };
+
+  const filteredItems = items.filter((item) => {
+    const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchFromDate = !fromDate || item.date >= fromDate;
+    const matchToDate = !toDate || item.date <= toDate;
+    return matchSearch && matchFromDate && matchToDate;
+  });
+
 
   // Toast state
   const [openToast, setOpenToast] = useState(false);
@@ -62,7 +116,7 @@ const Filing = () => {
     setAfterWeight("");
   };
 
-  const handleSave = () => {
+  const handleSavee = () => {
     const hasData =
       date || name || beforeWeight || purity || touch || difference || afterWeight;
 
@@ -124,6 +178,24 @@ const Filing = () => {
     setIsModalOpen(true);
   };
 
+
+  const handleItemChange = (index, field, value) => {
+    const updatedItems = [...castingItems];
+    updatedItems[index][field] = value;
+    setCastingItems(updatedItems);
+  };
+  const handleSave = () => {
+    const buffingItems = castingItems.filter(item => item.hasStone);
+    const settingItems = castingItems.filter(item => !item.hasStone);
+  
+    // Example logging, or send them to appropriate processing functions
+    console.log("To Buffing Process:", buffingItems);
+    console.log("To Setting Process:", settingItems);
+  
+    // Then proceed with saving logic...
+  };
+    
+
   return (
     <>
       <Navbar />
@@ -159,24 +231,12 @@ const Filing = () => {
       <MenuItem value="Completed">Completed</MenuItem>
     </Select>
   </FormControl>
-  <Button
-          style={{
-            backgroundColor: "#F5F5F5",
-            color: "black",
-            borderColor: "#25274D",
-            borderStyle: "solid",
-            borderWidth: "2px",
-            marginLeft: "81rem",
-            position: "absolute",
-          }}
-          variant="contained"
-          onClick={openModal}
-        >
+ 
+        <Button   onClick={openModal} sx={{ m: 0, marginLeft:95, backgroundColor:'#5f4917', color:'white' }}>
           Add Filing Items
-        </Button>
+</Button>
 </Box>
-
-        
+       
 
         <Dialog open={isModalOpen} onClose={closeModal} 
         >
@@ -188,10 +248,21 @@ const Filing = () => {
   maxWidth="lg"
   fullWidth
   PaperProps={{
-    style: { minHeight: "300px", padding: "1rem",minWidth:"60%" , height:"fit-content"},
+    style: { minHeight: "300px", padding: "1rem",minWidth:"70%" , height:"fit-content"},
   }}
 >
-  <DialogTitle style={{ color: "#a33768", textAlign: "center" }}>
+  <DialogTitle 
+
+  style={{ color: "#855819", 
+  textAlign: "center", 
+  fontSize:"1.3rem" ,
+  fontWeight:'bold', 
+  background:'aliceblue',
+  background: "linear-gradient(to right, #bf883b, #ebedee, #bf883b )",
+  height:'1.4rem'
+
+  }}
+  >
     Filing Entry
   </DialogTitle>
 
@@ -199,7 +270,7 @@ const Filing = () => {
     <Box display="flex" gap={4}>
       {/* Left Column - Filing Section */}
       <Box flex={1} p={2} borderRight="1px solid #ccc">
-        <h3 style={{ textAlign: "center", marginBottom: "1rem" }}>Filing</h3>
+        <h3 style={{ textAlign: "center", marginBottom: "1rem",color:'brown' }}>Filing</h3>
         <TextField
           id="date"
           label="Date"
@@ -228,38 +299,160 @@ const Filing = () => {
 
       {/* Right Column - Casting Items */}
       <Box flex={2} p={2}>
-        <h3 style={{ textAlign: "center" }}>Casting Items</h3>
+        <h3 style={{ textAlign: "center", color:'brown' }}>Casting Items</h3>
         <br/>
-        <TableContainer component={Paper}>
+
+
+
+        <div className="popup-column">
+                  <button className="add-btn" onClick={addItem}>Add Item</button>
+                  <div className="scroll-table">
+                    <table>
+                      <thead >
+                        <tr>
+                          <th>Item</th>
+                          <th>Weight</th>
+                          <th>Touch</th>
+                          <th>Purity</th>
+                          <th>Remarks</th>
+                          <th> Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {items.map((item, index) => (
+                          <tr key={index}>
+                            <td>
+                              <input
+                                type="text"
+                                value={item.name}
+                                onChange={(e) =>
+                                  handleItemChange(index, "name", e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <input
+                                type="number"
+                                value={item.weight}
+                                onChange={(e) =>
+                                  handleItemChange(index, "weight", e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <input
+                                type="number"
+                                value={item.touch}
+                                onChange={(e) =>
+                                  handleItemChange(index, "touch", e.target.value)
+                                }
+                              />
+                            </td>
+                        
+
+                            <td>
+  {(
+    (parseFloat(item.weight || 0) *
+     parseFloat(item.touch || 0)) / 100
+  ).toFixed(3)}
+</td>
+<td>
+        <input
+          type="text"
+          value={item.remark}
+          onChange={(e) =>
+            handleItemChange(index, "remark", e.target.value)
+          }
+        />
+      </td>
+
+<td>
+        <div style={{ display: 'flex', gap: '0px' }}>
+    <Button onClick={() => handleEditItem(index)} color="primary">
+      <Edit />
+    </Button>
+    <Button onClick={() => handleDeleteItem(index)} color="error">
+      <Delete />
+    </Button>
+  </div>
+      </td>
+
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p>After Weight: <strong>{afterWeight}</strong></p>
+                  
+
+                  <button className="save-btn" onClick={handleSave}>
+                    {editIndex !== null ? "Update" : "Save"}
+                  </button>
+                </div>
+
+
+
+
+
+<TableContainer component={Paper} sx={{ width: "100%", margin: "0 auto" }}>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell>S.No</TableCell>
+                {/* <TableCell>Date</TableCell> */}
                 <TableCell>Item Name</TableCell>
-                <TableCell>Weight</TableCell>
-                <TableCell>Touch</TableCell>
-                <TableCell>Purity</TableCell>
+                <TableCell>Has Stone?</TableCell>
+                <TableCell>Next Process</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* Example rows — replace with your dynamic data */}
-              <TableRow>
-                <TableCell>1</TableCell>
-                <TableCell>Ring</TableCell>
-                <TableCell>10g</TableCell>
-                <TableCell>92</TableCell>
-                <TableCell>22K</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>2</TableCell>
-                <TableCell>Chain</TableCell>
-                <TableCell>15g</TableCell>
-                <TableCell>91.6</TableCell>
-                <TableCell>22K</TableCell>
-              </TableRow>
+              {filteredItems.map((item, index) => (
+                <TableRow key={item.id}>
+                  <TableCell>{index + 1}</TableCell>
+                  {/* <TableCell>{item.date}</TableCell> */}
+                  <TableCell>{item.name}</TableCell>
+                  <TableCell>
+                    <TextField
+                      select
+                      value={item.hasStone}
+                      onChange={(e) => handleStoneChange(index, e.target.value)}
+                      size="small"
+                    >
+                      <MenuItem value="">Select</MenuItem>
+                      <MenuItem value="Yes">Yes</MenuItem>
+                      <MenuItem value="No">No</MenuItem>
+                    </TextField>
+                  </TableCell>
+                  <TableCell>{item.nextProcess}</TableCell>
+                  <TableCell>{item.status}</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="small"
+                      onClick={() => handleMoveToNext(index)}
+                      disabled={!item.nextProcess}
+                    >
+                      Move
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+              {filteredItems.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={7} align="center">
+                    No records found.
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </TableContainer>
+
+
       </Box>
     </Box>
   </DialogContent>
@@ -268,7 +461,7 @@ const Filing = () => {
     <Button onClick={closeModal} color="secondary">
       Cancel
     </Button>
-    <Button onClick={handleSave} color="primary">
+    <Button onClick={handleSavee} color="primary">
       {editIndex !== null ? "Update" : "Save"}
     </Button>
   </DialogActions>

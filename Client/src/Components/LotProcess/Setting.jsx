@@ -162,17 +162,19 @@ const Setting = () => {
   <Button
           style={{
             backgroundColor: "#F5F5F5",
-            color: "black",
+            color: "white",
             borderColor: "#25274D",
             borderStyle: "solid",
             borderWidth: "2px",
             marginLeft: "81rem",
             position: "absolute",
+            backgroundColor:'#a94b1d',
+            fontWeight:'bold'
           }}
           variant="contained"
           onClick={openModal}
         >
-          Add Filing Items
+          Add Setting Items
         </Button>
 </Box>
 
@@ -371,3 +373,64 @@ const Setting = () => {
 };
 
 export default Setting;
+
+
+
+// import React, { useState } from "react";
+// import { TextField, Table, TableHead, TableRow, TableCell, TableBody, Paper, TableContainer, InputAdornment } from "@mui/material";
+// import SearchIcon from '@mui/icons-material/Search';
+// import Navbar from "../Navbar/Navbar";
+
+// export default function Setting() {
+//   const [fromDate, setFromDate] = useState("");
+//   const [toDate, setToDate] = useState("");
+//   const [searchTerm, setSearchTerm] = useState("");
+
+//   const settingItems = [
+//     { name: "Ring A", date: "2025-05-20", status: "Stone Set" },
+//   ];
+
+//   const filtered = settingItems.filter(item =>
+//     (!fromDate || item.date >= fromDate) &&
+//     (!toDate || item.date <= toDate) &&
+//     item.name.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+
+//   return (
+//     <>
+//       <Navbar />
+//       <div style={{ padding: "1rem" }}>
+//         <h3>Stone Setting</h3>
+//         <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+//           <TextField label="From Date" type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} InputLabelProps={{ shrink: true }} />
+//           <TextField label="To Date" type="date" value={toDate} onChange={e => setToDate(e.target.value)} InputLabelProps={{ shrink: true }} />
+//           <TextField label="Search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)}
+//             InputProps={{ startAdornment: (<InputAdornment position="start"><SearchIcon /></InputAdornment>) }} />
+//         </div>
+
+//         <TableContainer component={Paper}>
+//           <Table>
+//             <TableHead>
+//               <TableRow>
+//                 <TableCell>S.No</TableCell>
+//                 <TableCell>Name</TableCell>
+//                 <TableCell>Date</TableCell>
+//                 <TableCell>Status</TableCell>
+//               </TableRow>
+//             </TableHead>
+//             <TableBody>
+//               {filtered.map((item, index) => (
+//                 <TableRow key={index}>
+//                   <TableCell>{index + 1}</TableCell>
+//                   <TableCell>{item.name}</TableCell>
+//                   <TableCell>{item.date}</TableCell>
+//                   <TableCell>{item.status}</TableCell>
+//                 </TableRow>
+//               ))}
+//             </TableBody>
+//           </Table>
+//         </TableContainer>
+//       </div>
+//     </>
+//   );
+// }
