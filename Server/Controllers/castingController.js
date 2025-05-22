@@ -1,51 +1,73 @@
 import { PrismaClient } from '../generated/prisma/index.js'; 
 const prisma = new PrismaClient();
 
-// Create
-export const createCasting = async (req, res) => {
-  try {
-    const { name, phoneNumber, address, email } = req.body;
-    const newCasting = await prisma.addCasting.create({
-      data: { name, phoneNumber, address, email },
-    });
-    res.status(201).json(newCasting);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
+export const createCasting = async (req,res) =>{
 
-// Get all
-export const getCastings = async (req, res) => {
-  try {
-    const castings = await prisma.addCasting.findMany();
-    res.json(castings);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+    try{
 
-// Update
-export const updateCasting = async (req, res) => {
-  const { id } = req.params;
-  const { name, phoneNumber, address, email } = req.body;
-  try {
-    const updated = await prisma.addCasting.update({
-      where: { id: Number(id) },
-      data: { name, phoneNumber, address, email },
-    });
-    res.json(updated);
-  } catch (error) {
-    res.status(404).json({ error: "Casting not found" });
-  }
-};
+        const {name,email, phoneNumber,address} = req.body;
+        const newCustomer = await prisma.addCasting.create(
+            {
+                data:{name,email,phoneNumber,address},
+            }
+        );
+        res.status(201).json(newCustomer)
 
-// Delete
-export const deleteCasting = async (req, res) => {
-  const { id } = req.params;
-  try {
-    await prisma.addCasting.delete({ where: { id: Number(id) } });
-    res.json({ message: "Casting deleted" });
-  } catch (error) {
-    res.status(404).json({ error: "Casting not found" });
-  }
-};
+    }catch(error) {
+        res.status(400).json(error)
+
+    }
+
+}
+
+
+export const getCasting = async (req,res) =>{
+
+    try{
+        const casting = await prisma.addCasting.findMany()
+        res.status(201).json(casting)
+
+    } catch (error) {
+        res.status(400).json(error)
+
+    }
+
+}
+
+export const updateCasting = async (req,res) =>{
+    const {id} = req.params;
+    const { name,email,phoneNumber,address} = req.body;
+    try{
+        const updated = await prisma.addCasting.update(
+            {
+                where: {id: Number(id) },
+                data: { name,email,phoneNumber,address }
+            }
+           
+        );
+        res.json(updated)
+
+    }catch(error){
+        res.status(400).json({error:"casting member not found"} )
+    }
+
+}
+
+
+export const deleteCasting = async (req,res) =>{
+    const {id} = req.params;
+
+    try{
+        const deleted = await prisma.addCasting.delete(
+            {
+                where: {id: Number(id)}
+            }
+        )
+        res.json(deleted)
+
+    }catch(error){
+        res.status(400).json( {  error:"casting member not found"}  )
+
+    }
+
+}
