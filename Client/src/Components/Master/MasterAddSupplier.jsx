@@ -1,0 +1,338 @@
+// import React, { useState, useEffect } from "react";
+// import "./MasterAddSupplier.css";
+// import Master from "./Master";
+// import axios from "axios";
+// import { BACKEND_SERVER_URL } from "../../../Config/config";
+
+// const MasterAddSupplier = () => {
+//   const [items, setItems] = useState([]);
+//   const [itemName, setItemName] = useState("");
+
+//   // Fetch items on component mount
+//   useEffect(() => {
+//     const fetchItems = async () => {
+//       try {
+//         const response = await axios.get(`${BACKEND_SERVER_URL}/api/additem`);
+//         setItems(response.data);
+//       } catch (error) {
+//         console.error("Error fetching items:", error);
+//       }
+//     };
+
+//     fetchItems();
+//   }, []);
+
+//   // Add item to backend
+//   const handleAddItem = async () => {
+//     if (!itemName) {
+//       alert("Please enter an item name.");
+//       return;
+//     }
+
+//     try {
+//       const response = await axios.post(`${BACKEND_SERVER_URL}/api/additem`, {
+//         name: itemName,
+//       });
+//       console.log(response)
+
+//       setItems((prevItems) => [...prevItems, response.data]);
+//       setItemName(""); // Clear input
+//     } catch (error) {
+//       console.error("Error adding item:", error);
+//     }
+//   };
+
+//   return (
+//     <>
+//       <Master />
+//       <div className="master-container">
+//         <div className="add-item-form">
+//           <h2 style={{ textAlign: "center" }}>Add Supplier Item</h2>
+//           <label>Item Name:</label>
+//           <input
+//             type="text"
+//             value={itemName}
+//             onChange={(e) => setItemName(e.target.value)}
+//             placeholder="Enter item name"
+//           />
+//           <button onClick={handleAddItem}>Add Item</button>
+//         </div>
+
+//         <div className="item-list">
+//           <h2 style={{ textAlign: "center" }}>Added Items</h2>
+//           {items.length > 0 ? (
+//             <table>
+//               <thead>
+//                 <tr>
+//                   <th>SI.No</th>
+//                   <th>Item Name</th>
+                 
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 {items.map((item, index) => (
+//                   <tr key={item.id}>
+//                     <td>{index + 1}</td>
+//                     <td>{item.name}</td>
+                    
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           ) : (
+//             <p>No items added yet.</p>
+//           )}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default MasterAddSupplier;
+
+
+
+
+
+import React, { useState, useEffect } from "react";
+import "./MasterAddSupplier.css";
+import axios from "axios";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
+import { Edit, Delete, Search } from "@mui/icons-material";
+import Master from "./Master";
+import { BACKEND_SERVER_URL } from "../../../Config/config";
+
+function MasterAddSupplier() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customers, setCustomers] = useState([]);
+  const [customerName, setCustomerName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState(""); 
+  const [editIndex, setEditIndex] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const openModal = () => setIsModalOpen(true);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    clearForm();
+  };
+
+  const clearForm = () => {
+    setCustomerName("");   
+    setPhoneNumber("");
+    setAddress("");
+    setEmail("");
+    setEditIndex(null);
+  };
+
+
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const response = await axios.get(`${BACKEND_SERVER_URL}/api/addsupplier`);
+        setCustomers(response.data);
+      } catch (error) {
+        console.error("Error fetching customers:", error.message);
+      }
+    };
+  
+    fetchCustomers();
+  }, []);
+
+  
+  const handleSave = async () => {
+    const customerData = {
+      name: customerName,
+      phoneNumber ,
+      address,
+      email,
+    };
+  
+    try {
+      if (editIndex !== null) {
+        // PUT request for updating customer
+        const id = customers[editIndex].id; // assuming your customers have unique IDs
+        const response = await axios.put(`${BACKEND_SERVER_URL}/api/addsupplier/${id}`, customerData);
+        const updated = [...customers];
+        updated[editIndex] = response.data;
+        setCustomers(updated);
+      } else {
+        // POST request for adding new customer
+        const response = await axios.post(`${BACKEND_SERVER_URL}/api/addsupplier`, customerData);
+        setCustomers((prev) => [...prev, response.data]);
+      }
+      closeModal();
+    } catch (error) {
+      console.error("Error saving customer:", error.response?.data || error.message);
+      alert("Error: " + (error.response?.data?.error || "Something went wrong"));
+    }
+  };
+  
+
+  const handleEdit = (index) => {
+    const customer = filteredCustomers[index];
+    const originalIndex = customers.findIndex(
+      (c) => c.name === customer.name && c.phoneNumber === customer.phoneNumber
+    );
+    setCustomerName(customer.name);
+    setPhoneNumber(customer.phoneNumber);
+    setAddress(customer.address);
+    setEmail(customer.email || "");
+    setEditIndex(originalIndex);
+    openModal();
+  };
+  const handleDelete = async (index) => {
+    const customer = customers[index];
+    try {
+      await axios.delete(`${BACKEND_SERVER_URL}/api/addsupplier/${customer.id}`);
+      const updatedCustomers = [...customers];
+      updatedCustomers.splice(index, 1);
+      setCustomers(updatedCustomers);
+    } catch (error) {
+      console.error("Error deleting customer:", error.response?.data || error.message);
+      alert("Error: " + (error.response?.data?.error || "Something went wrong"));
+    }
+  };
+  
+
+  const filteredCustomers = customers.filter((customer) =>
+    customer.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <>
+      <Master />
+      <div className="customer-container">
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", marginTop: "2rem" }}>
+          <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+            }}
+            variant="contained"
+            onClick={openModal}
+          >
+            Add Supplier
+          </Button>
+          <TextField
+            placeholder="Search by Name"
+            variant="outlined"
+            size="small"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </div>
+
+        <Dialog open={isModalOpen} onClose={closeModal}>
+          <DialogTitle style={{ color: "#a33768" }}>
+            {editIndex !== null ? "Edit Supplier" : "Add New Supplier"}
+          </DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Supplier Name"
+              type="text"
+              fullWidth
+              value={customerName}              
+              onChange={(e) => setCustomerName(e.target.value)}
+              
+            />
+            <TextField
+              margin="dense"
+              label="Phone Number"
+              type="tel"
+              fullWidth
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+            <TextField
+              margin="dense"
+              label="Email"
+              type="email"
+              fullWidth
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+              margin="dense"
+              label="Address"
+              type="text"
+              fullWidth
+              multiline
+              rows={4}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={closeModal} color="secondary">Cancel</Button>
+            <Button onClick={handleSave} color="primary">Save</Button>
+          </DialogActions>
+        </Dialog>
+
+<div className="item-listt"> 
+<table >
+  <thead>
+    <tr>
+      <th><strong>S.No</strong></th>
+      <th><strong>Name</strong></th>
+      <th><strong>Phone</strong></th>
+      <th><strong>Email</strong></th>
+      <th><strong>Address</strong></th>
+      <th><strong>Actions</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredCustomers.length > 0 ? (
+      filteredCustomers.map((customer, index) => (
+        <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{customer.name}</td>
+          <td>{customer.phoneNumber}</td>
+          <td>{customer.email}</td>
+          <td>{customer.address}</td>
+          <td style={{width:"7rem"}}>
+           <Edit  onClick={() => handleEdit(index)} style={{ marginRight: "8px" }} />
+           <Delete onClick={() => handleDelete(index)} style={{ color: "red", marginLeft:'0.5rem' }} />          
+          </td>
+          
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="6" style={{ textAlign: "center" }}>
+          Name not found
+        </td>
+      </tr>
+    )}
+  </tbody>
+</table>
+</div>
+
+      </div>
+    </>
+  );
+}
+
+export default MasterAddSupplier;

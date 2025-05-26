@@ -16,6 +16,7 @@ import MasterBuffing from './Components/Master/MasterBuffing';
 import MasterGoldsmith from './Components/Master/MasterCasting';
 import MasterAddItems from './Components/Master/MasterAddItems';
 import MasterPurchaseStock from './Components/Master/MasterPurchaseStock';
+import MasterAddSupplier from './Components/Master/MasterAddSupplier';
 
 
 
@@ -23,8 +24,6 @@ const App = () => {
   return (
     <BrowserRouter> 
     <Routes> 
-
-     
     <Route path='/' element={<Login/>} />
     <Route path='/navbar' element={<Navbar/>} />
     <Route path='/customer' element={<Customer/>}/>
@@ -41,14 +40,7 @@ const App = () => {
     <Route path='/mastercasting' element={<MasterGoldsmith/>}/>
     <Route path='/masteritems' element={<MasterAddItems/>} />
     <Route path='/masterpurchasestock' element={<MasterPurchaseStock/>} />
-  
-   
-    <Route/>
-    <Route/>
-    <Route/>
-    <Route/>
-
-
+    <Route path='/mastersupplier' element={<MasterAddSupplier />} />
 
    </Routes>
     </BrowserRouter>

@@ -44,6 +44,11 @@ export type AddBuffing = $Result.DefaultSelection<Prisma.$AddBuffingPayload>
  */
 export type AddItem = $Result.DefaultSelection<Prisma.$AddItemPayload>
 /**
+ * Model AddSupplierItem
+ * 
+ */
+export type AddSupplierItem = $Result.DefaultSelection<Prisma.$AddSupplierItemPayload>
+/**
  * Model AddPurchaseStock
  * 
  */
@@ -53,6 +58,23 @@ export type AddPurchaseStock = $Result.DefaultSelection<Prisma.$AddPurchaseStock
  * 
  */
 export type Casting = $Result.DefaultSelection<Prisma.$CastingPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const itemType: {
+  gold: 'gold',
+  silver: 'silver'
+};
+
+export type itemType = (typeof itemType)[keyof typeof itemType]
+
+}
+
+export type itemType = $Enums.itemType
+
+export const itemType: typeof $Enums.itemType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -238,6 +260,16 @@ export class PrismaClient<
     * ```
     */
   get addItem(): Prisma.AddItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.addSupplierItem`: Exposes CRUD operations for the **AddSupplierItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AddSupplierItems
+    * const addSupplierItems = await prisma.addSupplierItem.findMany()
+    * ```
+    */
+  get addSupplierItem(): Prisma.AddSupplierItemDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.addPurchaseStock`: Exposes CRUD operations for the **AddPurchaseStock** model.
@@ -704,6 +736,7 @@ export namespace Prisma {
     AddSetting: 'AddSetting',
     AddBuffing: 'AddBuffing',
     AddItem: 'AddItem',
+    AddSupplierItem: 'AddSupplierItem',
     AddPurchaseStock: 'AddPurchaseStock',
     Casting: 'Casting'
   };
@@ -724,7 +757,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addItem" | "addPurchaseStock" | "casting"
+      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addItem" | "addSupplierItem" | "addPurchaseStock" | "casting"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1124,6 +1157,72 @@ export namespace Prisma {
           }
         }
       }
+      AddSupplierItem: {
+        payload: Prisma.$AddSupplierItemPayload<ExtArgs>
+        fields: Prisma.AddSupplierItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AddSupplierItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddSupplierItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AddSupplierItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddSupplierItemPayload>
+          }
+          findFirst: {
+            args: Prisma.AddSupplierItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddSupplierItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AddSupplierItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddSupplierItemPayload>
+          }
+          findMany: {
+            args: Prisma.AddSupplierItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddSupplierItemPayload>[]
+          }
+          create: {
+            args: Prisma.AddSupplierItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddSupplierItemPayload>
+          }
+          createMany: {
+            args: Prisma.AddSupplierItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AddSupplierItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddSupplierItemPayload>
+          }
+          update: {
+            args: Prisma.AddSupplierItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddSupplierItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.AddSupplierItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AddSupplierItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AddSupplierItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddSupplierItemPayload>
+          }
+          aggregate: {
+            args: Prisma.AddSupplierItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAddSupplierItem>
+          }
+          groupBy: {
+            args: Prisma.AddSupplierItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AddSupplierItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AddSupplierItemCountArgs<ExtArgs>
+            result: $Utils.Optional<AddSupplierItemCountAggregateOutputType> | number
+          }
+        }
+      }
       AddPurchaseStock: {
         payload: Prisma.$AddPurchaseStockPayload<ExtArgs>
         fields: Prisma.AddPurchaseStockFieldRefs
@@ -1346,6 +1445,7 @@ export namespace Prisma {
     addSetting?: AddSettingOmit
     addBuffing?: AddBuffingOmit
     addItem?: AddItemOmit
+    addSupplierItem?: AddSupplierItemOmit
     addPurchaseStock?: AddPurchaseStockOmit
     casting?: CastingOmit
   }
@@ -7009,6 +7109,922 @@ export namespace Prisma {
 
 
   /**
+   * Model AddSupplierItem
+   */
+
+  export type AggregateAddSupplierItem = {
+    _count: AddSupplierItemCountAggregateOutputType | null
+    _avg: AddSupplierItemAvgAggregateOutputType | null
+    _sum: AddSupplierItemSumAggregateOutputType | null
+    _min: AddSupplierItemMinAggregateOutputType | null
+    _max: AddSupplierItemMaxAggregateOutputType | null
+  }
+
+  export type AddSupplierItemAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type AddSupplierItemSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type AddSupplierItemMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    email: string | null
+    phoneNumber: string | null
+    address: string | null
+  }
+
+  export type AddSupplierItemMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    email: string | null
+    phoneNumber: string | null
+    address: string | null
+  }
+
+  export type AddSupplierItemCountAggregateOutputType = {
+    id: number
+    name: number
+    email: number
+    phoneNumber: number
+    address: number
+    _all: number
+  }
+
+
+  export type AddSupplierItemAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type AddSupplierItemSumAggregateInputType = {
+    id?: true
+  }
+
+  export type AddSupplierItemMinAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    phoneNumber?: true
+    address?: true
+  }
+
+  export type AddSupplierItemMaxAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    phoneNumber?: true
+    address?: true
+  }
+
+  export type AddSupplierItemCountAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    phoneNumber?: true
+    address?: true
+    _all?: true
+  }
+
+  export type AddSupplierItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AddSupplierItem to aggregate.
+     */
+    where?: AddSupplierItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddSupplierItems to fetch.
+     */
+    orderBy?: AddSupplierItemOrderByWithRelationInput | AddSupplierItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AddSupplierItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddSupplierItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddSupplierItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AddSupplierItems
+    **/
+    _count?: true | AddSupplierItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AddSupplierItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AddSupplierItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AddSupplierItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AddSupplierItemMaxAggregateInputType
+  }
+
+  export type GetAddSupplierItemAggregateType<T extends AddSupplierItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateAddSupplierItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAddSupplierItem[P]>
+      : GetScalarType<T[P], AggregateAddSupplierItem[P]>
+  }
+
+
+
+
+  export type AddSupplierItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddSupplierItemWhereInput
+    orderBy?: AddSupplierItemOrderByWithAggregationInput | AddSupplierItemOrderByWithAggregationInput[]
+    by: AddSupplierItemScalarFieldEnum[] | AddSupplierItemScalarFieldEnum
+    having?: AddSupplierItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AddSupplierItemCountAggregateInputType | true
+    _avg?: AddSupplierItemAvgAggregateInputType
+    _sum?: AddSupplierItemSumAggregateInputType
+    _min?: AddSupplierItemMinAggregateInputType
+    _max?: AddSupplierItemMaxAggregateInputType
+  }
+
+  export type AddSupplierItemGroupByOutputType = {
+    id: number
+    name: string
+    email: string
+    phoneNumber: string
+    address: string
+    _count: AddSupplierItemCountAggregateOutputType | null
+    _avg: AddSupplierItemAvgAggregateOutputType | null
+    _sum: AddSupplierItemSumAggregateOutputType | null
+    _min: AddSupplierItemMinAggregateOutputType | null
+    _max: AddSupplierItemMaxAggregateOutputType | null
+  }
+
+  type GetAddSupplierItemGroupByPayload<T extends AddSupplierItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AddSupplierItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AddSupplierItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AddSupplierItemGroupByOutputType[P]>
+            : GetScalarType<T[P], AddSupplierItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AddSupplierItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    address?: boolean
+  }, ExtArgs["result"]["addSupplierItem"]>
+
+
+
+  export type AddSupplierItemSelectScalar = {
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    address?: boolean
+  }
+
+  export type AddSupplierItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phoneNumber" | "address", ExtArgs["result"]["addSupplierItem"]>
+
+  export type $AddSupplierItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AddSupplierItem"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      email: string
+      phoneNumber: string
+      address: string
+    }, ExtArgs["result"]["addSupplierItem"]>
+    composites: {}
+  }
+
+  type AddSupplierItemGetPayload<S extends boolean | null | undefined | AddSupplierItemDefaultArgs> = $Result.GetResult<Prisma.$AddSupplierItemPayload, S>
+
+  type AddSupplierItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AddSupplierItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AddSupplierItemCountAggregateInputType | true
+    }
+
+  export interface AddSupplierItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AddSupplierItem'], meta: { name: 'AddSupplierItem' } }
+    /**
+     * Find zero or one AddSupplierItem that matches the filter.
+     * @param {AddSupplierItemFindUniqueArgs} args - Arguments to find a AddSupplierItem
+     * @example
+     * // Get one AddSupplierItem
+     * const addSupplierItem = await prisma.addSupplierItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AddSupplierItemFindUniqueArgs>(args: SelectSubset<T, AddSupplierItemFindUniqueArgs<ExtArgs>>): Prisma__AddSupplierItemClient<$Result.GetResult<Prisma.$AddSupplierItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AddSupplierItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AddSupplierItemFindUniqueOrThrowArgs} args - Arguments to find a AddSupplierItem
+     * @example
+     * // Get one AddSupplierItem
+     * const addSupplierItem = await prisma.addSupplierItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AddSupplierItemFindUniqueOrThrowArgs>(args: SelectSubset<T, AddSupplierItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AddSupplierItemClient<$Result.GetResult<Prisma.$AddSupplierItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AddSupplierItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddSupplierItemFindFirstArgs} args - Arguments to find a AddSupplierItem
+     * @example
+     * // Get one AddSupplierItem
+     * const addSupplierItem = await prisma.addSupplierItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AddSupplierItemFindFirstArgs>(args?: SelectSubset<T, AddSupplierItemFindFirstArgs<ExtArgs>>): Prisma__AddSupplierItemClient<$Result.GetResult<Prisma.$AddSupplierItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AddSupplierItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddSupplierItemFindFirstOrThrowArgs} args - Arguments to find a AddSupplierItem
+     * @example
+     * // Get one AddSupplierItem
+     * const addSupplierItem = await prisma.addSupplierItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AddSupplierItemFindFirstOrThrowArgs>(args?: SelectSubset<T, AddSupplierItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__AddSupplierItemClient<$Result.GetResult<Prisma.$AddSupplierItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AddSupplierItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddSupplierItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AddSupplierItems
+     * const addSupplierItems = await prisma.addSupplierItem.findMany()
+     * 
+     * // Get first 10 AddSupplierItems
+     * const addSupplierItems = await prisma.addSupplierItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const addSupplierItemWithIdOnly = await prisma.addSupplierItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AddSupplierItemFindManyArgs>(args?: SelectSubset<T, AddSupplierItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddSupplierItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AddSupplierItem.
+     * @param {AddSupplierItemCreateArgs} args - Arguments to create a AddSupplierItem.
+     * @example
+     * // Create one AddSupplierItem
+     * const AddSupplierItem = await prisma.addSupplierItem.create({
+     *   data: {
+     *     // ... data to create a AddSupplierItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends AddSupplierItemCreateArgs>(args: SelectSubset<T, AddSupplierItemCreateArgs<ExtArgs>>): Prisma__AddSupplierItemClient<$Result.GetResult<Prisma.$AddSupplierItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AddSupplierItems.
+     * @param {AddSupplierItemCreateManyArgs} args - Arguments to create many AddSupplierItems.
+     * @example
+     * // Create many AddSupplierItems
+     * const addSupplierItem = await prisma.addSupplierItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AddSupplierItemCreateManyArgs>(args?: SelectSubset<T, AddSupplierItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AddSupplierItem.
+     * @param {AddSupplierItemDeleteArgs} args - Arguments to delete one AddSupplierItem.
+     * @example
+     * // Delete one AddSupplierItem
+     * const AddSupplierItem = await prisma.addSupplierItem.delete({
+     *   where: {
+     *     // ... filter to delete one AddSupplierItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AddSupplierItemDeleteArgs>(args: SelectSubset<T, AddSupplierItemDeleteArgs<ExtArgs>>): Prisma__AddSupplierItemClient<$Result.GetResult<Prisma.$AddSupplierItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AddSupplierItem.
+     * @param {AddSupplierItemUpdateArgs} args - Arguments to update one AddSupplierItem.
+     * @example
+     * // Update one AddSupplierItem
+     * const addSupplierItem = await prisma.addSupplierItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AddSupplierItemUpdateArgs>(args: SelectSubset<T, AddSupplierItemUpdateArgs<ExtArgs>>): Prisma__AddSupplierItemClient<$Result.GetResult<Prisma.$AddSupplierItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AddSupplierItems.
+     * @param {AddSupplierItemDeleteManyArgs} args - Arguments to filter AddSupplierItems to delete.
+     * @example
+     * // Delete a few AddSupplierItems
+     * const { count } = await prisma.addSupplierItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AddSupplierItemDeleteManyArgs>(args?: SelectSubset<T, AddSupplierItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AddSupplierItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddSupplierItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AddSupplierItems
+     * const addSupplierItem = await prisma.addSupplierItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AddSupplierItemUpdateManyArgs>(args: SelectSubset<T, AddSupplierItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AddSupplierItem.
+     * @param {AddSupplierItemUpsertArgs} args - Arguments to update or create a AddSupplierItem.
+     * @example
+     * // Update or create a AddSupplierItem
+     * const addSupplierItem = await prisma.addSupplierItem.upsert({
+     *   create: {
+     *     // ... data to create a AddSupplierItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AddSupplierItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AddSupplierItemUpsertArgs>(args: SelectSubset<T, AddSupplierItemUpsertArgs<ExtArgs>>): Prisma__AddSupplierItemClient<$Result.GetResult<Prisma.$AddSupplierItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AddSupplierItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddSupplierItemCountArgs} args - Arguments to filter AddSupplierItems to count.
+     * @example
+     * // Count the number of AddSupplierItems
+     * const count = await prisma.addSupplierItem.count({
+     *   where: {
+     *     // ... the filter for the AddSupplierItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends AddSupplierItemCountArgs>(
+      args?: Subset<T, AddSupplierItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AddSupplierItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AddSupplierItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddSupplierItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AddSupplierItemAggregateArgs>(args: Subset<T, AddSupplierItemAggregateArgs>): Prisma.PrismaPromise<GetAddSupplierItemAggregateType<T>>
+
+    /**
+     * Group by AddSupplierItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddSupplierItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AddSupplierItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AddSupplierItemGroupByArgs['orderBy'] }
+        : { orderBy?: AddSupplierItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AddSupplierItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAddSupplierItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AddSupplierItem model
+   */
+  readonly fields: AddSupplierItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AddSupplierItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AddSupplierItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AddSupplierItem model
+   */
+  interface AddSupplierItemFieldRefs {
+    readonly id: FieldRef<"AddSupplierItem", 'Int'>
+    readonly name: FieldRef<"AddSupplierItem", 'String'>
+    readonly email: FieldRef<"AddSupplierItem", 'String'>
+    readonly phoneNumber: FieldRef<"AddSupplierItem", 'String'>
+    readonly address: FieldRef<"AddSupplierItem", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AddSupplierItem findUnique
+   */
+  export type AddSupplierItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddSupplierItem
+     */
+    select?: AddSupplierItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddSupplierItem
+     */
+    omit?: AddSupplierItemOmit<ExtArgs> | null
+    /**
+     * Filter, which AddSupplierItem to fetch.
+     */
+    where: AddSupplierItemWhereUniqueInput
+  }
+
+  /**
+   * AddSupplierItem findUniqueOrThrow
+   */
+  export type AddSupplierItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddSupplierItem
+     */
+    select?: AddSupplierItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddSupplierItem
+     */
+    omit?: AddSupplierItemOmit<ExtArgs> | null
+    /**
+     * Filter, which AddSupplierItem to fetch.
+     */
+    where: AddSupplierItemWhereUniqueInput
+  }
+
+  /**
+   * AddSupplierItem findFirst
+   */
+  export type AddSupplierItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddSupplierItem
+     */
+    select?: AddSupplierItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddSupplierItem
+     */
+    omit?: AddSupplierItemOmit<ExtArgs> | null
+    /**
+     * Filter, which AddSupplierItem to fetch.
+     */
+    where?: AddSupplierItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddSupplierItems to fetch.
+     */
+    orderBy?: AddSupplierItemOrderByWithRelationInput | AddSupplierItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AddSupplierItems.
+     */
+    cursor?: AddSupplierItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddSupplierItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddSupplierItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AddSupplierItems.
+     */
+    distinct?: AddSupplierItemScalarFieldEnum | AddSupplierItemScalarFieldEnum[]
+  }
+
+  /**
+   * AddSupplierItem findFirstOrThrow
+   */
+  export type AddSupplierItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddSupplierItem
+     */
+    select?: AddSupplierItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddSupplierItem
+     */
+    omit?: AddSupplierItemOmit<ExtArgs> | null
+    /**
+     * Filter, which AddSupplierItem to fetch.
+     */
+    where?: AddSupplierItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddSupplierItems to fetch.
+     */
+    orderBy?: AddSupplierItemOrderByWithRelationInput | AddSupplierItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AddSupplierItems.
+     */
+    cursor?: AddSupplierItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddSupplierItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddSupplierItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AddSupplierItems.
+     */
+    distinct?: AddSupplierItemScalarFieldEnum | AddSupplierItemScalarFieldEnum[]
+  }
+
+  /**
+   * AddSupplierItem findMany
+   */
+  export type AddSupplierItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddSupplierItem
+     */
+    select?: AddSupplierItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddSupplierItem
+     */
+    omit?: AddSupplierItemOmit<ExtArgs> | null
+    /**
+     * Filter, which AddSupplierItems to fetch.
+     */
+    where?: AddSupplierItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddSupplierItems to fetch.
+     */
+    orderBy?: AddSupplierItemOrderByWithRelationInput | AddSupplierItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AddSupplierItems.
+     */
+    cursor?: AddSupplierItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddSupplierItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddSupplierItems.
+     */
+    skip?: number
+    distinct?: AddSupplierItemScalarFieldEnum | AddSupplierItemScalarFieldEnum[]
+  }
+
+  /**
+   * AddSupplierItem create
+   */
+  export type AddSupplierItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddSupplierItem
+     */
+    select?: AddSupplierItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddSupplierItem
+     */
+    omit?: AddSupplierItemOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AddSupplierItem.
+     */
+    data: XOR<AddSupplierItemCreateInput, AddSupplierItemUncheckedCreateInput>
+  }
+
+  /**
+   * AddSupplierItem createMany
+   */
+  export type AddSupplierItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AddSupplierItems.
+     */
+    data: AddSupplierItemCreateManyInput | AddSupplierItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AddSupplierItem update
+   */
+  export type AddSupplierItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddSupplierItem
+     */
+    select?: AddSupplierItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddSupplierItem
+     */
+    omit?: AddSupplierItemOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AddSupplierItem.
+     */
+    data: XOR<AddSupplierItemUpdateInput, AddSupplierItemUncheckedUpdateInput>
+    /**
+     * Choose, which AddSupplierItem to update.
+     */
+    where: AddSupplierItemWhereUniqueInput
+  }
+
+  /**
+   * AddSupplierItem updateMany
+   */
+  export type AddSupplierItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AddSupplierItems.
+     */
+    data: XOR<AddSupplierItemUpdateManyMutationInput, AddSupplierItemUncheckedUpdateManyInput>
+    /**
+     * Filter which AddSupplierItems to update
+     */
+    where?: AddSupplierItemWhereInput
+    /**
+     * Limit how many AddSupplierItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AddSupplierItem upsert
+   */
+  export type AddSupplierItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddSupplierItem
+     */
+    select?: AddSupplierItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddSupplierItem
+     */
+    omit?: AddSupplierItemOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AddSupplierItem to update in case it exists.
+     */
+    where: AddSupplierItemWhereUniqueInput
+    /**
+     * In case the AddSupplierItem found by the `where` argument doesn't exist, create a new AddSupplierItem with this data.
+     */
+    create: XOR<AddSupplierItemCreateInput, AddSupplierItemUncheckedCreateInput>
+    /**
+     * In case the AddSupplierItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AddSupplierItemUpdateInput, AddSupplierItemUncheckedUpdateInput>
+  }
+
+  /**
+   * AddSupplierItem delete
+   */
+  export type AddSupplierItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddSupplierItem
+     */
+    select?: AddSupplierItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddSupplierItem
+     */
+    omit?: AddSupplierItemOmit<ExtArgs> | null
+    /**
+     * Filter which AddSupplierItem to delete.
+     */
+    where: AddSupplierItemWhereUniqueInput
+  }
+
+  /**
+   * AddSupplierItem deleteMany
+   */
+  export type AddSupplierItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AddSupplierItems to delete
+     */
+    where?: AddSupplierItemWhereInput
+    /**
+     * Limit how many AddSupplierItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AddSupplierItem without action
+   */
+  export type AddSupplierItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddSupplierItem
+     */
+    select?: AddSupplierItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddSupplierItem
+     */
+    omit?: AddSupplierItemOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model AddPurchaseStock
    */
 
@@ -7022,34 +8038,64 @@ export namespace Prisma {
 
   export type AddPurchaseStockAvgAggregateOutputType = {
     id: number | null
-    quantity: number | null
-    purchasePrice: number | null
+    goldWeight: number | null
+    goldTouch: number | null
+    goldPurity: number | null
+    goldRate: number | null
+    goldtotalValue: number | null
+    silverWeight: number | null
+    silverTouch: number | null
+    silverPurity: number | null
+    silverRate: number | null
+    silvertotalValue: number | null
   }
 
   export type AddPurchaseStockSumAggregateOutputType = {
     id: number | null
-    quantity: number | null
-    purchasePrice: number | null
+    goldWeight: number | null
+    goldTouch: number | null
+    goldPurity: number | null
+    goldRate: number | null
+    goldtotalValue: number | null
+    silverWeight: number | null
+    silverTouch: number | null
+    silverPurity: number | null
+    silverRate: number | null
+    silvertotalValue: number | null
   }
 
   export type AddPurchaseStockMinAggregateOutputType = {
     id: number | null
     name: string | null
     createdAt: Date | null
-    item: string | null
-    quantity: number | null
-    purchasePrice: number | null
-    phoneNumber: string | null
+    item: $Enums.itemType | null
+    goldWeight: number | null
+    goldTouch: number | null
+    goldPurity: number | null
+    goldRate: number | null
+    goldtotalValue: number | null
+    silverWeight: number | null
+    silverTouch: number | null
+    silverPurity: number | null
+    silverRate: number | null
+    silvertotalValue: number | null
   }
 
   export type AddPurchaseStockMaxAggregateOutputType = {
     id: number | null
     name: string | null
     createdAt: Date | null
-    item: string | null
-    quantity: number | null
-    purchasePrice: number | null
-    phoneNumber: string | null
+    item: $Enums.itemType | null
+    goldWeight: number | null
+    goldTouch: number | null
+    goldPurity: number | null
+    goldRate: number | null
+    goldtotalValue: number | null
+    silverWeight: number | null
+    silverTouch: number | null
+    silverPurity: number | null
+    silverRate: number | null
+    silvertotalValue: number | null
   }
 
   export type AddPurchaseStockCountAggregateOutputType = {
@@ -7057,23 +8103,46 @@ export namespace Prisma {
     name: number
     createdAt: number
     item: number
-    quantity: number
-    purchasePrice: number
-    phoneNumber: number
+    goldWeight: number
+    goldTouch: number
+    goldPurity: number
+    goldRate: number
+    goldtotalValue: number
+    silverWeight: number
+    silverTouch: number
+    silverPurity: number
+    silverRate: number
+    silvertotalValue: number
     _all: number
   }
 
 
   export type AddPurchaseStockAvgAggregateInputType = {
     id?: true
-    quantity?: true
-    purchasePrice?: true
+    goldWeight?: true
+    goldTouch?: true
+    goldPurity?: true
+    goldRate?: true
+    goldtotalValue?: true
+    silverWeight?: true
+    silverTouch?: true
+    silverPurity?: true
+    silverRate?: true
+    silvertotalValue?: true
   }
 
   export type AddPurchaseStockSumAggregateInputType = {
     id?: true
-    quantity?: true
-    purchasePrice?: true
+    goldWeight?: true
+    goldTouch?: true
+    goldPurity?: true
+    goldRate?: true
+    goldtotalValue?: true
+    silverWeight?: true
+    silverTouch?: true
+    silverPurity?: true
+    silverRate?: true
+    silvertotalValue?: true
   }
 
   export type AddPurchaseStockMinAggregateInputType = {
@@ -7081,9 +8150,16 @@ export namespace Prisma {
     name?: true
     createdAt?: true
     item?: true
-    quantity?: true
-    purchasePrice?: true
-    phoneNumber?: true
+    goldWeight?: true
+    goldTouch?: true
+    goldPurity?: true
+    goldRate?: true
+    goldtotalValue?: true
+    silverWeight?: true
+    silverTouch?: true
+    silverPurity?: true
+    silverRate?: true
+    silvertotalValue?: true
   }
 
   export type AddPurchaseStockMaxAggregateInputType = {
@@ -7091,9 +8167,16 @@ export namespace Prisma {
     name?: true
     createdAt?: true
     item?: true
-    quantity?: true
-    purchasePrice?: true
-    phoneNumber?: true
+    goldWeight?: true
+    goldTouch?: true
+    goldPurity?: true
+    goldRate?: true
+    goldtotalValue?: true
+    silverWeight?: true
+    silverTouch?: true
+    silverPurity?: true
+    silverRate?: true
+    silvertotalValue?: true
   }
 
   export type AddPurchaseStockCountAggregateInputType = {
@@ -7101,9 +8184,16 @@ export namespace Prisma {
     name?: true
     createdAt?: true
     item?: true
-    quantity?: true
-    purchasePrice?: true
-    phoneNumber?: true
+    goldWeight?: true
+    goldTouch?: true
+    goldPurity?: true
+    goldRate?: true
+    goldtotalValue?: true
+    silverWeight?: true
+    silverTouch?: true
+    silverPurity?: true
+    silverRate?: true
+    silvertotalValue?: true
     _all?: true
   }
 
@@ -7197,10 +8287,17 @@ export namespace Prisma {
     id: number
     name: string
     createdAt: Date
-    item: string
-    quantity: number
-    purchasePrice: number
-    phoneNumber: string
+    item: $Enums.itemType
+    goldWeight: number | null
+    goldTouch: number | null
+    goldPurity: number | null
+    goldRate: number | null
+    goldtotalValue: number | null
+    silverWeight: number | null
+    silverTouch: number | null
+    silverPurity: number | null
+    silverRate: number | null
+    silvertotalValue: number | null
     _count: AddPurchaseStockCountAggregateOutputType | null
     _avg: AddPurchaseStockAvgAggregateOutputType | null
     _sum: AddPurchaseStockSumAggregateOutputType | null
@@ -7227,9 +8324,16 @@ export namespace Prisma {
     name?: boolean
     createdAt?: boolean
     item?: boolean
-    quantity?: boolean
-    purchasePrice?: boolean
-    phoneNumber?: boolean
+    goldWeight?: boolean
+    goldTouch?: boolean
+    goldPurity?: boolean
+    goldRate?: boolean
+    goldtotalValue?: boolean
+    silverWeight?: boolean
+    silverTouch?: boolean
+    silverPurity?: boolean
+    silverRate?: boolean
+    silvertotalValue?: boolean
   }, ExtArgs["result"]["addPurchaseStock"]>
 
 
@@ -7239,12 +8343,19 @@ export namespace Prisma {
     name?: boolean
     createdAt?: boolean
     item?: boolean
-    quantity?: boolean
-    purchasePrice?: boolean
-    phoneNumber?: boolean
+    goldWeight?: boolean
+    goldTouch?: boolean
+    goldPurity?: boolean
+    goldRate?: boolean
+    goldtotalValue?: boolean
+    silverWeight?: boolean
+    silverTouch?: boolean
+    silverPurity?: boolean
+    silverRate?: boolean
+    silvertotalValue?: boolean
   }
 
-  export type AddPurchaseStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "item" | "quantity" | "purchasePrice" | "phoneNumber", ExtArgs["result"]["addPurchaseStock"]>
+  export type AddPurchaseStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "item" | "goldWeight" | "goldTouch" | "goldPurity" | "goldRate" | "goldtotalValue" | "silverWeight" | "silverTouch" | "silverPurity" | "silverRate" | "silvertotalValue", ExtArgs["result"]["addPurchaseStock"]>
 
   export type $AddPurchaseStockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AddPurchaseStock"
@@ -7253,10 +8364,17 @@ export namespace Prisma {
       id: number
       name: string
       createdAt: Date
-      item: string
-      quantity: number
-      purchasePrice: number
-      phoneNumber: string
+      item: $Enums.itemType
+      goldWeight: number | null
+      goldTouch: number | null
+      goldPurity: number | null
+      goldRate: number | null
+      goldtotalValue: number | null
+      silverWeight: number | null
+      silverTouch: number | null
+      silverPurity: number | null
+      silverRate: number | null
+      silvertotalValue: number | null
     }, ExtArgs["result"]["addPurchaseStock"]>
     composites: {}
   }
@@ -7629,10 +8747,17 @@ export namespace Prisma {
     readonly id: FieldRef<"AddPurchaseStock", 'Int'>
     readonly name: FieldRef<"AddPurchaseStock", 'String'>
     readonly createdAt: FieldRef<"AddPurchaseStock", 'DateTime'>
-    readonly item: FieldRef<"AddPurchaseStock", 'String'>
-    readonly quantity: FieldRef<"AddPurchaseStock", 'Int'>
-    readonly purchasePrice: FieldRef<"AddPurchaseStock", 'Int'>
-    readonly phoneNumber: FieldRef<"AddPurchaseStock", 'String'>
+    readonly item: FieldRef<"AddPurchaseStock", 'itemType'>
+    readonly goldWeight: FieldRef<"AddPurchaseStock", 'Int'>
+    readonly goldTouch: FieldRef<"AddPurchaseStock", 'Float'>
+    readonly goldPurity: FieldRef<"AddPurchaseStock", 'Float'>
+    readonly goldRate: FieldRef<"AddPurchaseStock", 'Float'>
+    readonly goldtotalValue: FieldRef<"AddPurchaseStock", 'Float'>
+    readonly silverWeight: FieldRef<"AddPurchaseStock", 'Int'>
+    readonly silverTouch: FieldRef<"AddPurchaseStock", 'Float'>
+    readonly silverPurity: FieldRef<"AddPurchaseStock", 'Float'>
+    readonly silverRate: FieldRef<"AddPurchaseStock", 'Float'>
+    readonly silvertotalValue: FieldRef<"AddPurchaseStock", 'Float'>
   }
     
 
@@ -9092,14 +10217,32 @@ export namespace Prisma {
   export type AddItemScalarFieldEnum = (typeof AddItemScalarFieldEnum)[keyof typeof AddItemScalarFieldEnum]
 
 
+  export const AddSupplierItemScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    phoneNumber: 'phoneNumber',
+    address: 'address'
+  };
+
+  export type AddSupplierItemScalarFieldEnum = (typeof AddSupplierItemScalarFieldEnum)[keyof typeof AddSupplierItemScalarFieldEnum]
+
+
   export const AddPurchaseStockScalarFieldEnum: {
     id: 'id',
     name: 'name',
     createdAt: 'createdAt',
     item: 'item',
-    quantity: 'quantity',
-    purchasePrice: 'purchasePrice',
-    phoneNumber: 'phoneNumber'
+    goldWeight: 'goldWeight',
+    goldTouch: 'goldTouch',
+    goldPurity: 'goldPurity',
+    goldRate: 'goldRate',
+    goldtotalValue: 'goldtotalValue',
+    silverWeight: 'silverWeight',
+    silverTouch: 'silverTouch',
+    silverPurity: 'silverPurity',
+    silverRate: 'silverRate',
+    silvertotalValue: 'silvertotalValue'
   };
 
   export type AddPurchaseStockScalarFieldEnum = (typeof AddPurchaseStockScalarFieldEnum)[keyof typeof AddPurchaseStockScalarFieldEnum]
@@ -9195,10 +10338,18 @@ export namespace Prisma {
   export type AddItemOrderByRelevanceFieldEnum = (typeof AddItemOrderByRelevanceFieldEnum)[keyof typeof AddItemOrderByRelevanceFieldEnum]
 
 
-  export const AddPurchaseStockOrderByRelevanceFieldEnum: {
+  export const AddSupplierItemOrderByRelevanceFieldEnum: {
     name: 'name',
-    item: 'item',
-    phoneNumber: 'phoneNumber'
+    email: 'email',
+    phoneNumber: 'phoneNumber',
+    address: 'address'
+  };
+
+  export type AddSupplierItemOrderByRelevanceFieldEnum = (typeof AddSupplierItemOrderByRelevanceFieldEnum)[keyof typeof AddSupplierItemOrderByRelevanceFieldEnum]
+
+
+  export const AddPurchaseStockOrderByRelevanceFieldEnum: {
+    name: 'name'
   };
 
   export type AddPurchaseStockOrderByRelevanceFieldEnum = (typeof AddPurchaseStockOrderByRelevanceFieldEnum)[keyof typeof AddPurchaseStockOrderByRelevanceFieldEnum]
@@ -9234,6 +10385,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'itemType'
+   */
+  export type EnumitemTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'itemType'>
     
 
 
@@ -9565,6 +10723,61 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"AddItem"> | string
   }
 
+  export type AddSupplierItemWhereInput = {
+    AND?: AddSupplierItemWhereInput | AddSupplierItemWhereInput[]
+    OR?: AddSupplierItemWhereInput[]
+    NOT?: AddSupplierItemWhereInput | AddSupplierItemWhereInput[]
+    id?: IntFilter<"AddSupplierItem"> | number
+    name?: StringFilter<"AddSupplierItem"> | string
+    email?: StringFilter<"AddSupplierItem"> | string
+    phoneNumber?: StringFilter<"AddSupplierItem"> | string
+    address?: StringFilter<"AddSupplierItem"> | string
+  }
+
+  export type AddSupplierItemOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    address?: SortOrder
+    _relevance?: AddSupplierItemOrderByRelevanceInput
+  }
+
+  export type AddSupplierItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    email?: string
+    AND?: AddSupplierItemWhereInput | AddSupplierItemWhereInput[]
+    OR?: AddSupplierItemWhereInput[]
+    NOT?: AddSupplierItemWhereInput | AddSupplierItemWhereInput[]
+    name?: StringFilter<"AddSupplierItem"> | string
+    phoneNumber?: StringFilter<"AddSupplierItem"> | string
+    address?: StringFilter<"AddSupplierItem"> | string
+  }, "id" | "email">
+
+  export type AddSupplierItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    address?: SortOrder
+    _count?: AddSupplierItemCountOrderByAggregateInput
+    _avg?: AddSupplierItemAvgOrderByAggregateInput
+    _max?: AddSupplierItemMaxOrderByAggregateInput
+    _min?: AddSupplierItemMinOrderByAggregateInput
+    _sum?: AddSupplierItemSumOrderByAggregateInput
+  }
+
+  export type AddSupplierItemScalarWhereWithAggregatesInput = {
+    AND?: AddSupplierItemScalarWhereWithAggregatesInput | AddSupplierItemScalarWhereWithAggregatesInput[]
+    OR?: AddSupplierItemScalarWhereWithAggregatesInput[]
+    NOT?: AddSupplierItemScalarWhereWithAggregatesInput | AddSupplierItemScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"AddSupplierItem"> | number
+    name?: StringWithAggregatesFilter<"AddSupplierItem"> | string
+    email?: StringWithAggregatesFilter<"AddSupplierItem"> | string
+    phoneNumber?: StringWithAggregatesFilter<"AddSupplierItem"> | string
+    address?: StringWithAggregatesFilter<"AddSupplierItem"> | string
+  }
+
   export type AddPurchaseStockWhereInput = {
     AND?: AddPurchaseStockWhereInput | AddPurchaseStockWhereInput[]
     OR?: AddPurchaseStockWhereInput[]
@@ -9572,10 +10785,17 @@ export namespace Prisma {
     id?: IntFilter<"AddPurchaseStock"> | number
     name?: StringFilter<"AddPurchaseStock"> | string
     createdAt?: DateTimeFilter<"AddPurchaseStock"> | Date | string
-    item?: StringFilter<"AddPurchaseStock"> | string
-    quantity?: IntFilter<"AddPurchaseStock"> | number
-    purchasePrice?: IntFilter<"AddPurchaseStock"> | number
-    phoneNumber?: StringFilter<"AddPurchaseStock"> | string
+    item?: EnumitemTypeFilter<"AddPurchaseStock"> | $Enums.itemType
+    goldWeight?: IntNullableFilter<"AddPurchaseStock"> | number | null
+    goldTouch?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    goldPurity?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    goldRate?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    goldtotalValue?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    silverWeight?: IntNullableFilter<"AddPurchaseStock"> | number | null
+    silverTouch?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    silverPurity?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    silverRate?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    silvertotalValue?: FloatNullableFilter<"AddPurchaseStock"> | number | null
   }
 
   export type AddPurchaseStockOrderByWithRelationInput = {
@@ -9583,9 +10803,16 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     item?: SortOrder
-    quantity?: SortOrder
-    purchasePrice?: SortOrder
-    phoneNumber?: SortOrder
+    goldWeight?: SortOrderInput | SortOrder
+    goldTouch?: SortOrderInput | SortOrder
+    goldPurity?: SortOrderInput | SortOrder
+    goldRate?: SortOrderInput | SortOrder
+    goldtotalValue?: SortOrderInput | SortOrder
+    silverWeight?: SortOrderInput | SortOrder
+    silverTouch?: SortOrderInput | SortOrder
+    silverPurity?: SortOrderInput | SortOrder
+    silverRate?: SortOrderInput | SortOrder
+    silvertotalValue?: SortOrderInput | SortOrder
     _relevance?: AddPurchaseStockOrderByRelevanceInput
   }
 
@@ -9596,10 +10823,17 @@ export namespace Prisma {
     NOT?: AddPurchaseStockWhereInput | AddPurchaseStockWhereInput[]
     name?: StringFilter<"AddPurchaseStock"> | string
     createdAt?: DateTimeFilter<"AddPurchaseStock"> | Date | string
-    item?: StringFilter<"AddPurchaseStock"> | string
-    quantity?: IntFilter<"AddPurchaseStock"> | number
-    purchasePrice?: IntFilter<"AddPurchaseStock"> | number
-    phoneNumber?: StringFilter<"AddPurchaseStock"> | string
+    item?: EnumitemTypeFilter<"AddPurchaseStock"> | $Enums.itemType
+    goldWeight?: IntNullableFilter<"AddPurchaseStock"> | number | null
+    goldTouch?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    goldPurity?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    goldRate?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    goldtotalValue?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    silverWeight?: IntNullableFilter<"AddPurchaseStock"> | number | null
+    silverTouch?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    silverPurity?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    silverRate?: FloatNullableFilter<"AddPurchaseStock"> | number | null
+    silvertotalValue?: FloatNullableFilter<"AddPurchaseStock"> | number | null
   }, "id">
 
   export type AddPurchaseStockOrderByWithAggregationInput = {
@@ -9607,9 +10841,16 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     item?: SortOrder
-    quantity?: SortOrder
-    purchasePrice?: SortOrder
-    phoneNumber?: SortOrder
+    goldWeight?: SortOrderInput | SortOrder
+    goldTouch?: SortOrderInput | SortOrder
+    goldPurity?: SortOrderInput | SortOrder
+    goldRate?: SortOrderInput | SortOrder
+    goldtotalValue?: SortOrderInput | SortOrder
+    silverWeight?: SortOrderInput | SortOrder
+    silverTouch?: SortOrderInput | SortOrder
+    silverPurity?: SortOrderInput | SortOrder
+    silverRate?: SortOrderInput | SortOrder
+    silvertotalValue?: SortOrderInput | SortOrder
     _count?: AddPurchaseStockCountOrderByAggregateInput
     _avg?: AddPurchaseStockAvgOrderByAggregateInput
     _max?: AddPurchaseStockMaxOrderByAggregateInput
@@ -9624,10 +10865,17 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"AddPurchaseStock"> | number
     name?: StringWithAggregatesFilter<"AddPurchaseStock"> | string
     createdAt?: DateTimeWithAggregatesFilter<"AddPurchaseStock"> | Date | string
-    item?: StringWithAggregatesFilter<"AddPurchaseStock"> | string
-    quantity?: IntWithAggregatesFilter<"AddPurchaseStock"> | number
-    purchasePrice?: IntWithAggregatesFilter<"AddPurchaseStock"> | number
-    phoneNumber?: StringWithAggregatesFilter<"AddPurchaseStock"> | string
+    item?: EnumitemTypeWithAggregatesFilter<"AddPurchaseStock"> | $Enums.itemType
+    goldWeight?: IntNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
+    goldTouch?: FloatNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
+    goldPurity?: FloatNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
+    goldRate?: FloatNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
+    goldtotalValue?: FloatNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
+    silverWeight?: IntNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
+    silverTouch?: FloatNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
+    silverPurity?: FloatNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
+    silverRate?: FloatNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
+    silvertotalValue?: FloatNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
   }
 
   export type CastingWhereInput = {
@@ -10019,71 +11267,173 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
   }
 
+  export type AddSupplierItemCreateInput = {
+    name: string
+    email: string
+    phoneNumber: string
+    address: string
+  }
+
+  export type AddSupplierItemUncheckedCreateInput = {
+    id?: number
+    name: string
+    email: string
+    phoneNumber: string
+    address: string
+  }
+
+  export type AddSupplierItemUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AddSupplierItemUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AddSupplierItemCreateManyInput = {
+    id?: number
+    name: string
+    email: string
+    phoneNumber: string
+    address: string
+  }
+
+  export type AddSupplierItemUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AddSupplierItemUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+  }
+
   export type AddPurchaseStockCreateInput = {
     name: string
     createdAt?: Date | string
-    item: string
-    quantity: number
-    purchasePrice: number
-    phoneNumber: string
+    item: $Enums.itemType
+    goldWeight?: number | null
+    goldTouch?: number | null
+    goldPurity?: number | null
+    goldRate?: number | null
+    goldtotalValue?: number | null
+    silverWeight?: number | null
+    silverTouch?: number | null
+    silverPurity?: number | null
+    silverRate?: number | null
+    silvertotalValue?: number | null
   }
 
   export type AddPurchaseStockUncheckedCreateInput = {
     id?: number
     name: string
     createdAt?: Date | string
-    item: string
-    quantity: number
-    purchasePrice: number
-    phoneNumber: string
+    item: $Enums.itemType
+    goldWeight?: number | null
+    goldTouch?: number | null
+    goldPurity?: number | null
+    goldRate?: number | null
+    goldtotalValue?: number | null
+    silverWeight?: number | null
+    silverTouch?: number | null
+    silverPurity?: number | null
+    silverRate?: number | null
+    silvertotalValue?: number | null
   }
 
   export type AddPurchaseStockUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    item?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    purchasePrice?: IntFieldUpdateOperationsInput | number
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    item?: EnumitemTypeFieldUpdateOperationsInput | $Enums.itemType
+    goldWeight?: NullableIntFieldUpdateOperationsInput | number | null
+    goldTouch?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldPurity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldtotalValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverWeight?: NullableIntFieldUpdateOperationsInput | number | null
+    silverTouch?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverPurity?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    silvertotalValue?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type AddPurchaseStockUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    item?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    purchasePrice?: IntFieldUpdateOperationsInput | number
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    item?: EnumitemTypeFieldUpdateOperationsInput | $Enums.itemType
+    goldWeight?: NullableIntFieldUpdateOperationsInput | number | null
+    goldTouch?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldPurity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldtotalValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverWeight?: NullableIntFieldUpdateOperationsInput | number | null
+    silverTouch?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverPurity?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    silvertotalValue?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type AddPurchaseStockCreateManyInput = {
     id?: number
     name: string
     createdAt?: Date | string
-    item: string
-    quantity: number
-    purchasePrice: number
-    phoneNumber: string
+    item: $Enums.itemType
+    goldWeight?: number | null
+    goldTouch?: number | null
+    goldPurity?: number | null
+    goldRate?: number | null
+    goldtotalValue?: number | null
+    silverWeight?: number | null
+    silverTouch?: number | null
+    silverPurity?: number | null
+    silverRate?: number | null
+    silvertotalValue?: number | null
   }
 
   export type AddPurchaseStockUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    item?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    purchasePrice?: IntFieldUpdateOperationsInput | number
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    item?: EnumitemTypeFieldUpdateOperationsInput | $Enums.itemType
+    goldWeight?: NullableIntFieldUpdateOperationsInput | number | null
+    goldTouch?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldPurity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldtotalValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverWeight?: NullableIntFieldUpdateOperationsInput | number | null
+    silverTouch?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverPurity?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    silvertotalValue?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type AddPurchaseStockUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    item?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    purchasePrice?: IntFieldUpdateOperationsInput | number
-    phoneNumber?: StringFieldUpdateOperationsInput | string
+    item?: EnumitemTypeFieldUpdateOperationsInput | $Enums.itemType
+    goldWeight?: NullableIntFieldUpdateOperationsInput | number | null
+    goldTouch?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldPurity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldtotalValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverWeight?: NullableIntFieldUpdateOperationsInput | number | null
+    silverTouch?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverPurity?: NullableFloatFieldUpdateOperationsInput | number | null
+    silverRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    silvertotalValue?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type CastingCreateInput = {
@@ -10507,6 +11857,44 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type AddSupplierItemOrderByRelevanceInput = {
+    fields: AddSupplierItemOrderByRelevanceFieldEnum | AddSupplierItemOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AddSupplierItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    address?: SortOrder
+  }
+
+  export type AddSupplierItemAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type AddSupplierItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    address?: SortOrder
+  }
+
+  export type AddSupplierItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    address?: SortOrder
+  }
+
+  export type AddSupplierItemSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -10516,6 +11904,35 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type EnumitemTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.itemType | EnumitemTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.itemType[]
+    notIn?: $Enums.itemType[]
+    not?: NestedEnumitemTypeFilter<$PrismaModel> | $Enums.itemType
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type AddPurchaseStockOrderByRelevanceInput = {
@@ -10529,15 +11946,30 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     item?: SortOrder
-    quantity?: SortOrder
-    purchasePrice?: SortOrder
-    phoneNumber?: SortOrder
+    goldWeight?: SortOrder
+    goldTouch?: SortOrder
+    goldPurity?: SortOrder
+    goldRate?: SortOrder
+    goldtotalValue?: SortOrder
+    silverWeight?: SortOrder
+    silverTouch?: SortOrder
+    silverPurity?: SortOrder
+    silverRate?: SortOrder
+    silvertotalValue?: SortOrder
   }
 
   export type AddPurchaseStockAvgOrderByAggregateInput = {
     id?: SortOrder
-    quantity?: SortOrder
-    purchasePrice?: SortOrder
+    goldWeight?: SortOrder
+    goldTouch?: SortOrder
+    goldPurity?: SortOrder
+    goldRate?: SortOrder
+    goldtotalValue?: SortOrder
+    silverWeight?: SortOrder
+    silverTouch?: SortOrder
+    silverPurity?: SortOrder
+    silverRate?: SortOrder
+    silvertotalValue?: SortOrder
   }
 
   export type AddPurchaseStockMaxOrderByAggregateInput = {
@@ -10545,9 +11977,16 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     item?: SortOrder
-    quantity?: SortOrder
-    purchasePrice?: SortOrder
-    phoneNumber?: SortOrder
+    goldWeight?: SortOrder
+    goldTouch?: SortOrder
+    goldPurity?: SortOrder
+    goldRate?: SortOrder
+    goldtotalValue?: SortOrder
+    silverWeight?: SortOrder
+    silverTouch?: SortOrder
+    silverPurity?: SortOrder
+    silverRate?: SortOrder
+    silvertotalValue?: SortOrder
   }
 
   export type AddPurchaseStockMinOrderByAggregateInput = {
@@ -10555,15 +11994,30 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     item?: SortOrder
-    quantity?: SortOrder
-    purchasePrice?: SortOrder
-    phoneNumber?: SortOrder
+    goldWeight?: SortOrder
+    goldTouch?: SortOrder
+    goldPurity?: SortOrder
+    goldRate?: SortOrder
+    goldtotalValue?: SortOrder
+    silverWeight?: SortOrder
+    silverTouch?: SortOrder
+    silverPurity?: SortOrder
+    silverRate?: SortOrder
+    silvertotalValue?: SortOrder
   }
 
   export type AddPurchaseStockSumOrderByAggregateInput = {
     id?: SortOrder
-    quantity?: SortOrder
-    purchasePrice?: SortOrder
+    goldWeight?: SortOrder
+    goldTouch?: SortOrder
+    goldPurity?: SortOrder
+    goldRate?: SortOrder
+    goldtotalValue?: SortOrder
+    silverWeight?: SortOrder
+    silverTouch?: SortOrder
+    silverPurity?: SortOrder
+    silverRate?: SortOrder
+    silvertotalValue?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -10578,6 +12032,48 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type EnumitemTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.itemType | EnumitemTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.itemType[]
+    notIn?: $Enums.itemType[]
+    not?: NestedEnumitemTypeWithAggregatesFilter<$PrismaModel> | $Enums.itemType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumitemTypeFilter<$PrismaModel>
+    _max?: NestedEnumitemTypeFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -10746,6 +12242,26 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type EnumitemTypeFieldUpdateOperationsInput = {
+    set?: $Enums.itemType
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type AddCastingCreateNestedOneWithoutCastingsInput = {
     create?: XOR<AddCastingCreateWithoutCastingsInput, AddCastingUncheckedCreateWithoutCastingsInput>
     connectOrCreate?: AddCastingCreateOrConnectWithoutCastingsInput
@@ -10894,6 +12410,24 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedEnumitemTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.itemType | EnumitemTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.itemType[]
+    notIn?: $Enums.itemType[]
+    not?: NestedEnumitemTypeFilter<$PrismaModel> | $Enums.itemType
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -10906,6 +12440,48 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumitemTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.itemType | EnumitemTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.itemType[]
+    notIn?: $Enums.itemType[]
+    not?: NestedEnumitemTypeWithAggregatesFilter<$PrismaModel> | $Enums.itemType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumitemTypeFilter<$PrismaModel>
+    _max?: NestedEnumitemTypeFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {

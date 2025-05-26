@@ -165,14 +165,29 @@ exports.Prisma.AddItemScalarFieldEnum = {
   name: 'name'
 };
 
+exports.Prisma.AddSupplierItemScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phoneNumber: 'phoneNumber',
+  address: 'address'
+};
+
 exports.Prisma.AddPurchaseStockScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
   item: 'item',
-  quantity: 'quantity',
-  purchasePrice: 'purchasePrice',
-  phoneNumber: 'phoneNumber'
+  goldWeight: 'goldWeight',
+  goldTouch: 'goldTouch',
+  goldPurity: 'goldPurity',
+  goldRate: 'goldRate',
+  goldtotalValue: 'goldtotalValue',
+  silverWeight: 'silverWeight',
+  silverTouch: 'silverTouch',
+  silverPurity: 'silverPurity',
+  silverRate: 'silverRate',
+  silvertotalValue: 'silvertotalValue'
 };
 
 exports.Prisma.CastingScalarFieldEnum = {
@@ -238,16 +253,24 @@ exports.Prisma.AddItemOrderByRelevanceFieldEnum = {
   name: 'name'
 };
 
-exports.Prisma.AddPurchaseStockOrderByRelevanceFieldEnum = {
+exports.Prisma.AddSupplierItemOrderByRelevanceFieldEnum = {
   name: 'name',
-  item: 'item',
-  phoneNumber: 'phoneNumber'
+  email: 'email',
+  phoneNumber: 'phoneNumber',
+  address: 'address'
+};
+
+exports.Prisma.AddPurchaseStockOrderByRelevanceFieldEnum = {
+  name: 'name'
 };
 
 exports.Prisma.CastingOrderByRelevanceFieldEnum = {
   name: 'name'
 };
-
+exports.itemType = exports.$Enums.itemType = {
+  gold: 'gold',
+  silver: 'silver'
+};
 
 exports.Prisma.ModelName = {
   AddCustomer: 'AddCustomer',
@@ -256,6 +279,7 @@ exports.Prisma.ModelName = {
   AddSetting: 'AddSetting',
   AddBuffing: 'AddBuffing',
   AddItem: 'AddItem',
+  AddSupplierItem: 'AddSupplierItem',
   AddPurchaseStock: 'AddPurchaseStock',
   Casting: 'Casting'
 };
