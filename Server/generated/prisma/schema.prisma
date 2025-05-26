@@ -14,6 +14,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum itemType {
+  gold
+  silver
+}
+
 model AddCustomer {
   id          Int     @id @default(autoincrement())
   name        String
@@ -61,14 +66,29 @@ model AddItem {
   name String
 }
 
+model AddSupplierItem {
+  id          Int    @id @default(autoincrement())
+  name        String
+  email       String @unique
+  phoneNumber String
+  address     String
+}
+
 model AddPurchaseStock {
-  id            Int      @id @default(autoincrement())
-  name          String
-  createdAt     DateTime @default(now())
-  item          String
-  quantity      Int
-  purchasePrice Int
-  phoneNumber   String
+  id               Int      @id @default(autoincrement())
+  name             String
+  createdAt        DateTime @default(now())
+  item             itemType
+  goldWeight       Int?
+  goldTouch        Float?
+  goldPurity       Float?
+  goldRate         Float?
+  goldtotalValue   Float?
+  silverWeight     Int?
+  silverTouch      Float?
+  silverPurity     Float?
+  silverRate       Float?
+  silvertotalValue Float?
 }
 
 model Casting {
