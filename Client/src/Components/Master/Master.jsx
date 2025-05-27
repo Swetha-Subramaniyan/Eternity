@@ -349,7 +349,7 @@ const Master = () => {
 
       <ul className="nav-list"> 
         <li className='nav-item'>
-          <a href="/customer" className={`nav-link ${isActive('/customer') ? 'active' : ''}`}>Masterr</a>
+          <a href="/customer" className={`nav-link ${isActive('/customer') ? 'active' : ''}`}>Home</a>
         </li>
         <li className='nav-item'>
           <a href="/mastercustomer" className={`nav-link ${isActive('/mastercustomer') ? 'active' : ''}`}>Customer</a>

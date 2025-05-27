@@ -8,14 +8,6 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  IconButton,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableContainer,
-  Paper,
   InputAdornment,
   TextareaAutosize,
 } from "@mui/material";
@@ -106,6 +98,8 @@ function MasterCasting() {
   };
   const handleDelete = async (index) => {
     const customer = customers[index];
+    const confirmed = window.confirm(`Are you sure you want to delete "${customer.name}"?`);
+    if (!confirmed) return;
     try {
       await axios.delete(`${BACKEND_SERVER_URL}/api/casting/${customer.id}`);
       const updatedCustomers = [...customers];

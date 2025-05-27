@@ -17,6 +17,7 @@ import MasterGoldsmith from './Components/Master/MasterCasting';
 import MasterAddItems from './Components/Master/MasterAddItems';
 import MasterPurchaseStock from './Components/Master/MasterPurchaseStock';
 import MasterAddSupplier from './Components/Master/MasterAddSupplier';
+import CustomerTranscation from './Components/Customer/CustomerTranscation';
 
 
 
@@ -27,6 +28,7 @@ const App = () => {
     <Route path='/' element={<Login/>} />
     <Route path='/navbar' element={<Navbar/>} />
     <Route path='/customer' element={<Customer/>}/>
+    <Route path='/customertranscation' element={<CustomerTranscation/>}/>
     <Route path='/master' element={<Master/>} />
     <Route path='/goldsmith' element={<Goldsmith/>} />
     <Route path='/casting' element={<Casting/>} />

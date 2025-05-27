@@ -15,16 +15,17 @@ datasource db {
 }
 
 enum itemType {
-  gold
-  silver
+  Gold
+  Silver
 }
 
 model AddCustomer {
-  id          Int     @id @default(autoincrement())
+  id          Int                   @id @default(autoincrement())
   name        String
   phoneNumber String
   address     String
-  email       String? @unique
+  email       String?               @unique
+  transcation CustomerTransaction[]
 }
 
 model AddCasting {
@@ -92,17 +93,57 @@ model AddPurchaseStock {
 }
 
 model Casting {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
+  id          Int                @id @default(autoincrement())
+  createdAt   DateTime           @default(now())
   name        String
   givenGold   Float
   givenTouch  Float
   purity      Float
   finalTouch  Float
   pureValue   Float
-  finalWeight Float
   copper      Float
+  finalWeight Float
+  afterWeight Float
+  wastage     Float
+  castingId   Int
+  addcastings AddCasting         @relation(fields: [castingId], references: [id])
+  scrapitems  CastingScrapItem[]
+  items       CastingItem[]
+}
 
+model CastingItem {
+  id         Int                @id @default(autoincrement())
   castingId  Int
-  addcasting AddCasting @relation(fields: [castingId], references: [id])
+  item       String
+  weight     Float
+  touch      Float
+  purity     Float
+  remarks    String
+  castings   Casting            @relation(fields: [castingId], references: [id])
+  scrapitems CastingScrapItem[]
+}
+
+model CastingScrapItem {
+  id        Int         @id @default(autoincrement())
+  castingId Int
+  item      String
+  weight    Float
+  touch     Float
+  purity    Float
+  remarks   String
+  castings  CastingItem @relation(fields: [castingId], references: [id])
+  casting   Casting[]
+}
+
+model CustomerTransaction {
+  id         Int         @id @default(autoincrement())
+  date       DateTime
+  value      Float
+  type       String
+  touch      Float?
+  purity     Float?
+  goldRate   Float?
+  customer   AddCustomer @relation(fields: [customerId], references: [id])
+  customerId Int
+  createdAt  DateTime    @default(now())
 }

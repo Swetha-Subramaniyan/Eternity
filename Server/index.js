@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors";
+import dotenv from 'dotenv';
 import customerRoutes from "./Routes/customerRoutes.js";
 import castingRoutes from "./Routes/castingRoutes.js";
 import filingRoutes from "./Routes/filingRoutes.js";
@@ -7,10 +9,8 @@ import buffingRoutes from "./Routes/buffingRoutes.js";
 import additemRoutes from "./Routes/additemRoutes.js";
 import supplierRoutes from "./Routes/supplierRoutes.js";
 import purchaseRoutes from "./Routes/purchaseRoutes.js";
+import transactionRoutes from "./Routes/transcationRoutes.js"
 
-
-import cors from "cors";
-import dotenv from 'dotenv';
 
 const app = express();
 const PORT = process.env.PORT ||  5000;
@@ -27,6 +27,7 @@ app.use("/api/buffing",buffingRoutes);
 app.use("/api/additem",additemRoutes);
 app.use("/api/addsupplier", supplierRoutes);
 app.use("/api/purchase",purchaseRoutes);
+app.use("/api/transactions", transactionRoutes);
 
 
 app.get("/", (req, res) => {
