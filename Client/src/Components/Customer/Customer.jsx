@@ -18,6 +18,7 @@ import PreviewIcon from "@mui/icons-material/Preview";
 import { useNavigate } from "react-router-dom";
 import './Customer.css';
 import Navbar from "../Navbar/Navbar";
+import { BACKEND_SERVER_URL } from "../../../Config/config";
 
 
 const Customer = () => {
@@ -43,7 +44,7 @@ const Customer = () => {
     const nameMatch =
       customer.name &&
       customer.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const phoneMatch = customer.phone && customer.phone.includes(searchTerm);
+    const phoneMatch = customer.phoneNumber && customer.phoneNumber.includes(searchTerm);
     const addressMatch =
       customer.address &&
       customer.address.toLowerCase().includes(searchTerm.toLowerCase());
@@ -113,10 +114,21 @@ const Customer = () => {
                 {filteredCustomers.map((customer, index) => (
                   <TableRow key={index} hover>
                     <TableCell align="center">{customer.name}</TableCell>
-                    <TableCell align="center">{customer.phone}</TableCell>
+                    <TableCell align="center">{customer.phoneNumber}</TableCell>
                     <TableCell align="center">{customer.address}</TableCell>
                     <TableCell align="center">
-                      <IconButton onClick={() => navigate("/customertrans")}>
+                      {/* <IconButton onClick={() => navigate("/customertranscation")}> */}
+                      <IconButton
+                        onClick={() =>
+                          navigate(
+                            `/customertranscation?id=${
+                              customer.id
+                            }&name=${encodeURIComponent(customer.name)}`
+                          )
+                          
+                        }
+                        
+                      >
                         <PreviewIcon color="primary" />
                       </IconButton>
                     </TableCell>

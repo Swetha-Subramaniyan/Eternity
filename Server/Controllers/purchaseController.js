@@ -6,7 +6,9 @@ export const createPurchase = async(req,res) =>{
     const {name,createdAt,item,goldWeight,goldTouch,goldPurity,goldRate,goldtotalValue,silverWeight,silverPurity,silverRate,silverTouch,silvertotalValue} = req.body;
     const newCustomer = await prisma.addPurchaseStock.create(
         {
-            data:{name,createdAt,item,goldWeight,goldTouch,goldPurity,goldRate,goldtotalValue,silverWeight,silverPurity,silverRate,silverTouch,silvertotalValue}
+            data:{name,
+                createdAt: new Date(createdAt),
+                item,goldWeight,goldTouch,goldPurity,goldRate,goldtotalValue,silverWeight,silverPurity,silverRate,silverTouch,silvertotalValue}
         }
     )
     console.log(newCustomer)
@@ -30,11 +32,15 @@ export const getPurchase = async (req,res) =>{
 export const updatePurchase = async  (req,res) =>{
     const {id} = req.params;
     const {name,createdAt,item,goldWeight,goldTouch,goldPurity,goldRate,goldtotalValue,silverWeight,silverPurity,silverRate,silverTouch,silvertotalValue} = req.body;
+    console.log("Incoming update data:", req.body);
+
 try{
     const updated = await prisma.addPurchaseStock.update(
         {
             where: {id:Number(id)},
-            data: {name,createdAt,item,goldWeight,goldTouch,goldPurity,goldRate,goldtotalValue,silverWeight,silverPurity,silverRate,silverTouch,silvertotalValue}
+            data: {name,
+                createdAt: new Date(createdAt),
+                item,goldWeight,goldTouch,goldPurity,goldRate,goldtotalValue,silverWeight,silverPurity,silverRate,silverTouch,silvertotalValue}
         }
     )
     res.status(201).json(updated)

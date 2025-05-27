@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import "./MasterPurchaseStock.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Master from "./Master";
+import "./MasterPurchaseStock.css";
+import { BACKEND_SERVER_URL } from "../../../Config/config";
+import { Edit, Delete, Search } from "@mui/icons-material";
 
 const MasterPurchaseStock = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +25,7 @@ const MasterPurchaseStock = () => {
     silverTouch: "",
     silverPurity: "",
     silverRate: "",
-    silverTotalValue: "",
+    silvertotalValue: "",
   });
 
   const handleChange = (e) => {
@@ -33,47 +36,46 @@ const MasterPurchaseStock = () => {
     }));
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
+  // Fetch all purchases from backend
+  const fetchPurchases = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_SERVER_URL}/api/purchase`);
+      setPurchaseList(response.data);
+    } catch (error) {
+      toast.error("Failed to fetch purchases");
+    }
+  };
 
-  //   if (editingIndex !== null) {
-  //     const updatedList = [...purchaseList];
-  //     updatedList[editingIndex] = formData;
-  //     setPurchaseList(updatedList);
-  //     toast.success("Purchase updated successfully!");
-  //     setEditingIndex(null);
-  //   } else {
-  //     setPurchaseList([...purchaseList, formData]);
-  //     toast.success("Purchase submitted successfully!");
-  //   }
+  useEffect(() => {
+    fetchPurchases();
+  }, []);
 
-  //   setFormData({
-  //     supplierName: "",
-  //     purchaseDate: "",
-  //     item: "",
-  //     goldWeight: "",
-  //     goldTouch: "",
-  //     goldPurity: "",
-  //     goldRate: "",
-  //     goldTotalValue: "",
-  //     silverWeight: "",
-  //     silverTouch: "",
-  //     silverPurity: "",
-  //     silverRate: "",
-  //     silverTotalValue: "",
-  //   });
+  const resetForm = () => {
+    setFormData({
+      supplierName: "",
+      purchaseDate: "",
+      item: "",
+      goldWeight: "",
+      goldTouch: "",
+      goldPurity: "",
+      goldRate: "",
+      goldTotalValue: "",
+      silverWeight: "",
+      silverTouch: "",
+      silverPurity: "",
+      silverRate: "",
+      silvertotalValue: "",
+    });
+    setEditingIndex(null);
+  };
 
-  //   setShowModal(false);
-  // };
-
-
-
+  // Submit form handler - add or update purchase
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const payload = {
       name: formData.supplierName,
-      createddAt: formData.purchaseDate,
+      createdAt: formData.purchaseDate,
       item: formData.item,
       goldWeight: formData.goldWeight ? parseFloat(formData.goldWeight) : null,
       goldTouch: formData.goldTouch ? parseFloat(formData.goldTouch) : null,
@@ -84,59 +86,69 @@ const MasterPurchaseStock = () => {
       silverTouch: formData.silverTouch ? parseFloat(formData.silverTouch) : null,
       silverPurity: formData.silverPurity ? parseFloat(formData.silverPurity) : null,
       silverRate: formData.silverRate ? parseFloat(formData.silverRate) : null,
-      silvertotalValue: formData.silverTotalValue ? parseFloat(formData.silverTotalValue) : null,
+      silvertotalValue: formData.silvertotalValue ? parseFloat(formData.silvertotalValue) : null,
     };
-  
+
     try {
-      const response = await fetch("http://localhost:5000/api/purchase", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to create purchase");
+      if (editingIndex !== null) {
+        // Update existing purchase
+        const id = purchaseList[editingIndex].id;
+        const response = await axios.put(`${BACKEND_SERVER_URL}/api/purchase/${id}`, payload);
+        const updatedList = [...purchaseList];
+        updatedList[editingIndex] = response.data;
+        setPurchaseList(updatedList);
+        toast.success("Purchase updated successfully!");
+      } else {
+        // Create new purchase
+    
+        const response = await axios.post(`${BACKEND_SERVER_URL}/api/purchase`, payload);
+console.log("Response data:", response.data);
+setPurchaseList((prev) => [...prev, response.data]);
+toast.success("Purchase submitted successfully!");
+
       }
-  
-      const newPurchase = await response.json();
-      setPurchaseList((prev) => [...prev, newPurchase]);
-      toast.success("Purchase submitted successfully!");
-  
-      setFormData({
-        supplierName: "",
-        purchaseDate: "",
-        item: "",
-        goldWeight: "",
-        goldTouch: "",
-        goldPurity: "",
-        goldRate: "",
-        goldTotalValue: "",
-        silverWeight: "",
-        silverTouch: "",
-        silverPurity: "",
-        silverRate: "",
-        silverTotalValue: "",
-      });
+
+      resetForm();
       setShowModal(false);
     } catch (error) {
-      toast.error(`Error: ${error.message}`);
+      toast.error(`Error: ${error.response?.data?.message || error.message}`);
     }
   };
-  
 
   const handleEdit = (index) => {
-    setFormData(purchaseList[index]);
+    const item = purchaseList[index];
+    setFormData({
+      supplierName: item.name,
+      purchaseDate: item.createdAt,
+      item: item.item,
+      goldWeight: item.goldWeight || "",
+      goldTouch: item.goldTouch || "",
+      goldPurity: item.goldPurity || "",
+      goldRate: item.goldRate || "",
+      goldTotalValue: item.goldtotalValue || "",
+      silverWeight: item.silverWeight || "",
+      silverTouch: item.silverTouch || "",
+      silverPurity: item.silverPurity || "",
+      silverRate: item.silverRate || "",
+      silvertotalValue: item.silvertotalValue || "",
+    });
     setEditingIndex(index);
     setShowModal(true);
   };
 
-  const handleDelete = (index) => {
-    const filteredList = purchaseList.filter((_, i) => i !== index);
-    setPurchaseList(filteredList);
-    toast.error("Purchase deleted successfully!");
+  // Delete purchase handler
+  const handleDelete = async (index) => {
+    const itemToDelete = purchaseList[index];
+    const confirmed = window.confirm(`Are you sure you want to delete "${itemToDelete.name}"?`);
+    if (!confirmed) return;
+    try {
+      await axios.delete(`${BACKEND_SERVER_URL}/api/purchase/${itemToDelete.id}`);
+      const filteredList = purchaseList.filter((_, i) => i !== index);
+      setPurchaseList(filteredList);
+      toast.error("Purchase deleted successfully!");
+    } catch (error) {
+      toast.error("Failed to delete purchase");
+    }
   };
 
   return (
@@ -149,22 +161,7 @@ const MasterPurchaseStock = () => {
           className="open-modal-btn"
           onClick={() => {
             setShowModal(true);
-            setFormData({
-              supplierName: "",
-              purchaseDate: "",
-              item: "",
-              goldWeight: "",
-              goldTouch: "",
-              goldPurity: "",
-              goldRate: "",
-              goldTotalValue: "",
-              silverWeight: "",
-              silverTouch: "",
-              silverPurity: "",
-              silverRate: "",
-              silverTotalValue: "",
-            });
-            setEditingIndex(null);
+            resetForm();
           }}
         >
           Add Stock Purchase
@@ -175,27 +172,26 @@ const MasterPurchaseStock = () => {
             <div className="modal-content">
               <h3>{editingIndex !== null ? "Edit Purchase" : "Add Stock Purchase"}</h3>
               <form onSubmit={handleSubmit} className="purchase-form">
-
-              <div className="right-column">
-                    <div className="form-group">
-                      <label>Supplier Name:</label>
-                      <input type="text" name="supplierName" value={formData.supplierName} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group">
-                      <label>Purchase Date:</label>
-                      <input type="date" name="purchaseDate" value={formData.purchaseDate} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group">
-                      <label>Item:</label>
-                      <select name="item" value={formData.item} onChange={handleChange} required>
-                        <option value="">Select Item</option>
-                        <option value="Gold">Gold</option>
-                        <option value="Silver">Silver</option>
-                      </select>
-                    </div>
+                <div className="right-column">
+                  <div className="form-group">
+                    <label>Supplier Name:</label>
+                    <input type="text" name="supplierName" value={formData.supplierName} onChange={handleChange} required />
                   </div>
+                  <div className="form-group">
+                    <label>Purchase Date:</label>
+                    <input type="date" name="purchaseDate" value={formData.purchaseDate} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group">
+                    <label>Item:</label>
+                    <select name="item" value={formData.item} onChange={handleChange} required>
+                      <option value="">Select Item</option>
+                      <option value="Gold">Gold</option>
+                      <option value="Silver">Silver</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div className="form-content">
-                  {/* Left Column - Conditional Fields */}
                   <div className="left-column">
                     {formData.item === "Gold" && (
                       <>
@@ -225,7 +221,7 @@ const MasterPurchaseStock = () => {
                     {formData.item === "Silver" && (
                       <>
                         <div className="form-group">
-                          <label>Silver weight:</label>
+                          <label>Silver Weight:</label>
                           <input type="number" name="silverWeight" value={formData.silverWeight} onChange={handleChange} />
                         </div>
                         <div className="form-group">
@@ -242,7 +238,7 @@ const MasterPurchaseStock = () => {
                         </div>
                         <div className="form-group">
                           <label>Total Value:</label>
-                          <input type="number" name="silverTotalValue" value={formData.silverTotalValue} onChange={handleChange} />
+                          <input type="number" name="silvertotalValue" value={formData.silvertotalValue} onChange={handleChange} />
                         </div>
                       </>
                     )}
@@ -253,14 +249,7 @@ const MasterPurchaseStock = () => {
                   <button type="submit" className="submit">
                     {editingIndex !== null ? "Update Purchase" : "Submit Purchase"}
                   </button>
-                  <button
-                    type="button"
-                    className="cancel-btn"
-                    onClick={() => {
-                      setShowModal(false);
-                      setEditingIndex(null);
-                    }}
-                  >
+                  <button type="button" className="cancel-btn" onClick={() => setShowModal(false)}>
                     Cancel
                   </button>
                 </div>
@@ -270,7 +259,8 @@ const MasterPurchaseStock = () => {
         )}
 
         {purchaseList.length > 0 && (
-          <table className="purchase-table">
+          <div className="item-listt"> 
+          <table >
             <thead>
               <tr>
                 <th>S.No</th>
@@ -284,21 +274,22 @@ const MasterPurchaseStock = () => {
               {purchaseList.map((item, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{item.supplierName}</td>
-                  <td>{item.purchaseDate}</td>
+                  <td>{item.name}</td>
+                  <td>{item.createdAt}</td>
                   <td>{item.item}</td>
-                  <td>
-                    <button onClick={() => handleEdit(index)} className="edit-btn">
-                      Edit
-                    </button>
-                    <button onClick={() => handleDelete(index)} className="delete-btn">
-                      Delete
-                    </button>
-                  </td>
+<td style={{width:"7rem"}}>
+            <b onClick={() => handleEdit(index)} style={{ marginRight: "8px" }}>
+           <Edit />
+            </b>
+            <b onClick={() => handleDelete(index)} style={{ color: "red", marginLeft:'0.5rem' }}>
+                <Delete />
+            </b>
+</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </div>
     </>

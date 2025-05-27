@@ -99,6 +99,9 @@ function MasterBuffing() {
   };
   const handleDelete = async (index) => {
     const customer = customers[index];
+    const confirmed = window.confirm(`Are you sure you want to delete "${customer.name}"?`);
+    if (!confirmed) return;
+    
     try {
       await axios.delete(`${BACKEND_SERVER_URL}/api/buffing/${customer.id}`);
       const updatedCustomers = [...customers];

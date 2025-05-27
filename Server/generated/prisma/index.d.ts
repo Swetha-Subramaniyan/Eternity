@@ -58,14 +58,29 @@ export type AddPurchaseStock = $Result.DefaultSelection<Prisma.$AddPurchaseStock
  * 
  */
 export type Casting = $Result.DefaultSelection<Prisma.$CastingPayload>
+/**
+ * Model CastingItem
+ * 
+ */
+export type CastingItem = $Result.DefaultSelection<Prisma.$CastingItemPayload>
+/**
+ * Model CastingScrapItem
+ * 
+ */
+export type CastingScrapItem = $Result.DefaultSelection<Prisma.$CastingScrapItemPayload>
+/**
+ * Model CustomerTransaction
+ * 
+ */
+export type CustomerTransaction = $Result.DefaultSelection<Prisma.$CustomerTransactionPayload>
 
 /**
  * Enums
  */
 export namespace $Enums {
   export const itemType: {
-  gold: 'gold',
-  silver: 'silver'
+  Gold: 'Gold',
+  Silver: 'Silver'
 };
 
 export type itemType = (typeof itemType)[keyof typeof itemType]
@@ -290,6 +305,36 @@ export class PrismaClient<
     * ```
     */
   get casting(): Prisma.CastingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.castingItem`: Exposes CRUD operations for the **CastingItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CastingItems
+    * const castingItems = await prisma.castingItem.findMany()
+    * ```
+    */
+  get castingItem(): Prisma.CastingItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.castingScrapItem`: Exposes CRUD operations for the **CastingScrapItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CastingScrapItems
+    * const castingScrapItems = await prisma.castingScrapItem.findMany()
+    * ```
+    */
+  get castingScrapItem(): Prisma.CastingScrapItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.customerTransaction`: Exposes CRUD operations for the **CustomerTransaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CustomerTransactions
+    * const customerTransactions = await prisma.customerTransaction.findMany()
+    * ```
+    */
+  get customerTransaction(): Prisma.CustomerTransactionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -738,7 +783,10 @@ export namespace Prisma {
     AddItem: 'AddItem',
     AddSupplierItem: 'AddSupplierItem',
     AddPurchaseStock: 'AddPurchaseStock',
-    Casting: 'Casting'
+    Casting: 'Casting',
+    CastingItem: 'CastingItem',
+    CastingScrapItem: 'CastingScrapItem',
+    CustomerTransaction: 'CustomerTransaction'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -757,7 +805,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addItem" | "addSupplierItem" | "addPurchaseStock" | "casting"
+      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addItem" | "addSupplierItem" | "addPurchaseStock" | "casting" | "castingItem" | "castingScrapItem" | "customerTransaction"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1355,6 +1403,204 @@ export namespace Prisma {
           }
         }
       }
+      CastingItem: {
+        payload: Prisma.$CastingItemPayload<ExtArgs>
+        fields: Prisma.CastingItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CastingItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CastingItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingItemPayload>
+          }
+          findFirst: {
+            args: Prisma.CastingItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CastingItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingItemPayload>
+          }
+          findMany: {
+            args: Prisma.CastingItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingItemPayload>[]
+          }
+          create: {
+            args: Prisma.CastingItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingItemPayload>
+          }
+          createMany: {
+            args: Prisma.CastingItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CastingItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingItemPayload>
+          }
+          update: {
+            args: Prisma.CastingItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.CastingItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CastingItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CastingItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingItemPayload>
+          }
+          aggregate: {
+            args: Prisma.CastingItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCastingItem>
+          }
+          groupBy: {
+            args: Prisma.CastingItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CastingItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CastingItemCountArgs<ExtArgs>
+            result: $Utils.Optional<CastingItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      CastingScrapItem: {
+        payload: Prisma.$CastingScrapItemPayload<ExtArgs>
+        fields: Prisma.CastingScrapItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CastingScrapItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingScrapItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CastingScrapItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingScrapItemPayload>
+          }
+          findFirst: {
+            args: Prisma.CastingScrapItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingScrapItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CastingScrapItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingScrapItemPayload>
+          }
+          findMany: {
+            args: Prisma.CastingScrapItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingScrapItemPayload>[]
+          }
+          create: {
+            args: Prisma.CastingScrapItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingScrapItemPayload>
+          }
+          createMany: {
+            args: Prisma.CastingScrapItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CastingScrapItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingScrapItemPayload>
+          }
+          update: {
+            args: Prisma.CastingScrapItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingScrapItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.CastingScrapItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CastingScrapItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CastingScrapItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastingScrapItemPayload>
+          }
+          aggregate: {
+            args: Prisma.CastingScrapItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCastingScrapItem>
+          }
+          groupBy: {
+            args: Prisma.CastingScrapItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CastingScrapItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CastingScrapItemCountArgs<ExtArgs>
+            result: $Utils.Optional<CastingScrapItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      CustomerTransaction: {
+        payload: Prisma.$CustomerTransactionPayload<ExtArgs>
+        fields: Prisma.CustomerTransactionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CustomerTransactionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomerTransactionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CustomerTransactionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomerTransactionPayload>
+          }
+          findFirst: {
+            args: Prisma.CustomerTransactionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomerTransactionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CustomerTransactionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomerTransactionPayload>
+          }
+          findMany: {
+            args: Prisma.CustomerTransactionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomerTransactionPayload>[]
+          }
+          create: {
+            args: Prisma.CustomerTransactionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomerTransactionPayload>
+          }
+          createMany: {
+            args: Prisma.CustomerTransactionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CustomerTransactionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomerTransactionPayload>
+          }
+          update: {
+            args: Prisma.CustomerTransactionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomerTransactionPayload>
+          }
+          deleteMany: {
+            args: Prisma.CustomerTransactionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CustomerTransactionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CustomerTransactionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomerTransactionPayload>
+          }
+          aggregate: {
+            args: Prisma.CustomerTransactionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCustomerTransaction>
+          }
+          groupBy: {
+            args: Prisma.CustomerTransactionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CustomerTransactionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CustomerTransactionCountArgs<ExtArgs>
+            result: $Utils.Optional<CustomerTransactionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1448,6 +1694,9 @@ export namespace Prisma {
     addSupplierItem?: AddSupplierItemOmit
     addPurchaseStock?: AddPurchaseStockOmit
     casting?: CastingOmit
+    castingItem?: CastingItemOmit
+    castingScrapItem?: CastingScrapItemOmit
+    customerTransaction?: CustomerTransactionOmit
   }
 
   /* Types for Logging */
@@ -1538,6 +1787,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type AddCustomerCountOutputType
+   */
+
+  export type AddCustomerCountOutputType = {
+    transcation: number
+  }
+
+  export type AddCustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transcation?: boolean | AddCustomerCountOutputTypeCountTranscationArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AddCustomerCountOutputType without action
+   */
+  export type AddCustomerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddCustomerCountOutputType
+     */
+    select?: AddCustomerCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AddCustomerCountOutputType without action
+   */
+  export type AddCustomerCountOutputTypeCountTranscationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CustomerTransactionWhereInput
+  }
+
+
+  /**
    * Count Type AddCastingCountOutputType
    */
 
@@ -1564,6 +1844,108 @@ export namespace Prisma {
    * AddCastingCountOutputType without action
    */
   export type AddCastingCountOutputTypeCountCastingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CastingWhereInput
+  }
+
+
+  /**
+   * Count Type CastingCountOutputType
+   */
+
+  export type CastingCountOutputType = {
+    scrapitems: number
+    items: number
+  }
+
+  export type CastingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    scrapitems?: boolean | CastingCountOutputTypeCountScrapitemsArgs
+    items?: boolean | CastingCountOutputTypeCountItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CastingCountOutputType without action
+   */
+  export type CastingCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingCountOutputType
+     */
+    select?: CastingCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CastingCountOutputType without action
+   */
+  export type CastingCountOutputTypeCountScrapitemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CastingScrapItemWhereInput
+  }
+
+  /**
+   * CastingCountOutputType without action
+   */
+  export type CastingCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CastingItemWhereInput
+  }
+
+
+  /**
+   * Count Type CastingItemCountOutputType
+   */
+
+  export type CastingItemCountOutputType = {
+    scrapitems: number
+  }
+
+  export type CastingItemCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    scrapitems?: boolean | CastingItemCountOutputTypeCountScrapitemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CastingItemCountOutputType without action
+   */
+  export type CastingItemCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItemCountOutputType
+     */
+    select?: CastingItemCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CastingItemCountOutputType without action
+   */
+  export type CastingItemCountOutputTypeCountScrapitemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CastingScrapItemWhereInput
+  }
+
+
+  /**
+   * Count Type CastingScrapItemCountOutputType
+   */
+
+  export type CastingScrapItemCountOutputType = {
+    casting: number
+  }
+
+  export type CastingScrapItemCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    casting?: boolean | CastingScrapItemCountOutputTypeCountCastingArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CastingScrapItemCountOutputType without action
+   */
+  export type CastingScrapItemCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItemCountOutputType
+     */
+    select?: CastingScrapItemCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CastingScrapItemCountOutputType without action
+   */
+  export type CastingScrapItemCountOutputTypeCountCastingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CastingWhereInput
   }
 
@@ -1770,6 +2152,8 @@ export namespace Prisma {
     phoneNumber?: boolean
     address?: boolean
     email?: boolean
+    transcation?: boolean | AddCustomer$transcationArgs<ExtArgs>
+    _count?: boolean | AddCustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["addCustomer"]>
 
 
@@ -1783,10 +2167,16 @@ export namespace Prisma {
   }
 
   export type AddCustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addCustomer"]>
+  export type AddCustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transcation?: boolean | AddCustomer$transcationArgs<ExtArgs>
+    _count?: boolean | AddCustomerCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $AddCustomerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AddCustomer"
-    objects: {}
+    objects: {
+      transcation: Prisma.$CustomerTransactionPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -2133,6 +2523,7 @@ export namespace Prisma {
    */
   export interface Prisma__AddCustomerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    transcation<T extends AddCustomer$transcationArgs<ExtArgs> = {}>(args?: Subset<T, AddCustomer$transcationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2184,6 +2575,10 @@ export namespace Prisma {
      */
     omit?: AddCustomerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCustomerInclude<ExtArgs> | null
+    /**
      * Filter, which AddCustomer to fetch.
      */
     where: AddCustomerWhereUniqueInput
@@ -2202,6 +2597,10 @@ export namespace Prisma {
      */
     omit?: AddCustomerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCustomerInclude<ExtArgs> | null
+    /**
      * Filter, which AddCustomer to fetch.
      */
     where: AddCustomerWhereUniqueInput
@@ -2219,6 +2618,10 @@ export namespace Prisma {
      * Omit specific fields from the AddCustomer
      */
     omit?: AddCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCustomerInclude<ExtArgs> | null
     /**
      * Filter, which AddCustomer to fetch.
      */
@@ -2268,6 +2671,10 @@ export namespace Prisma {
      */
     omit?: AddCustomerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCustomerInclude<ExtArgs> | null
+    /**
      * Filter, which AddCustomer to fetch.
      */
     where?: AddCustomerWhereInput
@@ -2316,6 +2723,10 @@ export namespace Prisma {
      */
     omit?: AddCustomerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCustomerInclude<ExtArgs> | null
+    /**
      * Filter, which AddCustomers to fetch.
      */
     where?: AddCustomerWhereInput
@@ -2359,6 +2770,10 @@ export namespace Prisma {
      */
     omit?: AddCustomerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCustomerInclude<ExtArgs> | null
+    /**
      * The data needed to create a AddCustomer.
      */
     data: XOR<AddCustomerCreateInput, AddCustomerUncheckedCreateInput>
@@ -2387,6 +2802,10 @@ export namespace Prisma {
      * Omit specific fields from the AddCustomer
      */
     omit?: AddCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCustomerInclude<ExtArgs> | null
     /**
      * The data needed to update a AddCustomer.
      */
@@ -2428,6 +2847,10 @@ export namespace Prisma {
      */
     omit?: AddCustomerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCustomerInclude<ExtArgs> | null
+    /**
      * The filter to search for the AddCustomer to update in case it exists.
      */
     where: AddCustomerWhereUniqueInput
@@ -2454,6 +2877,10 @@ export namespace Prisma {
      */
     omit?: AddCustomerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCustomerInclude<ExtArgs> | null
+    /**
      * Filter which AddCustomer to delete.
      */
     where: AddCustomerWhereUniqueInput
@@ -2474,6 +2901,30 @@ export namespace Prisma {
   }
 
   /**
+   * AddCustomer.transcation
+   */
+  export type AddCustomer$transcationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
+    where?: CustomerTransactionWhereInput
+    orderBy?: CustomerTransactionOrderByWithRelationInput | CustomerTransactionOrderByWithRelationInput[]
+    cursor?: CustomerTransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CustomerTransactionScalarFieldEnum | CustomerTransactionScalarFieldEnum[]
+  }
+
+  /**
    * AddCustomer without action
    */
   export type AddCustomerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2485,6 +2936,10 @@ export namespace Prisma {
      * Omit specific fields from the AddCustomer
      */
     omit?: AddCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCustomerInclude<ExtArgs> | null
   }
 
 
@@ -9098,8 +9553,10 @@ export namespace Prisma {
     purity: number | null
     finalTouch: number | null
     pureValue: number | null
-    finalWeight: number | null
     copper: number | null
+    finalWeight: number | null
+    afterWeight: number | null
+    wastage: number | null
     castingId: number | null
   }
 
@@ -9110,8 +9567,10 @@ export namespace Prisma {
     purity: number | null
     finalTouch: number | null
     pureValue: number | null
-    finalWeight: number | null
     copper: number | null
+    finalWeight: number | null
+    afterWeight: number | null
+    wastage: number | null
     castingId: number | null
   }
 
@@ -9124,8 +9583,10 @@ export namespace Prisma {
     purity: number | null
     finalTouch: number | null
     pureValue: number | null
-    finalWeight: number | null
     copper: number | null
+    finalWeight: number | null
+    afterWeight: number | null
+    wastage: number | null
     castingId: number | null
   }
 
@@ -9138,8 +9599,10 @@ export namespace Prisma {
     purity: number | null
     finalTouch: number | null
     pureValue: number | null
-    finalWeight: number | null
     copper: number | null
+    finalWeight: number | null
+    afterWeight: number | null
+    wastage: number | null
     castingId: number | null
   }
 
@@ -9152,8 +9615,10 @@ export namespace Prisma {
     purity: number
     finalTouch: number
     pureValue: number
-    finalWeight: number
     copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
     castingId: number
     _all: number
   }
@@ -9166,8 +9631,10 @@ export namespace Prisma {
     purity?: true
     finalTouch?: true
     pureValue?: true
-    finalWeight?: true
     copper?: true
+    finalWeight?: true
+    afterWeight?: true
+    wastage?: true
     castingId?: true
   }
 
@@ -9178,8 +9645,10 @@ export namespace Prisma {
     purity?: true
     finalTouch?: true
     pureValue?: true
-    finalWeight?: true
     copper?: true
+    finalWeight?: true
+    afterWeight?: true
+    wastage?: true
     castingId?: true
   }
 
@@ -9192,8 +9661,10 @@ export namespace Prisma {
     purity?: true
     finalTouch?: true
     pureValue?: true
-    finalWeight?: true
     copper?: true
+    finalWeight?: true
+    afterWeight?: true
+    wastage?: true
     castingId?: true
   }
 
@@ -9206,8 +9677,10 @@ export namespace Prisma {
     purity?: true
     finalTouch?: true
     pureValue?: true
-    finalWeight?: true
     copper?: true
+    finalWeight?: true
+    afterWeight?: true
+    wastage?: true
     castingId?: true
   }
 
@@ -9220,8 +9693,10 @@ export namespace Prisma {
     purity?: true
     finalTouch?: true
     pureValue?: true
-    finalWeight?: true
     copper?: true
+    finalWeight?: true
+    afterWeight?: true
+    wastage?: true
     castingId?: true
     _all?: true
   }
@@ -9321,8 +9796,10 @@ export namespace Prisma {
     purity: number
     finalTouch: number
     pureValue: number
-    finalWeight: number
     copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
     castingId: number
     _count: CastingCountAggregateOutputType | null
     _avg: CastingAvgAggregateOutputType | null
@@ -9354,10 +9831,15 @@ export namespace Prisma {
     purity?: boolean
     finalTouch?: boolean
     pureValue?: boolean
-    finalWeight?: boolean
     copper?: boolean
+    finalWeight?: boolean
+    afterWeight?: boolean
+    wastage?: boolean
     castingId?: boolean
-    addcasting?: boolean | AddCastingDefaultArgs<ExtArgs>
+    addcastings?: boolean | AddCastingDefaultArgs<ExtArgs>
+    scrapitems?: boolean | Casting$scrapitemsArgs<ExtArgs>
+    items?: boolean | Casting$itemsArgs<ExtArgs>
+    _count?: boolean | CastingCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["casting"]>
 
 
@@ -9371,20 +9853,27 @@ export namespace Prisma {
     purity?: boolean
     finalTouch?: boolean
     pureValue?: boolean
-    finalWeight?: boolean
     copper?: boolean
+    finalWeight?: boolean
+    afterWeight?: boolean
+    wastage?: boolean
     castingId?: boolean
   }
 
-  export type CastingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name" | "givenGold" | "givenTouch" | "purity" | "finalTouch" | "pureValue" | "finalWeight" | "copper" | "castingId", ExtArgs["result"]["casting"]>
+  export type CastingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name" | "givenGold" | "givenTouch" | "purity" | "finalTouch" | "pureValue" | "copper" | "finalWeight" | "afterWeight" | "wastage" | "castingId", ExtArgs["result"]["casting"]>
   export type CastingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    addcasting?: boolean | AddCastingDefaultArgs<ExtArgs>
+    addcastings?: boolean | AddCastingDefaultArgs<ExtArgs>
+    scrapitems?: boolean | Casting$scrapitemsArgs<ExtArgs>
+    items?: boolean | Casting$itemsArgs<ExtArgs>
+    _count?: boolean | CastingCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $CastingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Casting"
     objects: {
-      addcasting: Prisma.$AddCastingPayload<ExtArgs>
+      addcastings: Prisma.$AddCastingPayload<ExtArgs>
+      scrapitems: Prisma.$CastingScrapItemPayload<ExtArgs>[]
+      items: Prisma.$CastingItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -9395,8 +9884,10 @@ export namespace Prisma {
       purity: number
       finalTouch: number
       pureValue: number
-      finalWeight: number
       copper: number
+      finalWeight: number
+      afterWeight: number
+      wastage: number
       castingId: number
     }, ExtArgs["result"]["casting"]>
     composites: {}
@@ -9738,7 +10229,9 @@ export namespace Prisma {
    */
   export interface Prisma__CastingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    addcasting<T extends AddCastingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddCastingDefaultArgs<ExtArgs>>): Prisma__AddCastingClient<$Result.GetResult<Prisma.$AddCastingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    addcastings<T extends AddCastingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddCastingDefaultArgs<ExtArgs>>): Prisma__AddCastingClient<$Result.GetResult<Prisma.$AddCastingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    scrapitems<T extends Casting$scrapitemsArgs<ExtArgs> = {}>(args?: Subset<T, Casting$scrapitemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    items<T extends Casting$itemsArgs<ExtArgs> = {}>(args?: Subset<T, Casting$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9776,8 +10269,10 @@ export namespace Prisma {
     readonly purity: FieldRef<"Casting", 'Float'>
     readonly finalTouch: FieldRef<"Casting", 'Float'>
     readonly pureValue: FieldRef<"Casting", 'Float'>
-    readonly finalWeight: FieldRef<"Casting", 'Float'>
     readonly copper: FieldRef<"Casting", 'Float'>
+    readonly finalWeight: FieldRef<"Casting", 'Float'>
+    readonly afterWeight: FieldRef<"Casting", 'Float'>
+    readonly wastage: FieldRef<"Casting", 'Float'>
     readonly castingId: FieldRef<"Casting", 'Int'>
   }
     
@@ -10122,6 +10617,54 @@ export namespace Prisma {
   }
 
   /**
+   * Casting.scrapitems
+   */
+  export type Casting$scrapitemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    where?: CastingScrapItemWhereInput
+    orderBy?: CastingScrapItemOrderByWithRelationInput | CastingScrapItemOrderByWithRelationInput[]
+    cursor?: CastingScrapItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CastingScrapItemScalarFieldEnum | CastingScrapItemScalarFieldEnum[]
+  }
+
+  /**
+   * Casting.items
+   */
+  export type Casting$itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+    where?: CastingItemWhereInput
+    orderBy?: CastingItemOrderByWithRelationInput | CastingItemOrderByWithRelationInput[]
+    cursor?: CastingItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CastingItemScalarFieldEnum | CastingItemScalarFieldEnum[]
+  }
+
+  /**
    * Casting without action
    */
   export type CastingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10137,6 +10680,3095 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CastingInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CastingItem
+   */
+
+  export type AggregateCastingItem = {
+    _count: CastingItemCountAggregateOutputType | null
+    _avg: CastingItemAvgAggregateOutputType | null
+    _sum: CastingItemSumAggregateOutputType | null
+    _min: CastingItemMinAggregateOutputType | null
+    _max: CastingItemMaxAggregateOutputType | null
+  }
+
+  export type CastingItemAvgAggregateOutputType = {
+    id: number | null
+    castingId: number | null
+    weight: number | null
+    touch: number | null
+    purity: number | null
+  }
+
+  export type CastingItemSumAggregateOutputType = {
+    id: number | null
+    castingId: number | null
+    weight: number | null
+    touch: number | null
+    purity: number | null
+  }
+
+  export type CastingItemMinAggregateOutputType = {
+    id: number | null
+    castingId: number | null
+    item: string | null
+    weight: number | null
+    touch: number | null
+    purity: number | null
+    remarks: string | null
+  }
+
+  export type CastingItemMaxAggregateOutputType = {
+    id: number | null
+    castingId: number | null
+    item: string | null
+    weight: number | null
+    touch: number | null
+    purity: number | null
+    remarks: string | null
+  }
+
+  export type CastingItemCountAggregateOutputType = {
+    id: number
+    castingId: number
+    item: number
+    weight: number
+    touch: number
+    purity: number
+    remarks: number
+    _all: number
+  }
+
+
+  export type CastingItemAvgAggregateInputType = {
+    id?: true
+    castingId?: true
+    weight?: true
+    touch?: true
+    purity?: true
+  }
+
+  export type CastingItemSumAggregateInputType = {
+    id?: true
+    castingId?: true
+    weight?: true
+    touch?: true
+    purity?: true
+  }
+
+  export type CastingItemMinAggregateInputType = {
+    id?: true
+    castingId?: true
+    item?: true
+    weight?: true
+    touch?: true
+    purity?: true
+    remarks?: true
+  }
+
+  export type CastingItemMaxAggregateInputType = {
+    id?: true
+    castingId?: true
+    item?: true
+    weight?: true
+    touch?: true
+    purity?: true
+    remarks?: true
+  }
+
+  export type CastingItemCountAggregateInputType = {
+    id?: true
+    castingId?: true
+    item?: true
+    weight?: true
+    touch?: true
+    purity?: true
+    remarks?: true
+    _all?: true
+  }
+
+  export type CastingItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CastingItem to aggregate.
+     */
+    where?: CastingItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastingItems to fetch.
+     */
+    orderBy?: CastingItemOrderByWithRelationInput | CastingItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CastingItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CastingItems
+    **/
+    _count?: true | CastingItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CastingItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CastingItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CastingItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CastingItemMaxAggregateInputType
+  }
+
+  export type GetCastingItemAggregateType<T extends CastingItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateCastingItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCastingItem[P]>
+      : GetScalarType<T[P], AggregateCastingItem[P]>
+  }
+
+
+
+
+  export type CastingItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CastingItemWhereInput
+    orderBy?: CastingItemOrderByWithAggregationInput | CastingItemOrderByWithAggregationInput[]
+    by: CastingItemScalarFieldEnum[] | CastingItemScalarFieldEnum
+    having?: CastingItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CastingItemCountAggregateInputType | true
+    _avg?: CastingItemAvgAggregateInputType
+    _sum?: CastingItemSumAggregateInputType
+    _min?: CastingItemMinAggregateInputType
+    _max?: CastingItemMaxAggregateInputType
+  }
+
+  export type CastingItemGroupByOutputType = {
+    id: number
+    castingId: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    _count: CastingItemCountAggregateOutputType | null
+    _avg: CastingItemAvgAggregateOutputType | null
+    _sum: CastingItemSumAggregateOutputType | null
+    _min: CastingItemMinAggregateOutputType | null
+    _max: CastingItemMaxAggregateOutputType | null
+  }
+
+  type GetCastingItemGroupByPayload<T extends CastingItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CastingItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CastingItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CastingItemGroupByOutputType[P]>
+            : GetScalarType<T[P], CastingItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CastingItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    castingId?: boolean
+    item?: boolean
+    weight?: boolean
+    touch?: boolean
+    purity?: boolean
+    remarks?: boolean
+    castings?: boolean | CastingDefaultArgs<ExtArgs>
+    scrapitems?: boolean | CastingItem$scrapitemsArgs<ExtArgs>
+    _count?: boolean | CastingItemCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["castingItem"]>
+
+
+
+  export type CastingItemSelectScalar = {
+    id?: boolean
+    castingId?: boolean
+    item?: boolean
+    weight?: boolean
+    touch?: boolean
+    purity?: boolean
+    remarks?: boolean
+  }
+
+  export type CastingItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "castingId" | "item" | "weight" | "touch" | "purity" | "remarks", ExtArgs["result"]["castingItem"]>
+  export type CastingItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    castings?: boolean | CastingDefaultArgs<ExtArgs>
+    scrapitems?: boolean | CastingItem$scrapitemsArgs<ExtArgs>
+    _count?: boolean | CastingItemCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $CastingItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CastingItem"
+    objects: {
+      castings: Prisma.$CastingPayload<ExtArgs>
+      scrapitems: Prisma.$CastingScrapItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      castingId: number
+      item: string
+      weight: number
+      touch: number
+      purity: number
+      remarks: string
+    }, ExtArgs["result"]["castingItem"]>
+    composites: {}
+  }
+
+  type CastingItemGetPayload<S extends boolean | null | undefined | CastingItemDefaultArgs> = $Result.GetResult<Prisma.$CastingItemPayload, S>
+
+  type CastingItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CastingItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CastingItemCountAggregateInputType | true
+    }
+
+  export interface CastingItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CastingItem'], meta: { name: 'CastingItem' } }
+    /**
+     * Find zero or one CastingItem that matches the filter.
+     * @param {CastingItemFindUniqueArgs} args - Arguments to find a CastingItem
+     * @example
+     * // Get one CastingItem
+     * const castingItem = await prisma.castingItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CastingItemFindUniqueArgs>(args: SelectSubset<T, CastingItemFindUniqueArgs<ExtArgs>>): Prisma__CastingItemClient<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CastingItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CastingItemFindUniqueOrThrowArgs} args - Arguments to find a CastingItem
+     * @example
+     * // Get one CastingItem
+     * const castingItem = await prisma.castingItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CastingItemFindUniqueOrThrowArgs>(args: SelectSubset<T, CastingItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CastingItemClient<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CastingItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingItemFindFirstArgs} args - Arguments to find a CastingItem
+     * @example
+     * // Get one CastingItem
+     * const castingItem = await prisma.castingItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CastingItemFindFirstArgs>(args?: SelectSubset<T, CastingItemFindFirstArgs<ExtArgs>>): Prisma__CastingItemClient<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CastingItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingItemFindFirstOrThrowArgs} args - Arguments to find a CastingItem
+     * @example
+     * // Get one CastingItem
+     * const castingItem = await prisma.castingItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CastingItemFindFirstOrThrowArgs>(args?: SelectSubset<T, CastingItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__CastingItemClient<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CastingItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CastingItems
+     * const castingItems = await prisma.castingItem.findMany()
+     * 
+     * // Get first 10 CastingItems
+     * const castingItems = await prisma.castingItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const castingItemWithIdOnly = await prisma.castingItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CastingItemFindManyArgs>(args?: SelectSubset<T, CastingItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CastingItem.
+     * @param {CastingItemCreateArgs} args - Arguments to create a CastingItem.
+     * @example
+     * // Create one CastingItem
+     * const CastingItem = await prisma.castingItem.create({
+     *   data: {
+     *     // ... data to create a CastingItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends CastingItemCreateArgs>(args: SelectSubset<T, CastingItemCreateArgs<ExtArgs>>): Prisma__CastingItemClient<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CastingItems.
+     * @param {CastingItemCreateManyArgs} args - Arguments to create many CastingItems.
+     * @example
+     * // Create many CastingItems
+     * const castingItem = await prisma.castingItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CastingItemCreateManyArgs>(args?: SelectSubset<T, CastingItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a CastingItem.
+     * @param {CastingItemDeleteArgs} args - Arguments to delete one CastingItem.
+     * @example
+     * // Delete one CastingItem
+     * const CastingItem = await prisma.castingItem.delete({
+     *   where: {
+     *     // ... filter to delete one CastingItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CastingItemDeleteArgs>(args: SelectSubset<T, CastingItemDeleteArgs<ExtArgs>>): Prisma__CastingItemClient<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CastingItem.
+     * @param {CastingItemUpdateArgs} args - Arguments to update one CastingItem.
+     * @example
+     * // Update one CastingItem
+     * const castingItem = await prisma.castingItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CastingItemUpdateArgs>(args: SelectSubset<T, CastingItemUpdateArgs<ExtArgs>>): Prisma__CastingItemClient<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CastingItems.
+     * @param {CastingItemDeleteManyArgs} args - Arguments to filter CastingItems to delete.
+     * @example
+     * // Delete a few CastingItems
+     * const { count } = await prisma.castingItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CastingItemDeleteManyArgs>(args?: SelectSubset<T, CastingItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CastingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CastingItems
+     * const castingItem = await prisma.castingItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CastingItemUpdateManyArgs>(args: SelectSubset<T, CastingItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CastingItem.
+     * @param {CastingItemUpsertArgs} args - Arguments to update or create a CastingItem.
+     * @example
+     * // Update or create a CastingItem
+     * const castingItem = await prisma.castingItem.upsert({
+     *   create: {
+     *     // ... data to create a CastingItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CastingItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CastingItemUpsertArgs>(args: SelectSubset<T, CastingItemUpsertArgs<ExtArgs>>): Prisma__CastingItemClient<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CastingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingItemCountArgs} args - Arguments to filter CastingItems to count.
+     * @example
+     * // Count the number of CastingItems
+     * const count = await prisma.castingItem.count({
+     *   where: {
+     *     // ... the filter for the CastingItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends CastingItemCountArgs>(
+      args?: Subset<T, CastingItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CastingItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CastingItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CastingItemAggregateArgs>(args: Subset<T, CastingItemAggregateArgs>): Prisma.PrismaPromise<GetCastingItemAggregateType<T>>
+
+    /**
+     * Group by CastingItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CastingItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CastingItemGroupByArgs['orderBy'] }
+        : { orderBy?: CastingItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CastingItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCastingItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CastingItem model
+   */
+  readonly fields: CastingItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CastingItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CastingItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    castings<T extends CastingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingDefaultArgs<ExtArgs>>): Prisma__CastingClient<$Result.GetResult<Prisma.$CastingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    scrapitems<T extends CastingItem$scrapitemsArgs<ExtArgs> = {}>(args?: Subset<T, CastingItem$scrapitemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CastingItem model
+   */
+  interface CastingItemFieldRefs {
+    readonly id: FieldRef<"CastingItem", 'Int'>
+    readonly castingId: FieldRef<"CastingItem", 'Int'>
+    readonly item: FieldRef<"CastingItem", 'String'>
+    readonly weight: FieldRef<"CastingItem", 'Float'>
+    readonly touch: FieldRef<"CastingItem", 'Float'>
+    readonly purity: FieldRef<"CastingItem", 'Float'>
+    readonly remarks: FieldRef<"CastingItem", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CastingItem findUnique
+   */
+  export type CastingItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+    /**
+     * Filter, which CastingItem to fetch.
+     */
+    where: CastingItemWhereUniqueInput
+  }
+
+  /**
+   * CastingItem findUniqueOrThrow
+   */
+  export type CastingItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+    /**
+     * Filter, which CastingItem to fetch.
+     */
+    where: CastingItemWhereUniqueInput
+  }
+
+  /**
+   * CastingItem findFirst
+   */
+  export type CastingItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+    /**
+     * Filter, which CastingItem to fetch.
+     */
+    where?: CastingItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastingItems to fetch.
+     */
+    orderBy?: CastingItemOrderByWithRelationInput | CastingItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CastingItems.
+     */
+    cursor?: CastingItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CastingItems.
+     */
+    distinct?: CastingItemScalarFieldEnum | CastingItemScalarFieldEnum[]
+  }
+
+  /**
+   * CastingItem findFirstOrThrow
+   */
+  export type CastingItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+    /**
+     * Filter, which CastingItem to fetch.
+     */
+    where?: CastingItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastingItems to fetch.
+     */
+    orderBy?: CastingItemOrderByWithRelationInput | CastingItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CastingItems.
+     */
+    cursor?: CastingItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CastingItems.
+     */
+    distinct?: CastingItemScalarFieldEnum | CastingItemScalarFieldEnum[]
+  }
+
+  /**
+   * CastingItem findMany
+   */
+  export type CastingItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+    /**
+     * Filter, which CastingItems to fetch.
+     */
+    where?: CastingItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastingItems to fetch.
+     */
+    orderBy?: CastingItemOrderByWithRelationInput | CastingItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CastingItems.
+     */
+    cursor?: CastingItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastingItems.
+     */
+    skip?: number
+    distinct?: CastingItemScalarFieldEnum | CastingItemScalarFieldEnum[]
+  }
+
+  /**
+   * CastingItem create
+   */
+  export type CastingItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CastingItem.
+     */
+    data: XOR<CastingItemCreateInput, CastingItemUncheckedCreateInput>
+  }
+
+  /**
+   * CastingItem createMany
+   */
+  export type CastingItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CastingItems.
+     */
+    data: CastingItemCreateManyInput | CastingItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CastingItem update
+   */
+  export type CastingItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CastingItem.
+     */
+    data: XOR<CastingItemUpdateInput, CastingItemUncheckedUpdateInput>
+    /**
+     * Choose, which CastingItem to update.
+     */
+    where: CastingItemWhereUniqueInput
+  }
+
+  /**
+   * CastingItem updateMany
+   */
+  export type CastingItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CastingItems.
+     */
+    data: XOR<CastingItemUpdateManyMutationInput, CastingItemUncheckedUpdateManyInput>
+    /**
+     * Filter which CastingItems to update
+     */
+    where?: CastingItemWhereInput
+    /**
+     * Limit how many CastingItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CastingItem upsert
+   */
+  export type CastingItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CastingItem to update in case it exists.
+     */
+    where: CastingItemWhereUniqueInput
+    /**
+     * In case the CastingItem found by the `where` argument doesn't exist, create a new CastingItem with this data.
+     */
+    create: XOR<CastingItemCreateInput, CastingItemUncheckedCreateInput>
+    /**
+     * In case the CastingItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CastingItemUpdateInput, CastingItemUncheckedUpdateInput>
+  }
+
+  /**
+   * CastingItem delete
+   */
+  export type CastingItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+    /**
+     * Filter which CastingItem to delete.
+     */
+    where: CastingItemWhereUniqueInput
+  }
+
+  /**
+   * CastingItem deleteMany
+   */
+  export type CastingItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CastingItems to delete
+     */
+    where?: CastingItemWhereInput
+    /**
+     * Limit how many CastingItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CastingItem.scrapitems
+   */
+  export type CastingItem$scrapitemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    where?: CastingScrapItemWhereInput
+    orderBy?: CastingScrapItemOrderByWithRelationInput | CastingScrapItemOrderByWithRelationInput[]
+    cursor?: CastingScrapItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CastingScrapItemScalarFieldEnum | CastingScrapItemScalarFieldEnum[]
+  }
+
+  /**
+   * CastingItem without action
+   */
+  export type CastingItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItem
+     */
+    select?: CastingItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItem
+     */
+    omit?: CastingItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CastingScrapItem
+   */
+
+  export type AggregateCastingScrapItem = {
+    _count: CastingScrapItemCountAggregateOutputType | null
+    _avg: CastingScrapItemAvgAggregateOutputType | null
+    _sum: CastingScrapItemSumAggregateOutputType | null
+    _min: CastingScrapItemMinAggregateOutputType | null
+    _max: CastingScrapItemMaxAggregateOutputType | null
+  }
+
+  export type CastingScrapItemAvgAggregateOutputType = {
+    id: number | null
+    castingId: number | null
+    weight: number | null
+    touch: number | null
+    purity: number | null
+  }
+
+  export type CastingScrapItemSumAggregateOutputType = {
+    id: number | null
+    castingId: number | null
+    weight: number | null
+    touch: number | null
+    purity: number | null
+  }
+
+  export type CastingScrapItemMinAggregateOutputType = {
+    id: number | null
+    castingId: number | null
+    item: string | null
+    weight: number | null
+    touch: number | null
+    purity: number | null
+    remarks: string | null
+  }
+
+  export type CastingScrapItemMaxAggregateOutputType = {
+    id: number | null
+    castingId: number | null
+    item: string | null
+    weight: number | null
+    touch: number | null
+    purity: number | null
+    remarks: string | null
+  }
+
+  export type CastingScrapItemCountAggregateOutputType = {
+    id: number
+    castingId: number
+    item: number
+    weight: number
+    touch: number
+    purity: number
+    remarks: number
+    _all: number
+  }
+
+
+  export type CastingScrapItemAvgAggregateInputType = {
+    id?: true
+    castingId?: true
+    weight?: true
+    touch?: true
+    purity?: true
+  }
+
+  export type CastingScrapItemSumAggregateInputType = {
+    id?: true
+    castingId?: true
+    weight?: true
+    touch?: true
+    purity?: true
+  }
+
+  export type CastingScrapItemMinAggregateInputType = {
+    id?: true
+    castingId?: true
+    item?: true
+    weight?: true
+    touch?: true
+    purity?: true
+    remarks?: true
+  }
+
+  export type CastingScrapItemMaxAggregateInputType = {
+    id?: true
+    castingId?: true
+    item?: true
+    weight?: true
+    touch?: true
+    purity?: true
+    remarks?: true
+  }
+
+  export type CastingScrapItemCountAggregateInputType = {
+    id?: true
+    castingId?: true
+    item?: true
+    weight?: true
+    touch?: true
+    purity?: true
+    remarks?: true
+    _all?: true
+  }
+
+  export type CastingScrapItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CastingScrapItem to aggregate.
+     */
+    where?: CastingScrapItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastingScrapItems to fetch.
+     */
+    orderBy?: CastingScrapItemOrderByWithRelationInput | CastingScrapItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CastingScrapItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastingScrapItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastingScrapItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CastingScrapItems
+    **/
+    _count?: true | CastingScrapItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CastingScrapItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CastingScrapItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CastingScrapItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CastingScrapItemMaxAggregateInputType
+  }
+
+  export type GetCastingScrapItemAggregateType<T extends CastingScrapItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateCastingScrapItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCastingScrapItem[P]>
+      : GetScalarType<T[P], AggregateCastingScrapItem[P]>
+  }
+
+
+
+
+  export type CastingScrapItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CastingScrapItemWhereInput
+    orderBy?: CastingScrapItemOrderByWithAggregationInput | CastingScrapItemOrderByWithAggregationInput[]
+    by: CastingScrapItemScalarFieldEnum[] | CastingScrapItemScalarFieldEnum
+    having?: CastingScrapItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CastingScrapItemCountAggregateInputType | true
+    _avg?: CastingScrapItemAvgAggregateInputType
+    _sum?: CastingScrapItemSumAggregateInputType
+    _min?: CastingScrapItemMinAggregateInputType
+    _max?: CastingScrapItemMaxAggregateInputType
+  }
+
+  export type CastingScrapItemGroupByOutputType = {
+    id: number
+    castingId: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    _count: CastingScrapItemCountAggregateOutputType | null
+    _avg: CastingScrapItemAvgAggregateOutputType | null
+    _sum: CastingScrapItemSumAggregateOutputType | null
+    _min: CastingScrapItemMinAggregateOutputType | null
+    _max: CastingScrapItemMaxAggregateOutputType | null
+  }
+
+  type GetCastingScrapItemGroupByPayload<T extends CastingScrapItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CastingScrapItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CastingScrapItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CastingScrapItemGroupByOutputType[P]>
+            : GetScalarType<T[P], CastingScrapItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CastingScrapItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    castingId?: boolean
+    item?: boolean
+    weight?: boolean
+    touch?: boolean
+    purity?: boolean
+    remarks?: boolean
+    castings?: boolean | CastingItemDefaultArgs<ExtArgs>
+    casting?: boolean | CastingScrapItem$castingArgs<ExtArgs>
+    _count?: boolean | CastingScrapItemCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["castingScrapItem"]>
+
+
+
+  export type CastingScrapItemSelectScalar = {
+    id?: boolean
+    castingId?: boolean
+    item?: boolean
+    weight?: boolean
+    touch?: boolean
+    purity?: boolean
+    remarks?: boolean
+  }
+
+  export type CastingScrapItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "castingId" | "item" | "weight" | "touch" | "purity" | "remarks", ExtArgs["result"]["castingScrapItem"]>
+  export type CastingScrapItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    castings?: boolean | CastingItemDefaultArgs<ExtArgs>
+    casting?: boolean | CastingScrapItem$castingArgs<ExtArgs>
+    _count?: boolean | CastingScrapItemCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $CastingScrapItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CastingScrapItem"
+    objects: {
+      castings: Prisma.$CastingItemPayload<ExtArgs>
+      casting: Prisma.$CastingPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      castingId: number
+      item: string
+      weight: number
+      touch: number
+      purity: number
+      remarks: string
+    }, ExtArgs["result"]["castingScrapItem"]>
+    composites: {}
+  }
+
+  type CastingScrapItemGetPayload<S extends boolean | null | undefined | CastingScrapItemDefaultArgs> = $Result.GetResult<Prisma.$CastingScrapItemPayload, S>
+
+  type CastingScrapItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CastingScrapItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CastingScrapItemCountAggregateInputType | true
+    }
+
+  export interface CastingScrapItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CastingScrapItem'], meta: { name: 'CastingScrapItem' } }
+    /**
+     * Find zero or one CastingScrapItem that matches the filter.
+     * @param {CastingScrapItemFindUniqueArgs} args - Arguments to find a CastingScrapItem
+     * @example
+     * // Get one CastingScrapItem
+     * const castingScrapItem = await prisma.castingScrapItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CastingScrapItemFindUniqueArgs>(args: SelectSubset<T, CastingScrapItemFindUniqueArgs<ExtArgs>>): Prisma__CastingScrapItemClient<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CastingScrapItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CastingScrapItemFindUniqueOrThrowArgs} args - Arguments to find a CastingScrapItem
+     * @example
+     * // Get one CastingScrapItem
+     * const castingScrapItem = await prisma.castingScrapItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CastingScrapItemFindUniqueOrThrowArgs>(args: SelectSubset<T, CastingScrapItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CastingScrapItemClient<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CastingScrapItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingScrapItemFindFirstArgs} args - Arguments to find a CastingScrapItem
+     * @example
+     * // Get one CastingScrapItem
+     * const castingScrapItem = await prisma.castingScrapItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CastingScrapItemFindFirstArgs>(args?: SelectSubset<T, CastingScrapItemFindFirstArgs<ExtArgs>>): Prisma__CastingScrapItemClient<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CastingScrapItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingScrapItemFindFirstOrThrowArgs} args - Arguments to find a CastingScrapItem
+     * @example
+     * // Get one CastingScrapItem
+     * const castingScrapItem = await prisma.castingScrapItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CastingScrapItemFindFirstOrThrowArgs>(args?: SelectSubset<T, CastingScrapItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__CastingScrapItemClient<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CastingScrapItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingScrapItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CastingScrapItems
+     * const castingScrapItems = await prisma.castingScrapItem.findMany()
+     * 
+     * // Get first 10 CastingScrapItems
+     * const castingScrapItems = await prisma.castingScrapItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const castingScrapItemWithIdOnly = await prisma.castingScrapItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CastingScrapItemFindManyArgs>(args?: SelectSubset<T, CastingScrapItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CastingScrapItem.
+     * @param {CastingScrapItemCreateArgs} args - Arguments to create a CastingScrapItem.
+     * @example
+     * // Create one CastingScrapItem
+     * const CastingScrapItem = await prisma.castingScrapItem.create({
+     *   data: {
+     *     // ... data to create a CastingScrapItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends CastingScrapItemCreateArgs>(args: SelectSubset<T, CastingScrapItemCreateArgs<ExtArgs>>): Prisma__CastingScrapItemClient<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CastingScrapItems.
+     * @param {CastingScrapItemCreateManyArgs} args - Arguments to create many CastingScrapItems.
+     * @example
+     * // Create many CastingScrapItems
+     * const castingScrapItem = await prisma.castingScrapItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CastingScrapItemCreateManyArgs>(args?: SelectSubset<T, CastingScrapItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a CastingScrapItem.
+     * @param {CastingScrapItemDeleteArgs} args - Arguments to delete one CastingScrapItem.
+     * @example
+     * // Delete one CastingScrapItem
+     * const CastingScrapItem = await prisma.castingScrapItem.delete({
+     *   where: {
+     *     // ... filter to delete one CastingScrapItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CastingScrapItemDeleteArgs>(args: SelectSubset<T, CastingScrapItemDeleteArgs<ExtArgs>>): Prisma__CastingScrapItemClient<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CastingScrapItem.
+     * @param {CastingScrapItemUpdateArgs} args - Arguments to update one CastingScrapItem.
+     * @example
+     * // Update one CastingScrapItem
+     * const castingScrapItem = await prisma.castingScrapItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CastingScrapItemUpdateArgs>(args: SelectSubset<T, CastingScrapItemUpdateArgs<ExtArgs>>): Prisma__CastingScrapItemClient<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CastingScrapItems.
+     * @param {CastingScrapItemDeleteManyArgs} args - Arguments to filter CastingScrapItems to delete.
+     * @example
+     * // Delete a few CastingScrapItems
+     * const { count } = await prisma.castingScrapItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CastingScrapItemDeleteManyArgs>(args?: SelectSubset<T, CastingScrapItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CastingScrapItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingScrapItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CastingScrapItems
+     * const castingScrapItem = await prisma.castingScrapItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CastingScrapItemUpdateManyArgs>(args: SelectSubset<T, CastingScrapItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CastingScrapItem.
+     * @param {CastingScrapItemUpsertArgs} args - Arguments to update or create a CastingScrapItem.
+     * @example
+     * // Update or create a CastingScrapItem
+     * const castingScrapItem = await prisma.castingScrapItem.upsert({
+     *   create: {
+     *     // ... data to create a CastingScrapItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CastingScrapItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CastingScrapItemUpsertArgs>(args: SelectSubset<T, CastingScrapItemUpsertArgs<ExtArgs>>): Prisma__CastingScrapItemClient<$Result.GetResult<Prisma.$CastingScrapItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CastingScrapItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingScrapItemCountArgs} args - Arguments to filter CastingScrapItems to count.
+     * @example
+     * // Count the number of CastingScrapItems
+     * const count = await prisma.castingScrapItem.count({
+     *   where: {
+     *     // ... the filter for the CastingScrapItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends CastingScrapItemCountArgs>(
+      args?: Subset<T, CastingScrapItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CastingScrapItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CastingScrapItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingScrapItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CastingScrapItemAggregateArgs>(args: Subset<T, CastingScrapItemAggregateArgs>): Prisma.PrismaPromise<GetCastingScrapItemAggregateType<T>>
+
+    /**
+     * Group by CastingScrapItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastingScrapItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CastingScrapItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CastingScrapItemGroupByArgs['orderBy'] }
+        : { orderBy?: CastingScrapItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CastingScrapItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCastingScrapItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CastingScrapItem model
+   */
+  readonly fields: CastingScrapItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CastingScrapItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CastingScrapItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    castings<T extends CastingItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemDefaultArgs<ExtArgs>>): Prisma__CastingItemClient<$Result.GetResult<Prisma.$CastingItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    casting<T extends CastingScrapItem$castingArgs<ExtArgs> = {}>(args?: Subset<T, CastingScrapItem$castingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CastingScrapItem model
+   */
+  interface CastingScrapItemFieldRefs {
+    readonly id: FieldRef<"CastingScrapItem", 'Int'>
+    readonly castingId: FieldRef<"CastingScrapItem", 'Int'>
+    readonly item: FieldRef<"CastingScrapItem", 'String'>
+    readonly weight: FieldRef<"CastingScrapItem", 'Float'>
+    readonly touch: FieldRef<"CastingScrapItem", 'Float'>
+    readonly purity: FieldRef<"CastingScrapItem", 'Float'>
+    readonly remarks: FieldRef<"CastingScrapItem", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CastingScrapItem findUnique
+   */
+  export type CastingScrapItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    /**
+     * Filter, which CastingScrapItem to fetch.
+     */
+    where: CastingScrapItemWhereUniqueInput
+  }
+
+  /**
+   * CastingScrapItem findUniqueOrThrow
+   */
+  export type CastingScrapItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    /**
+     * Filter, which CastingScrapItem to fetch.
+     */
+    where: CastingScrapItemWhereUniqueInput
+  }
+
+  /**
+   * CastingScrapItem findFirst
+   */
+  export type CastingScrapItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    /**
+     * Filter, which CastingScrapItem to fetch.
+     */
+    where?: CastingScrapItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastingScrapItems to fetch.
+     */
+    orderBy?: CastingScrapItemOrderByWithRelationInput | CastingScrapItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CastingScrapItems.
+     */
+    cursor?: CastingScrapItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastingScrapItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastingScrapItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CastingScrapItems.
+     */
+    distinct?: CastingScrapItemScalarFieldEnum | CastingScrapItemScalarFieldEnum[]
+  }
+
+  /**
+   * CastingScrapItem findFirstOrThrow
+   */
+  export type CastingScrapItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    /**
+     * Filter, which CastingScrapItem to fetch.
+     */
+    where?: CastingScrapItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastingScrapItems to fetch.
+     */
+    orderBy?: CastingScrapItemOrderByWithRelationInput | CastingScrapItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CastingScrapItems.
+     */
+    cursor?: CastingScrapItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastingScrapItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastingScrapItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CastingScrapItems.
+     */
+    distinct?: CastingScrapItemScalarFieldEnum | CastingScrapItemScalarFieldEnum[]
+  }
+
+  /**
+   * CastingScrapItem findMany
+   */
+  export type CastingScrapItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    /**
+     * Filter, which CastingScrapItems to fetch.
+     */
+    where?: CastingScrapItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastingScrapItems to fetch.
+     */
+    orderBy?: CastingScrapItemOrderByWithRelationInput | CastingScrapItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CastingScrapItems.
+     */
+    cursor?: CastingScrapItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastingScrapItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastingScrapItems.
+     */
+    skip?: number
+    distinct?: CastingScrapItemScalarFieldEnum | CastingScrapItemScalarFieldEnum[]
+  }
+
+  /**
+   * CastingScrapItem create
+   */
+  export type CastingScrapItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CastingScrapItem.
+     */
+    data: XOR<CastingScrapItemCreateInput, CastingScrapItemUncheckedCreateInput>
+  }
+
+  /**
+   * CastingScrapItem createMany
+   */
+  export type CastingScrapItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CastingScrapItems.
+     */
+    data: CastingScrapItemCreateManyInput | CastingScrapItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CastingScrapItem update
+   */
+  export type CastingScrapItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CastingScrapItem.
+     */
+    data: XOR<CastingScrapItemUpdateInput, CastingScrapItemUncheckedUpdateInput>
+    /**
+     * Choose, which CastingScrapItem to update.
+     */
+    where: CastingScrapItemWhereUniqueInput
+  }
+
+  /**
+   * CastingScrapItem updateMany
+   */
+  export type CastingScrapItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CastingScrapItems.
+     */
+    data: XOR<CastingScrapItemUpdateManyMutationInput, CastingScrapItemUncheckedUpdateManyInput>
+    /**
+     * Filter which CastingScrapItems to update
+     */
+    where?: CastingScrapItemWhereInput
+    /**
+     * Limit how many CastingScrapItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CastingScrapItem upsert
+   */
+  export type CastingScrapItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CastingScrapItem to update in case it exists.
+     */
+    where: CastingScrapItemWhereUniqueInput
+    /**
+     * In case the CastingScrapItem found by the `where` argument doesn't exist, create a new CastingScrapItem with this data.
+     */
+    create: XOR<CastingScrapItemCreateInput, CastingScrapItemUncheckedCreateInput>
+    /**
+     * In case the CastingScrapItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CastingScrapItemUpdateInput, CastingScrapItemUncheckedUpdateInput>
+  }
+
+  /**
+   * CastingScrapItem delete
+   */
+  export type CastingScrapItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+    /**
+     * Filter which CastingScrapItem to delete.
+     */
+    where: CastingScrapItemWhereUniqueInput
+  }
+
+  /**
+   * CastingScrapItem deleteMany
+   */
+  export type CastingScrapItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CastingScrapItems to delete
+     */
+    where?: CastingScrapItemWhereInput
+    /**
+     * Limit how many CastingScrapItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CastingScrapItem.casting
+   */
+  export type CastingScrapItem$castingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Casting
+     */
+    select?: CastingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Casting
+     */
+    omit?: CastingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingInclude<ExtArgs> | null
+    where?: CastingWhereInput
+    orderBy?: CastingOrderByWithRelationInput | CastingOrderByWithRelationInput[]
+    cursor?: CastingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CastingScalarFieldEnum | CastingScalarFieldEnum[]
+  }
+
+  /**
+   * CastingScrapItem without action
+   */
+  export type CastingScrapItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingScrapItem
+     */
+    select?: CastingScrapItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingScrapItem
+     */
+    omit?: CastingScrapItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingScrapItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CustomerTransaction
+   */
+
+  export type AggregateCustomerTransaction = {
+    _count: CustomerTransactionCountAggregateOutputType | null
+    _avg: CustomerTransactionAvgAggregateOutputType | null
+    _sum: CustomerTransactionSumAggregateOutputType | null
+    _min: CustomerTransactionMinAggregateOutputType | null
+    _max: CustomerTransactionMaxAggregateOutputType | null
+  }
+
+  export type CustomerTransactionAvgAggregateOutputType = {
+    id: number | null
+    value: number | null
+    touch: number | null
+    purity: number | null
+    goldRate: number | null
+    customerId: number | null
+  }
+
+  export type CustomerTransactionSumAggregateOutputType = {
+    id: number | null
+    value: number | null
+    touch: number | null
+    purity: number | null
+    goldRate: number | null
+    customerId: number | null
+  }
+
+  export type CustomerTransactionMinAggregateOutputType = {
+    id: number | null
+    date: Date | null
+    value: number | null
+    type: string | null
+    touch: number | null
+    purity: number | null
+    goldRate: number | null
+    customerId: number | null
+    createdAt: Date | null
+  }
+
+  export type CustomerTransactionMaxAggregateOutputType = {
+    id: number | null
+    date: Date | null
+    value: number | null
+    type: string | null
+    touch: number | null
+    purity: number | null
+    goldRate: number | null
+    customerId: number | null
+    createdAt: Date | null
+  }
+
+  export type CustomerTransactionCountAggregateOutputType = {
+    id: number
+    date: number
+    value: number
+    type: number
+    touch: number
+    purity: number
+    goldRate: number
+    customerId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CustomerTransactionAvgAggregateInputType = {
+    id?: true
+    value?: true
+    touch?: true
+    purity?: true
+    goldRate?: true
+    customerId?: true
+  }
+
+  export type CustomerTransactionSumAggregateInputType = {
+    id?: true
+    value?: true
+    touch?: true
+    purity?: true
+    goldRate?: true
+    customerId?: true
+  }
+
+  export type CustomerTransactionMinAggregateInputType = {
+    id?: true
+    date?: true
+    value?: true
+    type?: true
+    touch?: true
+    purity?: true
+    goldRate?: true
+    customerId?: true
+    createdAt?: true
+  }
+
+  export type CustomerTransactionMaxAggregateInputType = {
+    id?: true
+    date?: true
+    value?: true
+    type?: true
+    touch?: true
+    purity?: true
+    goldRate?: true
+    customerId?: true
+    createdAt?: true
+  }
+
+  export type CustomerTransactionCountAggregateInputType = {
+    id?: true
+    date?: true
+    value?: true
+    type?: true
+    touch?: true
+    purity?: true
+    goldRate?: true
+    customerId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CustomerTransactionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CustomerTransaction to aggregate.
+     */
+    where?: CustomerTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomerTransactions to fetch.
+     */
+    orderBy?: CustomerTransactionOrderByWithRelationInput | CustomerTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CustomerTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomerTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomerTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CustomerTransactions
+    **/
+    _count?: true | CustomerTransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CustomerTransactionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CustomerTransactionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CustomerTransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CustomerTransactionMaxAggregateInputType
+  }
+
+  export type GetCustomerTransactionAggregateType<T extends CustomerTransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateCustomerTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCustomerTransaction[P]>
+      : GetScalarType<T[P], AggregateCustomerTransaction[P]>
+  }
+
+
+
+
+  export type CustomerTransactionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CustomerTransactionWhereInput
+    orderBy?: CustomerTransactionOrderByWithAggregationInput | CustomerTransactionOrderByWithAggregationInput[]
+    by: CustomerTransactionScalarFieldEnum[] | CustomerTransactionScalarFieldEnum
+    having?: CustomerTransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CustomerTransactionCountAggregateInputType | true
+    _avg?: CustomerTransactionAvgAggregateInputType
+    _sum?: CustomerTransactionSumAggregateInputType
+    _min?: CustomerTransactionMinAggregateInputType
+    _max?: CustomerTransactionMaxAggregateInputType
+  }
+
+  export type CustomerTransactionGroupByOutputType = {
+    id: number
+    date: Date
+    value: number
+    type: string
+    touch: number | null
+    purity: number | null
+    goldRate: number | null
+    customerId: number
+    createdAt: Date
+    _count: CustomerTransactionCountAggregateOutputType | null
+    _avg: CustomerTransactionAvgAggregateOutputType | null
+    _sum: CustomerTransactionSumAggregateOutputType | null
+    _min: CustomerTransactionMinAggregateOutputType | null
+    _max: CustomerTransactionMaxAggregateOutputType | null
+  }
+
+  type GetCustomerTransactionGroupByPayload<T extends CustomerTransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CustomerTransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CustomerTransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CustomerTransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], CustomerTransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CustomerTransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    date?: boolean
+    value?: boolean
+    type?: boolean
+    touch?: boolean
+    purity?: boolean
+    goldRate?: boolean
+    customerId?: boolean
+    createdAt?: boolean
+    customer?: boolean | AddCustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["customerTransaction"]>
+
+
+
+  export type CustomerTransactionSelectScalar = {
+    id?: boolean
+    date?: boolean
+    value?: boolean
+    type?: boolean
+    touch?: boolean
+    purity?: boolean
+    goldRate?: boolean
+    customerId?: boolean
+    createdAt?: boolean
+  }
+
+  export type CustomerTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "value" | "type" | "touch" | "purity" | "goldRate" | "customerId" | "createdAt", ExtArgs["result"]["customerTransaction"]>
+  export type CustomerTransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | AddCustomerDefaultArgs<ExtArgs>
+  }
+
+  export type $CustomerTransactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CustomerTransaction"
+    objects: {
+      customer: Prisma.$AddCustomerPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      date: Date
+      value: number
+      type: string
+      touch: number | null
+      purity: number | null
+      goldRate: number | null
+      customerId: number
+      createdAt: Date
+    }, ExtArgs["result"]["customerTransaction"]>
+    composites: {}
+  }
+
+  type CustomerTransactionGetPayload<S extends boolean | null | undefined | CustomerTransactionDefaultArgs> = $Result.GetResult<Prisma.$CustomerTransactionPayload, S>
+
+  type CustomerTransactionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CustomerTransactionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CustomerTransactionCountAggregateInputType | true
+    }
+
+  export interface CustomerTransactionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CustomerTransaction'], meta: { name: 'CustomerTransaction' } }
+    /**
+     * Find zero or one CustomerTransaction that matches the filter.
+     * @param {CustomerTransactionFindUniqueArgs} args - Arguments to find a CustomerTransaction
+     * @example
+     * // Get one CustomerTransaction
+     * const customerTransaction = await prisma.customerTransaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CustomerTransactionFindUniqueArgs>(args: SelectSubset<T, CustomerTransactionFindUniqueArgs<ExtArgs>>): Prisma__CustomerTransactionClient<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CustomerTransaction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CustomerTransactionFindUniqueOrThrowArgs} args - Arguments to find a CustomerTransaction
+     * @example
+     * // Get one CustomerTransaction
+     * const customerTransaction = await prisma.customerTransaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CustomerTransactionFindUniqueOrThrowArgs>(args: SelectSubset<T, CustomerTransactionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CustomerTransactionClient<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CustomerTransaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomerTransactionFindFirstArgs} args - Arguments to find a CustomerTransaction
+     * @example
+     * // Get one CustomerTransaction
+     * const customerTransaction = await prisma.customerTransaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CustomerTransactionFindFirstArgs>(args?: SelectSubset<T, CustomerTransactionFindFirstArgs<ExtArgs>>): Prisma__CustomerTransactionClient<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CustomerTransaction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomerTransactionFindFirstOrThrowArgs} args - Arguments to find a CustomerTransaction
+     * @example
+     * // Get one CustomerTransaction
+     * const customerTransaction = await prisma.customerTransaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CustomerTransactionFindFirstOrThrowArgs>(args?: SelectSubset<T, CustomerTransactionFindFirstOrThrowArgs<ExtArgs>>): Prisma__CustomerTransactionClient<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CustomerTransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomerTransactionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CustomerTransactions
+     * const customerTransactions = await prisma.customerTransaction.findMany()
+     * 
+     * // Get first 10 CustomerTransactions
+     * const customerTransactions = await prisma.customerTransaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const customerTransactionWithIdOnly = await prisma.customerTransaction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CustomerTransactionFindManyArgs>(args?: SelectSubset<T, CustomerTransactionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CustomerTransaction.
+     * @param {CustomerTransactionCreateArgs} args - Arguments to create a CustomerTransaction.
+     * @example
+     * // Create one CustomerTransaction
+     * const CustomerTransaction = await prisma.customerTransaction.create({
+     *   data: {
+     *     // ... data to create a CustomerTransaction
+     *   }
+     * })
+     * 
+     */
+    create<T extends CustomerTransactionCreateArgs>(args: SelectSubset<T, CustomerTransactionCreateArgs<ExtArgs>>): Prisma__CustomerTransactionClient<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CustomerTransactions.
+     * @param {CustomerTransactionCreateManyArgs} args - Arguments to create many CustomerTransactions.
+     * @example
+     * // Create many CustomerTransactions
+     * const customerTransaction = await prisma.customerTransaction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CustomerTransactionCreateManyArgs>(args?: SelectSubset<T, CustomerTransactionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a CustomerTransaction.
+     * @param {CustomerTransactionDeleteArgs} args - Arguments to delete one CustomerTransaction.
+     * @example
+     * // Delete one CustomerTransaction
+     * const CustomerTransaction = await prisma.customerTransaction.delete({
+     *   where: {
+     *     // ... filter to delete one CustomerTransaction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CustomerTransactionDeleteArgs>(args: SelectSubset<T, CustomerTransactionDeleteArgs<ExtArgs>>): Prisma__CustomerTransactionClient<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CustomerTransaction.
+     * @param {CustomerTransactionUpdateArgs} args - Arguments to update one CustomerTransaction.
+     * @example
+     * // Update one CustomerTransaction
+     * const customerTransaction = await prisma.customerTransaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CustomerTransactionUpdateArgs>(args: SelectSubset<T, CustomerTransactionUpdateArgs<ExtArgs>>): Prisma__CustomerTransactionClient<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CustomerTransactions.
+     * @param {CustomerTransactionDeleteManyArgs} args - Arguments to filter CustomerTransactions to delete.
+     * @example
+     * // Delete a few CustomerTransactions
+     * const { count } = await prisma.customerTransaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CustomerTransactionDeleteManyArgs>(args?: SelectSubset<T, CustomerTransactionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CustomerTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomerTransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CustomerTransactions
+     * const customerTransaction = await prisma.customerTransaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CustomerTransactionUpdateManyArgs>(args: SelectSubset<T, CustomerTransactionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CustomerTransaction.
+     * @param {CustomerTransactionUpsertArgs} args - Arguments to update or create a CustomerTransaction.
+     * @example
+     * // Update or create a CustomerTransaction
+     * const customerTransaction = await prisma.customerTransaction.upsert({
+     *   create: {
+     *     // ... data to create a CustomerTransaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CustomerTransaction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CustomerTransactionUpsertArgs>(args: SelectSubset<T, CustomerTransactionUpsertArgs<ExtArgs>>): Prisma__CustomerTransactionClient<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CustomerTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomerTransactionCountArgs} args - Arguments to filter CustomerTransactions to count.
+     * @example
+     * // Count the number of CustomerTransactions
+     * const count = await prisma.customerTransaction.count({
+     *   where: {
+     *     // ... the filter for the CustomerTransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends CustomerTransactionCountArgs>(
+      args?: Subset<T, CustomerTransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CustomerTransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CustomerTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomerTransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CustomerTransactionAggregateArgs>(args: Subset<T, CustomerTransactionAggregateArgs>): Prisma.PrismaPromise<GetCustomerTransactionAggregateType<T>>
+
+    /**
+     * Group by CustomerTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomerTransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CustomerTransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CustomerTransactionGroupByArgs['orderBy'] }
+        : { orderBy?: CustomerTransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CustomerTransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCustomerTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CustomerTransaction model
+   */
+  readonly fields: CustomerTransactionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CustomerTransaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CustomerTransactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    customer<T extends AddCustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddCustomerDefaultArgs<ExtArgs>>): Prisma__AddCustomerClient<$Result.GetResult<Prisma.$AddCustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CustomerTransaction model
+   */
+  interface CustomerTransactionFieldRefs {
+    readonly id: FieldRef<"CustomerTransaction", 'Int'>
+    readonly date: FieldRef<"CustomerTransaction", 'DateTime'>
+    readonly value: FieldRef<"CustomerTransaction", 'Float'>
+    readonly type: FieldRef<"CustomerTransaction", 'String'>
+    readonly touch: FieldRef<"CustomerTransaction", 'Float'>
+    readonly purity: FieldRef<"CustomerTransaction", 'Float'>
+    readonly goldRate: FieldRef<"CustomerTransaction", 'Float'>
+    readonly customerId: FieldRef<"CustomerTransaction", 'Int'>
+    readonly createdAt: FieldRef<"CustomerTransaction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CustomerTransaction findUnique
+   */
+  export type CustomerTransactionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which CustomerTransaction to fetch.
+     */
+    where: CustomerTransactionWhereUniqueInput
+  }
+
+  /**
+   * CustomerTransaction findUniqueOrThrow
+   */
+  export type CustomerTransactionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which CustomerTransaction to fetch.
+     */
+    where: CustomerTransactionWhereUniqueInput
+  }
+
+  /**
+   * CustomerTransaction findFirst
+   */
+  export type CustomerTransactionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which CustomerTransaction to fetch.
+     */
+    where?: CustomerTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomerTransactions to fetch.
+     */
+    orderBy?: CustomerTransactionOrderByWithRelationInput | CustomerTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CustomerTransactions.
+     */
+    cursor?: CustomerTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomerTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomerTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CustomerTransactions.
+     */
+    distinct?: CustomerTransactionScalarFieldEnum | CustomerTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * CustomerTransaction findFirstOrThrow
+   */
+  export type CustomerTransactionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which CustomerTransaction to fetch.
+     */
+    where?: CustomerTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomerTransactions to fetch.
+     */
+    orderBy?: CustomerTransactionOrderByWithRelationInput | CustomerTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CustomerTransactions.
+     */
+    cursor?: CustomerTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomerTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomerTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CustomerTransactions.
+     */
+    distinct?: CustomerTransactionScalarFieldEnum | CustomerTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * CustomerTransaction findMany
+   */
+  export type CustomerTransactionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which CustomerTransactions to fetch.
+     */
+    where?: CustomerTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomerTransactions to fetch.
+     */
+    orderBy?: CustomerTransactionOrderByWithRelationInput | CustomerTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CustomerTransactions.
+     */
+    cursor?: CustomerTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomerTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomerTransactions.
+     */
+    skip?: number
+    distinct?: CustomerTransactionScalarFieldEnum | CustomerTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * CustomerTransaction create
+   */
+  export type CustomerTransactionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CustomerTransaction.
+     */
+    data: XOR<CustomerTransactionCreateInput, CustomerTransactionUncheckedCreateInput>
+  }
+
+  /**
+   * CustomerTransaction createMany
+   */
+  export type CustomerTransactionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CustomerTransactions.
+     */
+    data: CustomerTransactionCreateManyInput | CustomerTransactionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CustomerTransaction update
+   */
+  export type CustomerTransactionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CustomerTransaction.
+     */
+    data: XOR<CustomerTransactionUpdateInput, CustomerTransactionUncheckedUpdateInput>
+    /**
+     * Choose, which CustomerTransaction to update.
+     */
+    where: CustomerTransactionWhereUniqueInput
+  }
+
+  /**
+   * CustomerTransaction updateMany
+   */
+  export type CustomerTransactionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CustomerTransactions.
+     */
+    data: XOR<CustomerTransactionUpdateManyMutationInput, CustomerTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which CustomerTransactions to update
+     */
+    where?: CustomerTransactionWhereInput
+    /**
+     * Limit how many CustomerTransactions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CustomerTransaction upsert
+   */
+  export type CustomerTransactionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CustomerTransaction to update in case it exists.
+     */
+    where: CustomerTransactionWhereUniqueInput
+    /**
+     * In case the CustomerTransaction found by the `where` argument doesn't exist, create a new CustomerTransaction with this data.
+     */
+    create: XOR<CustomerTransactionCreateInput, CustomerTransactionUncheckedCreateInput>
+    /**
+     * In case the CustomerTransaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CustomerTransactionUpdateInput, CustomerTransactionUncheckedUpdateInput>
+  }
+
+  /**
+   * CustomerTransaction delete
+   */
+  export type CustomerTransactionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
+    /**
+     * Filter which CustomerTransaction to delete.
+     */
+    where: CustomerTransactionWhereUniqueInput
+  }
+
+  /**
+   * CustomerTransaction deleteMany
+   */
+  export type CustomerTransactionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CustomerTransactions to delete
+     */
+    where?: CustomerTransactionWhereInput
+    /**
+     * Limit how many CustomerTransactions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CustomerTransaction without action
+   */
+  export type CustomerTransactionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerTransaction
+     */
+    select?: CustomerTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomerTransaction
+     */
+    omit?: CustomerTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerTransactionInclude<ExtArgs> | null
   }
 
 
@@ -10257,12 +13889,55 @@ export namespace Prisma {
     purity: 'purity',
     finalTouch: 'finalTouch',
     pureValue: 'pureValue',
-    finalWeight: 'finalWeight',
     copper: 'copper',
+    finalWeight: 'finalWeight',
+    afterWeight: 'afterWeight',
+    wastage: 'wastage',
     castingId: 'castingId'
   };
 
   export type CastingScalarFieldEnum = (typeof CastingScalarFieldEnum)[keyof typeof CastingScalarFieldEnum]
+
+
+  export const CastingItemScalarFieldEnum: {
+    id: 'id',
+    castingId: 'castingId',
+    item: 'item',
+    weight: 'weight',
+    touch: 'touch',
+    purity: 'purity',
+    remarks: 'remarks'
+  };
+
+  export type CastingItemScalarFieldEnum = (typeof CastingItemScalarFieldEnum)[keyof typeof CastingItemScalarFieldEnum]
+
+
+  export const CastingScrapItemScalarFieldEnum: {
+    id: 'id',
+    castingId: 'castingId',
+    item: 'item',
+    weight: 'weight',
+    touch: 'touch',
+    purity: 'purity',
+    remarks: 'remarks'
+  };
+
+  export type CastingScrapItemScalarFieldEnum = (typeof CastingScrapItemScalarFieldEnum)[keyof typeof CastingScrapItemScalarFieldEnum]
+
+
+  export const CustomerTransactionScalarFieldEnum: {
+    id: 'id',
+    date: 'date',
+    value: 'value',
+    type: 'type',
+    touch: 'touch',
+    purity: 'purity',
+    goldRate: 'goldRate',
+    customerId: 'customerId',
+    createdAt: 'createdAt'
+  };
+
+  export type CustomerTransactionScalarFieldEnum = (typeof CustomerTransactionScalarFieldEnum)[keyof typeof CustomerTransactionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10362,6 +14037,29 @@ export namespace Prisma {
   export type CastingOrderByRelevanceFieldEnum = (typeof CastingOrderByRelevanceFieldEnum)[keyof typeof CastingOrderByRelevanceFieldEnum]
 
 
+  export const CastingItemOrderByRelevanceFieldEnum: {
+    item: 'item',
+    remarks: 'remarks'
+  };
+
+  export type CastingItemOrderByRelevanceFieldEnum = (typeof CastingItemOrderByRelevanceFieldEnum)[keyof typeof CastingItemOrderByRelevanceFieldEnum]
+
+
+  export const CastingScrapItemOrderByRelevanceFieldEnum: {
+    item: 'item',
+    remarks: 'remarks'
+  };
+
+  export type CastingScrapItemOrderByRelevanceFieldEnum = (typeof CastingScrapItemOrderByRelevanceFieldEnum)[keyof typeof CastingScrapItemOrderByRelevanceFieldEnum]
+
+
+  export const CustomerTransactionOrderByRelevanceFieldEnum: {
+    type: 'type'
+  };
+
+  export type CustomerTransactionOrderByRelevanceFieldEnum = (typeof CustomerTransactionOrderByRelevanceFieldEnum)[keyof typeof CustomerTransactionOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -10414,6 +14112,7 @@ export namespace Prisma {
     phoneNumber?: StringFilter<"AddCustomer"> | string
     address?: StringFilter<"AddCustomer"> | string
     email?: StringNullableFilter<"AddCustomer"> | string | null
+    transcation?: CustomerTransactionListRelationFilter
   }
 
   export type AddCustomerOrderByWithRelationInput = {
@@ -10422,6 +14121,7 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     address?: SortOrder
     email?: SortOrderInput | SortOrder
+    transcation?: CustomerTransactionOrderByRelationAggregateInput
     _relevance?: AddCustomerOrderByRelevanceInput
   }
 
@@ -10434,6 +14134,7 @@ export namespace Prisma {
     name?: StringFilter<"AddCustomer"> | string
     phoneNumber?: StringFilter<"AddCustomer"> | string
     address?: StringFilter<"AddCustomer"> | string
+    transcation?: CustomerTransactionListRelationFilter
   }, "id" | "email">
 
   export type AddCustomerOrderByWithAggregationInput = {
@@ -10890,10 +14591,14 @@ export namespace Prisma {
     purity?: FloatFilter<"Casting"> | number
     finalTouch?: FloatFilter<"Casting"> | number
     pureValue?: FloatFilter<"Casting"> | number
-    finalWeight?: FloatFilter<"Casting"> | number
     copper?: FloatFilter<"Casting"> | number
+    finalWeight?: FloatFilter<"Casting"> | number
+    afterWeight?: FloatFilter<"Casting"> | number
+    wastage?: FloatFilter<"Casting"> | number
     castingId?: IntFilter<"Casting"> | number
-    addcasting?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
+    addcastings?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
+    scrapitems?: CastingScrapItemListRelationFilter
+    items?: CastingItemListRelationFilter
   }
 
   export type CastingOrderByWithRelationInput = {
@@ -10905,10 +14610,14 @@ export namespace Prisma {
     purity?: SortOrder
     finalTouch?: SortOrder
     pureValue?: SortOrder
-    finalWeight?: SortOrder
     copper?: SortOrder
+    finalWeight?: SortOrder
+    afterWeight?: SortOrder
+    wastage?: SortOrder
     castingId?: SortOrder
-    addcasting?: AddCastingOrderByWithRelationInput
+    addcastings?: AddCastingOrderByWithRelationInput
+    scrapitems?: CastingScrapItemOrderByRelationAggregateInput
+    items?: CastingItemOrderByRelationAggregateInput
     _relevance?: CastingOrderByRelevanceInput
   }
 
@@ -10924,10 +14633,14 @@ export namespace Prisma {
     purity?: FloatFilter<"Casting"> | number
     finalTouch?: FloatFilter<"Casting"> | number
     pureValue?: FloatFilter<"Casting"> | number
-    finalWeight?: FloatFilter<"Casting"> | number
     copper?: FloatFilter<"Casting"> | number
+    finalWeight?: FloatFilter<"Casting"> | number
+    afterWeight?: FloatFilter<"Casting"> | number
+    wastage?: FloatFilter<"Casting"> | number
     castingId?: IntFilter<"Casting"> | number
-    addcasting?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
+    addcastings?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
+    scrapitems?: CastingScrapItemListRelationFilter
+    items?: CastingItemListRelationFilter
   }, "id">
 
   export type CastingOrderByWithAggregationInput = {
@@ -10939,8 +14652,10 @@ export namespace Prisma {
     purity?: SortOrder
     finalTouch?: SortOrder
     pureValue?: SortOrder
-    finalWeight?: SortOrder
     copper?: SortOrder
+    finalWeight?: SortOrder
+    afterWeight?: SortOrder
+    wastage?: SortOrder
     castingId?: SortOrder
     _count?: CastingCountOrderByAggregateInput
     _avg?: CastingAvgOrderByAggregateInput
@@ -10961,9 +14676,231 @@ export namespace Prisma {
     purity?: FloatWithAggregatesFilter<"Casting"> | number
     finalTouch?: FloatWithAggregatesFilter<"Casting"> | number
     pureValue?: FloatWithAggregatesFilter<"Casting"> | number
-    finalWeight?: FloatWithAggregatesFilter<"Casting"> | number
     copper?: FloatWithAggregatesFilter<"Casting"> | number
+    finalWeight?: FloatWithAggregatesFilter<"Casting"> | number
+    afterWeight?: FloatWithAggregatesFilter<"Casting"> | number
+    wastage?: FloatWithAggregatesFilter<"Casting"> | number
     castingId?: IntWithAggregatesFilter<"Casting"> | number
+  }
+
+  export type CastingItemWhereInput = {
+    AND?: CastingItemWhereInput | CastingItemWhereInput[]
+    OR?: CastingItemWhereInput[]
+    NOT?: CastingItemWhereInput | CastingItemWhereInput[]
+    id?: IntFilter<"CastingItem"> | number
+    castingId?: IntFilter<"CastingItem"> | number
+    item?: StringFilter<"CastingItem"> | string
+    weight?: FloatFilter<"CastingItem"> | number
+    touch?: FloatFilter<"CastingItem"> | number
+    purity?: FloatFilter<"CastingItem"> | number
+    remarks?: StringFilter<"CastingItem"> | string
+    castings?: XOR<CastingScalarRelationFilter, CastingWhereInput>
+    scrapitems?: CastingScrapItemListRelationFilter
+  }
+
+  export type CastingItemOrderByWithRelationInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    item?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+    castings?: CastingOrderByWithRelationInput
+    scrapitems?: CastingScrapItemOrderByRelationAggregateInput
+    _relevance?: CastingItemOrderByRelevanceInput
+  }
+
+  export type CastingItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: CastingItemWhereInput | CastingItemWhereInput[]
+    OR?: CastingItemWhereInput[]
+    NOT?: CastingItemWhereInput | CastingItemWhereInput[]
+    castingId?: IntFilter<"CastingItem"> | number
+    item?: StringFilter<"CastingItem"> | string
+    weight?: FloatFilter<"CastingItem"> | number
+    touch?: FloatFilter<"CastingItem"> | number
+    purity?: FloatFilter<"CastingItem"> | number
+    remarks?: StringFilter<"CastingItem"> | string
+    castings?: XOR<CastingScalarRelationFilter, CastingWhereInput>
+    scrapitems?: CastingScrapItemListRelationFilter
+  }, "id">
+
+  export type CastingItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    item?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+    _count?: CastingItemCountOrderByAggregateInput
+    _avg?: CastingItemAvgOrderByAggregateInput
+    _max?: CastingItemMaxOrderByAggregateInput
+    _min?: CastingItemMinOrderByAggregateInput
+    _sum?: CastingItemSumOrderByAggregateInput
+  }
+
+  export type CastingItemScalarWhereWithAggregatesInput = {
+    AND?: CastingItemScalarWhereWithAggregatesInput | CastingItemScalarWhereWithAggregatesInput[]
+    OR?: CastingItemScalarWhereWithAggregatesInput[]
+    NOT?: CastingItemScalarWhereWithAggregatesInput | CastingItemScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CastingItem"> | number
+    castingId?: IntWithAggregatesFilter<"CastingItem"> | number
+    item?: StringWithAggregatesFilter<"CastingItem"> | string
+    weight?: FloatWithAggregatesFilter<"CastingItem"> | number
+    touch?: FloatWithAggregatesFilter<"CastingItem"> | number
+    purity?: FloatWithAggregatesFilter<"CastingItem"> | number
+    remarks?: StringWithAggregatesFilter<"CastingItem"> | string
+  }
+
+  export type CastingScrapItemWhereInput = {
+    AND?: CastingScrapItemWhereInput | CastingScrapItemWhereInput[]
+    OR?: CastingScrapItemWhereInput[]
+    NOT?: CastingScrapItemWhereInput | CastingScrapItemWhereInput[]
+    id?: IntFilter<"CastingScrapItem"> | number
+    castingId?: IntFilter<"CastingScrapItem"> | number
+    item?: StringFilter<"CastingScrapItem"> | string
+    weight?: FloatFilter<"CastingScrapItem"> | number
+    touch?: FloatFilter<"CastingScrapItem"> | number
+    purity?: FloatFilter<"CastingScrapItem"> | number
+    remarks?: StringFilter<"CastingScrapItem"> | string
+    castings?: XOR<CastingItemScalarRelationFilter, CastingItemWhereInput>
+    casting?: CastingListRelationFilter
+  }
+
+  export type CastingScrapItemOrderByWithRelationInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    item?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+    castings?: CastingItemOrderByWithRelationInput
+    casting?: CastingOrderByRelationAggregateInput
+    _relevance?: CastingScrapItemOrderByRelevanceInput
+  }
+
+  export type CastingScrapItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: CastingScrapItemWhereInput | CastingScrapItemWhereInput[]
+    OR?: CastingScrapItemWhereInput[]
+    NOT?: CastingScrapItemWhereInput | CastingScrapItemWhereInput[]
+    castingId?: IntFilter<"CastingScrapItem"> | number
+    item?: StringFilter<"CastingScrapItem"> | string
+    weight?: FloatFilter<"CastingScrapItem"> | number
+    touch?: FloatFilter<"CastingScrapItem"> | number
+    purity?: FloatFilter<"CastingScrapItem"> | number
+    remarks?: StringFilter<"CastingScrapItem"> | string
+    castings?: XOR<CastingItemScalarRelationFilter, CastingItemWhereInput>
+    casting?: CastingListRelationFilter
+  }, "id">
+
+  export type CastingScrapItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    item?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+    _count?: CastingScrapItemCountOrderByAggregateInput
+    _avg?: CastingScrapItemAvgOrderByAggregateInput
+    _max?: CastingScrapItemMaxOrderByAggregateInput
+    _min?: CastingScrapItemMinOrderByAggregateInput
+    _sum?: CastingScrapItemSumOrderByAggregateInput
+  }
+
+  export type CastingScrapItemScalarWhereWithAggregatesInput = {
+    AND?: CastingScrapItemScalarWhereWithAggregatesInput | CastingScrapItemScalarWhereWithAggregatesInput[]
+    OR?: CastingScrapItemScalarWhereWithAggregatesInput[]
+    NOT?: CastingScrapItemScalarWhereWithAggregatesInput | CastingScrapItemScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CastingScrapItem"> | number
+    castingId?: IntWithAggregatesFilter<"CastingScrapItem"> | number
+    item?: StringWithAggregatesFilter<"CastingScrapItem"> | string
+    weight?: FloatWithAggregatesFilter<"CastingScrapItem"> | number
+    touch?: FloatWithAggregatesFilter<"CastingScrapItem"> | number
+    purity?: FloatWithAggregatesFilter<"CastingScrapItem"> | number
+    remarks?: StringWithAggregatesFilter<"CastingScrapItem"> | string
+  }
+
+  export type CustomerTransactionWhereInput = {
+    AND?: CustomerTransactionWhereInput | CustomerTransactionWhereInput[]
+    OR?: CustomerTransactionWhereInput[]
+    NOT?: CustomerTransactionWhereInput | CustomerTransactionWhereInput[]
+    id?: IntFilter<"CustomerTransaction"> | number
+    date?: DateTimeFilter<"CustomerTransaction"> | Date | string
+    value?: FloatFilter<"CustomerTransaction"> | number
+    type?: StringFilter<"CustomerTransaction"> | string
+    touch?: FloatNullableFilter<"CustomerTransaction"> | number | null
+    purity?: FloatNullableFilter<"CustomerTransaction"> | number | null
+    goldRate?: FloatNullableFilter<"CustomerTransaction"> | number | null
+    customerId?: IntFilter<"CustomerTransaction"> | number
+    createdAt?: DateTimeFilter<"CustomerTransaction"> | Date | string
+    customer?: XOR<AddCustomerScalarRelationFilter, AddCustomerWhereInput>
+  }
+
+  export type CustomerTransactionOrderByWithRelationInput = {
+    id?: SortOrder
+    date?: SortOrder
+    value?: SortOrder
+    type?: SortOrder
+    touch?: SortOrderInput | SortOrder
+    purity?: SortOrderInput | SortOrder
+    goldRate?: SortOrderInput | SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+    customer?: AddCustomerOrderByWithRelationInput
+    _relevance?: CustomerTransactionOrderByRelevanceInput
+  }
+
+  export type CustomerTransactionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: CustomerTransactionWhereInput | CustomerTransactionWhereInput[]
+    OR?: CustomerTransactionWhereInput[]
+    NOT?: CustomerTransactionWhereInput | CustomerTransactionWhereInput[]
+    date?: DateTimeFilter<"CustomerTransaction"> | Date | string
+    value?: FloatFilter<"CustomerTransaction"> | number
+    type?: StringFilter<"CustomerTransaction"> | string
+    touch?: FloatNullableFilter<"CustomerTransaction"> | number | null
+    purity?: FloatNullableFilter<"CustomerTransaction"> | number | null
+    goldRate?: FloatNullableFilter<"CustomerTransaction"> | number | null
+    customerId?: IntFilter<"CustomerTransaction"> | number
+    createdAt?: DateTimeFilter<"CustomerTransaction"> | Date | string
+    customer?: XOR<AddCustomerScalarRelationFilter, AddCustomerWhereInput>
+  }, "id">
+
+  export type CustomerTransactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    date?: SortOrder
+    value?: SortOrder
+    type?: SortOrder
+    touch?: SortOrderInput | SortOrder
+    purity?: SortOrderInput | SortOrder
+    goldRate?: SortOrderInput | SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+    _count?: CustomerTransactionCountOrderByAggregateInput
+    _avg?: CustomerTransactionAvgOrderByAggregateInput
+    _max?: CustomerTransactionMaxOrderByAggregateInput
+    _min?: CustomerTransactionMinOrderByAggregateInput
+    _sum?: CustomerTransactionSumOrderByAggregateInput
+  }
+
+  export type CustomerTransactionScalarWhereWithAggregatesInput = {
+    AND?: CustomerTransactionScalarWhereWithAggregatesInput | CustomerTransactionScalarWhereWithAggregatesInput[]
+    OR?: CustomerTransactionScalarWhereWithAggregatesInput[]
+    NOT?: CustomerTransactionScalarWhereWithAggregatesInput | CustomerTransactionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CustomerTransaction"> | number
+    date?: DateTimeWithAggregatesFilter<"CustomerTransaction"> | Date | string
+    value?: FloatWithAggregatesFilter<"CustomerTransaction"> | number
+    type?: StringWithAggregatesFilter<"CustomerTransaction"> | string
+    touch?: FloatNullableWithAggregatesFilter<"CustomerTransaction"> | number | null
+    purity?: FloatNullableWithAggregatesFilter<"CustomerTransaction"> | number | null
+    goldRate?: FloatNullableWithAggregatesFilter<"CustomerTransaction"> | number | null
+    customerId?: IntWithAggregatesFilter<"CustomerTransaction"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"CustomerTransaction"> | Date | string
   }
 
   export type AddCustomerCreateInput = {
@@ -10971,6 +14908,7 @@ export namespace Prisma {
     phoneNumber: string
     address: string
     email?: string | null
+    transcation?: CustomerTransactionCreateNestedManyWithoutCustomerInput
   }
 
   export type AddCustomerUncheckedCreateInput = {
@@ -10979,6 +14917,7 @@ export namespace Prisma {
     phoneNumber: string
     address: string
     email?: string | null
+    transcation?: CustomerTransactionUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type AddCustomerUpdateInput = {
@@ -10986,6 +14925,7 @@ export namespace Prisma {
     phoneNumber?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    transcation?: CustomerTransactionUpdateManyWithoutCustomerNestedInput
   }
 
   export type AddCustomerUncheckedUpdateInput = {
@@ -10994,6 +14934,7 @@ export namespace Prisma {
     phoneNumber?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    transcation?: CustomerTransactionUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type AddCustomerCreateManyInput = {
@@ -11024,7 +14965,7 @@ export namespace Prisma {
     phoneNumber: string
     address: string
     email: string
-    Castings?: CastingCreateNestedManyWithoutAddcastingInput
+    Castings?: CastingCreateNestedManyWithoutAddcastingsInput
   }
 
   export type AddCastingUncheckedCreateInput = {
@@ -11033,7 +14974,7 @@ export namespace Prisma {
     phoneNumber: string
     address: string
     email: string
-    Castings?: CastingUncheckedCreateNestedManyWithoutAddcastingInput
+    Castings?: CastingUncheckedCreateNestedManyWithoutAddcastingsInput
   }
 
   export type AddCastingUpdateInput = {
@@ -11041,7 +14982,7 @@ export namespace Prisma {
     phoneNumber?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    Castings?: CastingUpdateManyWithoutAddcastingNestedInput
+    Castings?: CastingUpdateManyWithoutAddcastingsNestedInput
   }
 
   export type AddCastingUncheckedUpdateInput = {
@@ -11050,7 +14991,7 @@ export namespace Prisma {
     phoneNumber?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    Castings?: CastingUncheckedUpdateManyWithoutAddcastingNestedInput
+    Castings?: CastingUncheckedUpdateManyWithoutAddcastingsNestedInput
   }
 
   export type AddCastingCreateManyInput = {
@@ -11444,9 +15385,13 @@ export namespace Prisma {
     purity: number
     finalTouch: number
     pureValue: number
-    finalWeight: number
     copper: number
-    addcasting: AddCastingCreateNestedOneWithoutCastingsInput
+    finalWeight: number
+    afterWeight: number
+    wastage: number
+    addcastings: AddCastingCreateNestedOneWithoutCastingsInput
+    scrapitems?: CastingScrapItemCreateNestedManyWithoutCastingInput
+    items?: CastingItemCreateNestedManyWithoutCastingsInput
   }
 
   export type CastingUncheckedCreateInput = {
@@ -11458,9 +15403,13 @@ export namespace Prisma {
     purity: number
     finalTouch: number
     pureValue: number
-    finalWeight: number
     copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
     castingId: number
+    scrapitems?: CastingScrapItemUncheckedCreateNestedManyWithoutCastingInput
+    items?: CastingItemUncheckedCreateNestedManyWithoutCastingsInput
   }
 
   export type CastingUpdateInput = {
@@ -11471,9 +15420,13 @@ export namespace Prisma {
     purity?: FloatFieldUpdateOperationsInput | number
     finalTouch?: FloatFieldUpdateOperationsInput | number
     pureValue?: FloatFieldUpdateOperationsInput | number
-    finalWeight?: FloatFieldUpdateOperationsInput | number
     copper?: FloatFieldUpdateOperationsInput | number
-    addcasting?: AddCastingUpdateOneRequiredWithoutCastingsNestedInput
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
+    addcastings?: AddCastingUpdateOneRequiredWithoutCastingsNestedInput
+    scrapitems?: CastingScrapItemUpdateManyWithoutCastingNestedInput
+    items?: CastingItemUpdateManyWithoutCastingsNestedInput
   }
 
   export type CastingUncheckedUpdateInput = {
@@ -11485,9 +15438,13 @@ export namespace Prisma {
     purity?: FloatFieldUpdateOperationsInput | number
     finalTouch?: FloatFieldUpdateOperationsInput | number
     pureValue?: FloatFieldUpdateOperationsInput | number
-    finalWeight?: FloatFieldUpdateOperationsInput | number
     copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
     castingId?: IntFieldUpdateOperationsInput | number
+    scrapitems?: CastingScrapItemUncheckedUpdateManyWithoutCastingNestedInput
+    items?: CastingItemUncheckedUpdateManyWithoutCastingsNestedInput
   }
 
   export type CastingCreateManyInput = {
@@ -11499,8 +15456,10 @@ export namespace Prisma {
     purity: number
     finalTouch: number
     pureValue: number
-    finalWeight: number
     copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
     castingId: number
   }
 
@@ -11512,8 +15471,10 @@ export namespace Prisma {
     purity?: FloatFieldUpdateOperationsInput | number
     finalTouch?: FloatFieldUpdateOperationsInput | number
     pureValue?: FloatFieldUpdateOperationsInput | number
-    finalWeight?: FloatFieldUpdateOperationsInput | number
     copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
   }
 
   export type CastingUncheckedUpdateManyInput = {
@@ -11525,9 +15486,231 @@ export namespace Prisma {
     purity?: FloatFieldUpdateOperationsInput | number
     finalTouch?: FloatFieldUpdateOperationsInput | number
     pureValue?: FloatFieldUpdateOperationsInput | number
-    finalWeight?: FloatFieldUpdateOperationsInput | number
     copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
     castingId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CastingItemCreateInput = {
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    castings: CastingCreateNestedOneWithoutItemsInput
+    scrapitems?: CastingScrapItemCreateNestedManyWithoutCastingsInput
+  }
+
+  export type CastingItemUncheckedCreateInput = {
+    id?: number
+    castingId: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    scrapitems?: CastingScrapItemUncheckedCreateNestedManyWithoutCastingsInput
+  }
+
+  export type CastingItemUpdateInput = {
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    castings?: CastingUpdateOneRequiredWithoutItemsNestedInput
+    scrapitems?: CastingScrapItemUpdateManyWithoutCastingsNestedInput
+  }
+
+  export type CastingItemUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    castingId?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    scrapitems?: CastingScrapItemUncheckedUpdateManyWithoutCastingsNestedInput
+  }
+
+  export type CastingItemCreateManyInput = {
+    id?: number
+    castingId: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+  }
+
+  export type CastingItemUpdateManyMutationInput = {
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CastingItemUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    castingId?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CastingScrapItemCreateInput = {
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    castings: CastingItemCreateNestedOneWithoutScrapitemsInput
+    casting?: CastingCreateNestedManyWithoutScrapitemsInput
+  }
+
+  export type CastingScrapItemUncheckedCreateInput = {
+    id?: number
+    castingId: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    casting?: CastingUncheckedCreateNestedManyWithoutScrapitemsInput
+  }
+
+  export type CastingScrapItemUpdateInput = {
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    castings?: CastingItemUpdateOneRequiredWithoutScrapitemsNestedInput
+    casting?: CastingUpdateManyWithoutScrapitemsNestedInput
+  }
+
+  export type CastingScrapItemUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    castingId?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    casting?: CastingUncheckedUpdateManyWithoutScrapitemsNestedInput
+  }
+
+  export type CastingScrapItemCreateManyInput = {
+    id?: number
+    castingId: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+  }
+
+  export type CastingScrapItemUpdateManyMutationInput = {
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CastingScrapItemUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    castingId?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CustomerTransactionCreateInput = {
+    date: Date | string
+    value: number
+    type: string
+    touch?: number | null
+    purity?: number | null
+    goldRate?: number | null
+    createdAt?: Date | string
+    customer: AddCustomerCreateNestedOneWithoutTranscationInput
+  }
+
+  export type CustomerTransactionUncheckedCreateInput = {
+    id?: number
+    date: Date | string
+    value: number
+    type: string
+    touch?: number | null
+    purity?: number | null
+    goldRate?: number | null
+    customerId: number
+    createdAt?: Date | string
+  }
+
+  export type CustomerTransactionUpdateInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    value?: FloatFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    touch?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: AddCustomerUpdateOneRequiredWithoutTranscationNestedInput
+  }
+
+  export type CustomerTransactionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    value?: FloatFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    touch?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    customerId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomerTransactionCreateManyInput = {
+    id?: number
+    date: Date | string
+    value: number
+    type: string
+    touch?: number | null
+    purity?: number | null
+    goldRate?: number | null
+    customerId: number
+    createdAt?: Date | string
+  }
+
+  export type CustomerTransactionUpdateManyMutationInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    value?: FloatFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    touch?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomerTransactionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    value?: FloatFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    touch?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    customerId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -11571,9 +15754,19 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type CustomerTransactionListRelationFilter = {
+    every?: CustomerTransactionWhereInput
+    some?: CustomerTransactionWhereInput
+    none?: CustomerTransactionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type CustomerTransactionOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type AddCustomerOrderByRelevanceInput = {
@@ -12092,6 +16285,26 @@ export namespace Prisma {
     isNot?: AddCastingWhereInput
   }
 
+  export type CastingScrapItemListRelationFilter = {
+    every?: CastingScrapItemWhereInput
+    some?: CastingScrapItemWhereInput
+    none?: CastingScrapItemWhereInput
+  }
+
+  export type CastingItemListRelationFilter = {
+    every?: CastingItemWhereInput
+    some?: CastingItemWhereInput
+    none?: CastingItemWhereInput
+  }
+
+  export type CastingScrapItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CastingItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type CastingOrderByRelevanceInput = {
     fields: CastingOrderByRelevanceFieldEnum | CastingOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -12107,8 +16320,10 @@ export namespace Prisma {
     purity?: SortOrder
     finalTouch?: SortOrder
     pureValue?: SortOrder
-    finalWeight?: SortOrder
     copper?: SortOrder
+    finalWeight?: SortOrder
+    afterWeight?: SortOrder
+    wastage?: SortOrder
     castingId?: SortOrder
   }
 
@@ -12119,8 +16334,10 @@ export namespace Prisma {
     purity?: SortOrder
     finalTouch?: SortOrder
     pureValue?: SortOrder
-    finalWeight?: SortOrder
     copper?: SortOrder
+    finalWeight?: SortOrder
+    afterWeight?: SortOrder
+    wastage?: SortOrder
     castingId?: SortOrder
   }
 
@@ -12133,8 +16350,10 @@ export namespace Prisma {
     purity?: SortOrder
     finalTouch?: SortOrder
     pureValue?: SortOrder
-    finalWeight?: SortOrder
     copper?: SortOrder
+    finalWeight?: SortOrder
+    afterWeight?: SortOrder
+    wastage?: SortOrder
     castingId?: SortOrder
   }
 
@@ -12147,8 +16366,10 @@ export namespace Prisma {
     purity?: SortOrder
     finalTouch?: SortOrder
     pureValue?: SortOrder
-    finalWeight?: SortOrder
     copper?: SortOrder
+    finalWeight?: SortOrder
+    afterWeight?: SortOrder
+    wastage?: SortOrder
     castingId?: SortOrder
   }
 
@@ -12159,8 +16380,10 @@ export namespace Prisma {
     purity?: SortOrder
     finalTouch?: SortOrder
     pureValue?: SortOrder
-    finalWeight?: SortOrder
     copper?: SortOrder
+    finalWeight?: SortOrder
+    afterWeight?: SortOrder
+    wastage?: SortOrder
     castingId?: SortOrder
   }
 
@@ -12180,12 +16403,219 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type CastingScalarRelationFilter = {
+    is?: CastingWhereInput
+    isNot?: CastingWhereInput
+  }
+
+  export type CastingItemOrderByRelevanceInput = {
+    fields: CastingItemOrderByRelevanceFieldEnum | CastingItemOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type CastingItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    item?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type CastingItemAvgOrderByAggregateInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+  }
+
+  export type CastingItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    item?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type CastingItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    item?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type CastingItemSumOrderByAggregateInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+  }
+
+  export type CastingItemScalarRelationFilter = {
+    is?: CastingItemWhereInput
+    isNot?: CastingItemWhereInput
+  }
+
+  export type CastingScrapItemOrderByRelevanceInput = {
+    fields: CastingScrapItemOrderByRelevanceFieldEnum | CastingScrapItemOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type CastingScrapItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    item?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type CastingScrapItemAvgOrderByAggregateInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+  }
+
+  export type CastingScrapItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    item?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type CastingScrapItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    item?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type CastingScrapItemSumOrderByAggregateInput = {
+    id?: SortOrder
+    castingId?: SortOrder
+    weight?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+  }
+
+  export type AddCustomerScalarRelationFilter = {
+    is?: AddCustomerWhereInput
+    isNot?: AddCustomerWhereInput
+  }
+
+  export type CustomerTransactionOrderByRelevanceInput = {
+    fields: CustomerTransactionOrderByRelevanceFieldEnum | CustomerTransactionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type CustomerTransactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    date?: SortOrder
+    value?: SortOrder
+    type?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    goldRate?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CustomerTransactionAvgOrderByAggregateInput = {
+    id?: SortOrder
+    value?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    goldRate?: SortOrder
+    customerId?: SortOrder
+  }
+
+  export type CustomerTransactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    date?: SortOrder
+    value?: SortOrder
+    type?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    goldRate?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CustomerTransactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    date?: SortOrder
+    value?: SortOrder
+    type?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    goldRate?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CustomerTransactionSumOrderByAggregateInput = {
+    id?: SortOrder
+    value?: SortOrder
+    touch?: SortOrder
+    purity?: SortOrder
+    goldRate?: SortOrder
+    customerId?: SortOrder
+  }
+
+  export type CustomerTransactionCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<CustomerTransactionCreateWithoutCustomerInput, CustomerTransactionUncheckedCreateWithoutCustomerInput> | CustomerTransactionCreateWithoutCustomerInput[] | CustomerTransactionUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: CustomerTransactionCreateOrConnectWithoutCustomerInput | CustomerTransactionCreateOrConnectWithoutCustomerInput[]
+    createMany?: CustomerTransactionCreateManyCustomerInputEnvelope
+    connect?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+  }
+
+  export type CustomerTransactionUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<CustomerTransactionCreateWithoutCustomerInput, CustomerTransactionUncheckedCreateWithoutCustomerInput> | CustomerTransactionCreateWithoutCustomerInput[] | CustomerTransactionUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: CustomerTransactionCreateOrConnectWithoutCustomerInput | CustomerTransactionCreateOrConnectWithoutCustomerInput[]
+    createMany?: CustomerTransactionCreateManyCustomerInputEnvelope
+    connect?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type CustomerTransactionUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<CustomerTransactionCreateWithoutCustomerInput, CustomerTransactionUncheckedCreateWithoutCustomerInput> | CustomerTransactionCreateWithoutCustomerInput[] | CustomerTransactionUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: CustomerTransactionCreateOrConnectWithoutCustomerInput | CustomerTransactionCreateOrConnectWithoutCustomerInput[]
+    upsert?: CustomerTransactionUpsertWithWhereUniqueWithoutCustomerInput | CustomerTransactionUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: CustomerTransactionCreateManyCustomerInputEnvelope
+    set?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+    disconnect?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+    delete?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+    connect?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+    update?: CustomerTransactionUpdateWithWhereUniqueWithoutCustomerInput | CustomerTransactionUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: CustomerTransactionUpdateManyWithWhereWithoutCustomerInput | CustomerTransactionUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: CustomerTransactionScalarWhereInput | CustomerTransactionScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -12196,45 +16626,59 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type CastingCreateNestedManyWithoutAddcastingInput = {
-    create?: XOR<CastingCreateWithoutAddcastingInput, CastingUncheckedCreateWithoutAddcastingInput> | CastingCreateWithoutAddcastingInput[] | CastingUncheckedCreateWithoutAddcastingInput[]
-    connectOrCreate?: CastingCreateOrConnectWithoutAddcastingInput | CastingCreateOrConnectWithoutAddcastingInput[]
-    createMany?: CastingCreateManyAddcastingInputEnvelope
+  export type CustomerTransactionUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<CustomerTransactionCreateWithoutCustomerInput, CustomerTransactionUncheckedCreateWithoutCustomerInput> | CustomerTransactionCreateWithoutCustomerInput[] | CustomerTransactionUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: CustomerTransactionCreateOrConnectWithoutCustomerInput | CustomerTransactionCreateOrConnectWithoutCustomerInput[]
+    upsert?: CustomerTransactionUpsertWithWhereUniqueWithoutCustomerInput | CustomerTransactionUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: CustomerTransactionCreateManyCustomerInputEnvelope
+    set?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+    disconnect?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+    delete?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+    connect?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+    update?: CustomerTransactionUpdateWithWhereUniqueWithoutCustomerInput | CustomerTransactionUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: CustomerTransactionUpdateManyWithWhereWithoutCustomerInput | CustomerTransactionUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: CustomerTransactionScalarWhereInput | CustomerTransactionScalarWhereInput[]
+  }
+
+  export type CastingCreateNestedManyWithoutAddcastingsInput = {
+    create?: XOR<CastingCreateWithoutAddcastingsInput, CastingUncheckedCreateWithoutAddcastingsInput> | CastingCreateWithoutAddcastingsInput[] | CastingUncheckedCreateWithoutAddcastingsInput[]
+    connectOrCreate?: CastingCreateOrConnectWithoutAddcastingsInput | CastingCreateOrConnectWithoutAddcastingsInput[]
+    createMany?: CastingCreateManyAddcastingsInputEnvelope
     connect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
   }
 
-  export type CastingUncheckedCreateNestedManyWithoutAddcastingInput = {
-    create?: XOR<CastingCreateWithoutAddcastingInput, CastingUncheckedCreateWithoutAddcastingInput> | CastingCreateWithoutAddcastingInput[] | CastingUncheckedCreateWithoutAddcastingInput[]
-    connectOrCreate?: CastingCreateOrConnectWithoutAddcastingInput | CastingCreateOrConnectWithoutAddcastingInput[]
-    createMany?: CastingCreateManyAddcastingInputEnvelope
+  export type CastingUncheckedCreateNestedManyWithoutAddcastingsInput = {
+    create?: XOR<CastingCreateWithoutAddcastingsInput, CastingUncheckedCreateWithoutAddcastingsInput> | CastingCreateWithoutAddcastingsInput[] | CastingUncheckedCreateWithoutAddcastingsInput[]
+    connectOrCreate?: CastingCreateOrConnectWithoutAddcastingsInput | CastingCreateOrConnectWithoutAddcastingsInput[]
+    createMany?: CastingCreateManyAddcastingsInputEnvelope
     connect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
   }
 
-  export type CastingUpdateManyWithoutAddcastingNestedInput = {
-    create?: XOR<CastingCreateWithoutAddcastingInput, CastingUncheckedCreateWithoutAddcastingInput> | CastingCreateWithoutAddcastingInput[] | CastingUncheckedCreateWithoutAddcastingInput[]
-    connectOrCreate?: CastingCreateOrConnectWithoutAddcastingInput | CastingCreateOrConnectWithoutAddcastingInput[]
-    upsert?: CastingUpsertWithWhereUniqueWithoutAddcastingInput | CastingUpsertWithWhereUniqueWithoutAddcastingInput[]
-    createMany?: CastingCreateManyAddcastingInputEnvelope
+  export type CastingUpdateManyWithoutAddcastingsNestedInput = {
+    create?: XOR<CastingCreateWithoutAddcastingsInput, CastingUncheckedCreateWithoutAddcastingsInput> | CastingCreateWithoutAddcastingsInput[] | CastingUncheckedCreateWithoutAddcastingsInput[]
+    connectOrCreate?: CastingCreateOrConnectWithoutAddcastingsInput | CastingCreateOrConnectWithoutAddcastingsInput[]
+    upsert?: CastingUpsertWithWhereUniqueWithoutAddcastingsInput | CastingUpsertWithWhereUniqueWithoutAddcastingsInput[]
+    createMany?: CastingCreateManyAddcastingsInputEnvelope
     set?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
     disconnect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
     delete?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
     connect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
-    update?: CastingUpdateWithWhereUniqueWithoutAddcastingInput | CastingUpdateWithWhereUniqueWithoutAddcastingInput[]
-    updateMany?: CastingUpdateManyWithWhereWithoutAddcastingInput | CastingUpdateManyWithWhereWithoutAddcastingInput[]
+    update?: CastingUpdateWithWhereUniqueWithoutAddcastingsInput | CastingUpdateWithWhereUniqueWithoutAddcastingsInput[]
+    updateMany?: CastingUpdateManyWithWhereWithoutAddcastingsInput | CastingUpdateManyWithWhereWithoutAddcastingsInput[]
     deleteMany?: CastingScalarWhereInput | CastingScalarWhereInput[]
   }
 
-  export type CastingUncheckedUpdateManyWithoutAddcastingNestedInput = {
-    create?: XOR<CastingCreateWithoutAddcastingInput, CastingUncheckedCreateWithoutAddcastingInput> | CastingCreateWithoutAddcastingInput[] | CastingUncheckedCreateWithoutAddcastingInput[]
-    connectOrCreate?: CastingCreateOrConnectWithoutAddcastingInput | CastingCreateOrConnectWithoutAddcastingInput[]
-    upsert?: CastingUpsertWithWhereUniqueWithoutAddcastingInput | CastingUpsertWithWhereUniqueWithoutAddcastingInput[]
-    createMany?: CastingCreateManyAddcastingInputEnvelope
+  export type CastingUncheckedUpdateManyWithoutAddcastingsNestedInput = {
+    create?: XOR<CastingCreateWithoutAddcastingsInput, CastingUncheckedCreateWithoutAddcastingsInput> | CastingCreateWithoutAddcastingsInput[] | CastingUncheckedCreateWithoutAddcastingsInput[]
+    connectOrCreate?: CastingCreateOrConnectWithoutAddcastingsInput | CastingCreateOrConnectWithoutAddcastingsInput[]
+    upsert?: CastingUpsertWithWhereUniqueWithoutAddcastingsInput | CastingUpsertWithWhereUniqueWithoutAddcastingsInput[]
+    createMany?: CastingCreateManyAddcastingsInputEnvelope
     set?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
     disconnect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
     delete?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
     connect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
-    update?: CastingUpdateWithWhereUniqueWithoutAddcastingInput | CastingUpdateWithWhereUniqueWithoutAddcastingInput[]
-    updateMany?: CastingUpdateManyWithWhereWithoutAddcastingInput | CastingUpdateManyWithWhereWithoutAddcastingInput[]
+    update?: CastingUpdateWithWhereUniqueWithoutAddcastingsInput | CastingUpdateWithWhereUniqueWithoutAddcastingsInput[]
+    updateMany?: CastingUpdateManyWithWhereWithoutAddcastingsInput | CastingUpdateManyWithWhereWithoutAddcastingsInput[]
     deleteMany?: CastingScalarWhereInput | CastingScalarWhereInput[]
   }
 
@@ -12268,6 +16712,32 @@ export namespace Prisma {
     connect?: AddCastingWhereUniqueInput
   }
 
+  export type CastingScrapItemCreateNestedManyWithoutCastingInput = {
+    create?: XOR<CastingScrapItemCreateWithoutCastingInput, CastingScrapItemUncheckedCreateWithoutCastingInput> | CastingScrapItemCreateWithoutCastingInput[] | CastingScrapItemUncheckedCreateWithoutCastingInput[]
+    connectOrCreate?: CastingScrapItemCreateOrConnectWithoutCastingInput | CastingScrapItemCreateOrConnectWithoutCastingInput[]
+    connect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+  }
+
+  export type CastingItemCreateNestedManyWithoutCastingsInput = {
+    create?: XOR<CastingItemCreateWithoutCastingsInput, CastingItemUncheckedCreateWithoutCastingsInput> | CastingItemCreateWithoutCastingsInput[] | CastingItemUncheckedCreateWithoutCastingsInput[]
+    connectOrCreate?: CastingItemCreateOrConnectWithoutCastingsInput | CastingItemCreateOrConnectWithoutCastingsInput[]
+    createMany?: CastingItemCreateManyCastingsInputEnvelope
+    connect?: CastingItemWhereUniqueInput | CastingItemWhereUniqueInput[]
+  }
+
+  export type CastingScrapItemUncheckedCreateNestedManyWithoutCastingInput = {
+    create?: XOR<CastingScrapItemCreateWithoutCastingInput, CastingScrapItemUncheckedCreateWithoutCastingInput> | CastingScrapItemCreateWithoutCastingInput[] | CastingScrapItemUncheckedCreateWithoutCastingInput[]
+    connectOrCreate?: CastingScrapItemCreateOrConnectWithoutCastingInput | CastingScrapItemCreateOrConnectWithoutCastingInput[]
+    connect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+  }
+
+  export type CastingItemUncheckedCreateNestedManyWithoutCastingsInput = {
+    create?: XOR<CastingItemCreateWithoutCastingsInput, CastingItemUncheckedCreateWithoutCastingsInput> | CastingItemCreateWithoutCastingsInput[] | CastingItemUncheckedCreateWithoutCastingsInput[]
+    connectOrCreate?: CastingItemCreateOrConnectWithoutCastingsInput | CastingItemCreateOrConnectWithoutCastingsInput[]
+    createMany?: CastingItemCreateManyCastingsInputEnvelope
+    connect?: CastingItemWhereUniqueInput | CastingItemWhereUniqueInput[]
+  }
+
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -12282,6 +16752,182 @@ export namespace Prisma {
     upsert?: AddCastingUpsertWithoutCastingsInput
     connect?: AddCastingWhereUniqueInput
     update?: XOR<XOR<AddCastingUpdateToOneWithWhereWithoutCastingsInput, AddCastingUpdateWithoutCastingsInput>, AddCastingUncheckedUpdateWithoutCastingsInput>
+  }
+
+  export type CastingScrapItemUpdateManyWithoutCastingNestedInput = {
+    create?: XOR<CastingScrapItemCreateWithoutCastingInput, CastingScrapItemUncheckedCreateWithoutCastingInput> | CastingScrapItemCreateWithoutCastingInput[] | CastingScrapItemUncheckedCreateWithoutCastingInput[]
+    connectOrCreate?: CastingScrapItemCreateOrConnectWithoutCastingInput | CastingScrapItemCreateOrConnectWithoutCastingInput[]
+    upsert?: CastingScrapItemUpsertWithWhereUniqueWithoutCastingInput | CastingScrapItemUpsertWithWhereUniqueWithoutCastingInput[]
+    set?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    disconnect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    delete?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    connect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    update?: CastingScrapItemUpdateWithWhereUniqueWithoutCastingInput | CastingScrapItemUpdateWithWhereUniqueWithoutCastingInput[]
+    updateMany?: CastingScrapItemUpdateManyWithWhereWithoutCastingInput | CastingScrapItemUpdateManyWithWhereWithoutCastingInput[]
+    deleteMany?: CastingScrapItemScalarWhereInput | CastingScrapItemScalarWhereInput[]
+  }
+
+  export type CastingItemUpdateManyWithoutCastingsNestedInput = {
+    create?: XOR<CastingItemCreateWithoutCastingsInput, CastingItemUncheckedCreateWithoutCastingsInput> | CastingItemCreateWithoutCastingsInput[] | CastingItemUncheckedCreateWithoutCastingsInput[]
+    connectOrCreate?: CastingItemCreateOrConnectWithoutCastingsInput | CastingItemCreateOrConnectWithoutCastingsInput[]
+    upsert?: CastingItemUpsertWithWhereUniqueWithoutCastingsInput | CastingItemUpsertWithWhereUniqueWithoutCastingsInput[]
+    createMany?: CastingItemCreateManyCastingsInputEnvelope
+    set?: CastingItemWhereUniqueInput | CastingItemWhereUniqueInput[]
+    disconnect?: CastingItemWhereUniqueInput | CastingItemWhereUniqueInput[]
+    delete?: CastingItemWhereUniqueInput | CastingItemWhereUniqueInput[]
+    connect?: CastingItemWhereUniqueInput | CastingItemWhereUniqueInput[]
+    update?: CastingItemUpdateWithWhereUniqueWithoutCastingsInput | CastingItemUpdateWithWhereUniqueWithoutCastingsInput[]
+    updateMany?: CastingItemUpdateManyWithWhereWithoutCastingsInput | CastingItemUpdateManyWithWhereWithoutCastingsInput[]
+    deleteMany?: CastingItemScalarWhereInput | CastingItemScalarWhereInput[]
+  }
+
+  export type CastingScrapItemUncheckedUpdateManyWithoutCastingNestedInput = {
+    create?: XOR<CastingScrapItemCreateWithoutCastingInput, CastingScrapItemUncheckedCreateWithoutCastingInput> | CastingScrapItemCreateWithoutCastingInput[] | CastingScrapItemUncheckedCreateWithoutCastingInput[]
+    connectOrCreate?: CastingScrapItemCreateOrConnectWithoutCastingInput | CastingScrapItemCreateOrConnectWithoutCastingInput[]
+    upsert?: CastingScrapItemUpsertWithWhereUniqueWithoutCastingInput | CastingScrapItemUpsertWithWhereUniqueWithoutCastingInput[]
+    set?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    disconnect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    delete?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    connect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    update?: CastingScrapItemUpdateWithWhereUniqueWithoutCastingInput | CastingScrapItemUpdateWithWhereUniqueWithoutCastingInput[]
+    updateMany?: CastingScrapItemUpdateManyWithWhereWithoutCastingInput | CastingScrapItemUpdateManyWithWhereWithoutCastingInput[]
+    deleteMany?: CastingScrapItemScalarWhereInput | CastingScrapItemScalarWhereInput[]
+  }
+
+  export type CastingItemUncheckedUpdateManyWithoutCastingsNestedInput = {
+    create?: XOR<CastingItemCreateWithoutCastingsInput, CastingItemUncheckedCreateWithoutCastingsInput> | CastingItemCreateWithoutCastingsInput[] | CastingItemUncheckedCreateWithoutCastingsInput[]
+    connectOrCreate?: CastingItemCreateOrConnectWithoutCastingsInput | CastingItemCreateOrConnectWithoutCastingsInput[]
+    upsert?: CastingItemUpsertWithWhereUniqueWithoutCastingsInput | CastingItemUpsertWithWhereUniqueWithoutCastingsInput[]
+    createMany?: CastingItemCreateManyCastingsInputEnvelope
+    set?: CastingItemWhereUniqueInput | CastingItemWhereUniqueInput[]
+    disconnect?: CastingItemWhereUniqueInput | CastingItemWhereUniqueInput[]
+    delete?: CastingItemWhereUniqueInput | CastingItemWhereUniqueInput[]
+    connect?: CastingItemWhereUniqueInput | CastingItemWhereUniqueInput[]
+    update?: CastingItemUpdateWithWhereUniqueWithoutCastingsInput | CastingItemUpdateWithWhereUniqueWithoutCastingsInput[]
+    updateMany?: CastingItemUpdateManyWithWhereWithoutCastingsInput | CastingItemUpdateManyWithWhereWithoutCastingsInput[]
+    deleteMany?: CastingItemScalarWhereInput | CastingItemScalarWhereInput[]
+  }
+
+  export type CastingCreateNestedOneWithoutItemsInput = {
+    create?: XOR<CastingCreateWithoutItemsInput, CastingUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: CastingCreateOrConnectWithoutItemsInput
+    connect?: CastingWhereUniqueInput
+  }
+
+  export type CastingScrapItemCreateNestedManyWithoutCastingsInput = {
+    create?: XOR<CastingScrapItemCreateWithoutCastingsInput, CastingScrapItemUncheckedCreateWithoutCastingsInput> | CastingScrapItemCreateWithoutCastingsInput[] | CastingScrapItemUncheckedCreateWithoutCastingsInput[]
+    connectOrCreate?: CastingScrapItemCreateOrConnectWithoutCastingsInput | CastingScrapItemCreateOrConnectWithoutCastingsInput[]
+    createMany?: CastingScrapItemCreateManyCastingsInputEnvelope
+    connect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+  }
+
+  export type CastingScrapItemUncheckedCreateNestedManyWithoutCastingsInput = {
+    create?: XOR<CastingScrapItemCreateWithoutCastingsInput, CastingScrapItemUncheckedCreateWithoutCastingsInput> | CastingScrapItemCreateWithoutCastingsInput[] | CastingScrapItemUncheckedCreateWithoutCastingsInput[]
+    connectOrCreate?: CastingScrapItemCreateOrConnectWithoutCastingsInput | CastingScrapItemCreateOrConnectWithoutCastingsInput[]
+    createMany?: CastingScrapItemCreateManyCastingsInputEnvelope
+    connect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+  }
+
+  export type CastingUpdateOneRequiredWithoutItemsNestedInput = {
+    create?: XOR<CastingCreateWithoutItemsInput, CastingUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: CastingCreateOrConnectWithoutItemsInput
+    upsert?: CastingUpsertWithoutItemsInput
+    connect?: CastingWhereUniqueInput
+    update?: XOR<XOR<CastingUpdateToOneWithWhereWithoutItemsInput, CastingUpdateWithoutItemsInput>, CastingUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type CastingScrapItemUpdateManyWithoutCastingsNestedInput = {
+    create?: XOR<CastingScrapItemCreateWithoutCastingsInput, CastingScrapItemUncheckedCreateWithoutCastingsInput> | CastingScrapItemCreateWithoutCastingsInput[] | CastingScrapItemUncheckedCreateWithoutCastingsInput[]
+    connectOrCreate?: CastingScrapItemCreateOrConnectWithoutCastingsInput | CastingScrapItemCreateOrConnectWithoutCastingsInput[]
+    upsert?: CastingScrapItemUpsertWithWhereUniqueWithoutCastingsInput | CastingScrapItemUpsertWithWhereUniqueWithoutCastingsInput[]
+    createMany?: CastingScrapItemCreateManyCastingsInputEnvelope
+    set?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    disconnect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    delete?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    connect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    update?: CastingScrapItemUpdateWithWhereUniqueWithoutCastingsInput | CastingScrapItemUpdateWithWhereUniqueWithoutCastingsInput[]
+    updateMany?: CastingScrapItemUpdateManyWithWhereWithoutCastingsInput | CastingScrapItemUpdateManyWithWhereWithoutCastingsInput[]
+    deleteMany?: CastingScrapItemScalarWhereInput | CastingScrapItemScalarWhereInput[]
+  }
+
+  export type CastingScrapItemUncheckedUpdateManyWithoutCastingsNestedInput = {
+    create?: XOR<CastingScrapItemCreateWithoutCastingsInput, CastingScrapItemUncheckedCreateWithoutCastingsInput> | CastingScrapItemCreateWithoutCastingsInput[] | CastingScrapItemUncheckedCreateWithoutCastingsInput[]
+    connectOrCreate?: CastingScrapItemCreateOrConnectWithoutCastingsInput | CastingScrapItemCreateOrConnectWithoutCastingsInput[]
+    upsert?: CastingScrapItemUpsertWithWhereUniqueWithoutCastingsInput | CastingScrapItemUpsertWithWhereUniqueWithoutCastingsInput[]
+    createMany?: CastingScrapItemCreateManyCastingsInputEnvelope
+    set?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    disconnect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    delete?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    connect?: CastingScrapItemWhereUniqueInput | CastingScrapItemWhereUniqueInput[]
+    update?: CastingScrapItemUpdateWithWhereUniqueWithoutCastingsInput | CastingScrapItemUpdateWithWhereUniqueWithoutCastingsInput[]
+    updateMany?: CastingScrapItemUpdateManyWithWhereWithoutCastingsInput | CastingScrapItemUpdateManyWithWhereWithoutCastingsInput[]
+    deleteMany?: CastingScrapItemScalarWhereInput | CastingScrapItemScalarWhereInput[]
+  }
+
+  export type CastingItemCreateNestedOneWithoutScrapitemsInput = {
+    create?: XOR<CastingItemCreateWithoutScrapitemsInput, CastingItemUncheckedCreateWithoutScrapitemsInput>
+    connectOrCreate?: CastingItemCreateOrConnectWithoutScrapitemsInput
+    connect?: CastingItemWhereUniqueInput
+  }
+
+  export type CastingCreateNestedManyWithoutScrapitemsInput = {
+    create?: XOR<CastingCreateWithoutScrapitemsInput, CastingUncheckedCreateWithoutScrapitemsInput> | CastingCreateWithoutScrapitemsInput[] | CastingUncheckedCreateWithoutScrapitemsInput[]
+    connectOrCreate?: CastingCreateOrConnectWithoutScrapitemsInput | CastingCreateOrConnectWithoutScrapitemsInput[]
+    connect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
+  }
+
+  export type CastingUncheckedCreateNestedManyWithoutScrapitemsInput = {
+    create?: XOR<CastingCreateWithoutScrapitemsInput, CastingUncheckedCreateWithoutScrapitemsInput> | CastingCreateWithoutScrapitemsInput[] | CastingUncheckedCreateWithoutScrapitemsInput[]
+    connectOrCreate?: CastingCreateOrConnectWithoutScrapitemsInput | CastingCreateOrConnectWithoutScrapitemsInput[]
+    connect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
+  }
+
+  export type CastingItemUpdateOneRequiredWithoutScrapitemsNestedInput = {
+    create?: XOR<CastingItemCreateWithoutScrapitemsInput, CastingItemUncheckedCreateWithoutScrapitemsInput>
+    connectOrCreate?: CastingItemCreateOrConnectWithoutScrapitemsInput
+    upsert?: CastingItemUpsertWithoutScrapitemsInput
+    connect?: CastingItemWhereUniqueInput
+    update?: XOR<XOR<CastingItemUpdateToOneWithWhereWithoutScrapitemsInput, CastingItemUpdateWithoutScrapitemsInput>, CastingItemUncheckedUpdateWithoutScrapitemsInput>
+  }
+
+  export type CastingUpdateManyWithoutScrapitemsNestedInput = {
+    create?: XOR<CastingCreateWithoutScrapitemsInput, CastingUncheckedCreateWithoutScrapitemsInput> | CastingCreateWithoutScrapitemsInput[] | CastingUncheckedCreateWithoutScrapitemsInput[]
+    connectOrCreate?: CastingCreateOrConnectWithoutScrapitemsInput | CastingCreateOrConnectWithoutScrapitemsInput[]
+    upsert?: CastingUpsertWithWhereUniqueWithoutScrapitemsInput | CastingUpsertWithWhereUniqueWithoutScrapitemsInput[]
+    set?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
+    disconnect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
+    delete?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
+    connect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
+    update?: CastingUpdateWithWhereUniqueWithoutScrapitemsInput | CastingUpdateWithWhereUniqueWithoutScrapitemsInput[]
+    updateMany?: CastingUpdateManyWithWhereWithoutScrapitemsInput | CastingUpdateManyWithWhereWithoutScrapitemsInput[]
+    deleteMany?: CastingScalarWhereInput | CastingScalarWhereInput[]
+  }
+
+  export type CastingUncheckedUpdateManyWithoutScrapitemsNestedInput = {
+    create?: XOR<CastingCreateWithoutScrapitemsInput, CastingUncheckedCreateWithoutScrapitemsInput> | CastingCreateWithoutScrapitemsInput[] | CastingUncheckedCreateWithoutScrapitemsInput[]
+    connectOrCreate?: CastingCreateOrConnectWithoutScrapitemsInput | CastingCreateOrConnectWithoutScrapitemsInput[]
+    upsert?: CastingUpsertWithWhereUniqueWithoutScrapitemsInput | CastingUpsertWithWhereUniqueWithoutScrapitemsInput[]
+    set?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
+    disconnect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
+    delete?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
+    connect?: CastingWhereUniqueInput | CastingWhereUniqueInput[]
+    update?: CastingUpdateWithWhereUniqueWithoutScrapitemsInput | CastingUpdateWithWhereUniqueWithoutScrapitemsInput[]
+    updateMany?: CastingUpdateManyWithWhereWithoutScrapitemsInput | CastingUpdateManyWithWhereWithoutScrapitemsInput[]
+    deleteMany?: CastingScalarWhereInput | CastingScalarWhereInput[]
+  }
+
+  export type AddCustomerCreateNestedOneWithoutTranscationInput = {
+    create?: XOR<AddCustomerCreateWithoutTranscationInput, AddCustomerUncheckedCreateWithoutTranscationInput>
+    connectOrCreate?: AddCustomerCreateOrConnectWithoutTranscationInput
+    connect?: AddCustomerWhereUniqueInput
+  }
+
+  export type AddCustomerUpdateOneRequiredWithoutTranscationNestedInput = {
+    create?: XOR<AddCustomerCreateWithoutTranscationInput, AddCustomerUncheckedCreateWithoutTranscationInput>
+    connectOrCreate?: AddCustomerCreateOrConnectWithoutTranscationInput
+    upsert?: AddCustomerUpsertWithoutTranscationInput
+    connect?: AddCustomerWhereUniqueInput
+    update?: XOR<XOR<AddCustomerUpdateToOneWithWhereWithoutTranscationInput, AddCustomerUpdateWithoutTranscationInput>, AddCustomerUncheckedUpdateWithoutTranscationInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -12500,7 +17146,69 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type CastingCreateWithoutAddcastingInput = {
+  export type CustomerTransactionCreateWithoutCustomerInput = {
+    date: Date | string
+    value: number
+    type: string
+    touch?: number | null
+    purity?: number | null
+    goldRate?: number | null
+    createdAt?: Date | string
+  }
+
+  export type CustomerTransactionUncheckedCreateWithoutCustomerInput = {
+    id?: number
+    date: Date | string
+    value: number
+    type: string
+    touch?: number | null
+    purity?: number | null
+    goldRate?: number | null
+    createdAt?: Date | string
+  }
+
+  export type CustomerTransactionCreateOrConnectWithoutCustomerInput = {
+    where: CustomerTransactionWhereUniqueInput
+    create: XOR<CustomerTransactionCreateWithoutCustomerInput, CustomerTransactionUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type CustomerTransactionCreateManyCustomerInputEnvelope = {
+    data: CustomerTransactionCreateManyCustomerInput | CustomerTransactionCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CustomerTransactionUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: CustomerTransactionWhereUniqueInput
+    update: XOR<CustomerTransactionUpdateWithoutCustomerInput, CustomerTransactionUncheckedUpdateWithoutCustomerInput>
+    create: XOR<CustomerTransactionCreateWithoutCustomerInput, CustomerTransactionUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type CustomerTransactionUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: CustomerTransactionWhereUniqueInput
+    data: XOR<CustomerTransactionUpdateWithoutCustomerInput, CustomerTransactionUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type CustomerTransactionUpdateManyWithWhereWithoutCustomerInput = {
+    where: CustomerTransactionScalarWhereInput
+    data: XOR<CustomerTransactionUpdateManyMutationInput, CustomerTransactionUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type CustomerTransactionScalarWhereInput = {
+    AND?: CustomerTransactionScalarWhereInput | CustomerTransactionScalarWhereInput[]
+    OR?: CustomerTransactionScalarWhereInput[]
+    NOT?: CustomerTransactionScalarWhereInput | CustomerTransactionScalarWhereInput[]
+    id?: IntFilter<"CustomerTransaction"> | number
+    date?: DateTimeFilter<"CustomerTransaction"> | Date | string
+    value?: FloatFilter<"CustomerTransaction"> | number
+    type?: StringFilter<"CustomerTransaction"> | string
+    touch?: FloatNullableFilter<"CustomerTransaction"> | number | null
+    purity?: FloatNullableFilter<"CustomerTransaction"> | number | null
+    goldRate?: FloatNullableFilter<"CustomerTransaction"> | number | null
+    customerId?: IntFilter<"CustomerTransaction"> | number
+    createdAt?: DateTimeFilter<"CustomerTransaction"> | Date | string
+  }
+
+  export type CastingCreateWithoutAddcastingsInput = {
     createdAt?: Date | string
     name: string
     givenGold: number
@@ -12508,11 +17216,15 @@ export namespace Prisma {
     purity: number
     finalTouch: number
     pureValue: number
-    finalWeight: number
     copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
+    scrapitems?: CastingScrapItemCreateNestedManyWithoutCastingInput
+    items?: CastingItemCreateNestedManyWithoutCastingsInput
   }
 
-  export type CastingUncheckedCreateWithoutAddcastingInput = {
+  export type CastingUncheckedCreateWithoutAddcastingsInput = {
     id?: number
     createdAt?: Date | string
     name: string
@@ -12521,34 +17233,38 @@ export namespace Prisma {
     purity: number
     finalTouch: number
     pureValue: number
-    finalWeight: number
     copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
+    scrapitems?: CastingScrapItemUncheckedCreateNestedManyWithoutCastingInput
+    items?: CastingItemUncheckedCreateNestedManyWithoutCastingsInput
   }
 
-  export type CastingCreateOrConnectWithoutAddcastingInput = {
+  export type CastingCreateOrConnectWithoutAddcastingsInput = {
     where: CastingWhereUniqueInput
-    create: XOR<CastingCreateWithoutAddcastingInput, CastingUncheckedCreateWithoutAddcastingInput>
+    create: XOR<CastingCreateWithoutAddcastingsInput, CastingUncheckedCreateWithoutAddcastingsInput>
   }
 
-  export type CastingCreateManyAddcastingInputEnvelope = {
-    data: CastingCreateManyAddcastingInput | CastingCreateManyAddcastingInput[]
+  export type CastingCreateManyAddcastingsInputEnvelope = {
+    data: CastingCreateManyAddcastingsInput | CastingCreateManyAddcastingsInput[]
     skipDuplicates?: boolean
   }
 
-  export type CastingUpsertWithWhereUniqueWithoutAddcastingInput = {
+  export type CastingUpsertWithWhereUniqueWithoutAddcastingsInput = {
     where: CastingWhereUniqueInput
-    update: XOR<CastingUpdateWithoutAddcastingInput, CastingUncheckedUpdateWithoutAddcastingInput>
-    create: XOR<CastingCreateWithoutAddcastingInput, CastingUncheckedCreateWithoutAddcastingInput>
+    update: XOR<CastingUpdateWithoutAddcastingsInput, CastingUncheckedUpdateWithoutAddcastingsInput>
+    create: XOR<CastingCreateWithoutAddcastingsInput, CastingUncheckedCreateWithoutAddcastingsInput>
   }
 
-  export type CastingUpdateWithWhereUniqueWithoutAddcastingInput = {
+  export type CastingUpdateWithWhereUniqueWithoutAddcastingsInput = {
     where: CastingWhereUniqueInput
-    data: XOR<CastingUpdateWithoutAddcastingInput, CastingUncheckedUpdateWithoutAddcastingInput>
+    data: XOR<CastingUpdateWithoutAddcastingsInput, CastingUncheckedUpdateWithoutAddcastingsInput>
   }
 
-  export type CastingUpdateManyWithWhereWithoutAddcastingInput = {
+  export type CastingUpdateManyWithWhereWithoutAddcastingsInput = {
     where: CastingScalarWhereInput
-    data: XOR<CastingUpdateManyMutationInput, CastingUncheckedUpdateManyWithoutAddcastingInput>
+    data: XOR<CastingUpdateManyMutationInput, CastingUncheckedUpdateManyWithoutAddcastingsInput>
   }
 
   export type CastingScalarWhereInput = {
@@ -12563,8 +17279,10 @@ export namespace Prisma {
     purity?: FloatFilter<"Casting"> | number
     finalTouch?: FloatFilter<"Casting"> | number
     pureValue?: FloatFilter<"Casting"> | number
-    finalWeight?: FloatFilter<"Casting"> | number
     copper?: FloatFilter<"Casting"> | number
+    finalWeight?: FloatFilter<"Casting"> | number
+    afterWeight?: FloatFilter<"Casting"> | number
+    wastage?: FloatFilter<"Casting"> | number
     castingId?: IntFilter<"Casting"> | number
   }
 
@@ -12586,6 +17304,59 @@ export namespace Prisma {
   export type AddCastingCreateOrConnectWithoutCastingsInput = {
     where: AddCastingWhereUniqueInput
     create: XOR<AddCastingCreateWithoutCastingsInput, AddCastingUncheckedCreateWithoutCastingsInput>
+  }
+
+  export type CastingScrapItemCreateWithoutCastingInput = {
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    castings: CastingItemCreateNestedOneWithoutScrapitemsInput
+  }
+
+  export type CastingScrapItemUncheckedCreateWithoutCastingInput = {
+    id?: number
+    castingId: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+  }
+
+  export type CastingScrapItemCreateOrConnectWithoutCastingInput = {
+    where: CastingScrapItemWhereUniqueInput
+    create: XOR<CastingScrapItemCreateWithoutCastingInput, CastingScrapItemUncheckedCreateWithoutCastingInput>
+  }
+
+  export type CastingItemCreateWithoutCastingsInput = {
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    scrapitems?: CastingScrapItemCreateNestedManyWithoutCastingsInput
+  }
+
+  export type CastingItemUncheckedCreateWithoutCastingsInput = {
+    id?: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    scrapitems?: CastingScrapItemUncheckedCreateNestedManyWithoutCastingsInput
+  }
+
+  export type CastingItemCreateOrConnectWithoutCastingsInput = {
+    where: CastingItemWhereUniqueInput
+    create: XOR<CastingItemCreateWithoutCastingsInput, CastingItemUncheckedCreateWithoutCastingsInput>
+  }
+
+  export type CastingItemCreateManyCastingsInputEnvelope = {
+    data: CastingItemCreateManyCastingsInput | CastingItemCreateManyCastingsInput[]
+    skipDuplicates?: boolean
   }
 
   export type AddCastingUpsertWithoutCastingsInput = {
@@ -12614,7 +17385,81 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CastingCreateManyAddcastingInput = {
+  export type CastingScrapItemUpsertWithWhereUniqueWithoutCastingInput = {
+    where: CastingScrapItemWhereUniqueInput
+    update: XOR<CastingScrapItemUpdateWithoutCastingInput, CastingScrapItemUncheckedUpdateWithoutCastingInput>
+    create: XOR<CastingScrapItemCreateWithoutCastingInput, CastingScrapItemUncheckedCreateWithoutCastingInput>
+  }
+
+  export type CastingScrapItemUpdateWithWhereUniqueWithoutCastingInput = {
+    where: CastingScrapItemWhereUniqueInput
+    data: XOR<CastingScrapItemUpdateWithoutCastingInput, CastingScrapItemUncheckedUpdateWithoutCastingInput>
+  }
+
+  export type CastingScrapItemUpdateManyWithWhereWithoutCastingInput = {
+    where: CastingScrapItemScalarWhereInput
+    data: XOR<CastingScrapItemUpdateManyMutationInput, CastingScrapItemUncheckedUpdateManyWithoutCastingInput>
+  }
+
+  export type CastingScrapItemScalarWhereInput = {
+    AND?: CastingScrapItemScalarWhereInput | CastingScrapItemScalarWhereInput[]
+    OR?: CastingScrapItemScalarWhereInput[]
+    NOT?: CastingScrapItemScalarWhereInput | CastingScrapItemScalarWhereInput[]
+    id?: IntFilter<"CastingScrapItem"> | number
+    castingId?: IntFilter<"CastingScrapItem"> | number
+    item?: StringFilter<"CastingScrapItem"> | string
+    weight?: FloatFilter<"CastingScrapItem"> | number
+    touch?: FloatFilter<"CastingScrapItem"> | number
+    purity?: FloatFilter<"CastingScrapItem"> | number
+    remarks?: StringFilter<"CastingScrapItem"> | string
+  }
+
+  export type CastingItemUpsertWithWhereUniqueWithoutCastingsInput = {
+    where: CastingItemWhereUniqueInput
+    update: XOR<CastingItemUpdateWithoutCastingsInput, CastingItemUncheckedUpdateWithoutCastingsInput>
+    create: XOR<CastingItemCreateWithoutCastingsInput, CastingItemUncheckedCreateWithoutCastingsInput>
+  }
+
+  export type CastingItemUpdateWithWhereUniqueWithoutCastingsInput = {
+    where: CastingItemWhereUniqueInput
+    data: XOR<CastingItemUpdateWithoutCastingsInput, CastingItemUncheckedUpdateWithoutCastingsInput>
+  }
+
+  export type CastingItemUpdateManyWithWhereWithoutCastingsInput = {
+    where: CastingItemScalarWhereInput
+    data: XOR<CastingItemUpdateManyMutationInput, CastingItemUncheckedUpdateManyWithoutCastingsInput>
+  }
+
+  export type CastingItemScalarWhereInput = {
+    AND?: CastingItemScalarWhereInput | CastingItemScalarWhereInput[]
+    OR?: CastingItemScalarWhereInput[]
+    NOT?: CastingItemScalarWhereInput | CastingItemScalarWhereInput[]
+    id?: IntFilter<"CastingItem"> | number
+    castingId?: IntFilter<"CastingItem"> | number
+    item?: StringFilter<"CastingItem"> | string
+    weight?: FloatFilter<"CastingItem"> | number
+    touch?: FloatFilter<"CastingItem"> | number
+    purity?: FloatFilter<"CastingItem"> | number
+    remarks?: StringFilter<"CastingItem"> | string
+  }
+
+  export type CastingCreateWithoutItemsInput = {
+    createdAt?: Date | string
+    name: string
+    givenGold: number
+    givenTouch: number
+    purity: number
+    finalTouch: number
+    pureValue: number
+    copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
+    addcastings: AddCastingCreateNestedOneWithoutCastingsInput
+    scrapitems?: CastingScrapItemCreateNestedManyWithoutCastingInput
+  }
+
+  export type CastingUncheckedCreateWithoutItemsInput = {
     id?: number
     createdAt?: Date | string
     name: string
@@ -12623,11 +17468,60 @@ export namespace Prisma {
     purity: number
     finalTouch: number
     pureValue: number
-    finalWeight: number
     copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
+    castingId: number
+    scrapitems?: CastingScrapItemUncheckedCreateNestedManyWithoutCastingInput
   }
 
-  export type CastingUpdateWithoutAddcastingInput = {
+  export type CastingCreateOrConnectWithoutItemsInput = {
+    where: CastingWhereUniqueInput
+    create: XOR<CastingCreateWithoutItemsInput, CastingUncheckedCreateWithoutItemsInput>
+  }
+
+  export type CastingScrapItemCreateWithoutCastingsInput = {
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    casting?: CastingCreateNestedManyWithoutScrapitemsInput
+  }
+
+  export type CastingScrapItemUncheckedCreateWithoutCastingsInput = {
+    id?: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    casting?: CastingUncheckedCreateNestedManyWithoutScrapitemsInput
+  }
+
+  export type CastingScrapItemCreateOrConnectWithoutCastingsInput = {
+    where: CastingScrapItemWhereUniqueInput
+    create: XOR<CastingScrapItemCreateWithoutCastingsInput, CastingScrapItemUncheckedCreateWithoutCastingsInput>
+  }
+
+  export type CastingScrapItemCreateManyCastingsInputEnvelope = {
+    data: CastingScrapItemCreateManyCastingsInput | CastingScrapItemCreateManyCastingsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CastingUpsertWithoutItemsInput = {
+    update: XOR<CastingUpdateWithoutItemsInput, CastingUncheckedUpdateWithoutItemsInput>
+    create: XOR<CastingCreateWithoutItemsInput, CastingUncheckedCreateWithoutItemsInput>
+    where?: CastingWhereInput
+  }
+
+  export type CastingUpdateToOneWithWhereWithoutItemsInput = {
+    where?: CastingWhereInput
+    data: XOR<CastingUpdateWithoutItemsInput, CastingUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type CastingUpdateWithoutItemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     givenGold?: FloatFieldUpdateOperationsInput | number
@@ -12635,11 +17529,15 @@ export namespace Prisma {
     purity?: FloatFieldUpdateOperationsInput | number
     finalTouch?: FloatFieldUpdateOperationsInput | number
     pureValue?: FloatFieldUpdateOperationsInput | number
-    finalWeight?: FloatFieldUpdateOperationsInput | number
     copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
+    addcastings?: AddCastingUpdateOneRequiredWithoutCastingsNestedInput
+    scrapitems?: CastingScrapItemUpdateManyWithoutCastingNestedInput
   }
 
-  export type CastingUncheckedUpdateWithoutAddcastingInput = {
+  export type CastingUncheckedUpdateWithoutItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
@@ -12648,11 +17546,259 @@ export namespace Prisma {
     purity?: FloatFieldUpdateOperationsInput | number
     finalTouch?: FloatFieldUpdateOperationsInput | number
     pureValue?: FloatFieldUpdateOperationsInput | number
-    finalWeight?: FloatFieldUpdateOperationsInput | number
     copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
+    castingId?: IntFieldUpdateOperationsInput | number
+    scrapitems?: CastingScrapItemUncheckedUpdateManyWithoutCastingNestedInput
   }
 
-  export type CastingUncheckedUpdateManyWithoutAddcastingInput = {
+  export type CastingScrapItemUpsertWithWhereUniqueWithoutCastingsInput = {
+    where: CastingScrapItemWhereUniqueInput
+    update: XOR<CastingScrapItemUpdateWithoutCastingsInput, CastingScrapItemUncheckedUpdateWithoutCastingsInput>
+    create: XOR<CastingScrapItemCreateWithoutCastingsInput, CastingScrapItemUncheckedCreateWithoutCastingsInput>
+  }
+
+  export type CastingScrapItemUpdateWithWhereUniqueWithoutCastingsInput = {
+    where: CastingScrapItemWhereUniqueInput
+    data: XOR<CastingScrapItemUpdateWithoutCastingsInput, CastingScrapItemUncheckedUpdateWithoutCastingsInput>
+  }
+
+  export type CastingScrapItemUpdateManyWithWhereWithoutCastingsInput = {
+    where: CastingScrapItemScalarWhereInput
+    data: XOR<CastingScrapItemUpdateManyMutationInput, CastingScrapItemUncheckedUpdateManyWithoutCastingsInput>
+  }
+
+  export type CastingItemCreateWithoutScrapitemsInput = {
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+    castings: CastingCreateNestedOneWithoutItemsInput
+  }
+
+  export type CastingItemUncheckedCreateWithoutScrapitemsInput = {
+    id?: number
+    castingId: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+  }
+
+  export type CastingItemCreateOrConnectWithoutScrapitemsInput = {
+    where: CastingItemWhereUniqueInput
+    create: XOR<CastingItemCreateWithoutScrapitemsInput, CastingItemUncheckedCreateWithoutScrapitemsInput>
+  }
+
+  export type CastingCreateWithoutScrapitemsInput = {
+    createdAt?: Date | string
+    name: string
+    givenGold: number
+    givenTouch: number
+    purity: number
+    finalTouch: number
+    pureValue: number
+    copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
+    addcastings: AddCastingCreateNestedOneWithoutCastingsInput
+    items?: CastingItemCreateNestedManyWithoutCastingsInput
+  }
+
+  export type CastingUncheckedCreateWithoutScrapitemsInput = {
+    id?: number
+    createdAt?: Date | string
+    name: string
+    givenGold: number
+    givenTouch: number
+    purity: number
+    finalTouch: number
+    pureValue: number
+    copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
+    castingId: number
+    items?: CastingItemUncheckedCreateNestedManyWithoutCastingsInput
+  }
+
+  export type CastingCreateOrConnectWithoutScrapitemsInput = {
+    where: CastingWhereUniqueInput
+    create: XOR<CastingCreateWithoutScrapitemsInput, CastingUncheckedCreateWithoutScrapitemsInput>
+  }
+
+  export type CastingItemUpsertWithoutScrapitemsInput = {
+    update: XOR<CastingItemUpdateWithoutScrapitemsInput, CastingItemUncheckedUpdateWithoutScrapitemsInput>
+    create: XOR<CastingItemCreateWithoutScrapitemsInput, CastingItemUncheckedCreateWithoutScrapitemsInput>
+    where?: CastingItemWhereInput
+  }
+
+  export type CastingItemUpdateToOneWithWhereWithoutScrapitemsInput = {
+    where?: CastingItemWhereInput
+    data: XOR<CastingItemUpdateWithoutScrapitemsInput, CastingItemUncheckedUpdateWithoutScrapitemsInput>
+  }
+
+  export type CastingItemUpdateWithoutScrapitemsInput = {
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    castings?: CastingUpdateOneRequiredWithoutItemsNestedInput
+  }
+
+  export type CastingItemUncheckedUpdateWithoutScrapitemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    castingId?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CastingUpsertWithWhereUniqueWithoutScrapitemsInput = {
+    where: CastingWhereUniqueInput
+    update: XOR<CastingUpdateWithoutScrapitemsInput, CastingUncheckedUpdateWithoutScrapitemsInput>
+    create: XOR<CastingCreateWithoutScrapitemsInput, CastingUncheckedCreateWithoutScrapitemsInput>
+  }
+
+  export type CastingUpdateWithWhereUniqueWithoutScrapitemsInput = {
+    where: CastingWhereUniqueInput
+    data: XOR<CastingUpdateWithoutScrapitemsInput, CastingUncheckedUpdateWithoutScrapitemsInput>
+  }
+
+  export type CastingUpdateManyWithWhereWithoutScrapitemsInput = {
+    where: CastingScalarWhereInput
+    data: XOR<CastingUpdateManyMutationInput, CastingUncheckedUpdateManyWithoutScrapitemsInput>
+  }
+
+  export type AddCustomerCreateWithoutTranscationInput = {
+    name: string
+    phoneNumber: string
+    address: string
+    email?: string | null
+  }
+
+  export type AddCustomerUncheckedCreateWithoutTranscationInput = {
+    id?: number
+    name: string
+    phoneNumber: string
+    address: string
+    email?: string | null
+  }
+
+  export type AddCustomerCreateOrConnectWithoutTranscationInput = {
+    where: AddCustomerWhereUniqueInput
+    create: XOR<AddCustomerCreateWithoutTranscationInput, AddCustomerUncheckedCreateWithoutTranscationInput>
+  }
+
+  export type AddCustomerUpsertWithoutTranscationInput = {
+    update: XOR<AddCustomerUpdateWithoutTranscationInput, AddCustomerUncheckedUpdateWithoutTranscationInput>
+    create: XOR<AddCustomerCreateWithoutTranscationInput, AddCustomerUncheckedCreateWithoutTranscationInput>
+    where?: AddCustomerWhereInput
+  }
+
+  export type AddCustomerUpdateToOneWithWhereWithoutTranscationInput = {
+    where?: AddCustomerWhereInput
+    data: XOR<AddCustomerUpdateWithoutTranscationInput, AddCustomerUncheckedUpdateWithoutTranscationInput>
+  }
+
+  export type AddCustomerUpdateWithoutTranscationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AddCustomerUncheckedUpdateWithoutTranscationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CustomerTransactionCreateManyCustomerInput = {
+    id?: number
+    date: Date | string
+    value: number
+    type: string
+    touch?: number | null
+    purity?: number | null
+    goldRate?: number | null
+    createdAt?: Date | string
+  }
+
+  export type CustomerTransactionUpdateWithoutCustomerInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    value?: FloatFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    touch?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomerTransactionUncheckedUpdateWithoutCustomerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    value?: FloatFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    touch?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomerTransactionUncheckedUpdateManyWithoutCustomerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    value?: FloatFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    touch?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity?: NullableFloatFieldUpdateOperationsInput | number | null
+    goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CastingCreateManyAddcastingsInput = {
+    id?: number
+    createdAt?: Date | string
+    name: string
+    givenGold: number
+    givenTouch: number
+    purity: number
+    finalTouch: number
+    pureValue: number
+    copper: number
+    finalWeight: number
+    afterWeight: number
+    wastage: number
+  }
+
+  export type CastingUpdateWithoutAddcastingsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    givenGold?: FloatFieldUpdateOperationsInput | number
+    givenTouch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    finalTouch?: FloatFieldUpdateOperationsInput | number
+    pureValue?: FloatFieldUpdateOperationsInput | number
+    copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
+    scrapitems?: CastingScrapItemUpdateManyWithoutCastingNestedInput
+    items?: CastingItemUpdateManyWithoutCastingsNestedInput
+  }
+
+  export type CastingUncheckedUpdateWithoutAddcastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
@@ -12661,8 +17807,179 @@ export namespace Prisma {
     purity?: FloatFieldUpdateOperationsInput | number
     finalTouch?: FloatFieldUpdateOperationsInput | number
     pureValue?: FloatFieldUpdateOperationsInput | number
-    finalWeight?: FloatFieldUpdateOperationsInput | number
     copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
+    scrapitems?: CastingScrapItemUncheckedUpdateManyWithoutCastingNestedInput
+    items?: CastingItemUncheckedUpdateManyWithoutCastingsNestedInput
+  }
+
+  export type CastingUncheckedUpdateManyWithoutAddcastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    givenGold?: FloatFieldUpdateOperationsInput | number
+    givenTouch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    finalTouch?: FloatFieldUpdateOperationsInput | number
+    pureValue?: FloatFieldUpdateOperationsInput | number
+    copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type CastingItemCreateManyCastingsInput = {
+    id?: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+  }
+
+  export type CastingScrapItemUpdateWithoutCastingInput = {
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    castings?: CastingItemUpdateOneRequiredWithoutScrapitemsNestedInput
+  }
+
+  export type CastingScrapItemUncheckedUpdateWithoutCastingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    castingId?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CastingScrapItemUncheckedUpdateManyWithoutCastingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    castingId?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CastingItemUpdateWithoutCastingsInput = {
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    scrapitems?: CastingScrapItemUpdateManyWithoutCastingsNestedInput
+  }
+
+  export type CastingItemUncheckedUpdateWithoutCastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    scrapitems?: CastingScrapItemUncheckedUpdateManyWithoutCastingsNestedInput
+  }
+
+  export type CastingItemUncheckedUpdateManyWithoutCastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CastingScrapItemCreateManyCastingsInput = {
+    id?: number
+    item: string
+    weight: number
+    touch: number
+    purity: number
+    remarks: string
+  }
+
+  export type CastingScrapItemUpdateWithoutCastingsInput = {
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    casting?: CastingUpdateManyWithoutScrapitemsNestedInput
+  }
+
+  export type CastingScrapItemUncheckedUpdateWithoutCastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    casting?: CastingUncheckedUpdateManyWithoutScrapitemsNestedInput
+  }
+
+  export type CastingScrapItemUncheckedUpdateManyWithoutCastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    item?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CastingUpdateWithoutScrapitemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    givenGold?: FloatFieldUpdateOperationsInput | number
+    givenTouch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    finalTouch?: FloatFieldUpdateOperationsInput | number
+    pureValue?: FloatFieldUpdateOperationsInput | number
+    copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
+    addcastings?: AddCastingUpdateOneRequiredWithoutCastingsNestedInput
+    items?: CastingItemUpdateManyWithoutCastingsNestedInput
+  }
+
+  export type CastingUncheckedUpdateWithoutScrapitemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    givenGold?: FloatFieldUpdateOperationsInput | number
+    givenTouch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    finalTouch?: FloatFieldUpdateOperationsInput | number
+    pureValue?: FloatFieldUpdateOperationsInput | number
+    copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
+    castingId?: IntFieldUpdateOperationsInput | number
+    items?: CastingItemUncheckedUpdateManyWithoutCastingsNestedInput
+  }
+
+  export type CastingUncheckedUpdateManyWithoutScrapitemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    givenGold?: FloatFieldUpdateOperationsInput | number
+    givenTouch?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    finalTouch?: FloatFieldUpdateOperationsInput | number
+    pureValue?: FloatFieldUpdateOperationsInput | number
+    copper?: FloatFieldUpdateOperationsInput | number
+    finalWeight?: FloatFieldUpdateOperationsInput | number
+    afterWeight?: FloatFieldUpdateOperationsInput | number
+    wastage?: FloatFieldUpdateOperationsInput | number
+    castingId?: IntFieldUpdateOperationsInput | number
   }
 
 
