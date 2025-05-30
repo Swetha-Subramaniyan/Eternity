@@ -7,19 +7,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './Filing.css'
-import { Checkbox, FormControlLabel } from '@mui/material';
-import { Edit, Delete } from "@mui/icons-material";
-
 
 const Filing = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -194,6 +184,9 @@ const Filing = () => {
   
     // Then proceed with saving logic...
   };
+
+
+  
     
 
   return (
@@ -258,7 +251,6 @@ const Filing = () => {
   fontSize:"1.3rem" ,
   fontWeight:'bold', 
   background:'aliceblue',
-  background: "linear-gradient(to right, #bf883b, #ebedee, #bf883b )",
   height:'1.4rem'
 
   }}
@@ -303,155 +295,70 @@ const Filing = () => {
         <br/>
 
 
+        <div style={{ width: "100%", margin: "0 auto" }}>
+  <table style={{ width: "100%", borderCollapse: "collapse" }} border="1">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Date</th>
+        <th>Item Name</th>
+        <th>Has Stone?</th>
+        <th>Next Process</th>
+        <th>Status</th>
+        <th>Action</th>
+        <th>Remarks</th>
+      </tr>
+    </thead>
+    <tbody>
+      {filteredItems.map((item, index) => (
+        <tr key={item.id}>
+          <td>{index + 1}</td>
+          <td>{item.date}</td>
+          <td>{item.name}</td>
+          <td>
+            <select
+              value={item.hasStone}
+              onChange={(e) => handleStoneChange(index, e.target.value)}
+            >
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
 
-        <div className="popup-column">
-                  <button className="add-btn" onClick={addItem}>Add Item</button>
-                  <div className="scroll-table">
-                    <table>
-                      <thead >
-                        <tr>
-                          <th>Item</th>
-                          <th>Weight</th>
-                          <th>Touch</th>
-                          <th>Purity</th>
-                          <th>Remarks</th>
-                          <th> Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {items.map((item, index) => (
-                          <tr key={index}>
-                            <td>
-                              <input
-                                type="text"
-                                value={item.name}
-                                onChange={(e) =>
-                                  handleItemChange(index, "name", e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <input
-                                type="number"
-                                value={item.weight}
-                                onChange={(e) =>
-                                  handleItemChange(index, "weight", e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <input
-                                type="number"
-                                value={item.touch}
-                                onChange={(e) =>
-                                  handleItemChange(index, "touch", e.target.value)
-                                }
-                              />
-                            </td>
-                        
-
-                            <td>
-  {(
-    (parseFloat(item.weight || 0) *
-     parseFloat(item.touch || 0)) / 100
-  ).toFixed(3)}
-</td>
-<td>
-        <input
-          type="text"
-          value={item.remark}
-          onChange={(e) =>
-            handleItemChange(index, "remark", e.target.value)
-          }
-        />
-      </td>
-
-<td>
-        <div style={{ display: 'flex', gap: '0px' }}>
-    <Button onClick={() => handleEditItem(index)} color="primary">
-      <Edit />
-    </Button>
-    <Button onClick={() => handleDeleteItem(index)} color="error">
-      <Delete />
-    </Button>
-  </div>
-      </td>
-
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <p>After Weight: <strong>{afterWeight}</strong></p>
-                  
-
-                  <button className="save-btn" onClick={handleSave}>
-                    {editIndex !== null ? "Update" : "Save"}
-                  </button>
-                </div>
-
-
-
-
-
-<TableContainer component={Paper} sx={{ width: "100%", margin: "0 auto" }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>S.No</TableCell>
-                {/* <TableCell>Date</TableCell> */}
-                <TableCell>Item Name</TableCell>
-                <TableCell>Has Stone?</TableCell>
-                <TableCell>Next Process</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredItems.map((item, index) => (
-                <TableRow key={item.id}>
-                  <TableCell>{index + 1}</TableCell>
-                  {/* <TableCell>{item.date}</TableCell> */}
-                  <TableCell>{item.name}</TableCell>
-                  <TableCell>
-                    <TextField
-                      select
-                      value={item.hasStone}
-                      onChange={(e) => handleStoneChange(index, e.target.value)}
-                      size="small"
-                    >
-                      <MenuItem value="">Select</MenuItem>
-                      <MenuItem value="Yes">Yes</MenuItem>
-                      <MenuItem value="No">No</MenuItem>
-                    </TextField>
-                  </TableCell>
-                  <TableCell>{item.nextProcess}</TableCell>
-                  <TableCell>{item.status}</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      onClick={() => handleMoveToNext(index)}
-                      disabled={!item.nextProcess}
-                    >
-                      Move
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-              {filteredItems.length === 0 && (
-                <TableRow>
-                  <TableCell colSpan={7} align="center">
-                    No records found.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-
+            {item.hasStone === "Yes" && (
+      <input
+        type="number"
+        placeholder="Stone Wt"
+        value={item.stoneWeight || ""}
+        onChange={(e) => handleStoneWeightChange(index, e.target.value)}
+        style={{ width: "80px",height:'2rem', marginTop:'1rem' }}
+        required
+      />
+    )}
+          </td>
+          <td>{item.nextProcess}</td>
+          <td>{item.status}</td>
+          <td>
+            <button
+              onClick={() => handleMoveToNext(index)}
+              disabled={!item.nextProcess}
+            >
+              Move
+            </button>
+          </td>
+          <td>{item.remarks || ""}</td>
+        </tr>
+      ))}
+      {filteredItems.length === 0 && (
+        <tr>
+          <td colSpan="8" style={{ textAlign: "center" }}>
+            No records found.
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</div>
 
       </Box>
     </Box>
@@ -466,9 +373,6 @@ const Filing = () => {
     </Button>
   </DialogActions>
 </Dialog>
-
-
-
           <DialogActions>
             <Button onClick={closeModal} color="secondary">
               Cancel
@@ -480,69 +384,77 @@ const Filing = () => {
         </Dialog>
 
 
-        <div className="tables-container">
-        <div className="left-table"> 
-        <h3 style={{textAlign:'center', color:'#d40b4e',fontSize:'1.3rem',fontWeight:'bold'}}> Filing </h3>
-        <TableContainer component={Paper} style={{ marginTop: "1rem",width:"60rem"}}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >S.No</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Date</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Name</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Before Weight</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Purity</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Touch</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Difference</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >After Weight</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} >Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {entries.map((entry, index) => (
-                <TableRow key={index}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>{entry.date}</TableCell>
-                  <TableCell>{entry.name}</TableCell>
-                  <TableCell>{entry.beforeWeight}</TableCell>
-                  <TableCell>{entry.purity}</TableCell>
-                  <TableCell>{entry.touch}</TableCell>
-                  <TableCell>{entry.difference}</TableCell>
-                  <TableCell>{entry.afterWeight}</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      onClick={() => handleViewEdit(index)}
-                    >
-                      View
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        </div>
-        <div className="right-table">  
-<h3 style={{textAlign:'center',color:'#d40b4e',fontSize:'1.3rem',fontWeight:'bold'}}> Filing Items </h3>
-        <TableContainer component={Paper} style={{ marginTop: "1rem",width:"30rem"}} > 
-          <Table> 
-            <TableHead> 
-              <TableRow> 
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} > S.No</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} > Item Name</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} > Weight</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} > Touch</TableCell>
-                <TableCell className="table-head-cell" sx={{fontSize:'1rem'}} > Purity</TableCell>              
-              </TableRow>
-            </TableHead>
-          </Table>
-        </TableContainer>
-        </div>
 
-        </div>
-   
+   <div className="tables-container" style={{ display: 'flex', gap: '2rem' }}>
+  {/* Left Table - Filing */}
+  <div className="left-table">
+    <h3 style={{ textAlign: 'center', color: '#d40b4e', fontSize: '1.3rem', fontWeight: 'bold' }}>
+      Filing
+    </h3>
+    <div style={{ marginTop: '1rem', width: '60rem', overflowX: 'auto' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }} border="1">
+        <thead>
+          <tr>
+            <th style={{ fontSize: '1rem' }}>S.No</th>
+            <th style={{ fontSize: '1rem' }}>Date</th>
+            <th style={{ fontSize: '1rem' }}>Name</th>
+            <th style={{ fontSize: '1rem' }}>Before Weight</th>
+            <th style={{ fontSize: '1rem' }}>Purity</th>
+            <th style={{ fontSize: '1rem' }}>Touch</th>
+            <th style={{ fontSize: '1rem' }}>Difference</th>
+            <th style={{ fontSize: '1rem' }}>After Weight</th>
+            <th style={{ fontSize: '1rem' }}>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entries.map((entry, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{entry.date}</td>
+              <td>{entry.name}</td>
+              <td>{entry.beforeWeight}</td>
+              <td>{entry.purity}</td>
+              <td>{entry.touch}</td>
+              <td>{entry.difference}</td>
+              <td>{entry.afterWeight}</td>
+              <td>
+                <button onClick={() => handleViewEdit(index)}>View</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {/* Right Table - Filing Items */}
+  <div className="right-table">
+    <h3 style={{ textAlign: 'center', color: '#d40b4e', fontSize: '1.3rem', fontWeight: 'bold' }}>
+      Filing Items
+    </h3>
+    <div style={{ marginTop: '1rem', width: '30rem', overflowX: 'auto' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }} border="1">
+        <thead>
+          <tr>
+            <th style={{ fontSize: '1rem' }}>S.No</th>
+            <th style={{ fontSize: '1rem' }}>Item Name</th>
+            <th style={{ fontSize: '1rem' }}>Weight</th>
+            <th style={{ fontSize: '1rem' }}>Touch</th>
+            <th style={{ fontSize: '1rem' }}>Purity</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+            <tr >
+            
+            </tr>
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 
         {/* Snackbar for Toast */}
         <Snackbar
@@ -566,3 +478,5 @@ const Filing = () => {
 };
 
 export default Filing;
+
+
