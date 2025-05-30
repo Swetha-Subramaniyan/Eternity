@@ -8,7 +8,7 @@ const MasterAdditems = () => {
   const [items, setItems] = useState([]);
   const [itemName, setItemName] = useState("");
 
-  // Fetch items on component mount
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -22,7 +22,7 @@ const MasterAdditems = () => {
     fetchItems();
   }, []);
 
-  // Add item to backend
+
   const handleAddItem = async () => {
     if (!itemName) {
       alert("Please enter an item name.");
@@ -36,7 +36,7 @@ const MasterAdditems = () => {
       console.log(response)
 
       setItems((prevItems) => [...prevItems, response.data]);
-      setItemName(""); // Clear input
+      setItemName(""); 
     } catch (error) {
       console.error("Error adding item:", error);
     }

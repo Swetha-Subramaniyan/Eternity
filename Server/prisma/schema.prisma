@@ -14,150 +14,202 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ITEMTYPE {
+  Gold
+  Silver
+}
 
-enum itemType {
-  Gold 
-  Silver 
+enum CASTINGENTRYTYPE {
+  Items
+  ScrapItems
+}
+
+enum STONEOPTION {
+  WithStone
+  WithoutStone
 }
 
 model AddCustomer {
-  id    Int    @id @default(autoincrement())
-  name  String
-  phoneNumber  String
-  address String
-  email String? @unique
-  transcation CustomerTransaction[]
-
+  id          Int                  @id @default(autoincrement())
+  name        String
+  phoneNumber String
+  address     String
+  email       String?              @unique
+  transactions CustomerTransaction[]
 }
 
 model AddCasting {
-  id Int @id @default(autoincrement())
-  name String
-  phoneNumber String 
-  address String 
-  email String @unique
-
-  Castings Casting[]
-}
-
-model AddFiling{
-  id Int @id @default(autoincrement())
-  name String
-  phoneNumber String 
-  address String 
-  email String @unique
-}
-
-model AddSetting{
-  id Int @id @default(autoincrement())
-  name String
-  phoneNumber String 
-  address String 
-  email String @unique
-}
-
-model AddBuffing{
-  id Int @id @default(autoincrement())
-  name String
-  phoneNumber String 
-  address String 
-  email String @unique
-}
-
-model AddItem{
-  id Int @id @default(autoincrement())
-  name String
-  
-}
-
-model AddSupplierItem{
-  id Int @id @default(autoincrement())
-  name String
-  email String  @unique
+  id          Int            @id @default(autoincrement())
+  name        String
   phoneNumber String
-  address String 
+  address     String
+  email       String         @unique
+  entries     CastingEntry[]
 }
 
-model AddPurchaseStock{
-  id Int @id @default(autoincrement())
-  name String
-  createdAt DateTime @default(now())
-  item itemType
-  goldWeight Int?
-  goldTouch Float?
-  goldPurity Float?
-  goldRate Float?
-  goldtotalValue Float?
-  silverWeight Int?
-  silverTouch Float?
-  silverPurity Float?
-  silverRate Float?
+model AddFiling {
+  id          Int           @id @default(autoincrement())
+  name        String
+  phoneNumber String
+  address     String
+  email       String        @unique
+  filings     FilingEntry[]
+}
+
+model AddSetting {
+  id          Int           @id @default(autoincrement())
+  name        String
+  phoneNumber String
+  address     String
+  email       String        @unique
+  settings    SettingEntry[]
+}
+
+model AddBuffing {
+  id          Int           @id @default(autoincrement())
+  name        String
+  phoneNumber String
+  address     String
+  email       String        @unique
+  buffings    BuffingEntry[]
+}
+
+model AddSupplierItem {
+  id          Int     @id @default(autoincrement())
+  name        String
+  email       String  @unique
+  phoneNumber String
+  address     String
+}
+
+model AddPurchaseStock {
+  id              Int       @id @default(autoincrement())
+  name            String
+  createdAt       DateTime
+  item            ITEMTYPE
+  goldWeight      Int?
+  goldTouch       Float?
+  goldPurity      Float?
+  goldRate        Float?
+  goldtotalValue  Float?
+  silverWeight    Int?
+  silverTouch     Float?
+  silverPurity    Float?
+  silverRate      Float?
   silvertotalValue Float?
-
 }
-
-
-model Casting {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  name String
-  givenGold Float
-  givenTouch Float
-  purity Float
-  finalTouch Float
-  pureValue Float
-  copper Float
-  finalWeight Float 
-  afterWeight Float
-  wastage Float
-  castingId Int
-  addcastings AddCasting @relation(fields: [castingId], references: [id])
-  scrapitems CastingScrapItem[]
-  items CastingItem[]
-
-}
-
-model CastingItem {
-  id Int @id @default(autoincrement())
-  castingId Int
-  item String           
-  weight Float      
-  touch Float         
-  purity Float        
-  remarks String 
-  castings Casting @relation(fields: [castingId], references: [id])
-  scrapitems CastingScrapItem[]
-
-}
-
-model CastingScrapItem {
-  id Int @id @default(autoincrement())
-  castingId Int 
-  item String
-  weight Float
-  touch Float
-  purity Float
-  remarks String
-  castings CastingItem @relation(fields: [castingId], references: [id])
-  casting Casting[]
-}
-
 
 model CustomerTransaction {
   id         Int       @id @default(autoincrement())
   date       DateTime
   value      Float
-  type       String 
+  type       String
   touch      Float?
   purity     Float?
-  goldRate    Float?
-  customer   AddCustomer  @relation(fields: [customerId], references: [id])
+  goldRate   Float?
+  createdAt  DateTime
+  customer   AddCustomer @relation(fields: [customerId], references: [id])
   customerId Int
-  createdAt  DateTime  @default(now())
 }
 
+model AddItem {
+  id          Int            @id @default(autoincrement())
+  name        String
+  castingItems CastingItems[]
+}
 
+model CastingEntry {
+  id                  Int            @id @default(autoincrement())
+  createdAt           DateTime
+  given_gold          Float
+  given_touch         Float
+  purity              Float
+  final_touch         Float
+  pure_value          Float
+  copper              Float
+  final_weight        Float
+  casting_customer_id Int
+  casting_customer    AddCasting     @relation(fields: [casting_customer_id], references: [id])
+  items               CastingItems[]
+}
 
+model CastingItems {
+  id             Int            @id @default(autoincrement())
+  createdAt      DateTime
+  type           CASTINGENTRYTYPE
+  weight         Float
+  touch          Float
+  item_purity    Float
+  remarks        String?
+  after_weight   Float?
+  scrap_weight   Float?
+  scrap_wastage  Float?
+  item           AddItem        @relation(fields: [item_id], references: [id])
+  item_id        Int
+  castingEntry   CastingEntry   @relation(fields: [casting_entry_id], references: [id])
+  casting_entry_id Int
+  filingEntry    FilingEntry?
+  settingEntry   SettingEntry?
+  buffingEntry   BuffingEntry?
+  stock          Stock[]
+}
 
+model FilingEntry {
+  id               Int            @id @default(autoincrement())
+  createdAt        DateTime
+  filing_person    AddFiling      @relation(fields: [filing_person_id], references: [id])
+  filing_person_id Int
+  castingItem      CastingItems   @relation(fields: [casting_item_id], references: [id])
+  casting_item_id  Int            @unique
+  weight           Float
+  touch            Float
+  item_purity      Float
+  remarks          String?
+  after_weight     Float?
+  stone_option     STONEOPTION
+  settingEntry     SettingEntry[]
+  buffingEntries   BuffingEntry[]
+}
 
+model SettingEntry {
+  id               Int           @id @default(autoincrement())
+  createdAt        DateTime
+  setting_person   AddSetting    @relation(fields: [setting_person_id], references: [id])
+  setting_person_id Int
+  castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])
+  casting_item_id  Int           @unique
+  weight           Float
+  touch            Float
+  item_purity      Float
+  remarks          String?
+  after_weight     Float?
+  filingEntry      FilingEntry   @relation(fields: [filing_entry_id], references: [id])
+  filing_entry_id  Int
+  buffingEntries   BuffingEntry[]
+}
 
+model BuffingEntry {
+  id               Int           @id @default(autoincrement())
+  createdAt        DateTime
+  buffing_person   AddBuffing    @relation(fields: [buffing_person_id], references: [id])
+  buffing_person_id Int
+  castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])
+  casting_item_id  Int           @unique
+  weight           Float
+  touch            Float
+  item_purity      Float
+  remarks          String?
+  after_weight     Float?
+  settingEntry     SettingEntry  @relation(fields: [setting_entry_id], references: [id])
+  setting_entry_id Int
+  filingEntry      FilingEntry   @relation(fields: [filing_entry_id], references: [id])
+  filing_entry_id  Int
+  type             STONEOPTION
+}
+
+model Stock {
+  id               Int           @id @default(autoincrement())
+  createdAt        DateTime
+  castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])
+  casting_item_id  Int
+}

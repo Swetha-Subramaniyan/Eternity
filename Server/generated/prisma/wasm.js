@@ -160,11 +160,6 @@ exports.Prisma.AddBuffingScalarFieldEnum = {
   email: 'email'
 };
 
-exports.Prisma.AddItemScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
 exports.Prisma.AddSupplierItemScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -190,42 +185,6 @@ exports.Prisma.AddPurchaseStockScalarFieldEnum = {
   silvertotalValue: 'silvertotalValue'
 };
 
-exports.Prisma.CastingScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  name: 'name',
-  givenGold: 'givenGold',
-  givenTouch: 'givenTouch',
-  purity: 'purity',
-  finalTouch: 'finalTouch',
-  pureValue: 'pureValue',
-  copper: 'copper',
-  finalWeight: 'finalWeight',
-  afterWeight: 'afterWeight',
-  wastage: 'wastage',
-  castingId: 'castingId'
-};
-
-exports.Prisma.CastingItemScalarFieldEnum = {
-  id: 'id',
-  castingId: 'castingId',
-  item: 'item',
-  weight: 'weight',
-  touch: 'touch',
-  purity: 'purity',
-  remarks: 'remarks'
-};
-
-exports.Prisma.CastingScrapItemScalarFieldEnum = {
-  id: 'id',
-  castingId: 'castingId',
-  item: 'item',
-  weight: 'weight',
-  touch: 'touch',
-  purity: 'purity',
-  remarks: 'remarks'
-};
-
 exports.Prisma.CustomerTransactionScalarFieldEnum = {
   id: 'id',
   date: 'date',
@@ -234,8 +193,88 @@ exports.Prisma.CustomerTransactionScalarFieldEnum = {
   touch: 'touch',
   purity: 'purity',
   goldRate: 'goldRate',
-  customerId: 'customerId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  customerId: 'customerId'
+};
+
+exports.Prisma.AddItemScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.CastingEntryScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  given_gold: 'given_gold',
+  given_touch: 'given_touch',
+  purity: 'purity',
+  final_touch: 'final_touch',
+  pure_value: 'pure_value',
+  copper: 'copper',
+  final_weight: 'final_weight',
+  casting_customer_id: 'casting_customer_id'
+};
+
+exports.Prisma.CastingItemsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  type: 'type',
+  weight: 'weight',
+  touch: 'touch',
+  item_purity: 'item_purity',
+  remarks: 'remarks',
+  after_weight: 'after_weight',
+  scrap_weight: 'scrap_weight',
+  scrap_wastage: 'scrap_wastage',
+  item_id: 'item_id',
+  casting_entry_id: 'casting_entry_id'
+};
+
+exports.Prisma.FilingEntryScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  filing_person_id: 'filing_person_id',
+  casting_item_id: 'casting_item_id',
+  weight: 'weight',
+  touch: 'touch',
+  item_purity: 'item_purity',
+  remarks: 'remarks',
+  after_weight: 'after_weight',
+  stone_option: 'stone_option'
+};
+
+exports.Prisma.SettingEntryScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  setting_person_id: 'setting_person_id',
+  casting_item_id: 'casting_item_id',
+  weight: 'weight',
+  touch: 'touch',
+  item_purity: 'item_purity',
+  remarks: 'remarks',
+  after_weight: 'after_weight',
+  filing_entry_id: 'filing_entry_id'
+};
+
+exports.Prisma.BuffingEntryScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  buffing_person_id: 'buffing_person_id',
+  casting_item_id: 'casting_item_id',
+  weight: 'weight',
+  touch: 'touch',
+  item_purity: 'item_purity',
+  remarks: 'remarks',
+  after_weight: 'after_weight',
+  setting_entry_id: 'setting_entry_id',
+  filing_entry_id: 'filing_entry_id',
+  type: 'type'
+};
+
+exports.Prisma.StockScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  casting_item_id: 'casting_item_id'
 };
 
 exports.Prisma.SortOrder = {
@@ -283,10 +322,6 @@ exports.Prisma.AddBuffingOrderByRelevanceFieldEnum = {
   email: 'email'
 };
 
-exports.Prisma.AddItemOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
 exports.Prisma.AddSupplierItemOrderByRelevanceFieldEnum = {
   name: 'name',
   email: 'email',
@@ -298,26 +333,42 @@ exports.Prisma.AddPurchaseStockOrderByRelevanceFieldEnum = {
   name: 'name'
 };
 
-exports.Prisma.CastingOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.CastingItemOrderByRelevanceFieldEnum = {
-  item: 'item',
-  remarks: 'remarks'
-};
-
-exports.Prisma.CastingScrapItemOrderByRelevanceFieldEnum = {
-  item: 'item',
-  remarks: 'remarks'
-};
-
 exports.Prisma.CustomerTransactionOrderByRelevanceFieldEnum = {
   type: 'type'
 };
-exports.itemType = exports.$Enums.itemType = {
+
+exports.Prisma.AddItemOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.CastingItemsOrderByRelevanceFieldEnum = {
+  remarks: 'remarks'
+};
+
+exports.Prisma.FilingEntryOrderByRelevanceFieldEnum = {
+  remarks: 'remarks'
+};
+
+exports.Prisma.SettingEntryOrderByRelevanceFieldEnum = {
+  remarks: 'remarks'
+};
+
+exports.Prisma.BuffingEntryOrderByRelevanceFieldEnum = {
+  remarks: 'remarks'
+};
+exports.ITEMTYPE = exports.$Enums.ITEMTYPE = {
   Gold: 'Gold',
   Silver: 'Silver'
+};
+
+exports.CASTINGENTRYTYPE = exports.$Enums.CASTINGENTRYTYPE = {
+  Items: 'Items',
+  ScrapItems: 'ScrapItems'
+};
+
+exports.STONEOPTION = exports.$Enums.STONEOPTION = {
+  WithStone: 'WithStone',
+  WithoutStone: 'WithoutStone'
 };
 
 exports.Prisma.ModelName = {
@@ -326,13 +377,16 @@ exports.Prisma.ModelName = {
   AddFiling: 'AddFiling',
   AddSetting: 'AddSetting',
   AddBuffing: 'AddBuffing',
-  AddItem: 'AddItem',
   AddSupplierItem: 'AddSupplierItem',
   AddPurchaseStock: 'AddPurchaseStock',
-  Casting: 'Casting',
-  CastingItem: 'CastingItem',
-  CastingScrapItem: 'CastingScrapItem',
-  CustomerTransaction: 'CustomerTransaction'
+  CustomerTransaction: 'CustomerTransaction',
+  AddItem: 'AddItem',
+  CastingEntry: 'CastingEntry',
+  CastingItems: 'CastingItems',
+  FilingEntry: 'FilingEntry',
+  SettingEntry: 'SettingEntry',
+  BuffingEntry: 'BuffingEntry',
+  Stock: 'Stock'
 };
 
 /**

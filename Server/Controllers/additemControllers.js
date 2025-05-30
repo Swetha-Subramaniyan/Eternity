@@ -10,6 +10,7 @@ export const createAddItems =  async (req,res) =>{
             }
         ) 
         res.status(201).json(newName)
+        console.log(newName)
 
     }catch(error){
         res.status(400).json(error)
