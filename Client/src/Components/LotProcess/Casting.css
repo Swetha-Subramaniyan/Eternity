@@ -49,8 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* color: #f4f1f1; */
-  /* background-color: #5b5353; */
+
   
 }
 
@@ -156,3 +155,77 @@
   width: fit-content;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  flex: 1 1 100%;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px; /* adjust as needed */
+}
+
+.form-field label {
+  margin-bottom: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+
+}
+
+.form-field input {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+
+
+
+
+
+
+/* 
+Right Table 
+
+
+<div style={{ width: '30rem', marginLeft: '1rem' }}>
+  <h3 style={{ textAlign: 'center', color: '#d40b4e', fontSize: '1.3rem', fontWeight: 'bold' }}>Casting Items</h3>
+
+  <table   style={{ marginTop: "1rem", width: "100%" }}>
+    <thead>
+      <tr>
+        <th> S.No </th>
+        <th> Item Name</th>
+        <th>Weight </th>
+        <th>Touch </th>
+        <th>Purity </th>
+      </tr>
+    </thead>
+  </table>
+</div> */
