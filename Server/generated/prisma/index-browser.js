@@ -205,6 +205,7 @@ exports.Prisma.AddItemScalarFieldEnum = {
 exports.Prisma.CastingEntryScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  date: 'date',
   given_gold: 'given_gold',
   given_touch: 'given_touch',
   purity: 'purity',
@@ -219,6 +220,7 @@ exports.Prisma.CastingItemsScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   type: 'type',
+  item_id: 'item_id',
   weight: 'weight',
   touch: 'touch',
   item_purity: 'item_purity',
@@ -226,7 +228,6 @@ exports.Prisma.CastingItemsScalarFieldEnum = {
   after_weight: 'after_weight',
   scrap_weight: 'scrap_weight',
   scrap_wastage: 'scrap_wastage',
-  item_id: 'item_id',
   casting_entry_id: 'casting_entry_id'
 };
 

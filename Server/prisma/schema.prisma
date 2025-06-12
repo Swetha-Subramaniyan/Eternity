@@ -32,60 +32,60 @@ enum STONEOPTION {
 model AddCustomer {
   id          Int                  @id @default(autoincrement())
   name        String
-  phoneNumber String
-  address     String
-  email       String?              @unique
+  phoneNumber String?
+  address     String?
+  email       String?             
   transactions CustomerTransaction[]
 }
 
 model AddCasting {
   id          Int            @id @default(autoincrement())
   name        String
-  phoneNumber String
-  address     String
-  email       String         @unique
+  phoneNumber String?
+  address     String?
+  email       String?   
   entries     CastingEntry[]
 }
 
 model AddFiling {
   id          Int           @id @default(autoincrement())
   name        String
-  phoneNumber String
-  address     String
-  email       String        @unique
+  phoneNumber String?
+  address     String?
+  email       String?       
   filings     FilingEntry[]
 }
 
 model AddSetting {
   id          Int           @id @default(autoincrement())
   name        String
-  phoneNumber String
-  address     String
-  email       String        @unique
+  phoneNumber String?
+  address     String?
+  email       String?        
   settings    SettingEntry[]
 }
 
 model AddBuffing {
   id          Int           @id @default(autoincrement())
   name        String
-  phoneNumber String
-  address     String
-  email       String        @unique
+  phoneNumber String?
+  address     String?
+  email       String?       
   buffings    BuffingEntry[]
 }
 
 model AddSupplierItem {
   id          Int     @id @default(autoincrement())
   name        String
-  email       String  @unique
-  phoneNumber String
-  address     String
+  email       String?
+  phoneNumber String?
+  address     String?
 }
 
 model AddPurchaseStock {
   id              Int       @id @default(autoincrement())
   name            String
-  createdAt       DateTime
+  createdAt       DateTime 
   item            ITEMTYPE
   goldWeight      Int?
   goldTouch       Float?
@@ -101,13 +101,13 @@ model AddPurchaseStock {
 
 model CustomerTransaction {
   id         Int       @id @default(autoincrement())
-  date       DateTime
+  date       DateTime 
   value      Float
   type       String
   touch      Float?
   purity     Float?
   goldRate   Float?
-  createdAt  DateTime
+  createdAt  DateTime 
   customer   AddCustomer @relation(fields: [customerId], references: [id])
   customerId Int
 }
@@ -120,7 +120,8 @@ model AddItem {
 
 model CastingEntry {
   id                  Int            @id @default(autoincrement())
-  createdAt           DateTime
+  createdAt           DateTime   @default(now())
+  date                DateTime  
   given_gold          Float
   given_touch         Float
   purity              Float
@@ -135,8 +136,9 @@ model CastingEntry {
 
 model CastingItems {
   id             Int            @id @default(autoincrement())
-  createdAt      DateTime
+  createdAt      DateTime @default(now())
   type           CASTINGENTRYTYPE
+  item_id        Int
   weight         Float
   touch          Float
   item_purity    Float
@@ -145,7 +147,7 @@ model CastingItems {
   scrap_weight   Float?
   scrap_wastage  Float?
   item           AddItem        @relation(fields: [item_id], references: [id])
-  item_id        Int
+
   castingEntry   CastingEntry   @relation(fields: [casting_entry_id], references: [id])
   casting_entry_id Int
   filingEntry    FilingEntry?
@@ -156,7 +158,7 @@ model CastingItems {
 
 model FilingEntry {
   id               Int            @id @default(autoincrement())
-  createdAt        DateTime
+  createdAt        DateTime  @default(now())
   filing_person    AddFiling      @relation(fields: [filing_person_id], references: [id])
   filing_person_id Int
   castingItem      CastingItems   @relation(fields: [casting_item_id], references: [id])
@@ -173,7 +175,7 @@ model FilingEntry {
 
 model SettingEntry {
   id               Int           @id @default(autoincrement())
-  createdAt        DateTime
+  createdAt        DateTime  @default(now())
   setting_person   AddSetting    @relation(fields: [setting_person_id], references: [id])
   setting_person_id Int
   castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])
@@ -190,7 +192,7 @@ model SettingEntry {
 
 model BuffingEntry {
   id               Int           @id @default(autoincrement())
-  createdAt        DateTime
+  createdAt        DateTime @default(now())
   buffing_person   AddBuffing    @relation(fields: [buffing_person_id], references: [id])
   buffing_person_id Int
   castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])
@@ -209,7 +211,7 @@ model BuffingEntry {
 
 model Stock {
   id               Int           @id @default(autoincrement())
-  createdAt        DateTime
+  createdAt        DateTime  @default(now())
   castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])
   casting_item_id  Int
 }

@@ -2550,8 +2550,8 @@ export namespace Prisma {
   export type AddCustomerGroupByOutputType = {
     id: number
     name: string
-    phoneNumber: string
-    address: string
+    phoneNumber: string | null
+    address: string | null
     email: string | null
     _count: AddCustomerCountAggregateOutputType | null
     _avg: AddCustomerAvgAggregateOutputType | null
@@ -2608,8 +2608,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      phoneNumber: string
-      address: string
+      phoneNumber: string | null
+      address: string | null
       email: string | null
     }, ExtArgs["result"]["addCustomer"]>
     composites: {}
@@ -3539,9 +3539,9 @@ export namespace Prisma {
   export type AddCastingGroupByOutputType = {
     id: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber: string | null
+    address: string | null
+    email: string | null
     _count: AddCastingCountAggregateOutputType | null
     _avg: AddCastingAvgAggregateOutputType | null
     _sum: AddCastingSumAggregateOutputType | null
@@ -3597,9 +3597,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      phoneNumber: string
-      address: string
-      email: string
+      phoneNumber: string | null
+      address: string | null
+      email: string | null
     }, ExtArgs["result"]["addCasting"]>
     composites: {}
   }
@@ -4528,9 +4528,9 @@ export namespace Prisma {
   export type AddFilingGroupByOutputType = {
     id: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber: string | null
+    address: string | null
+    email: string | null
     _count: AddFilingCountAggregateOutputType | null
     _avg: AddFilingAvgAggregateOutputType | null
     _sum: AddFilingSumAggregateOutputType | null
@@ -4586,9 +4586,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      phoneNumber: string
-      address: string
-      email: string
+      phoneNumber: string | null
+      address: string | null
+      email: string | null
     }, ExtArgs["result"]["addFiling"]>
     composites: {}
   }
@@ -5517,9 +5517,9 @@ export namespace Prisma {
   export type AddSettingGroupByOutputType = {
     id: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber: string | null
+    address: string | null
+    email: string | null
     _count: AddSettingCountAggregateOutputType | null
     _avg: AddSettingAvgAggregateOutputType | null
     _sum: AddSettingSumAggregateOutputType | null
@@ -5575,9 +5575,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      phoneNumber: string
-      address: string
-      email: string
+      phoneNumber: string | null
+      address: string | null
+      email: string | null
     }, ExtArgs["result"]["addSetting"]>
     composites: {}
   }
@@ -6506,9 +6506,9 @@ export namespace Prisma {
   export type AddBuffingGroupByOutputType = {
     id: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber: string | null
+    address: string | null
+    email: string | null
     _count: AddBuffingCountAggregateOutputType | null
     _avg: AddBuffingAvgAggregateOutputType | null
     _sum: AddBuffingSumAggregateOutputType | null
@@ -6564,9 +6564,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      phoneNumber: string
-      address: string
-      email: string
+      phoneNumber: string | null
+      address: string | null
+      email: string | null
     }, ExtArgs["result"]["addBuffing"]>
     composites: {}
   }
@@ -7495,9 +7495,9 @@ export namespace Prisma {
   export type AddSupplierItemGroupByOutputType = {
     id: number
     name: string
-    email: string
-    phoneNumber: string
-    address: string
+    email: string | null
+    phoneNumber: string | null
+    address: string | null
     _count: AddSupplierItemCountAggregateOutputType | null
     _avg: AddSupplierItemAvgAggregateOutputType | null
     _sum: AddSupplierItemSumAggregateOutputType | null
@@ -7545,9 +7545,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      email: string
-      phoneNumber: string
-      address: string
+      email: string | null
+      phoneNumber: string | null
+      address: string | null
     }, ExtArgs["result"]["addSupplierItem"]>
     composites: {}
   }
@@ -11320,6 +11320,7 @@ export namespace Prisma {
   export type CastingEntryMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    date: Date | null
     given_gold: number | null
     given_touch: number | null
     purity: number | null
@@ -11333,6 +11334,7 @@ export namespace Prisma {
   export type CastingEntryMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    date: Date | null
     given_gold: number | null
     given_touch: number | null
     purity: number | null
@@ -11346,6 +11348,7 @@ export namespace Prisma {
   export type CastingEntryCountAggregateOutputType = {
     id: number
     createdAt: number
+    date: number
     given_gold: number
     given_touch: number
     purity: number
@@ -11385,6 +11388,7 @@ export namespace Prisma {
   export type CastingEntryMinAggregateInputType = {
     id?: true
     createdAt?: true
+    date?: true
     given_gold?: true
     given_touch?: true
     purity?: true
@@ -11398,6 +11402,7 @@ export namespace Prisma {
   export type CastingEntryMaxAggregateInputType = {
     id?: true
     createdAt?: true
+    date?: true
     given_gold?: true
     given_touch?: true
     purity?: true
@@ -11411,6 +11416,7 @@ export namespace Prisma {
   export type CastingEntryCountAggregateInputType = {
     id?: true
     createdAt?: true
+    date?: true
     given_gold?: true
     given_touch?: true
     purity?: true
@@ -11511,6 +11517,7 @@ export namespace Prisma {
   export type CastingEntryGroupByOutputType = {
     id: number
     createdAt: Date
+    date: Date
     given_gold: number
     given_touch: number
     purity: number
@@ -11543,6 +11550,7 @@ export namespace Prisma {
   export type CastingEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    date?: boolean
     given_gold?: boolean
     given_touch?: boolean
     purity?: boolean
@@ -11561,6 +11569,7 @@ export namespace Prisma {
   export type CastingEntrySelectScalar = {
     id?: boolean
     createdAt?: boolean
+    date?: boolean
     given_gold?: boolean
     given_touch?: boolean
     purity?: boolean
@@ -11571,7 +11580,7 @@ export namespace Prisma {
     casting_customer_id?: boolean
   }
 
-  export type CastingEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "given_gold" | "given_touch" | "purity" | "final_touch" | "pure_value" | "copper" | "final_weight" | "casting_customer_id", ExtArgs["result"]["castingEntry"]>
+  export type CastingEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "date" | "given_gold" | "given_touch" | "purity" | "final_touch" | "pure_value" | "copper" | "final_weight" | "casting_customer_id", ExtArgs["result"]["castingEntry"]>
   export type CastingEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
     items?: boolean | CastingEntry$itemsArgs<ExtArgs>
@@ -11587,6 +11596,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
+      date: Date
       given_gold: number
       given_touch: number
       purity: number
@@ -11968,6 +11978,7 @@ export namespace Prisma {
   interface CastingEntryFieldRefs {
     readonly id: FieldRef<"CastingEntry", 'Int'>
     readonly createdAt: FieldRef<"CastingEntry", 'DateTime'>
+    readonly date: FieldRef<"CastingEntry", 'DateTime'>
     readonly given_gold: FieldRef<"CastingEntry", 'Float'>
     readonly given_touch: FieldRef<"CastingEntry", 'Float'>
     readonly purity: FieldRef<"CastingEntry", 'Float'>
@@ -12375,25 +12386,25 @@ export namespace Prisma {
 
   export type CastingItemsAvgAggregateOutputType = {
     id: number | null
+    item_id: number | null
     weight: number | null
     touch: number | null
     item_purity: number | null
     after_weight: number | null
     scrap_weight: number | null
     scrap_wastage: number | null
-    item_id: number | null
     casting_entry_id: number | null
   }
 
   export type CastingItemsSumAggregateOutputType = {
     id: number | null
+    item_id: number | null
     weight: number | null
     touch: number | null
     item_purity: number | null
     after_weight: number | null
     scrap_weight: number | null
     scrap_wastage: number | null
-    item_id: number | null
     casting_entry_id: number | null
   }
 
@@ -12401,6 +12412,7 @@ export namespace Prisma {
     id: number | null
     createdAt: Date | null
     type: $Enums.CASTINGENTRYTYPE | null
+    item_id: number | null
     weight: number | null
     touch: number | null
     item_purity: number | null
@@ -12408,7 +12420,6 @@ export namespace Prisma {
     after_weight: number | null
     scrap_weight: number | null
     scrap_wastage: number | null
-    item_id: number | null
     casting_entry_id: number | null
   }
 
@@ -12416,6 +12427,7 @@ export namespace Prisma {
     id: number | null
     createdAt: Date | null
     type: $Enums.CASTINGENTRYTYPE | null
+    item_id: number | null
     weight: number | null
     touch: number | null
     item_purity: number | null
@@ -12423,7 +12435,6 @@ export namespace Prisma {
     after_weight: number | null
     scrap_weight: number | null
     scrap_wastage: number | null
-    item_id: number | null
     casting_entry_id: number | null
   }
 
@@ -12431,6 +12442,7 @@ export namespace Prisma {
     id: number
     createdAt: number
     type: number
+    item_id: number
     weight: number
     touch: number
     item_purity: number
@@ -12438,7 +12450,6 @@ export namespace Prisma {
     after_weight: number
     scrap_weight: number
     scrap_wastage: number
-    item_id: number
     casting_entry_id: number
     _all: number
   }
@@ -12446,25 +12457,25 @@ export namespace Prisma {
 
   export type CastingItemsAvgAggregateInputType = {
     id?: true
+    item_id?: true
     weight?: true
     touch?: true
     item_purity?: true
     after_weight?: true
     scrap_weight?: true
     scrap_wastage?: true
-    item_id?: true
     casting_entry_id?: true
   }
 
   export type CastingItemsSumAggregateInputType = {
     id?: true
+    item_id?: true
     weight?: true
     touch?: true
     item_purity?: true
     after_weight?: true
     scrap_weight?: true
     scrap_wastage?: true
-    item_id?: true
     casting_entry_id?: true
   }
 
@@ -12472,6 +12483,7 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     type?: true
+    item_id?: true
     weight?: true
     touch?: true
     item_purity?: true
@@ -12479,7 +12491,6 @@ export namespace Prisma {
     after_weight?: true
     scrap_weight?: true
     scrap_wastage?: true
-    item_id?: true
     casting_entry_id?: true
   }
 
@@ -12487,6 +12498,7 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     type?: true
+    item_id?: true
     weight?: true
     touch?: true
     item_purity?: true
@@ -12494,7 +12506,6 @@ export namespace Prisma {
     after_weight?: true
     scrap_weight?: true
     scrap_wastage?: true
-    item_id?: true
     casting_entry_id?: true
   }
 
@@ -12502,6 +12513,7 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     type?: true
+    item_id?: true
     weight?: true
     touch?: true
     item_purity?: true
@@ -12509,7 +12521,6 @@ export namespace Prisma {
     after_weight?: true
     scrap_weight?: true
     scrap_wastage?: true
-    item_id?: true
     casting_entry_id?: true
     _all?: true
   }
@@ -12604,6 +12615,7 @@ export namespace Prisma {
     id: number
     createdAt: Date
     type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
     touch: number
     item_purity: number
@@ -12611,7 +12623,6 @@ export namespace Prisma {
     after_weight: number | null
     scrap_weight: number | null
     scrap_wastage: number | null
-    item_id: number
     casting_entry_id: number
     _count: CastingItemsCountAggregateOutputType | null
     _avg: CastingItemsAvgAggregateOutputType | null
@@ -12638,6 +12649,7 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     type?: boolean
+    item_id?: boolean
     weight?: boolean
     touch?: boolean
     item_purity?: boolean
@@ -12645,7 +12657,6 @@ export namespace Prisma {
     after_weight?: boolean
     scrap_weight?: boolean
     scrap_wastage?: boolean
-    item_id?: boolean
     casting_entry_id?: boolean
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     castingEntry?: boolean | CastingEntryDefaultArgs<ExtArgs>
@@ -12662,6 +12673,7 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     type?: boolean
+    item_id?: boolean
     weight?: boolean
     touch?: boolean
     item_purity?: boolean
@@ -12669,11 +12681,10 @@ export namespace Prisma {
     after_weight?: boolean
     scrap_weight?: boolean
     scrap_wastage?: boolean
-    item_id?: boolean
     casting_entry_id?: boolean
   }
 
-  export type CastingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "weight" | "touch" | "item_purity" | "remarks" | "after_weight" | "scrap_weight" | "scrap_wastage" | "item_id" | "casting_entry_id", ExtArgs["result"]["castingItems"]>
+  export type CastingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "item_id" | "weight" | "touch" | "item_purity" | "remarks" | "after_weight" | "scrap_weight" | "scrap_wastage" | "casting_entry_id", ExtArgs["result"]["castingItems"]>
   export type CastingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     castingEntry?: boolean | CastingEntryDefaultArgs<ExtArgs>
@@ -12698,6 +12709,7 @@ export namespace Prisma {
       id: number
       createdAt: Date
       type: $Enums.CASTINGENTRYTYPE
+      item_id: number
       weight: number
       touch: number
       item_purity: number
@@ -12705,7 +12717,6 @@ export namespace Prisma {
       after_weight: number | null
       scrap_weight: number | null
       scrap_wastage: number | null
-      item_id: number
       casting_entry_id: number
     }, ExtArgs["result"]["castingItems"]>
     composites: {}
@@ -13085,6 +13096,7 @@ export namespace Prisma {
     readonly id: FieldRef<"CastingItems", 'Int'>
     readonly createdAt: FieldRef<"CastingItems", 'DateTime'>
     readonly type: FieldRef<"CastingItems", 'CASTINGENTRYTYPE'>
+    readonly item_id: FieldRef<"CastingItems", 'Int'>
     readonly weight: FieldRef<"CastingItems", 'Float'>
     readonly touch: FieldRef<"CastingItems", 'Float'>
     readonly item_purity: FieldRef<"CastingItems", 'Float'>
@@ -13092,7 +13104,6 @@ export namespace Prisma {
     readonly after_weight: FieldRef<"CastingItems", 'Float'>
     readonly scrap_weight: FieldRef<"CastingItems", 'Float'>
     readonly scrap_wastage: FieldRef<"CastingItems", 'Float'>
-    readonly item_id: FieldRef<"CastingItems", 'Int'>
     readonly casting_entry_id: FieldRef<"CastingItems", 'Int'>
   }
     
@@ -17879,6 +17890,7 @@ export namespace Prisma {
   export const CastingEntryScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
+    date: 'date',
     given_gold: 'given_gold',
     given_touch: 'given_touch',
     purity: 'purity',
@@ -17896,6 +17908,7 @@ export namespace Prisma {
     id: 'id',
     createdAt: 'createdAt',
     type: 'type',
+    item_id: 'item_id',
     weight: 'weight',
     touch: 'touch',
     item_purity: 'item_purity',
@@ -17903,7 +17916,6 @@ export namespace Prisma {
     after_weight: 'after_weight',
     scrap_weight: 'scrap_weight',
     scrap_wastage: 'scrap_wastage',
-    item_id: 'item_id',
     casting_entry_id: 'casting_entry_id'
   };
 
@@ -18157,8 +18169,8 @@ export namespace Prisma {
     NOT?: AddCustomerWhereInput | AddCustomerWhereInput[]
     id?: IntFilter<"AddCustomer"> | number
     name?: StringFilter<"AddCustomer"> | string
-    phoneNumber?: StringFilter<"AddCustomer"> | string
-    address?: StringFilter<"AddCustomer"> | string
+    phoneNumber?: StringNullableFilter<"AddCustomer"> | string | null
+    address?: StringNullableFilter<"AddCustomer"> | string | null
     email?: StringNullableFilter<"AddCustomer"> | string | null
     transactions?: CustomerTransactionListRelationFilter
   }
@@ -18166,8 +18178,8 @@ export namespace Prisma {
   export type AddCustomerOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     transactions?: CustomerTransactionOrderByRelationAggregateInput
     _relevance?: AddCustomerOrderByRelevanceInput
@@ -18175,21 +18187,21 @@ export namespace Prisma {
 
   export type AddCustomerWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    email?: string
     AND?: AddCustomerWhereInput | AddCustomerWhereInput[]
     OR?: AddCustomerWhereInput[]
     NOT?: AddCustomerWhereInput | AddCustomerWhereInput[]
     name?: StringFilter<"AddCustomer"> | string
-    phoneNumber?: StringFilter<"AddCustomer"> | string
-    address?: StringFilter<"AddCustomer"> | string
+    phoneNumber?: StringNullableFilter<"AddCustomer"> | string | null
+    address?: StringNullableFilter<"AddCustomer"> | string | null
+    email?: StringNullableFilter<"AddCustomer"> | string | null
     transactions?: CustomerTransactionListRelationFilter
-  }, "id" | "email">
+  }, "id">
 
   export type AddCustomerOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     _count?: AddCustomerCountOrderByAggregateInput
     _avg?: AddCustomerAvgOrderByAggregateInput
@@ -18204,8 +18216,8 @@ export namespace Prisma {
     NOT?: AddCustomerScalarWhereWithAggregatesInput | AddCustomerScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddCustomer"> | number
     name?: StringWithAggregatesFilter<"AddCustomer"> | string
-    phoneNumber?: StringWithAggregatesFilter<"AddCustomer"> | string
-    address?: StringWithAggregatesFilter<"AddCustomer"> | string
+    phoneNumber?: StringNullableWithAggregatesFilter<"AddCustomer"> | string | null
+    address?: StringNullableWithAggregatesFilter<"AddCustomer"> | string | null
     email?: StringNullableWithAggregatesFilter<"AddCustomer"> | string | null
   }
 
@@ -18215,40 +18227,40 @@ export namespace Prisma {
     NOT?: AddCastingWhereInput | AddCastingWhereInput[]
     id?: IntFilter<"AddCasting"> | number
     name?: StringFilter<"AddCasting"> | string
-    phoneNumber?: StringFilter<"AddCasting"> | string
-    address?: StringFilter<"AddCasting"> | string
-    email?: StringFilter<"AddCasting"> | string
+    phoneNumber?: StringNullableFilter<"AddCasting"> | string | null
+    address?: StringNullableFilter<"AddCasting"> | string | null
+    email?: StringNullableFilter<"AddCasting"> | string | null
     entries?: CastingEntryListRelationFilter
   }
 
   export type AddCastingOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
-    email?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     entries?: CastingEntryOrderByRelationAggregateInput
     _relevance?: AddCastingOrderByRelevanceInput
   }
 
   export type AddCastingWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    email?: string
     AND?: AddCastingWhereInput | AddCastingWhereInput[]
     OR?: AddCastingWhereInput[]
     NOT?: AddCastingWhereInput | AddCastingWhereInput[]
     name?: StringFilter<"AddCasting"> | string
-    phoneNumber?: StringFilter<"AddCasting"> | string
-    address?: StringFilter<"AddCasting"> | string
+    phoneNumber?: StringNullableFilter<"AddCasting"> | string | null
+    address?: StringNullableFilter<"AddCasting"> | string | null
+    email?: StringNullableFilter<"AddCasting"> | string | null
     entries?: CastingEntryListRelationFilter
-  }, "id" | "email">
+  }, "id">
 
   export type AddCastingOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
-    email?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     _count?: AddCastingCountOrderByAggregateInput
     _avg?: AddCastingAvgOrderByAggregateInput
     _max?: AddCastingMaxOrderByAggregateInput
@@ -18262,9 +18274,9 @@ export namespace Prisma {
     NOT?: AddCastingScalarWhereWithAggregatesInput | AddCastingScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddCasting"> | number
     name?: StringWithAggregatesFilter<"AddCasting"> | string
-    phoneNumber?: StringWithAggregatesFilter<"AddCasting"> | string
-    address?: StringWithAggregatesFilter<"AddCasting"> | string
-    email?: StringWithAggregatesFilter<"AddCasting"> | string
+    phoneNumber?: StringNullableWithAggregatesFilter<"AddCasting"> | string | null
+    address?: StringNullableWithAggregatesFilter<"AddCasting"> | string | null
+    email?: StringNullableWithAggregatesFilter<"AddCasting"> | string | null
   }
 
   export type AddFilingWhereInput = {
@@ -18273,40 +18285,40 @@ export namespace Prisma {
     NOT?: AddFilingWhereInput | AddFilingWhereInput[]
     id?: IntFilter<"AddFiling"> | number
     name?: StringFilter<"AddFiling"> | string
-    phoneNumber?: StringFilter<"AddFiling"> | string
-    address?: StringFilter<"AddFiling"> | string
-    email?: StringFilter<"AddFiling"> | string
+    phoneNumber?: StringNullableFilter<"AddFiling"> | string | null
+    address?: StringNullableFilter<"AddFiling"> | string | null
+    email?: StringNullableFilter<"AddFiling"> | string | null
     filings?: FilingEntryListRelationFilter
   }
 
   export type AddFilingOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
-    email?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     filings?: FilingEntryOrderByRelationAggregateInput
     _relevance?: AddFilingOrderByRelevanceInput
   }
 
   export type AddFilingWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    email?: string
     AND?: AddFilingWhereInput | AddFilingWhereInput[]
     OR?: AddFilingWhereInput[]
     NOT?: AddFilingWhereInput | AddFilingWhereInput[]
     name?: StringFilter<"AddFiling"> | string
-    phoneNumber?: StringFilter<"AddFiling"> | string
-    address?: StringFilter<"AddFiling"> | string
+    phoneNumber?: StringNullableFilter<"AddFiling"> | string | null
+    address?: StringNullableFilter<"AddFiling"> | string | null
+    email?: StringNullableFilter<"AddFiling"> | string | null
     filings?: FilingEntryListRelationFilter
-  }, "id" | "email">
+  }, "id">
 
   export type AddFilingOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
-    email?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     _count?: AddFilingCountOrderByAggregateInput
     _avg?: AddFilingAvgOrderByAggregateInput
     _max?: AddFilingMaxOrderByAggregateInput
@@ -18320,9 +18332,9 @@ export namespace Prisma {
     NOT?: AddFilingScalarWhereWithAggregatesInput | AddFilingScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddFiling"> | number
     name?: StringWithAggregatesFilter<"AddFiling"> | string
-    phoneNumber?: StringWithAggregatesFilter<"AddFiling"> | string
-    address?: StringWithAggregatesFilter<"AddFiling"> | string
-    email?: StringWithAggregatesFilter<"AddFiling"> | string
+    phoneNumber?: StringNullableWithAggregatesFilter<"AddFiling"> | string | null
+    address?: StringNullableWithAggregatesFilter<"AddFiling"> | string | null
+    email?: StringNullableWithAggregatesFilter<"AddFiling"> | string | null
   }
 
   export type AddSettingWhereInput = {
@@ -18331,40 +18343,40 @@ export namespace Prisma {
     NOT?: AddSettingWhereInput | AddSettingWhereInput[]
     id?: IntFilter<"AddSetting"> | number
     name?: StringFilter<"AddSetting"> | string
-    phoneNumber?: StringFilter<"AddSetting"> | string
-    address?: StringFilter<"AddSetting"> | string
-    email?: StringFilter<"AddSetting"> | string
+    phoneNumber?: StringNullableFilter<"AddSetting"> | string | null
+    address?: StringNullableFilter<"AddSetting"> | string | null
+    email?: StringNullableFilter<"AddSetting"> | string | null
     settings?: SettingEntryListRelationFilter
   }
 
   export type AddSettingOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
-    email?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     settings?: SettingEntryOrderByRelationAggregateInput
     _relevance?: AddSettingOrderByRelevanceInput
   }
 
   export type AddSettingWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    email?: string
     AND?: AddSettingWhereInput | AddSettingWhereInput[]
     OR?: AddSettingWhereInput[]
     NOT?: AddSettingWhereInput | AddSettingWhereInput[]
     name?: StringFilter<"AddSetting"> | string
-    phoneNumber?: StringFilter<"AddSetting"> | string
-    address?: StringFilter<"AddSetting"> | string
+    phoneNumber?: StringNullableFilter<"AddSetting"> | string | null
+    address?: StringNullableFilter<"AddSetting"> | string | null
+    email?: StringNullableFilter<"AddSetting"> | string | null
     settings?: SettingEntryListRelationFilter
-  }, "id" | "email">
+  }, "id">
 
   export type AddSettingOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
-    email?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     _count?: AddSettingCountOrderByAggregateInput
     _avg?: AddSettingAvgOrderByAggregateInput
     _max?: AddSettingMaxOrderByAggregateInput
@@ -18378,9 +18390,9 @@ export namespace Prisma {
     NOT?: AddSettingScalarWhereWithAggregatesInput | AddSettingScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddSetting"> | number
     name?: StringWithAggregatesFilter<"AddSetting"> | string
-    phoneNumber?: StringWithAggregatesFilter<"AddSetting"> | string
-    address?: StringWithAggregatesFilter<"AddSetting"> | string
-    email?: StringWithAggregatesFilter<"AddSetting"> | string
+    phoneNumber?: StringNullableWithAggregatesFilter<"AddSetting"> | string | null
+    address?: StringNullableWithAggregatesFilter<"AddSetting"> | string | null
+    email?: StringNullableWithAggregatesFilter<"AddSetting"> | string | null
   }
 
   export type AddBuffingWhereInput = {
@@ -18389,40 +18401,40 @@ export namespace Prisma {
     NOT?: AddBuffingWhereInput | AddBuffingWhereInput[]
     id?: IntFilter<"AddBuffing"> | number
     name?: StringFilter<"AddBuffing"> | string
-    phoneNumber?: StringFilter<"AddBuffing"> | string
-    address?: StringFilter<"AddBuffing"> | string
-    email?: StringFilter<"AddBuffing"> | string
+    phoneNumber?: StringNullableFilter<"AddBuffing"> | string | null
+    address?: StringNullableFilter<"AddBuffing"> | string | null
+    email?: StringNullableFilter<"AddBuffing"> | string | null
     buffings?: BuffingEntryListRelationFilter
   }
 
   export type AddBuffingOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
-    email?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     buffings?: BuffingEntryOrderByRelationAggregateInput
     _relevance?: AddBuffingOrderByRelevanceInput
   }
 
   export type AddBuffingWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    email?: string
     AND?: AddBuffingWhereInput | AddBuffingWhereInput[]
     OR?: AddBuffingWhereInput[]
     NOT?: AddBuffingWhereInput | AddBuffingWhereInput[]
     name?: StringFilter<"AddBuffing"> | string
-    phoneNumber?: StringFilter<"AddBuffing"> | string
-    address?: StringFilter<"AddBuffing"> | string
+    phoneNumber?: StringNullableFilter<"AddBuffing"> | string | null
+    address?: StringNullableFilter<"AddBuffing"> | string | null
+    email?: StringNullableFilter<"AddBuffing"> | string | null
     buffings?: BuffingEntryListRelationFilter
-  }, "id" | "email">
+  }, "id">
 
   export type AddBuffingOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
-    email?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     _count?: AddBuffingCountOrderByAggregateInput
     _avg?: AddBuffingAvgOrderByAggregateInput
     _max?: AddBuffingMaxOrderByAggregateInput
@@ -18436,9 +18448,9 @@ export namespace Prisma {
     NOT?: AddBuffingScalarWhereWithAggregatesInput | AddBuffingScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddBuffing"> | number
     name?: StringWithAggregatesFilter<"AddBuffing"> | string
-    phoneNumber?: StringWithAggregatesFilter<"AddBuffing"> | string
-    address?: StringWithAggregatesFilter<"AddBuffing"> | string
-    email?: StringWithAggregatesFilter<"AddBuffing"> | string
+    phoneNumber?: StringNullableWithAggregatesFilter<"AddBuffing"> | string | null
+    address?: StringNullableWithAggregatesFilter<"AddBuffing"> | string | null
+    email?: StringNullableWithAggregatesFilter<"AddBuffing"> | string | null
   }
 
   export type AddSupplierItemWhereInput = {
@@ -18447,37 +18459,37 @@ export namespace Prisma {
     NOT?: AddSupplierItemWhereInput | AddSupplierItemWhereInput[]
     id?: IntFilter<"AddSupplierItem"> | number
     name?: StringFilter<"AddSupplierItem"> | string
-    email?: StringFilter<"AddSupplierItem"> | string
-    phoneNumber?: StringFilter<"AddSupplierItem"> | string
-    address?: StringFilter<"AddSupplierItem"> | string
+    email?: StringNullableFilter<"AddSupplierItem"> | string | null
+    phoneNumber?: StringNullableFilter<"AddSupplierItem"> | string | null
+    address?: StringNullableFilter<"AddSupplierItem"> | string | null
   }
 
   export type AddSupplierItemOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
+    email?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
     _relevance?: AddSupplierItemOrderByRelevanceInput
   }
 
   export type AddSupplierItemWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    email?: string
     AND?: AddSupplierItemWhereInput | AddSupplierItemWhereInput[]
     OR?: AddSupplierItemWhereInput[]
     NOT?: AddSupplierItemWhereInput | AddSupplierItemWhereInput[]
     name?: StringFilter<"AddSupplierItem"> | string
-    phoneNumber?: StringFilter<"AddSupplierItem"> | string
-    address?: StringFilter<"AddSupplierItem"> | string
-  }, "id" | "email">
+    email?: StringNullableFilter<"AddSupplierItem"> | string | null
+    phoneNumber?: StringNullableFilter<"AddSupplierItem"> | string | null
+    address?: StringNullableFilter<"AddSupplierItem"> | string | null
+  }, "id">
 
   export type AddSupplierItemOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    address?: SortOrder
+    email?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
     _count?: AddSupplierItemCountOrderByAggregateInput
     _avg?: AddSupplierItemAvgOrderByAggregateInput
     _max?: AddSupplierItemMaxOrderByAggregateInput
@@ -18491,9 +18503,9 @@ export namespace Prisma {
     NOT?: AddSupplierItemScalarWhereWithAggregatesInput | AddSupplierItemScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddSupplierItem"> | number
     name?: StringWithAggregatesFilter<"AddSupplierItem"> | string
-    email?: StringWithAggregatesFilter<"AddSupplierItem"> | string
-    phoneNumber?: StringWithAggregatesFilter<"AddSupplierItem"> | string
-    address?: StringWithAggregatesFilter<"AddSupplierItem"> | string
+    email?: StringNullableWithAggregatesFilter<"AddSupplierItem"> | string | null
+    phoneNumber?: StringNullableWithAggregatesFilter<"AddSupplierItem"> | string | null
+    address?: StringNullableWithAggregatesFilter<"AddSupplierItem"> | string | null
   }
 
   export type AddPurchaseStockWhereInput = {
@@ -18723,6 +18735,7 @@ export namespace Prisma {
     NOT?: CastingEntryWhereInput | CastingEntryWhereInput[]
     id?: IntFilter<"CastingEntry"> | number
     createdAt?: DateTimeFilter<"CastingEntry"> | Date | string
+    date?: DateTimeFilter<"CastingEntry"> | Date | string
     given_gold?: FloatFilter<"CastingEntry"> | number
     given_touch?: FloatFilter<"CastingEntry"> | number
     purity?: FloatFilter<"CastingEntry"> | number
@@ -18738,6 +18751,7 @@ export namespace Prisma {
   export type CastingEntryOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    date?: SortOrder
     given_gold?: SortOrder
     given_touch?: SortOrder
     purity?: SortOrder
@@ -18756,6 +18770,7 @@ export namespace Prisma {
     OR?: CastingEntryWhereInput[]
     NOT?: CastingEntryWhereInput | CastingEntryWhereInput[]
     createdAt?: DateTimeFilter<"CastingEntry"> | Date | string
+    date?: DateTimeFilter<"CastingEntry"> | Date | string
     given_gold?: FloatFilter<"CastingEntry"> | number
     given_touch?: FloatFilter<"CastingEntry"> | number
     purity?: FloatFilter<"CastingEntry"> | number
@@ -18771,6 +18786,7 @@ export namespace Prisma {
   export type CastingEntryOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    date?: SortOrder
     given_gold?: SortOrder
     given_touch?: SortOrder
     purity?: SortOrder
@@ -18792,6 +18808,7 @@ export namespace Prisma {
     NOT?: CastingEntryScalarWhereWithAggregatesInput | CastingEntryScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"CastingEntry"> | number
     createdAt?: DateTimeWithAggregatesFilter<"CastingEntry"> | Date | string
+    date?: DateTimeWithAggregatesFilter<"CastingEntry"> | Date | string
     given_gold?: FloatWithAggregatesFilter<"CastingEntry"> | number
     given_touch?: FloatWithAggregatesFilter<"CastingEntry"> | number
     purity?: FloatWithAggregatesFilter<"CastingEntry"> | number
@@ -18809,6 +18826,7 @@ export namespace Prisma {
     id?: IntFilter<"CastingItems"> | number
     createdAt?: DateTimeFilter<"CastingItems"> | Date | string
     type?: EnumCASTINGENTRYTYPEFilter<"CastingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"CastingItems"> | number
     weight?: FloatFilter<"CastingItems"> | number
     touch?: FloatFilter<"CastingItems"> | number
     item_purity?: FloatFilter<"CastingItems"> | number
@@ -18816,7 +18834,6 @@ export namespace Prisma {
     after_weight?: FloatNullableFilter<"CastingItems"> | number | null
     scrap_weight?: FloatNullableFilter<"CastingItems"> | number | null
     scrap_wastage?: FloatNullableFilter<"CastingItems"> | number | null
-    item_id?: IntFilter<"CastingItems"> | number
     casting_entry_id?: IntFilter<"CastingItems"> | number
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     castingEntry?: XOR<CastingEntryScalarRelationFilter, CastingEntryWhereInput>
@@ -18830,6 +18847,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     type?: SortOrder
+    item_id?: SortOrder
     weight?: SortOrder
     touch?: SortOrder
     item_purity?: SortOrder
@@ -18837,7 +18855,6 @@ export namespace Prisma {
     after_weight?: SortOrderInput | SortOrder
     scrap_weight?: SortOrderInput | SortOrder
     scrap_wastage?: SortOrderInput | SortOrder
-    item_id?: SortOrder
     casting_entry_id?: SortOrder
     item?: AddItemOrderByWithRelationInput
     castingEntry?: CastingEntryOrderByWithRelationInput
@@ -18855,6 +18872,7 @@ export namespace Prisma {
     NOT?: CastingItemsWhereInput | CastingItemsWhereInput[]
     createdAt?: DateTimeFilter<"CastingItems"> | Date | string
     type?: EnumCASTINGENTRYTYPEFilter<"CastingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"CastingItems"> | number
     weight?: FloatFilter<"CastingItems"> | number
     touch?: FloatFilter<"CastingItems"> | number
     item_purity?: FloatFilter<"CastingItems"> | number
@@ -18862,7 +18880,6 @@ export namespace Prisma {
     after_weight?: FloatNullableFilter<"CastingItems"> | number | null
     scrap_weight?: FloatNullableFilter<"CastingItems"> | number | null
     scrap_wastage?: FloatNullableFilter<"CastingItems"> | number | null
-    item_id?: IntFilter<"CastingItems"> | number
     casting_entry_id?: IntFilter<"CastingItems"> | number
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     castingEntry?: XOR<CastingEntryScalarRelationFilter, CastingEntryWhereInput>
@@ -18876,6 +18893,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     type?: SortOrder
+    item_id?: SortOrder
     weight?: SortOrder
     touch?: SortOrder
     item_purity?: SortOrder
@@ -18883,7 +18901,6 @@ export namespace Prisma {
     after_weight?: SortOrderInput | SortOrder
     scrap_weight?: SortOrderInput | SortOrder
     scrap_wastage?: SortOrderInput | SortOrder
-    item_id?: SortOrder
     casting_entry_id?: SortOrder
     _count?: CastingItemsCountOrderByAggregateInput
     _avg?: CastingItemsAvgOrderByAggregateInput
@@ -18899,6 +18916,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"CastingItems"> | number
     createdAt?: DateTimeWithAggregatesFilter<"CastingItems"> | Date | string
     type?: EnumCASTINGENTRYTYPEWithAggregatesFilter<"CastingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntWithAggregatesFilter<"CastingItems"> | number
     weight?: FloatWithAggregatesFilter<"CastingItems"> | number
     touch?: FloatWithAggregatesFilter<"CastingItems"> | number
     item_purity?: FloatWithAggregatesFilter<"CastingItems"> | number
@@ -18906,7 +18924,6 @@ export namespace Prisma {
     after_weight?: FloatNullableWithAggregatesFilter<"CastingItems"> | number | null
     scrap_weight?: FloatNullableWithAggregatesFilter<"CastingItems"> | number | null
     scrap_wastage?: FloatNullableWithAggregatesFilter<"CastingItems"> | number | null
-    item_id?: IntWithAggregatesFilter<"CastingItems"> | number
     casting_entry_id?: IntWithAggregatesFilter<"CastingItems"> | number
   }
 
@@ -19245,8 +19262,8 @@ export namespace Prisma {
 
   export type AddCustomerCreateInput = {
     name: string
-    phoneNumber: string
-    address: string
+    phoneNumber?: string | null
+    address?: string | null
     email?: string | null
     transactions?: CustomerTransactionCreateNestedManyWithoutCustomerInput
   }
@@ -19254,16 +19271,16 @@ export namespace Prisma {
   export type AddCustomerUncheckedCreateInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
+    phoneNumber?: string | null
+    address?: string | null
     email?: string | null
     transactions?: CustomerTransactionUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type AddCustomerUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     transactions?: CustomerTransactionUpdateManyWithoutCustomerNestedInput
   }
@@ -19271,8 +19288,8 @@ export namespace Prisma {
   export type AddCustomerUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     transactions?: CustomerTransactionUncheckedUpdateManyWithoutCustomerNestedInput
   }
@@ -19280,305 +19297,305 @@ export namespace Prisma {
   export type AddCustomerCreateManyInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
+    phoneNumber?: string | null
+    address?: string | null
     email?: string | null
   }
 
   export type AddCustomerUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddCustomerUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddCastingCreateInput = {
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
     entries?: CastingEntryCreateNestedManyWithoutCasting_customerInput
   }
 
   export type AddCastingUncheckedCreateInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
     entries?: CastingEntryUncheckedCreateNestedManyWithoutCasting_customerInput
   }
 
   export type AddCastingUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     entries?: CastingEntryUpdateManyWithoutCasting_customerNestedInput
   }
 
   export type AddCastingUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     entries?: CastingEntryUncheckedUpdateManyWithoutCasting_customerNestedInput
   }
 
   export type AddCastingCreateManyInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddCastingUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddCastingUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddFilingCreateInput = {
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
     filings?: FilingEntryCreateNestedManyWithoutFiling_personInput
   }
 
   export type AddFilingUncheckedCreateInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
     filings?: FilingEntryUncheckedCreateNestedManyWithoutFiling_personInput
   }
 
   export type AddFilingUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     filings?: FilingEntryUpdateManyWithoutFiling_personNestedInput
   }
 
   export type AddFilingUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     filings?: FilingEntryUncheckedUpdateManyWithoutFiling_personNestedInput
   }
 
   export type AddFilingCreateManyInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddFilingUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddFilingUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddSettingCreateInput = {
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
     settings?: SettingEntryCreateNestedManyWithoutSetting_personInput
   }
 
   export type AddSettingUncheckedCreateInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
     settings?: SettingEntryUncheckedCreateNestedManyWithoutSetting_personInput
   }
 
   export type AddSettingUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     settings?: SettingEntryUpdateManyWithoutSetting_personNestedInput
   }
 
   export type AddSettingUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     settings?: SettingEntryUncheckedUpdateManyWithoutSetting_personNestedInput
   }
 
   export type AddSettingCreateManyInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddSettingUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddSettingUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddBuffingCreateInput = {
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
     buffings?: BuffingEntryCreateNestedManyWithoutBuffing_personInput
   }
 
   export type AddBuffingUncheckedCreateInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
     buffings?: BuffingEntryUncheckedCreateNestedManyWithoutBuffing_personInput
   }
 
   export type AddBuffingUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     buffings?: BuffingEntryUpdateManyWithoutBuffing_personNestedInput
   }
 
   export type AddBuffingUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     buffings?: BuffingEntryUncheckedUpdateManyWithoutBuffing_personNestedInput
   }
 
   export type AddBuffingCreateManyInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddBuffingUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddBuffingUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddSupplierItemCreateInput = {
     name: string
-    email: string
-    phoneNumber: string
-    address: string
+    email?: string | null
+    phoneNumber?: string | null
+    address?: string | null
   }
 
   export type AddSupplierItemUncheckedCreateInput = {
     id?: number
     name: string
-    email: string
-    phoneNumber: string
-    address: string
+    email?: string | null
+    phoneNumber?: string | null
+    address?: string | null
   }
 
   export type AddSupplierItemUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddSupplierItemUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddSupplierItemCreateManyInput = {
     id?: number
     name: string
-    email: string
-    phoneNumber: string
-    address: string
+    email?: string | null
+    phoneNumber?: string | null
+    address?: string | null
   }
 
   export type AddSupplierItemUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddSupplierItemUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddPurchaseStockCreateInput = {
@@ -19814,7 +19831,8 @@ export namespace Prisma {
   }
 
   export type CastingEntryCreateInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
+    date: Date | string
     given_gold: number
     given_touch: number
     purity: number
@@ -19828,7 +19846,8 @@ export namespace Prisma {
 
   export type CastingEntryUncheckedCreateInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
+    date: Date | string
     given_gold: number
     given_touch: number
     purity: number
@@ -19842,6 +19861,7 @@ export namespace Prisma {
 
   export type CastingEntryUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
     given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
@@ -19856,6 +19876,7 @@ export namespace Prisma {
   export type CastingEntryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
     given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
@@ -19869,7 +19890,8 @@ export namespace Prisma {
 
   export type CastingEntryCreateManyInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
+    date: Date | string
     given_gold: number
     given_touch: number
     purity: number
@@ -19882,6 +19904,7 @@ export namespace Prisma {
 
   export type CastingEntryUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
     given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
@@ -19894,6 +19917,7 @@ export namespace Prisma {
   export type CastingEntryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
     given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
@@ -19905,7 +19929,7 @@ export namespace Prisma {
   }
 
   export type CastingItemsCreateInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch: number
@@ -19924,8 +19948,9 @@ export namespace Prisma {
 
   export type CastingItemsUncheckedCreateInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
     touch: number
     item_purity: number
@@ -19933,7 +19958,6 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item_id: number
     casting_entry_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
@@ -19963,6 +19987,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
     touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -19970,7 +19995,6 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
@@ -19980,8 +20004,9 @@ export namespace Prisma {
 
   export type CastingItemsCreateManyInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
     touch: number
     item_purity: number
@@ -19989,7 +20014,6 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item_id: number
     casting_entry_id: number
   }
 
@@ -20009,6 +20033,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
     touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -20016,12 +20041,11 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
     casting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type FilingEntryCreateInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -20036,7 +20060,7 @@ export namespace Prisma {
 
   export type FilingEntryUncheckedCreateInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     filing_person_id: number
     casting_item_id: number
     weight: number
@@ -20080,7 +20104,7 @@ export namespace Prisma {
 
   export type FilingEntryCreateManyInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     filing_person_id: number
     casting_item_id: number
     weight: number
@@ -20115,7 +20139,7 @@ export namespace Prisma {
   }
 
   export type SettingEntryCreateInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -20129,7 +20153,7 @@ export namespace Prisma {
 
   export type SettingEntryUncheckedCreateInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     setting_person_id: number
     casting_item_id: number
     weight: number
@@ -20170,7 +20194,7 @@ export namespace Prisma {
 
   export type SettingEntryCreateManyInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     setting_person_id: number
     casting_item_id: number
     weight: number
@@ -20204,7 +20228,7 @@ export namespace Prisma {
   }
 
   export type BuffingEntryCreateInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -20219,7 +20243,7 @@ export namespace Prisma {
 
   export type BuffingEntryUncheckedCreateInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     buffing_person_id: number
     casting_item_id: number
     weight: number
@@ -20263,7 +20287,7 @@ export namespace Prisma {
 
   export type BuffingEntryCreateManyInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     buffing_person_id: number
     casting_item_id: number
     weight: number
@@ -20302,13 +20326,13 @@ export namespace Prisma {
   }
 
   export type StockCreateInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     castingItem: CastingItemsCreateNestedOneWithoutStockInput
   }
 
   export type StockUncheckedCreateInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     casting_item_id: number
   }
 
@@ -20325,7 +20349,7 @@ export namespace Prisma {
 
   export type StockCreateManyInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     casting_item_id: number
   }
 
@@ -21035,6 +21059,7 @@ export namespace Prisma {
   export type CastingEntryCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    date?: SortOrder
     given_gold?: SortOrder
     given_touch?: SortOrder
     purity?: SortOrder
@@ -21060,6 +21085,7 @@ export namespace Prisma {
   export type CastingEntryMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    date?: SortOrder
     given_gold?: SortOrder
     given_touch?: SortOrder
     purity?: SortOrder
@@ -21073,6 +21099,7 @@ export namespace Prisma {
   export type CastingEntryMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    date?: SortOrder
     given_gold?: SortOrder
     given_touch?: SortOrder
     purity?: SortOrder
@@ -21147,6 +21174,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     type?: SortOrder
+    item_id?: SortOrder
     weight?: SortOrder
     touch?: SortOrder
     item_purity?: SortOrder
@@ -21154,19 +21182,18 @@ export namespace Prisma {
     after_weight?: SortOrder
     scrap_weight?: SortOrder
     scrap_wastage?: SortOrder
-    item_id?: SortOrder
     casting_entry_id?: SortOrder
   }
 
   export type CastingItemsAvgOrderByAggregateInput = {
     id?: SortOrder
+    item_id?: SortOrder
     weight?: SortOrder
     touch?: SortOrder
     item_purity?: SortOrder
     after_weight?: SortOrder
     scrap_weight?: SortOrder
     scrap_wastage?: SortOrder
-    item_id?: SortOrder
     casting_entry_id?: SortOrder
   }
 
@@ -21174,6 +21201,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     type?: SortOrder
+    item_id?: SortOrder
     weight?: SortOrder
     touch?: SortOrder
     item_purity?: SortOrder
@@ -21181,7 +21209,6 @@ export namespace Prisma {
     after_weight?: SortOrder
     scrap_weight?: SortOrder
     scrap_wastage?: SortOrder
-    item_id?: SortOrder
     casting_entry_id?: SortOrder
   }
 
@@ -21189,6 +21216,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     type?: SortOrder
+    item_id?: SortOrder
     weight?: SortOrder
     touch?: SortOrder
     item_purity?: SortOrder
@@ -21196,19 +21224,18 @@ export namespace Prisma {
     after_weight?: SortOrder
     scrap_weight?: SortOrder
     scrap_wastage?: SortOrder
-    item_id?: SortOrder
     casting_entry_id?: SortOrder
   }
 
   export type CastingItemsSumOrderByAggregateInput = {
     id?: SortOrder
+    item_id?: SortOrder
     weight?: SortOrder
     touch?: SortOrder
     item_purity?: SortOrder
     after_weight?: SortOrder
     scrap_weight?: SortOrder
     scrap_wastage?: SortOrder
-    item_id?: SortOrder
     casting_entry_id?: SortOrder
   }
 
@@ -22627,7 +22654,8 @@ export namespace Prisma {
   }
 
   export type CastingEntryCreateWithoutCasting_customerInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
+    date: Date | string
     given_gold: number
     given_touch: number
     purity: number
@@ -22640,7 +22668,8 @@ export namespace Prisma {
 
   export type CastingEntryUncheckedCreateWithoutCasting_customerInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
+    date: Date | string
     given_gold: number
     given_touch: number
     purity: number
@@ -22683,6 +22712,7 @@ export namespace Prisma {
     NOT?: CastingEntryScalarWhereInput | CastingEntryScalarWhereInput[]
     id?: IntFilter<"CastingEntry"> | number
     createdAt?: DateTimeFilter<"CastingEntry"> | Date | string
+    date?: DateTimeFilter<"CastingEntry"> | Date | string
     given_gold?: FloatFilter<"CastingEntry"> | number
     given_touch?: FloatFilter<"CastingEntry"> | number
     purity?: FloatFilter<"CastingEntry"> | number
@@ -22694,7 +22724,7 @@ export namespace Prisma {
   }
 
   export type FilingEntryCreateWithoutFiling_personInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -22708,7 +22738,7 @@ export namespace Prisma {
 
   export type FilingEntryUncheckedCreateWithoutFiling_personInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     casting_item_id: number
     weight: number
     touch: number
@@ -22763,7 +22793,7 @@ export namespace Prisma {
   }
 
   export type SettingEntryCreateWithoutSetting_personInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -22776,7 +22806,7 @@ export namespace Prisma {
 
   export type SettingEntryUncheckedCreateWithoutSetting_personInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     casting_item_id: number
     weight: number
     touch: number
@@ -22830,7 +22860,7 @@ export namespace Prisma {
   }
 
   export type BuffingEntryCreateWithoutBuffing_personInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -22844,7 +22874,7 @@ export namespace Prisma {
 
   export type BuffingEntryUncheckedCreateWithoutBuffing_personInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     casting_item_id: number
     weight: number
     touch: number
@@ -22902,16 +22932,16 @@ export namespace Prisma {
 
   export type AddCustomerCreateWithoutTransactionsInput = {
     name: string
-    phoneNumber: string
-    address: string
+    phoneNumber?: string | null
+    address?: string | null
     email?: string | null
   }
 
   export type AddCustomerUncheckedCreateWithoutTransactionsInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
+    phoneNumber?: string | null
+    address?: string | null
     email?: string | null
   }
 
@@ -22933,21 +22963,21 @@ export namespace Prisma {
 
   export type AddCustomerUpdateWithoutTransactionsInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddCustomerUncheckedUpdateWithoutTransactionsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CastingItemsCreateWithoutItemInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch: number
@@ -22965,7 +22995,7 @@ export namespace Prisma {
 
   export type CastingItemsUncheckedCreateWithoutItemInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch: number
@@ -23014,6 +23044,7 @@ export namespace Prisma {
     id?: IntFilter<"CastingItems"> | number
     createdAt?: DateTimeFilter<"CastingItems"> | Date | string
     type?: EnumCASTINGENTRYTYPEFilter<"CastingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"CastingItems"> | number
     weight?: FloatFilter<"CastingItems"> | number
     touch?: FloatFilter<"CastingItems"> | number
     item_purity?: FloatFilter<"CastingItems"> | number
@@ -23021,23 +23052,22 @@ export namespace Prisma {
     after_weight?: FloatNullableFilter<"CastingItems"> | number | null
     scrap_weight?: FloatNullableFilter<"CastingItems"> | number | null
     scrap_wastage?: FloatNullableFilter<"CastingItems"> | number | null
-    item_id?: IntFilter<"CastingItems"> | number
     casting_entry_id?: IntFilter<"CastingItems"> | number
   }
 
   export type AddCastingCreateWithoutEntriesInput = {
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddCastingUncheckedCreateWithoutEntriesInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddCastingCreateOrConnectWithoutEntriesInput = {
@@ -23046,7 +23076,7 @@ export namespace Prisma {
   }
 
   export type CastingItemsCreateWithoutCastingEntryInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch: number
@@ -23064,8 +23094,9 @@ export namespace Prisma {
 
   export type CastingItemsUncheckedCreateWithoutCastingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
     touch: number
     item_purity: number
@@ -23073,7 +23104,6 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
@@ -23103,17 +23133,17 @@ export namespace Prisma {
 
   export type AddCastingUpdateWithoutEntriesInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddCastingUncheckedUpdateWithoutEntriesInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CastingItemsUpsertWithWhereUniqueWithoutCastingEntryInput = {
@@ -23147,7 +23177,8 @@ export namespace Prisma {
   }
 
   export type CastingEntryCreateWithoutItemsInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
+    date: Date | string
     given_gold: number
     given_touch: number
     purity: number
@@ -23160,7 +23191,8 @@ export namespace Prisma {
 
   export type CastingEntryUncheckedCreateWithoutItemsInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
+    date: Date | string
     given_gold: number
     given_touch: number
     purity: number
@@ -23177,7 +23209,7 @@ export namespace Prisma {
   }
 
   export type FilingEntryCreateWithoutCastingItemInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -23191,7 +23223,7 @@ export namespace Prisma {
 
   export type FilingEntryUncheckedCreateWithoutCastingItemInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     filing_person_id: number
     weight: number
     touch: number
@@ -23209,7 +23241,7 @@ export namespace Prisma {
   }
 
   export type SettingEntryCreateWithoutCastingItemInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -23222,7 +23254,7 @@ export namespace Prisma {
 
   export type SettingEntryUncheckedCreateWithoutCastingItemInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     setting_person_id: number
     weight: number
     touch: number
@@ -23239,7 +23271,7 @@ export namespace Prisma {
   }
 
   export type BuffingEntryCreateWithoutCastingItemInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -23253,7 +23285,7 @@ export namespace Prisma {
 
   export type BuffingEntryUncheckedCreateWithoutCastingItemInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     buffing_person_id: number
     weight: number
     touch: number
@@ -23271,12 +23303,12 @@ export namespace Prisma {
   }
 
   export type StockCreateWithoutCastingItemInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type StockUncheckedCreateWithoutCastingItemInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type StockCreateOrConnectWithoutCastingItemInput = {
@@ -23322,6 +23354,7 @@ export namespace Prisma {
 
   export type CastingEntryUpdateWithoutItemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
     given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
@@ -23335,6 +23368,7 @@ export namespace Prisma {
   export type CastingEntryUncheckedUpdateWithoutItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
     given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
@@ -23484,17 +23518,17 @@ export namespace Prisma {
 
   export type AddFilingCreateWithoutFilingsInput = {
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddFilingUncheckedCreateWithoutFilingsInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddFilingCreateOrConnectWithoutFilingsInput = {
@@ -23503,7 +23537,7 @@ export namespace Prisma {
   }
 
   export type CastingItemsCreateWithoutFilingEntryInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch: number
@@ -23521,8 +23555,9 @@ export namespace Prisma {
 
   export type CastingItemsUncheckedCreateWithoutFilingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
     touch: number
     item_purity: number
@@ -23530,7 +23565,6 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item_id: number
     casting_entry_id: number
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
@@ -23543,7 +23577,7 @@ export namespace Prisma {
   }
 
   export type SettingEntryCreateWithoutFilingEntryInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -23556,7 +23590,7 @@ export namespace Prisma {
 
   export type SettingEntryUncheckedCreateWithoutFilingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     setting_person_id: number
     casting_item_id: number
     weight: number
@@ -23578,7 +23612,7 @@ export namespace Prisma {
   }
 
   export type BuffingEntryCreateWithoutFilingEntryInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -23592,7 +23626,7 @@ export namespace Prisma {
 
   export type BuffingEntryUncheckedCreateWithoutFilingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     buffing_person_id: number
     casting_item_id: number
     weight: number
@@ -23627,17 +23661,17 @@ export namespace Prisma {
 
   export type AddFilingUpdateWithoutFilingsInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddFilingUncheckedUpdateWithoutFilingsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CastingItemsUpsertWithoutFilingEntryInput = {
@@ -23672,6 +23706,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
     touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -23679,7 +23714,6 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
@@ -23720,17 +23754,17 @@ export namespace Prisma {
 
   export type AddSettingCreateWithoutSettingsInput = {
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddSettingUncheckedCreateWithoutSettingsInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddSettingCreateOrConnectWithoutSettingsInput = {
@@ -23739,7 +23773,7 @@ export namespace Prisma {
   }
 
   export type CastingItemsCreateWithoutSettingEntryInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch: number
@@ -23757,8 +23791,9 @@ export namespace Prisma {
 
   export type CastingItemsUncheckedCreateWithoutSettingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
     touch: number
     item_purity: number
@@ -23766,7 +23801,6 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item_id: number
     casting_entry_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
@@ -23779,7 +23813,7 @@ export namespace Prisma {
   }
 
   export type FilingEntryCreateWithoutSettingEntryInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -23793,7 +23827,7 @@ export namespace Prisma {
 
   export type FilingEntryUncheckedCreateWithoutSettingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     filing_person_id: number
     casting_item_id: number
     weight: number
@@ -23811,7 +23845,7 @@ export namespace Prisma {
   }
 
   export type BuffingEntryCreateWithoutSettingEntryInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -23825,7 +23859,7 @@ export namespace Prisma {
 
   export type BuffingEntryUncheckedCreateWithoutSettingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     buffing_person_id: number
     casting_item_id: number
     weight: number
@@ -23860,17 +23894,17 @@ export namespace Prisma {
 
   export type AddSettingUpdateWithoutSettingsInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddSettingUncheckedUpdateWithoutSettingsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CastingItemsUpsertWithoutSettingEntryInput = {
@@ -23905,6 +23939,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
     touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -23912,7 +23947,6 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
@@ -23975,17 +24009,17 @@ export namespace Prisma {
 
   export type AddBuffingCreateWithoutBuffingsInput = {
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddBuffingUncheckedCreateWithoutBuffingsInput = {
     id?: number
     name: string
-    phoneNumber: string
-    address: string
-    email: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
   }
 
   export type AddBuffingCreateOrConnectWithoutBuffingsInput = {
@@ -23994,7 +24028,7 @@ export namespace Prisma {
   }
 
   export type CastingItemsCreateWithoutBuffingEntryInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch: number
@@ -24012,8 +24046,9 @@ export namespace Prisma {
 
   export type CastingItemsUncheckedCreateWithoutBuffingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
     touch: number
     item_purity: number
@@ -24021,7 +24056,6 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item_id: number
     casting_entry_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
@@ -24034,7 +24068,7 @@ export namespace Prisma {
   }
 
   export type SettingEntryCreateWithoutBuffingEntriesInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -24047,7 +24081,7 @@ export namespace Prisma {
 
   export type SettingEntryUncheckedCreateWithoutBuffingEntriesInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     setting_person_id: number
     casting_item_id: number
     weight: number
@@ -24064,7 +24098,7 @@ export namespace Prisma {
   }
 
   export type FilingEntryCreateWithoutBuffingEntriesInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     weight: number
     touch: number
     item_purity: number
@@ -24078,7 +24112,7 @@ export namespace Prisma {
 
   export type FilingEntryUncheckedCreateWithoutBuffingEntriesInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     filing_person_id: number
     casting_item_id: number
     weight: number
@@ -24108,17 +24142,17 @@ export namespace Prisma {
 
   export type AddBuffingUpdateWithoutBuffingsInput = {
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddBuffingUncheckedUpdateWithoutBuffingsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CastingItemsUpsertWithoutBuffingEntryInput = {
@@ -24153,6 +24187,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
     touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -24160,7 +24195,6 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
@@ -24242,7 +24276,7 @@ export namespace Prisma {
   }
 
   export type CastingItemsCreateWithoutStockInput = {
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch: number
@@ -24260,8 +24294,9 @@ export namespace Prisma {
 
   export type CastingItemsUncheckedCreateWithoutStockInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
     touch: number
     item_purity: number
@@ -24269,7 +24304,6 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item_id: number
     casting_entry_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
@@ -24313,6 +24347,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
     touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -24320,7 +24355,6 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
@@ -24372,7 +24406,8 @@ export namespace Prisma {
 
   export type CastingEntryCreateManyCasting_customerInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
+    date: Date | string
     given_gold: number
     given_touch: number
     purity: number
@@ -24384,6 +24419,7 @@ export namespace Prisma {
 
   export type CastingEntryUpdateWithoutCasting_customerInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
     given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
@@ -24397,6 +24433,7 @@ export namespace Prisma {
   export type CastingEntryUncheckedUpdateWithoutCasting_customerInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
     given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
@@ -24410,6 +24447,7 @@ export namespace Prisma {
   export type CastingEntryUncheckedUpdateManyWithoutCasting_customerInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
     given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
@@ -24421,7 +24459,7 @@ export namespace Prisma {
 
   export type FilingEntryCreateManyFiling_personInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     casting_item_id: number
     weight: number
     touch: number
@@ -24472,7 +24510,7 @@ export namespace Prisma {
 
   export type SettingEntryCreateManySetting_personInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     casting_item_id: number
     weight: number
     touch: number
@@ -24521,7 +24559,7 @@ export namespace Prisma {
 
   export type BuffingEntryCreateManyBuffing_personInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     casting_item_id: number
     weight: number
     touch: number
@@ -24576,7 +24614,7 @@ export namespace Prisma {
 
   export type CastingItemsCreateManyItemInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch: number
@@ -24639,8 +24677,9 @@ export namespace Prisma {
 
   export type CastingItemsCreateManyCastingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
     touch: number
     item_purity: number
@@ -24648,7 +24687,6 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item_id: number
   }
 
   export type CastingItemsUpdateWithoutCastingEntryInput = {
@@ -24672,6 +24710,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
     touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -24679,7 +24718,6 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
@@ -24690,6 +24728,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
     touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -24697,12 +24736,11 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type StockCreateManyCastingItemInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type StockUpdateWithoutCastingItemInput = {
@@ -24721,7 +24759,7 @@ export namespace Prisma {
 
   export type SettingEntryCreateManyFilingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     setting_person_id: number
     casting_item_id: number
     weight: number
@@ -24733,7 +24771,7 @@ export namespace Prisma {
 
   export type BuffingEntryCreateManyFilingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     buffing_person_id: number
     casting_item_id: number
     weight: number
@@ -24825,7 +24863,7 @@ export namespace Prisma {
 
   export type BuffingEntryCreateManySettingEntryInput = {
     id?: number
-    createdAt: Date | string
+    createdAt?: Date | string
     buffing_person_id: number
     casting_item_id: number
     weight: number

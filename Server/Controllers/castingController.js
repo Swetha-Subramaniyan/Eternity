@@ -11,8 +11,9 @@ export const createCasting = async (req,res) =>{
                 data:{name,email,phoneNumber,address},
             }
         );
+       
         res.status(201).json(newCustomer)
-
+        console.log(newCustomer)
     }catch(error) {
         res.status(400).json(error)
 
@@ -26,7 +27,7 @@ export const getCasting = async (req,res) =>{
     try{
         const casting = await prisma.addCasting.findMany()
         res.status(201).json(casting)
-
+        console.log(casting)
     } catch (error) {
         res.status(400).json(error)
 
@@ -46,6 +47,7 @@ export const updateCasting = async (req,res) =>{
            
         );
         res.json(updated)
+        console.log(updated)
 
     }catch(error){
         res.status(400).json({error:"casting member not found"} )
@@ -64,6 +66,7 @@ export const deleteCasting = async (req,res) =>{
             }
         )
         res.json(deleted)
+        console.log(deleted)
 
     }catch(error){
         res.status(400).json( {  error:"casting member not found"}  )

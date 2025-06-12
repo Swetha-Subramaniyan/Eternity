@@ -9,15 +9,19 @@ import buffingRoutes from "./Routes/buffingRoutes.js";
 import additemRoutes from "./Routes/additemRoutes.js";
 import supplierRoutes from "./Routes/supplierRoutes.js";
 import purchaseRoutes from "./Routes/purchaseRoutes.js";
-import transactionRoutes from "./Routes/transcationRoutes.js"
+import transactionRoutes from "./Routes/transcationRoutes.js";
+import castingentryRoutes from "./Routes/castingEntryRoutes.js";
+import castingItemsRoutes from "./Routes/castingItemsRoutes.js";
+import castingStockRoutes from "./Routes/castingStockRoutes.js";
+
 
 
 const app = express();
 const PORT = process.env.PORT ||  5000;
 
 app.use(express.json());
-app.use(cors())
-dotenv.config()
+app.use(cors());
+dotenv.config();
 
 app.use("/api/customers",customerRoutes);
 app.use("/api/casting",castingRoutes);
@@ -28,7 +32,9 @@ app.use("/api/additem",additemRoutes);
 app.use("/api/addsupplier", supplierRoutes);
 app.use("/api/purchase",purchaseRoutes);
 app.use("/api/transactions", transactionRoutes);
-
+app.use("/api/castingentry",castingentryRoutes);
+app.use("/api/castingitems",castingItemsRoutes);
+app.use("/api/stock",castingStockRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hellooo");
@@ -37,7 +43,5 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
-
-
 
 
