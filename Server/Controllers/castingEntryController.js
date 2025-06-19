@@ -129,7 +129,7 @@ export const deleteCastingEntry = async (req, res) => {
 
     // First, delete related items
     await prisma.castingItems.deleteMany({
-      where: { castingEntryId: parseInt(id) },
+      where: { casting_entry_id: parseInt(id) },
     });
 
     // Then, delete the casting entry
@@ -140,6 +140,6 @@ export const deleteCastingEntry = async (req, res) => {
     res.status(200).json({ message: 'Casting entry and its items deleted successfully' });
   } catch (error) {
     console.error("Error deleting entry:", error);
-    res.status(500).json({ error: 'Failed to delete casting entry' });
+    res.status(500).json({ error: 'Failed to delete casting entryyyy' });
   }
 };

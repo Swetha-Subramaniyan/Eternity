@@ -38,8 +38,6 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-
-
 .casting-popup-header {
   position: relative;
   font-size: 1.25rem;
@@ -49,7 +47,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  /* background: #1DA3A3 !important; */
+  background: rgb(44, 43, 40);
+  color: white;
   
 }
 
@@ -62,7 +63,7 @@
   font-size: 1rem;
   cursor: pointer;
   color: rgb(251, 248, 248);
-  color: black;
+
 
 }
 
@@ -95,56 +96,15 @@
   box-sizing: border-box;
 }
 
-.scroll-table {
-  max-height: 200px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin-top: 0.5rem;
-}
 
-.scroll-table table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
-
-.scroll-table th,
-.scroll-table td {
-  width: 6rem;
-  min-width: 6rem;
-  max-width: 6rem;
-  padding: 4px;
-  border: 1px solid #ccc;
-  text-align: center;
-  box-sizing: border-box;
-  word-wrap: break-word;
-}
-
-.scroll-table thead th {
-  position: sticky;
-  top: 0;
-  background-color: #5b5353;
-  color: white;
-  z-index: 1;
-  height: 2rem;
-  background-color: aliceblue;
-  background-color: rgb(224, 218, 208);
-  color: black;
-}
-
-.scroll-table td input {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  height: 1.5rem;
-  padding: 0 4px;
-}
 
 .save-btn {
   font-size: 1rem;
   background: #1DA3A3 !important;
   color: white;
-  background: #165bb0 !important;
+  /* background: #165bb0 !important; */
+  width: 7rem;
+ margin-left: 30rem;
 
 }
 
@@ -156,76 +116,58 @@
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 .form-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  margin-bottom: 1rem;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .form-row {
   display: flex;
   gap: 1rem;
-  flex: 1 1 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .form-field {
+  flex: 1;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
-  min-width: 150px; /* adjust as needed */
 }
 
 .form-field label {
-  margin-bottom: 4px;
-  font-size: 1rem;
   font-weight: bold;
-  color: #333;
+  margin-bottom: 0.3rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.form-field input,
+.form-field select {
+  padding: 0.4rem;
+  font-size: 0.95rem;
 
 }
 
-.form-field input {
-  padding: 6px 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
+
+.save-btn {
+  padding: 0.5rem 1.5rem;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  font-weight: bold;
   border-radius: 4px;
+  cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-/* 
-Right Table 
-
-
-<div style={{ width: '30rem', marginLeft: '1rem' }}>
-  <h3 style={{ textAlign: 'center', color: '#d40b4e', fontSize: '1.3rem', fontWeight: 'bold' }}>Casting Items</h3>
-
-  <table   style={{ marginTop: "1rem", width: "100%" }}>
-    <thead>
-      <tr>
-        <th> S.No </th>
-        <th> Item Name</th>
-        <th>Weight </th>
-        <th>Touch </th>
-        <th>Purity </th>
-      </tr>
-    </thead>
-  </table>
-</div> */
+.save-btn:hover {
+  background-color: #125a9c;
+}

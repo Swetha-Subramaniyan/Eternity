@@ -1,54 +1,31 @@
-// import { PrismaClient } from "../generated/prisma/index.js";
-// const prisma = new PrismaClient();
-
-
-// export const updateCastingItems = async(req,res) =>{
-//     const {id} = req.params;
-//     const { weight,touch,item_purity,remarks,after_weight,scrap_weight,scrap_wastage} = req.body;
-//     try{
-//         const updatedItems = await prisma.castingItems.update({
-//             where:{id:Number(id)},
-//             data:{
-//                 weight,
-//                 touch,
-//                 item_purity,
-//                 remarks,
-//                 after_weight,
-//                 scrap_weight,
-//                 scrap_wastage
-//             }
-//         })
-//         res.status(201).json(updatedItems)
-//     }catch(error){
-//         res.status(400).json({error:error.message } )
-//     }
-      
-// }
-
-
-
-
-
 
 import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
-// CREATE
 export const createCastingItem = async (req, res) => {
-  const {
-    weight,
-    touch,
-    item_purity,
-    remarks,
-    after_weight,
-    scrap_weight,
-    scrap_wastage,
-    castingEntryId,
-    item_id,
-    type
-  } = req.body;
-
   try {
+    const {
+      weight,
+      touch,
+      item_purity,
+      remarks,
+      after_weight,
+      scrap_weight,
+      scrap_wastage,
+      castingEntryId,
+      item_id,
+      type,
+    } = req.body;
+
+    const castingEntry = await prisma.castingEntry.findUnique({
+      where: { id: parseInt(castingEntryId) },
+      select: { casting_customer_id: true }
+    });
+
+    if (!castingEntry) {
+      return res.status(404).json({ error: "Casting entry not found" });
+    }
+
     const newItem = await prisma.castingItems.create({
       data: {
         weight,
@@ -58,26 +35,55 @@ export const createCastingItem = async (req, res) => {
         after_weight,
         scrap_weight,
         scrap_wastage,
-        // castingEntryId: Number(castingEntryId),
-        item_id,
+        casting_entry_id: parseInt(castingEntryId),
+        casting_customer_id: castingEntry.casting_customer_id,
+        item_id: parseInt(item_id),
         type,
-        createdAt: new Date(),
-        casting_entry_id: Number(castingEntryId),
-        
       },
     });
-    console.log('Created casting Item ',newItem);
+
+    if (type === "ScrapItems") {
+      await prisma.stock.create({
+        data: {
+          item_id: parseInt(item_id),
+          weight,
+          touch,
+          item_purity,
+          remarks: `Auto-added from scrap in casting ID ${castingEntryId}`,
+          casting_item_id: newItem.id,
+          scrap_weight,
+          scrap_wastage,
+          casting_customer_id: castingEntry.casting_customer_id,
+        },
+      });
+    }
+
     res.status(201).json(newItem);
-  } catch (error) {
-    console.log(error)
-    res.status(400).json({ error: error.message });
+  } catch (err) {
+    console.error("Error creating casting item:", err);
+    res.status(500).json({ error: "Failed to create casting item" });
   }
 };
+
+
 
 // GET (all)
 export const getAllCastingItems = async (req, res) => {
   try {
-    const items = await prisma.castingItems.findMany();
+    const items = await prisma.castingItems.findMany(
+      {
+        include:{
+          item:true,
+          casting_customer:true,
+          castingEntry:{
+            select: {
+              id: true,
+              date: true,
+            }
+          }
+        }
+      }
+    );
     console.log('All casting Items',items);
     res.status(200).json(items);
   } catch (error) {

@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import axios from "axios";
 import CastingItemForm from "./CastingItemForm";
+import Stock from "./Stock";
 
 export default function Casting() {
   const [showPopup, setShowPopup] = useState(false);
@@ -29,7 +30,27 @@ export default function Casting() {
   const [scrapItems, setScrapItems] = useState([]);
   const [availableItems, setAvailableItems] = useState([]);
   const [castingEntryId, setCastingEntryId] = useState(null);
+  const [refreshFlag, setRefreshFlag] = useState(false);
 
+  const triggerRefresh = () => {
+    setRefreshFlag((prev) => !prev);
+  };
+
+  // Example: useEffect to refetch stock when refreshFlag changes
+  // useEffect(() => {
+  //   const fetchStockItems = async () => {
+  //     try {
+  //       const res = await axios.get("http://localhost:5000/api/stock");
+  //       // update stock state here
+  //       console.log("Stock updated", res.data);
+  //     } catch (error) {
+  //       console.error("Error fetching stock:", error);
+  //     }
+  //   };
+
+  //   fetchStockItems();
+  // }, [refreshFlag]);
+  
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -42,7 +63,6 @@ export default function Casting() {
     fetchItems();
   }, []);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,15 +70,44 @@ export default function Casting() {
           axios.get(`${BACKEND_SERVER_URL}/api/casting`),
           axios.get(`${BACKEND_SERVER_URL}/api/castingentry`)
         ]);
+  
+        // ✅ Log casting names
+        console.log("Casting Names Response:", castingNamesRes.data);
         setCastingNames(castingNamesRes.data.map(c => c.name));
-        setSavedCastings(castingEntriesRes.data);
-        setFilteredCastings(castingEntriesRes.data);
+  
+        const castingEntries = castingEntriesRes.data;
+        console.log("Casting Entries Response:", castingEntries);
+  
+        // 👉 Fetch all castingitems
+        const castingItemsRes = await axios.get(`${BACKEND_SERVER_URL}/api/castingitems`);
+        const allCastingItems = castingItemsRes.data;
+        console.log("All Casting Itemsss:", allCastingItems);
+  
+        // 👉 Map and attach afterWeight
+        const enrichedEntries = castingEntries.map(entry => {
+          const entryItems = allCastingItems.filter(item => item.castingEntryId === entry.id);
+          const afterWeightItem = entryItems.find(item => item.after_weight > 0);
+  
+          console.log(`Entry ID: ${entry.id}, After Weight Found:`, afterWeightItem?.after_weight);
+  
+          return {
+            ...entry,
+            afterWeight: afterWeightItem ? afterWeightItem.after_weight : 0,
+          };
+        });
+  
+        console.log("Final Enriched Entries:", enrichedEntries);
+  
+        setSavedCastings(enrichedEntries);
+        setFilteredCastings(enrichedEntries);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching casting data:", error);
       }
     };
+  
     fetchData();
   }, []);
+  
 
   useEffect(() => {
     if (fromDate && toDate) {
@@ -82,10 +131,28 @@ export default function Casting() {
   const finalWeight = pureValue ? purity / pureValue : 0;
   const copper = parseFloat(form.givenGold || 0) - finalWeight;
   const afterWeight = items.reduce((sum, item) => sum + parseFloat(item.weight || 0), 0);
+  const totalItemWeight = finalWeight - afterWeight;
   const totalScrapWeight = scrapItems.reduce((sum, item) => sum + parseFloat(item.weight || 0),0 );
-  const wastage = finalWeight - afterWeight;
-  const totalWastage = wastage - totalScrapWeight;
+  const totalWastage = totalItemWeight - totalScrapWeight;
 
+  const handleDelete = async (id) => {
+    console.log('Delete casting id:', id)
+    const confirm = window.confirm("Are you sure you want to delete this casting entry?");
+    if (!confirm) return;
+
+    try {
+     const response = await axios.delete(`${BACKEND_SERVER_URL}/api/castingentry/${id}`);
+     console.log("Delete response from backend:", response);
+      toast.success("Casting entry deleted successfully");
+      const updatedList = savedCastings.filter(entry => entry.id !== id);
+      setSavedCastings(updatedList);
+      setFilteredCastings(updatedList);
+      console.log("Updated casting list:", updatedList); 
+    } catch (err) {
+      console.error("Error deleting casting entry:", err);
+      toast.error("Failed to delete casting entry");
+    }
+  };
   
   const handleSave = async () => {
     try {
@@ -106,26 +173,45 @@ export default function Casting() {
       if (editIndex !== null) {
         const idToUpdate = savedCastings[editIndex]?.id;
         const response = await axios.put(`${BACKEND_SERVER_URL}/api/castingentry/${idToUpdate}`, payload);
+        console.log('Edit casting entry',response)
         toast.success("Casting entry updated!");
         newCastingId = idToUpdate;
-  
-        // ✅ UPDATE THE ENTRY LOCALLY (no need to refetch full list)
-        const updatedEntry = { ...savedCastings[editIndex], ...payload, id: idToUpdate };
+
+        const updatedEntry = {
+          ...savedCastings[editIndex],
+          ...payload,
+          id: idToUpdate,
+          items: items,
+          scrapItems: scrapItems,
+          beforeWeight: finalWeight.toFixed(2),
+          afterWeight: afterWeight.toFixed(2),
+        };
+        
         const updatedList = [...savedCastings];
         updatedList[editIndex] = updatedEntry;
         setSavedCastings(updatedList);
         setFilteredCastings(updatedList);
+        console.log(updatedList)
       } else {
         const response = await axios.post(`${BACKEND_SERVER_URL}/api/castingentry`, payload);
         newCastingId = response.data?.data?.id;
         toast.success("Casting entry saved!");
-  
-        // ✅ ADD NEW ENTRY TO LIST
-        const newEntry = { ...payload, id: newCastingId };
+
+        const newEntry = {
+          ...payload,
+          id: newCastingId,
+          items: items, // add this
+          scrapItems: scrapItems, // add this
+          beforeWeight: finalWeight.toFixed(2),
+          afterWeight: afterWeight.toFixed(2),
+        };
+        
         const updatedList = [...savedCastings, newEntry];
         setSavedCastings(updatedList);
         setFilteredCastings(updatedList);
       }
+      console.log(setSavedCastings)
+      console.log(setFilteredCastings)
   
       setCastingEntryId(newCastingId);
   
@@ -136,11 +222,9 @@ export default function Casting() {
         setShowPopup(false);
       } else {
         toast.info("Updated! You can now edit items or close the form.");
-      }
-  
+      } 
     } catch (error) {
-      console.error("Error saving/updating casting entry:", error);
-      // toast.error("Failed to save casting entry.");
+      // console.error("Error saving/updating casting entry:", error);
     }
   };
   
@@ -157,6 +241,7 @@ export default function Casting() {
     setItems([]);
     setScrapItems([]);
     setEditIndex(null);
+    setCastingEntryId(null); 
   };
 
   const handleEdit = async (index) => {
@@ -177,13 +262,11 @@ export default function Casting() {
     try {
       const response = await axios.get(`${BACKEND_SERVER_URL}/api/castingitems`, {
         params: { casting_entry_id: data.id },
-      });
-  
-      const fetchedItems = response.data;
-  
+      }); 
+      const fetchedItems = response.data; 
       const itemList = fetchedItems.filter(item => item.type === "Items");
       const scrapList = fetchedItems.filter(item => item.type === "ScrapItems");
-  
+
       setItems(itemList);
       setScrapItems(scrapList);
     } catch (error) {
@@ -191,7 +274,7 @@ export default function Casting() {
       toast.error("Failed to load casting items.");
     }
   };
-  
+
   return (
     <>
       <Navbar />
@@ -243,92 +326,101 @@ export default function Casting() {
               </div>
               <hr />
               <br />
-              <div className="form-grid">
-                <div className="form-row">
-                  <div className="form-field">
-                    <label>Date</label>
-                    <input
-                      type="date"
-                      value={form.date}
-                      onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label>Name</label>
-                    <select
-                      style={{ height: "1.8rem" }}
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    >
-                      <option value="">Select Name</option>
-                      {castingNames.map((name, index) => (
-                        <option key={index} value={name}>{name}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="form-field">
-                    <label>Given Gold</label>
-                    <input
-                      type="number"
-                      value={form.givenGold}
-                      onChange={(e) => setForm({ ...form, givenGold: e.target.value })}
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label>Given Touch</label>
-                    <input
-                      type="number"
-                      value={form.givenTouch}
-                      onChange={(e) => setForm({ ...form, givenTouch: e.target.value })}
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label>Purity</label>
-                    <input type="text" value={purity.toFixed(3)} readOnly />
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-field">
-                    <label>Final Touch</label>
-                    <input
-                      type="number"
-                      value={form.finalTouch}
-                      onChange={(e) => setForm({ ...form, finalTouch: e.target.value })}
-                    />
-                  </div>
-                  <div className="form-field" style={{ display: "none" }}>
-                    <label>Pure Value</label>
-                    <input type="text" value={pureValue.toFixed(3)} readOnly />
-                  </div>
-                  <div className="form-field">
-                    <label>Copper</label>
-                    <input type="text" value={copper.toFixed(3)} readOnly />
-                  </div>
-                  <div className="form-field">
-                    <label>Final Weight</label>
-                    <input type="text" value={finalWeight.toFixed(3)} readOnly />
-                  </div>
-                  <div className="form-field">
-                  <button className="save-btn" onClick={handleSave}>
-                {editIndex !== null ? "Update" : "Save"}
-              </button>
-              </div>
-                </div>
-              </div>
-              <hr />
-             <CastingItemForm castingEntryId={castingEntryId}/>
-                
+<div className="form-grid">
+  {/* Row 1 */}
+  <div className="form-row">
+    <div className="form-field">
+      <label>Date</label>
+      <input
+        type="date"
+        value={form.date}
+        onChange={(e) => setForm({ ...form, date: e.target.value })}
+      />
+    </div>
+    <div className="form-field">
+      <label>Name</label>
+      <select
+        value={form.name}
+        onChange={(e) => setForm({ ...form, name: e.target.value })}
+      >
+        <option value="">Select Name</option>
+        {castingNames.map((name, index) => (
+          <option key={index} value={name}>{name}</option>
+        ))}
+      </select>
+    </div>
+    <div className="form-field">
+      <label>Given Gold</label>
+      <input
+        type="number"
+        value={form.givenGold}
+        onChange={(e) => setForm({ ...form, givenGold: e.target.value })}
+      />
+    </div>
+    <div className="form-field">
+      <label>Given Touch</label>
+      <input
+        type="number"
+        value={form.givenTouch}
+        onChange={(e) => setForm({ ...form, givenTouch: e.target.value })}
+      />
+    </div>
+  </div>
+
+  {/* Row 2 */}
+  <div className="form-row">
+    <div className="form-field">
+      <label>Purity</label>
+      <input type="text" value={purity.toFixed(3)} readOnly />
+    </div>
+    <div className="form-field">
+      <label>Final Touch</label>
+      <input
+        type="number"
+        value={form.finalTouch}
+        onChange={(e) => setForm({ ...form, finalTouch: e.target.value })}
+      />
+    </div>
+    <div className="form-field">
+      <label>Copper</label>
+      <input type="text" value={copper.toFixed(3)} readOnly />
+    </div>
+    <div className="form-field">
+      <label>Before Weight</label>
+      <input type="text" value={finalWeight.toFixed(3)} readOnly />
+    </div>
+  </div>
+    <button     
+     className="save-btn" onClick={handleSave}>
+      {editIndex !== null ? "Update" : "Save"}
+    </button>
+</div>
+             <hr />
+              <CastingItemForm
+  castingEntryId={castingEntryId}
+  items={items}
+  setItems={setItems}
+  scrapItems={scrapItems}
+  setScrapItems={setScrapItems}
+  afterWeight={afterWeight}
+  totalScrapWeight={totalScrapWeight}
+  totalWastage={totalWastage}
+  totalItemWeight= {totalItemWeight}
+  onStockUpdate={triggerRefresh} 
+/>
+ <div style={{marginTop:'20rem'}}> </div>
+<Stock refreshFlag ={refreshFlag}/>
+
             </div>
           </div>
         )}
-
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div style={{ flex: 1 }}>
-            <h3 style={{ textAlign: "center", color: "#d40b4e", fontSize: "1.3rem", fontWeight: "bold" }}>
+            <h3 style={{ textAlign: "center", color: "#d40b4e", fontSize: "1.3rem", fontWeight: "bold", fontFamily:'sans-serif'}}>
               Casting / Melting
             </h3>
             <table border="1" cellPadding="8" cellSpacing="0" style={{ width: "95%", margin: "1rem auto", borderCollapse: "collapse" }}>
-              <thead style={{ backgroundColor: "#f0f0f0" }}>
+              <thead style={{ backgroundColor: "#f0f0f0", fontFamily:'sans-serif' }}>
                 <tr>
                   <th>S.No</th>
                   <th>Date</th>
@@ -340,7 +432,6 @@ export default function Casting() {
                   <th>Action</th>
                 </tr>
               </thead>
-
               <tbody>
                 {filteredCastings.length > 0 ? (
                   filteredCastings.map((entry, index) => (
@@ -348,11 +439,26 @@ export default function Casting() {
                       <td>{index + 1}</td>
                       <td>{entry.date ? new Date(entry.date).toLocaleDateString() : "-"}</td>
                       <td>{castingNames[entry.casting_customer_id - 1] || "-"}</td>
-                      <td>{entry.items?.map(item => item.name).join(", ") || "-"}</td>
+                      <td>
+  {(entry.items || []).map(item => {
+    const found = availableItems.find(i => i.id === item.item_id);
+    return found?.name || "Unknown";
+  }).join(", ") || "-"}
+</td>
+
                       <td>{entry.beforeWeight || entry.final_weight}</td>
-                      <td>{entry.afterWeight || "-"}</td>
+                      <td>
+  {(() => {
+    const totalAfterWeight = (entry.items || [])
+      .reduce((sum, item) => sum + (item.after_weight || 0), 0);
+    return totalAfterWeight.toFixed(3);
+  })()}
+</td>                
                       <td>{(entry.items?.length || 0) + (entry.scrapItems?.length || 0)}</td>
-                      <td><button onClick={() => handleEdit(index)}>Edit</button></td>
+                      <td><button onClick={() => handleEdit(index)}>Edit</button>
+                      <button onClick={() => handleDelete(entry.id)} style={{ marginLeft: 8, color: "red" }}>Delete</button>
+                      
+                      </td>
                     </tr>
                   ))
                 ) : (
@@ -362,8 +468,7 @@ export default function Casting() {
                     </td>
                   </tr>
                 )}
-              </tbody>
-           
+              </tbody>          
             </table>
           </div>
         </div>

@@ -1,434 +1,329 @@
-// import React, { useState } from "react";
-// import {Button,Dialog, DialogTitle,DialogContent,DialogActions,TextField,Snackbar} from "@mui/material";
-// import MuiAlert from "@mui/material/Alert";
-// import Navbar from "../Navbar/Navbar";
-// import Box from "@mui/material/Box";
-// import InputLabel from "@mui/material/InputLabel";
-// import MenuItem from "@mui/material/MenuItem";
-// import FormControl from "@mui/material/FormControl";
-// import Select from "@mui/material/Select";
-// import Table from "@mui/material/Table";
-// import TableBody from "@mui/material/TableBody";
-// import TableCell from "@mui/material/TableCell";
-// import TableContainer from "@mui/material/TableContainer";
-// import TableHead from "@mui/material/TableHead";
-// import TableRow from "@mui/material/TableRow";
-// import Paper from "@mui/material/Paper";
-// import { toast, ToastContainer } from "react-toastify";
-// import 'react-toastify/dist/ReactToastify.css';
-// import './Filing.css'
-
-// const Buffing = () => {
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-//   const [editIndex, setEditIndex] = useState(null);
-
-//   const [date, setDate] = useState("");
-//   const [name, setName] = useState("");
-//   const [beforeWeight, setBeforeWeight] = useState("");
-//   const [purity, setPurity] = useState("");
-//   const [touch, setTouch] = useState("");
-//   const [difference, setDifference] = useState("");
-//   const [afterWeight, setAfterWeight] = useState("");
-//   const [entries, setEntries] = useState([]);
-
-//   // Toast state
-//   const [openToast, setOpenToast] = useState(false);
-//   const [toastMessage, setToastMessage] = useState("");
-
-//   const handleToast = (message) => {
-//     setToastMessage(message);
-//     setOpenToast(true);
-//   };
-
-//   const openModal = () => {
-//     clearFields();
-//     setEditIndex(null); // new entry
-//     setIsModalOpen(true);
-//   };
-
-//   const closeModal = () => {
-//     setIsModalOpen(false);
-//     clearFields();
-//     setEditIndex(null);
-//   };
-
-//   const clearFields = () => {
-//     setDate("");
-//     setName("");
-//     setBeforeWeight("");
-//     setPurity("");
-//     setTouch("");
-//     setDifference("");
-//     setAfterWeight("");
-//   };
-
-//   const handleSave = () => {
-//     const hasData =
-//       date || name || beforeWeight || purity || touch || difference || afterWeight;
-
-//     if (!hasData) {
-//       handleToast("Please fill in at least one field before saving.");
-//       return;
-
-      
-//     }
-
-//     const newEntry = {
-//       date,
-//       name,
-//       beforeWeight,
-//       purity,
-//       touch,
-//       difference,
-//       afterWeight,
-//     };
-
-//     if (editIndex !== null) {
-//       const updatedEntries = [...entries];
-//       updatedEntries[editIndex] = newEntry;
-//       setEntries(updatedEntries);
-//       toast.success("Updated successfully!", {
-//         position: "top-right",
-//         autoClose: 3000,
-//         hideProgressBar: false,
-//         closeOnClick: true,
-//         pauseOnHover: true,
-//         draggable: true,
-//       });
-//     } else {
-//       setEntries([...entries, newEntry]);
-//       toast.success("Saved successfully!", {
-//         position: "top-right",
-//         autoClose: 3000,
-//         hideProgressBar: false,
-//         closeOnClick: true,
-//         pauseOnHover: true,
-//         draggable: true,
-//       });
-
-//     }
-
-//     closeModal();
-//   };
-
-//   const handleViewEdit = (index) => {
-//     const entry = entries[index];
-//     setDate(entry.date);
-//     setName(entry.name);
-//     setBeforeWeight(entry.beforeWeight);
-//     setPurity(entry.purity);
-//     setTouch(entry.touch);
-//     setDifference(entry.difference);
-//     setAfterWeight(entry.afterWeight);
-//     setEditIndex(index);
-//     setIsModalOpen(true);
-//   };
-
-//   return (
-//     <>
-//       <Navbar />
-//       <ToastContainer />
-//       <div className="filing-container">
-//         <br />
-
-// <Box display="flex" alignItems="center" gap="1rem" mb={2} >
-//   <TextField
-//     id="from-date"
-//     label="From Date"
-//     type="date"
-//     InputLabelProps={{ shrink: true }}
-//   />
-//   <TextField
-//     id="to-date"
-//     label="To Date"
-//     type="date"
-//     InputLabelProps={{ shrink: true }}
-//   />
-//   <FormControl>
-//     <InputLabel id="status-label">Status</InputLabel>
-//     <Select
-//       labelId="status-label"
-//       id="status"
-//       value={name}
-//       label="Status"
-//       onChange={(e) => setName(e.target.value)}
-//       style={{ minWidth: 150 }}
-//     >
-//       <MenuItem value="Processing">Processing</MenuItem>
-//       <MenuItem value="Completed">Completed</MenuItem>
-//     </Select>
-//   </FormControl>
-//   <Button
-//           style={{
-//             backgroundColor: "#F5F5F5",
-//             color: "black",
-//             borderColor: "#25274D",
-//             borderStyle: "solid",
-//             borderWidth: "2px",
-//             marginLeft: "81rem",
-//             position: "absolute",
-//           }}
-//           variant="contained"
-//           onClick={openModal}
-//         >
-//           Add Filing Items
-//         </Button>
-// </Box>
-
-//         <Dialog open={isModalOpen} onClose={closeModal} 
-//         >
-//           <DialogTitle style={{ color: "#a33768" }}>Buffing</DialogTitle>
-
-//           <Dialog
-//   open={isModalOpen}
-//   onClose={closeModal}
-//   maxWidth="lg"
-//   fullWidth
-//   PaperProps={{
-//     style: { minHeight: "300px", padding: "1rem",minWidth:"60%" , height:"fit-content"},
-//   }}
-// >
-//   <DialogTitle style={{ color: "#a33768", textAlign: "center" }}>
-//   Buffing Entry
-//   </DialogTitle>
-
-//   <DialogContent>
-//     <Box display="flex" gap={4}>
-//       {/* Left Column - Filing Section */}
-//       <Box flex={1} p={2} borderRight="1px solid #ccc">
-//         <h3 style={{ textAlign: "center", marginBottom: "1rem" }}>Buffing</h3>
-//         <TextField
-//           id="date"
-//           label="Date"
-//           type="date"
-//           InputLabelProps={{ shrink: true }}
-//           value={date}
-//           onChange={(e) => setDate(e.target.value)}
-//           fullWidth
-//           style={{ marginBottom: "1rem" }}
-//         />
-//         <FormControl fullWidth>
-//           <InputLabel id="name-label">Name</InputLabel>
-//           <Select
-//             labelId="name-label"
-//             id="name"
-//             value={name}
-//             label="Name"
-//             onChange={(e) => setName(e.target.value)}
-//           >
-//             <MenuItem value="Dhanusha">Dhanusha</MenuItem>
-//             <MenuItem value="Saranya">Saranya</MenuItem>
-//             <MenuItem value="Boobalan">Boobalan</MenuItem>
-//           </Select>
-//         </FormControl>
-//       </Box>
-
-//       {/* Right Column - Casting Items */}
-//       <Box flex={2} p={2}>
-//         <h3 style={{ textAlign: "center" }}>Setting Items</h3>
-//         <br/>
-//         <TableContainer component={Paper}>
-//           <Table>
-//             <TableHead>
-//               <TableRow>
-//                 <TableCell>S.No</TableCell>
-//                 <TableCell>Item Name</TableCell>
-//                 <TableCell>Weight</TableCell>
-//                 <TableCell>Touch</TableCell>
-//                 <TableCell>Purity</TableCell>
-//               </TableRow>
-//             </TableHead>
-//             <TableBody>
-//               {/* Example rows — replace with your dynamic data */}
-//               <TableRow>
-//                 <TableCell>1</TableCell>
-//                 <TableCell>Ring</TableCell>
-//                 <TableCell>10g</TableCell>
-//                 <TableCell>92</TableCell>
-//                 <TableCell>22K</TableCell>
-//               </TableRow>
-//               <TableRow>
-//                 <TableCell>2</TableCell>
-//                 <TableCell>Chain</TableCell>
-//                 <TableCell>15g</TableCell>
-//                 <TableCell>91.6</TableCell>
-//                 <TableCell>22K</TableCell>
-//               </TableRow>
-//             </TableBody>
-//           </Table>
-//         </TableContainer>
-//       </Box>
-//     </Box>
-//   </DialogContent>
-
-//   <DialogActions>
-//     <Button onClick={closeModal} color="secondary">
-//       Cancel
-//     </Button>
-//     <Button onClick={handleSave} color="primary">
-//       {editIndex !== null ? "Update" : "Save"}
-//     </Button>
-//   </DialogActions>
-// </Dialog>
-
-
-
-//           <DialogActions>
-//             <Button onClick={closeModal} color="secondary">
-//               Cancel
-//             </Button>
-//             <Button onClick={handleSave} color="primary">
-//               {editIndex !== null ? "Update" : "Save"}
-//             </Button>
-//           </DialogActions>
-//         </Dialog>
-
-
-//         <div className="tables-container">
-//         <div className="left-table"> 
-//         <h3 style={{textAlign:'center',color:'#d40b4e',fontSize:'1.3rem',fontWeight:'bold'}}> Buffing </h3>
-//         <TableContainer component={Paper} style={{ marginTop: "1rem",width:"60rem"}}>
-//           <Table>
-//             <TableHead>
-//               <TableRow>
-//                 <TableCell sx={{fontSize:'1rem'}}>S.No</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}>Date</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}>Name</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}>Before Weight</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}>Purity</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}>Touch</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}>Difference</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}>After Weight</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}>Actions</TableCell>
-//               </TableRow>
-//             </TableHead>
-//             <TableBody>
-//               {entries.map((entry, index) => (
-//                 <TableRow key={index}>
-//                   <TableCell>{index + 1}</TableCell>
-//                   <TableCell>{entry.date}</TableCell>
-//                   <TableCell>{entry.name}</TableCell>
-//                   <TableCell>{entry.beforeWeight}</TableCell>
-//                   <TableCell>{entry.purity}</TableCell>
-//                   <TableCell>{entry.touch}</TableCell>
-//                   <TableCell>{entry.difference}</TableCell>
-//                   <TableCell>{entry.afterWeight}</TableCell>
-//                   <TableCell>
-//                     <Button
-//                       variant="outlined"
-//                       size="small"
-//                       onClick={() => handleViewEdit(index)}
-//                     >
-//                       View
-//                     </Button>
-//                   </TableCell>
-//                 </TableRow>
-//               ))}
-//             </TableBody>
-//           </Table>
-//         </TableContainer>
-//         </div>
-//         <div className="right-table">  
-// <h3 style={{textAlign:'center',color:'#d40b4e',fontSize:'1.3rem',fontWeight:'bold'}} > Buffing Items </h3>
-//         <TableContainer component={Paper} style={{ marginTop: "1rem",width:"30rem"}} > 
-//           <Table> 
-//             <TableHead> 
-//               <TableRow> 
-//                 <TableCell sx={{fontSize:'1rem'}}> S.No</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}> Item Name</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}> Weight</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}> Touch</TableCell>
-//                 <TableCell sx={{fontSize:'1rem'}}> Purity</TableCell>           
-                
-//               </TableRow>
-//             </TableHead>
-//           </Table>
-//         </TableContainer>
-//         </div>
-
-//         </div>
-   
-
-//         {/* Snackbar for Toast */}
-//         <Snackbar
-//           anchorOrigin={{ vertical: "top", horizontal: "right" }}
-//           open={openToast}
-//           autoHideDuration={3000}
-//           onClose={() => setOpenToast(false)}
-//         >
-//           <MuiAlert
-//             onClose={() => setOpenToast(false)}
-//             severity="warning"
-//             elevation={6}
-//             variant="filled"
-//           >
-//             {toastMessage}
-//           </MuiAlert>
-//         </Snackbar>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Buffing;
-
-
-
 import React, { useState } from "react";
-import { TextField, Table, TableHead, TableRow, TableCell, TableBody, Paper, TableContainer, InputAdornment } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
-import Navbar from "../Navbar/Navbar";
+import {
+  Box, Button, Dialog, DialogActions, DialogContent, DialogTitle,
+  MenuItem, Select, Table, TableBody, TableCell, TableContainer,
+  TableHead, TableRow, TextField, Typography, Paper
+} from "@mui/material";
+import toast from "react-hot-toast";
 
-export default function Page() {
+const Buffing = ({ movedItems = [] }) => {
+  const [date, setDate] = useState("");
+  const [name, setName] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [assignedItems, setAssignedItems] = useState([]);
+  const [completedItems, setCompletedItems] = useState([]);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editItem, setEditItem] = useState(null);
 
-  const buffingItems = [
-    { name: "Bangle B", date: "2025-05-20", status: "Buffed" },
-  ];
+  const availableItems = movedItems?.filter((item) => {
+    const movedTo = item?.movedTo?.toLowerCase() || "";
+    const fromProcess = item?.fromProcess?.toLowerCase() || "";
+    const stage = item?.stage?.toLowerCase() || "";
+    const status = item?.status?.toLowerCase() || "";
 
-  const filtered = buffingItems.filter(item =>
-    (!fromDate || item.date >= fromDate) &&
-    (!toDate || item.date <= toDate) &&
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    return movedTo.includes("buffing") || (fromProcess.includes("setting") || (stage === "setting" && status === "completed"));
+  });
+
+  const clearFields = () => {
+    setDate("");
+    setName("");
+    setSelectedItem(null);
+  };
+
+  const closeModal = () => {
+    clearFields();
+    setIsModalOpen(false);
+  };
+
+  const handleSave = () => {
+    if (!selectedItem) {
+      toast.error("Please select an item");
+      return;
+    }
+    if (!name) {
+      toast.error("Please select a member");
+      return;
+    }
+
+    const alreadyAssigned = assignedItems.find(item => item.itemName === selectedItem.itemName);
+    if (alreadyAssigned) {
+      toast.error("Item already assigned");
+      return;
+    }
+
+    const updatedItem = {
+      ...selectedItem,
+      assignedTo: name
+    };
+
+    setAssignedItems((prev) => [...prev, updatedItem]);
+    clearFields();
+    setIsModalOpen(false);
+    toast.success("Item Assigned");
+  };
 
   return (
-    <>
-      <Navbar />
-      <div style={{ padding: "1rem" }}>
-        <h3>Buffing Process</h3>
-        <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
-          <TextField label="From Date" type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} InputLabelProps={{ shrink: true }} />
-          <TextField label="To Date" type="date" value={toDate} onChange={e => setToDate(e.target.value)} InputLabelProps={{ shrink: true }} />
-          <TextField label="Search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)}
-            InputProps={{ startAdornment: (<InputAdornment position="start"><SearchIcon /></InputAdornment>) }} />
-        </div>
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h6" gutterBottom>Buffing Process</Typography>
 
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>S.No</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>Status</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filtered.map((item, index) => (
-                <TableRow key={index}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>{item.name}</TableCell>
-                  <TableCell>{item.date}</TableCell>
-                  <TableCell>{item.status}</TableCell>
+      <Box sx={{ mb: 2, display: 'flex', gap: 2 }}>
+        <TextField
+          type="date"
+          label="From Date"
+          size="small"
+          value={fromDate}
+          onChange={(e) => setFromDate(e.target.value)}
+          InputLabelProps={{ shrink: true }}
+        />
+        <TextField
+          type="date"
+          label="To Date"
+          size="small"
+          value={toDate}
+          onChange={(e) => setToDate(e.target.value)}
+          InputLabelProps={{ shrink: true }}
+        />
+        <Select
+          size="small"
+          displayEmpty
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+        >
+          <MenuItem value="">All Status</MenuItem>
+          <MenuItem value="Completed">Completed</MenuItem>
+        </Select>
+        <Button variant="contained" onClick={() => setIsModalOpen(true)}>
+          Add Buffing Items
+        </Button>
+      </Box>
+
+      <Box sx={{ display: "flex", gap: 3 }}>
+  {/* Left Side - Assigned Items */}
+  <Box sx={{ flex: 1 }}>
+    <Typography fontWeight="bold" sx={{ mb: 1 }}>Assigned Items</Typography>
+    <TableContainer component={Paper}>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell>Date</TableCell>
+            <TableCell>Member</TableCell>
+            <TableCell>Item</TableCell>
+            <TableCell>Before Weight</TableCell>
+            <TableCell>Touch</TableCell>
+            <TableCell>Purity</TableCell>
+            <TableCell>After Weight</TableCell>
+            <TableCell>Stone Weight</TableCell>
+            <TableCell>Stone Charge</TableCell>
+            <TableCell>Action</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {assignedItems.map((entry, index) => (
+            <TableRow key={index}>
+              <TableCell>{date}</TableCell>
+              <TableCell>{entry.assignedTo}</TableCell>
+              <TableCell>{entry.itemName}</TableCell>
+              <TableCell>{entry.afterWeight}</TableCell>
+              <TableCell>{entry.touch}</TableCell>
+              <TableCell>{entry.purity}</TableCell>
+              <TableCell>{entry.finalAfterWeight || "-"}</TableCell>
+              <TableCell>{entry.stoneWeight || "-"}</TableCell>
+              <TableCell>{entry.stoneCharge || "-"}</TableCell>
+              <TableCell>
+                <Button size="small" variant="outlined" onClick={() => {
+                  setEditItem(entry);
+                  setEditModalOpen(true);
+                }}>View</Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  </Box>
+
+  {/* Right Side - Completed Items */}
+  <Box sx={{ flex: 1 }}>
+    <Typography fontWeight="bold" sx={{ mb: 1 }}>Completed Items</Typography>
+    <TableContainer component={Paper}>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell>Date</TableCell>
+            <TableCell>Member</TableCell>
+            <TableCell>Item</TableCell>
+            <TableCell>Before Weight</TableCell>
+            <TableCell>Touch</TableCell>
+            <TableCell>Purity</TableCell>
+            <TableCell>After Weight</TableCell>
+            <TableCell>Stone Weight</TableCell>
+            <TableCell>Stone Charge</TableCell>
+            <TableCell>Remarks</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {completedItems.map((item, idx) => (
+            <TableRow key={idx}>
+              <TableCell>{date}</TableCell>
+              <TableCell>{item.assignedTo}</TableCell>
+              <TableCell>{item.itemName}</TableCell>
+              <TableCell>{item.afterWeight}</TableCell>
+              <TableCell>{item.touch}</TableCell>
+              <TableCell>{item.purity}</TableCell>
+              <TableCell>{item.finalAfterWeight}</TableCell>
+              <TableCell>{item.stoneWeight || "-"}</TableCell>
+              <TableCell>{item.stoneCharge || "-"}</TableCell>
+              <TableCell>{item.remarks || "-"}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  </Box>
+</Box>
+
+      <Dialog open={isModalOpen} onClose={closeModal} fullWidth maxWidth="md">
+        <DialogTitle>Assign to Buffing</DialogTitle>
+        <DialogContent>
+          <Box sx={{ display: "flex", gap: 2, mt: 1 }}>
+            <TextField
+              label="Date"
+              type="date"
+              fullWidth
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              InputLabelProps={{ shrink: true }}
+            />
+            <Select
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+                setSelectedItem((prev) => prev ? { ...prev, assignedTo: e.target.value } : null);
+              }}
+              displayEmpty
+              fullWidth
+            >
+              <MenuItem value="">Select Member</MenuItem>
+              <MenuItem value="Dhanusha">Dhanusha</MenuItem>
+              <MenuItem value="Hari">Hari</MenuItem>
+              <MenuItem value="Ravi">Ravi</MenuItem>
+            </Select>
+          </Box>
+          <Box sx={{ mt: 3 }}>
+            <Typography fontWeight="bold">Available Items for Buffing</Typography>
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Select</TableCell>
+                  <TableCell>Item</TableCell>
+                  <TableCell>Before Weight</TableCell>
+                  <TableCell>Touch</TableCell>
+                  <TableCell>Purity</TableCell>
+                  <TableCell>Stone Weight</TableCell>
+                  <TableCell>Stone Charge</TableCell>
+                  <TableCell>Assign To</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-    </>
+              </TableHead>
+              <TableBody>
+                {availableItems.map((item, idx) => (
+                  <TableRow
+                    key={idx}
+                    hover
+                    onClick={() =>
+                      setSelectedItem((prev) => ({
+                        ...item,
+                        assignedTo: prev?.assignedTo || name,
+                      }))
+                    }
+                    sx={{
+                      cursor: "pointer",
+                      backgroundColor:
+                        selectedItem?.itemName === item.itemName ? "#f0f0ff" : "white",
+                    }}
+                  >
+                    <TableCell>
+                      <input
+                        type="radio"
+                        checked={selectedItem?.itemName === item.itemName}
+                        readOnly
+                      />
+                    </TableCell>
+                    <TableCell>{item.itemName}</TableCell>
+                    <TableCell>{item.afterWeight}</TableCell>
+                    <TableCell>{item.touch}</TableCell>
+                    <TableCell>{item.purity}</TableCell>
+                    <TableCell>{item.stoneWeight || "-"}</TableCell>
+                    <TableCell>{item.stoneCharge || "-"}</TableCell>
+                    <TableCell>{
+                      assignedItems.find((assigned) => assigned.itemName === item.itemName)?.assignedTo || "-"
+                    }</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeModal}>Cancel</Button>
+          <Button variant="contained" onClick={handleSave}>Assign</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={editModalOpen} onClose={() => setEditModalOpen(false)}>
+        <DialogTitle>Update Buffing Details</DialogTitle>
+        <DialogContent>
+          <TextField
+            label="Final After Weight"
+            type="number"
+            fullWidth
+            margin="dense"
+            value={editItem?.finalAfterWeight || ""}
+            onChange={(e) =>
+              setEditItem({ ...editItem, finalAfterWeight: e.target.value })
+            }
+          />
+          <TextField
+            label="Remarks"
+            fullWidth
+            margin="dense"
+            value={editItem?.remarks || ""}
+            onChange={(e) =>
+              setEditItem({ ...editItem, remarks: e.target.value })
+            }
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setEditModalOpen(false)}>Cancel</Button>
+          <Button
+            variant="contained"
+
+            onClick={() => {
+              setAssignedItems((prev) =>
+                prev.map((item) =>
+                  item.itemName === editItem.itemName ? { ...item, ...editItem, status: "Completed" } : item
+                )
+              );
+            
+              const alreadyCompleted = completedItems.some(item => item.itemName === editItem.itemName);
+              if (!alreadyCompleted) {
+                setCompletedItems((prev) => [...prev, { ...editItem, status: "Completed" }]);
+              }
+            
+              setEditModalOpen(false);
+              toast.success("Item marked as completed");
+            }}
+            
+          >
+            Update
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
   );
-}
+};
+
+export default Buffing;

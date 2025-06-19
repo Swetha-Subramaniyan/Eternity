@@ -1,63 +1,71 @@
-// import { PrismaClient } from "../generated/prisma/index.js";
-// const prisma = new PrismaClient();
-
-// export const addToStock = async (req, res) => {
-//   try {
-//     const { casting_item_id } = req.body;
-
-//     const newStock = await prisma.stock.create({
-//       data: {
-//         casting_item_id,
-//         createdAt: new Date()
-//       }
-//     });
-
-//     res.status(201).json(newStock);
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// };
-
-// export const getAllStock = async (req, res) => {
-//   try {
-//     const stock = await prisma.stock.findMany({
-//       include: { castingItem: true }
-//     });
-//     res.json(stock);
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// };
-
-
-
 import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
-// CREATE
+
+// CREATE with full scrap item data
 export const addToStock = async (req, res) => {
   try {
     const { casting_item_id } = req.body;
 
+    // Step 1: Get the casting item by ID
+    const castingItem = await prisma.castingItems.findUnique({
+      where: { id: Number(casting_item_id) },
+      include: { item: true , // include related item if needed
+      castingEntry: true,}
+    });
+
+    if (!castingItem) {
+      return res.status(404).json({ error: "Casting item not found" });
+    }
+
+    if (castingItem.type !== "ScrapItems") {
+      return res.status(400).json({ error: "Only ScrapItems can be added to stock" });
+    }
+
+    const casting_customer_id = castingItem.castingEntry.casting_customer_id
+
+    // Step 2: Create Stock from casting item data
     const newStock = await prisma.stock.create({
       data: {
-        casting_item_id,
-        createdAt: new Date()
+        casting_item_id: castingItem.id,
+        item_id: castingItem.item_id,
+        weight: castingItem.weight,
+        touch: castingItem.touch,
+        purity: castingItem.item_purity,
+        remarks: castingItem.remarks,
+        scrap_weight: castingItem.scrap_weight,
+        scrap_wastage: castingItem.scrap_wastage,
+        createdAt: new Date(),
+        casting_customer_id:casting_customer_id
       }
     });
 
     res.status(201).json(newStock);
   } catch (error) {
+    console.error("Stock creation error:", error);
     res.status(400).json({ error: error.message });
   }
 };
+
 
 // READ ALL
 export const getAllStock = async (req, res) => {
   try {
     const stock = await prisma.stock.findMany({
-      include: { castingItem: true }
+      include:{
+        item: true,
+        castingItem:{
+          include:{
+            castingEntry:{
+              include:{
+                casting_customer: true
+              },
+            },
+          },
+        },
+      },
     });
+
     res.status(200).json(stock);
   } catch (error) {
     res.status(400).json({ error: error.message });
