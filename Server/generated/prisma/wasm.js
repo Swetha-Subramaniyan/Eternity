@@ -228,7 +228,8 @@ exports.Prisma.CastingItemsScalarFieldEnum = {
   after_weight: 'after_weight',
   scrap_weight: 'scrap_weight',
   scrap_wastage: 'scrap_wastage',
-  casting_entry_id: 'casting_entry_id'
+  casting_entry_id: 'casting_entry_id',
+  casting_customer_id: 'casting_customer_id'
 };
 
 exports.Prisma.FilingEntryScalarFieldEnum = {
@@ -275,7 +276,15 @@ exports.Prisma.BuffingEntryScalarFieldEnum = {
 exports.Prisma.StockScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  casting_item_id: 'casting_item_id'
+  casting_item_id: 'casting_item_id',
+  item_id: 'item_id',
+  weight: 'weight',
+  touch: 'touch',
+  item_purity: 'item_purity',
+  remarks: 'remarks',
+  scrap_weight: 'scrap_weight',
+  scrap_wastage: 'scrap_wastage',
+  casting_customer_id: 'casting_customer_id'
 };
 
 exports.Prisma.SortOrder = {
@@ -355,6 +364,10 @@ exports.Prisma.SettingEntryOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.BuffingEntryOrderByRelevanceFieldEnum = {
+  remarks: 'remarks'
+};
+
+exports.Prisma.StockOrderByRelevanceFieldEnum = {
   remarks: 'remarks'
 };
 exports.ITEMTYPE = exports.$Enums.ITEMTYPE = {

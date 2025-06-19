@@ -39,12 +39,14 @@ model AddCustomer {
 }
 
 model AddCasting {
-  id          Int            @id @default(autoincrement())
-  name        String
-  phoneNumber String?
-  address     String?
-  email       String?
-  entries     CastingEntry[]
+  id           Int            @id @default(autoincrement())
+  name         String
+  phoneNumber  String?
+  address      String?
+  email        String?
+  entries      CastingEntry[]
+  castingitems CastingItems[]
+  stock        Stock[]
 }
 
 model AddFiling {
@@ -116,6 +118,7 @@ model AddItem {
   id           Int            @id @default(autoincrement())
   name         String
   castingItems CastingItems[]
+  stock        Stock[]
 }
 
 model CastingEntry {
@@ -148,12 +151,16 @@ model CastingItems {
   scrap_wastage Float?
   item          AddItem          @relation(fields: [item_id], references: [id])
 
-  castingEntry     CastingEntry  @relation(fields: [casting_entry_id], references: [id])
+  castingEntry     CastingEntry @relation(fields: [casting_entry_id], references: [id], onDelete: Cascade)
   casting_entry_id Int
-  filingEntry      FilingEntry?
-  settingEntry     SettingEntry?
-  buffingEntry     BuffingEntry?
-  stock            Stock[]
+
+  filingEntry  FilingEntry?
+  settingEntry SettingEntry?
+  buffingEntry BuffingEntry?
+  stock        Stock[]
+
+  casting_customer_id Int
+  casting_customer    AddCasting @relation(fields: [casting_customer_id], references: [id])
 }
 
 model FilingEntry {
@@ -212,6 +219,18 @@ model BuffingEntry {
 model Stock {
   id              Int          @id @default(autoincrement())
   createdAt       DateTime     @default(now())
-  castingItem     CastingItems @relation(fields: [casting_item_id], references: [id])
+  castingItem     CastingItems @relation(fields: [casting_item_id], references: [id], onDelete: Cascade)
   casting_item_id Int
+
+  item_id       Int
+  item          AddItem @relation(fields: [item_id], references: [id])
+  weight        Float
+  touch         Float
+  item_purity   Float
+  remarks       String?
+  scrap_weight  Float?
+  scrap_wastage Float?
+
+  casting_customer_id Int
+  casting_customer    AddCasting @relation(fields: [casting_customer_id], references: [id])
 }

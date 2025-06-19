@@ -47,9 +47,9 @@ function Navbar() {
         <li className={`nav-item ${isActive("/report") ? "active" : ""}`}>
           <a href="/report" className="nav-link">Report</a>
         </li>
-        {/* <li className={`nav-item ${isActive("/stock") ? "active" : ""}`}>
+        <li className={`nav-item ${isActive("/stock") ? "active" : ""}`}>
           <a href="/stock" className="nav-link">Stock</a>
-        </li> */}
+        </li>
       </ul>
 
       <div className="navbar-right">     
