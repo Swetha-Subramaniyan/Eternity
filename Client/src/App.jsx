@@ -19,6 +19,9 @@ import MasterPurchaseStock from './Components/Master/MasterPurchaseStock';
 import MasterAddSupplier from './Components/Master/MasterAddSupplier';
 import CustomerTranscation from './Components/Customer/CustomerTranscation';
 import Stock from './Components/LotProcess/Stock';
+import FilingDetails from './Components/LotProcess/FilingDetails';
+import FilingReport from './Components/LotProcess/FilingReport';
+import FilingLot from './Components/LotProcess/FilingLot';
 
 
 
@@ -45,7 +48,9 @@ const App = () => {
     <Route path='/masterpurchasestock' element={<MasterPurchaseStock/>} />
     <Route path='/mastersupplier' element={<MasterAddSupplier />} />
     <Route path='/stock' element={<Stock/>} />
-
+    <Route path='/filingdetails' element={<FilingDetails/>}/> 
+    <Route path='/filingreport' element={<FilingReport/>}/> 
+    <Route path='/filinglot' element={<FilingLot/>}/> 
    </Routes>
     </BrowserRouter>
    
