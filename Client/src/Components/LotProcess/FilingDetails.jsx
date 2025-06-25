@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 import { Link } from 'react-router-dom';
 
 const FilingDetails = () => {
-
     const [date, setDate] = useState("");
     const [name, setName] = useState("");
     const [afterWeight, setAfterWeight] = useState("");
@@ -28,8 +27,6 @@ const FilingDetails = () => {
     const [statusFilter, setStatusFilter] = useState("");
     const [productItems, setProductItems] = useState([]);
     const [scrapItems, setScrapItems] = useState([]);
-
-  
     const clearFields = () => {
       setDate("");
       setName("");
@@ -96,8 +93,7 @@ const FilingDetails = () => {
       });
       setEditIndex(index);
       setIsModalOpen(true);
-    };
-  
+    };  
     // Filtered completed items
     const completedItems = entries.filter((entry) => {
       const entryDate = new Date(entry.date);
@@ -109,32 +105,23 @@ const FilingDetails = () => {
         !statusFilter || (statusFilter === entry.movedTo);
       return isAfterWeight && isInDateRange && statusMatch;
     });
-
-
-
-
-
     const handleAddProductItem = () => {
       setProductItems([...productItems, { itemName: "", weight: "" }]);
     };
     
     const handleAddScrapItem = () => {
       setScrapItems([...scrapItems, { itemName: "", weight: "" }]);
-    };
-    
+    };   
     const handleProductItemChange = (index, field, value) => {
       const updated = [...productItems];
       updated[index][field] = value;
       setProductItems(updated);
-    };
-    
+    };  
     const handleScrapItemChange = (index, field, value) => {
       const updated = [...scrapItems];
       updated[index][field] = value;
       setScrapItems(updated);
     };
-    
-
 
   return (
     <> 
@@ -295,8 +282,7 @@ const FilingDetails = () => {
             </Table>
           </TableContainer>
         </div>
-      </div>
-  
+      </div>  
     <Dialog open={isModalOpen} onClose={closeModal} fullWidth maxWidth={false} // disables default width constraints
   PaperProps={{ sx: { width: '55rem !important' }, }} >
     <DialogTitle>{editIndex !== null ? "Update Assigned Item" : "Assign Item to Filing Member"}</DialogTitle>
@@ -357,7 +343,6 @@ const FilingDetails = () => {
           </TableBody>
         </Table>
       </Box>
-
       {/* Show After Weight and Remarks if editing */}
       {editIndex !== null && (
         <Box sx={{ mt: 3 }}>
@@ -374,7 +359,6 @@ const FilingDetails = () => {
             value={remarks}
             onChange={(e) => setRemarks(e.target.value)}
           />
-
           {/* Add Product Items Section */}
 <Box sx={{ mt: 3 }}>
   {/* <Typography fontWeight="bold" gutterBottom>Add Product Items</Typography> */}
@@ -411,7 +395,6 @@ const FilingDetails = () => {
     </TableBody>
   </Table>
 </Box>
-
 {/* Add Scrap Items Section */}
 <Box sx={{ mt: 3 }}>
   {/* <Typography fontWeight="bold" gutterBottom>Add Scrap Items</Typography> */}
@@ -448,10 +431,7 @@ const FilingDetails = () => {
     </TableBody>
   </Table>
 </Box>
-
-        </Box>
-
-        
+        </Box>      
       )}
     </DialogContent>
     <DialogActions>

@@ -432,16 +432,16 @@ const Filing = () => {
                   <TableCell align="center">9321345672</TableCell>
                   <TableCell align="center">4/213, Coimbatore</TableCell>
                   <TableCell align="center">
-                    <Link to={'/filingdetails'}> 
+                    {/* <Link to={'/filingdetails'}> 
                        <IconButton>
                       <PreviewIcon color="primary" /> 
                     </IconButton>
-                    </Link> 
-                    <Link to={'/filingreport'}> 
+                    </Link>  */}
+                    {/* <Link to={'/filingreport'}> 
                     <IconButton>
                       <PreviewIcon  /> 
                     </IconButton>
-                    </Link> 
+                    </Link>  */}
                     <Link to={'/filinglot'}> 
                     <IconButton>
                       <PreviewIcon color="secondary"  /> 

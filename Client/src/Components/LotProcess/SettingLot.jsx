@@ -5,7 +5,7 @@ import Navbar from '../Navbar/Navbar';
 import styles from './FilingLot.module.css';
 import { Link } from 'react-router-dom';
 
-const FilingLot = () => {
+const SettingLot = () => {
   const [lots, setLots] = useState([{ id: 1 }]);
 
   const handleCloseLot = () => {
@@ -20,9 +20,9 @@ const FilingLot = () => {
         {lots.map((lot) => (
           <div key={lot.id} className={styles.card}>
             <div className={styles.header}>
-              <label className={styles.lotLabel}>Lot No: {lot.id}</label>
+              <label className={styles.lotLabel}> Lot No: {lot.id}</label>
               <div className={styles.actions}>
-                <Link to="/filingreport">
+                <Link to="/settingreport">
                   <button className={styles.button}>
                     View
                   </button>
@@ -39,4 +39,4 @@ const FilingLot = () => {
   );
 };
 
-export default FilingLot;
+export default SettingLot;

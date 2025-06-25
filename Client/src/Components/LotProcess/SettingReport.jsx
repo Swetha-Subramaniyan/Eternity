@@ -9,7 +9,7 @@ import styles from './FilingReport.module.css';
 import Navbar from '../Navbar/Navbar';
 import { Delete } from "@mui/icons-material";
 
-const FilingReport = () => {
+const SettingReport = () => {
   const [isAssignOpen, setIsAssignOpen] = useState(false);
   const [viewEntry, setViewEntry] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -526,7 +526,7 @@ PaperProps={{
   );
 };
 
-export default FilingReport;
+export default SettingReport;
 
 
 

@@ -22,6 +22,8 @@ import Stock from './Components/LotProcess/Stock';
 import FilingDetails from './Components/LotProcess/FilingDetails';
 import FilingReport from './Components/LotProcess/FilingReport';
 import FilingLot from './Components/LotProcess/FilingLot';
+import SettingLot from './Components/LotProcess/settingLot';
+import SettingReport from './Components/LotProcess/SettingReport';
 
 
 
@@ -51,6 +53,9 @@ const App = () => {
     <Route path='/filingdetails' element={<FilingDetails/>}/> 
     <Route path='/filingreport' element={<FilingReport/>}/> 
     <Route path='/filinglot' element={<FilingLot/>}/> 
+    <Route path='/settinglot' element={<SettingLot/>}/> 
+    <Route path='/settingreport' element={<SettingReport/>}/>
+
    </Routes>
     </BrowserRouter>
    
