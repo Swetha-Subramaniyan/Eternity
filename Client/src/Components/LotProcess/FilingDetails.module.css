@@ -1,0 +1,77 @@
+.container{
+    width: 90rem !important;
+    justify-items: center;
+}
+
+.heading{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    justify-items: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+
+.tablecontainer{
+    width: 60%;
+    background-color: aliceblue;
+  }
+
+.tablecontainer th{
+    background-color: rgb(38, 40, 40);
+  }
+
+.tablecontainer table{
+    width: 70%;
+  }
+
+.section{
+    margin-top: 1rem;
+  }
+
+b{
+    font-size: 1.2rem;
+  }
+
+  .sect{
+    margin-top: 0.5rem;
+  }
+
+  .card{
+    margin-top: 1rem;
+    width: 93%;
+    padding: 2rem;
+    background-color: rgb(255, 244, 222);
+    display: block;
+    justify-content: center;
+  } 
+
+
+  .tablewrapper {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .lefttable,
+  .righttable {
+    flex: 1;
+    min-width: 400px;
+  }
+  
+  /* .lefttable, .righttable {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  } */
+  
+  .MuiTable-root {
+    width: 100%;
+  }
+
+  .colorr{
+    color: red;
+
+  }
