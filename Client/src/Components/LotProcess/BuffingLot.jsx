@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
-import styles from './FilingLot.module.css';
+// import styles from './FilingLot.module.css';
 import { Link } from 'react-router-dom';
+import styles from './FilingLot.module.css';
 
 
-const SettingLot = () => {
+const BuffingLot = () => {
   const [lots, setLots] = useState([{ id: 1 }]);
 
   const handleCloseLot = () => {
@@ -32,7 +33,7 @@ const SettingLot = () => {
             <div className={styles.header}>
               <label className={styles.lotLabel}> Lot No: {lot.id}</label>
               <div className={styles.actions}>
-                <Link to="/settingreport">
+                <Link to="/buffingreport">
                   <button className={styles.button}>
                     View
                   </button>
@@ -49,4 +50,4 @@ const SettingLot = () => {
   );
 };
 
-export default SettingLot;
+export default BuffingLot;

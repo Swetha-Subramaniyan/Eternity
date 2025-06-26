@@ -375,7 +375,7 @@ const Setting = () => {
             Setting Details
           </Typography>
           <TextField
-            label="Search Filing"
+            label="Search Setting"
             variant="outlined"
             fullWidth
             margin="normal"
@@ -418,16 +418,7 @@ const Setting = () => {
                   <TableCell align="center">9321345672</TableCell>
                   <TableCell align="center">4/213, Coimbatore, Setting</TableCell>
                   <TableCell align="center">
-                    {/* <Link to={'/filingdetails'}> 
-                       <IconButton>
-                      <PreviewIcon color="primary" /> 
-                    </IconButton>
-                    </Link>  */}
-                    {/* <Link to={'/filingreport'}> 
-                    <IconButton>
-                      <PreviewIcon  /> 
-                    </IconButton>
-                    </Link>  */}
+             
                     <Link to={'/settinglot'}> 
                     <IconButton>
                       <PreviewIcon color="secondary"  /> 
