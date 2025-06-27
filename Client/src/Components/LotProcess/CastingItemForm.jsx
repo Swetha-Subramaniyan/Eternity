@@ -51,7 +51,7 @@ const CastingItemForm = ({ castingEntryId, items, setItems, scrapItems, setScrap
     let isScrapWeightSaved = false;
     let isScrapWastageSaved = false;
 
-    let scrapItemSaved = false; // ✅ Track if scrap item was saved
+    let scrapItemSaved = false; //  Track if scrap item was saved
 
     try {
       for (const item of combinedItems) {
@@ -86,13 +86,13 @@ const CastingItemForm = ({ castingEntryId, items, setItems, scrapItems, setScrap
           await axios.post(`http://localhost:5000/api/castingitems`, payload);
         }
 
-        // ✅ Notify Stock component to refresh after saving scrap
+        //  Notify Stock component to refresh after saving scrap
         if (isScrap) {
           scrapItemSaved = true;
         }
       }
 
-      // ✅ Call onStockUpdate once after loop ends if any scrap saved
+      //  Call onStockUpdate once after loop ends if any scrap saved
       if (scrapItemSaved && typeof onStockUpdate === "function") {
         onStockUpdate();
       }
@@ -312,10 +312,6 @@ const fetchCastingItems = async () => {
     <input type="number" readOnly value={totalWastage.toFixed(3)} />
 
   </div>
-  {/* <div>
-    <label>Scrap Wastage: </label>
-    <input type="number" readOnly value={wastage.toFixed(3)} />
-  </div> */}
   
 </div>
       <button className="save-btnn"

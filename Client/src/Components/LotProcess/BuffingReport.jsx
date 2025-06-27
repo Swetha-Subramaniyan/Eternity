@@ -5,21 +5,28 @@ import {
   TableContainer, TableHead, TableRow, TextField, Typography, Paper
 } from "@mui/material";
 import { FaEye } from "react-icons/fa";
-import styles from './FilingReport.module.css';
 import Navbar from '../Navbar/Navbar';
 import { Delete } from "@mui/icons-material";
+import styles from './BuffingReport.module.css'
 
-const FilingReport = () => {
+const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+  
+
+const BuffingReport = () => {
   const [isAssignOpen, setIsAssignOpen] = useState(false);
   const [viewEntry, setViewEntry] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
   const [entries, setEntries] = useState([]);
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(getTodayDate());
 
   const items = [
     { item: "cst", beforeWeight: "50", touch: "91.7", purity: "22K", remarks:'aaaa' },
     { item: "cst1", beforeWeight: "48", touch: "91.7", purity: "22K",remarks:'bbbb'  },
-    { item: "cst2", beforeWeight: "55", touch: "91.7", purity: "22K",remarks:'cccc'  }
+    { item: "Ring", beforeWeight: "50", touch: "92", purity: "22K", remarks: 'aaaa', stoneWeight: "20", stoneCount: "3" },
+    
   ];
 
   // Toggle item selection
@@ -42,7 +49,10 @@ const FilingReport = () => {
       beforeWeight: it.beforeWeight,
       touch: it.touch,
       purity: it.purity,
-      remarks: it.remarks
+      remarks: it.remarks,
+      stoneCount:it.stoneCount,
+      stoneWeight:it.stoneWeight,
+      
     }));
     setEntries(prev => [...prev, ...newEntries]);
     setSelectedItems([]);
@@ -53,13 +63,12 @@ const FilingReport = () => {
   return (
     <>
       <Navbar />
-
       <Button
         sx={{ marginLeft:'85rem', marginTop:'1.5rem',
           backgroundColor:"#5f4917", color:"white", height:'2.2rem' }}
         onClick={() => setIsAssignOpen(true)}
       >
-        Add Filing Items
+        Add Buffing Items
       </Button>
 
       <div className={styles.card}>
@@ -116,9 +125,9 @@ const FilingReport = () => {
     },
   }}
 >
-  <DialogTitle>Assign Filing Items</DialogTitle>
+  <DialogTitle>Assign Buffing Items</DialogTitle>
   <DialogContent>
-    <Box sx={{ mb: 2 }}>
+    <Box sx={{ mb: 2, marginTop:'1rem' }}>
       <TextField
         label="Date"
         type="date"
@@ -129,7 +138,7 @@ const FilingReport = () => {
       />
     </Box>
 
-    <Typography variant="h6" gutterBottom>Available Filing Items</Typography>
+    <Typography variant="h6" gutterBottom>Available Buffing Items</Typography>
     <Table size="small">
       <TableHead>
         <TableRow>
@@ -138,7 +147,9 @@ const FilingReport = () => {
           <TableCell>Weight</TableCell>
           <TableCell>Touch</TableCell>
           <TableCell>Purity</TableCell>
-          <TableCell> Remarks</TableCell>
+          <TableCell>Remarks</TableCell>
+          <TableCell> Stone Count </TableCell>
+          <TableCell> Stone Weight </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -155,6 +166,8 @@ const FilingReport = () => {
             <TableCell>{item.touch}</TableCell>
             <TableCell>{item.purity}</TableCell>
             <TableCell> {item.remarks}</TableCell>
+            <TableCell>{item.stoneCount} </TableCell> 
+            <TableCell>{item.stoneWeight} </TableCell>
           </TableRow>
         ))}
       </TableBody>
@@ -187,6 +200,8 @@ PaperProps={{
               <TableCell><strong>Touch</strong></TableCell>
               <TableCell><strong>Purity</strong></TableCell>
               <TableCell><strong>Remarks</strong></TableCell>
+              <TableCell><strong>Stone Weight</strong></TableCell>
+              <TableCell><strong>Stone Count</strong></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -197,6 +212,8 @@ PaperProps={{
               <TableCell>{viewEntry.touch}</TableCell>
               <TableCell>{viewEntry.purity}</TableCell>
               <TableCell>{viewEntry.remarks}</TableCell>
+              <TableCell>{viewEntry.stoneWeight}</TableCell>
+              <TableCell>{viewEntry.stoneCount}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -224,160 +241,6 @@ PaperProps={{
 </Box>
 
 <Box sx={{ mt: 3, display: 'block' }}>
-  <Box sx={{ mt: 2 }}>
-<Button variant="outlined" onClick={() =>
-        setViewEntry({
-          ...viewEntry,
-          productItems: [...(viewEntry.productItems || []), {
-            itemName: '', weight: '', hasStone: 'No', touch: '', purity: '', remarks: ''
-          }]         
-        })
-      }>Add  Product Items</Button>
-   
-<Table size='small'> 
-<TableHead>
-  <TableRow>
-    <TableCell>S.No</TableCell>
-    <TableCell>Item Name</TableCell>
-    <TableCell>Weight</TableCell>
-    <TableCell sx={{width:'5rem'}}>Has Stone</TableCell>
-    <TableCell>Process</TableCell>
-    <TableCell>Touch</TableCell>
-    <TableCell>Purity</TableCell>
-    <TableCell>Remarks</TableCell> 
-    <TableCell>Actions</TableCell>
-
-  </TableRow>
-</TableHead>
-
-<TableBody>
-  {(viewEntry.productItems || []).map((item, index) => (
-    <TableRow key={index}>
-      <TableCell>{index + 1}</TableCell>
-      <TableCell>
-        <TextField
-          size="small"
-          value={item.itemName}
-          onChange={(e) => {
-            const updated = [...viewEntry.productItems];
-            updated[index].itemName = e.target.value;
-            setViewEntry({ ...viewEntry, productItems: updated });
-          }}
-        />
-      </TableCell>
-      <TableCell>
-        <TextField
-          size="small"
-          type="number"
-          value={item.weight}
-          onChange={(e) => {
-            const updated = [...viewEntry.productItems];
-            updated[index].weight = e.target.value;
-            const weight = parseFloat(e.target.value) || 0;
-            const touch = parseFloat(updated[index].touch) || 0;
-            updated[index].purity = ((weight * touch) / 100).toFixed(2);
-            setViewEntry({ ...viewEntry, productItems: updated });
-          }}
-          
-        />
-      </TableCell>
-      <TableCell>
-        <TextField
-          size="small"
-          select
-          SelectProps={{ native: true }}
-          value={item.hasStone}
-          onChange={(e) => {
-            const updated = [...viewEntry.productItems];
-            updated[index].hasStone = e.target.value;
-            setViewEntry({ ...viewEntry, productItems: updated });
-          }}
-        >
-          <option value="No">No</option>
-          <option value="Yes">Yes</option>
-        </TextField>
-      </TableCell>
-      <TableCell>{item.hasStone === 'Yes' ? 'Setting' : 'Buffing'}</TableCell>
-      <TableCell>
-        <TextField
-          size="small"
-          value={item.touch}
-          onChange={(e) => {
-            const updated = [...viewEntry.productItems];
-            updated[index].touch = e.target.value;
-            const weight = parseFloat(updated[index].weight) || 0;
-            const touch = parseFloat(e.target.value) || 0;
-            updated[index].purity = ((weight * touch) / 100).toFixed(2);
-            setViewEntry({ ...viewEntry, productItems: updated });
-          }}
-          
-        />
-      </TableCell>
-      <TableCell>
-        <TextField
-          size="small"
-          value={item.purity}
-          onChange={(e) => {
-            const updated = [...viewEntry.productItems];
-            updated[index].purity = e.target.value;
-            setViewEntry({ ...viewEntry, productItems: updated });
-          }}
-        />
-      </TableCell>
-      <TableCell>
-        <TextField
-          size="small"
-          value={item.remarks}
-          onChange={(e) => {
-            const updated = [...viewEntry.productItems];
-            updated[index].remarks = e.target.value;
-            setViewEntry({ ...viewEntry, productItems: updated });
-          }}
-        />
-      </TableCell>
-      <TableCell>
-  <Button
-    color="error"
-    size="small"
-    onClick={() => {
-      const updated = [...viewEntry.productItems];
-      updated.splice(index, 1); 
-      setViewEntry({ ...viewEntry, productItems: updated });
-    }}
-  >
-       <Delete/>
-  </Button>
-</TableCell>
-
-    </TableRow>
-  ))}
-</TableBody>
-</Table>
-
-    {/* Total Product Weight & Difference */}
-    <Box sx={{ mt: 2 }}>
-      <Typography variant="body2">
-        <h3>Total Product Weight: <span style={{fontWeight:'normal'}}> 
-        {
-          (viewEntry.productItems || []).reduce((acc, item) => acc + Number(item.weight || 0), 0).toFixed(2)
-        }g 
-</span>
-        </h3>
-      </Typography>
-      <Typography variant="body2">
-        <h3>After Weight - Product Weight:
-        <span style={{fontWeight:'normal'}}> 
-           {
-          (
-            Number(viewEntry.afterWeight || 0) -
-            (viewEntry.productItems || []).reduce((acc, item) => acc + Number(item.weight || 0), 0)
-          ).toFixed(2)
-        }g 
-        </span>       
-        </h3> 
-      </Typography>
-    </Box>
-  </Box>
 
   {/* Scrap Items — right side remains the same */}
   
@@ -526,7 +389,7 @@ PaperProps={{
   );
 };
 
-export default FilingReport;
+export default BuffingReport;
 
 
 

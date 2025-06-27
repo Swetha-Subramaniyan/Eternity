@@ -24,6 +24,8 @@ import FilingReport from './Components/LotProcess/FilingReport';
 import FilingLot from './Components/LotProcess/FilingLot';
 import SettingLot from './Components/LotProcess/settingLot';
 import SettingReport from './Components/LotProcess/SettingReport';
+import BuffingLot from './Components/LotProcess/BuffingLot';
+import BuffingReport from './Components/LotProcess/BuffingReport';
 
 
 
@@ -55,6 +57,8 @@ const App = () => {
     <Route path='/filinglot' element={<FilingLot/>}/> 
     <Route path='/settinglot' element={<SettingLot/>}/> 
     <Route path='/settingreport' element={<SettingReport/>}/>
+    <Route path='/buffinglot' element={<BuffingLot/>}/>
+    <Route path='/buffingreport' element={<BuffingReport/>}/>
 
    </Routes>
     </BrowserRouter>
