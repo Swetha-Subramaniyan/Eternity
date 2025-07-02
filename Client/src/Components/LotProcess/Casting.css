@@ -171,3 +171,11 @@
 .save-btn:hover {
   background-color: #125a9c;
 }
+
+ 
+
+ .tableheaderstyle th{
+  background-color:#38383e ;
+  height: 1.5rem;
+ }
+

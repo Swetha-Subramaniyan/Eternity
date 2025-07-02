@@ -92,16 +92,16 @@ const Customer = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" >
+                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }} >
                     <strong>Customer Name</strong>
                   </TableCell>
-                  <TableCell align="center">
+                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>
                     <strong>Phone Number</strong>
                   </TableCell>
-                  <TableCell align="center">
+                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>
                     <strong>Address</strong>
                   </TableCell>
-                  <TableCell align="center">
+                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>
                     <strong>Actions</strong>
                   </TableCell>
                 </TableRow>

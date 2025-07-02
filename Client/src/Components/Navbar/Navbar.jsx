@@ -27,7 +27,7 @@ function Navbar() {
           <a href="/master" className="nav-link">Master</a>
         </li>
         <li className={`nav-item ${isActive("/customer") ? "active" : ""}`}>
-          <a href="/master" className="nav-link">Customer</a>
+          <a href="/customer" className="nav-link">Customer</a>
         </li>
         <li className={`nav-item ${isActive("/casting") ? "active" : ""}`}>
           <a href="/casting" className="nav-link">Casting/Melting</a>

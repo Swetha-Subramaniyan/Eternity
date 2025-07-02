@@ -27,6 +27,7 @@ import BuffingReport from './Components/LotProcess/BuffingReport';
 import SettingLot from './Components/LotProcess/SettingLot';
 import MasterJewelStock from './Components/Master/MasterJewelStock';
 import Billing from './Components/Billing/Billing';
+import Report from './Components/Report/Report';
 
 
 const App = () => {
@@ -60,6 +61,7 @@ const App = () => {
     <Route path='/buffingreport' element={<BuffingReport/>}/>
     <Route path='/masterjewel' element={< MasterJewelStock />} />
     <Route path='/billing' element={<Billing />}/>
+    <Route path='/report' element={< Report/>}/>
 
    </Routes>
     </BrowserRouter>
