@@ -404,11 +404,11 @@ const Setting = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                <TableCell align="center"><strong>S.No</strong></TableCell>
-                  <TableCell align="center"><strong>Filing Member Name</strong></TableCell>
-                  <TableCell align="center"><strong>Phone Number</strong></TableCell>
-                  <TableCell align="center"><strong>Address</strong></TableCell>
-                  <TableCell align="center"><strong>Actions</strong></TableCell>
+                <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><strong>S.No</strong></TableCell>
+                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><strong>Filing Member Name</strong></TableCell>
+                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><strong>Phone Number</strong></TableCell>
+                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><strong>Address</strong></TableCell>
+                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><strong>Actions</strong></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -421,7 +421,7 @@ const Setting = () => {
              
                     <Link to={'/settinglot'}> 
                     <IconButton>
-                      <PreviewIcon color="secondary"  /> 
+                      <PreviewIcon color="primary"  /> 
                     </IconButton>
                     </Link>
                   </TableCell> 

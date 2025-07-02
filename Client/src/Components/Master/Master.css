@@ -8,7 +8,6 @@
   align-items: center;
   background: linear-gradient(to right,  #b88915 ,#b18c3c, #a94b1d);
   height: 4rem;
-
 }
 
 .navbar-left {
@@ -68,6 +67,7 @@
   font-size: 14px;
   font-weight: bold;
   background:#a57402 ;
+  background-color: rgb(190, 56, 56);
 }
 
 .nav-item.active .nav-link {

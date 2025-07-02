@@ -55,10 +55,6 @@ const Customer = () => {
   return (
     <> 
     <Navbar/>
-
-    
-
-   
     <Container maxWidth="lg">
       <Paper className="customer-table-container" elevation={3} sx={{ p: 3 }}>
         <Typography variant="h5" align="center" gutterBottom>
@@ -96,7 +92,7 @@ const Customer = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">
+                  <TableCell align="center" >
                     <strong>Customer Name</strong>
                   </TableCell>
                   <TableCell align="center">

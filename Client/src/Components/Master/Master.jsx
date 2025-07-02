@@ -49,6 +49,9 @@ const Master = () => {
         <li className='nav-item'> 
           <a href='/mastersupplier' className={`nav-link ${isActive('/mastersupplier') ? 'active' : ''}`}> Supplier </a>
         </li>
+        <li className='nav-item'> 
+          <a href='/masterjewel' className={`nav-link ${isActive('/masterjewel') ? 'active' : ''}`}> Jewel Stock </a>
+        </li>
       </ul>
 
       <div className="navbar-right">     

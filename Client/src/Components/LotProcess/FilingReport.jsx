@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Box, Button, Dialog, DialogActions, DialogContent, DialogTitle,Checkbox, Table, TableBody, TableCell,TableContainer, TableHead, TableRow, TextField, Typography, Paper} from "@mui/material";
 import { FaEye } from "react-icons/fa";
 import { Delete } from "@mui/icons-material";
@@ -19,11 +19,24 @@ const FilingReport = () => {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const items = [
-    { item: "cst", beforeWeight: "50", touch: "91.7", purity: "22K", remarks: 'aaaa' },
-    { item: "cst1", beforeWeight: "48", touch: "91.7", purity: "22K", remarks: 'bbbb' },
+    { item: "cst", beforeWeight: "100", touch: "91.7", purity: "22K", remarks: 'aaaa' },
+    { item: "cst1", beforeWeight: "100", touch: "91.7", purity: "22K", remarks: 'bbbb' },
     { item: "cst2", beforeWeight: "55", touch: "91.7", purity: "22K", remarks: 'cccc' }
   ];
   const [wastagePercent, setWastagePercent] = useState('');
+  const [givenGold, setGivenGold] = useState('');
+const [closingSummary, setClosingSummary] = useState(null);
+const [status, setStatus] = useState("All"); 
+
+
+useEffect(() => {
+  const savedData = localStorage.getItem('filingSummary');
+  if (savedData) {
+    const parsed = JSON.parse(savedData);
+    setClosingSummary(parsed);
+    setGivenGold(parsed.givenGold || '');
+  }
+}, []);
 
   const assignedItemNames = entries.flatMap(entry => entry.items.map(it => it.item));
   const handleToggle = (item) => {
@@ -71,25 +84,77 @@ const FilingReport = () => {
     const updatedEntries = [...entries];
     updatedEntries[index] = {
       ...viewEntry,
-      receiptWeight
+      receiptWeight,
+      givenGold,
+      closingBalance
     };
   
     setEntries(updatedEntries);
     setViewEntry(null);
   };
 
-  const totalReceipt = entries.reduce((acc, entry) => {
-    const receipt = parseFloat(entry.receiptWeight || 0);
-    return acc + (isNaN(receipt) ? 0 : receipt);
+  const totalReceipt = entries.reduce((acc, group) => {
+    const totalProductWeight = (group.productItems || []).reduce(
+      (sum, item) => sum + Number(item.weight || 0),
+      0
+    );
+    return acc + totalProductWeight;
   }, 0);
-  const totalWastage = ((totalReceipt * parseFloat(wastagePercent || 0)) / 100).toFixed(2);
-
   
+
+  const totalWastage = ((totalReceipt * (parseFloat(wastagePercent) || 0)) / 100).toFixed(2);
+
+
+  const totalAssigned = entries.reduce((acc, group) =>
+    acc + (group.items || []).reduce((sum, item) => sum + Number(item.beforeWeight || 0), 0),
+    0
+  );
+  
+  const totalScrap = entries.reduce((acc, group) =>
+    acc + (group.scrapItems || []).reduce((sum, item) => sum + Number(item.weight || 0), 0),
+    0
+  );
+  
+  const balance = (totalAssigned - (totalReceipt + totalScrap)).toFixed(2);
+  
+  const overallWastage = (parseFloat(balance) - parseFloat(totalWastage)).toFixed(2);
+  const closingBalance = ( parseFloat(overallWastage || 0) - parseFloat(givenGold || 0)).toFixed(2);
+  
+  
+
+  const handleSaveSummary = () => {
+    const data = {
+      totalReceipt: totalReceipt.toFixed(2),
+      totalWastage,
+      balance,
+      overallWastage,
+      givenGold
+    };
+    localStorage.setItem('filingSummary', JSON.stringify(data));
+    setClosingSummary(data);
+    alert("Summary saved successfully.");
+  };
+
+  useEffect(() => {
+    localStorage.setItem('filingEntries', JSON.stringify(entries));
+  }, [entries]);
+  
+
+
+  const handleCloseJobcard = () => {
+    const lots = JSON.parse(localStorage.getItem("filingLots") || "[]");
+    const nextId = lots.length + 1;
+    lots.push({ id: nextId, date: new Date().toISOString() });
+    localStorage.setItem("filingLots", JSON.stringify(lots));
+    alert("Jobcard closed successfully.");
+  };
+  
+
   return (
     <>
       <Navbar />
 
-      <div className="date-fields">
+      <div className={styles.datefields}>
         <TextField
             id="from-date"
             label="From Date"
@@ -97,7 +162,7 @@ const FilingReport = () => {
             InputLabelProps={{ shrink: true }}
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
-            sx={{ marginLeft: "3.5rem" }}
+            sx={{ ml: "3.5rem", mt:'1rem' }}
           />
           <TextField
             id="to-date"
@@ -106,13 +171,31 @@ const FilingReport = () => {
             InputLabelProps={{ shrink: true }}
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
-            sx={{ marginLeft: "1rem" }}
+            sx={{ ml: "1.5rem", mt:'1rem' }}
           />
+
+<TextField
+           select
+           label="Status"
+           value={status}
+           onChange={(e) => setStatus(e.target.value)}
+         
+            InputLabelProps={{ shrink: true }}
+            SelectProps={{ native: true }}
+         
+            sx={{ ml: "1.5rem", mt:'1rem' }}>
+
+            <option value="All">All</option>
+  <option value="Completed">Completed</option>
+  <option value="Pending">Pending</option>
+  </TextField>
+
+
           <Button
              onClick={() => setIsAssignOpen(true)}
             sx={{
               m: 2,
-              marginLeft: 110,
+              marginLeft: 88.5,
               backgroundColor: "#5f4917",
               color: "white",
               paddingLeft:2,
@@ -122,32 +205,50 @@ const FilingReport = () => {
             Add Filing Items
           </Button>
         </div> 
+        
 
-<div style={{ display: 'flex', alignItems: 'flex-start', marginTop: '0rem' }}>
-  {/* Left side: Card + Table vertically stacked */}
+<div style={{ display: 'flex', alignItems: 'flex-start', marginTop: '2rem' }}>
+
   <div style={{ display: 'flex', flexDirection: 'column',}}>
-    <div className={styles.card}>
-      <div className={styles.headingg}>Eternity Jewellery Details</div>
-      <div className={styles.details}><b>Name:</b> <span>Dhanusha R</span></div>
-      <div className={styles.details}><b>Phone Number:</b> <span>9342516726</span></div>
-      <div className={styles.details}><b>Address:</b> <span>4/253, Coimbatore</span></div>
-    </div>
     <div className={styles.tablecontainer} >
       <TableContainer component={Paper} sx={{ width: '60rem' }}>
         <Table>
-          {/* Table content unchanged */}
+          
           <TableHead>
               <TableRow>
-                <TableCell align="center"><b>S.No</b></TableCell>
-                <TableCell align="center"><b>Date</b></TableCell>
-                <TableCell align="center"><b>Process</b></TableCell>
-                <TableCell align="center"><b>Issue</b></TableCell>
-                <TableCell align="center"><b>Receipt</b></TableCell>
-                <TableCell align="center"><b>Actions</b></TableCell>
+                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>S.No</b></TableCell>
+                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Date</b></TableCell>
+                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Process</b></TableCell>
+                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Issue </b></TableCell>
+                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Receipt </b></TableCell>                          
+                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}> <b> Balance </b>  </TableCell>
+                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}> <b> Scrap </b> </TableCell>
+                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}> <b> Wastage </b> </TableCell>
+                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Actions</b></TableCell>  
               </TableRow>
             </TableHead>
             <TableBody>
-              {entries.map((group, i) => {
+            {entries
+
+  .filter(group => {
+    const entryDate = new Date(group.date);
+    const from = fromDate ? new Date(fromDate) : null;
+    const to = toDate ? new Date(toDate) : null;
+  
+    const matchesDateRange =
+      (!from || entryDate >= from) && (!to || entryDate <= to);
+  
+    const isCompleted = (group.productItems || []).some(item => parseFloat(item.weight) > 0);
+  
+    if (status === "Completed" && !isCompleted) return false;
+    if (status === "Pending" && isCompleted) return false;
+  
+    return matchesDateRange;
+  })
+  
+  .map((group, i) => {
+
+             
                 const totalProduct = (group.productItems || []).reduce((acc, it) => acc + Number(it.weight || 0), 0);
                 const totalScrap = (group.scrapItems || []).reduce((acc, it) => acc + Number(it.weight || 0), 0);
                 const receipt = (totalProduct - totalScrap).toFixed(2);
@@ -155,16 +256,51 @@ const FilingReport = () => {
                 
                 return (
                   <React.Fragment key={i}>
-                    <TableRow>
-                      <TableCell rowSpan={group.items.length}>{i + 1}</TableCell>
-                      <TableCell rowSpan={group.items.length}>{group.date}</TableCell>
-                      <TableCell>{group.items[0].item}</TableCell>
-                      <TableCell>{group.items[0].beforeWeight}</TableCell>
-                      <TableCell rowSpan={group.items.length}>{(group.receiptWeight || receipt)}g </TableCell>
-                      <TableCell rowSpan={group.items.length}>
-                        <FaEye style={{ cursor: 'pointer' }} onClick={() => setViewEntry(group)} />
-                      </TableCell>
-                    </TableRow>
+      
+<TableRow>
+  <TableCell rowSpan={group.items.length}>{i + 1}</TableCell>
+  <TableCell rowSpan={group.items.length}>{group.date}</TableCell>
+  <TableCell>{group.items[0].item}</TableCell>
+  <TableCell>{group.items[0].beforeWeight}</TableCell>
+
+  {/* Receipt = Total Product Weight */}
+  <TableCell rowSpan={group.items.length}>
+    {(group.productItems || [])
+      .reduce((acc, item) => acc + Number(item.weight || 0), 0)
+      .toFixed(2)}g
+  </TableCell>
+
+<TableCell rowSpan={group.items.length}>
+  {(
+    (group.items || []).reduce((acc, item) => acc + Number(item.beforeWeight || 0), 0) -
+    (
+      (group.productItems || []).reduce((acc, item) => acc + Number(item.weight || 0), 0) +
+      (group.scrapItems || []).reduce((acc, item) => acc + Number(item.weight || 0), 0)
+    )
+  ).toFixed(2)}g
+</TableCell>
+
+
+  {/* Scrap */}
+  <TableCell rowSpan={group.items.length}>
+    {(group.scrapItems || []).reduce((acc, item) => acc + Number(item.weight || 0), 0).toFixed(2)}g
+  </TableCell>
+
+  {/* Wastage */}
+  <TableCell rowSpan={group.items.length}>
+    <span style={{ color: group.wastage === 'Yes' ? 'green' : 'red' }}>
+      {group.wastage || '—'}
+    </span>
+  </TableCell>
+
+
+    {/* Actions */}
+    <TableCell rowSpan={group.items.length}>
+    <FaEye style={{ cursor: 'pointer' }} onClick={() => setViewEntry(group)} />
+  </TableCell>
+</TableRow>
+
+
                     {group.items.slice(1).map((item, idx) => (               
                       <TableRow key={`${i}-${idx}`}>
                         <TableCell>{item.item}</TableCell>
@@ -181,6 +317,8 @@ const FilingReport = () => {
   </div>
 
   {/* Right side: Summary box */}
+
+ 
   <Box
     sx={{
       ml: 10,
@@ -189,26 +327,111 @@ const FilingReport = () => {
       borderRadius: '8px',
       minWidth: '70px',
       height: 'fit-content',
-      mt: 6,
+      mt: 1,
       mr: 10
     }}
   >
-    <Typography variant="h6" sx={{ color:'red', marginLeft:'2rem'}}> Montly Wastage </Typography>
-    <Box sx={{ mt: 2 }}>
-      <Typography><strong>Total Receipt:</strong> {totalReceipt.toFixed(2)}g</Typography>
-      <TextField
-        label="Wastage (%)"
-        type="number"
-        fullWidth
-        size="small"
-        value={wastagePercent}
-        onChange={(e) => setWastagePercent(e.target.value)}
-        sx={{ mt: 2 }}
-      />
-      <Typography sx={{ mt: 2 }}>
-        <strong>Total Wastage:</strong> {isNaN(totalWastage) ? '0.00' : totalWastage}g
-      </Typography>
-    </Box>
+    <Typography sx={{marginLeft:'5rem', color:'darkblue'}}><b> Opening Balance: 0 </b>  </Typography> <hr/>
+
+    <Typography sx={{ color:'red', marginLeft:'0rem', fontWeight:'bold', fontSize:'1.1rem'}}> Montly Wastage </Typography>
+
+<Box sx={{ mt: 2 }}>
+  <Typography><strong>Total Receipt:</strong> {totalReceipt.toFixed(2)}g</Typography>
+
+  <TextField
+    label="Wastage (%)"
+    type="number"
+    fullWidth
+    size="small"
+    value={wastagePercent}
+    onChange={(e) => setWastagePercent(e.target.value)}
+    sx={{ mt: 2 }}
+  />
+
+  <Typography sx={{ mt: 2 }}>
+    <strong>Total Wastage:</strong> {isNaN(totalWastage) ? '0.00' : totalWastage}g
+  </Typography>
+
+  <Typography sx={{ mt: 2 }}>
+    <strong>Balance:</strong> {balance}g
+  </Typography>
+
+   <Typography sx={{ mt: 2 }}>
+    <strong>Overall Wastage: </strong> 
+    <span style={{ color: parseFloat(overallWastage) >= 0 ? 'green' : 'red' }}>
+      {isNaN(overallWastage) ? '0.00' : overallWastage}g
+    </span>
+  </Typography> 
+
+{/* Show Given Gold only if Overall Wastage is negative */}
+{parseFloat(overallWastage) < 0 && (
+  <TextField
+    label="Given Gold"
+    type="number"
+    fullWidth
+    size="small"
+    value={givenGold}
+    onChange={(e) => setGivenGold(e.target.value)}
+    sx={{ mt: 2 }}
+  />
+)}
+
+{/* Closing Balance – Always show if overallWastage is non-zero */}
+<Typography sx={{ mt: 2, color:'darkblue' }}>
+  <strong>Closing Balance:</strong>{" "}
+  {(
+    parseFloat(overallWastage || 0) +
+    parseFloat(parseFloat(overallWastage) < 0 ? givenGold || 0 : 0)
+  ).toFixed(2)}g
+</Typography>
+
+<Typography
+  sx={{
+    mt: 1,
+    color:
+      parseFloat(overallWastage || 0) -
+        parseFloat(parseFloat(overallWastage) < 0 ? givenGold || 0 : 0) >
+      0
+        ? 'green'
+        : 'red'
+  }}
+>
+  <strong>
+    {(
+      parseFloat(overallWastage || 0) -
+      parseFloat(parseFloat(overallWastage) < 0 ? givenGold || 0 : 0)
+    ) > 0
+      ? 'Worker should give to Owner'
+      : (
+          parseFloat(overallWastage || 0) -
+          parseFloat(parseFloat(overallWastage) < 0 ? givenGold || 0 : 0)
+        ) < 0
+      ? 'Owner should give to Worker'
+      : 'No balance due'}
+  </strong>
+</Typography>
+
+<Button
+  variant="contained"
+  color="primary"
+  sx={{ mt: 3, width: '100%' , backgroundColor: '#1a1a1f', color:'white', textAlign:'center'  }}
+  onClick={handleSaveSummary}
+>
+  Save Summary
+</Button>
+
+
+<Button
+  variant="outlined"
+  color="error"
+  sx={{ mt: 2, width: '100%' }}
+  onClick={handleCloseJobcard}
+>
+  Close Jobcard
+</Button>
+
+
+</Box>
   </Box>
 </div>
 
@@ -230,12 +453,12 @@ const FilingReport = () => {
           <Table size="small">
             <TableHead>
               <TableRow>
-                <TableCell>Select</TableCell>
-                <TableCell>Item</TableCell>
-                <TableCell>Weight</TableCell>
-                <TableCell>Touch</TableCell>
-                <TableCell>Purity</TableCell>
-                <TableCell>Remarks</TableCell>
+                <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Select</TableCell>
+                <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Item</TableCell>
+                <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Weight</TableCell>
+                <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Touch</TableCell>
+                <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Purity</TableCell>
+                <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Remarks</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -281,12 +504,12 @@ const FilingReport = () => {
               <Table size="small">
                 <TableHead >
                   <TableRow>
-                    <TableCell>S.No</TableCell>
-                    <TableCell>Item</TableCell>
-                    <TableCell>Weight</TableCell>
-                    <TableCell>Touch</TableCell>
-                    <TableCell>Purity</TableCell>
-                    <TableCell>Remarks</TableCell>
+                    <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}> S.No</TableCell>
+                    <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Item</TableCell>
+                    <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Weight</TableCell>
+                    <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Touch</TableCell>
+                    <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Purity</TableCell>
+                    <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Remarks</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -340,15 +563,15 @@ const FilingReport = () => {
   <Table size="small" sx={{ mt: 1}}>
     <TableHead>
       <TableRow>
-        <TableCell>S.No</TableCell>
-        <TableCell>Item Name</TableCell>
-        <TableCell>Weight</TableCell>
-        <TableCell>Has Stone</TableCell>
-        <TableCell>Process</TableCell>
-        <TableCell>Touch</TableCell>
-        <TableCell>Purity</TableCell>
-        <TableCell>Remarks</TableCell>
-        <TableCell>Actions</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>S.No</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Item Name</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Weight</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center', width:'5rem'  }}>Has Stone</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Process</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Touch</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Purity</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Remarks</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Actions</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>
@@ -452,19 +675,39 @@ const FilingReport = () => {
     </TableBody>
   </Table>
 
-  <Box sx={{ mt: 1 }}>
-    <Typography>
-      <strong>Total Product Weight:</strong>{" "}
-      {
-        (viewEntry.productItems || []).reduce(
-          (acc, item) => acc + Number(item.weight || 0),
-          0
-        ).toFixed(2)
-      }g
-    </Typography>
+<Box sx={{ mt: 2, display: 'flex', alignItems: 'center', gap: 4 }}>
+  
+  {/* Total Product Weight */}
+  <Typography variant="subtitle1">
+    <strong>Total Product Weight:</strong>{" "}
+    {
+      (viewEntry.productItems || []).reduce(
+        (acc, item) => acc + Number(item.weight || 0),
+        0
+      ).toFixed(2)
+    }g
+  </Typography>
+{/* Wastage Toggle */}
+  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, marginLeft:'25rem' }}>
+    <Typography variant="subtitle1"><b>Wastage:</b></Typography>
+    <Button
+      variant={viewEntry?.wastage === 'Yes' ? 'contained' : 'outlined'}
+      color="success"
+      onClick={() => setViewEntry({ ...viewEntry, wastage: 'Yes' })}
+    >
+      Yes
+    </Button>
+    <Button
+      variant={viewEntry?.wastage === 'No' ? 'contained' : 'outlined'}
+      color="error"
+      onClick={() => setViewEntry({ ...viewEntry, wastage: 'No' })}
+    >
+      No
+    </Button>
   </Box>
 </Box>
 
+</Box>
 {/* Scrap Items Section */}
 <Box sx={{ mt: 4 }}>
   <Button
@@ -484,13 +727,13 @@ const FilingReport = () => {
   <Table size="small" sx={{ mt: 1 }}>
     <TableHead>
       <TableRow >
-        <TableCell>S.No</TableCell>
-        <TableCell>Item Name</TableCell>
-        <TableCell>Weight</TableCell>
-        <TableCell>Touch</TableCell>
-        <TableCell>Purity</TableCell>
-        <TableCell>Remarks</TableCell>
-        <TableCell>Actions</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>S.No</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Item Name</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Weight</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Touch</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Purity</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Remarks</TableCell>
+        <TableCell  sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Actions</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>
@@ -591,17 +834,22 @@ const FilingReport = () => {
 </Box>
 
 {/* Receipt Weight Calculation */}
+
 <Box sx={{ mt: 2 }}>
   <Typography variant="h6">
-    Receipt Weight = Product Weight - Scrap Weight ={" "}
+    Balance = Assigned Weight − (Product + Scrap) ={" "}
     {
       (
-        (viewEntry.productItems || []).reduce((acc, item) => acc + Number(item.weight || 0), 0) -
-        (viewEntry.scrapItems || []).reduce((acc, item) => acc + Number(item.weight || 0), 0)
+        (viewEntry.items || []).reduce((acc, item) => acc + Number(item.beforeWeight || 0), 0) -
+        (
+          (viewEntry.productItems || []).reduce((acc, item) => acc + Number(item.weight || 0), 0) +
+          (viewEntry.scrapItems || []).reduce((acc, item) => acc + Number(item.weight || 0), 0)
+        )
       ).toFixed(2)
     }g
   </Typography>
-</Box> </>
+</Box>
+</>
           )}
         </DialogContent>
         <DialogActions>
