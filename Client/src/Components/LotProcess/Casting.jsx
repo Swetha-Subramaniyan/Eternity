@@ -8,6 +8,9 @@ import { BACKEND_SERVER_URL } from "../../../Config/config";
 import axios from "axios";
 import CastingItemForm from "./CastingItemForm";
 import Stock from "./Stock";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from '@mui/icons-material/Edit';
+
 
 export default function Casting() {
   const [showPopup, setShowPopup] = useState(false);
@@ -419,8 +422,11 @@ export default function Casting() {
             <h3 style={{ textAlign: "center", color: "#d40b4e", fontSize: "1.3rem", fontWeight: "bold", fontFamily:'sans-serif'}}>
               Casting / Melting
             </h3>
+            <div className="tableheaderstyle"> 
             <table border="1" cellPadding="8" cellSpacing="0" style={{ width: "95%", margin: "1rem auto", borderCollapse: "collapse" }}>
-              <thead style={{ backgroundColor: "#f0f0f0", fontFamily:'sans-serif' }}>
+              <thead style={{ backgroundColor: "black", fontFamily:'sans-serif' }}
+           
+              >
                 <tr>
                   <th>S.No</th>
                   <th>Date</th>
@@ -455,8 +461,15 @@ export default function Casting() {
   })()}
 </td>                
                       <td>{(entry.items?.length || 0) + (entry.scrapItems?.length || 0)}</td>
-                      <td><button onClick={() => handleEdit(index)}>Edit</button>
-                      <button onClick={() => handleDelete(entry.id)} style={{ marginLeft: 8, color: "red" }}>Delete</button>
+                      <td>
+                        <button onClick={() => handleEdit(index)} style={{color:'blue', fontWeight:'bold'}}> Edit 
+                        {/* <EditIcon color="primary" /> */}
+                        </button>
+    
+                      <button onClick={() => handleDelete(entry.id)} style={{ marginLeft: 8, color: "red", fontWeight:'bold' }}> 
+                      {/* <DeleteIcon color="error" />  */}
+                      Delete
+                      </button>
                       
                       </td>
                     </tr>
@@ -470,6 +483,7 @@ export default function Casting() {
                 )}
               </tbody>          
             </table>
+            </div>
           </div>
         </div>
       </div>
