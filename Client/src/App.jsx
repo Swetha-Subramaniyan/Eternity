@@ -19,14 +19,14 @@ import MasterPurchaseStock from './Components/Master/MasterPurchaseStock';
 import MasterAddSupplier from './Components/Master/MasterAddSupplier';
 import CustomerTranscation from './Components/Customer/CustomerTranscation';
 import Stock from './Components/LotProcess/Stock';
-import FilingDetails from './Components/LotProcess/FilingDetails';
 import FilingReport from './Components/LotProcess/FilingReport';
 import FilingLot from './Components/LotProcess/FilingLot';
-import SettingLot from './Components/LotProcess/settingLot';
 import SettingReport from './Components/LotProcess/SettingReport';
 import BuffingLot from './Components/LotProcess/BuffingLot';
 import BuffingReport from './Components/LotProcess/BuffingReport';
-
+import SettingLot from './Components/LotProcess/SettingLot';
+import MasterJewelStock from './Components/Master/MasterJewelStock';
+import Billing from './Components/Billing/Billing';
 
 
 const App = () => {
@@ -52,13 +52,14 @@ const App = () => {
     <Route path='/masterpurchasestock' element={<MasterPurchaseStock/>} />
     <Route path='/mastersupplier' element={<MasterAddSupplier />} />
     <Route path='/stock' element={<Stock/>} />
-    <Route path='/filingdetails' element={<FilingDetails/>}/> 
     <Route path='/filingreport' element={<FilingReport/>}/> 
     <Route path='/filinglot' element={<FilingLot/>}/> 
-    <Route path='/settinglot' element={<SettingLot/>}/> 
+    <Route path='/settinglot' element={< SettingLot />}/> 
     <Route path='/settingreport' element={<SettingReport/>}/>
     <Route path='/buffinglot' element={<BuffingLot/>}/>
     <Route path='/buffingreport' element={<BuffingReport/>}/>
+    <Route path='/masterjewel' element={< MasterJewelStock />} />
+    <Route path='/billing' element={<Billing />}/>
 
    </Routes>
     </BrowserRouter>

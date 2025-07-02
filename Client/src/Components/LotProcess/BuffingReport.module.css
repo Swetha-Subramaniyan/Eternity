@@ -1,6 +1,7 @@
 .tablecontainer{
     display: flex;
-    justify-content: center;
+    margin-left: 3.5rem;
+ 
 }
 
 .details b{

@@ -2,7 +2,8 @@
     display: flex;
     /* margin-left: 10rem; */
     margin-top: 0%;
-    margin-left: 5rem;
+    margin-left: 3.5rem;
+ 
 
 }
 
@@ -38,3 +39,8 @@
 .details span{
     font-size: 1.1rem;
 }
+
+.datefields{
+    margin-top: 2rem;
+}
+
