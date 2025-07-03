@@ -110,10 +110,12 @@ const MasterJewelStock = () => {
               onClick={() => setShowFormPopup(false)}
             >
               ×
-            </button>
+            </button> 
+            <hr/>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Jewel Name:</label>
+         
                 <input
                   type="text"
                   name="jewelName"
@@ -187,6 +189,8 @@ const MasterJewelStock = () => {
           </div>
         </div>
       )}
+
+
 
       <div className="entries-section">
         <h3>Jewel Stock Entries</h3>
