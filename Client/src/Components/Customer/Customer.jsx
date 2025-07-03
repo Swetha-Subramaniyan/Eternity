@@ -58,7 +58,7 @@ const Customer = () => {
     <Container maxWidth="lg">
       <Paper className="customer-table-container" elevation={3} sx={{ p: 3 }}>
         <Typography variant="h5" align="center" gutterBottom>
-          Customer Detailss
+          Customer Details
         </Typography>
 
         <TextField

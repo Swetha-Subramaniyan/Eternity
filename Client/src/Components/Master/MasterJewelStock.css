@@ -14,26 +14,30 @@
     margin-bottom: 30px;
 
   }
+
   
+
   .form-group {
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
   }
   
   .form-group label {
-    display: block;
-    margin-bottom: 6px;
+    width: 180px; 
+    margin-right: 10px;
     font-weight: 600;
     color: #333;
+    text-align: left;
   }
   
   .form-group input {
-    width: 100%;
-    padding: 10px 12px;
+    flex: 1;
+    padding: 10px 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 15px;
     transition: border-color 0.3s ease;
-    text-align: left;
   }
   
   .form-group input:focus {
@@ -68,12 +72,12 @@
   }
   
   .submit-btn {
-    background-color: #28a745;
+    background-color: #0b132c;
     color: #fff;
   }
   
   .submit-btn:hover {
-    background-color: #218838;
+    background-color: #212f88;
   }
   
   .view-btn {
@@ -110,7 +114,7 @@
     padding: 30px;
     border-radius: 12px;
     width: 90%;
-    max-width: 600px;
+    max-width: 400px;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
