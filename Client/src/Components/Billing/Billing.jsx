@@ -87,6 +87,46 @@ const handleReceivedInput = (index, field, value) => {
   setReceivedRows(updated);
 };
 
+
+
+useEffect(() => {
+  if (!goldRate) return;
+  const updated = billItems.map((item) => {
+    const weight = parseFloat(item.weight);
+    const touch = parseFloat(item.touch);
+    const percent = parseFloat(item.percent || 0);
+    const rate = parseFloat(goldRate);
+
+    if (!isNaN(weight) && !isNaN(touch)) {
+      const pure = ((percent + touch) * weight) / 100;
+      const amount = rate * pure;
+
+      return {
+        ...item,
+        pure: parseFloat(pure.toFixed(2)),
+        amount: parseFloat(amount.toFixed(2)),
+      };
+    }
+
+    return item;
+  });
+
+  setBillItems(updated);
+}, [goldRate]);
+
+
+const getBillTotal = () => {
+  let totalPure = 0;
+  let totalAmount = 0;
+  billItems.forEach(item => {
+    totalPure += item.pure || 0;
+    totalAmount += item.amount || 0;
+  });
+  return { totalPure: totalPure.toFixed(2), totalAmount: totalAmount.toFixed(2) };
+};
+
+
+
 // Delete from Received Table
 const deleteReceivedRow = (id) => {
   if (window.confirm("Delete row?")) {
@@ -159,15 +199,15 @@ const deleteBillItem = (index) => {
     setBillItems(newBill);
   };
 
-  const getBillTotal = () => {
-    let totalPure = 0;
-    let totalAmount = 0;
-    billItems.forEach(item => {
-      totalPure += item.pure || 0;
-      totalAmount += item.amount || 0;
-    });
-    return { totalPure: totalPure.toFixed(2), totalAmount: totalAmount.toFixed(2) };
-  };
+  // const getBillTotal = () => {
+  //   let totalPure = 0;
+  //   let totalAmount = 0;
+  //   billItems.forEach(item => {
+  //     totalPure += item.pure || 0;
+  //     totalAmount += item.amount || 0;
+  //   });
+  //   return { totalPure: totalPure.toFixed(2), totalAmount: totalAmount.toFixed(2) };
+  // };
 
   const getCustomerBalance = () => {
     const customer = customerList.find(c => c.name === selectedCustomer);
@@ -433,10 +473,7 @@ const deleteBillItem = (index) => {
 >
   Save
 </Button>
-
-
         </div>
-
         <div className={styles.tablecard}>
           <h2>Available Product Weights</h2>
           <div className={styles.billdetails}>Product Details:</div>
@@ -469,6 +506,8 @@ const deleteBillItem = (index) => {
 };
 
 export default Billing;
+
+
 
 
 

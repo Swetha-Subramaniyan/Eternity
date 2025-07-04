@@ -18,15 +18,37 @@ const FilingReport = () => {
   const [date, setDate] = useState(getTodayDate());
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const items = [
-    { item: "cst", beforeWeight: "100", touch: "91.7", purity: "22K", remarks: 'aaaa' },
-    { item: "cst1", beforeWeight: "100", touch: "91.7", purity: "22K", remarks: 'bbbb' },
-    { item: "cst2", beforeWeight: "55", touch: "91.7", purity: "22K", remarks: 'cccc' }
-  ];
   const [wastagePercent, setWastagePercent] = useState('');
   const [givenGold, setGivenGold] = useState('');
 const [closingSummary, setClosingSummary] = useState(null);
 const [status, setStatus] = useState("All"); 
+
+const [isAddItemOpen, setIsAddItemOpen] = useState(false);
+const [customItems, setCustomItems] = useState([]);
+
+const [newItem, setNewItem] = useState({
+  item: '',
+  beforeWeight: '',
+  touch: '',
+  purity: '',
+  remarks: ''
+});
+
+  // const items = [
+  //   { item: "cst", beforeWeight: "100", touch: "91.7", purity: "22K", remarks: 'aaaa' },
+  //   { item: "cst1", beforeWeight: "100", touch: "91.7", purity: "22K", remarks: 'bbbb' },
+  //   { item: "cst2", beforeWeight: "55", touch: "91.7", purity: "22K", remarks: 'cccc' }
+  // ];
+
+const items = [
+  ...[
+    { item: "cst", beforeWeight: "100", touch: "91.7", purity: "22K", remarks: 'aaaa' },
+    { item: "cst1", beforeWeight: "100", touch: "91.7", purity: "22K", remarks: 'bbbb' },
+    { item: "cst2", beforeWeight: "55", touch: "91.7", purity: "22K", remarks: 'cccc' }
+  ],
+  ...customItems
+];
+
 
 
 useEffect(() => {
@@ -67,20 +89,12 @@ useEffect(() => {
     setDate(getTodayDate());
     setIsAssignOpen(false);
   };
-  
-
   const handleSaveViewEntry = () => {
     const index = entries.findIndex(entry => entry.id === viewEntry.id);
     if (index === -1) return;
-  
-    const totalProduct = (viewEntry.productItems || []).reduce(
-      (acc, item) => acc + Number(item.weight || 0), 0
-    );
-    const totalScrap = (viewEntry.scrapItems || []).reduce(
-      (acc, item) => acc + Number(item.weight || 0), 0
-    );
+    const totalProduct = (viewEntry.productItems || []).reduce( (acc, item) => acc + Number(item.weight || 0), 0 );
+    const totalScrap = (viewEntry.scrapItems || []).reduce( (acc, item) => acc + Number(item.weight || 0), 0 );
     const receiptWeight = (totalProduct - totalScrap).toFixed(2);
-  
     const updatedEntries = [...entries];
     updatedEntries[index] = {
       ...viewEntry,
@@ -88,40 +102,23 @@ useEffect(() => {
       givenGold,
       closingBalance
     };
-  
     setEntries(updatedEntries);
     setViewEntry(null);
   };
 
   const totalReceipt = entries.reduce((acc, group) => {
     const totalProductWeight = (group.productItems || []).reduce(
-      (sum, item) => sum + Number(item.weight || 0),
-      0
-    );
+      (sum, item) => sum + Number(item.weight || 0),  0 );
     return acc + totalProductWeight;
   }, 0);
   
-
   const totalWastage = ((totalReceipt * (parseFloat(wastagePercent) || 0)) / 100).toFixed(2);
-
-
-  const totalAssigned = entries.reduce((acc, group) =>
-    acc + (group.items || []).reduce((sum, item) => sum + Number(item.beforeWeight || 0), 0),
-    0
-  );
-  
-  const totalScrap = entries.reduce((acc, group) =>
-    acc + (group.scrapItems || []).reduce((sum, item) => sum + Number(item.weight || 0), 0),
-    0
-  );
-  
+  const totalAssigned = entries.reduce((acc, group) => acc + (group.items || []).reduce((sum, item) => sum + Number(item.beforeWeight || 0), 0), 0);
+  const totalScrap = entries.reduce((acc, group) => acc + (group.scrapItems || []).reduce((sum, item) => sum + Number(item.weight || 0), 0), 0 );
   const balance = (totalAssigned - (totalReceipt + totalScrap)).toFixed(2);
-  
   const overallWastage = (parseFloat(balance) - parseFloat(totalWastage)).toFixed(2);
   const closingBalance = ( parseFloat(overallWastage || 0) - parseFloat(givenGold || 0)).toFixed(2);
   
-  
-
   const handleSaveSummary = () => {
     const data = {
       totalReceipt: totalReceipt.toFixed(2),
@@ -139,8 +136,6 @@ useEffect(() => {
     localStorage.setItem('filingEntries', JSON.stringify(entries));
   }, [entries]);
   
-
-
   const handleCloseJobcard = () => {
     const lots = JSON.parse(localStorage.getItem("filingLots") || "[]");
     const nextId = lots.length + 1;
@@ -149,7 +144,6 @@ useEffect(() => {
     alert("Jobcard closed successfully.");
   };
   
-
   return (
     <>
       <Navbar />
@@ -162,7 +156,7 @@ useEffect(() => {
             InputLabelProps={{ shrink: true }}
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
-            sx={{ ml: "3.5rem", mt:'1rem' }}
+            sx={{ ml: "3.5rem", mt:'0rem' }}
           />
           <TextField
             id="to-date"
@@ -171,7 +165,7 @@ useEffect(() => {
             InputLabelProps={{ shrink: true }}
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
-            sx={{ ml: "1.5rem", mt:'1rem' }}
+            sx={{ ml: "1.5rem", mt:'0rem' }}
           />
 
 <TextField
@@ -183,7 +177,7 @@ useEffect(() => {
             InputLabelProps={{ shrink: true }}
             SelectProps={{ native: true }}
          
-            sx={{ ml: "1.5rem", mt:'1rem' }}>
+            sx={{ ml: "1.5rem", mt:'0rem' }}>
 
             <option value="All">All</option>
   <option value="Completed">Completed</option>
@@ -191,7 +185,7 @@ useEffect(() => {
   </TextField>
 
 
-          <Button
+          {/* <Button
              onClick={() => setIsAssignOpen(true)}
             sx={{
               m: 2,
@@ -203,17 +197,97 @@ useEffect(() => {
             }}
           >
             Add Filing Items
-          </Button>
+          </Button> */}
+
+
+{/* <Box sx={{ display: 'flex', gap: 2, ml: 2, mt: 2 }}> */}
+
+<Button
+sx={{ ml:'37rem'}}
+    variant="outlined"
+    color="primary"
+    onClick={() => setIsAddItemOpen(true)}
+  >
+    + Add
+  </Button>
+  <Button
+    onClick={() => setIsAssignOpen(true)}
+    sx={{
+      backgroundColor: "#5f4917",
+      color: "white",
+      paddingX: 2,
+      ml:'2rem'
+    }}
+  >
+    Add Filing Items
+  </Button>
+
+{/* </Box> */}
         </div> 
-        
+        <Dialog open={isAddItemOpen} onClose={() => setIsAddItemOpen(false)} fullWidth maxWidth="sm">
+  <DialogTitle>Add New Filing Item</DialogTitle>
+  <DialogContent>
+    <TextField
+      fullWidth
+      label="Item Name"
+      value={newItem.item}
+      onChange={(e) => setNewItem({ ...newItem, item: e.target.value })}
+      sx={{ mt: 2 }}
+    />
+    <TextField
+      fullWidth
+      label="Weight"
+      type="number"
+      value={newItem.beforeWeight}
+      onChange={(e) => setNewItem({ ...newItem, beforeWeight: e.target.value })}
+      sx={{ mt: 2 }}
+    />
+    <TextField
+      fullWidth
+      label="Touch"
+      value={newItem.touch}
+      onChange={(e) => setNewItem({ ...newItem, touch: e.target.value })}
+      sx={{ mt: 2 }}
+    />
+    <TextField
+      fullWidth
+      label="Purity"
+      value={newItem.purity}
+      onChange={(e) => setNewItem({ ...newItem, purity: e.target.value })}
+      sx={{ mt: 2 }}
+    />
+    <TextField
+      fullWidth
+      label="Remarks"
+      value={newItem.remarks}
+      onChange={(e) => setNewItem({ ...newItem, remarks: e.target.value })}
+      sx={{ mt: 2 }}
+    />
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={() => setIsAddItemOpen(false)}>Cancel</Button>
+    <Button
+      variant="contained"
+      onClick={() => {
+        if (!newItem.item || !newItem.beforeWeight) {
+          alert("Item name and weight are required");
+          return;
+        }
+        setCustomItems(prev => [...prev, newItem]);
+        setNewItem({ item: '', beforeWeight: '', touch: '', purity: '', remarks: '' });
+        setIsAddItemOpen(false);
+      }}
+    >
+      Save
+    </Button>
+  </DialogActions>
+</Dialog>
 
 <div style={{ display: 'flex', alignItems: 'flex-start', marginTop: '2rem' }}>
-
   <div style={{ display: 'flex', flexDirection: 'column',}}>
     <div className={styles.tablecontainer} >
       <TableContainer component={Paper} sx={{ width: '60rem' }}>
-        <Table>
-          
+        <Table>          
           <TableHead>
               <TableRow>
                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>S.No</b></TableCell>
@@ -228,9 +302,7 @@ useEffect(() => {
               </TableRow>
             </TableHead>
             <TableBody>
-            {entries
-
-  .filter(group => {
+            {entries .filter(group => {
     const entryDate = new Date(group.date);
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
@@ -239,21 +311,15 @@ useEffect(() => {
       (!from || entryDate >= from) && (!to || entryDate <= to);
   
     const isCompleted = (group.productItems || []).some(item => parseFloat(item.weight) > 0);
-  
     if (status === "Completed" && !isCompleted) return false;
     if (status === "Pending" && isCompleted) return false;
   
     return matchesDateRange;
-  })
-  
-  .map((group, i) => {
-
-             
+  }) .map((group, i) => {
                 const totalProduct = (group.productItems || []).reduce((acc, it) => acc + Number(it.weight || 0), 0);
                 const totalScrap = (group.scrapItems || []).reduce((acc, it) => acc + Number(it.weight || 0), 0);
                 const receipt = (totalProduct - totalScrap).toFixed(2);
-               
-                
+                             
                 return (
                   <React.Fragment key={i}>
       
@@ -318,7 +384,6 @@ useEffect(() => {
 
   {/* Right side: Summary box */}
 
- 
   <Box
     sx={{
       ml: 10,
@@ -447,7 +512,7 @@ useEffect(() => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
             InputLabelProps={{ shrink: true }}
-            sx={{ mb: 2, mt:2 }}
+            sx={{ mb: 2, mt:4 }}
           />
           <Typography variant="h6" gutterBottom>Available Filing Items</Typography>
           <Table size="small">
@@ -862,4 +927,3 @@ useEffect(() => {
 };
 
 export default FilingReport;
-

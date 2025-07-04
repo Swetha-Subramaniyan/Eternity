@@ -28,6 +28,7 @@ import SettingLot from './Components/LotProcess/SettingLot';
 import MasterJewelStock from './Components/Master/MasterJewelStock';
 import Billing from './Components/Billing/Billing';
 import Report from './Components/Report/Report';
+import MasterAddTouch from './Components/Master/MasterAddTouch';
 
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
     <Route path='/masterbuffing' element={<MasterBuffing/>} />
     <Route path='/mastercasting' element={<MasterGoldsmith/>}/>
     <Route path='/masteritems' element={<MasterAddItems/>} />
+    <Route path='/mastertouch' element={<MasterAddTouch />} />
     <Route path='/masterpurchasestock' element={<MasterPurchaseStock/>} />
     <Route path='/mastersupplier' element={<MasterAddSupplier />} />
     <Route path='/stock' element={<Stock/>} />
