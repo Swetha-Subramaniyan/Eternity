@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Box, Button, Dialog, DialogActions, DialogContent, DialogTitle,
-  Checkbox, Table, TableBody, TableCell,
+  Checkbox, Table, TableBody, TableCell,TableFooter,
   TableContainer, TableHead, TableRow, TextField, Typography, Paper
 } from "@mui/material";
 import { FaEye } from "react-icons/fa";
@@ -49,9 +49,12 @@ const BuffingReport = () => {
     if (!date) return alert("Please Select the Date to Assign the Item");
     if (!selectedItems.length) return alert("Select at least one item.");
 
+
     const newGroup = {
       date,
-      wastage: null, // Add this line
+      wastage: null,
+      afterWeight: '',
+      extraRemarks: '',
       items: selectedItems.map(it => ({
         item: it.item,
         beforeWeight: it.beforeWeight,
@@ -60,10 +63,10 @@ const BuffingReport = () => {
         remarks: it.remarks,
         stoneWeight: it.stoneWeight,
         stoneCount: it.stoneCount,
-        scrapItems: []
-      }))
+      })),
+      scrapItems: []
     };
-
+    
     setEntries(prev => [...prev, newGroup]);
     setSelectedItems([]);
     setDate(getTodayDate());
@@ -225,6 +228,8 @@ const settlementMessage =
         <TableCell align="center">
           {group.receiptWeight ? `${group.receiptWeight} g` : '—'}
         </TableCell>
+
+
         <TableCell align="center">
   {group.balance ? `${group.balance} g` : '—'}
 </TableCell>
@@ -455,8 +460,6 @@ const settlementMessage =
           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Remarks</TableCell>
           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Stone Count</TableCell>
           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Stone Weight</TableCell>
-          <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>After Weight</TableCell>
-          <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Extra Remarks</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -470,58 +473,41 @@ const settlementMessage =
             <TableCell>{item.remarks}</TableCell>
             <TableCell>{item.stoneCount || '-'}</TableCell>
             <TableCell>{item.stoneWeight || '-'}</TableCell>
-            <TableCell>
-              <TextField
-                variant="standard"
-                type="number"
-                value={item.afterWeight || ''}
-                onChange={(e) => {
-                  const updated = { ...viewEntry };
-                  updated.items[i].afterWeight = e.target.value;
-                  updated.items[i].receiptWeight = e.target.value;
-                  setViewEntry(updated);
-                }}
-              />
-            </TableCell>        
-  <TableCell sx={{width:'8rem'}} >
-  <TextField
-    multiline
-    minRows={2}
-    maxRows={3} 
-    fullWidth
-    variant="standard"
-    value={item.extraRemarks || ''}
-    onChange={(e) => {
-      const updated = { ...viewEntry };
-      updated.items[i].extraRemarks = e.target.value;
-      setViewEntry(updated);
-    }}
-  />
-</TableCell>
           </TableRow>       
         ))}
       </TableBody> 
+      <TableFooter>
+  <TableRow >
+    <TableCell colSpan={2}><b>Totals</b></TableCell>
+    <TableCell>
+      {viewEntry?.items?.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0).toFixed(2)} g
+    </TableCell>
+    <TableCell />
+    <TableCell />
+    <TableCell />
+    <TableCell>
+      {viewEntry?.items?.reduce((sum, item) => sum + parseFloat(item.stoneCount || 0), 0).toFixed(2)}
+    </TableCell>
+    <TableCell>
+      {viewEntry?.items?.reduce((sum, item) => sum + parseFloat(item.stoneWeight || 0), 0).toFixed(2)} g
+    </TableCell>
+  </TableRow>
+</TableFooter>
+
     </Table>
-    <Box sx={{ ml: 1, mt: 1 , display:'flex', justifyContent:'space-between'}}>
-  <Typography variant="subtitle1">
-    <strong>Total Receipt Weight: </strong>
-    {viewEntry?.items?.reduce((sum, item) => sum + (parseFloat(item.beforeWeight || 0)), 0).toFixed(2)} g
-  </Typography> 
-  <Typography variant="subtitle1">
-    <strong>Total Stone Count: </strong>
-    {viewEntry?.items?.reduce((sum, item) => sum + (parseFloat(item.stoneCount || 0)), 0).toFixed(2)} g
-  </Typography> 
-  <Typography variant="subtitle1">
-    <strong>Total Stone Weight: </strong>
-    {viewEntry?.items?.reduce((sum, item) => sum + (parseFloat(item.stoneWeight || 0)), 0).toFixed(2)} g
-  </Typography> 
-  <Typography variant="subtitle1">
-    <strong>After Weight: </strong>
-    {viewEntry?.items?.reduce((sum, item) => sum + (parseFloat(item.afterWeight || 0)), 0).toFixed(2)} g
-  </Typography>
 
+    <Box sx={{ mt: 3, display: 'flex', gap: 2, padding:2 }}>
+                <TextField label="After Weight" type="number" fullWidth required 
+                 value={viewEntry?.afterWeight || ''}
+                 onChange={(e) => setViewEntry({ ...viewEntry, afterWeight: e.target.value })} 
+                 />
+                
+                <TextField label="Remarks" fullWidth 
+                  value={viewEntry?.extraRemarks || ''}
+                  onChange={(e) => setViewEntry({ ...viewEntry, extraRemarks: e.target.value })}
+                 />
+              </Box>
 
-</Box>
 
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 2, mt:2,ml:1 }}>
 
@@ -670,19 +656,12 @@ const settlementMessage =
   </Typography>
 
   <Typography variant="subtitle1" sx={{ mt: 1 }}>
-    <strong>Balance (After weight - Total Scrap): </strong>
-    {(
-
-      (viewEntry?.items?.reduce(
-        (sum, item) => sum + (parseFloat(item.afterWeight) || 0),
-        0
-      ) || 0) -
-      (viewEntry?.scrapItems?.reduce(
-        (sum, scrap) => sum + (parseFloat(scrap.weight) || 0),
-        0
-      ) || 0)
-      
-    ).toFixed(2)} g
+    <strong>Balance : </strong>
+{(
+        (viewEntry?.items?.reduce((sum, item) => sum + (parseFloat(item.beforeWeight) || 0), 0) || 0)
+        - (parseFloat(viewEntry?.afterWeight) || 0)
+        - (viewEntry?.scrapItems?.reduce((sum, scrap) => sum + (parseFloat(scrap.weight) || 0), 0) || 0)
+      ).toFixed(2)} g
   </Typography>
 </Box>
 
@@ -700,10 +679,9 @@ const settlementMessage =
       variant="contained"
       disabled={!viewEntry?.wastage}
       onClick={() => {
-        const totalAfterWeight = viewEntry?.items?.reduce(
-          (sum, item) => sum + (parseFloat(item.afterWeight) || 0),
-          0
-        );
+   
+        const totalAfterWeight = parseFloat(viewEntry?.afterWeight || 0);
+
       
         const totalScrap = (viewEntry?.scrapItems?.length
           ? viewEntry.scrapItems.reduce((sum, scrap) => sum + (parseFloat(scrap.weight) || 0), 0)
@@ -717,21 +695,26 @@ const settlementMessage =
           (sum, item) => sum + (parseFloat(item.stoneWeight || 0)), 0
         );
       
-        const balance = totalAfterWeight - totalScrap;
+        // const balance =  totalAfterWeight - totalScrap;
+
+        const totalBeforeWeight = viewEntry?.items?.reduce(
+          (sum, item) => sum + (parseFloat(item.beforeWeight) || 0), 0
+        );
+        const balance =
+          totalBeforeWeight - totalAfterWeight - totalScrap;
+        
       
         const updatedEntries = [...entries];
         updatedEntries[viewEntry.index] = {
           ...viewEntry,
-          receiptWeight: totalAfterWeight.toFixed(2),
           totalStoneCount: stoneCount.toFixed(2),
           totalStoneWeight: stoneWeight.toFixed(2),
           totalScrapWeight: totalScrap.toFixed(2),
           balance: balance.toFixed(2),
           wastage: viewEntry.wastage,
-          items: viewEntry.items.map(item => ({
-            ...item,
-            receiptWeight: item.afterWeight
-          }))
+          receiptWeight: parseFloat(viewEntry?.afterWeight || 0).toFixed(2),
+          extraRemarks: viewEntry?.extraRemarks || '',
+
         };
       
         setEntries(updatedEntries);

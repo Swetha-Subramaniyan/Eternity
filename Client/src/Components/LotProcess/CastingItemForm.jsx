@@ -273,18 +273,14 @@ const fetchCastingItems = async () => {
                     type="number"
                     value={item.weight}
                     onChange={(e) =>
-                      handleItemChange(scrapItems, setScrapItems, index, "weight", e.target.value)
-                    }
-                  />
+                      handleItemChange(scrapItems, setScrapItems, index, "weight", e.target.value) }/>
                 </td>
                 <td>
                   <input
                     type="number"
                     value={item.touch}
                     onChange={(e) =>
-                      handleItemChange(scrapItems, setScrapItems, index, "touch", e.target.value)
-                    }
-                  />
+                      handleItemChange(scrapItems, setScrapItems, index, "touch", e.target.value) }/>
                 </td>
                 <td>
                   {((parseFloat(item.weight || 0) * parseFloat(item.touch || 0)) / 100).toFixed(3)}
@@ -292,10 +288,7 @@ const fetchCastingItems = async () => {
                 <td>
                   <textarea
                     value={item.remarks}
-                    onChange={(e) =>
-                      handleItemChange(scrapItems, setScrapItems, index, "remarks", e.target.value)
-                    }
-                  />
+                    onChange={(e) => handleItemChange(scrapItems, setScrapItems, index, "remarks", e.target.value) } />
                 </td>
               <td>    <Delete color="error" onClick={() => handleDeleteScrapItem(index)} /> </td>
               </tr>

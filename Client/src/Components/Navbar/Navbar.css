@@ -5,10 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, #c1827e 0%, #b8326e 100%);
-    background:#DAA520 ;
-    /* background: linear-gradient(to right, rgb(233, 235, 122), rgb(232, 108, 87)); */
-    /* background: linear-gradient(to left,  #674903 ,#DAA520 ); */
+    background: linear-gradient(to right,  #b88915 ,#b18c3c, #a94b1d);
   }
   
   .navbar-left {
@@ -58,7 +55,6 @@
   }
   
   .logout-button {
-    background: #b8326e;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -73,10 +69,8 @@
   .nav-item.active .nav-link {
     color: #fff;         
     background-color: #150709;  
-    background-color: rgb(132, 5, 73);
-    /* background:#a57402 ; */
     border-radius: 5px;
     padding: 5px 10px;
-    /* background:#765910 ; */
+
   }
   

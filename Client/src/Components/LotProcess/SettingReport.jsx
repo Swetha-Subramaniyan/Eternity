@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, Paper } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, Paper, TableFooter } from "@mui/material";
 import { FaEye } from "react-icons/fa";
 import { Delete } from '@mui/icons-material';
 import styles from './SettingReport.module.css';
@@ -463,18 +463,24 @@ const filteredEntries = entries.filter(entry => {
     </TableRow>
   ))}
 </TableBody> 
-
-{/* Total Issue Weight Display */}
-<Typography variant="subtitle1" sx={{ mt: 2 }}>
-  <strong>Total Issued Weight:</strong>{" "}
-  {viewEntry.items
-    .reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0)
-    .toFixed(2)} g
-</Typography>
-
+<TableFooter>
+    <TableRow>
+      <TableCell colSpan={2} sx={{ fontWeight: 'bold' }}>Total</TableCell>
+      <TableCell sx={{ fontWeight: 'bold' }}>
+        {viewEntry.items.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0).toFixed(2)} g
+      </TableCell>
+      <TableCell />
+      <TableCell sx={{ fontWeight: 'bold' }}>
+        {viewEntry.items.reduce((sum, item) => sum + parseFloat(item.purity || 0), 0).toFixed(2)}
+      </TableCell>
+      <TableCell />
+    </TableRow>
+  </TableFooter>
               </Table>
+
+
               <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
-                <TextField label="After Weight" type="number" fullWidth required value={viewEntry.afterWeight || ''} onChange={(e) => setViewEntry({ ...viewEntry, afterWeight: e.target.value })} />
+                <TextField label="Receipt Weight" type="number" fullWidth required value={viewEntry.afterWeight || ''} onChange={(e) => setViewEntry({ ...viewEntry, afterWeight: e.target.value })} />
                 <TextField label="Stone Count" type="number" fullWidth value={viewEntry.stoneCount || ''} onChange={(e) => setViewEntry({ ...viewEntry, stoneCount: e.target.value })} />
                 <TextField label="Stone Weight" type="number" fullWidth value={viewEntry.stoneWeight || ''} onChange={(e) => setViewEntry({ ...viewEntry, stoneWeight: e.target.value })} />
                 <TextField label="Remarks" fullWidth value={viewEntry.extraRemarks || ''} onChange={(e) => setViewEntry({ ...viewEntry, extraRemarks: e.target.value })} />

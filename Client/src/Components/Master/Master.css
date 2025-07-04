@@ -1,85 +1,69 @@
 
-.navbar {  
-  padding: 10px 20px;
-  width: 100%;
+* {
   box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(to right,  #b88915 ,#b18c3c, #a94b1d);
-  height: 4rem;
-}
-
-.navbar-left {
-  flex: 1;
-}
-
-.navbar-logo {
-  height: 40px;
-  width: auto;
-  border-radius: 5px;
-  margin-left: 1rem;
-}
-
-.nav-list {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex: 2;
   margin: 0;
   padding: 0;
-  color: white;
-  font-size: 1.1rem;
 }
 
-.nav-item {
-  margin: 0 15px;
+.navbarr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right,  #b88915 ,#b18c3c, #a94b1d);
+  padding: 0 1rem;
+  height: 60px;
+  
+}
+
+.navbar-leftt {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logoo {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 0;
+}
+
+.nav-listt {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-itemm {
+  display: flex;
+  align-items: center;
 }
 
 .nav-link {
   color: white;
   text-decoration: none;
-  padding: 8px 12px;
+  font-weight: 500;
+  padding: 6px 10px;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  font-size: 19px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
- 
 }
 
-.nav-link:hover ,.logout-button:hover{
-  background:#7b5908 ;
+.nav-link:hover,
+.nav-link.active {
+  background-color: #333;
 }
 
-.navbar-right {
-  flex: 1;
+.navbar-rightt {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
 }
 
 .logout-button {
-
-  color: white;
+  background: transparent;
   border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
+  color: white;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  background:#a57402 ;
-  background-color: rgb(190, 56, 56);
-}
-
-.nav-item.active .nav-link {
-  color: #fff;         
-  background:#a57402 ;
-  border-radius: 5px;
-  padding: 5px 10px;
-  background:#7b5908 ;
-} 
-
-.nav-link.active {
-
-  border-radius: 5px;
-  background:#765910 ;
+  padding: 6px;
+  margin: 0;
 }
