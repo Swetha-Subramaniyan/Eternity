@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import {BrowserRouter,Routes,Route, Outlet} from 'react-router-dom'
 import Login from './Components/Login/Login';
 import Navbar from './Components/Navbar/Navbar';
 import Customer from './Components/Customer/Customer';
@@ -29,6 +29,15 @@ import MasterJewelStock from './Components/Master/MasterJewelStock';
 import Billing from './Components/Billing/Billing';
 import Report from './Components/Report/Report';
 import MasterAddTouch from './Components/Master/MasterAddTouch';
+import SalesReport from './Components/Report/SalesReport';
+import CustomerReport from './Components/Report/CustomerReport';
+import StockReport from './Components/Report/StockReport';
+import ReceiptReport from './Components/Report/ReceiptReport';
+import CastingMeltingReport from './Components/Report/CastingMeltingReports';
+import CastingMeltingReports from './Components/Report/CastingMeltingReports';
+import SettingReports from './Components/Report/SettingReports';
+import FilingReports from './Components/Report/FilingReports';
+import BuffingReports from './Components/Report/BuffingReports';
 
 
 const App = () => {
@@ -64,6 +73,15 @@ const App = () => {
     <Route path='/masterjewel' element={< MasterJewelStock />} />
     <Route path='/billing' element={<Billing />}/>
     <Route path='/report' element={< Report/>}/>
+    <Route path='/castingMeltingrreports'  element={< CastingMeltingReports/>}/>
+    <Route path='/settingreports' element={< SettingReports />}/>
+    <Route path='/filingreports' element={< FilingReports />}/>
+    <Route path='/buffingreports' element={< BuffingReports  />}/>
+
+    <Route path='/customerreport' element={< CustomerReport/>}/>
+    <Route path='/salesreport' element={<SalesReport />}/>
+    <Route path='/stockreport' element={< StockReport/>}/>
+    <Route path='/receiptreport' element={< ReceiptReport/>}/>
 
    </Routes>
     </BrowserRouter>
@@ -77,4 +95,3 @@ export default App
 
 
 
-// hover: #a33768

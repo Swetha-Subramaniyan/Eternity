@@ -162,8 +162,7 @@ function MasterCasting() {
               type="text"
               fullWidth
               value={customerName}              
-              onChange={(e) => setCustomerName(e.target.value)}
-              
+              onChange={(e) => setCustomerName(e.target.value)}             
             />
             <TextField
               margin="dense"

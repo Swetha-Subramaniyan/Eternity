@@ -21,17 +21,40 @@ import { Link } from "react-router-dom";
 const Filing = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
+  const filingMembers = [
+    {
+      id: 1,
+      name: "Dhanusha",
+      phone: "9321345672",
+      address: "4/213, Coimbatore",
+    },
+    {
+      id: 2,
+      name: "Ravi Kannan",
+      phone: "9876543210",
+      address: "4/234, Ooty",
+    }
+  
+  ];
+
+  const filteredMembers = filingMembers.filter(
+    (member) =>
+      member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      member.phone.includes(searchTerm) ||
+      member.address.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
-
       <Navbar />
       <Container maxWidth="lg">
         <Paper className="customer-table-container" elevation={3} sx={{ p: 3 }}>
           <Typography variant="h5" align="center" gutterBottom>
             Filing Details
           </Typography>
+
           <TextField
-            label="Search Filing"
+            label="Search Filing Member"
             variant="outlined"
             fullWidth
             margin="normal"
@@ -40,7 +63,7 @@ const Filing = () => {
             sx={{
               "& .MuiOutlinedInput-root": {
                 borderRadius: "30px",
-                width: "22rem",
+                width: "20rem",
                 backgroundColor: "#f8f9fa",
                 "&.Mui-focused": {
                   backgroundColor: "#ffffff",
@@ -59,34 +82,53 @@ const Filing = () => {
           <TableContainer>
             <Table>
               <TableHead>
-              <TableRow > 
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><strong>S.No</strong></TableCell>
-                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><strong>Filing Member Name</strong></TableCell>
-                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><strong>Phone Number</strong></TableCell>
-                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><strong>Address</strong></TableCell>
-                  <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><strong>Actions</strong></TableCell>
+                <TableRow>
+                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
+                    <strong>S.No</strong>
+                  </TableCell>
+                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
+                    <strong>Filing Member Name</strong>
+                  </TableCell>
+                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
+                    <strong>Phone Number</strong>
+                  </TableCell>
+                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
+                    <strong>Address</strong>
+                  </TableCell>
+                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
+                    <strong>Actions</strong>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRow>
-                <TableCell align="center">1 </TableCell>
-                  <TableCell align="center">Dhanusha</TableCell>
-                  <TableCell align="center">9321345672</TableCell>
-                  <TableCell align="center">4/213, Coimbatore</TableCell>
-                  <TableCell align="center">
-                    <Link to={'/filinglot'}> 
-                    <IconButton>
-                      <PreviewIcon color="primary"  /> 
-                    </IconButton>
-                    </Link>
-                  </TableCell> 
-                </TableRow>
+                {filteredMembers.length > 0 ? (
+                  filteredMembers.map((member, index) => (
+                    <TableRow key={member.id}>
+                      <TableCell align="center">{index + 1}</TableCell>
+                      <TableCell align="center">{member.name}</TableCell>
+                      <TableCell align="center">{member.phone}</TableCell>
+                      <TableCell align="center">{member.address}</TableCell>
+                      <TableCell align="center">
+                        <Link to="/filinglot">
+                          <IconButton>
+                            <PreviewIcon color="primary" />
+                          </IconButton>
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={5} align="center">
+                      No records found.
+                    </TableCell>
+                  </TableRow>
+                )}
               </TableBody>
             </Table>
           </TableContainer>
         </Paper>
       </Container>
-      
     </>
   );
 };
