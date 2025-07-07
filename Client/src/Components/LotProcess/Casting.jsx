@@ -74,19 +74,19 @@ export default function Casting() {
           axios.get(`${BACKEND_SERVER_URL}/api/castingentry`)
         ]);
   
-        // ✅ Log casting names
+        //  Log casting names
         console.log("Casting Names Response:", castingNamesRes.data);
         setCastingNames(castingNamesRes.data.map(c => c.name));
   
         const castingEntries = castingEntriesRes.data;
         console.log("Casting Entries Response:", castingEntries);
-  
-        // 👉 Fetch all castingitems
+
+        //  Fetch all castingitems
         const castingItemsRes = await axios.get(`${BACKEND_SERVER_URL}/api/castingitems`);
         const allCastingItems = castingItemsRes.data;
         console.log("All Casting Itemsss:", allCastingItems);
   
-        // 👉 Map and attach afterWeight
+        //  Map and attach afterWeight
         const enrichedEntries = castingEntries.map(entry => {
           const entryItems = allCastingItems.filter(item => item.castingEntryId === entry.id);
           const afterWeightItem = entryItems.find(item => item.after_weight > 0);
@@ -412,7 +412,7 @@ export default function Casting() {
   onStockUpdate={triggerRefresh} 
 />
  <div style={{marginTop:'20rem'}}> </div>
-<Stock refreshFlag ={refreshFlag}/>
+{/* <Stock refreshFlag ={refreshFlag}/> */}
 
             </div>
           </div>
@@ -436,6 +436,9 @@ export default function Casting() {
                   <th>After Weight</th>
                   <th>Items Qty</th>
                   <th>Action</th>
+                  <th>Scrap Name</th>
+                  <th>Scrap Weight</th>
+                  <th>Scrap Items Qty</th>
                 </tr>
               </thead>
               <tbody>
@@ -462,16 +465,18 @@ export default function Casting() {
 </td>                
                       <td>{(entry.items?.length || 0) + (entry.scrapItems?.length || 0)}</td>
                       <td>
-                        <button onClick={() => handleEdit(index)} style={{color:'blue', fontWeight:'bold'}}> Edit 
-                        {/* <EditIcon color="primary" /> */}
+                        <button onClick={() => handleEdit(index)} style={{color:'blue', fontWeight:'bold'}}> 
+                        <EditIcon color="primary" />
                         </button>
     
                       <button onClick={() => handleDelete(entry.id)} style={{ marginLeft: 8, color: "red", fontWeight:'bold' }}> 
-                      {/* <DeleteIcon color="error" />  */}
-                      Delete
-                      </button>
-                      
+                      <DeleteIcon color="error" /> 
+                    
+                      </button>                     
                       </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
                     </tr>
                   ))
                 ) : (

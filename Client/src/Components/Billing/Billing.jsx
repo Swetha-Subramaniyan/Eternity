@@ -199,16 +199,6 @@ const deleteBillItem = (index) => {
     setBillItems(newBill);
   };
 
-  // const getBillTotal = () => {
-  //   let totalPure = 0;
-  //   let totalAmount = 0;
-  //   billItems.forEach(item => {
-  //     totalPure += item.pure || 0;
-  //     totalAmount += item.amount || 0;
-  //   });
-  //   return { totalPure: totalPure.toFixed(2), totalAmount: totalAmount.toFixed(2) };
-  // };
-
   const getCustomerBalance = () => {
     const customer = customerList.find(c => c.name === selectedCustomer);
     return customer ? customer.balance : 0;
@@ -264,7 +254,7 @@ const deleteBillItem = (index) => {
       <Navbar />
       <div className={styles.container}>
         <div className={styles.card}>
-          <h2 >Estimate Only</h2>
+          <h3 >Estimate Only</h3>
           
           <p className={styles.billNo}>Bill No: 01</p>
           <div className={styles.datetime}>
@@ -475,7 +465,7 @@ const deleteBillItem = (index) => {
 </Button>
         </div>
         <div className={styles.tablecard}>
-          <h2>Available Product Weights</h2>
+          <h3>Available Product Weights</h3>
           <div className={styles.billdetails}>Product Details:</div>
           <div className={styles.tablehead}>
             <table>
