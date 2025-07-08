@@ -31,6 +31,7 @@ enum STONEOPTION {
 
 model AddCustomer {
   id          Int                  @id @default(autoincrement())
+  createdAt   DateTime @default(now())
   name        String
   phoneNumber String?
   address     String?
@@ -40,6 +41,7 @@ model AddCustomer {
 
 model AddCasting {
   id          Int            @id @default(autoincrement())
+  createdAt   DateTime @default(now())
   name        String
   phoneNumber String?
   address     String?
@@ -51,6 +53,7 @@ model AddCasting {
 
 model AddFiling {
   id          Int           @id @default(autoincrement())
+  createdAt   DateTime @default(now())
   name        String
   phoneNumber String?
   address     String?
@@ -60,6 +63,7 @@ model AddFiling {
 
 model AddSetting {
   id          Int           @id @default(autoincrement())
+  createdAt   DateTime @default(now())
   name        String
   phoneNumber String?
   address     String?
@@ -69,6 +73,7 @@ model AddSetting {
 
 model AddBuffing {
   id          Int           @id @default(autoincrement())
+  createdAt   DateTime @default(now())
   name        String
   phoneNumber String?
   address     String?
@@ -78,6 +83,7 @@ model AddBuffing {
 
 model AddSupplierItem {
   id          Int     @id @default(autoincrement())
+  createdAt   DateTime @default(now())
   name        String
   email       String?
   phoneNumber String?
@@ -86,8 +92,8 @@ model AddSupplierItem {
 
 model AddPurchaseStock {
   id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now())
   name            String
-  createdAt       DateTime 
   item            ITEMTYPE
   goldWeight      Int?
   goldTouch       Float?
@@ -103,19 +109,20 @@ model AddPurchaseStock {
 
 model CustomerTransaction {
   id         Int       @id @default(autoincrement())
+  createdAt  DateTime @default(now())
   date       DateTime 
   value      Float
   type       String
   touch      Float?
   purity     Float?
-  goldRate   Float?
-  createdAt  DateTime 
+  goldRate   Float?  
   customer   AddCustomer @relation(fields: [customerId], references: [id])
   customerId Int
 }
 
 model AddItem {
   id          Int            @id @default(autoincrement())
+  createdAt   DateTime @default(now())
   name        String
   castingItems CastingItems[]
   stock    Stock[]

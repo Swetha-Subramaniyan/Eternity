@@ -2431,6 +2431,7 @@ export namespace Prisma {
 
   export type AddCustomerMinAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     phoneNumber: string | null
     address: string | null
@@ -2439,6 +2440,7 @@ export namespace Prisma {
 
   export type AddCustomerMaxAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     phoneNumber: string | null
     address: string | null
@@ -2447,6 +2449,7 @@ export namespace Prisma {
 
   export type AddCustomerCountAggregateOutputType = {
     id: number
+    createdAt: number
     name: number
     phoneNumber: number
     address: number
@@ -2465,6 +2468,7 @@ export namespace Prisma {
 
   export type AddCustomerMinAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -2473,6 +2477,7 @@ export namespace Prisma {
 
   export type AddCustomerMaxAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -2481,6 +2486,7 @@ export namespace Prisma {
 
   export type AddCustomerCountAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -2576,6 +2582,7 @@ export namespace Prisma {
 
   export type AddCustomerGroupByOutputType = {
     id: number
+    createdAt: Date
     name: string
     phoneNumber: string | null
     address: string | null
@@ -2603,6 +2610,7 @@ export namespace Prisma {
 
   export type AddCustomerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     phoneNumber?: boolean
     address?: boolean
@@ -2615,13 +2623,14 @@ export namespace Prisma {
 
   export type AddCustomerSelectScalar = {
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     phoneNumber?: boolean
     address?: boolean
     email?: boolean
   }
 
-  export type AddCustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addCustomer"]>
+  export type AddCustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addCustomer"]>
   export type AddCustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transactions?: boolean | AddCustomer$transactionsArgs<ExtArgs>
     _count?: boolean | AddCustomerCountOutputTypeDefaultArgs<ExtArgs>
@@ -2634,6 +2643,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      createdAt: Date
       name: string
       phoneNumber: string | null
       address: string | null
@@ -3009,6 +3019,7 @@ export namespace Prisma {
    */
   interface AddCustomerFieldRefs {
     readonly id: FieldRef<"AddCustomer", 'Int'>
+    readonly createdAt: FieldRef<"AddCustomer", 'DateTime'>
     readonly name: FieldRef<"AddCustomer", 'String'>
     readonly phoneNumber: FieldRef<"AddCustomer", 'String'>
     readonly address: FieldRef<"AddCustomer", 'String'>
@@ -3420,6 +3431,7 @@ export namespace Prisma {
 
   export type AddCastingMinAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     phoneNumber: string | null
     address: string | null
@@ -3428,6 +3440,7 @@ export namespace Prisma {
 
   export type AddCastingMaxAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     phoneNumber: string | null
     address: string | null
@@ -3436,6 +3449,7 @@ export namespace Prisma {
 
   export type AddCastingCountAggregateOutputType = {
     id: number
+    createdAt: number
     name: number
     phoneNumber: number
     address: number
@@ -3454,6 +3468,7 @@ export namespace Prisma {
 
   export type AddCastingMinAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -3462,6 +3477,7 @@ export namespace Prisma {
 
   export type AddCastingMaxAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -3470,6 +3486,7 @@ export namespace Prisma {
 
   export type AddCastingCountAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -3565,6 +3582,7 @@ export namespace Prisma {
 
   export type AddCastingGroupByOutputType = {
     id: number
+    createdAt: Date
     name: string
     phoneNumber: string | null
     address: string | null
@@ -3592,6 +3610,7 @@ export namespace Prisma {
 
   export type AddCastingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     phoneNumber?: boolean
     address?: boolean
@@ -3606,13 +3625,14 @@ export namespace Prisma {
 
   export type AddCastingSelectScalar = {
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     phoneNumber?: boolean
     address?: boolean
     email?: boolean
   }
 
-  export type AddCastingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addCasting"]>
+  export type AddCastingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addCasting"]>
   export type AddCastingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     entries?: boolean | AddCasting$entriesArgs<ExtArgs>
     castingitems?: boolean | AddCasting$castingitemsArgs<ExtArgs>
@@ -3629,6 +3649,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      createdAt: Date
       name: string
       phoneNumber: string | null
       address: string | null
@@ -4006,6 +4027,7 @@ export namespace Prisma {
    */
   interface AddCastingFieldRefs {
     readonly id: FieldRef<"AddCasting", 'Int'>
+    readonly createdAt: FieldRef<"AddCasting", 'DateTime'>
     readonly name: FieldRef<"AddCasting", 'String'>
     readonly phoneNumber: FieldRef<"AddCasting", 'String'>
     readonly address: FieldRef<"AddCasting", 'String'>
@@ -4465,6 +4487,7 @@ export namespace Prisma {
 
   export type AddFilingMinAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     phoneNumber: string | null
     address: string | null
@@ -4473,6 +4496,7 @@ export namespace Prisma {
 
   export type AddFilingMaxAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     phoneNumber: string | null
     address: string | null
@@ -4481,6 +4505,7 @@ export namespace Prisma {
 
   export type AddFilingCountAggregateOutputType = {
     id: number
+    createdAt: number
     name: number
     phoneNumber: number
     address: number
@@ -4499,6 +4524,7 @@ export namespace Prisma {
 
   export type AddFilingMinAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -4507,6 +4533,7 @@ export namespace Prisma {
 
   export type AddFilingMaxAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -4515,6 +4542,7 @@ export namespace Prisma {
 
   export type AddFilingCountAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -4610,6 +4638,7 @@ export namespace Prisma {
 
   export type AddFilingGroupByOutputType = {
     id: number
+    createdAt: Date
     name: string
     phoneNumber: string | null
     address: string | null
@@ -4637,6 +4666,7 @@ export namespace Prisma {
 
   export type AddFilingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     phoneNumber?: boolean
     address?: boolean
@@ -4649,13 +4679,14 @@ export namespace Prisma {
 
   export type AddFilingSelectScalar = {
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     phoneNumber?: boolean
     address?: boolean
     email?: boolean
   }
 
-  export type AddFilingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addFiling"]>
+  export type AddFilingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addFiling"]>
   export type AddFilingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filings?: boolean | AddFiling$filingsArgs<ExtArgs>
     _count?: boolean | AddFilingCountOutputTypeDefaultArgs<ExtArgs>
@@ -4668,6 +4699,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      createdAt: Date
       name: string
       phoneNumber: string | null
       address: string | null
@@ -5043,6 +5075,7 @@ export namespace Prisma {
    */
   interface AddFilingFieldRefs {
     readonly id: FieldRef<"AddFiling", 'Int'>
+    readonly createdAt: FieldRef<"AddFiling", 'DateTime'>
     readonly name: FieldRef<"AddFiling", 'String'>
     readonly phoneNumber: FieldRef<"AddFiling", 'String'>
     readonly address: FieldRef<"AddFiling", 'String'>
@@ -5454,6 +5487,7 @@ export namespace Prisma {
 
   export type AddSettingMinAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     phoneNumber: string | null
     address: string | null
@@ -5462,6 +5496,7 @@ export namespace Prisma {
 
   export type AddSettingMaxAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     phoneNumber: string | null
     address: string | null
@@ -5470,6 +5505,7 @@ export namespace Prisma {
 
   export type AddSettingCountAggregateOutputType = {
     id: number
+    createdAt: number
     name: number
     phoneNumber: number
     address: number
@@ -5488,6 +5524,7 @@ export namespace Prisma {
 
   export type AddSettingMinAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -5496,6 +5533,7 @@ export namespace Prisma {
 
   export type AddSettingMaxAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -5504,6 +5542,7 @@ export namespace Prisma {
 
   export type AddSettingCountAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -5599,6 +5638,7 @@ export namespace Prisma {
 
   export type AddSettingGroupByOutputType = {
     id: number
+    createdAt: Date
     name: string
     phoneNumber: string | null
     address: string | null
@@ -5626,6 +5666,7 @@ export namespace Prisma {
 
   export type AddSettingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     phoneNumber?: boolean
     address?: boolean
@@ -5638,13 +5679,14 @@ export namespace Prisma {
 
   export type AddSettingSelectScalar = {
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     phoneNumber?: boolean
     address?: boolean
     email?: boolean
   }
 
-  export type AddSettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addSetting"]>
+  export type AddSettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addSetting"]>
   export type AddSettingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     settings?: boolean | AddSetting$settingsArgs<ExtArgs>
     _count?: boolean | AddSettingCountOutputTypeDefaultArgs<ExtArgs>
@@ -5657,6 +5699,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      createdAt: Date
       name: string
       phoneNumber: string | null
       address: string | null
@@ -6032,6 +6075,7 @@ export namespace Prisma {
    */
   interface AddSettingFieldRefs {
     readonly id: FieldRef<"AddSetting", 'Int'>
+    readonly createdAt: FieldRef<"AddSetting", 'DateTime'>
     readonly name: FieldRef<"AddSetting", 'String'>
     readonly phoneNumber: FieldRef<"AddSetting", 'String'>
     readonly address: FieldRef<"AddSetting", 'String'>
@@ -6443,6 +6487,7 @@ export namespace Prisma {
 
   export type AddBuffingMinAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     phoneNumber: string | null
     address: string | null
@@ -6451,6 +6496,7 @@ export namespace Prisma {
 
   export type AddBuffingMaxAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     phoneNumber: string | null
     address: string | null
@@ -6459,6 +6505,7 @@ export namespace Prisma {
 
   export type AddBuffingCountAggregateOutputType = {
     id: number
+    createdAt: number
     name: number
     phoneNumber: number
     address: number
@@ -6477,6 +6524,7 @@ export namespace Prisma {
 
   export type AddBuffingMinAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -6485,6 +6533,7 @@ export namespace Prisma {
 
   export type AddBuffingMaxAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -6493,6 +6542,7 @@ export namespace Prisma {
 
   export type AddBuffingCountAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     phoneNumber?: true
     address?: true
@@ -6588,6 +6638,7 @@ export namespace Prisma {
 
   export type AddBuffingGroupByOutputType = {
     id: number
+    createdAt: Date
     name: string
     phoneNumber: string | null
     address: string | null
@@ -6615,6 +6666,7 @@ export namespace Prisma {
 
   export type AddBuffingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     phoneNumber?: boolean
     address?: boolean
@@ -6627,13 +6679,14 @@ export namespace Prisma {
 
   export type AddBuffingSelectScalar = {
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     phoneNumber?: boolean
     address?: boolean
     email?: boolean
   }
 
-  export type AddBuffingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addBuffing"]>
+  export type AddBuffingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addBuffing"]>
   export type AddBuffingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     buffings?: boolean | AddBuffing$buffingsArgs<ExtArgs>
     _count?: boolean | AddBuffingCountOutputTypeDefaultArgs<ExtArgs>
@@ -6646,6 +6699,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      createdAt: Date
       name: string
       phoneNumber: string | null
       address: string | null
@@ -7021,6 +7075,7 @@ export namespace Prisma {
    */
   interface AddBuffingFieldRefs {
     readonly id: FieldRef<"AddBuffing", 'Int'>
+    readonly createdAt: FieldRef<"AddBuffing", 'DateTime'>
     readonly name: FieldRef<"AddBuffing", 'String'>
     readonly phoneNumber: FieldRef<"AddBuffing", 'String'>
     readonly address: FieldRef<"AddBuffing", 'String'>
@@ -7432,6 +7487,7 @@ export namespace Prisma {
 
   export type AddSupplierItemMinAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     email: string | null
     phoneNumber: string | null
@@ -7440,6 +7496,7 @@ export namespace Prisma {
 
   export type AddSupplierItemMaxAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
     email: string | null
     phoneNumber: string | null
@@ -7448,6 +7505,7 @@ export namespace Prisma {
 
   export type AddSupplierItemCountAggregateOutputType = {
     id: number
+    createdAt: number
     name: number
     email: number
     phoneNumber: number
@@ -7466,6 +7524,7 @@ export namespace Prisma {
 
   export type AddSupplierItemMinAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     email?: true
     phoneNumber?: true
@@ -7474,6 +7533,7 @@ export namespace Prisma {
 
   export type AddSupplierItemMaxAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     email?: true
     phoneNumber?: true
@@ -7482,6 +7542,7 @@ export namespace Prisma {
 
   export type AddSupplierItemCountAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     email?: true
     phoneNumber?: true
@@ -7577,6 +7638,7 @@ export namespace Prisma {
 
   export type AddSupplierItemGroupByOutputType = {
     id: number
+    createdAt: Date
     name: string
     email: string | null
     phoneNumber: string | null
@@ -7604,6 +7666,7 @@ export namespace Prisma {
 
   export type AddSupplierItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     email?: boolean
     phoneNumber?: boolean
@@ -7614,19 +7677,21 @@ export namespace Prisma {
 
   export type AddSupplierItemSelectScalar = {
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     email?: boolean
     phoneNumber?: boolean
     address?: boolean
   }
 
-  export type AddSupplierItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phoneNumber" | "address", ExtArgs["result"]["addSupplierItem"]>
+  export type AddSupplierItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name" | "email" | "phoneNumber" | "address", ExtArgs["result"]["addSupplierItem"]>
 
   export type $AddSupplierItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AddSupplierItem"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      createdAt: Date
       name: string
       email: string | null
       phoneNumber: string | null
@@ -8001,6 +8066,7 @@ export namespace Prisma {
    */
   interface AddSupplierItemFieldRefs {
     readonly id: FieldRef<"AddSupplierItem", 'Int'>
+    readonly createdAt: FieldRef<"AddSupplierItem", 'DateTime'>
     readonly name: FieldRef<"AddSupplierItem", 'String'>
     readonly email: FieldRef<"AddSupplierItem", 'String'>
     readonly phoneNumber: FieldRef<"AddSupplierItem", 'String'>
@@ -8368,8 +8434,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockMinAggregateOutputType = {
     id: number | null
-    name: string | null
     createdAt: Date | null
+    name: string | null
     item: $Enums.ITEMTYPE | null
     goldWeight: number | null
     goldTouch: number | null
@@ -8385,8 +8451,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockMaxAggregateOutputType = {
     id: number | null
-    name: string | null
     createdAt: Date | null
+    name: string | null
     item: $Enums.ITEMTYPE | null
     goldWeight: number | null
     goldTouch: number | null
@@ -8402,8 +8468,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockCountAggregateOutputType = {
     id: number
-    name: number
     createdAt: number
+    name: number
     item: number
     goldWeight: number
     goldTouch: number
@@ -8449,8 +8515,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockMinAggregateInputType = {
     id?: true
-    name?: true
     createdAt?: true
+    name?: true
     item?: true
     goldWeight?: true
     goldTouch?: true
@@ -8466,8 +8532,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockMaxAggregateInputType = {
     id?: true
-    name?: true
     createdAt?: true
+    name?: true
     item?: true
     goldWeight?: true
     goldTouch?: true
@@ -8483,8 +8549,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockCountAggregateInputType = {
     id?: true
-    name?: true
     createdAt?: true
+    name?: true
     item?: true
     goldWeight?: true
     goldTouch?: true
@@ -8587,8 +8653,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockGroupByOutputType = {
     id: number
-    name: string
     createdAt: Date
+    name: string
     item: $Enums.ITEMTYPE
     goldWeight: number | null
     goldTouch: number | null
@@ -8623,8 +8689,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     createdAt?: boolean
+    name?: boolean
     item?: boolean
     goldWeight?: boolean
     goldTouch?: boolean
@@ -8642,8 +8708,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockSelectScalar = {
     id?: boolean
-    name?: boolean
     createdAt?: boolean
+    name?: boolean
     item?: boolean
     goldWeight?: boolean
     goldTouch?: boolean
@@ -8657,15 +8723,15 @@ export namespace Prisma {
     silvertotalValue?: boolean
   }
 
-  export type AddPurchaseStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "item" | "goldWeight" | "goldTouch" | "goldPurity" | "goldRate" | "goldtotalValue" | "silverWeight" | "silverTouch" | "silverPurity" | "silverRate" | "silvertotalValue", ExtArgs["result"]["addPurchaseStock"]>
+  export type AddPurchaseStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name" | "item" | "goldWeight" | "goldTouch" | "goldPurity" | "goldRate" | "goldtotalValue" | "silverWeight" | "silverTouch" | "silverPurity" | "silverRate" | "silvertotalValue", ExtArgs["result"]["addPurchaseStock"]>
 
   export type $AddPurchaseStockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AddPurchaseStock"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      name: string
       createdAt: Date
+      name: string
       item: $Enums.ITEMTYPE
       goldWeight: number | null
       goldTouch: number | null
@@ -9047,8 +9113,8 @@ export namespace Prisma {
    */
   interface AddPurchaseStockFieldRefs {
     readonly id: FieldRef<"AddPurchaseStock", 'Int'>
-    readonly name: FieldRef<"AddPurchaseStock", 'String'>
     readonly createdAt: FieldRef<"AddPurchaseStock", 'DateTime'>
+    readonly name: FieldRef<"AddPurchaseStock", 'String'>
     readonly item: FieldRef<"AddPurchaseStock", 'ITEMTYPE'>
     readonly goldWeight: FieldRef<"AddPurchaseStock", 'Int'>
     readonly goldTouch: FieldRef<"AddPurchaseStock", 'Float'>
@@ -9413,37 +9479,37 @@ export namespace Prisma {
 
   export type CustomerTransactionMinAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     date: Date | null
     value: number | null
     type: string | null
     touch: number | null
     purity: number | null
     goldRate: number | null
-    createdAt: Date | null
     customerId: number | null
   }
 
   export type CustomerTransactionMaxAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     date: Date | null
     value: number | null
     type: string | null
     touch: number | null
     purity: number | null
     goldRate: number | null
-    createdAt: Date | null
     customerId: number | null
   }
 
   export type CustomerTransactionCountAggregateOutputType = {
     id: number
+    createdAt: number
     date: number
     value: number
     type: number
     touch: number
     purity: number
     goldRate: number
-    createdAt: number
     customerId: number
     _all: number
   }
@@ -9469,37 +9535,37 @@ export namespace Prisma {
 
   export type CustomerTransactionMinAggregateInputType = {
     id?: true
+    createdAt?: true
     date?: true
     value?: true
     type?: true
     touch?: true
     purity?: true
     goldRate?: true
-    createdAt?: true
     customerId?: true
   }
 
   export type CustomerTransactionMaxAggregateInputType = {
     id?: true
+    createdAt?: true
     date?: true
     value?: true
     type?: true
     touch?: true
     purity?: true
     goldRate?: true
-    createdAt?: true
     customerId?: true
   }
 
   export type CustomerTransactionCountAggregateInputType = {
     id?: true
+    createdAt?: true
     date?: true
     value?: true
     type?: true
     touch?: true
     purity?: true
     goldRate?: true
-    createdAt?: true
     customerId?: true
     _all?: true
   }
@@ -9592,13 +9658,13 @@ export namespace Prisma {
 
   export type CustomerTransactionGroupByOutputType = {
     id: number
+    createdAt: Date
     date: Date
     value: number
     type: string
     touch: number | null
     purity: number | null
     goldRate: number | null
-    createdAt: Date
     customerId: number
     _count: CustomerTransactionCountAggregateOutputType | null
     _avg: CustomerTransactionAvgAggregateOutputType | null
@@ -9623,13 +9689,13 @@ export namespace Prisma {
 
   export type CustomerTransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
     date?: boolean
     value?: boolean
     type?: boolean
     touch?: boolean
     purity?: boolean
     goldRate?: boolean
-    createdAt?: boolean
     customerId?: boolean
     customer?: boolean | AddCustomerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customerTransaction"]>
@@ -9638,17 +9704,17 @@ export namespace Prisma {
 
   export type CustomerTransactionSelectScalar = {
     id?: boolean
+    createdAt?: boolean
     date?: boolean
     value?: boolean
     type?: boolean
     touch?: boolean
     purity?: boolean
     goldRate?: boolean
-    createdAt?: boolean
     customerId?: boolean
   }
 
-  export type CustomerTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "value" | "type" | "touch" | "purity" | "goldRate" | "createdAt" | "customerId", ExtArgs["result"]["customerTransaction"]>
+  export type CustomerTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "date" | "value" | "type" | "touch" | "purity" | "goldRate" | "customerId", ExtArgs["result"]["customerTransaction"]>
   export type CustomerTransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | AddCustomerDefaultArgs<ExtArgs>
   }
@@ -9660,13 +9726,13 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      createdAt: Date
       date: Date
       value: number
       type: string
       touch: number | null
       purity: number | null
       goldRate: number | null
-      createdAt: Date
       customerId: number
     }, ExtArgs["result"]["customerTransaction"]>
     composites: {}
@@ -10039,13 +10105,13 @@ export namespace Prisma {
    */
   interface CustomerTransactionFieldRefs {
     readonly id: FieldRef<"CustomerTransaction", 'Int'>
+    readonly createdAt: FieldRef<"CustomerTransaction", 'DateTime'>
     readonly date: FieldRef<"CustomerTransaction", 'DateTime'>
     readonly value: FieldRef<"CustomerTransaction", 'Float'>
     readonly type: FieldRef<"CustomerTransaction", 'String'>
     readonly touch: FieldRef<"CustomerTransaction", 'Float'>
     readonly purity: FieldRef<"CustomerTransaction", 'Float'>
     readonly goldRate: FieldRef<"CustomerTransaction", 'Float'>
-    readonly createdAt: FieldRef<"CustomerTransaction", 'DateTime'>
     readonly customerId: FieldRef<"CustomerTransaction", 'Int'>
   }
     
@@ -10430,16 +10496,19 @@ export namespace Prisma {
 
   export type AddItemMinAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
   }
 
   export type AddItemMaxAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     name: string | null
   }
 
   export type AddItemCountAggregateOutputType = {
     id: number
+    createdAt: number
     name: number
     _all: number
   }
@@ -10455,16 +10524,19 @@ export namespace Prisma {
 
   export type AddItemMinAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
   }
 
   export type AddItemMaxAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
   }
 
   export type AddItemCountAggregateInputType = {
     id?: true
+    createdAt?: true
     name?: true
     _all?: true
   }
@@ -10557,6 +10629,7 @@ export namespace Prisma {
 
   export type AddItemGroupByOutputType = {
     id: number
+    createdAt: Date
     name: string
     _count: AddItemCountAggregateOutputType | null
     _avg: AddItemAvgAggregateOutputType | null
@@ -10581,6 +10654,7 @@ export namespace Prisma {
 
   export type AddItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
     name?: boolean
     castingItems?: boolean | AddItem$castingItemsArgs<ExtArgs>
     stock?: boolean | AddItem$stockArgs<ExtArgs>
@@ -10591,10 +10665,11 @@ export namespace Prisma {
 
   export type AddItemSelectScalar = {
     id?: boolean
+    createdAt?: boolean
     name?: boolean
   }
 
-  export type AddItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["addItem"]>
+  export type AddItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name", ExtArgs["result"]["addItem"]>
   export type AddItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     castingItems?: boolean | AddItem$castingItemsArgs<ExtArgs>
     stock?: boolean | AddItem$stockArgs<ExtArgs>
@@ -10609,6 +10684,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      createdAt: Date
       name: string
     }, ExtArgs["result"]["addItem"]>
     composites: {}
@@ -10982,6 +11058,7 @@ export namespace Prisma {
    */
   interface AddItemFieldRefs {
     readonly id: FieldRef<"AddItem", 'Int'>
+    readonly createdAt: FieldRef<"AddItem", 'DateTime'>
     readonly name: FieldRef<"AddItem", 'String'>
   }
     
@@ -18034,6 +18111,7 @@ export namespace Prisma {
 
   export const AddCustomerScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
     name: 'name',
     phoneNumber: 'phoneNumber',
     address: 'address',
@@ -18045,6 +18123,7 @@ export namespace Prisma {
 
   export const AddCastingScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
     name: 'name',
     phoneNumber: 'phoneNumber',
     address: 'address',
@@ -18056,6 +18135,7 @@ export namespace Prisma {
 
   export const AddFilingScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
     name: 'name',
     phoneNumber: 'phoneNumber',
     address: 'address',
@@ -18067,6 +18147,7 @@ export namespace Prisma {
 
   export const AddSettingScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
     name: 'name',
     phoneNumber: 'phoneNumber',
     address: 'address',
@@ -18078,6 +18159,7 @@ export namespace Prisma {
 
   export const AddBuffingScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
     name: 'name',
     phoneNumber: 'phoneNumber',
     address: 'address',
@@ -18089,6 +18171,7 @@ export namespace Prisma {
 
   export const AddSupplierItemScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
     name: 'name',
     email: 'email',
     phoneNumber: 'phoneNumber',
@@ -18100,8 +18183,8 @@ export namespace Prisma {
 
   export const AddPurchaseStockScalarFieldEnum: {
     id: 'id',
-    name: 'name',
     createdAt: 'createdAt',
+    name: 'name',
     item: 'item',
     goldWeight: 'goldWeight',
     goldTouch: 'goldTouch',
@@ -18120,13 +18203,13 @@ export namespace Prisma {
 
   export const CustomerTransactionScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
     date: 'date',
     value: 'value',
     type: 'type',
     touch: 'touch',
     purity: 'purity',
     goldRate: 'goldRate',
-    createdAt: 'createdAt',
     customerId: 'customerId'
   };
 
@@ -18135,6 +18218,7 @@ export namespace Prisma {
 
   export const AddItemScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
     name: 'name'
   };
 
@@ -18389,16 +18473,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'String'
+   * Reference to a field of type 'DateTime'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
   /**
-   * Reference to a field of type 'DateTime'
+   * Reference to a field of type 'String'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
     
 
 
@@ -18438,6 +18522,7 @@ export namespace Prisma {
     OR?: AddCustomerWhereInput[]
     NOT?: AddCustomerWhereInput | AddCustomerWhereInput[]
     id?: IntFilter<"AddCustomer"> | number
+    createdAt?: DateTimeFilter<"AddCustomer"> | Date | string
     name?: StringFilter<"AddCustomer"> | string
     phoneNumber?: StringNullableFilter<"AddCustomer"> | string | null
     address?: StringNullableFilter<"AddCustomer"> | string | null
@@ -18447,6 +18532,7 @@ export namespace Prisma {
 
   export type AddCustomerOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -18460,6 +18546,7 @@ export namespace Prisma {
     AND?: AddCustomerWhereInput | AddCustomerWhereInput[]
     OR?: AddCustomerWhereInput[]
     NOT?: AddCustomerWhereInput | AddCustomerWhereInput[]
+    createdAt?: DateTimeFilter<"AddCustomer"> | Date | string
     name?: StringFilter<"AddCustomer"> | string
     phoneNumber?: StringNullableFilter<"AddCustomer"> | string | null
     address?: StringNullableFilter<"AddCustomer"> | string | null
@@ -18469,6 +18556,7 @@ export namespace Prisma {
 
   export type AddCustomerOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -18485,6 +18573,7 @@ export namespace Prisma {
     OR?: AddCustomerScalarWhereWithAggregatesInput[]
     NOT?: AddCustomerScalarWhereWithAggregatesInput | AddCustomerScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddCustomer"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AddCustomer"> | Date | string
     name?: StringWithAggregatesFilter<"AddCustomer"> | string
     phoneNumber?: StringNullableWithAggregatesFilter<"AddCustomer"> | string | null
     address?: StringNullableWithAggregatesFilter<"AddCustomer"> | string | null
@@ -18496,6 +18585,7 @@ export namespace Prisma {
     OR?: AddCastingWhereInput[]
     NOT?: AddCastingWhereInput | AddCastingWhereInput[]
     id?: IntFilter<"AddCasting"> | number
+    createdAt?: DateTimeFilter<"AddCasting"> | Date | string
     name?: StringFilter<"AddCasting"> | string
     phoneNumber?: StringNullableFilter<"AddCasting"> | string | null
     address?: StringNullableFilter<"AddCasting"> | string | null
@@ -18507,6 +18597,7 @@ export namespace Prisma {
 
   export type AddCastingOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -18522,6 +18613,7 @@ export namespace Prisma {
     AND?: AddCastingWhereInput | AddCastingWhereInput[]
     OR?: AddCastingWhereInput[]
     NOT?: AddCastingWhereInput | AddCastingWhereInput[]
+    createdAt?: DateTimeFilter<"AddCasting"> | Date | string
     name?: StringFilter<"AddCasting"> | string
     phoneNumber?: StringNullableFilter<"AddCasting"> | string | null
     address?: StringNullableFilter<"AddCasting"> | string | null
@@ -18533,6 +18625,7 @@ export namespace Prisma {
 
   export type AddCastingOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -18549,6 +18642,7 @@ export namespace Prisma {
     OR?: AddCastingScalarWhereWithAggregatesInput[]
     NOT?: AddCastingScalarWhereWithAggregatesInput | AddCastingScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddCasting"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AddCasting"> | Date | string
     name?: StringWithAggregatesFilter<"AddCasting"> | string
     phoneNumber?: StringNullableWithAggregatesFilter<"AddCasting"> | string | null
     address?: StringNullableWithAggregatesFilter<"AddCasting"> | string | null
@@ -18560,6 +18654,7 @@ export namespace Prisma {
     OR?: AddFilingWhereInput[]
     NOT?: AddFilingWhereInput | AddFilingWhereInput[]
     id?: IntFilter<"AddFiling"> | number
+    createdAt?: DateTimeFilter<"AddFiling"> | Date | string
     name?: StringFilter<"AddFiling"> | string
     phoneNumber?: StringNullableFilter<"AddFiling"> | string | null
     address?: StringNullableFilter<"AddFiling"> | string | null
@@ -18569,6 +18664,7 @@ export namespace Prisma {
 
   export type AddFilingOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -18582,6 +18678,7 @@ export namespace Prisma {
     AND?: AddFilingWhereInput | AddFilingWhereInput[]
     OR?: AddFilingWhereInput[]
     NOT?: AddFilingWhereInput | AddFilingWhereInput[]
+    createdAt?: DateTimeFilter<"AddFiling"> | Date | string
     name?: StringFilter<"AddFiling"> | string
     phoneNumber?: StringNullableFilter<"AddFiling"> | string | null
     address?: StringNullableFilter<"AddFiling"> | string | null
@@ -18591,6 +18688,7 @@ export namespace Prisma {
 
   export type AddFilingOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -18607,6 +18705,7 @@ export namespace Prisma {
     OR?: AddFilingScalarWhereWithAggregatesInput[]
     NOT?: AddFilingScalarWhereWithAggregatesInput | AddFilingScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddFiling"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AddFiling"> | Date | string
     name?: StringWithAggregatesFilter<"AddFiling"> | string
     phoneNumber?: StringNullableWithAggregatesFilter<"AddFiling"> | string | null
     address?: StringNullableWithAggregatesFilter<"AddFiling"> | string | null
@@ -18618,6 +18717,7 @@ export namespace Prisma {
     OR?: AddSettingWhereInput[]
     NOT?: AddSettingWhereInput | AddSettingWhereInput[]
     id?: IntFilter<"AddSetting"> | number
+    createdAt?: DateTimeFilter<"AddSetting"> | Date | string
     name?: StringFilter<"AddSetting"> | string
     phoneNumber?: StringNullableFilter<"AddSetting"> | string | null
     address?: StringNullableFilter<"AddSetting"> | string | null
@@ -18627,6 +18727,7 @@ export namespace Prisma {
 
   export type AddSettingOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -18640,6 +18741,7 @@ export namespace Prisma {
     AND?: AddSettingWhereInput | AddSettingWhereInput[]
     OR?: AddSettingWhereInput[]
     NOT?: AddSettingWhereInput | AddSettingWhereInput[]
+    createdAt?: DateTimeFilter<"AddSetting"> | Date | string
     name?: StringFilter<"AddSetting"> | string
     phoneNumber?: StringNullableFilter<"AddSetting"> | string | null
     address?: StringNullableFilter<"AddSetting"> | string | null
@@ -18649,6 +18751,7 @@ export namespace Prisma {
 
   export type AddSettingOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -18665,6 +18768,7 @@ export namespace Prisma {
     OR?: AddSettingScalarWhereWithAggregatesInput[]
     NOT?: AddSettingScalarWhereWithAggregatesInput | AddSettingScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddSetting"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AddSetting"> | Date | string
     name?: StringWithAggregatesFilter<"AddSetting"> | string
     phoneNumber?: StringNullableWithAggregatesFilter<"AddSetting"> | string | null
     address?: StringNullableWithAggregatesFilter<"AddSetting"> | string | null
@@ -18676,6 +18780,7 @@ export namespace Prisma {
     OR?: AddBuffingWhereInput[]
     NOT?: AddBuffingWhereInput | AddBuffingWhereInput[]
     id?: IntFilter<"AddBuffing"> | number
+    createdAt?: DateTimeFilter<"AddBuffing"> | Date | string
     name?: StringFilter<"AddBuffing"> | string
     phoneNumber?: StringNullableFilter<"AddBuffing"> | string | null
     address?: StringNullableFilter<"AddBuffing"> | string | null
@@ -18685,6 +18790,7 @@ export namespace Prisma {
 
   export type AddBuffingOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -18698,6 +18804,7 @@ export namespace Prisma {
     AND?: AddBuffingWhereInput | AddBuffingWhereInput[]
     OR?: AddBuffingWhereInput[]
     NOT?: AddBuffingWhereInput | AddBuffingWhereInput[]
+    createdAt?: DateTimeFilter<"AddBuffing"> | Date | string
     name?: StringFilter<"AddBuffing"> | string
     phoneNumber?: StringNullableFilter<"AddBuffing"> | string | null
     address?: StringNullableFilter<"AddBuffing"> | string | null
@@ -18707,6 +18814,7 @@ export namespace Prisma {
 
   export type AddBuffingOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -18723,6 +18831,7 @@ export namespace Prisma {
     OR?: AddBuffingScalarWhereWithAggregatesInput[]
     NOT?: AddBuffingScalarWhereWithAggregatesInput | AddBuffingScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddBuffing"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AddBuffing"> | Date | string
     name?: StringWithAggregatesFilter<"AddBuffing"> | string
     phoneNumber?: StringNullableWithAggregatesFilter<"AddBuffing"> | string | null
     address?: StringNullableWithAggregatesFilter<"AddBuffing"> | string | null
@@ -18734,6 +18843,7 @@ export namespace Prisma {
     OR?: AddSupplierItemWhereInput[]
     NOT?: AddSupplierItemWhereInput | AddSupplierItemWhereInput[]
     id?: IntFilter<"AddSupplierItem"> | number
+    createdAt?: DateTimeFilter<"AddSupplierItem"> | Date | string
     name?: StringFilter<"AddSupplierItem"> | string
     email?: StringNullableFilter<"AddSupplierItem"> | string | null
     phoneNumber?: StringNullableFilter<"AddSupplierItem"> | string | null
@@ -18742,6 +18852,7 @@ export namespace Prisma {
 
   export type AddSupplierItemOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     email?: SortOrderInput | SortOrder
     phoneNumber?: SortOrderInput | SortOrder
@@ -18754,6 +18865,7 @@ export namespace Prisma {
     AND?: AddSupplierItemWhereInput | AddSupplierItemWhereInput[]
     OR?: AddSupplierItemWhereInput[]
     NOT?: AddSupplierItemWhereInput | AddSupplierItemWhereInput[]
+    createdAt?: DateTimeFilter<"AddSupplierItem"> | Date | string
     name?: StringFilter<"AddSupplierItem"> | string
     email?: StringNullableFilter<"AddSupplierItem"> | string | null
     phoneNumber?: StringNullableFilter<"AddSupplierItem"> | string | null
@@ -18762,6 +18874,7 @@ export namespace Prisma {
 
   export type AddSupplierItemOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     email?: SortOrderInput | SortOrder
     phoneNumber?: SortOrderInput | SortOrder
@@ -18778,6 +18891,7 @@ export namespace Prisma {
     OR?: AddSupplierItemScalarWhereWithAggregatesInput[]
     NOT?: AddSupplierItemScalarWhereWithAggregatesInput | AddSupplierItemScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddSupplierItem"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AddSupplierItem"> | Date | string
     name?: StringWithAggregatesFilter<"AddSupplierItem"> | string
     email?: StringNullableWithAggregatesFilter<"AddSupplierItem"> | string | null
     phoneNumber?: StringNullableWithAggregatesFilter<"AddSupplierItem"> | string | null
@@ -18789,8 +18903,8 @@ export namespace Prisma {
     OR?: AddPurchaseStockWhereInput[]
     NOT?: AddPurchaseStockWhereInput | AddPurchaseStockWhereInput[]
     id?: IntFilter<"AddPurchaseStock"> | number
-    name?: StringFilter<"AddPurchaseStock"> | string
     createdAt?: DateTimeFilter<"AddPurchaseStock"> | Date | string
+    name?: StringFilter<"AddPurchaseStock"> | string
     item?: EnumITEMTYPEFilter<"AddPurchaseStock"> | $Enums.ITEMTYPE
     goldWeight?: IntNullableFilter<"AddPurchaseStock"> | number | null
     goldTouch?: FloatNullableFilter<"AddPurchaseStock"> | number | null
@@ -18806,8 +18920,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
     createdAt?: SortOrder
+    name?: SortOrder
     item?: SortOrder
     goldWeight?: SortOrderInput | SortOrder
     goldTouch?: SortOrderInput | SortOrder
@@ -18827,8 +18941,8 @@ export namespace Prisma {
     AND?: AddPurchaseStockWhereInput | AddPurchaseStockWhereInput[]
     OR?: AddPurchaseStockWhereInput[]
     NOT?: AddPurchaseStockWhereInput | AddPurchaseStockWhereInput[]
-    name?: StringFilter<"AddPurchaseStock"> | string
     createdAt?: DateTimeFilter<"AddPurchaseStock"> | Date | string
+    name?: StringFilter<"AddPurchaseStock"> | string
     item?: EnumITEMTYPEFilter<"AddPurchaseStock"> | $Enums.ITEMTYPE
     goldWeight?: IntNullableFilter<"AddPurchaseStock"> | number | null
     goldTouch?: FloatNullableFilter<"AddPurchaseStock"> | number | null
@@ -18844,8 +18958,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
     createdAt?: SortOrder
+    name?: SortOrder
     item?: SortOrder
     goldWeight?: SortOrderInput | SortOrder
     goldTouch?: SortOrderInput | SortOrder
@@ -18869,8 +18983,8 @@ export namespace Prisma {
     OR?: AddPurchaseStockScalarWhereWithAggregatesInput[]
     NOT?: AddPurchaseStockScalarWhereWithAggregatesInput | AddPurchaseStockScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddPurchaseStock"> | number
-    name?: StringWithAggregatesFilter<"AddPurchaseStock"> | string
     createdAt?: DateTimeWithAggregatesFilter<"AddPurchaseStock"> | Date | string
+    name?: StringWithAggregatesFilter<"AddPurchaseStock"> | string
     item?: EnumITEMTYPEWithAggregatesFilter<"AddPurchaseStock"> | $Enums.ITEMTYPE
     goldWeight?: IntNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
     goldTouch?: FloatNullableWithAggregatesFilter<"AddPurchaseStock"> | number | null
@@ -18889,26 +19003,26 @@ export namespace Prisma {
     OR?: CustomerTransactionWhereInput[]
     NOT?: CustomerTransactionWhereInput | CustomerTransactionWhereInput[]
     id?: IntFilter<"CustomerTransaction"> | number
+    createdAt?: DateTimeFilter<"CustomerTransaction"> | Date | string
     date?: DateTimeFilter<"CustomerTransaction"> | Date | string
     value?: FloatFilter<"CustomerTransaction"> | number
     type?: StringFilter<"CustomerTransaction"> | string
     touch?: FloatNullableFilter<"CustomerTransaction"> | number | null
     purity?: FloatNullableFilter<"CustomerTransaction"> | number | null
     goldRate?: FloatNullableFilter<"CustomerTransaction"> | number | null
-    createdAt?: DateTimeFilter<"CustomerTransaction"> | Date | string
     customerId?: IntFilter<"CustomerTransaction"> | number
     customer?: XOR<AddCustomerScalarRelationFilter, AddCustomerWhereInput>
   }
 
   export type CustomerTransactionOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     date?: SortOrder
     value?: SortOrder
     type?: SortOrder
     touch?: SortOrderInput | SortOrder
     purity?: SortOrderInput | SortOrder
     goldRate?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
     customerId?: SortOrder
     customer?: AddCustomerOrderByWithRelationInput
     _relevance?: CustomerTransactionOrderByRelevanceInput
@@ -18919,26 +19033,26 @@ export namespace Prisma {
     AND?: CustomerTransactionWhereInput | CustomerTransactionWhereInput[]
     OR?: CustomerTransactionWhereInput[]
     NOT?: CustomerTransactionWhereInput | CustomerTransactionWhereInput[]
+    createdAt?: DateTimeFilter<"CustomerTransaction"> | Date | string
     date?: DateTimeFilter<"CustomerTransaction"> | Date | string
     value?: FloatFilter<"CustomerTransaction"> | number
     type?: StringFilter<"CustomerTransaction"> | string
     touch?: FloatNullableFilter<"CustomerTransaction"> | number | null
     purity?: FloatNullableFilter<"CustomerTransaction"> | number | null
     goldRate?: FloatNullableFilter<"CustomerTransaction"> | number | null
-    createdAt?: DateTimeFilter<"CustomerTransaction"> | Date | string
     customerId?: IntFilter<"CustomerTransaction"> | number
     customer?: XOR<AddCustomerScalarRelationFilter, AddCustomerWhereInput>
   }, "id">
 
   export type CustomerTransactionOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     date?: SortOrder
     value?: SortOrder
     type?: SortOrder
     touch?: SortOrderInput | SortOrder
     purity?: SortOrderInput | SortOrder
     goldRate?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
     customerId?: SortOrder
     _count?: CustomerTransactionCountOrderByAggregateInput
     _avg?: CustomerTransactionAvgOrderByAggregateInput
@@ -18952,13 +19066,13 @@ export namespace Prisma {
     OR?: CustomerTransactionScalarWhereWithAggregatesInput[]
     NOT?: CustomerTransactionScalarWhereWithAggregatesInput | CustomerTransactionScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"CustomerTransaction"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"CustomerTransaction"> | Date | string
     date?: DateTimeWithAggregatesFilter<"CustomerTransaction"> | Date | string
     value?: FloatWithAggregatesFilter<"CustomerTransaction"> | number
     type?: StringWithAggregatesFilter<"CustomerTransaction"> | string
     touch?: FloatNullableWithAggregatesFilter<"CustomerTransaction"> | number | null
     purity?: FloatNullableWithAggregatesFilter<"CustomerTransaction"> | number | null
     goldRate?: FloatNullableWithAggregatesFilter<"CustomerTransaction"> | number | null
-    createdAt?: DateTimeWithAggregatesFilter<"CustomerTransaction"> | Date | string
     customerId?: IntWithAggregatesFilter<"CustomerTransaction"> | number
   }
 
@@ -18967,6 +19081,7 @@ export namespace Prisma {
     OR?: AddItemWhereInput[]
     NOT?: AddItemWhereInput | AddItemWhereInput[]
     id?: IntFilter<"AddItem"> | number
+    createdAt?: DateTimeFilter<"AddItem"> | Date | string
     name?: StringFilter<"AddItem"> | string
     castingItems?: CastingItemsListRelationFilter
     stock?: StockListRelationFilter
@@ -18974,6 +19089,7 @@ export namespace Prisma {
 
   export type AddItemOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     castingItems?: CastingItemsOrderByRelationAggregateInput
     stock?: StockOrderByRelationAggregateInput
@@ -18985,6 +19101,7 @@ export namespace Prisma {
     AND?: AddItemWhereInput | AddItemWhereInput[]
     OR?: AddItemWhereInput[]
     NOT?: AddItemWhereInput | AddItemWhereInput[]
+    createdAt?: DateTimeFilter<"AddItem"> | Date | string
     name?: StringFilter<"AddItem"> | string
     castingItems?: CastingItemsListRelationFilter
     stock?: StockListRelationFilter
@@ -18992,6 +19109,7 @@ export namespace Prisma {
 
   export type AddItemOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     _count?: AddItemCountOrderByAggregateInput
     _avg?: AddItemAvgOrderByAggregateInput
@@ -19005,6 +19123,7 @@ export namespace Prisma {
     OR?: AddItemScalarWhereWithAggregatesInput[]
     NOT?: AddItemScalarWhereWithAggregatesInput | AddItemScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"AddItem"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AddItem"> | Date | string
     name?: StringWithAggregatesFilter<"AddItem"> | string
   }
 
@@ -19595,6 +19714,7 @@ export namespace Prisma {
   }
 
   export type AddCustomerCreateInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19604,6 +19724,7 @@ export namespace Prisma {
 
   export type AddCustomerUncheckedCreateInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19612,6 +19733,7 @@ export namespace Prisma {
   }
 
   export type AddCustomerUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19621,6 +19743,7 @@ export namespace Prisma {
 
   export type AddCustomerUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19630,6 +19753,7 @@ export namespace Prisma {
 
   export type AddCustomerCreateManyInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19637,6 +19761,7 @@ export namespace Prisma {
   }
 
   export type AddCustomerUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19645,6 +19770,7 @@ export namespace Prisma {
 
   export type AddCustomerUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19652,6 +19778,7 @@ export namespace Prisma {
   }
 
   export type AddCastingCreateInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19663,6 +19790,7 @@ export namespace Prisma {
 
   export type AddCastingUncheckedCreateInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19673,6 +19801,7 @@ export namespace Prisma {
   }
 
   export type AddCastingUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19684,6 +19813,7 @@ export namespace Prisma {
 
   export type AddCastingUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19695,6 +19825,7 @@ export namespace Prisma {
 
   export type AddCastingCreateManyInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19702,6 +19833,7 @@ export namespace Prisma {
   }
 
   export type AddCastingUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19710,6 +19842,7 @@ export namespace Prisma {
 
   export type AddCastingUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19717,6 +19850,7 @@ export namespace Prisma {
   }
 
   export type AddFilingCreateInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19726,6 +19860,7 @@ export namespace Prisma {
 
   export type AddFilingUncheckedCreateInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19734,6 +19869,7 @@ export namespace Prisma {
   }
 
   export type AddFilingUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19743,6 +19879,7 @@ export namespace Prisma {
 
   export type AddFilingUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19752,6 +19889,7 @@ export namespace Prisma {
 
   export type AddFilingCreateManyInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19759,6 +19897,7 @@ export namespace Prisma {
   }
 
   export type AddFilingUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19767,6 +19906,7 @@ export namespace Prisma {
 
   export type AddFilingUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19774,6 +19914,7 @@ export namespace Prisma {
   }
 
   export type AddSettingCreateInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19783,6 +19924,7 @@ export namespace Prisma {
 
   export type AddSettingUncheckedCreateInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19791,6 +19933,7 @@ export namespace Prisma {
   }
 
   export type AddSettingUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19800,6 +19943,7 @@ export namespace Prisma {
 
   export type AddSettingUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19809,6 +19953,7 @@ export namespace Prisma {
 
   export type AddSettingCreateManyInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19816,6 +19961,7 @@ export namespace Prisma {
   }
 
   export type AddSettingUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19824,6 +19970,7 @@ export namespace Prisma {
 
   export type AddSettingUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19831,6 +19978,7 @@ export namespace Prisma {
   }
 
   export type AddBuffingCreateInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19840,6 +19988,7 @@ export namespace Prisma {
 
   export type AddBuffingUncheckedCreateInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19848,6 +19997,7 @@ export namespace Prisma {
   }
 
   export type AddBuffingUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19857,6 +20007,7 @@ export namespace Prisma {
 
   export type AddBuffingUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19866,6 +20017,7 @@ export namespace Prisma {
 
   export type AddBuffingCreateManyInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -19873,6 +20025,7 @@ export namespace Prisma {
   }
 
   export type AddBuffingUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19881,6 +20034,7 @@ export namespace Prisma {
 
   export type AddBuffingUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19888,6 +20042,7 @@ export namespace Prisma {
   }
 
   export type AddSupplierItemCreateInput = {
+    createdAt?: Date | string
     name: string
     email?: string | null
     phoneNumber?: string | null
@@ -19896,6 +20051,7 @@ export namespace Prisma {
 
   export type AddSupplierItemUncheckedCreateInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     email?: string | null
     phoneNumber?: string | null
@@ -19903,6 +20059,7 @@ export namespace Prisma {
   }
 
   export type AddSupplierItemUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19911,6 +20068,7 @@ export namespace Prisma {
 
   export type AddSupplierItemUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19919,6 +20077,7 @@ export namespace Prisma {
 
   export type AddSupplierItemCreateManyInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     email?: string | null
     phoneNumber?: string | null
@@ -19926,6 +20085,7 @@ export namespace Prisma {
   }
 
   export type AddSupplierItemUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19934,6 +20094,7 @@ export namespace Prisma {
 
   export type AddSupplierItemUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19941,8 +20102,8 @@ export namespace Prisma {
   }
 
   export type AddPurchaseStockCreateInput = {
+    createdAt?: Date | string
     name: string
-    createdAt: Date | string
     item: $Enums.ITEMTYPE
     goldWeight?: number | null
     goldTouch?: number | null
@@ -19958,8 +20119,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockUncheckedCreateInput = {
     id?: number
+    createdAt?: Date | string
     name: string
-    createdAt: Date | string
     item: $Enums.ITEMTYPE
     goldWeight?: number | null
     goldTouch?: number | null
@@ -19974,8 +20135,8 @@ export namespace Prisma {
   }
 
   export type AddPurchaseStockUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
     item?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
     goldWeight?: NullableIntFieldUpdateOperationsInput | number | null
     goldTouch?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -19991,8 +20152,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
     item?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
     goldWeight?: NullableIntFieldUpdateOperationsInput | number | null
     goldTouch?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -20008,8 +20169,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockCreateManyInput = {
     id?: number
+    createdAt?: Date | string
     name: string
-    createdAt: Date | string
     item: $Enums.ITEMTYPE
     goldWeight?: number | null
     goldTouch?: number | null
@@ -20024,8 +20185,8 @@ export namespace Prisma {
   }
 
   export type AddPurchaseStockUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
     item?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
     goldWeight?: NullableIntFieldUpdateOperationsInput | number | null
     goldTouch?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -20041,8 +20202,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
     item?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
     goldWeight?: NullableIntFieldUpdateOperationsInput | number | null
     goldTouch?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -20057,86 +20218,87 @@ export namespace Prisma {
   }
 
   export type CustomerTransactionCreateInput = {
+    createdAt?: Date | string
     date: Date | string
     value: number
     type: string
     touch?: number | null
     purity?: number | null
     goldRate?: number | null
-    createdAt: Date | string
     customer: AddCustomerCreateNestedOneWithoutTransactionsInput
   }
 
   export type CustomerTransactionUncheckedCreateInput = {
     id?: number
+    createdAt?: Date | string
     date: Date | string
     value: number
     type: string
     touch?: number | null
     purity?: number | null
     goldRate?: number | null
-    createdAt: Date | string
     customerId: number
   }
 
   export type CustomerTransactionUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     value?: FloatFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
     touch?: NullableFloatFieldUpdateOperationsInput | number | null
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customer?: AddCustomerUpdateOneRequiredWithoutTransactionsNestedInput
   }
 
   export type CustomerTransactionUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     value?: FloatFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
     touch?: NullableFloatFieldUpdateOperationsInput | number | null
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customerId?: IntFieldUpdateOperationsInput | number
   }
 
   export type CustomerTransactionCreateManyInput = {
     id?: number
+    createdAt?: Date | string
     date: Date | string
     value: number
     type: string
     touch?: number | null
     purity?: number | null
     goldRate?: number | null
-    createdAt: Date | string
     customerId: number
   }
 
   export type CustomerTransactionUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     value?: FloatFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
     touch?: NullableFloatFieldUpdateOperationsInput | number | null
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CustomerTransactionUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     value?: FloatFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
     touch?: NullableFloatFieldUpdateOperationsInput | number | null
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customerId?: IntFieldUpdateOperationsInput | number
   }
 
   export type AddItemCreateInput = {
+    createdAt?: Date | string
     name: string
     castingItems?: CastingItemsCreateNestedManyWithoutItemInput
     stock?: StockCreateNestedManyWithoutItemInput
@@ -20144,12 +20306,14 @@ export namespace Prisma {
 
   export type AddItemUncheckedCreateInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     castingItems?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
     stock?: StockUncheckedCreateNestedManyWithoutItemInput
   }
 
   export type AddItemUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     castingItems?: CastingItemsUpdateManyWithoutItemNestedInput
     stock?: StockUpdateManyWithoutItemNestedInput
@@ -20157,6 +20321,7 @@ export namespace Prisma {
 
   export type AddItemUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     castingItems?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
     stock?: StockUncheckedUpdateManyWithoutItemNestedInput
@@ -20164,15 +20329,18 @@ export namespace Prisma {
 
   export type AddItemCreateManyInput = {
     id?: number
+    createdAt?: Date | string
     name: string
   }
 
   export type AddItemUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
   }
 
   export type AddItemUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
   }
 
@@ -20780,6 +20948,17 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -20833,6 +21012,7 @@ export namespace Prisma {
 
   export type AddCustomerCountOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -20845,6 +21025,7 @@ export namespace Prisma {
 
   export type AddCustomerMaxOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -20853,6 +21034,7 @@ export namespace Prisma {
 
   export type AddCustomerMinOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -20877,6 +21059,20 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -20953,6 +21149,7 @@ export namespace Prisma {
 
   export type AddCastingCountOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -20965,6 +21162,7 @@ export namespace Prisma {
 
   export type AddCastingMaxOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -20973,6 +21171,7 @@ export namespace Prisma {
 
   export type AddCastingMinOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -21001,6 +21200,7 @@ export namespace Prisma {
 
   export type AddFilingCountOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -21013,6 +21213,7 @@ export namespace Prisma {
 
   export type AddFilingMaxOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -21021,6 +21222,7 @@ export namespace Prisma {
 
   export type AddFilingMinOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -21049,6 +21251,7 @@ export namespace Prisma {
 
   export type AddSettingCountOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -21061,6 +21264,7 @@ export namespace Prisma {
 
   export type AddSettingMaxOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -21069,6 +21273,7 @@ export namespace Prisma {
 
   export type AddSettingMinOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -21097,6 +21302,7 @@ export namespace Prisma {
 
   export type AddBuffingCountOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -21109,6 +21315,7 @@ export namespace Prisma {
 
   export type AddBuffingMaxOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -21117,6 +21324,7 @@ export namespace Prisma {
 
   export type AddBuffingMinOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
@@ -21135,6 +21343,7 @@ export namespace Prisma {
 
   export type AddSupplierItemCountOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
@@ -21147,6 +21356,7 @@ export namespace Prisma {
 
   export type AddSupplierItemMaxOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
@@ -21155,6 +21365,7 @@ export namespace Prisma {
 
   export type AddSupplierItemMinOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
@@ -21163,17 +21374,6 @@ export namespace Prisma {
 
   export type AddSupplierItemSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type EnumITEMTYPEFilter<$PrismaModel = never> = {
@@ -21213,8 +21413,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     createdAt?: SortOrder
+    name?: SortOrder
     item?: SortOrder
     goldWeight?: SortOrder
     goldTouch?: SortOrder
@@ -21244,8 +21444,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     createdAt?: SortOrder
+    name?: SortOrder
     item?: SortOrder
     goldWeight?: SortOrder
     goldTouch?: SortOrder
@@ -21261,8 +21461,8 @@ export namespace Prisma {
 
   export type AddPurchaseStockMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     createdAt?: SortOrder
+    name?: SortOrder
     item?: SortOrder
     goldWeight?: SortOrder
     goldTouch?: SortOrder
@@ -21288,20 +21488,6 @@ export namespace Prisma {
     silverPurity?: SortOrder
     silverRate?: SortOrder
     silvertotalValue?: SortOrder
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type EnumITEMTYPEWithAggregatesFilter<$PrismaModel = never> = {
@@ -21370,13 +21556,13 @@ export namespace Prisma {
 
   export type CustomerTransactionCountOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     date?: SortOrder
     value?: SortOrder
     type?: SortOrder
     touch?: SortOrder
     purity?: SortOrder
     goldRate?: SortOrder
-    createdAt?: SortOrder
     customerId?: SortOrder
   }
 
@@ -21391,25 +21577,25 @@ export namespace Prisma {
 
   export type CustomerTransactionMaxOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     date?: SortOrder
     value?: SortOrder
     type?: SortOrder
     touch?: SortOrder
     purity?: SortOrder
     goldRate?: SortOrder
-    createdAt?: SortOrder
     customerId?: SortOrder
   }
 
   export type CustomerTransactionMinOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     date?: SortOrder
     value?: SortOrder
     type?: SortOrder
     touch?: SortOrder
     purity?: SortOrder
     goldRate?: SortOrder
-    createdAt?: SortOrder
     customerId?: SortOrder
   }
 
@@ -21446,6 +21632,7 @@ export namespace Prisma {
 
   export type AddItemCountOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
   }
 
@@ -21455,11 +21642,13 @@ export namespace Prisma {
 
   export type AddItemMaxOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
   }
 
   export type AddItemMinOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     name?: SortOrder
   }
 
@@ -22000,6 +22189,10 @@ export namespace Prisma {
     connect?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -22294,10 +22487,6 @@ export namespace Prisma {
     update?: BuffingEntryUpdateWithWhereUniqueWithoutBuffing_personInput | BuffingEntryUpdateWithWhereUniqueWithoutBuffing_personInput[]
     updateMany?: BuffingEntryUpdateManyWithWhereWithoutBuffing_personInput | BuffingEntryUpdateManyWithWhereWithoutBuffing_personInput[]
     deleteMany?: BuffingEntryScalarWhereInput | BuffingEntryScalarWhereInput[]
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type EnumITEMTYPEFieldUpdateOperationsInput = {
@@ -22975,6 +23164,17 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -23032,6 +23232,20 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -23079,17 +23293,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type NestedEnumITEMTYPEFilter<$PrismaModel = never> = {
     equals?: $Enums.ITEMTYPE | EnumITEMTYPEFieldRefInput<$PrismaModel>
     in?: $Enums.ITEMTYPE[]
@@ -23106,20 +23309,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedEnumITEMTYPEWithAggregatesFilter<$PrismaModel = never> = {
@@ -23215,24 +23404,24 @@ export namespace Prisma {
   }
 
   export type CustomerTransactionCreateWithoutCustomerInput = {
+    createdAt?: Date | string
     date: Date | string
     value: number
     type: string
     touch?: number | null
     purity?: number | null
     goldRate?: number | null
-    createdAt: Date | string
   }
 
   export type CustomerTransactionUncheckedCreateWithoutCustomerInput = {
     id?: number
+    createdAt?: Date | string
     date: Date | string
     value: number
     type: string
     touch?: number | null
     purity?: number | null
     goldRate?: number | null
-    createdAt: Date | string
   }
 
   export type CustomerTransactionCreateOrConnectWithoutCustomerInput = {
@@ -23266,13 +23455,13 @@ export namespace Prisma {
     OR?: CustomerTransactionScalarWhereInput[]
     NOT?: CustomerTransactionScalarWhereInput | CustomerTransactionScalarWhereInput[]
     id?: IntFilter<"CustomerTransaction"> | number
+    createdAt?: DateTimeFilter<"CustomerTransaction"> | Date | string
     date?: DateTimeFilter<"CustomerTransaction"> | Date | string
     value?: FloatFilter<"CustomerTransaction"> | number
     type?: StringFilter<"CustomerTransaction"> | string
     touch?: FloatNullableFilter<"CustomerTransaction"> | number | null
     purity?: FloatNullableFilter<"CustomerTransaction"> | number | null
     goldRate?: FloatNullableFilter<"CustomerTransaction"> | number | null
-    createdAt?: DateTimeFilter<"CustomerTransaction"> | Date | string
     customerId?: IntFilter<"CustomerTransaction"> | number
   }
 
@@ -23704,6 +23893,7 @@ export namespace Prisma {
   }
 
   export type AddCustomerCreateWithoutTransactionsInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -23712,6 +23902,7 @@ export namespace Prisma {
 
   export type AddCustomerUncheckedCreateWithoutTransactionsInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -23735,6 +23926,7 @@ export namespace Prisma {
   }
 
   export type AddCustomerUpdateWithoutTransactionsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23743,6 +23935,7 @@ export namespace Prisma {
 
   export type AddCustomerUncheckedUpdateWithoutTransactionsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23864,6 +24057,7 @@ export namespace Prisma {
   }
 
   export type AddCastingCreateWithoutEntriesInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -23874,6 +24068,7 @@ export namespace Prisma {
 
   export type AddCastingUncheckedCreateWithoutEntriesInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -23946,6 +24141,7 @@ export namespace Prisma {
   }
 
   export type AddCastingUpdateWithoutEntriesInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23956,6 +24152,7 @@ export namespace Prisma {
 
   export type AddCastingUncheckedUpdateWithoutEntriesInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23981,12 +24178,14 @@ export namespace Prisma {
   }
 
   export type AddItemCreateWithoutCastingItemsInput = {
+    createdAt?: Date | string
     name: string
     stock?: StockCreateNestedManyWithoutItemInput
   }
 
   export type AddItemUncheckedCreateWithoutCastingItemsInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     stock?: StockUncheckedCreateNestedManyWithoutItemInput
   }
@@ -24158,6 +24357,7 @@ export namespace Prisma {
   }
 
   export type AddCastingCreateWithoutCastingitemsInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -24168,6 +24368,7 @@ export namespace Prisma {
 
   export type AddCastingUncheckedCreateWithoutCastingitemsInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -24193,12 +24394,14 @@ export namespace Prisma {
   }
 
   export type AddItemUpdateWithoutCastingItemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     stock?: StockUpdateManyWithoutItemNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutCastingItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     stock?: StockUncheckedUpdateManyWithoutItemNestedInput
   }
@@ -24381,6 +24584,7 @@ export namespace Prisma {
   }
 
   export type AddCastingUpdateWithoutCastingitemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24391,6 +24595,7 @@ export namespace Prisma {
 
   export type AddCastingUncheckedUpdateWithoutCastingitemsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24400,6 +24605,7 @@ export namespace Prisma {
   }
 
   export type AddFilingCreateWithoutFilingsInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -24408,6 +24614,7 @@ export namespace Prisma {
 
   export type AddFilingUncheckedCreateWithoutFilingsInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -24545,6 +24752,7 @@ export namespace Prisma {
   }
 
   export type AddFilingUpdateWithoutFilingsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24553,6 +24761,7 @@ export namespace Prisma {
 
   export type AddFilingUncheckedUpdateWithoutFilingsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24640,6 +24849,7 @@ export namespace Prisma {
   }
 
   export type AddSettingCreateWithoutSettingsInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -24648,6 +24858,7 @@ export namespace Prisma {
 
   export type AddSettingUncheckedCreateWithoutSettingsInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -24782,6 +24993,7 @@ export namespace Prisma {
   }
 
   export type AddSettingUpdateWithoutSettingsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24790,6 +25002,7 @@ export namespace Prisma {
 
   export type AddSettingUncheckedUpdateWithoutSettingsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24899,6 +25112,7 @@ export namespace Prisma {
   }
 
   export type AddBuffingCreateWithoutBuffingsInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -24907,6 +25121,7 @@ export namespace Prisma {
 
   export type AddBuffingUncheckedCreateWithoutBuffingsInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -25034,6 +25249,7 @@ export namespace Prisma {
   }
 
   export type AddBuffingUpdateWithoutBuffingsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25042,6 +25258,7 @@ export namespace Prisma {
 
   export type AddBuffingUncheckedUpdateWithoutBuffingsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25213,12 +25430,14 @@ export namespace Prisma {
   }
 
   export type AddItemCreateWithoutStockInput = {
+    createdAt?: Date | string
     name: string
     castingItems?: CastingItemsCreateNestedManyWithoutItemInput
   }
 
   export type AddItemUncheckedCreateWithoutStockInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     castingItems?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
   }
@@ -25229,6 +25448,7 @@ export namespace Prisma {
   }
 
   export type AddCastingCreateWithoutStockInput = {
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -25239,6 +25459,7 @@ export namespace Prisma {
 
   export type AddCastingUncheckedCreateWithoutStockInput = {
     id?: number
+    createdAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -25312,12 +25533,14 @@ export namespace Prisma {
   }
 
   export type AddItemUpdateWithoutStockInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     castingItems?: CastingItemsUpdateManyWithoutItemNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutStockInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     castingItems?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
   }
@@ -25334,6 +25557,7 @@ export namespace Prisma {
   }
 
   export type AddCastingUpdateWithoutStockInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25344,6 +25568,7 @@ export namespace Prisma {
 
   export type AddCastingUncheckedUpdateWithoutStockInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25354,45 +25579,45 @@ export namespace Prisma {
 
   export type CustomerTransactionCreateManyCustomerInput = {
     id?: number
+    createdAt?: Date | string
     date: Date | string
     value: number
     type: string
     touch?: number | null
     purity?: number | null
     goldRate?: number | null
-    createdAt: Date | string
   }
 
   export type CustomerTransactionUpdateWithoutCustomerInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     value?: FloatFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
     touch?: NullableFloatFieldUpdateOperationsInput | number | null
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CustomerTransactionUncheckedUpdateWithoutCustomerInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     value?: FloatFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
     touch?: NullableFloatFieldUpdateOperationsInput | number | null
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CustomerTransactionUncheckedUpdateManyWithoutCustomerInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     value?: FloatFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
     touch?: NullableFloatFieldUpdateOperationsInput | number | null
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CastingEntryCreateManyCasting_customerInput = {

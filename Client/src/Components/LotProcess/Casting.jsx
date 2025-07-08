@@ -39,21 +39,6 @@ export default function Casting() {
     setRefreshFlag((prev) => !prev);
   };
 
-  // Example: useEffect to refetch stock when refreshFlag changes
-  // useEffect(() => {
-  //   const fetchStockItems = async () => {
-  //     try {
-  //       const res = await axios.get("http://localhost:5000/api/stock");
-  //       // update stock state here
-  //       console.log("Stock updated", res.data);
-  //     } catch (error) {
-  //       console.error("Error fetching stock:", error);
-  //     }
-  //   };
-
-  //   fetchStockItems();
-  // }, [refreshFlag]);
-  
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -432,61 +417,79 @@ export default function Casting() {
                   <th>Date</th>
                   <th>Name</th>
                   <th>Item Name</th>
+                  <th>Items Qty</th>
+                  <th>Scrap Name</th>
+                  <th>Scrap Items Qty</th>
                   <th>Before Weight</th>
                   <th>After Weight</th>
-                  <th>Items Qty</th>
+                  
                   <th>Action</th>
-                  <th>Scrap Name</th>
-                  <th>Scrap Weight</th>
-                  <th>Scrap Items Qty</th>
+                 
+ 
+
                 </tr>
               </thead>
               <tbody>
-                {filteredCastings.length > 0 ? (
-                  filteredCastings.map((entry, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{entry.date ? new Date(entry.date).toLocaleDateString() : "-"}</td>
-                      <td>{castingNames[entry.casting_customer_id - 1] || "-"}</td>
-                      <td>
-  {(entry.items || []).map(item => {
-    const found = availableItems.find(i => i.id === item.item_id);
-    return found?.name || "Unknown";
-  }).join(", ") || "-"}
-</td>
+  {filteredCastings.length > 0 ? (
+    filteredCastings.map((entry, index) => {
+      const addItems = (entry.items || []).filter(i => i.type === "Items");
+      const scrapItems = (entry.items || []).filter(i => i.type === "ScrapItems");
 
-                      <td>{entry.beforeWeight || entry.final_weight}</td>
-                      <td>
-  {(() => {
-    const totalAfterWeight = (entry.items || [])
-      .reduce((sum, item) => sum + (item.after_weight || 0), 0);
-    return totalAfterWeight.toFixed(3);
-  })()}
-</td>                
-                      <td>{(entry.items?.length || 0) + (entry.scrapItems?.length || 0)}</td>
-                      <td>
-                        <button onClick={() => handleEdit(index)} style={{color:'blue', fontWeight:'bold'}}> 
-                        <EditIcon color="primary" />
-                        </button>
-    
-                      <button onClick={() => handleDelete(entry.id)} style={{ marginLeft: 8, color: "red", fontWeight:'bold' }}> 
-                      <DeleteIcon color="error" /> 
-                    
-                      </button>                     
-                      </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="8" style={{ textAlign: "center", color: "gray" }}>
-                      No items found for selected date range.
-                    </td>
-                  </tr>
-                )}
-              </tbody>          
+      return (
+        <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{entry.date ? new Date(entry.date).toLocaleDateString() : "-"}</td>
+          <td>{castingNames[entry.casting_customer_id - 1] || "-"}</td>
+
+          {/* Add Item Names */}
+          <td>
+            {addItems.map(item => {
+              const found = availableItems.find(i => i.id === item.item_id);
+              return found?.name || "Unknown";
+            }).join(", ") || "-"}
+          </td>
+
+          {/* Add Items Qty */}
+          <td>{addItems.length}</td>
+
+          {/* Scrap Item Names */}
+          <td>
+            {scrapItems.map(item => {
+              const found = availableItems.find(i => i.id === item.item_id);
+              return found?.name || "Unknown";
+            }).join(", ") || "-"}
+          </td>
+
+          {/* Scrap Items Qty */}
+          <td>{scrapItems.length}</td>
+
+          <td>{entry.beforeWeight || entry.final_weight}</td>
+
+          {/* After Weight of Add Items only */}
+          <td>
+            {addItems.reduce((sum, item) => sum + (item.after_weight || 0), 0).toFixed(3)}
+          </td>
+
+          <td>
+            <button onClick={() => handleEdit(index)} style={{ color: 'blue', fontWeight: 'bold' }}>
+              <EditIcon color="primary" />
+            </button>
+            <button onClick={() => handleDelete(entry.id)} style={{ marginLeft: 8, color: "red", fontWeight: 'bold' }}>
+              <DeleteIcon color="error" />
+            </button>
+          </td>
+        </tr>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="10" style={{ textAlign: "center", color: "gray" }}>
+        No items found for selected date range.
+      </td>
+    </tr>
+  )}
+</tbody>
+      
             </table>
             </div>
           </div>
@@ -495,3 +498,5 @@ export default function Casting() {
     </>
   );
 }
+
+

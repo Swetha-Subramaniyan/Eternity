@@ -122,6 +122,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.AddCustomerScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
   name: 'name',
   phoneNumber: 'phoneNumber',
   address: 'address',
@@ -130,6 +131,7 @@ exports.Prisma.AddCustomerScalarFieldEnum = {
 
 exports.Prisma.AddCastingScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
   name: 'name',
   phoneNumber: 'phoneNumber',
   address: 'address',
@@ -138,6 +140,7 @@ exports.Prisma.AddCastingScalarFieldEnum = {
 
 exports.Prisma.AddFilingScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
   name: 'name',
   phoneNumber: 'phoneNumber',
   address: 'address',
@@ -146,6 +149,7 @@ exports.Prisma.AddFilingScalarFieldEnum = {
 
 exports.Prisma.AddSettingScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
   name: 'name',
   phoneNumber: 'phoneNumber',
   address: 'address',
@@ -154,6 +158,7 @@ exports.Prisma.AddSettingScalarFieldEnum = {
 
 exports.Prisma.AddBuffingScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
   name: 'name',
   phoneNumber: 'phoneNumber',
   address: 'address',
@@ -162,6 +167,7 @@ exports.Prisma.AddBuffingScalarFieldEnum = {
 
 exports.Prisma.AddSupplierItemScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
   name: 'name',
   email: 'email',
   phoneNumber: 'phoneNumber',
@@ -170,8 +176,8 @@ exports.Prisma.AddSupplierItemScalarFieldEnum = {
 
 exports.Prisma.AddPurchaseStockScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   createdAt: 'createdAt',
+  name: 'name',
   item: 'item',
   goldWeight: 'goldWeight',
   goldTouch: 'goldTouch',
@@ -187,18 +193,19 @@ exports.Prisma.AddPurchaseStockScalarFieldEnum = {
 
 exports.Prisma.CustomerTransactionScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
   date: 'date',
   value: 'value',
   type: 'type',
   touch: 'touch',
   purity: 'purity',
   goldRate: 'goldRate',
-  createdAt: 'createdAt',
   customerId: 'customerId'
 };
 
 exports.Prisma.AddItemScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
   name: 'name'
 };
 

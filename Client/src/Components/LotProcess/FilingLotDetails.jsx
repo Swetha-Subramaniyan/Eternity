@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Box, Button, Dialog, DialogActions, DialogContent, DialogTitle,Checkbox, Table, TableBody, TableCell,TableContainer, TableHead, TableRow, TextField, Typography, Paper} from "@mui/material";
 import { FaEye } from "react-icons/fa";
 import { Delete } from "@mui/icons-material";
-import styles from './FilingReport.module.css';
+import styles from './FilingLotDetails.module.css';
 import Navbar from '../Navbar/Navbar';
 
 const getTodayDate = () => {
@@ -10,7 +10,7 @@ const getTodayDate = () => {
   return today.toISOString().split('T')[0];
 }
 
-const FilingReport = () => {
+const FilingLotDetails = () => {
   const [isAssignOpen, setIsAssignOpen] = useState(false);
   const [viewEntry, setViewEntry] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -184,24 +184,6 @@ useEffect(() => {
   <option value="Pending">Pending</option>
   </TextField>
 
-
-          {/* <Button
-             onClick={() => setIsAssignOpen(true)}
-            sx={{
-              m: 2,
-              marginLeft: 88.5,
-              backgroundColor: "#5f4917",
-              color: "white",
-              paddingLeft:2,
-              paddingRight:2
-            }}
-          >
-            Add Filing Items
-          </Button> */}
-
-
-{/* <Box sx={{ display: 'flex', gap: 2, ml: 2, mt: 2 }}> */}
-
 <Button
 sx={{ ml:'37rem'}}
     variant="outlined"
@@ -222,7 +204,6 @@ sx={{ ml:'37rem'}}
     Add Filing Items
   </Button>
 
-{/* </Box> */}
         </div> 
         <Dialog open={isAddItemOpen} onClose={() => setIsAddItemOpen(false)} fullWidth maxWidth="sm">
   <DialogTitle>Add New Filing Item</DialogTitle>
@@ -926,4 +907,4 @@ sx={{ ml:'37rem'}}
   );
 };
 
-export default FilingReport;
+export default FilingLotDetails;
