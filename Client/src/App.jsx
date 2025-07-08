@@ -19,7 +19,6 @@ import MasterPurchaseStock from './Components/Master/MasterPurchaseStock';
 import MasterAddSupplier from './Components/Master/MasterAddSupplier';
 import CustomerTranscation from './Components/Customer/CustomerTranscation';
 import Stock from './Components/LotProcess/Stock';
-import FilingReport from './Components/LotProcess/FilingReport';
 import FilingLot from './Components/LotProcess/FilingLot';
 import SettingReport from './Components/LotProcess/SettingReport';
 import BuffingLot from './Components/LotProcess/BuffingLot';
@@ -33,11 +32,11 @@ import SalesReport from './Components/Report/SalesReport';
 import CustomerReport from './Components/Report/CustomerReport';
 import StockReport from './Components/Report/StockReport';
 import ReceiptReport from './Components/Report/ReceiptReport';
-import CastingMeltingReport from './Components/Report/CastingMeltingReports';
 import CastingMeltingReports from './Components/Report/CastingMeltingReports';
 import SettingReports from './Components/Report/SettingReports';
 import FilingReports from './Components/Report/FilingReports';
 import BuffingReports from './Components/Report/BuffingReports';
+import FilingLotDetails from './Components/LotProcess/FilingLotDetails';
 
 
 const App = () => {
@@ -64,8 +63,8 @@ const App = () => {
     <Route path='/masterpurchasestock' element={<MasterPurchaseStock/>} />
     <Route path='/mastersupplier' element={<MasterAddSupplier />} />
     <Route path='/stock' element={<Stock/>} />
-    <Route path='/filingreport' element={<FilingReport/>}/> 
-    <Route path='/filinglot' element={<FilingLot/>}/> 
+    <Route path='/filingLotDetails/:id/:name' element={<FilingLotDetails/>}/> 
+    <Route path='/filinglot/:id/:name' element={<FilingLot/>}/> 
     <Route path='/settinglot' element={< SettingLot />}/> 
     <Route path='/settingreport' element={<SettingReport/>}/>
     <Route path='/buffinglot' element={<BuffingLot/>}/>

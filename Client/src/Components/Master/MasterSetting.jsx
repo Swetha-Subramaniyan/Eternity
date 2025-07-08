@@ -76,6 +76,7 @@ function MasterSetting() {
         // POST request for adding new customer
         const response = await axios.post(`${BACKEND_SERVER_URL}/api/setting`, customerData);
         setCustomers((prev) => [...prev, response.data]);
+        console.log('setting members:',response)
       }
       closeModal();
     } catch (error) {

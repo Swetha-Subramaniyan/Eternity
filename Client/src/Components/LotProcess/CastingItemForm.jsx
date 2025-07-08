@@ -6,7 +6,7 @@ import { Delete } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import './CastingItemForm.css'
 
-const CastingItemForm = ({ castingEntryId, items, setItems, scrapItems, setScrapItems,afterWeight,totalScrapWeight,wastage,totalWastage,totalItemWeight,onStockUpdate}) => {
+const CastingItemForm = ({ castingEntryId, items, setItems, scrapItems, setScrapItems,afterWeight,totalScrapWeight,wastage,totalWastage,totalItemWeight,onStockUpdate,onCastingDataRefresh,}) => {
   const [availableItems, setAvailableItems] = useState([]);
   useEffect(() => {
     const fetchItems = async () => {
@@ -230,7 +230,7 @@ const fetchCastingItems = async () => {
         </table>
       </div>
       <div className="scrap-weight" >
-  <b>Item Weight: </b>
+  <b> Total Item Weight: </b>
   <input type="number" readOnly value={afterWeight.toFixed(3)} />   <span style={{marginLeft:'2rem'}}> </span>
   <b>Current Balance Weight : </b> 
   <input type="number" readOnly value={totalItemWeight.toFixed(3)} />
@@ -298,7 +298,7 @@ const fetchCastingItems = async () => {
       </div>
       <div className="total">
   <div className="scrap-weight">
-    <b>Scrap Weight: </b>
+    <b>Total Scrap Weight: </b>
     <input type="number" readOnly value={totalScrapWeight.toFixed(3)} /> <span style={{marginLeft:'2rem'}}> </span>
     {/* Total Item Weight - Scrap Weight  */}
     <b>Total Wastage :  </b>

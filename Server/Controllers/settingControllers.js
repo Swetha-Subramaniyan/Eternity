@@ -27,6 +27,25 @@ export const getSetting = async (req,res)=>{
     }
 }
 
+export const getSettingById = async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const setting = await prisma.addSetting.findUnique({
+        where: { id: Number(id) },
+      });
+  
+      if (!setting) {
+        return res.status(404).json({ message: "Setting member not found" });
+      }
+  
+      res.status(200).json(setting);
+    } catch (error) {
+      console.error("Error fetching setting by ID:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  };
+
 export const updateSetting = async (req,res) =>{
 
     const {id} = req.params;

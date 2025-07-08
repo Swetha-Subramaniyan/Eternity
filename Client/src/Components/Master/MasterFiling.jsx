@@ -84,6 +84,7 @@ function MasterFiling() {
         // POST request for adding new customer
         const response = await axios.post(`${BACKEND_SERVER_URL}/api/filing`, customerData);
         setCustomers((prev) => [...prev, response.data]);
+        console.log('posting filing',response)
       }
       closeModal();
     } catch (error) {
@@ -170,6 +171,7 @@ function MasterFiling() {
               label="Customer Name"
               type="text"
               fullWidth
+              sx={{mt:5}}
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
             />

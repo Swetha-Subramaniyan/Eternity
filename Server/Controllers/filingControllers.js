@@ -25,6 +25,26 @@ export const getFiling = async(req,res) =>{
     }
 }
 
+export const getFilingById = async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const filing = await prisma.addFiling.findUnique({
+        where: { id: Number(id) },
+      });
+  
+      if (!filing) {
+        return res.status(404).json({ message: "Filing member not found" });
+      }
+  
+      res.status(200).json(filing);
+    } catch (error) {
+      console.error("Error fetching filing by ID:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  };
+  
+
 
 export const updateFiling =async (req,res) =>{
     const {id} = req.params;
