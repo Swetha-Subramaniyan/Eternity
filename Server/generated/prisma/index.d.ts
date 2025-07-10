@@ -59,6 +59,11 @@ export type CustomerTransaction = $Result.DefaultSelection<Prisma.$CustomerTrans
  */
 export type AddItem = $Result.DefaultSelection<Prisma.$AddItemPayload>
 /**
+ * Model AddTouch
+ * 
+ */
+export type AddTouch = $Result.DefaultSelection<Prisma.$AddTouchPayload>
+/**
  * Model CastingEntry
  * 
  */
@@ -74,15 +79,45 @@ export type CastingItems = $Result.DefaultSelection<Prisma.$CastingItemsPayload>
  */
 export type FilingEntry = $Result.DefaultSelection<Prisma.$FilingEntryPayload>
 /**
+ * Model FilingItems
+ * 
+ */
+export type FilingItems = $Result.DefaultSelection<Prisma.$FilingItemsPayload>
+/**
+ * Model FilingWastage
+ * 
+ */
+export type FilingWastage = $Result.DefaultSelection<Prisma.$FilingWastagePayload>
+/**
  * Model SettingEntry
  * 
  */
 export type SettingEntry = $Result.DefaultSelection<Prisma.$SettingEntryPayload>
 /**
+ * Model SettingItems
+ * 
+ */
+export type SettingItems = $Result.DefaultSelection<Prisma.$SettingItemsPayload>
+/**
+ * Model SettingWastage
+ * 
+ */
+export type SettingWastage = $Result.DefaultSelection<Prisma.$SettingWastagePayload>
+/**
  * Model BuffingEntry
  * 
  */
 export type BuffingEntry = $Result.DefaultSelection<Prisma.$BuffingEntryPayload>
+/**
+ * Model BuffingItems
+ * 
+ */
+export type BuffingItems = $Result.DefaultSelection<Prisma.$BuffingItemsPayload>
+/**
+ * Model BuffingWastage
+ * 
+ */
+export type BuffingWastage = $Result.DefaultSelection<Prisma.$BuffingWastagePayload>
 /**
  * Model Stock
  * 
@@ -346,6 +381,16 @@ export class PrismaClient<
   get addItem(): Prisma.AddItemDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.addTouch`: Exposes CRUD operations for the **AddTouch** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AddTouches
+    * const addTouches = await prisma.addTouch.findMany()
+    * ```
+    */
+  get addTouch(): Prisma.AddTouchDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.castingEntry`: Exposes CRUD operations for the **CastingEntry** model.
     * Example usage:
     * ```ts
@@ -376,6 +421,26 @@ export class PrismaClient<
   get filingEntry(): Prisma.FilingEntryDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.filingItems`: Exposes CRUD operations for the **FilingItems** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FilingItems
+    * const filingItems = await prisma.filingItems.findMany()
+    * ```
+    */
+  get filingItems(): Prisma.FilingItemsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.filingWastage`: Exposes CRUD operations for the **FilingWastage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FilingWastages
+    * const filingWastages = await prisma.filingWastage.findMany()
+    * ```
+    */
+  get filingWastage(): Prisma.FilingWastageDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.settingEntry`: Exposes CRUD operations for the **SettingEntry** model.
     * Example usage:
     * ```ts
@@ -386,6 +451,26 @@ export class PrismaClient<
   get settingEntry(): Prisma.SettingEntryDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.settingItems`: Exposes CRUD operations for the **SettingItems** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SettingItems
+    * const settingItems = await prisma.settingItems.findMany()
+    * ```
+    */
+  get settingItems(): Prisma.SettingItemsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.settingWastage`: Exposes CRUD operations for the **SettingWastage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SettingWastages
+    * const settingWastages = await prisma.settingWastage.findMany()
+    * ```
+    */
+  get settingWastage(): Prisma.SettingWastageDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.buffingEntry`: Exposes CRUD operations for the **BuffingEntry** model.
     * Example usage:
     * ```ts
@@ -394,6 +479,26 @@ export class PrismaClient<
     * ```
     */
   get buffingEntry(): Prisma.BuffingEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.buffingItems`: Exposes CRUD operations for the **BuffingItems** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BuffingItems
+    * const buffingItems = await prisma.buffingItems.findMany()
+    * ```
+    */
+  get buffingItems(): Prisma.BuffingItemsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.buffingWastage`: Exposes CRUD operations for the **BuffingWastage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BuffingWastages
+    * const buffingWastages = await prisma.buffingWastage.findMany()
+    * ```
+    */
+  get buffingWastage(): Prisma.BuffingWastageDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.stock`: Exposes CRUD operations for the **Stock** model.
@@ -853,11 +958,18 @@ export namespace Prisma {
     AddPurchaseStock: 'AddPurchaseStock',
     CustomerTransaction: 'CustomerTransaction',
     AddItem: 'AddItem',
+    AddTouch: 'AddTouch',
     CastingEntry: 'CastingEntry',
     CastingItems: 'CastingItems',
     FilingEntry: 'FilingEntry',
+    FilingItems: 'FilingItems',
+    FilingWastage: 'FilingWastage',
     SettingEntry: 'SettingEntry',
+    SettingItems: 'SettingItems',
+    SettingWastage: 'SettingWastage',
     BuffingEntry: 'BuffingEntry',
+    BuffingItems: 'BuffingItems',
+    BuffingWastage: 'BuffingWastage',
     Stock: 'Stock'
   };
 
@@ -877,7 +989,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addSupplierItem" | "addPurchaseStock" | "customerTransaction" | "addItem" | "castingEntry" | "castingItems" | "filingEntry" | "settingEntry" | "buffingEntry" | "stock"
+      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addSupplierItem" | "addPurchaseStock" | "customerTransaction" | "addItem" | "addTouch" | "castingEntry" | "castingItems" | "filingEntry" | "filingItems" | "filingWastage" | "settingEntry" | "settingItems" | "settingWastage" | "buffingEntry" | "buffingItems" | "buffingWastage" | "stock"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1475,6 +1587,72 @@ export namespace Prisma {
           }
         }
       }
+      AddTouch: {
+        payload: Prisma.$AddTouchPayload<ExtArgs>
+        fields: Prisma.AddTouchFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AddTouchFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddTouchPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AddTouchFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddTouchPayload>
+          }
+          findFirst: {
+            args: Prisma.AddTouchFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddTouchPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AddTouchFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddTouchPayload>
+          }
+          findMany: {
+            args: Prisma.AddTouchFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddTouchPayload>[]
+          }
+          create: {
+            args: Prisma.AddTouchCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddTouchPayload>
+          }
+          createMany: {
+            args: Prisma.AddTouchCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AddTouchDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddTouchPayload>
+          }
+          update: {
+            args: Prisma.AddTouchUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddTouchPayload>
+          }
+          deleteMany: {
+            args: Prisma.AddTouchDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AddTouchUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AddTouchUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddTouchPayload>
+          }
+          aggregate: {
+            args: Prisma.AddTouchAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAddTouch>
+          }
+          groupBy: {
+            args: Prisma.AddTouchGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AddTouchGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AddTouchCountArgs<ExtArgs>
+            result: $Utils.Optional<AddTouchCountAggregateOutputType> | number
+          }
+        }
+      }
       CastingEntry: {
         payload: Prisma.$CastingEntryPayload<ExtArgs>
         fields: Prisma.CastingEntryFieldRefs
@@ -1673,6 +1851,138 @@ export namespace Prisma {
           }
         }
       }
+      FilingItems: {
+        payload: Prisma.$FilingItemsPayload<ExtArgs>
+        fields: Prisma.FilingItemsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FilingItemsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FilingItemsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          findFirst: {
+            args: Prisma.FilingItemsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FilingItemsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          findMany: {
+            args: Prisma.FilingItemsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>[]
+          }
+          create: {
+            args: Prisma.FilingItemsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          createMany: {
+            args: Prisma.FilingItemsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.FilingItemsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          update: {
+            args: Prisma.FilingItemsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          deleteMany: {
+            args: Prisma.FilingItemsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FilingItemsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.FilingItemsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          aggregate: {
+            args: Prisma.FilingItemsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFilingItems>
+          }
+          groupBy: {
+            args: Prisma.FilingItemsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FilingItemsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FilingItemsCountArgs<ExtArgs>
+            result: $Utils.Optional<FilingItemsCountAggregateOutputType> | number
+          }
+        }
+      }
+      FilingWastage: {
+        payload: Prisma.$FilingWastagePayload<ExtArgs>
+        fields: Prisma.FilingWastageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FilingWastageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingWastagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FilingWastageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingWastagePayload>
+          }
+          findFirst: {
+            args: Prisma.FilingWastageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingWastagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FilingWastageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingWastagePayload>
+          }
+          findMany: {
+            args: Prisma.FilingWastageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingWastagePayload>[]
+          }
+          create: {
+            args: Prisma.FilingWastageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingWastagePayload>
+          }
+          createMany: {
+            args: Prisma.FilingWastageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.FilingWastageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingWastagePayload>
+          }
+          update: {
+            args: Prisma.FilingWastageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingWastagePayload>
+          }
+          deleteMany: {
+            args: Prisma.FilingWastageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FilingWastageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.FilingWastageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingWastagePayload>
+          }
+          aggregate: {
+            args: Prisma.FilingWastageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFilingWastage>
+          }
+          groupBy: {
+            args: Prisma.FilingWastageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FilingWastageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FilingWastageCountArgs<ExtArgs>
+            result: $Utils.Optional<FilingWastageCountAggregateOutputType> | number
+          }
+        }
+      }
       SettingEntry: {
         payload: Prisma.$SettingEntryPayload<ExtArgs>
         fields: Prisma.SettingEntryFieldRefs
@@ -1739,6 +2049,138 @@ export namespace Prisma {
           }
         }
       }
+      SettingItems: {
+        payload: Prisma.$SettingItemsPayload<ExtArgs>
+        fields: Prisma.SettingItemsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SettingItemsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingItemsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SettingItemsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingItemsPayload>
+          }
+          findFirst: {
+            args: Prisma.SettingItemsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingItemsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SettingItemsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingItemsPayload>
+          }
+          findMany: {
+            args: Prisma.SettingItemsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingItemsPayload>[]
+          }
+          create: {
+            args: Prisma.SettingItemsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingItemsPayload>
+          }
+          createMany: {
+            args: Prisma.SettingItemsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.SettingItemsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingItemsPayload>
+          }
+          update: {
+            args: Prisma.SettingItemsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingItemsPayload>
+          }
+          deleteMany: {
+            args: Prisma.SettingItemsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SettingItemsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SettingItemsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingItemsPayload>
+          }
+          aggregate: {
+            args: Prisma.SettingItemsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSettingItems>
+          }
+          groupBy: {
+            args: Prisma.SettingItemsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SettingItemsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SettingItemsCountArgs<ExtArgs>
+            result: $Utils.Optional<SettingItemsCountAggregateOutputType> | number
+          }
+        }
+      }
+      SettingWastage: {
+        payload: Prisma.$SettingWastagePayload<ExtArgs>
+        fields: Prisma.SettingWastageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SettingWastageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingWastagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SettingWastageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingWastagePayload>
+          }
+          findFirst: {
+            args: Prisma.SettingWastageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingWastagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SettingWastageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingWastagePayload>
+          }
+          findMany: {
+            args: Prisma.SettingWastageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingWastagePayload>[]
+          }
+          create: {
+            args: Prisma.SettingWastageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingWastagePayload>
+          }
+          createMany: {
+            args: Prisma.SettingWastageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.SettingWastageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingWastagePayload>
+          }
+          update: {
+            args: Prisma.SettingWastageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingWastagePayload>
+          }
+          deleteMany: {
+            args: Prisma.SettingWastageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SettingWastageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SettingWastageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingWastagePayload>
+          }
+          aggregate: {
+            args: Prisma.SettingWastageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSettingWastage>
+          }
+          groupBy: {
+            args: Prisma.SettingWastageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SettingWastageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SettingWastageCountArgs<ExtArgs>
+            result: $Utils.Optional<SettingWastageCountAggregateOutputType> | number
+          }
+        }
+      }
       BuffingEntry: {
         payload: Prisma.$BuffingEntryPayload<ExtArgs>
         fields: Prisma.BuffingEntryFieldRefs
@@ -1802,6 +2244,138 @@ export namespace Prisma {
           count: {
             args: Prisma.BuffingEntryCountArgs<ExtArgs>
             result: $Utils.Optional<BuffingEntryCountAggregateOutputType> | number
+          }
+        }
+      }
+      BuffingItems: {
+        payload: Prisma.$BuffingItemsPayload<ExtArgs>
+        fields: Prisma.BuffingItemsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BuffingItemsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingItemsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BuffingItemsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingItemsPayload>
+          }
+          findFirst: {
+            args: Prisma.BuffingItemsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingItemsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BuffingItemsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingItemsPayload>
+          }
+          findMany: {
+            args: Prisma.BuffingItemsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingItemsPayload>[]
+          }
+          create: {
+            args: Prisma.BuffingItemsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingItemsPayload>
+          }
+          createMany: {
+            args: Prisma.BuffingItemsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.BuffingItemsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingItemsPayload>
+          }
+          update: {
+            args: Prisma.BuffingItemsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingItemsPayload>
+          }
+          deleteMany: {
+            args: Prisma.BuffingItemsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BuffingItemsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BuffingItemsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingItemsPayload>
+          }
+          aggregate: {
+            args: Prisma.BuffingItemsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBuffingItems>
+          }
+          groupBy: {
+            args: Prisma.BuffingItemsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BuffingItemsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BuffingItemsCountArgs<ExtArgs>
+            result: $Utils.Optional<BuffingItemsCountAggregateOutputType> | number
+          }
+        }
+      }
+      BuffingWastage: {
+        payload: Prisma.$BuffingWastagePayload<ExtArgs>
+        fields: Prisma.BuffingWastageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BuffingWastageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingWastagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BuffingWastageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingWastagePayload>
+          }
+          findFirst: {
+            args: Prisma.BuffingWastageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingWastagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BuffingWastageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingWastagePayload>
+          }
+          findMany: {
+            args: Prisma.BuffingWastageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingWastagePayload>[]
+          }
+          create: {
+            args: Prisma.BuffingWastageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingWastagePayload>
+          }
+          createMany: {
+            args: Prisma.BuffingWastageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.BuffingWastageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingWastagePayload>
+          }
+          update: {
+            args: Prisma.BuffingWastageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingWastagePayload>
+          }
+          deleteMany: {
+            args: Prisma.BuffingWastageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BuffingWastageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BuffingWastageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingWastagePayload>
+          }
+          aggregate: {
+            args: Prisma.BuffingWastageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBuffingWastage>
+          }
+          groupBy: {
+            args: Prisma.BuffingWastageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BuffingWastageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BuffingWastageCountArgs<ExtArgs>
+            result: $Utils.Optional<BuffingWastageCountAggregateOutputType> | number
           }
         }
       }
@@ -1964,11 +2538,18 @@ export namespace Prisma {
     addPurchaseStock?: AddPurchaseStockOmit
     customerTransaction?: CustomerTransactionOmit
     addItem?: AddItemOmit
+    addTouch?: AddTouchOmit
     castingEntry?: CastingEntryOmit
     castingItems?: CastingItemsOmit
     filingEntry?: FilingEntryOmit
+    filingItems?: FilingItemsOmit
+    filingWastage?: FilingWastageOmit
     settingEntry?: SettingEntryOmit
+    settingItems?: SettingItemsOmit
+    settingWastage?: SettingWastageOmit
     buffingEntry?: BuffingEntryOmit
+    buffingItems?: BuffingItemsOmit
+    buffingWastage?: BuffingWastageOmit
     stock?: StockOmit
   }
 
@@ -2237,13 +2818,19 @@ export namespace Prisma {
    */
 
   export type AddItemCountOutputType = {
-    castingItems: number
+    casting_items: number
     stock: number
+    filing_items: number
+    setting_items: number
+    buffing_items: number
   }
 
   export type AddItemCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    castingItems?: boolean | AddItemCountOutputTypeCountCastingItemsArgs
+    casting_items?: boolean | AddItemCountOutputTypeCountCasting_itemsArgs
     stock?: boolean | AddItemCountOutputTypeCountStockArgs
+    filing_items?: boolean | AddItemCountOutputTypeCountFiling_itemsArgs
+    setting_items?: boolean | AddItemCountOutputTypeCountSetting_itemsArgs
+    buffing_items?: boolean | AddItemCountOutputTypeCountBuffing_itemsArgs
   }
 
   // Custom InputTypes
@@ -2260,7 +2847,7 @@ export namespace Prisma {
   /**
    * AddItemCountOutputType without action
    */
-  export type AddItemCountOutputTypeCountCastingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AddItemCountOutputTypeCountCasting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CastingItemsWhereInput
   }
 
@@ -2268,6 +2855,103 @@ export namespace Prisma {
    * AddItemCountOutputType without action
    */
   export type AddItemCountOutputTypeCountStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StockWhereInput
+  }
+
+  /**
+   * AddItemCountOutputType without action
+   */
+  export type AddItemCountOutputTypeCountFiling_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingItemsWhereInput
+  }
+
+  /**
+   * AddItemCountOutputType without action
+   */
+  export type AddItemCountOutputTypeCountSetting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingItemsWhereInput
+  }
+
+  /**
+   * AddItemCountOutputType without action
+   */
+  export type AddItemCountOutputTypeCountBuffing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuffingItemsWhereInput
+  }
+
+
+  /**
+   * Count Type AddTouchCountOutputType
+   */
+
+  export type AddTouchCountOutputType = {
+    casting_entry: number
+    casting_items: number
+    filing_items: number
+    setting_items: number
+    buffing_items: number
+    stock: number
+  }
+
+  export type AddTouchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    casting_entry?: boolean | AddTouchCountOutputTypeCountCasting_entryArgs
+    casting_items?: boolean | AddTouchCountOutputTypeCountCasting_itemsArgs
+    filing_items?: boolean | AddTouchCountOutputTypeCountFiling_itemsArgs
+    setting_items?: boolean | AddTouchCountOutputTypeCountSetting_itemsArgs
+    buffing_items?: boolean | AddTouchCountOutputTypeCountBuffing_itemsArgs
+    stock?: boolean | AddTouchCountOutputTypeCountStockArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AddTouchCountOutputType without action
+   */
+  export type AddTouchCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouchCountOutputType
+     */
+    select?: AddTouchCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AddTouchCountOutputType without action
+   */
+  export type AddTouchCountOutputTypeCountCasting_entryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CastingEntryWhereInput
+  }
+
+  /**
+   * AddTouchCountOutputType without action
+   */
+  export type AddTouchCountOutputTypeCountCasting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CastingItemsWhereInput
+  }
+
+  /**
+   * AddTouchCountOutputType without action
+   */
+  export type AddTouchCountOutputTypeCountFiling_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingItemsWhereInput
+  }
+
+  /**
+   * AddTouchCountOutputType without action
+   */
+  export type AddTouchCountOutputTypeCountSetting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingItemsWhereInput
+  }
+
+  /**
+   * AddTouchCountOutputType without action
+   */
+  export type AddTouchCountOutputTypeCountBuffing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuffingItemsWhereInput
+  }
+
+  /**
+   * AddTouchCountOutputType without action
+   */
+  export type AddTouchCountOutputTypeCountStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StockWhereInput
   }
 
@@ -2308,10 +2992,12 @@ export namespace Prisma {
    */
 
   export type CastingItemsCountOutputType = {
+    filingEntry: number
     stock: number
   }
 
   export type CastingItemsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filingEntry?: boolean | CastingItemsCountOutputTypeCountFilingEntryArgs
     stock?: boolean | CastingItemsCountOutputTypeCountStockArgs
   }
 
@@ -2329,48 +3015,104 @@ export namespace Prisma {
   /**
    * CastingItemsCountOutputType without action
    */
+  export type CastingItemsCountOutputTypeCountFilingEntryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingEntryWhereInput
+  }
+
+  /**
+   * CastingItemsCountOutputType without action
+   */
   export type CastingItemsCountOutputTypeCountStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StockWhereInput
   }
 
 
   /**
-   * Count Type FilingEntryCountOutputType
+   * Count Type FilingItemsCountOutputType
    */
 
-  export type FilingEntryCountOutputType = {
-    settingEntry: number
-    buffingEntries: number
+  export type FilingItemsCountOutputType = {
+    stock: number
+    setting_entry: number
+    buffing_entry: number
+    filing_wastage: number
   }
 
-  export type FilingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    settingEntry?: boolean | FilingEntryCountOutputTypeCountSettingEntryArgs
-    buffingEntries?: boolean | FilingEntryCountOutputTypeCountBuffingEntriesArgs
+  export type FilingItemsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    stock?: boolean | FilingItemsCountOutputTypeCountStockArgs
+    setting_entry?: boolean | FilingItemsCountOutputTypeCountSetting_entryArgs
+    buffing_entry?: boolean | FilingItemsCountOutputTypeCountBuffing_entryArgs
+    filing_wastage?: boolean | FilingItemsCountOutputTypeCountFiling_wastageArgs
   }
 
   // Custom InputTypes
   /**
-   * FilingEntryCountOutputType without action
+   * FilingItemsCountOutputType without action
    */
-  export type FilingEntryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FilingItemsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FilingEntryCountOutputType
+     * Select specific fields to fetch from the FilingItemsCountOutputType
      */
-    select?: FilingEntryCountOutputTypeSelect<ExtArgs> | null
+    select?: FilingItemsCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * FilingEntryCountOutputType without action
+   * FilingItemsCountOutputType without action
    */
-  export type FilingEntryCountOutputTypeCountSettingEntryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FilingItemsCountOutputTypeCountStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StockWhereInput
+  }
+
+  /**
+   * FilingItemsCountOutputType without action
+   */
+  export type FilingItemsCountOutputTypeCountSetting_entryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SettingEntryWhereInput
   }
 
   /**
-   * FilingEntryCountOutputType without action
+   * FilingItemsCountOutputType without action
    */
-  export type FilingEntryCountOutputTypeCountBuffingEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FilingItemsCountOutputTypeCountBuffing_entryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BuffingEntryWhereInput
+  }
+
+  /**
+   * FilingItemsCountOutputType without action
+   */
+  export type FilingItemsCountOutputTypeCountFiling_wastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingWastageWhereInput
+  }
+
+
+  /**
+   * Count Type FilingWastageCountOutputType
+   */
+
+  export type FilingWastageCountOutputType = {
+    filing_items: number
+  }
+
+  export type FilingWastageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filing_items?: boolean | FilingWastageCountOutputTypeCountFiling_itemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FilingWastageCountOutputType without action
+   */
+  export type FilingWastageCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastageCountOutputType
+     */
+    select?: FilingWastageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FilingWastageCountOutputType without action
+   */
+  export type FilingWastageCountOutputTypeCountFiling_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingItemsWhereInput
   }
 
 
@@ -2379,11 +3121,11 @@ export namespace Prisma {
    */
 
   export type SettingEntryCountOutputType = {
-    buffingEntries: number
+    filingItems: number
   }
 
   export type SettingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    buffingEntries?: boolean | SettingEntryCountOutputTypeCountBuffingEntriesArgs
+    filingItems?: boolean | SettingEntryCountOutputTypeCountFilingItemsArgs
   }
 
   // Custom InputTypes
@@ -2400,8 +3142,199 @@ export namespace Prisma {
   /**
    * SettingEntryCountOutputType without action
    */
-  export type SettingEntryCountOutputTypeCountBuffingEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SettingEntryCountOutputTypeCountFilingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingItemsWhereInput
+  }
+
+
+  /**
+   * Count Type SettingItemsCountOutputType
+   */
+
+  export type SettingItemsCountOutputType = {
+    setting_wastage: number
+    buffing_entry: number
+    stock: number
+  }
+
+  export type SettingItemsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    setting_wastage?: boolean | SettingItemsCountOutputTypeCountSetting_wastageArgs
+    buffing_entry?: boolean | SettingItemsCountOutputTypeCountBuffing_entryArgs
+    stock?: boolean | SettingItemsCountOutputTypeCountStockArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SettingItemsCountOutputType without action
+   */
+  export type SettingItemsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItemsCountOutputType
+     */
+    select?: SettingItemsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SettingItemsCountOutputType without action
+   */
+  export type SettingItemsCountOutputTypeCountSetting_wastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingWastageWhereInput
+  }
+
+  /**
+   * SettingItemsCountOutputType without action
+   */
+  export type SettingItemsCountOutputTypeCountBuffing_entryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BuffingEntryWhereInput
+  }
+
+  /**
+   * SettingItemsCountOutputType without action
+   */
+  export type SettingItemsCountOutputTypeCountStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StockWhereInput
+  }
+
+
+  /**
+   * Count Type SettingWastageCountOutputType
+   */
+
+  export type SettingWastageCountOutputType = {
+    setting_items: number
+  }
+
+  export type SettingWastageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    setting_items?: boolean | SettingWastageCountOutputTypeCountSetting_itemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SettingWastageCountOutputType without action
+   */
+  export type SettingWastageCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastageCountOutputType
+     */
+    select?: SettingWastageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SettingWastageCountOutputType without action
+   */
+  export type SettingWastageCountOutputTypeCountSetting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingItemsWhereInput
+  }
+
+
+  /**
+   * Count Type BuffingEntryCountOutputType
+   */
+
+  export type BuffingEntryCountOutputType = {
+    filing_items: number
+    setting_items: number
+  }
+
+  export type BuffingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filing_items?: boolean | BuffingEntryCountOutputTypeCountFiling_itemsArgs
+    setting_items?: boolean | BuffingEntryCountOutputTypeCountSetting_itemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BuffingEntryCountOutputType without action
+   */
+  export type BuffingEntryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingEntryCountOutputType
+     */
+    select?: BuffingEntryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BuffingEntryCountOutputType without action
+   */
+  export type BuffingEntryCountOutputTypeCountFiling_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingItemsWhereInput
+  }
+
+  /**
+   * BuffingEntryCountOutputType without action
+   */
+  export type BuffingEntryCountOutputTypeCountSetting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingItemsWhereInput
+  }
+
+
+  /**
+   * Count Type BuffingItemsCountOutputType
+   */
+
+  export type BuffingItemsCountOutputType = {
+    stock: number
+    buffing_wastage: number
+  }
+
+  export type BuffingItemsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    stock?: boolean | BuffingItemsCountOutputTypeCountStockArgs
+    buffing_wastage?: boolean | BuffingItemsCountOutputTypeCountBuffing_wastageArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BuffingItemsCountOutputType without action
+   */
+  export type BuffingItemsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItemsCountOutputType
+     */
+    select?: BuffingItemsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BuffingItemsCountOutputType without action
+   */
+  export type BuffingItemsCountOutputTypeCountStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StockWhereInput
+  }
+
+  /**
+   * BuffingItemsCountOutputType without action
+   */
+  export type BuffingItemsCountOutputTypeCountBuffing_wastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuffingWastageWhereInput
+  }
+
+
+  /**
+   * Count Type BuffingWastageCountOutputType
+   */
+
+  export type BuffingWastageCountOutputType = {
+    buffing_items: number
+  }
+
+  export type BuffingWastageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    buffing_items?: boolean | BuffingWastageCountOutputTypeCountBuffing_itemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BuffingWastageCountOutputType without action
+   */
+  export type BuffingWastageCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastageCountOutputType
+     */
+    select?: BuffingWastageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BuffingWastageCountOutputType without action
+   */
+  export type BuffingWastageCountOutputTypeCountBuffing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuffingItemsWhereInput
   }
 
 
@@ -10656,8 +11589,11 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     name?: boolean
-    castingItems?: boolean | AddItem$castingItemsArgs<ExtArgs>
+    casting_items?: boolean | AddItem$casting_itemsArgs<ExtArgs>
     stock?: boolean | AddItem$stockArgs<ExtArgs>
+    filing_items?: boolean | AddItem$filing_itemsArgs<ExtArgs>
+    setting_items?: boolean | AddItem$setting_itemsArgs<ExtArgs>
+    buffing_items?: boolean | AddItem$buffing_itemsArgs<ExtArgs>
     _count?: boolean | AddItemCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["addItem"]>
 
@@ -10671,16 +11607,22 @@ export namespace Prisma {
 
   export type AddItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name", ExtArgs["result"]["addItem"]>
   export type AddItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    castingItems?: boolean | AddItem$castingItemsArgs<ExtArgs>
+    casting_items?: boolean | AddItem$casting_itemsArgs<ExtArgs>
     stock?: boolean | AddItem$stockArgs<ExtArgs>
+    filing_items?: boolean | AddItem$filing_itemsArgs<ExtArgs>
+    setting_items?: boolean | AddItem$setting_itemsArgs<ExtArgs>
+    buffing_items?: boolean | AddItem$buffing_itemsArgs<ExtArgs>
     _count?: boolean | AddItemCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $AddItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AddItem"
     objects: {
-      castingItems: Prisma.$CastingItemsPayload<ExtArgs>[]
+      casting_items: Prisma.$CastingItemsPayload<ExtArgs>[]
       stock: Prisma.$StockPayload<ExtArgs>[]
+      filing_items: Prisma.$FilingItemsPayload<ExtArgs>[]
+      setting_items: Prisma.$SettingItemsPayload<ExtArgs>[]
+      buffing_items: Prisma.$BuffingItemsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -11026,8 +11968,11 @@ export namespace Prisma {
    */
   export interface Prisma__AddItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    castingItems<T extends AddItem$castingItemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$castingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    casting_items<T extends AddItem$casting_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$casting_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     stock<T extends AddItem$stockArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    filing_items<T extends AddItem$filing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$filing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    setting_items<T extends AddItem$setting_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$setting_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    buffing_items<T extends AddItem$buffing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$buffing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11403,9 +12348,9 @@ export namespace Prisma {
   }
 
   /**
-   * AddItem.castingItems
+   * AddItem.casting_items
    */
-  export type AddItem$castingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AddItem$casting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the CastingItems
      */
@@ -11451,6 +12396,78 @@ export namespace Prisma {
   }
 
   /**
+   * AddItem.filing_items
+   */
+  export type AddItem$filing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    where?: FilingItemsWhereInput
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    cursor?: FilingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * AddItem.setting_items
+   */
+  export type AddItem$setting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    where?: SettingItemsWhereInput
+    orderBy?: SettingItemsOrderByWithRelationInput | SettingItemsOrderByWithRelationInput[]
+    cursor?: SettingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SettingItemsScalarFieldEnum | SettingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * AddItem.buffing_items
+   */
+  export type AddItem$buffing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    where?: BuffingItemsWhereInput
+    orderBy?: BuffingItemsOrderByWithRelationInput | BuffingItemsOrderByWithRelationInput[]
+    cursor?: BuffingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BuffingItemsScalarFieldEnum | BuffingItemsScalarFieldEnum[]
+  }
+
+  /**
    * AddItem without action
    */
   export type AddItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11470,6 +12487,1117 @@ export namespace Prisma {
 
 
   /**
+   * Model AddTouch
+   */
+
+  export type AggregateAddTouch = {
+    _count: AddTouchCountAggregateOutputType | null
+    _avg: AddTouchAvgAggregateOutputType | null
+    _sum: AddTouchSumAggregateOutputType | null
+    _min: AddTouchMinAggregateOutputType | null
+    _max: AddTouchMaxAggregateOutputType | null
+  }
+
+  export type AddTouchAvgAggregateOutputType = {
+    id: number | null
+    touch: number | null
+  }
+
+  export type AddTouchSumAggregateOutputType = {
+    id: number | null
+    touch: number | null
+  }
+
+  export type AddTouchMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    touch: number | null
+  }
+
+  export type AddTouchMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    touch: number | null
+  }
+
+  export type AddTouchCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    touch: number
+    _all: number
+  }
+
+
+  export type AddTouchAvgAggregateInputType = {
+    id?: true
+    touch?: true
+  }
+
+  export type AddTouchSumAggregateInputType = {
+    id?: true
+    touch?: true
+  }
+
+  export type AddTouchMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    touch?: true
+  }
+
+  export type AddTouchMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    touch?: true
+  }
+
+  export type AddTouchCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    touch?: true
+    _all?: true
+  }
+
+  export type AddTouchAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AddTouch to aggregate.
+     */
+    where?: AddTouchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddTouches to fetch.
+     */
+    orderBy?: AddTouchOrderByWithRelationInput | AddTouchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AddTouchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddTouches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddTouches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AddTouches
+    **/
+    _count?: true | AddTouchCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AddTouchAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AddTouchSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AddTouchMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AddTouchMaxAggregateInputType
+  }
+
+  export type GetAddTouchAggregateType<T extends AddTouchAggregateArgs> = {
+        [P in keyof T & keyof AggregateAddTouch]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAddTouch[P]>
+      : GetScalarType<T[P], AggregateAddTouch[P]>
+  }
+
+
+
+
+  export type AddTouchGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddTouchWhereInput
+    orderBy?: AddTouchOrderByWithAggregationInput | AddTouchOrderByWithAggregationInput[]
+    by: AddTouchScalarFieldEnum[] | AddTouchScalarFieldEnum
+    having?: AddTouchScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AddTouchCountAggregateInputType | true
+    _avg?: AddTouchAvgAggregateInputType
+    _sum?: AddTouchSumAggregateInputType
+    _min?: AddTouchMinAggregateInputType
+    _max?: AddTouchMaxAggregateInputType
+  }
+
+  export type AddTouchGroupByOutputType = {
+    id: number
+    createdAt: Date
+    touch: number
+    _count: AddTouchCountAggregateOutputType | null
+    _avg: AddTouchAvgAggregateOutputType | null
+    _sum: AddTouchSumAggregateOutputType | null
+    _min: AddTouchMinAggregateOutputType | null
+    _max: AddTouchMaxAggregateOutputType | null
+  }
+
+  type GetAddTouchGroupByPayload<T extends AddTouchGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AddTouchGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AddTouchGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AddTouchGroupByOutputType[P]>
+            : GetScalarType<T[P], AddTouchGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AddTouchSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    touch?: boolean
+    casting_entry?: boolean | AddTouch$casting_entryArgs<ExtArgs>
+    casting_items?: boolean | AddTouch$casting_itemsArgs<ExtArgs>
+    filing_items?: boolean | AddTouch$filing_itemsArgs<ExtArgs>
+    setting_items?: boolean | AddTouch$setting_itemsArgs<ExtArgs>
+    buffing_items?: boolean | AddTouch$buffing_itemsArgs<ExtArgs>
+    stock?: boolean | AddTouch$stockArgs<ExtArgs>
+    _count?: boolean | AddTouchCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["addTouch"]>
+
+
+
+  export type AddTouchSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    touch?: boolean
+  }
+
+  export type AddTouchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "touch", ExtArgs["result"]["addTouch"]>
+  export type AddTouchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    casting_entry?: boolean | AddTouch$casting_entryArgs<ExtArgs>
+    casting_items?: boolean | AddTouch$casting_itemsArgs<ExtArgs>
+    filing_items?: boolean | AddTouch$filing_itemsArgs<ExtArgs>
+    setting_items?: boolean | AddTouch$setting_itemsArgs<ExtArgs>
+    buffing_items?: boolean | AddTouch$buffing_itemsArgs<ExtArgs>
+    stock?: boolean | AddTouch$stockArgs<ExtArgs>
+    _count?: boolean | AddTouchCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $AddTouchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AddTouch"
+    objects: {
+      casting_entry: Prisma.$CastingEntryPayload<ExtArgs>[]
+      casting_items: Prisma.$CastingItemsPayload<ExtArgs>[]
+      filing_items: Prisma.$FilingItemsPayload<ExtArgs>[]
+      setting_items: Prisma.$SettingItemsPayload<ExtArgs>[]
+      buffing_items: Prisma.$BuffingItemsPayload<ExtArgs>[]
+      stock: Prisma.$StockPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      touch: number
+    }, ExtArgs["result"]["addTouch"]>
+    composites: {}
+  }
+
+  type AddTouchGetPayload<S extends boolean | null | undefined | AddTouchDefaultArgs> = $Result.GetResult<Prisma.$AddTouchPayload, S>
+
+  type AddTouchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AddTouchFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AddTouchCountAggregateInputType | true
+    }
+
+  export interface AddTouchDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AddTouch'], meta: { name: 'AddTouch' } }
+    /**
+     * Find zero or one AddTouch that matches the filter.
+     * @param {AddTouchFindUniqueArgs} args - Arguments to find a AddTouch
+     * @example
+     * // Get one AddTouch
+     * const addTouch = await prisma.addTouch.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AddTouchFindUniqueArgs>(args: SelectSubset<T, AddTouchFindUniqueArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AddTouch that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AddTouchFindUniqueOrThrowArgs} args - Arguments to find a AddTouch
+     * @example
+     * // Get one AddTouch
+     * const addTouch = await prisma.addTouch.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AddTouchFindUniqueOrThrowArgs>(args: SelectSubset<T, AddTouchFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AddTouch that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddTouchFindFirstArgs} args - Arguments to find a AddTouch
+     * @example
+     * // Get one AddTouch
+     * const addTouch = await prisma.addTouch.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AddTouchFindFirstArgs>(args?: SelectSubset<T, AddTouchFindFirstArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AddTouch that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddTouchFindFirstOrThrowArgs} args - Arguments to find a AddTouch
+     * @example
+     * // Get one AddTouch
+     * const addTouch = await prisma.addTouch.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AddTouchFindFirstOrThrowArgs>(args?: SelectSubset<T, AddTouchFindFirstOrThrowArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AddTouches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddTouchFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AddTouches
+     * const addTouches = await prisma.addTouch.findMany()
+     * 
+     * // Get first 10 AddTouches
+     * const addTouches = await prisma.addTouch.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const addTouchWithIdOnly = await prisma.addTouch.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AddTouchFindManyArgs>(args?: SelectSubset<T, AddTouchFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AddTouch.
+     * @param {AddTouchCreateArgs} args - Arguments to create a AddTouch.
+     * @example
+     * // Create one AddTouch
+     * const AddTouch = await prisma.addTouch.create({
+     *   data: {
+     *     // ... data to create a AddTouch
+     *   }
+     * })
+     * 
+     */
+    create<T extends AddTouchCreateArgs>(args: SelectSubset<T, AddTouchCreateArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AddTouches.
+     * @param {AddTouchCreateManyArgs} args - Arguments to create many AddTouches.
+     * @example
+     * // Create many AddTouches
+     * const addTouch = await prisma.addTouch.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AddTouchCreateManyArgs>(args?: SelectSubset<T, AddTouchCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AddTouch.
+     * @param {AddTouchDeleteArgs} args - Arguments to delete one AddTouch.
+     * @example
+     * // Delete one AddTouch
+     * const AddTouch = await prisma.addTouch.delete({
+     *   where: {
+     *     // ... filter to delete one AddTouch
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AddTouchDeleteArgs>(args: SelectSubset<T, AddTouchDeleteArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AddTouch.
+     * @param {AddTouchUpdateArgs} args - Arguments to update one AddTouch.
+     * @example
+     * // Update one AddTouch
+     * const addTouch = await prisma.addTouch.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AddTouchUpdateArgs>(args: SelectSubset<T, AddTouchUpdateArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AddTouches.
+     * @param {AddTouchDeleteManyArgs} args - Arguments to filter AddTouches to delete.
+     * @example
+     * // Delete a few AddTouches
+     * const { count } = await prisma.addTouch.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AddTouchDeleteManyArgs>(args?: SelectSubset<T, AddTouchDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AddTouches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddTouchUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AddTouches
+     * const addTouch = await prisma.addTouch.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AddTouchUpdateManyArgs>(args: SelectSubset<T, AddTouchUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AddTouch.
+     * @param {AddTouchUpsertArgs} args - Arguments to update or create a AddTouch.
+     * @example
+     * // Update or create a AddTouch
+     * const addTouch = await prisma.addTouch.upsert({
+     *   create: {
+     *     // ... data to create a AddTouch
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AddTouch we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AddTouchUpsertArgs>(args: SelectSubset<T, AddTouchUpsertArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AddTouches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddTouchCountArgs} args - Arguments to filter AddTouches to count.
+     * @example
+     * // Count the number of AddTouches
+     * const count = await prisma.addTouch.count({
+     *   where: {
+     *     // ... the filter for the AddTouches we want to count
+     *   }
+     * })
+    **/
+    count<T extends AddTouchCountArgs>(
+      args?: Subset<T, AddTouchCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AddTouchCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AddTouch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddTouchAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AddTouchAggregateArgs>(args: Subset<T, AddTouchAggregateArgs>): Prisma.PrismaPromise<GetAddTouchAggregateType<T>>
+
+    /**
+     * Group by AddTouch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddTouchGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AddTouchGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AddTouchGroupByArgs['orderBy'] }
+        : { orderBy?: AddTouchGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AddTouchGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAddTouchGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AddTouch model
+   */
+  readonly fields: AddTouchFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AddTouch.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AddTouchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    casting_entry<T extends AddTouch$casting_entryArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$casting_entryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    casting_items<T extends AddTouch$casting_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$casting_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    filing_items<T extends AddTouch$filing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$filing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    setting_items<T extends AddTouch$setting_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$setting_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    buffing_items<T extends AddTouch$buffing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$buffing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    stock<T extends AddTouch$stockArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AddTouch model
+   */
+  interface AddTouchFieldRefs {
+    readonly id: FieldRef<"AddTouch", 'Int'>
+    readonly createdAt: FieldRef<"AddTouch", 'DateTime'>
+    readonly touch: FieldRef<"AddTouch", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AddTouch findUnique
+   */
+  export type AddTouchFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    /**
+     * Filter, which AddTouch to fetch.
+     */
+    where: AddTouchWhereUniqueInput
+  }
+
+  /**
+   * AddTouch findUniqueOrThrow
+   */
+  export type AddTouchFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    /**
+     * Filter, which AddTouch to fetch.
+     */
+    where: AddTouchWhereUniqueInput
+  }
+
+  /**
+   * AddTouch findFirst
+   */
+  export type AddTouchFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    /**
+     * Filter, which AddTouch to fetch.
+     */
+    where?: AddTouchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddTouches to fetch.
+     */
+    orderBy?: AddTouchOrderByWithRelationInput | AddTouchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AddTouches.
+     */
+    cursor?: AddTouchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddTouches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddTouches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AddTouches.
+     */
+    distinct?: AddTouchScalarFieldEnum | AddTouchScalarFieldEnum[]
+  }
+
+  /**
+   * AddTouch findFirstOrThrow
+   */
+  export type AddTouchFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    /**
+     * Filter, which AddTouch to fetch.
+     */
+    where?: AddTouchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddTouches to fetch.
+     */
+    orderBy?: AddTouchOrderByWithRelationInput | AddTouchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AddTouches.
+     */
+    cursor?: AddTouchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddTouches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddTouches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AddTouches.
+     */
+    distinct?: AddTouchScalarFieldEnum | AddTouchScalarFieldEnum[]
+  }
+
+  /**
+   * AddTouch findMany
+   */
+  export type AddTouchFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    /**
+     * Filter, which AddTouches to fetch.
+     */
+    where?: AddTouchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddTouches to fetch.
+     */
+    orderBy?: AddTouchOrderByWithRelationInput | AddTouchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AddTouches.
+     */
+    cursor?: AddTouchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddTouches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddTouches.
+     */
+    skip?: number
+    distinct?: AddTouchScalarFieldEnum | AddTouchScalarFieldEnum[]
+  }
+
+  /**
+   * AddTouch create
+   */
+  export type AddTouchCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AddTouch.
+     */
+    data: XOR<AddTouchCreateInput, AddTouchUncheckedCreateInput>
+  }
+
+  /**
+   * AddTouch createMany
+   */
+  export type AddTouchCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AddTouches.
+     */
+    data: AddTouchCreateManyInput | AddTouchCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AddTouch update
+   */
+  export type AddTouchUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AddTouch.
+     */
+    data: XOR<AddTouchUpdateInput, AddTouchUncheckedUpdateInput>
+    /**
+     * Choose, which AddTouch to update.
+     */
+    where: AddTouchWhereUniqueInput
+  }
+
+  /**
+   * AddTouch updateMany
+   */
+  export type AddTouchUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AddTouches.
+     */
+    data: XOR<AddTouchUpdateManyMutationInput, AddTouchUncheckedUpdateManyInput>
+    /**
+     * Filter which AddTouches to update
+     */
+    where?: AddTouchWhereInput
+    /**
+     * Limit how many AddTouches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AddTouch upsert
+   */
+  export type AddTouchUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AddTouch to update in case it exists.
+     */
+    where: AddTouchWhereUniqueInput
+    /**
+     * In case the AddTouch found by the `where` argument doesn't exist, create a new AddTouch with this data.
+     */
+    create: XOR<AddTouchCreateInput, AddTouchUncheckedCreateInput>
+    /**
+     * In case the AddTouch was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AddTouchUpdateInput, AddTouchUncheckedUpdateInput>
+  }
+
+  /**
+   * AddTouch delete
+   */
+  export type AddTouchDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    /**
+     * Filter which AddTouch to delete.
+     */
+    where: AddTouchWhereUniqueInput
+  }
+
+  /**
+   * AddTouch deleteMany
+   */
+  export type AddTouchDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AddTouches to delete
+     */
+    where?: AddTouchWhereInput
+    /**
+     * Limit how many AddTouches to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AddTouch.casting_entry
+   */
+  export type AddTouch$casting_entryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingEntry
+     */
+    select?: CastingEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingEntry
+     */
+    omit?: CastingEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingEntryInclude<ExtArgs> | null
+    where?: CastingEntryWhereInput
+    orderBy?: CastingEntryOrderByWithRelationInput | CastingEntryOrderByWithRelationInput[]
+    cursor?: CastingEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CastingEntryScalarFieldEnum | CastingEntryScalarFieldEnum[]
+  }
+
+  /**
+   * AddTouch.casting_items
+   */
+  export type AddTouch$casting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItems
+     */
+    select?: CastingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItems
+     */
+    omit?: CastingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemsInclude<ExtArgs> | null
+    where?: CastingItemsWhereInput
+    orderBy?: CastingItemsOrderByWithRelationInput | CastingItemsOrderByWithRelationInput[]
+    cursor?: CastingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CastingItemsScalarFieldEnum | CastingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * AddTouch.filing_items
+   */
+  export type AddTouch$filing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    where?: FilingItemsWhereInput
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    cursor?: FilingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * AddTouch.setting_items
+   */
+  export type AddTouch$setting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    where?: SettingItemsWhereInput
+    orderBy?: SettingItemsOrderByWithRelationInput | SettingItemsOrderByWithRelationInput[]
+    cursor?: SettingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SettingItemsScalarFieldEnum | SettingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * AddTouch.buffing_items
+   */
+  export type AddTouch$buffing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    where?: BuffingItemsWhereInput
+    orderBy?: BuffingItemsOrderByWithRelationInput | BuffingItemsOrderByWithRelationInput[]
+    cursor?: BuffingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BuffingItemsScalarFieldEnum | BuffingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * AddTouch.stock
+   */
+  export type AddTouch$stockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stock
+     */
+    select?: StockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stock
+     */
+    omit?: StockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StockInclude<ExtArgs> | null
+    where?: StockWhereInput
+    orderBy?: StockOrderByWithRelationInput | StockOrderByWithRelationInput[]
+    cursor?: StockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StockScalarFieldEnum | StockScalarFieldEnum[]
+  }
+
+  /**
+   * AddTouch without action
+   */
+  export type AddTouchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model CastingEntry
    */
 
@@ -11484,7 +13612,7 @@ export namespace Prisma {
   export type CastingEntryAvgAggregateOutputType = {
     id: number | null
     given_gold: number | null
-    given_touch: number | null
+    touch_id: number | null
     purity: number | null
     final_touch: number | null
     pure_value: number | null
@@ -11496,7 +13624,7 @@ export namespace Prisma {
   export type CastingEntrySumAggregateOutputType = {
     id: number | null
     given_gold: number | null
-    given_touch: number | null
+    touch_id: number | null
     purity: number | null
     final_touch: number | null
     pure_value: number | null
@@ -11510,7 +13638,7 @@ export namespace Prisma {
     createdAt: Date | null
     date: Date | null
     given_gold: number | null
-    given_touch: number | null
+    touch_id: number | null
     purity: number | null
     final_touch: number | null
     pure_value: number | null
@@ -11524,7 +13652,7 @@ export namespace Prisma {
     createdAt: Date | null
     date: Date | null
     given_gold: number | null
-    given_touch: number | null
+    touch_id: number | null
     purity: number | null
     final_touch: number | null
     pure_value: number | null
@@ -11538,7 +13666,7 @@ export namespace Prisma {
     createdAt: number
     date: number
     given_gold: number
-    given_touch: number
+    touch_id: number
     purity: number
     final_touch: number
     pure_value: number
@@ -11552,7 +13680,7 @@ export namespace Prisma {
   export type CastingEntryAvgAggregateInputType = {
     id?: true
     given_gold?: true
-    given_touch?: true
+    touch_id?: true
     purity?: true
     final_touch?: true
     pure_value?: true
@@ -11564,7 +13692,7 @@ export namespace Prisma {
   export type CastingEntrySumAggregateInputType = {
     id?: true
     given_gold?: true
-    given_touch?: true
+    touch_id?: true
     purity?: true
     final_touch?: true
     pure_value?: true
@@ -11578,7 +13706,7 @@ export namespace Prisma {
     createdAt?: true
     date?: true
     given_gold?: true
-    given_touch?: true
+    touch_id?: true
     purity?: true
     final_touch?: true
     pure_value?: true
@@ -11592,7 +13720,7 @@ export namespace Prisma {
     createdAt?: true
     date?: true
     given_gold?: true
-    given_touch?: true
+    touch_id?: true
     purity?: true
     final_touch?: true
     pure_value?: true
@@ -11606,7 +13734,7 @@ export namespace Prisma {
     createdAt?: true
     date?: true
     given_gold?: true
-    given_touch?: true
+    touch_id?: true
     purity?: true
     final_touch?: true
     pure_value?: true
@@ -11707,7 +13835,7 @@ export namespace Prisma {
     createdAt: Date
     date: Date
     given_gold: number
-    given_touch: number
+    touch_id: number
     purity: number
     final_touch: number
     pure_value: number
@@ -11740,13 +13868,14 @@ export namespace Prisma {
     createdAt?: boolean
     date?: boolean
     given_gold?: boolean
-    given_touch?: boolean
+    touch_id?: boolean
     purity?: boolean
     final_touch?: boolean
     pure_value?: boolean
     copper?: boolean
     final_weight?: boolean
     casting_customer_id?: boolean
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
     items?: boolean | CastingEntry$itemsArgs<ExtArgs>
     _count?: boolean | CastingEntryCountOutputTypeDefaultArgs<ExtArgs>
@@ -11759,7 +13888,7 @@ export namespace Prisma {
     createdAt?: boolean
     date?: boolean
     given_gold?: boolean
-    given_touch?: boolean
+    touch_id?: boolean
     purity?: boolean
     final_touch?: boolean
     pure_value?: boolean
@@ -11768,8 +13897,9 @@ export namespace Prisma {
     casting_customer_id?: boolean
   }
 
-  export type CastingEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "date" | "given_gold" | "given_touch" | "purity" | "final_touch" | "pure_value" | "copper" | "final_weight" | "casting_customer_id", ExtArgs["result"]["castingEntry"]>
+  export type CastingEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "date" | "given_gold" | "touch_id" | "purity" | "final_touch" | "pure_value" | "copper" | "final_weight" | "casting_customer_id", ExtArgs["result"]["castingEntry"]>
   export type CastingEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
     items?: boolean | CastingEntry$itemsArgs<ExtArgs>
     _count?: boolean | CastingEntryCountOutputTypeDefaultArgs<ExtArgs>
@@ -11778,6 +13908,7 @@ export namespace Prisma {
   export type $CastingEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CastingEntry"
     objects: {
+      touch: Prisma.$AddTouchPayload<ExtArgs>
       casting_customer: Prisma.$AddCastingPayload<ExtArgs>
       items: Prisma.$CastingItemsPayload<ExtArgs>[]
     }
@@ -11786,7 +13917,7 @@ export namespace Prisma {
       createdAt: Date
       date: Date
       given_gold: number
-      given_touch: number
+      touch_id: number
       purity: number
       final_touch: number
       pure_value: number
@@ -12133,6 +14264,7 @@ export namespace Prisma {
    */
   export interface Prisma__CastingEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    touch<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     casting_customer<T extends AddCastingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddCastingDefaultArgs<ExtArgs>>): Prisma__AddCastingClient<$Result.GetResult<Prisma.$AddCastingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     items<T extends CastingEntry$itemsArgs<ExtArgs> = {}>(args?: Subset<T, CastingEntry$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -12168,7 +14300,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"CastingEntry", 'DateTime'>
     readonly date: FieldRef<"CastingEntry", 'DateTime'>
     readonly given_gold: FieldRef<"CastingEntry", 'Float'>
-    readonly given_touch: FieldRef<"CastingEntry", 'Float'>
+    readonly touch_id: FieldRef<"CastingEntry", 'Int'>
     readonly purity: FieldRef<"CastingEntry", 'Float'>
     readonly final_touch: FieldRef<"CastingEntry", 'Float'>
     readonly pure_value: FieldRef<"CastingEntry", 'Float'>
@@ -12576,7 +14708,7 @@ export namespace Prisma {
     id: number | null
     item_id: number | null
     weight: number | null
-    touch: number | null
+    touch_id: number | null
     item_purity: number | null
     after_weight: number | null
     scrap_weight: number | null
@@ -12589,7 +14721,7 @@ export namespace Prisma {
     id: number | null
     item_id: number | null
     weight: number | null
-    touch: number | null
+    touch_id: number | null
     item_purity: number | null
     after_weight: number | null
     scrap_weight: number | null
@@ -12604,7 +14736,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE | null
     item_id: number | null
     weight: number | null
-    touch: number | null
+    touch_id: number | null
     item_purity: number | null
     remarks: string | null
     after_weight: number | null
@@ -12620,7 +14752,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE | null
     item_id: number | null
     weight: number | null
-    touch: number | null
+    touch_id: number | null
     item_purity: number | null
     remarks: string | null
     after_weight: number | null
@@ -12636,7 +14768,7 @@ export namespace Prisma {
     type: number
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks: number
     after_weight: number
@@ -12652,7 +14784,7 @@ export namespace Prisma {
     id?: true
     item_id?: true
     weight?: true
-    touch?: true
+    touch_id?: true
     item_purity?: true
     after_weight?: true
     scrap_weight?: true
@@ -12665,7 +14797,7 @@ export namespace Prisma {
     id?: true
     item_id?: true
     weight?: true
-    touch?: true
+    touch_id?: true
     item_purity?: true
     after_weight?: true
     scrap_weight?: true
@@ -12680,7 +14812,7 @@ export namespace Prisma {
     type?: true
     item_id?: true
     weight?: true
-    touch?: true
+    touch_id?: true
     item_purity?: true
     remarks?: true
     after_weight?: true
@@ -12696,7 +14828,7 @@ export namespace Prisma {
     type?: true
     item_id?: true
     weight?: true
-    touch?: true
+    touch_id?: true
     item_purity?: true
     remarks?: true
     after_weight?: true
@@ -12712,7 +14844,7 @@ export namespace Prisma {
     type?: true
     item_id?: true
     weight?: true
-    touch?: true
+    touch_id?: true
     item_purity?: true
     remarks?: true
     after_weight?: true
@@ -12815,7 +14947,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks: string | null
     after_weight: number | null
@@ -12850,7 +14982,7 @@ export namespace Prisma {
     type?: boolean
     item_id?: boolean
     weight?: boolean
-    touch?: boolean
+    touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
     after_weight?: boolean
@@ -12858,6 +14990,7 @@ export namespace Prisma {
     scrap_wastage?: boolean
     casting_entry_id?: boolean
     casting_customer_id?: boolean
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     castingEntry?: boolean | CastingEntryDefaultArgs<ExtArgs>
     filingEntry?: boolean | CastingItems$filingEntryArgs<ExtArgs>
@@ -12876,7 +15009,7 @@ export namespace Prisma {
     type?: boolean
     item_id?: boolean
     weight?: boolean
-    touch?: boolean
+    touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
     after_weight?: boolean
@@ -12886,8 +15019,9 @@ export namespace Prisma {
     casting_customer_id?: boolean
   }
 
-  export type CastingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "item_id" | "weight" | "touch" | "item_purity" | "remarks" | "after_weight" | "scrap_weight" | "scrap_wastage" | "casting_entry_id" | "casting_customer_id", ExtArgs["result"]["castingItems"]>
+  export type CastingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "after_weight" | "scrap_weight" | "scrap_wastage" | "casting_entry_id" | "casting_customer_id", ExtArgs["result"]["castingItems"]>
   export type CastingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     castingEntry?: boolean | CastingEntryDefaultArgs<ExtArgs>
     filingEntry?: boolean | CastingItems$filingEntryArgs<ExtArgs>
@@ -12901,9 +15035,10 @@ export namespace Prisma {
   export type $CastingItemsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CastingItems"
     objects: {
+      touch: Prisma.$AddTouchPayload<ExtArgs>
       item: Prisma.$AddItemPayload<ExtArgs>
       castingEntry: Prisma.$CastingEntryPayload<ExtArgs>
-      filingEntry: Prisma.$FilingEntryPayload<ExtArgs> | null
+      filingEntry: Prisma.$FilingEntryPayload<ExtArgs>[]
       settingEntry: Prisma.$SettingEntryPayload<ExtArgs> | null
       buffingEntry: Prisma.$BuffingEntryPayload<ExtArgs> | null
       stock: Prisma.$StockPayload<ExtArgs>[]
@@ -12915,7 +15050,7 @@ export namespace Prisma {
       type: $Enums.CASTINGENTRYTYPE
       item_id: number
       weight: number
-      touch: number
+      touch_id: number
       item_purity: number
       remarks: string | null
       after_weight: number | null
@@ -13263,9 +15398,10 @@ export namespace Prisma {
    */
   export interface Prisma__CastingItemsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    touch<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     item<T extends AddItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddItemDefaultArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     castingEntry<T extends CastingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingEntryDefaultArgs<ExtArgs>>): Prisma__CastingEntryClient<$Result.GetResult<Prisma.$CastingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    filingEntry<T extends CastingItems$filingEntryArgs<ExtArgs> = {}>(args?: Subset<T, CastingItems$filingEntryArgs<ExtArgs>>): Prisma__FilingEntryClient<$Result.GetResult<Prisma.$FilingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    filingEntry<T extends CastingItems$filingEntryArgs<ExtArgs> = {}>(args?: Subset<T, CastingItems$filingEntryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     settingEntry<T extends CastingItems$settingEntryArgs<ExtArgs> = {}>(args?: Subset<T, CastingItems$settingEntryArgs<ExtArgs>>): Prisma__SettingEntryClient<$Result.GetResult<Prisma.$SettingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     buffingEntry<T extends CastingItems$buffingEntryArgs<ExtArgs> = {}>(args?: Subset<T, CastingItems$buffingEntryArgs<ExtArgs>>): Prisma__BuffingEntryClient<$Result.GetResult<Prisma.$BuffingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     stock<T extends CastingItems$stockArgs<ExtArgs> = {}>(args?: Subset<T, CastingItems$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -13304,7 +15440,7 @@ export namespace Prisma {
     readonly type: FieldRef<"CastingItems", 'CASTINGENTRYTYPE'>
     readonly item_id: FieldRef<"CastingItems", 'Int'>
     readonly weight: FieldRef<"CastingItems", 'Float'>
-    readonly touch: FieldRef<"CastingItems", 'Float'>
+    readonly touch_id: FieldRef<"CastingItems", 'Int'>
     readonly item_purity: FieldRef<"CastingItems", 'Float'>
     readonly remarks: FieldRef<"CastingItems", 'String'>
     readonly after_weight: FieldRef<"CastingItems", 'Float'>
@@ -13671,6 +15807,11 @@ export namespace Prisma {
      */
     include?: FilingEntryInclude<ExtArgs> | null
     where?: FilingEntryWhereInput
+    orderBy?: FilingEntryOrderByWithRelationInput | FilingEntryOrderByWithRelationInput[]
+    cursor?: FilingEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilingEntryScalarFieldEnum | FilingEntryScalarFieldEnum[]
   }
 
   /**
@@ -13770,20 +15911,12 @@ export namespace Prisma {
     id: number | null
     filing_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    after_weight: number | null
   }
 
   export type FilingEntrySumAggregateOutputType = {
     id: number | null
     filing_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    after_weight: number | null
   }
 
   export type FilingEntryMinAggregateOutputType = {
@@ -13791,12 +15924,6 @@ export namespace Prisma {
     createdAt: Date | null
     filing_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    remarks: string | null
-    after_weight: number | null
-    stone_option: $Enums.STONEOPTION | null
   }
 
   export type FilingEntryMaxAggregateOutputType = {
@@ -13804,12 +15931,6 @@ export namespace Prisma {
     createdAt: Date | null
     filing_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    remarks: string | null
-    after_weight: number | null
-    stone_option: $Enums.STONEOPTION | null
   }
 
   export type FilingEntryCountAggregateOutputType = {
@@ -13817,12 +15938,6 @@ export namespace Prisma {
     createdAt: number
     filing_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks: number
-    after_weight: number
-    stone_option: number
     _all: number
   }
 
@@ -13831,20 +15946,12 @@ export namespace Prisma {
     id?: true
     filing_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    after_weight?: true
   }
 
   export type FilingEntrySumAggregateInputType = {
     id?: true
     filing_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    after_weight?: true
   }
 
   export type FilingEntryMinAggregateInputType = {
@@ -13852,12 +15959,6 @@ export namespace Prisma {
     createdAt?: true
     filing_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    remarks?: true
-    after_weight?: true
-    stone_option?: true
   }
 
   export type FilingEntryMaxAggregateInputType = {
@@ -13865,12 +15966,6 @@ export namespace Prisma {
     createdAt?: true
     filing_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    remarks?: true
-    after_weight?: true
-    stone_option?: true
   }
 
   export type FilingEntryCountAggregateInputType = {
@@ -13878,12 +15973,6 @@ export namespace Prisma {
     createdAt?: true
     filing_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    remarks?: true
-    after_weight?: true
-    stone_option?: true
     _all?: true
   }
 
@@ -13978,12 +16067,6 @@ export namespace Prisma {
     createdAt: Date
     filing_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks: string | null
-    after_weight: number | null
-    stone_option: $Enums.STONEOPTION
     _count: FilingEntryCountAggregateOutputType | null
     _avg: FilingEntryAvgAggregateOutputType | null
     _sum: FilingEntrySumAggregateOutputType | null
@@ -14010,17 +16093,8 @@ export namespace Prisma {
     createdAt?: boolean
     filing_person_id?: boolean
     casting_item_id?: boolean
-    weight?: boolean
-    touch?: boolean
-    item_purity?: boolean
-    remarks?: boolean
-    after_weight?: boolean
-    stone_option?: boolean
     filing_person?: boolean | AddFilingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
-    settingEntry?: boolean | FilingEntry$settingEntryArgs<ExtArgs>
-    buffingEntries?: boolean | FilingEntry$buffingEntriesArgs<ExtArgs>
-    _count?: boolean | FilingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["filingEntry"]>
 
 
@@ -14030,21 +16104,12 @@ export namespace Prisma {
     createdAt?: boolean
     filing_person_id?: boolean
     casting_item_id?: boolean
-    weight?: boolean
-    touch?: boolean
-    item_purity?: boolean
-    remarks?: boolean
-    after_weight?: boolean
-    stone_option?: boolean
   }
 
-  export type FilingEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "filing_person_id" | "casting_item_id" | "weight" | "touch" | "item_purity" | "remarks" | "after_weight" | "stone_option", ExtArgs["result"]["filingEntry"]>
+  export type FilingEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "filing_person_id" | "casting_item_id", ExtArgs["result"]["filingEntry"]>
   export type FilingEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filing_person?: boolean | AddFilingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
-    settingEntry?: boolean | FilingEntry$settingEntryArgs<ExtArgs>
-    buffingEntries?: boolean | FilingEntry$buffingEntriesArgs<ExtArgs>
-    _count?: boolean | FilingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $FilingEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14052,20 +16117,12 @@ export namespace Prisma {
     objects: {
       filing_person: Prisma.$AddFilingPayload<ExtArgs>
       castingItem: Prisma.$CastingItemsPayload<ExtArgs>
-      settingEntry: Prisma.$SettingEntryPayload<ExtArgs>[]
-      buffingEntries: Prisma.$BuffingEntryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
       filing_person_id: number
       casting_item_id: number
-      weight: number
-      touch: number
-      item_purity: number
-      remarks: string | null
-      after_weight: number | null
-      stone_option: $Enums.STONEOPTION
     }, ExtArgs["result"]["filingEntry"]>
     composites: {}
   }
@@ -14408,8 +16465,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     filing_person<T extends AddFilingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddFilingDefaultArgs<ExtArgs>>): Prisma__AddFilingClient<$Result.GetResult<Prisma.$AddFilingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     castingItem<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    settingEntry<T extends FilingEntry$settingEntryArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$settingEntryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    buffingEntries<T extends FilingEntry$buffingEntriesArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$buffingEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14443,12 +16498,6 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"FilingEntry", 'DateTime'>
     readonly filing_person_id: FieldRef<"FilingEntry", 'Int'>
     readonly casting_item_id: FieldRef<"FilingEntry", 'Int'>
-    readonly weight: FieldRef<"FilingEntry", 'Float'>
-    readonly touch: FieldRef<"FilingEntry", 'Float'>
-    readonly item_purity: FieldRef<"FilingEntry", 'Float'>
-    readonly remarks: FieldRef<"FilingEntry", 'String'>
-    readonly after_weight: FieldRef<"FilingEntry", 'Float'>
-    readonly stone_option: FieldRef<"FilingEntry", 'STONEOPTION'>
   }
     
 
@@ -14792,9 +16841,1134 @@ export namespace Prisma {
   }
 
   /**
-   * FilingEntry.settingEntry
+   * FilingEntry without action
    */
-  export type FilingEntry$settingEntryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FilingEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingEntry
+     */
+    select?: FilingEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingEntry
+     */
+    omit?: FilingEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingEntryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FilingItems
+   */
+
+  export type AggregateFilingItems = {
+    _count: FilingItemsCountAggregateOutputType | null
+    _avg: FilingItemsAvgAggregateOutputType | null
+    _sum: FilingItemsSumAggregateOutputType | null
+    _min: FilingItemsMinAggregateOutputType | null
+    _max: FilingItemsMaxAggregateOutputType | null
+  }
+
+  export type FilingItemsAvgAggregateOutputType = {
+    id: number | null
+    item_id: number | null
+    weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+    after_weight: number | null
+    scrap_weight: number | null
+    scrap_wastage: number | null
+  }
+
+  export type FilingItemsSumAggregateOutputType = {
+    id: number | null
+    item_id: number | null
+    weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+    after_weight: number | null
+    scrap_weight: number | null
+    scrap_wastage: number | null
+  }
+
+  export type FilingItemsMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    type: $Enums.CASTINGENTRYTYPE | null
+    item_id: number | null
+    weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+    remarks: string | null
+    wastage: boolean | null
+    stone_option: $Enums.STONEOPTION | null
+    after_weight: number | null
+    scrap_weight: number | null
+    scrap_wastage: number | null
+  }
+
+  export type FilingItemsMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    type: $Enums.CASTINGENTRYTYPE | null
+    item_id: number | null
+    weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+    remarks: string | null
+    wastage: boolean | null
+    stone_option: $Enums.STONEOPTION | null
+    after_weight: number | null
+    scrap_weight: number | null
+    scrap_wastage: number | null
+  }
+
+  export type FilingItemsCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    type: number
+    item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks: number
+    wastage: number
+    stone_option: number
+    after_weight: number
+    scrap_weight: number
+    scrap_wastage: number
+    _all: number
+  }
+
+
+  export type FilingItemsAvgAggregateInputType = {
+    id?: true
+    item_id?: true
+    weight?: true
+    touch_id?: true
+    item_purity?: true
+    after_weight?: true
+    scrap_weight?: true
+    scrap_wastage?: true
+  }
+
+  export type FilingItemsSumAggregateInputType = {
+    id?: true
+    item_id?: true
+    weight?: true
+    touch_id?: true
+    item_purity?: true
+    after_weight?: true
+    scrap_weight?: true
+    scrap_wastage?: true
+  }
+
+  export type FilingItemsMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    type?: true
+    item_id?: true
+    weight?: true
+    touch_id?: true
+    item_purity?: true
+    remarks?: true
+    wastage?: true
+    stone_option?: true
+    after_weight?: true
+    scrap_weight?: true
+    scrap_wastage?: true
+  }
+
+  export type FilingItemsMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    type?: true
+    item_id?: true
+    weight?: true
+    touch_id?: true
+    item_purity?: true
+    remarks?: true
+    wastage?: true
+    stone_option?: true
+    after_weight?: true
+    scrap_weight?: true
+    scrap_wastage?: true
+  }
+
+  export type FilingItemsCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    type?: true
+    item_id?: true
+    weight?: true
+    touch_id?: true
+    item_purity?: true
+    remarks?: true
+    wastage?: true
+    stone_option?: true
+    after_weight?: true
+    scrap_weight?: true
+    scrap_wastage?: true
+    _all?: true
+  }
+
+  export type FilingItemsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FilingItems to aggregate.
+     */
+    where?: FilingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingItems to fetch.
+     */
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FilingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FilingItems
+    **/
+    _count?: true | FilingItemsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FilingItemsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FilingItemsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FilingItemsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FilingItemsMaxAggregateInputType
+  }
+
+  export type GetFilingItemsAggregateType<T extends FilingItemsAggregateArgs> = {
+        [P in keyof T & keyof AggregateFilingItems]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFilingItems[P]>
+      : GetScalarType<T[P], AggregateFilingItems[P]>
+  }
+
+
+
+
+  export type FilingItemsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingItemsWhereInput
+    orderBy?: FilingItemsOrderByWithAggregationInput | FilingItemsOrderByWithAggregationInput[]
+    by: FilingItemsScalarFieldEnum[] | FilingItemsScalarFieldEnum
+    having?: FilingItemsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FilingItemsCountAggregateInputType | true
+    _avg?: FilingItemsAvgAggregateInputType
+    _sum?: FilingItemsSumAggregateInputType
+    _min?: FilingItemsMinAggregateInputType
+    _max?: FilingItemsMaxAggregateInputType
+  }
+
+  export type FilingItemsGroupByOutputType = {
+    id: number
+    createdAt: Date
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks: string | null
+    wastage: boolean | null
+    stone_option: $Enums.STONEOPTION | null
+    after_weight: number | null
+    scrap_weight: number | null
+    scrap_wastage: number | null
+    _count: FilingItemsCountAggregateOutputType | null
+    _avg: FilingItemsAvgAggregateOutputType | null
+    _sum: FilingItemsSumAggregateOutputType | null
+    _min: FilingItemsMinAggregateOutputType | null
+    _max: FilingItemsMaxAggregateOutputType | null
+  }
+
+  type GetFilingItemsGroupByPayload<T extends FilingItemsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FilingItemsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FilingItemsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FilingItemsGroupByOutputType[P]>
+            : GetScalarType<T[P], FilingItemsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FilingItemsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    type?: boolean
+    item_id?: boolean
+    weight?: boolean
+    touch_id?: boolean
+    item_purity?: boolean
+    remarks?: boolean
+    wastage?: boolean
+    stone_option?: boolean
+    after_weight?: boolean
+    scrap_weight?: boolean
+    scrap_wastage?: boolean
+    item?: boolean | AddItemDefaultArgs<ExtArgs>
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
+    stock?: boolean | FilingItems$stockArgs<ExtArgs>
+    setting_entry?: boolean | FilingItems$setting_entryArgs<ExtArgs>
+    buffing_entry?: boolean | FilingItems$buffing_entryArgs<ExtArgs>
+    filing_wastage?: boolean | FilingItems$filing_wastageArgs<ExtArgs>
+    _count?: boolean | FilingItemsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["filingItems"]>
+
+
+
+  export type FilingItemsSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    type?: boolean
+    item_id?: boolean
+    weight?: boolean
+    touch_id?: boolean
+    item_purity?: boolean
+    remarks?: boolean
+    wastage?: boolean
+    stone_option?: boolean
+    after_weight?: boolean
+    scrap_weight?: boolean
+    scrap_wastage?: boolean
+  }
+
+  export type FilingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "wastage" | "stone_option" | "after_weight" | "scrap_weight" | "scrap_wastage", ExtArgs["result"]["filingItems"]>
+  export type FilingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    item?: boolean | AddItemDefaultArgs<ExtArgs>
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
+    stock?: boolean | FilingItems$stockArgs<ExtArgs>
+    setting_entry?: boolean | FilingItems$setting_entryArgs<ExtArgs>
+    buffing_entry?: boolean | FilingItems$buffing_entryArgs<ExtArgs>
+    filing_wastage?: boolean | FilingItems$filing_wastageArgs<ExtArgs>
+    _count?: boolean | FilingItemsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $FilingItemsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FilingItems"
+    objects: {
+      item: Prisma.$AddItemPayload<ExtArgs>
+      touch: Prisma.$AddTouchPayload<ExtArgs>
+      stock: Prisma.$StockPayload<ExtArgs>[]
+      setting_entry: Prisma.$SettingEntryPayload<ExtArgs>[]
+      buffing_entry: Prisma.$BuffingEntryPayload<ExtArgs>[]
+      filing_wastage: Prisma.$FilingWastagePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      type: $Enums.CASTINGENTRYTYPE
+      item_id: number
+      weight: number
+      touch_id: number
+      item_purity: number
+      remarks: string | null
+      wastage: boolean | null
+      stone_option: $Enums.STONEOPTION | null
+      after_weight: number | null
+      scrap_weight: number | null
+      scrap_wastage: number | null
+    }, ExtArgs["result"]["filingItems"]>
+    composites: {}
+  }
+
+  type FilingItemsGetPayload<S extends boolean | null | undefined | FilingItemsDefaultArgs> = $Result.GetResult<Prisma.$FilingItemsPayload, S>
+
+  type FilingItemsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FilingItemsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FilingItemsCountAggregateInputType | true
+    }
+
+  export interface FilingItemsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FilingItems'], meta: { name: 'FilingItems' } }
+    /**
+     * Find zero or one FilingItems that matches the filter.
+     * @param {FilingItemsFindUniqueArgs} args - Arguments to find a FilingItems
+     * @example
+     * // Get one FilingItems
+     * const filingItems = await prisma.filingItems.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FilingItemsFindUniqueArgs>(args: SelectSubset<T, FilingItemsFindUniqueArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FilingItems that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FilingItemsFindUniqueOrThrowArgs} args - Arguments to find a FilingItems
+     * @example
+     * // Get one FilingItems
+     * const filingItems = await prisma.filingItems.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FilingItemsFindUniqueOrThrowArgs>(args: SelectSubset<T, FilingItemsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FilingItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingItemsFindFirstArgs} args - Arguments to find a FilingItems
+     * @example
+     * // Get one FilingItems
+     * const filingItems = await prisma.filingItems.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FilingItemsFindFirstArgs>(args?: SelectSubset<T, FilingItemsFindFirstArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FilingItems that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingItemsFindFirstOrThrowArgs} args - Arguments to find a FilingItems
+     * @example
+     * // Get one FilingItems
+     * const filingItems = await prisma.filingItems.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FilingItemsFindFirstOrThrowArgs>(args?: SelectSubset<T, FilingItemsFindFirstOrThrowArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FilingItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingItemsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FilingItems
+     * const filingItems = await prisma.filingItems.findMany()
+     * 
+     * // Get first 10 FilingItems
+     * const filingItems = await prisma.filingItems.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const filingItemsWithIdOnly = await prisma.filingItems.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FilingItemsFindManyArgs>(args?: SelectSubset<T, FilingItemsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FilingItems.
+     * @param {FilingItemsCreateArgs} args - Arguments to create a FilingItems.
+     * @example
+     * // Create one FilingItems
+     * const FilingItems = await prisma.filingItems.create({
+     *   data: {
+     *     // ... data to create a FilingItems
+     *   }
+     * })
+     * 
+     */
+    create<T extends FilingItemsCreateArgs>(args: SelectSubset<T, FilingItemsCreateArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FilingItems.
+     * @param {FilingItemsCreateManyArgs} args - Arguments to create many FilingItems.
+     * @example
+     * // Create many FilingItems
+     * const filingItems = await prisma.filingItems.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FilingItemsCreateManyArgs>(args?: SelectSubset<T, FilingItemsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a FilingItems.
+     * @param {FilingItemsDeleteArgs} args - Arguments to delete one FilingItems.
+     * @example
+     * // Delete one FilingItems
+     * const FilingItems = await prisma.filingItems.delete({
+     *   where: {
+     *     // ... filter to delete one FilingItems
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FilingItemsDeleteArgs>(args: SelectSubset<T, FilingItemsDeleteArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FilingItems.
+     * @param {FilingItemsUpdateArgs} args - Arguments to update one FilingItems.
+     * @example
+     * // Update one FilingItems
+     * const filingItems = await prisma.filingItems.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FilingItemsUpdateArgs>(args: SelectSubset<T, FilingItemsUpdateArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FilingItems.
+     * @param {FilingItemsDeleteManyArgs} args - Arguments to filter FilingItems to delete.
+     * @example
+     * // Delete a few FilingItems
+     * const { count } = await prisma.filingItems.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FilingItemsDeleteManyArgs>(args?: SelectSubset<T, FilingItemsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FilingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingItemsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FilingItems
+     * const filingItems = await prisma.filingItems.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FilingItemsUpdateManyArgs>(args: SelectSubset<T, FilingItemsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one FilingItems.
+     * @param {FilingItemsUpsertArgs} args - Arguments to update or create a FilingItems.
+     * @example
+     * // Update or create a FilingItems
+     * const filingItems = await prisma.filingItems.upsert({
+     *   create: {
+     *     // ... data to create a FilingItems
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FilingItems we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FilingItemsUpsertArgs>(args: SelectSubset<T, FilingItemsUpsertArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FilingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingItemsCountArgs} args - Arguments to filter FilingItems to count.
+     * @example
+     * // Count the number of FilingItems
+     * const count = await prisma.filingItems.count({
+     *   where: {
+     *     // ... the filter for the FilingItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends FilingItemsCountArgs>(
+      args?: Subset<T, FilingItemsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FilingItemsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FilingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingItemsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FilingItemsAggregateArgs>(args: Subset<T, FilingItemsAggregateArgs>): Prisma.PrismaPromise<GetFilingItemsAggregateType<T>>
+
+    /**
+     * Group by FilingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingItemsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FilingItemsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FilingItemsGroupByArgs['orderBy'] }
+        : { orderBy?: FilingItemsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FilingItemsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFilingItemsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FilingItems model
+   */
+  readonly fields: FilingItemsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FilingItems.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FilingItemsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    item<T extends AddItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddItemDefaultArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    touch<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    stock<T extends FilingItems$stockArgs<ExtArgs> = {}>(args?: Subset<T, FilingItems$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    setting_entry<T extends FilingItems$setting_entryArgs<ExtArgs> = {}>(args?: Subset<T, FilingItems$setting_entryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    buffing_entry<T extends FilingItems$buffing_entryArgs<ExtArgs> = {}>(args?: Subset<T, FilingItems$buffing_entryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    filing_wastage<T extends FilingItems$filing_wastageArgs<ExtArgs> = {}>(args?: Subset<T, FilingItems$filing_wastageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FilingItems model
+   */
+  interface FilingItemsFieldRefs {
+    readonly id: FieldRef<"FilingItems", 'Int'>
+    readonly createdAt: FieldRef<"FilingItems", 'DateTime'>
+    readonly type: FieldRef<"FilingItems", 'CASTINGENTRYTYPE'>
+    readonly item_id: FieldRef<"FilingItems", 'Int'>
+    readonly weight: FieldRef<"FilingItems", 'Float'>
+    readonly touch_id: FieldRef<"FilingItems", 'Int'>
+    readonly item_purity: FieldRef<"FilingItems", 'Float'>
+    readonly remarks: FieldRef<"FilingItems", 'String'>
+    readonly wastage: FieldRef<"FilingItems", 'Boolean'>
+    readonly stone_option: FieldRef<"FilingItems", 'STONEOPTION'>
+    readonly after_weight: FieldRef<"FilingItems", 'Float'>
+    readonly scrap_weight: FieldRef<"FilingItems", 'Float'>
+    readonly scrap_wastage: FieldRef<"FilingItems", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FilingItems findUnique
+   */
+  export type FilingItemsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingItems to fetch.
+     */
+    where: FilingItemsWhereUniqueInput
+  }
+
+  /**
+   * FilingItems findUniqueOrThrow
+   */
+  export type FilingItemsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingItems to fetch.
+     */
+    where: FilingItemsWhereUniqueInput
+  }
+
+  /**
+   * FilingItems findFirst
+   */
+  export type FilingItemsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingItems to fetch.
+     */
+    where?: FilingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingItems to fetch.
+     */
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FilingItems.
+     */
+    cursor?: FilingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FilingItems.
+     */
+    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * FilingItems findFirstOrThrow
+   */
+  export type FilingItemsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingItems to fetch.
+     */
+    where?: FilingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingItems to fetch.
+     */
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FilingItems.
+     */
+    cursor?: FilingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FilingItems.
+     */
+    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * FilingItems findMany
+   */
+  export type FilingItemsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingItems to fetch.
+     */
+    where?: FilingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingItems to fetch.
+     */
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FilingItems.
+     */
+    cursor?: FilingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingItems.
+     */
+    skip?: number
+    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * FilingItems create
+   */
+  export type FilingItemsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FilingItems.
+     */
+    data: XOR<FilingItemsCreateInput, FilingItemsUncheckedCreateInput>
+  }
+
+  /**
+   * FilingItems createMany
+   */
+  export type FilingItemsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FilingItems.
+     */
+    data: FilingItemsCreateManyInput | FilingItemsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FilingItems update
+   */
+  export type FilingItemsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FilingItems.
+     */
+    data: XOR<FilingItemsUpdateInput, FilingItemsUncheckedUpdateInput>
+    /**
+     * Choose, which FilingItems to update.
+     */
+    where: FilingItemsWhereUniqueInput
+  }
+
+  /**
+   * FilingItems updateMany
+   */
+  export type FilingItemsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FilingItems.
+     */
+    data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyInput>
+    /**
+     * Filter which FilingItems to update
+     */
+    where?: FilingItemsWhereInput
+    /**
+     * Limit how many FilingItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FilingItems upsert
+   */
+  export type FilingItemsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FilingItems to update in case it exists.
+     */
+    where: FilingItemsWhereUniqueInput
+    /**
+     * In case the FilingItems found by the `where` argument doesn't exist, create a new FilingItems with this data.
+     */
+    create: XOR<FilingItemsCreateInput, FilingItemsUncheckedCreateInput>
+    /**
+     * In case the FilingItems was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FilingItemsUpdateInput, FilingItemsUncheckedUpdateInput>
+  }
+
+  /**
+   * FilingItems delete
+   */
+  export type FilingItemsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    /**
+     * Filter which FilingItems to delete.
+     */
+    where: FilingItemsWhereUniqueInput
+  }
+
+  /**
+   * FilingItems deleteMany
+   */
+  export type FilingItemsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FilingItems to delete
+     */
+    where?: FilingItemsWhereInput
+    /**
+     * Limit how many FilingItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FilingItems.stock
+   */
+  export type FilingItems$stockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stock
+     */
+    select?: StockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stock
+     */
+    omit?: StockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StockInclude<ExtArgs> | null
+    where?: StockWhereInput
+    orderBy?: StockOrderByWithRelationInput | StockOrderByWithRelationInput[]
+    cursor?: StockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StockScalarFieldEnum | StockScalarFieldEnum[]
+  }
+
+  /**
+   * FilingItems.setting_entry
+   */
+  export type FilingItems$setting_entryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the SettingEntry
      */
@@ -14816,9 +17990,9 @@ export namespace Prisma {
   }
 
   /**
-   * FilingEntry.buffingEntries
+   * FilingItems.buffing_entry
    */
-  export type FilingEntry$buffingEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FilingItems$buffing_entryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the BuffingEntry
      */
@@ -14840,21 +18014,1046 @@ export namespace Prisma {
   }
 
   /**
-   * FilingEntry without action
+   * FilingItems.filing_wastage
    */
-  export type FilingEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FilingItems$filing_wastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FilingEntry
+     * Select specific fields to fetch from the FilingWastage
      */
-    select?: FilingEntrySelect<ExtArgs> | null
+    select?: FilingWastageSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FilingEntry
+     * Omit specific fields from the FilingWastage
      */
-    omit?: FilingEntryOmit<ExtArgs> | null
+    omit?: FilingWastageOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FilingEntryInclude<ExtArgs> | null
+    include?: FilingWastageInclude<ExtArgs> | null
+    where?: FilingWastageWhereInput
+    orderBy?: FilingWastageOrderByWithRelationInput | FilingWastageOrderByWithRelationInput[]
+    cursor?: FilingWastageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilingWastageScalarFieldEnum | FilingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * FilingItems without action
+   */
+  export type FilingItemsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FilingWastage
+   */
+
+  export type AggregateFilingWastage = {
+    _count: FilingWastageCountAggregateOutputType | null
+    _avg: FilingWastageAvgAggregateOutputType | null
+    _sum: FilingWastageSumAggregateOutputType | null
+    _min: FilingWastageMinAggregateOutputType | null
+    _max: FilingWastageMaxAggregateOutputType | null
+  }
+
+  export type FilingWastageAvgAggregateOutputType = {
+    id: number | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type FilingWastageSumAggregateOutputType = {
+    id: number | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type FilingWastageMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type FilingWastageMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type FilingWastageCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    wastage_percentage: number
+    given_gold: number
+    add_wastage: number
+    _all: number
+  }
+
+
+  export type FilingWastageAvgAggregateInputType = {
+    id?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type FilingWastageSumAggregateInputType = {
+    id?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type FilingWastageMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type FilingWastageMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type FilingWastageCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+    _all?: true
+  }
+
+  export type FilingWastageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FilingWastage to aggregate.
+     */
+    where?: FilingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingWastages to fetch.
+     */
+    orderBy?: FilingWastageOrderByWithRelationInput | FilingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FilingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingWastages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FilingWastages
+    **/
+    _count?: true | FilingWastageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FilingWastageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FilingWastageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FilingWastageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FilingWastageMaxAggregateInputType
+  }
+
+  export type GetFilingWastageAggregateType<T extends FilingWastageAggregateArgs> = {
+        [P in keyof T & keyof AggregateFilingWastage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFilingWastage[P]>
+      : GetScalarType<T[P], AggregateFilingWastage[P]>
+  }
+
+
+
+
+  export type FilingWastageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingWastageWhereInput
+    orderBy?: FilingWastageOrderByWithAggregationInput | FilingWastageOrderByWithAggregationInput[]
+    by: FilingWastageScalarFieldEnum[] | FilingWastageScalarFieldEnum
+    having?: FilingWastageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FilingWastageCountAggregateInputType | true
+    _avg?: FilingWastageAvgAggregateInputType
+    _sum?: FilingWastageSumAggregateInputType
+    _min?: FilingWastageMinAggregateInputType
+    _max?: FilingWastageMaxAggregateInputType
+  }
+
+  export type FilingWastageGroupByOutputType = {
+    id: number
+    createdAt: Date
+    wastage_percentage: number
+    given_gold: number | null
+    add_wastage: number | null
+    _count: FilingWastageCountAggregateOutputType | null
+    _avg: FilingWastageAvgAggregateOutputType | null
+    _sum: FilingWastageSumAggregateOutputType | null
+    _min: FilingWastageMinAggregateOutputType | null
+    _max: FilingWastageMaxAggregateOutputType | null
+  }
+
+  type GetFilingWastageGroupByPayload<T extends FilingWastageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FilingWastageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FilingWastageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FilingWastageGroupByOutputType[P]>
+            : GetScalarType<T[P], FilingWastageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FilingWastageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    wastage_percentage?: boolean
+    given_gold?: boolean
+    add_wastage?: boolean
+    filing_items?: boolean | FilingWastage$filing_itemsArgs<ExtArgs>
+    _count?: boolean | FilingWastageCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["filingWastage"]>
+
+
+
+  export type FilingWastageSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    wastage_percentage?: boolean
+    given_gold?: boolean
+    add_wastage?: boolean
+  }
+
+  export type FilingWastageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "wastage_percentage" | "given_gold" | "add_wastage", ExtArgs["result"]["filingWastage"]>
+  export type FilingWastageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filing_items?: boolean | FilingWastage$filing_itemsArgs<ExtArgs>
+    _count?: boolean | FilingWastageCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $FilingWastagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FilingWastage"
+    objects: {
+      filing_items: Prisma.$FilingItemsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      wastage_percentage: number
+      given_gold: number | null
+      add_wastage: number | null
+    }, ExtArgs["result"]["filingWastage"]>
+    composites: {}
+  }
+
+  type FilingWastageGetPayload<S extends boolean | null | undefined | FilingWastageDefaultArgs> = $Result.GetResult<Prisma.$FilingWastagePayload, S>
+
+  type FilingWastageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FilingWastageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FilingWastageCountAggregateInputType | true
+    }
+
+  export interface FilingWastageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FilingWastage'], meta: { name: 'FilingWastage' } }
+    /**
+     * Find zero or one FilingWastage that matches the filter.
+     * @param {FilingWastageFindUniqueArgs} args - Arguments to find a FilingWastage
+     * @example
+     * // Get one FilingWastage
+     * const filingWastage = await prisma.filingWastage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FilingWastageFindUniqueArgs>(args: SelectSubset<T, FilingWastageFindUniqueArgs<ExtArgs>>): Prisma__FilingWastageClient<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FilingWastage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FilingWastageFindUniqueOrThrowArgs} args - Arguments to find a FilingWastage
+     * @example
+     * // Get one FilingWastage
+     * const filingWastage = await prisma.filingWastage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FilingWastageFindUniqueOrThrowArgs>(args: SelectSubset<T, FilingWastageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FilingWastageClient<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FilingWastage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingWastageFindFirstArgs} args - Arguments to find a FilingWastage
+     * @example
+     * // Get one FilingWastage
+     * const filingWastage = await prisma.filingWastage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FilingWastageFindFirstArgs>(args?: SelectSubset<T, FilingWastageFindFirstArgs<ExtArgs>>): Prisma__FilingWastageClient<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FilingWastage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingWastageFindFirstOrThrowArgs} args - Arguments to find a FilingWastage
+     * @example
+     * // Get one FilingWastage
+     * const filingWastage = await prisma.filingWastage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FilingWastageFindFirstOrThrowArgs>(args?: SelectSubset<T, FilingWastageFindFirstOrThrowArgs<ExtArgs>>): Prisma__FilingWastageClient<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FilingWastages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingWastageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FilingWastages
+     * const filingWastages = await prisma.filingWastage.findMany()
+     * 
+     * // Get first 10 FilingWastages
+     * const filingWastages = await prisma.filingWastage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const filingWastageWithIdOnly = await prisma.filingWastage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FilingWastageFindManyArgs>(args?: SelectSubset<T, FilingWastageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FilingWastage.
+     * @param {FilingWastageCreateArgs} args - Arguments to create a FilingWastage.
+     * @example
+     * // Create one FilingWastage
+     * const FilingWastage = await prisma.filingWastage.create({
+     *   data: {
+     *     // ... data to create a FilingWastage
+     *   }
+     * })
+     * 
+     */
+    create<T extends FilingWastageCreateArgs>(args: SelectSubset<T, FilingWastageCreateArgs<ExtArgs>>): Prisma__FilingWastageClient<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FilingWastages.
+     * @param {FilingWastageCreateManyArgs} args - Arguments to create many FilingWastages.
+     * @example
+     * // Create many FilingWastages
+     * const filingWastage = await prisma.filingWastage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FilingWastageCreateManyArgs>(args?: SelectSubset<T, FilingWastageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a FilingWastage.
+     * @param {FilingWastageDeleteArgs} args - Arguments to delete one FilingWastage.
+     * @example
+     * // Delete one FilingWastage
+     * const FilingWastage = await prisma.filingWastage.delete({
+     *   where: {
+     *     // ... filter to delete one FilingWastage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FilingWastageDeleteArgs>(args: SelectSubset<T, FilingWastageDeleteArgs<ExtArgs>>): Prisma__FilingWastageClient<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FilingWastage.
+     * @param {FilingWastageUpdateArgs} args - Arguments to update one FilingWastage.
+     * @example
+     * // Update one FilingWastage
+     * const filingWastage = await prisma.filingWastage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FilingWastageUpdateArgs>(args: SelectSubset<T, FilingWastageUpdateArgs<ExtArgs>>): Prisma__FilingWastageClient<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FilingWastages.
+     * @param {FilingWastageDeleteManyArgs} args - Arguments to filter FilingWastages to delete.
+     * @example
+     * // Delete a few FilingWastages
+     * const { count } = await prisma.filingWastage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FilingWastageDeleteManyArgs>(args?: SelectSubset<T, FilingWastageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FilingWastages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingWastageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FilingWastages
+     * const filingWastage = await prisma.filingWastage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FilingWastageUpdateManyArgs>(args: SelectSubset<T, FilingWastageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one FilingWastage.
+     * @param {FilingWastageUpsertArgs} args - Arguments to update or create a FilingWastage.
+     * @example
+     * // Update or create a FilingWastage
+     * const filingWastage = await prisma.filingWastage.upsert({
+     *   create: {
+     *     // ... data to create a FilingWastage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FilingWastage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FilingWastageUpsertArgs>(args: SelectSubset<T, FilingWastageUpsertArgs<ExtArgs>>): Prisma__FilingWastageClient<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FilingWastages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingWastageCountArgs} args - Arguments to filter FilingWastages to count.
+     * @example
+     * // Count the number of FilingWastages
+     * const count = await prisma.filingWastage.count({
+     *   where: {
+     *     // ... the filter for the FilingWastages we want to count
+     *   }
+     * })
+    **/
+    count<T extends FilingWastageCountArgs>(
+      args?: Subset<T, FilingWastageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FilingWastageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FilingWastage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingWastageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FilingWastageAggregateArgs>(args: Subset<T, FilingWastageAggregateArgs>): Prisma.PrismaPromise<GetFilingWastageAggregateType<T>>
+
+    /**
+     * Group by FilingWastage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingWastageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FilingWastageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FilingWastageGroupByArgs['orderBy'] }
+        : { orderBy?: FilingWastageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FilingWastageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFilingWastageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FilingWastage model
+   */
+  readonly fields: FilingWastageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FilingWastage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FilingWastageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    filing_items<T extends FilingWastage$filing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, FilingWastage$filing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FilingWastage model
+   */
+  interface FilingWastageFieldRefs {
+    readonly id: FieldRef<"FilingWastage", 'Int'>
+    readonly createdAt: FieldRef<"FilingWastage", 'DateTime'>
+    readonly wastage_percentage: FieldRef<"FilingWastage", 'Int'>
+    readonly given_gold: FieldRef<"FilingWastage", 'Int'>
+    readonly add_wastage: FieldRef<"FilingWastage", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FilingWastage findUnique
+   */
+  export type FilingWastageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingWastage to fetch.
+     */
+    where: FilingWastageWhereUniqueInput
+  }
+
+  /**
+   * FilingWastage findUniqueOrThrow
+   */
+  export type FilingWastageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingWastage to fetch.
+     */
+    where: FilingWastageWhereUniqueInput
+  }
+
+  /**
+   * FilingWastage findFirst
+   */
+  export type FilingWastageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingWastage to fetch.
+     */
+    where?: FilingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingWastages to fetch.
+     */
+    orderBy?: FilingWastageOrderByWithRelationInput | FilingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FilingWastages.
+     */
+    cursor?: FilingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingWastages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FilingWastages.
+     */
+    distinct?: FilingWastageScalarFieldEnum | FilingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * FilingWastage findFirstOrThrow
+   */
+  export type FilingWastageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingWastage to fetch.
+     */
+    where?: FilingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingWastages to fetch.
+     */
+    orderBy?: FilingWastageOrderByWithRelationInput | FilingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FilingWastages.
+     */
+    cursor?: FilingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingWastages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FilingWastages.
+     */
+    distinct?: FilingWastageScalarFieldEnum | FilingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * FilingWastage findMany
+   */
+  export type FilingWastageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingWastages to fetch.
+     */
+    where?: FilingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingWastages to fetch.
+     */
+    orderBy?: FilingWastageOrderByWithRelationInput | FilingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FilingWastages.
+     */
+    cursor?: FilingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingWastages.
+     */
+    skip?: number
+    distinct?: FilingWastageScalarFieldEnum | FilingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * FilingWastage create
+   */
+  export type FilingWastageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FilingWastage.
+     */
+    data: XOR<FilingWastageCreateInput, FilingWastageUncheckedCreateInput>
+  }
+
+  /**
+   * FilingWastage createMany
+   */
+  export type FilingWastageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FilingWastages.
+     */
+    data: FilingWastageCreateManyInput | FilingWastageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FilingWastage update
+   */
+  export type FilingWastageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FilingWastage.
+     */
+    data: XOR<FilingWastageUpdateInput, FilingWastageUncheckedUpdateInput>
+    /**
+     * Choose, which FilingWastage to update.
+     */
+    where: FilingWastageWhereUniqueInput
+  }
+
+  /**
+   * FilingWastage updateMany
+   */
+  export type FilingWastageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FilingWastages.
+     */
+    data: XOR<FilingWastageUpdateManyMutationInput, FilingWastageUncheckedUpdateManyInput>
+    /**
+     * Filter which FilingWastages to update
+     */
+    where?: FilingWastageWhereInput
+    /**
+     * Limit how many FilingWastages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FilingWastage upsert
+   */
+  export type FilingWastageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FilingWastage to update in case it exists.
+     */
+    where: FilingWastageWhereUniqueInput
+    /**
+     * In case the FilingWastage found by the `where` argument doesn't exist, create a new FilingWastage with this data.
+     */
+    create: XOR<FilingWastageCreateInput, FilingWastageUncheckedCreateInput>
+    /**
+     * In case the FilingWastage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FilingWastageUpdateInput, FilingWastageUncheckedUpdateInput>
+  }
+
+  /**
+   * FilingWastage delete
+   */
+  export type FilingWastageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
+    /**
+     * Filter which FilingWastage to delete.
+     */
+    where: FilingWastageWhereUniqueInput
+  }
+
+  /**
+   * FilingWastage deleteMany
+   */
+  export type FilingWastageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FilingWastages to delete
+     */
+    where?: FilingWastageWhereInput
+    /**
+     * Limit how many FilingWastages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FilingWastage.filing_items
+   */
+  export type FilingWastage$filing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    where?: FilingItemsWhereInput
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    cursor?: FilingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * FilingWastage without action
+   */
+  export type FilingWastageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
   }
 
 
@@ -14874,22 +19073,12 @@ export namespace Prisma {
     id: number | null
     setting_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    after_weight: number | null
-    filing_entry_id: number | null
   }
 
   export type SettingEntrySumAggregateOutputType = {
     id: number | null
     setting_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    after_weight: number | null
-    filing_entry_id: number | null
   }
 
   export type SettingEntryMinAggregateOutputType = {
@@ -14897,12 +19086,6 @@ export namespace Prisma {
     createdAt: Date | null
     setting_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    remarks: string | null
-    after_weight: number | null
-    filing_entry_id: number | null
   }
 
   export type SettingEntryMaxAggregateOutputType = {
@@ -14910,12 +19093,6 @@ export namespace Prisma {
     createdAt: Date | null
     setting_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    remarks: string | null
-    after_weight: number | null
-    filing_entry_id: number | null
   }
 
   export type SettingEntryCountAggregateOutputType = {
@@ -14923,12 +19100,6 @@ export namespace Prisma {
     createdAt: number
     setting_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks: number
-    after_weight: number
-    filing_entry_id: number
     _all: number
   }
 
@@ -14937,22 +19108,12 @@ export namespace Prisma {
     id?: true
     setting_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    after_weight?: true
-    filing_entry_id?: true
   }
 
   export type SettingEntrySumAggregateInputType = {
     id?: true
     setting_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    after_weight?: true
-    filing_entry_id?: true
   }
 
   export type SettingEntryMinAggregateInputType = {
@@ -14960,12 +19121,6 @@ export namespace Prisma {
     createdAt?: true
     setting_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    remarks?: true
-    after_weight?: true
-    filing_entry_id?: true
   }
 
   export type SettingEntryMaxAggregateInputType = {
@@ -14973,12 +19128,6 @@ export namespace Prisma {
     createdAt?: true
     setting_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    remarks?: true
-    after_weight?: true
-    filing_entry_id?: true
   }
 
   export type SettingEntryCountAggregateInputType = {
@@ -14986,12 +19135,6 @@ export namespace Prisma {
     createdAt?: true
     setting_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    remarks?: true
-    after_weight?: true
-    filing_entry_id?: true
     _all?: true
   }
 
@@ -15086,12 +19229,6 @@ export namespace Prisma {
     createdAt: Date
     setting_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks: string | null
-    after_weight: number | null
-    filing_entry_id: number
     _count: SettingEntryCountAggregateOutputType | null
     _avg: SettingEntryAvgAggregateOutputType | null
     _sum: SettingEntrySumAggregateOutputType | null
@@ -15118,16 +19255,9 @@ export namespace Prisma {
     createdAt?: boolean
     setting_person_id?: boolean
     casting_item_id?: boolean
-    weight?: boolean
-    touch?: boolean
-    item_purity?: boolean
-    remarks?: boolean
-    after_weight?: boolean
-    filing_entry_id?: boolean
     setting_person?: boolean | AddSettingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
-    filingEntry?: boolean | FilingEntryDefaultArgs<ExtArgs>
-    buffingEntries?: boolean | SettingEntry$buffingEntriesArgs<ExtArgs>
+    filingItems?: boolean | SettingEntry$filingItemsArgs<ExtArgs>
     _count?: boolean | SettingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["settingEntry"]>
 
@@ -15138,20 +19268,13 @@ export namespace Prisma {
     createdAt?: boolean
     setting_person_id?: boolean
     casting_item_id?: boolean
-    weight?: boolean
-    touch?: boolean
-    item_purity?: boolean
-    remarks?: boolean
-    after_weight?: boolean
-    filing_entry_id?: boolean
   }
 
-  export type SettingEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "setting_person_id" | "casting_item_id" | "weight" | "touch" | "item_purity" | "remarks" | "after_weight" | "filing_entry_id", ExtArgs["result"]["settingEntry"]>
+  export type SettingEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "setting_person_id" | "casting_item_id", ExtArgs["result"]["settingEntry"]>
   export type SettingEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     setting_person?: boolean | AddSettingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
-    filingEntry?: boolean | FilingEntryDefaultArgs<ExtArgs>
-    buffingEntries?: boolean | SettingEntry$buffingEntriesArgs<ExtArgs>
+    filingItems?: boolean | SettingEntry$filingItemsArgs<ExtArgs>
     _count?: boolean | SettingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -15160,20 +19283,13 @@ export namespace Prisma {
     objects: {
       setting_person: Prisma.$AddSettingPayload<ExtArgs>
       castingItem: Prisma.$CastingItemsPayload<ExtArgs>
-      filingEntry: Prisma.$FilingEntryPayload<ExtArgs>
-      buffingEntries: Prisma.$BuffingEntryPayload<ExtArgs>[]
+      filingItems: Prisma.$FilingItemsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
       setting_person_id: number
       casting_item_id: number
-      weight: number
-      touch: number
-      item_purity: number
-      remarks: string | null
-      after_weight: number | null
-      filing_entry_id: number
     }, ExtArgs["result"]["settingEntry"]>
     composites: {}
   }
@@ -15516,8 +19632,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     setting_person<T extends AddSettingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddSettingDefaultArgs<ExtArgs>>): Prisma__AddSettingClient<$Result.GetResult<Prisma.$AddSettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     castingItem<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    filingEntry<T extends FilingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntryDefaultArgs<ExtArgs>>): Prisma__FilingEntryClient<$Result.GetResult<Prisma.$FilingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    buffingEntries<T extends SettingEntry$buffingEntriesArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$buffingEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    filingItems<T extends SettingEntry$filingItemsArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$filingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15551,12 +19666,6 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"SettingEntry", 'DateTime'>
     readonly setting_person_id: FieldRef<"SettingEntry", 'Int'>
     readonly casting_item_id: FieldRef<"SettingEntry", 'Int'>
-    readonly weight: FieldRef<"SettingEntry", 'Float'>
-    readonly touch: FieldRef<"SettingEntry", 'Float'>
-    readonly item_purity: FieldRef<"SettingEntry", 'Float'>
-    readonly remarks: FieldRef<"SettingEntry", 'String'>
-    readonly after_weight: FieldRef<"SettingEntry", 'Float'>
-    readonly filing_entry_id: FieldRef<"SettingEntry", 'Int'>
   }
     
 
@@ -15900,27 +20009,27 @@ export namespace Prisma {
   }
 
   /**
-   * SettingEntry.buffingEntries
+   * SettingEntry.filingItems
    */
-  export type SettingEntry$buffingEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SettingEntry$filingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BuffingEntry
+     * Select specific fields to fetch from the FilingItems
      */
-    select?: BuffingEntrySelect<ExtArgs> | null
+    select?: FilingItemsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BuffingEntry
+     * Omit specific fields from the FilingItems
      */
-    omit?: BuffingEntryOmit<ExtArgs> | null
+    omit?: FilingItemsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BuffingEntryInclude<ExtArgs> | null
-    where?: BuffingEntryWhereInput
-    orderBy?: BuffingEntryOrderByWithRelationInput | BuffingEntryOrderByWithRelationInput[]
-    cursor?: BuffingEntryWhereUniqueInput
+    include?: FilingItemsInclude<ExtArgs> | null
+    where?: FilingItemsWhereInput
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    cursor?: FilingItemsWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: BuffingEntryScalarFieldEnum | BuffingEntryScalarFieldEnum[]
+    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
   }
 
   /**
@@ -15943,6 +20052,2176 @@ export namespace Prisma {
 
 
   /**
+   * Model SettingItems
+   */
+
+  export type AggregateSettingItems = {
+    _count: SettingItemsCountAggregateOutputType | null
+    _avg: SettingItemsAvgAggregateOutputType | null
+    _sum: SettingItemsSumAggregateOutputType | null
+    _min: SettingItemsMinAggregateOutputType | null
+    _max: SettingItemsMaxAggregateOutputType | null
+  }
+
+  export type SettingItemsAvgAggregateOutputType = {
+    id: number | null
+    receipt_weight: number | null
+    stone_count: number | null
+    stone_weight: number | null
+    item_id: number | null
+    scrap_weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+  }
+
+  export type SettingItemsSumAggregateOutputType = {
+    id: number | null
+    receipt_weight: number | null
+    stone_count: number | null
+    stone_weight: number | null
+    item_id: number | null
+    scrap_weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+  }
+
+  export type SettingItemsMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    receipt_weight: number | null
+    stone_count: number | null
+    stone_weight: number | null
+    remarks: string | null
+    wastage: boolean | null
+    type: $Enums.CASTINGENTRYTYPE | null
+    item_id: number | null
+    scrap_weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+    scrap_remarks: string | null
+  }
+
+  export type SettingItemsMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    receipt_weight: number | null
+    stone_count: number | null
+    stone_weight: number | null
+    remarks: string | null
+    wastage: boolean | null
+    type: $Enums.CASTINGENTRYTYPE | null
+    item_id: number | null
+    scrap_weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+    scrap_remarks: string | null
+  }
+
+  export type SettingItemsCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks: number
+    wastage: number
+    type: number
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks: number
+    _all: number
+  }
+
+
+  export type SettingItemsAvgAggregateInputType = {
+    id?: true
+    receipt_weight?: true
+    stone_count?: true
+    stone_weight?: true
+    item_id?: true
+    scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
+  }
+
+  export type SettingItemsSumAggregateInputType = {
+    id?: true
+    receipt_weight?: true
+    stone_count?: true
+    stone_weight?: true
+    item_id?: true
+    scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
+  }
+
+  export type SettingItemsMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    stone_count?: true
+    stone_weight?: true
+    remarks?: true
+    wastage?: true
+    type?: true
+    item_id?: true
+    scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
+    scrap_remarks?: true
+  }
+
+  export type SettingItemsMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    stone_count?: true
+    stone_weight?: true
+    remarks?: true
+    wastage?: true
+    type?: true
+    item_id?: true
+    scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
+    scrap_remarks?: true
+  }
+
+  export type SettingItemsCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    stone_count?: true
+    stone_weight?: true
+    remarks?: true
+    wastage?: true
+    type?: true
+    item_id?: true
+    scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
+    scrap_remarks?: true
+    _all?: true
+  }
+
+  export type SettingItemsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SettingItems to aggregate.
+     */
+    where?: SettingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingItems to fetch.
+     */
+    orderBy?: SettingItemsOrderByWithRelationInput | SettingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SettingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SettingItems
+    **/
+    _count?: true | SettingItemsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SettingItemsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SettingItemsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SettingItemsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SettingItemsMaxAggregateInputType
+  }
+
+  export type GetSettingItemsAggregateType<T extends SettingItemsAggregateArgs> = {
+        [P in keyof T & keyof AggregateSettingItems]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSettingItems[P]>
+      : GetScalarType<T[P], AggregateSettingItems[P]>
+  }
+
+
+
+
+  export type SettingItemsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingItemsWhereInput
+    orderBy?: SettingItemsOrderByWithAggregationInput | SettingItemsOrderByWithAggregationInput[]
+    by: SettingItemsScalarFieldEnum[] | SettingItemsScalarFieldEnum
+    having?: SettingItemsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SettingItemsCountAggregateInputType | true
+    _avg?: SettingItemsAvgAggregateInputType
+    _sum?: SettingItemsSumAggregateInputType
+    _min?: SettingItemsMinAggregateInputType
+    _max?: SettingItemsMaxAggregateInputType
+  }
+
+  export type SettingItemsGroupByOutputType = {
+    id: number
+    createdAt: Date
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks: string | null
+    _count: SettingItemsCountAggregateOutputType | null
+    _avg: SettingItemsAvgAggregateOutputType | null
+    _sum: SettingItemsSumAggregateOutputType | null
+    _min: SettingItemsMinAggregateOutputType | null
+    _max: SettingItemsMaxAggregateOutputType | null
+  }
+
+  type GetSettingItemsGroupByPayload<T extends SettingItemsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SettingItemsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SettingItemsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SettingItemsGroupByOutputType[P]>
+            : GetScalarType<T[P], SettingItemsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SettingItemsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    receipt_weight?: boolean
+    stone_count?: boolean
+    stone_weight?: boolean
+    remarks?: boolean
+    wastage?: boolean
+    type?: boolean
+    item_id?: boolean
+    scrap_weight?: boolean
+    touch_id?: boolean
+    item_purity?: boolean
+    scrap_remarks?: boolean
+    item?: boolean | AddItemDefaultArgs<ExtArgs>
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
+    setting_wastage?: boolean | SettingItems$setting_wastageArgs<ExtArgs>
+    buffing_entry?: boolean | SettingItems$buffing_entryArgs<ExtArgs>
+    stock?: boolean | SettingItems$stockArgs<ExtArgs>
+    _count?: boolean | SettingItemsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["settingItems"]>
+
+
+
+  export type SettingItemsSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    receipt_weight?: boolean
+    stone_count?: boolean
+    stone_weight?: boolean
+    remarks?: boolean
+    wastage?: boolean
+    type?: boolean
+    item_id?: boolean
+    scrap_weight?: boolean
+    touch_id?: boolean
+    item_purity?: boolean
+    scrap_remarks?: boolean
+  }
+
+  export type SettingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "receipt_weight" | "stone_count" | "stone_weight" | "remarks" | "wastage" | "type" | "item_id" | "scrap_weight" | "touch_id" | "item_purity" | "scrap_remarks", ExtArgs["result"]["settingItems"]>
+  export type SettingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    item?: boolean | AddItemDefaultArgs<ExtArgs>
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
+    setting_wastage?: boolean | SettingItems$setting_wastageArgs<ExtArgs>
+    buffing_entry?: boolean | SettingItems$buffing_entryArgs<ExtArgs>
+    stock?: boolean | SettingItems$stockArgs<ExtArgs>
+    _count?: boolean | SettingItemsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $SettingItemsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SettingItems"
+    objects: {
+      item: Prisma.$AddItemPayload<ExtArgs>
+      touch: Prisma.$AddTouchPayload<ExtArgs>
+      setting_wastage: Prisma.$SettingWastagePayload<ExtArgs>[]
+      buffing_entry: Prisma.$BuffingEntryPayload<ExtArgs>[]
+      stock: Prisma.$StockPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      receipt_weight: number
+      stone_count: number
+      stone_weight: number
+      remarks: string | null
+      wastage: boolean
+      type: $Enums.CASTINGENTRYTYPE
+      item_id: number
+      scrap_weight: number
+      touch_id: number
+      item_purity: number
+      scrap_remarks: string | null
+    }, ExtArgs["result"]["settingItems"]>
+    composites: {}
+  }
+
+  type SettingItemsGetPayload<S extends boolean | null | undefined | SettingItemsDefaultArgs> = $Result.GetResult<Prisma.$SettingItemsPayload, S>
+
+  type SettingItemsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SettingItemsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SettingItemsCountAggregateInputType | true
+    }
+
+  export interface SettingItemsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SettingItems'], meta: { name: 'SettingItems' } }
+    /**
+     * Find zero or one SettingItems that matches the filter.
+     * @param {SettingItemsFindUniqueArgs} args - Arguments to find a SettingItems
+     * @example
+     * // Get one SettingItems
+     * const settingItems = await prisma.settingItems.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SettingItemsFindUniqueArgs>(args: SelectSubset<T, SettingItemsFindUniqueArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SettingItems that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SettingItemsFindUniqueOrThrowArgs} args - Arguments to find a SettingItems
+     * @example
+     * // Get one SettingItems
+     * const settingItems = await prisma.settingItems.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SettingItemsFindUniqueOrThrowArgs>(args: SelectSubset<T, SettingItemsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SettingItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingItemsFindFirstArgs} args - Arguments to find a SettingItems
+     * @example
+     * // Get one SettingItems
+     * const settingItems = await prisma.settingItems.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SettingItemsFindFirstArgs>(args?: SelectSubset<T, SettingItemsFindFirstArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SettingItems that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingItemsFindFirstOrThrowArgs} args - Arguments to find a SettingItems
+     * @example
+     * // Get one SettingItems
+     * const settingItems = await prisma.settingItems.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SettingItemsFindFirstOrThrowArgs>(args?: SelectSubset<T, SettingItemsFindFirstOrThrowArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SettingItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingItemsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SettingItems
+     * const settingItems = await prisma.settingItems.findMany()
+     * 
+     * // Get first 10 SettingItems
+     * const settingItems = await prisma.settingItems.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const settingItemsWithIdOnly = await prisma.settingItems.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SettingItemsFindManyArgs>(args?: SelectSubset<T, SettingItemsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SettingItems.
+     * @param {SettingItemsCreateArgs} args - Arguments to create a SettingItems.
+     * @example
+     * // Create one SettingItems
+     * const SettingItems = await prisma.settingItems.create({
+     *   data: {
+     *     // ... data to create a SettingItems
+     *   }
+     * })
+     * 
+     */
+    create<T extends SettingItemsCreateArgs>(args: SelectSubset<T, SettingItemsCreateArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SettingItems.
+     * @param {SettingItemsCreateManyArgs} args - Arguments to create many SettingItems.
+     * @example
+     * // Create many SettingItems
+     * const settingItems = await prisma.settingItems.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SettingItemsCreateManyArgs>(args?: SelectSubset<T, SettingItemsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a SettingItems.
+     * @param {SettingItemsDeleteArgs} args - Arguments to delete one SettingItems.
+     * @example
+     * // Delete one SettingItems
+     * const SettingItems = await prisma.settingItems.delete({
+     *   where: {
+     *     // ... filter to delete one SettingItems
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SettingItemsDeleteArgs>(args: SelectSubset<T, SettingItemsDeleteArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SettingItems.
+     * @param {SettingItemsUpdateArgs} args - Arguments to update one SettingItems.
+     * @example
+     * // Update one SettingItems
+     * const settingItems = await prisma.settingItems.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SettingItemsUpdateArgs>(args: SelectSubset<T, SettingItemsUpdateArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SettingItems.
+     * @param {SettingItemsDeleteManyArgs} args - Arguments to filter SettingItems to delete.
+     * @example
+     * // Delete a few SettingItems
+     * const { count } = await prisma.settingItems.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SettingItemsDeleteManyArgs>(args?: SelectSubset<T, SettingItemsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SettingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingItemsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SettingItems
+     * const settingItems = await prisma.settingItems.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SettingItemsUpdateManyArgs>(args: SelectSubset<T, SettingItemsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SettingItems.
+     * @param {SettingItemsUpsertArgs} args - Arguments to update or create a SettingItems.
+     * @example
+     * // Update or create a SettingItems
+     * const settingItems = await prisma.settingItems.upsert({
+     *   create: {
+     *     // ... data to create a SettingItems
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SettingItems we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SettingItemsUpsertArgs>(args: SelectSubset<T, SettingItemsUpsertArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SettingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingItemsCountArgs} args - Arguments to filter SettingItems to count.
+     * @example
+     * // Count the number of SettingItems
+     * const count = await prisma.settingItems.count({
+     *   where: {
+     *     // ... the filter for the SettingItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends SettingItemsCountArgs>(
+      args?: Subset<T, SettingItemsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SettingItemsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SettingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingItemsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SettingItemsAggregateArgs>(args: Subset<T, SettingItemsAggregateArgs>): Prisma.PrismaPromise<GetSettingItemsAggregateType<T>>
+
+    /**
+     * Group by SettingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingItemsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SettingItemsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SettingItemsGroupByArgs['orderBy'] }
+        : { orderBy?: SettingItemsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SettingItemsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSettingItemsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SettingItems model
+   */
+  readonly fields: SettingItemsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SettingItems.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SettingItemsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    item<T extends AddItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddItemDefaultArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    touch<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    setting_wastage<T extends SettingItems$setting_wastageArgs<ExtArgs> = {}>(args?: Subset<T, SettingItems$setting_wastageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    buffing_entry<T extends SettingItems$buffing_entryArgs<ExtArgs> = {}>(args?: Subset<T, SettingItems$buffing_entryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    stock<T extends SettingItems$stockArgs<ExtArgs> = {}>(args?: Subset<T, SettingItems$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SettingItems model
+   */
+  interface SettingItemsFieldRefs {
+    readonly id: FieldRef<"SettingItems", 'Int'>
+    readonly createdAt: FieldRef<"SettingItems", 'DateTime'>
+    readonly receipt_weight: FieldRef<"SettingItems", 'Float'>
+    readonly stone_count: FieldRef<"SettingItems", 'Float'>
+    readonly stone_weight: FieldRef<"SettingItems", 'Float'>
+    readonly remarks: FieldRef<"SettingItems", 'String'>
+    readonly wastage: FieldRef<"SettingItems", 'Boolean'>
+    readonly type: FieldRef<"SettingItems", 'CASTINGENTRYTYPE'>
+    readonly item_id: FieldRef<"SettingItems", 'Int'>
+    readonly scrap_weight: FieldRef<"SettingItems", 'Float'>
+    readonly touch_id: FieldRef<"SettingItems", 'Int'>
+    readonly item_purity: FieldRef<"SettingItems", 'Float'>
+    readonly scrap_remarks: FieldRef<"SettingItems", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SettingItems findUnique
+   */
+  export type SettingItemsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingItems to fetch.
+     */
+    where: SettingItemsWhereUniqueInput
+  }
+
+  /**
+   * SettingItems findUniqueOrThrow
+   */
+  export type SettingItemsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingItems to fetch.
+     */
+    where: SettingItemsWhereUniqueInput
+  }
+
+  /**
+   * SettingItems findFirst
+   */
+  export type SettingItemsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingItems to fetch.
+     */
+    where?: SettingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingItems to fetch.
+     */
+    orderBy?: SettingItemsOrderByWithRelationInput | SettingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SettingItems.
+     */
+    cursor?: SettingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SettingItems.
+     */
+    distinct?: SettingItemsScalarFieldEnum | SettingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * SettingItems findFirstOrThrow
+   */
+  export type SettingItemsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingItems to fetch.
+     */
+    where?: SettingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingItems to fetch.
+     */
+    orderBy?: SettingItemsOrderByWithRelationInput | SettingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SettingItems.
+     */
+    cursor?: SettingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SettingItems.
+     */
+    distinct?: SettingItemsScalarFieldEnum | SettingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * SettingItems findMany
+   */
+  export type SettingItemsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingItems to fetch.
+     */
+    where?: SettingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingItems to fetch.
+     */
+    orderBy?: SettingItemsOrderByWithRelationInput | SettingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SettingItems.
+     */
+    cursor?: SettingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingItems.
+     */
+    skip?: number
+    distinct?: SettingItemsScalarFieldEnum | SettingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * SettingItems create
+   */
+  export type SettingItemsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SettingItems.
+     */
+    data: XOR<SettingItemsCreateInput, SettingItemsUncheckedCreateInput>
+  }
+
+  /**
+   * SettingItems createMany
+   */
+  export type SettingItemsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SettingItems.
+     */
+    data: SettingItemsCreateManyInput | SettingItemsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SettingItems update
+   */
+  export type SettingItemsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SettingItems.
+     */
+    data: XOR<SettingItemsUpdateInput, SettingItemsUncheckedUpdateInput>
+    /**
+     * Choose, which SettingItems to update.
+     */
+    where: SettingItemsWhereUniqueInput
+  }
+
+  /**
+   * SettingItems updateMany
+   */
+  export type SettingItemsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SettingItems.
+     */
+    data: XOR<SettingItemsUpdateManyMutationInput, SettingItemsUncheckedUpdateManyInput>
+    /**
+     * Filter which SettingItems to update
+     */
+    where?: SettingItemsWhereInput
+    /**
+     * Limit how many SettingItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SettingItems upsert
+   */
+  export type SettingItemsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SettingItems to update in case it exists.
+     */
+    where: SettingItemsWhereUniqueInput
+    /**
+     * In case the SettingItems found by the `where` argument doesn't exist, create a new SettingItems with this data.
+     */
+    create: XOR<SettingItemsCreateInput, SettingItemsUncheckedCreateInput>
+    /**
+     * In case the SettingItems was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SettingItemsUpdateInput, SettingItemsUncheckedUpdateInput>
+  }
+
+  /**
+   * SettingItems delete
+   */
+  export type SettingItemsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    /**
+     * Filter which SettingItems to delete.
+     */
+    where: SettingItemsWhereUniqueInput
+  }
+
+  /**
+   * SettingItems deleteMany
+   */
+  export type SettingItemsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SettingItems to delete
+     */
+    where?: SettingItemsWhereInput
+    /**
+     * Limit how many SettingItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SettingItems.setting_wastage
+   */
+  export type SettingItems$setting_wastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    where?: SettingWastageWhereInput
+    orderBy?: SettingWastageOrderByWithRelationInput | SettingWastageOrderByWithRelationInput[]
+    cursor?: SettingWastageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SettingWastageScalarFieldEnum | SettingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * SettingItems.buffing_entry
+   */
+  export type SettingItems$buffing_entryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingEntry
+     */
+    select?: BuffingEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingEntry
+     */
+    omit?: BuffingEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingEntryInclude<ExtArgs> | null
+    where?: BuffingEntryWhereInput
+    orderBy?: BuffingEntryOrderByWithRelationInput | BuffingEntryOrderByWithRelationInput[]
+    cursor?: BuffingEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BuffingEntryScalarFieldEnum | BuffingEntryScalarFieldEnum[]
+  }
+
+  /**
+   * SettingItems.stock
+   */
+  export type SettingItems$stockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stock
+     */
+    select?: StockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stock
+     */
+    omit?: StockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StockInclude<ExtArgs> | null
+    where?: StockWhereInput
+    orderBy?: StockOrderByWithRelationInput | StockOrderByWithRelationInput[]
+    cursor?: StockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StockScalarFieldEnum | StockScalarFieldEnum[]
+  }
+
+  /**
+   * SettingItems without action
+   */
+  export type SettingItemsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SettingWastage
+   */
+
+  export type AggregateSettingWastage = {
+    _count: SettingWastageCountAggregateOutputType | null
+    _avg: SettingWastageAvgAggregateOutputType | null
+    _sum: SettingWastageSumAggregateOutputType | null
+    _min: SettingWastageMinAggregateOutputType | null
+    _max: SettingWastageMaxAggregateOutputType | null
+  }
+
+  export type SettingWastageAvgAggregateOutputType = {
+    id: number | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type SettingWastageSumAggregateOutputType = {
+    id: number | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type SettingWastageMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type SettingWastageMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type SettingWastageCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    wastage_percentage: number
+    given_gold: number
+    add_wastage: number
+    _all: number
+  }
+
+
+  export type SettingWastageAvgAggregateInputType = {
+    id?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type SettingWastageSumAggregateInputType = {
+    id?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type SettingWastageMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type SettingWastageMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type SettingWastageCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+    _all?: true
+  }
+
+  export type SettingWastageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SettingWastage to aggregate.
+     */
+    where?: SettingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingWastages to fetch.
+     */
+    orderBy?: SettingWastageOrderByWithRelationInput | SettingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SettingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingWastages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SettingWastages
+    **/
+    _count?: true | SettingWastageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SettingWastageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SettingWastageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SettingWastageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SettingWastageMaxAggregateInputType
+  }
+
+  export type GetSettingWastageAggregateType<T extends SettingWastageAggregateArgs> = {
+        [P in keyof T & keyof AggregateSettingWastage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSettingWastage[P]>
+      : GetScalarType<T[P], AggregateSettingWastage[P]>
+  }
+
+
+
+
+  export type SettingWastageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingWastageWhereInput
+    orderBy?: SettingWastageOrderByWithAggregationInput | SettingWastageOrderByWithAggregationInput[]
+    by: SettingWastageScalarFieldEnum[] | SettingWastageScalarFieldEnum
+    having?: SettingWastageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SettingWastageCountAggregateInputType | true
+    _avg?: SettingWastageAvgAggregateInputType
+    _sum?: SettingWastageSumAggregateInputType
+    _min?: SettingWastageMinAggregateInputType
+    _max?: SettingWastageMaxAggregateInputType
+  }
+
+  export type SettingWastageGroupByOutputType = {
+    id: number
+    createdAt: Date
+    wastage_percentage: number
+    given_gold: number | null
+    add_wastage: number | null
+    _count: SettingWastageCountAggregateOutputType | null
+    _avg: SettingWastageAvgAggregateOutputType | null
+    _sum: SettingWastageSumAggregateOutputType | null
+    _min: SettingWastageMinAggregateOutputType | null
+    _max: SettingWastageMaxAggregateOutputType | null
+  }
+
+  type GetSettingWastageGroupByPayload<T extends SettingWastageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SettingWastageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SettingWastageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SettingWastageGroupByOutputType[P]>
+            : GetScalarType<T[P], SettingWastageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SettingWastageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    wastage_percentage?: boolean
+    given_gold?: boolean
+    add_wastage?: boolean
+    setting_items?: boolean | SettingWastage$setting_itemsArgs<ExtArgs>
+    _count?: boolean | SettingWastageCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["settingWastage"]>
+
+
+
+  export type SettingWastageSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    wastage_percentage?: boolean
+    given_gold?: boolean
+    add_wastage?: boolean
+  }
+
+  export type SettingWastageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "wastage_percentage" | "given_gold" | "add_wastage", ExtArgs["result"]["settingWastage"]>
+  export type SettingWastageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    setting_items?: boolean | SettingWastage$setting_itemsArgs<ExtArgs>
+    _count?: boolean | SettingWastageCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $SettingWastagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SettingWastage"
+    objects: {
+      setting_items: Prisma.$SettingItemsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      wastage_percentage: number
+      given_gold: number | null
+      add_wastage: number | null
+    }, ExtArgs["result"]["settingWastage"]>
+    composites: {}
+  }
+
+  type SettingWastageGetPayload<S extends boolean | null | undefined | SettingWastageDefaultArgs> = $Result.GetResult<Prisma.$SettingWastagePayload, S>
+
+  type SettingWastageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SettingWastageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SettingWastageCountAggregateInputType | true
+    }
+
+  export interface SettingWastageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SettingWastage'], meta: { name: 'SettingWastage' } }
+    /**
+     * Find zero or one SettingWastage that matches the filter.
+     * @param {SettingWastageFindUniqueArgs} args - Arguments to find a SettingWastage
+     * @example
+     * // Get one SettingWastage
+     * const settingWastage = await prisma.settingWastage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SettingWastageFindUniqueArgs>(args: SelectSubset<T, SettingWastageFindUniqueArgs<ExtArgs>>): Prisma__SettingWastageClient<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SettingWastage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SettingWastageFindUniqueOrThrowArgs} args - Arguments to find a SettingWastage
+     * @example
+     * // Get one SettingWastage
+     * const settingWastage = await prisma.settingWastage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SettingWastageFindUniqueOrThrowArgs>(args: SelectSubset<T, SettingWastageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SettingWastageClient<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SettingWastage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingWastageFindFirstArgs} args - Arguments to find a SettingWastage
+     * @example
+     * // Get one SettingWastage
+     * const settingWastage = await prisma.settingWastage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SettingWastageFindFirstArgs>(args?: SelectSubset<T, SettingWastageFindFirstArgs<ExtArgs>>): Prisma__SettingWastageClient<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SettingWastage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingWastageFindFirstOrThrowArgs} args - Arguments to find a SettingWastage
+     * @example
+     * // Get one SettingWastage
+     * const settingWastage = await prisma.settingWastage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SettingWastageFindFirstOrThrowArgs>(args?: SelectSubset<T, SettingWastageFindFirstOrThrowArgs<ExtArgs>>): Prisma__SettingWastageClient<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SettingWastages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingWastageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SettingWastages
+     * const settingWastages = await prisma.settingWastage.findMany()
+     * 
+     * // Get first 10 SettingWastages
+     * const settingWastages = await prisma.settingWastage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const settingWastageWithIdOnly = await prisma.settingWastage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SettingWastageFindManyArgs>(args?: SelectSubset<T, SettingWastageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SettingWastage.
+     * @param {SettingWastageCreateArgs} args - Arguments to create a SettingWastage.
+     * @example
+     * // Create one SettingWastage
+     * const SettingWastage = await prisma.settingWastage.create({
+     *   data: {
+     *     // ... data to create a SettingWastage
+     *   }
+     * })
+     * 
+     */
+    create<T extends SettingWastageCreateArgs>(args: SelectSubset<T, SettingWastageCreateArgs<ExtArgs>>): Prisma__SettingWastageClient<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SettingWastages.
+     * @param {SettingWastageCreateManyArgs} args - Arguments to create many SettingWastages.
+     * @example
+     * // Create many SettingWastages
+     * const settingWastage = await prisma.settingWastage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SettingWastageCreateManyArgs>(args?: SelectSubset<T, SettingWastageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a SettingWastage.
+     * @param {SettingWastageDeleteArgs} args - Arguments to delete one SettingWastage.
+     * @example
+     * // Delete one SettingWastage
+     * const SettingWastage = await prisma.settingWastage.delete({
+     *   where: {
+     *     // ... filter to delete one SettingWastage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SettingWastageDeleteArgs>(args: SelectSubset<T, SettingWastageDeleteArgs<ExtArgs>>): Prisma__SettingWastageClient<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SettingWastage.
+     * @param {SettingWastageUpdateArgs} args - Arguments to update one SettingWastage.
+     * @example
+     * // Update one SettingWastage
+     * const settingWastage = await prisma.settingWastage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SettingWastageUpdateArgs>(args: SelectSubset<T, SettingWastageUpdateArgs<ExtArgs>>): Prisma__SettingWastageClient<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SettingWastages.
+     * @param {SettingWastageDeleteManyArgs} args - Arguments to filter SettingWastages to delete.
+     * @example
+     * // Delete a few SettingWastages
+     * const { count } = await prisma.settingWastage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SettingWastageDeleteManyArgs>(args?: SelectSubset<T, SettingWastageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SettingWastages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingWastageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SettingWastages
+     * const settingWastage = await prisma.settingWastage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SettingWastageUpdateManyArgs>(args: SelectSubset<T, SettingWastageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SettingWastage.
+     * @param {SettingWastageUpsertArgs} args - Arguments to update or create a SettingWastage.
+     * @example
+     * // Update or create a SettingWastage
+     * const settingWastage = await prisma.settingWastage.upsert({
+     *   create: {
+     *     // ... data to create a SettingWastage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SettingWastage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SettingWastageUpsertArgs>(args: SelectSubset<T, SettingWastageUpsertArgs<ExtArgs>>): Prisma__SettingWastageClient<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SettingWastages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingWastageCountArgs} args - Arguments to filter SettingWastages to count.
+     * @example
+     * // Count the number of SettingWastages
+     * const count = await prisma.settingWastage.count({
+     *   where: {
+     *     // ... the filter for the SettingWastages we want to count
+     *   }
+     * })
+    **/
+    count<T extends SettingWastageCountArgs>(
+      args?: Subset<T, SettingWastageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SettingWastageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SettingWastage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingWastageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SettingWastageAggregateArgs>(args: Subset<T, SettingWastageAggregateArgs>): Prisma.PrismaPromise<GetSettingWastageAggregateType<T>>
+
+    /**
+     * Group by SettingWastage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingWastageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SettingWastageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SettingWastageGroupByArgs['orderBy'] }
+        : { orderBy?: SettingWastageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SettingWastageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSettingWastageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SettingWastage model
+   */
+  readonly fields: SettingWastageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SettingWastage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SettingWastageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    setting_items<T extends SettingWastage$setting_itemsArgs<ExtArgs> = {}>(args?: Subset<T, SettingWastage$setting_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SettingWastage model
+   */
+  interface SettingWastageFieldRefs {
+    readonly id: FieldRef<"SettingWastage", 'Int'>
+    readonly createdAt: FieldRef<"SettingWastage", 'DateTime'>
+    readonly wastage_percentage: FieldRef<"SettingWastage", 'Int'>
+    readonly given_gold: FieldRef<"SettingWastage", 'Int'>
+    readonly add_wastage: FieldRef<"SettingWastage", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SettingWastage findUnique
+   */
+  export type SettingWastageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingWastage to fetch.
+     */
+    where: SettingWastageWhereUniqueInput
+  }
+
+  /**
+   * SettingWastage findUniqueOrThrow
+   */
+  export type SettingWastageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingWastage to fetch.
+     */
+    where: SettingWastageWhereUniqueInput
+  }
+
+  /**
+   * SettingWastage findFirst
+   */
+  export type SettingWastageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingWastage to fetch.
+     */
+    where?: SettingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingWastages to fetch.
+     */
+    orderBy?: SettingWastageOrderByWithRelationInput | SettingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SettingWastages.
+     */
+    cursor?: SettingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingWastages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SettingWastages.
+     */
+    distinct?: SettingWastageScalarFieldEnum | SettingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * SettingWastage findFirstOrThrow
+   */
+  export type SettingWastageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingWastage to fetch.
+     */
+    where?: SettingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingWastages to fetch.
+     */
+    orderBy?: SettingWastageOrderByWithRelationInput | SettingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SettingWastages.
+     */
+    cursor?: SettingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingWastages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SettingWastages.
+     */
+    distinct?: SettingWastageScalarFieldEnum | SettingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * SettingWastage findMany
+   */
+  export type SettingWastageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingWastages to fetch.
+     */
+    where?: SettingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingWastages to fetch.
+     */
+    orderBy?: SettingWastageOrderByWithRelationInput | SettingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SettingWastages.
+     */
+    cursor?: SettingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingWastages.
+     */
+    skip?: number
+    distinct?: SettingWastageScalarFieldEnum | SettingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * SettingWastage create
+   */
+  export type SettingWastageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SettingWastage.
+     */
+    data: XOR<SettingWastageCreateInput, SettingWastageUncheckedCreateInput>
+  }
+
+  /**
+   * SettingWastage createMany
+   */
+  export type SettingWastageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SettingWastages.
+     */
+    data: SettingWastageCreateManyInput | SettingWastageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SettingWastage update
+   */
+  export type SettingWastageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SettingWastage.
+     */
+    data: XOR<SettingWastageUpdateInput, SettingWastageUncheckedUpdateInput>
+    /**
+     * Choose, which SettingWastage to update.
+     */
+    where: SettingWastageWhereUniqueInput
+  }
+
+  /**
+   * SettingWastage updateMany
+   */
+  export type SettingWastageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SettingWastages.
+     */
+    data: XOR<SettingWastageUpdateManyMutationInput, SettingWastageUncheckedUpdateManyInput>
+    /**
+     * Filter which SettingWastages to update
+     */
+    where?: SettingWastageWhereInput
+    /**
+     * Limit how many SettingWastages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SettingWastage upsert
+   */
+  export type SettingWastageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SettingWastage to update in case it exists.
+     */
+    where: SettingWastageWhereUniqueInput
+    /**
+     * In case the SettingWastage found by the `where` argument doesn't exist, create a new SettingWastage with this data.
+     */
+    create: XOR<SettingWastageCreateInput, SettingWastageUncheckedCreateInput>
+    /**
+     * In case the SettingWastage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SettingWastageUpdateInput, SettingWastageUncheckedUpdateInput>
+  }
+
+  /**
+   * SettingWastage delete
+   */
+  export type SettingWastageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    /**
+     * Filter which SettingWastage to delete.
+     */
+    where: SettingWastageWhereUniqueInput
+  }
+
+  /**
+   * SettingWastage deleteMany
+   */
+  export type SettingWastageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SettingWastages to delete
+     */
+    where?: SettingWastageWhereInput
+    /**
+     * Limit how many SettingWastages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SettingWastage.setting_items
+   */
+  export type SettingWastage$setting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    where?: SettingItemsWhereInput
+    orderBy?: SettingItemsOrderByWithRelationInput | SettingItemsOrderByWithRelationInput[]
+    cursor?: SettingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SettingItemsScalarFieldEnum | SettingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * SettingWastage without action
+   */
+  export type SettingWastageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model BuffingEntry
    */
 
@@ -15958,24 +22237,12 @@ export namespace Prisma {
     id: number | null
     buffing_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    after_weight: number | null
-    setting_entry_id: number | null
-    filing_entry_id: number | null
   }
 
   export type BuffingEntrySumAggregateOutputType = {
     id: number | null
     buffing_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    after_weight: number | null
-    setting_entry_id: number | null
-    filing_entry_id: number | null
   }
 
   export type BuffingEntryMinAggregateOutputType = {
@@ -15983,14 +22250,6 @@ export namespace Prisma {
     createdAt: Date | null
     buffing_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    remarks: string | null
-    after_weight: number | null
-    setting_entry_id: number | null
-    filing_entry_id: number | null
-    type: $Enums.STONEOPTION | null
   }
 
   export type BuffingEntryMaxAggregateOutputType = {
@@ -15998,14 +22257,6 @@ export namespace Prisma {
     createdAt: Date | null
     buffing_person_id: number | null
     casting_item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
-    remarks: string | null
-    after_weight: number | null
-    setting_entry_id: number | null
-    filing_entry_id: number | null
-    type: $Enums.STONEOPTION | null
   }
 
   export type BuffingEntryCountAggregateOutputType = {
@@ -16013,14 +22264,6 @@ export namespace Prisma {
     createdAt: number
     buffing_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks: number
-    after_weight: number
-    setting_entry_id: number
-    filing_entry_id: number
-    type: number
     _all: number
   }
 
@@ -16029,24 +22272,12 @@ export namespace Prisma {
     id?: true
     buffing_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    after_weight?: true
-    setting_entry_id?: true
-    filing_entry_id?: true
   }
 
   export type BuffingEntrySumAggregateInputType = {
     id?: true
     buffing_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    after_weight?: true
-    setting_entry_id?: true
-    filing_entry_id?: true
   }
 
   export type BuffingEntryMinAggregateInputType = {
@@ -16054,14 +22285,6 @@ export namespace Prisma {
     createdAt?: true
     buffing_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    remarks?: true
-    after_weight?: true
-    setting_entry_id?: true
-    filing_entry_id?: true
-    type?: true
   }
 
   export type BuffingEntryMaxAggregateInputType = {
@@ -16069,14 +22292,6 @@ export namespace Prisma {
     createdAt?: true
     buffing_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    remarks?: true
-    after_weight?: true
-    setting_entry_id?: true
-    filing_entry_id?: true
-    type?: true
   }
 
   export type BuffingEntryCountAggregateInputType = {
@@ -16084,14 +22299,6 @@ export namespace Prisma {
     createdAt?: true
     buffing_person_id?: true
     casting_item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
-    remarks?: true
-    after_weight?: true
-    setting_entry_id?: true
-    filing_entry_id?: true
-    type?: true
     _all?: true
   }
 
@@ -16186,14 +22393,6 @@ export namespace Prisma {
     createdAt: Date
     buffing_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks: string | null
-    after_weight: number | null
-    setting_entry_id: number
-    filing_entry_id: number
-    type: $Enums.STONEOPTION
     _count: BuffingEntryCountAggregateOutputType | null
     _avg: BuffingEntryAvgAggregateOutputType | null
     _sum: BuffingEntrySumAggregateOutputType | null
@@ -16220,18 +22419,11 @@ export namespace Prisma {
     createdAt?: boolean
     buffing_person_id?: boolean
     casting_item_id?: boolean
-    weight?: boolean
-    touch?: boolean
-    item_purity?: boolean
-    remarks?: boolean
-    after_weight?: boolean
-    setting_entry_id?: boolean
-    filing_entry_id?: boolean
-    type?: boolean
     buffing_person?: boolean | AddBuffingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
-    settingEntry?: boolean | SettingEntryDefaultArgs<ExtArgs>
-    filingEntry?: boolean | FilingEntryDefaultArgs<ExtArgs>
+    filing_items?: boolean | BuffingEntry$filing_itemsArgs<ExtArgs>
+    setting_items?: boolean | BuffingEntry$setting_itemsArgs<ExtArgs>
+    _count?: boolean | BuffingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["buffingEntry"]>
 
 
@@ -16241,22 +22433,15 @@ export namespace Prisma {
     createdAt?: boolean
     buffing_person_id?: boolean
     casting_item_id?: boolean
-    weight?: boolean
-    touch?: boolean
-    item_purity?: boolean
-    remarks?: boolean
-    after_weight?: boolean
-    setting_entry_id?: boolean
-    filing_entry_id?: boolean
-    type?: boolean
   }
 
-  export type BuffingEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "buffing_person_id" | "casting_item_id" | "weight" | "touch" | "item_purity" | "remarks" | "after_weight" | "setting_entry_id" | "filing_entry_id" | "type", ExtArgs["result"]["buffingEntry"]>
+  export type BuffingEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "buffing_person_id" | "casting_item_id", ExtArgs["result"]["buffingEntry"]>
   export type BuffingEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     buffing_person?: boolean | AddBuffingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
-    settingEntry?: boolean | SettingEntryDefaultArgs<ExtArgs>
-    filingEntry?: boolean | FilingEntryDefaultArgs<ExtArgs>
+    filing_items?: boolean | BuffingEntry$filing_itemsArgs<ExtArgs>
+    setting_items?: boolean | BuffingEntry$setting_itemsArgs<ExtArgs>
+    _count?: boolean | BuffingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $BuffingEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -16264,22 +22449,14 @@ export namespace Prisma {
     objects: {
       buffing_person: Prisma.$AddBuffingPayload<ExtArgs>
       castingItem: Prisma.$CastingItemsPayload<ExtArgs>
-      settingEntry: Prisma.$SettingEntryPayload<ExtArgs>
-      filingEntry: Prisma.$FilingEntryPayload<ExtArgs>
+      filing_items: Prisma.$FilingItemsPayload<ExtArgs>[]
+      setting_items: Prisma.$SettingItemsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
       buffing_person_id: number
       casting_item_id: number
-      weight: number
-      touch: number
-      item_purity: number
-      remarks: string | null
-      after_weight: number | null
-      setting_entry_id: number
-      filing_entry_id: number
-      type: $Enums.STONEOPTION
     }, ExtArgs["result"]["buffingEntry"]>
     composites: {}
   }
@@ -16622,8 +22799,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     buffing_person<T extends AddBuffingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddBuffingDefaultArgs<ExtArgs>>): Prisma__AddBuffingClient<$Result.GetResult<Prisma.$AddBuffingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     castingItem<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    settingEntry<T extends SettingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntryDefaultArgs<ExtArgs>>): Prisma__SettingEntryClient<$Result.GetResult<Prisma.$SettingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    filingEntry<T extends FilingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntryDefaultArgs<ExtArgs>>): Prisma__FilingEntryClient<$Result.GetResult<Prisma.$FilingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    filing_items<T extends BuffingEntry$filing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, BuffingEntry$filing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    setting_items<T extends BuffingEntry$setting_itemsArgs<ExtArgs> = {}>(args?: Subset<T, BuffingEntry$setting_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16657,14 +22834,6 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"BuffingEntry", 'DateTime'>
     readonly buffing_person_id: FieldRef<"BuffingEntry", 'Int'>
     readonly casting_item_id: FieldRef<"BuffingEntry", 'Int'>
-    readonly weight: FieldRef<"BuffingEntry", 'Float'>
-    readonly touch: FieldRef<"BuffingEntry", 'Float'>
-    readonly item_purity: FieldRef<"BuffingEntry", 'Float'>
-    readonly remarks: FieldRef<"BuffingEntry", 'String'>
-    readonly after_weight: FieldRef<"BuffingEntry", 'Float'>
-    readonly setting_entry_id: FieldRef<"BuffingEntry", 'Int'>
-    readonly filing_entry_id: FieldRef<"BuffingEntry", 'Int'>
-    readonly type: FieldRef<"BuffingEntry", 'STONEOPTION'>
   }
     
 
@@ -17008,6 +23177,54 @@ export namespace Prisma {
   }
 
   /**
+   * BuffingEntry.filing_items
+   */
+  export type BuffingEntry$filing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    where?: FilingItemsWhereInput
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    cursor?: FilingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingEntry.setting_items
+   */
+  export type BuffingEntry$setting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    where?: SettingItemsWhereInput
+    orderBy?: SettingItemsOrderByWithRelationInput | SettingItemsOrderByWithRelationInput[]
+    cursor?: SettingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SettingItemsScalarFieldEnum | SettingItemsScalarFieldEnum[]
+  }
+
+  /**
    * BuffingEntry without action
    */
   export type BuffingEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17027,6 +23244,2118 @@ export namespace Prisma {
 
 
   /**
+   * Model BuffingItems
+   */
+
+  export type AggregateBuffingItems = {
+    _count: BuffingItemsCountAggregateOutputType | null
+    _avg: BuffingItemsAvgAggregateOutputType | null
+    _sum: BuffingItemsSumAggregateOutputType | null
+    _min: BuffingItemsMinAggregateOutputType | null
+    _max: BuffingItemsMaxAggregateOutputType | null
+  }
+
+  export type BuffingItemsAvgAggregateOutputType = {
+    id: number | null
+    receipt_weight: number | null
+    item_id: number | null
+    scrap_weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+  }
+
+  export type BuffingItemsSumAggregateOutputType = {
+    id: number | null
+    receipt_weight: number | null
+    item_id: number | null
+    scrap_weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+  }
+
+  export type BuffingItemsMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    receipt_weight: number | null
+    remarks: string | null
+    wastage: boolean | null
+    type: $Enums.CASTINGENTRYTYPE | null
+    item_id: number | null
+    scrap_weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+    scrap_remarks: string | null
+  }
+
+  export type BuffingItemsMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    receipt_weight: number | null
+    remarks: string | null
+    wastage: boolean | null
+    type: $Enums.CASTINGENTRYTYPE | null
+    item_id: number | null
+    scrap_weight: number | null
+    touch_id: number | null
+    item_purity: number | null
+    scrap_remarks: string | null
+  }
+
+  export type BuffingItemsCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    receipt_weight: number
+    remarks: number
+    wastage: number
+    type: number
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks: number
+    _all: number
+  }
+
+
+  export type BuffingItemsAvgAggregateInputType = {
+    id?: true
+    receipt_weight?: true
+    item_id?: true
+    scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
+  }
+
+  export type BuffingItemsSumAggregateInputType = {
+    id?: true
+    receipt_weight?: true
+    item_id?: true
+    scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
+  }
+
+  export type BuffingItemsMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    remarks?: true
+    wastage?: true
+    type?: true
+    item_id?: true
+    scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
+    scrap_remarks?: true
+  }
+
+  export type BuffingItemsMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    remarks?: true
+    wastage?: true
+    type?: true
+    item_id?: true
+    scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
+    scrap_remarks?: true
+  }
+
+  export type BuffingItemsCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    remarks?: true
+    wastage?: true
+    type?: true
+    item_id?: true
+    scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
+    scrap_remarks?: true
+    _all?: true
+  }
+
+  export type BuffingItemsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BuffingItems to aggregate.
+     */
+    where?: BuffingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingItems to fetch.
+     */
+    orderBy?: BuffingItemsOrderByWithRelationInput | BuffingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BuffingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BuffingItems
+    **/
+    _count?: true | BuffingItemsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BuffingItemsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BuffingItemsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BuffingItemsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BuffingItemsMaxAggregateInputType
+  }
+
+  export type GetBuffingItemsAggregateType<T extends BuffingItemsAggregateArgs> = {
+        [P in keyof T & keyof AggregateBuffingItems]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBuffingItems[P]>
+      : GetScalarType<T[P], AggregateBuffingItems[P]>
+  }
+
+
+
+
+  export type BuffingItemsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuffingItemsWhereInput
+    orderBy?: BuffingItemsOrderByWithAggregationInput | BuffingItemsOrderByWithAggregationInput[]
+    by: BuffingItemsScalarFieldEnum[] | BuffingItemsScalarFieldEnum
+    having?: BuffingItemsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BuffingItemsCountAggregateInputType | true
+    _avg?: BuffingItemsAvgAggregateInputType
+    _sum?: BuffingItemsSumAggregateInputType
+    _min?: BuffingItemsMinAggregateInputType
+    _max?: BuffingItemsMaxAggregateInputType
+  }
+
+  export type BuffingItemsGroupByOutputType = {
+    id: number
+    createdAt: Date
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks: string
+    _count: BuffingItemsCountAggregateOutputType | null
+    _avg: BuffingItemsAvgAggregateOutputType | null
+    _sum: BuffingItemsSumAggregateOutputType | null
+    _min: BuffingItemsMinAggregateOutputType | null
+    _max: BuffingItemsMaxAggregateOutputType | null
+  }
+
+  type GetBuffingItemsGroupByPayload<T extends BuffingItemsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BuffingItemsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BuffingItemsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BuffingItemsGroupByOutputType[P]>
+            : GetScalarType<T[P], BuffingItemsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BuffingItemsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    receipt_weight?: boolean
+    remarks?: boolean
+    wastage?: boolean
+    type?: boolean
+    item_id?: boolean
+    scrap_weight?: boolean
+    touch_id?: boolean
+    item_purity?: boolean
+    scrap_remarks?: boolean
+    item?: boolean | AddItemDefaultArgs<ExtArgs>
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
+    stock?: boolean | BuffingItems$stockArgs<ExtArgs>
+    buffing_wastage?: boolean | BuffingItems$buffing_wastageArgs<ExtArgs>
+    _count?: boolean | BuffingItemsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["buffingItems"]>
+
+
+
+  export type BuffingItemsSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    receipt_weight?: boolean
+    remarks?: boolean
+    wastage?: boolean
+    type?: boolean
+    item_id?: boolean
+    scrap_weight?: boolean
+    touch_id?: boolean
+    item_purity?: boolean
+    scrap_remarks?: boolean
+  }
+
+  export type BuffingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "receipt_weight" | "remarks" | "wastage" | "type" | "item_id" | "scrap_weight" | "touch_id" | "item_purity" | "scrap_remarks", ExtArgs["result"]["buffingItems"]>
+  export type BuffingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    item?: boolean | AddItemDefaultArgs<ExtArgs>
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
+    stock?: boolean | BuffingItems$stockArgs<ExtArgs>
+    buffing_wastage?: boolean | BuffingItems$buffing_wastageArgs<ExtArgs>
+    _count?: boolean | BuffingItemsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $BuffingItemsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BuffingItems"
+    objects: {
+      item: Prisma.$AddItemPayload<ExtArgs>
+      touch: Prisma.$AddTouchPayload<ExtArgs>
+      stock: Prisma.$StockPayload<ExtArgs>[]
+      buffing_wastage: Prisma.$BuffingWastagePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      receipt_weight: number
+      remarks: string
+      wastage: boolean
+      type: $Enums.CASTINGENTRYTYPE
+      item_id: number
+      scrap_weight: number
+      touch_id: number
+      item_purity: number
+      scrap_remarks: string
+    }, ExtArgs["result"]["buffingItems"]>
+    composites: {}
+  }
+
+  type BuffingItemsGetPayload<S extends boolean | null | undefined | BuffingItemsDefaultArgs> = $Result.GetResult<Prisma.$BuffingItemsPayload, S>
+
+  type BuffingItemsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BuffingItemsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BuffingItemsCountAggregateInputType | true
+    }
+
+  export interface BuffingItemsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BuffingItems'], meta: { name: 'BuffingItems' } }
+    /**
+     * Find zero or one BuffingItems that matches the filter.
+     * @param {BuffingItemsFindUniqueArgs} args - Arguments to find a BuffingItems
+     * @example
+     * // Get one BuffingItems
+     * const buffingItems = await prisma.buffingItems.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BuffingItemsFindUniqueArgs>(args: SelectSubset<T, BuffingItemsFindUniqueArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BuffingItems that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BuffingItemsFindUniqueOrThrowArgs} args - Arguments to find a BuffingItems
+     * @example
+     * // Get one BuffingItems
+     * const buffingItems = await prisma.buffingItems.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BuffingItemsFindUniqueOrThrowArgs>(args: SelectSubset<T, BuffingItemsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BuffingItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingItemsFindFirstArgs} args - Arguments to find a BuffingItems
+     * @example
+     * // Get one BuffingItems
+     * const buffingItems = await prisma.buffingItems.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BuffingItemsFindFirstArgs>(args?: SelectSubset<T, BuffingItemsFindFirstArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BuffingItems that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingItemsFindFirstOrThrowArgs} args - Arguments to find a BuffingItems
+     * @example
+     * // Get one BuffingItems
+     * const buffingItems = await prisma.buffingItems.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BuffingItemsFindFirstOrThrowArgs>(args?: SelectSubset<T, BuffingItemsFindFirstOrThrowArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BuffingItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingItemsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BuffingItems
+     * const buffingItems = await prisma.buffingItems.findMany()
+     * 
+     * // Get first 10 BuffingItems
+     * const buffingItems = await prisma.buffingItems.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const buffingItemsWithIdOnly = await prisma.buffingItems.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BuffingItemsFindManyArgs>(args?: SelectSubset<T, BuffingItemsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BuffingItems.
+     * @param {BuffingItemsCreateArgs} args - Arguments to create a BuffingItems.
+     * @example
+     * // Create one BuffingItems
+     * const BuffingItems = await prisma.buffingItems.create({
+     *   data: {
+     *     // ... data to create a BuffingItems
+     *   }
+     * })
+     * 
+     */
+    create<T extends BuffingItemsCreateArgs>(args: SelectSubset<T, BuffingItemsCreateArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BuffingItems.
+     * @param {BuffingItemsCreateManyArgs} args - Arguments to create many BuffingItems.
+     * @example
+     * // Create many BuffingItems
+     * const buffingItems = await prisma.buffingItems.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BuffingItemsCreateManyArgs>(args?: SelectSubset<T, BuffingItemsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a BuffingItems.
+     * @param {BuffingItemsDeleteArgs} args - Arguments to delete one BuffingItems.
+     * @example
+     * // Delete one BuffingItems
+     * const BuffingItems = await prisma.buffingItems.delete({
+     *   where: {
+     *     // ... filter to delete one BuffingItems
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BuffingItemsDeleteArgs>(args: SelectSubset<T, BuffingItemsDeleteArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BuffingItems.
+     * @param {BuffingItemsUpdateArgs} args - Arguments to update one BuffingItems.
+     * @example
+     * // Update one BuffingItems
+     * const buffingItems = await prisma.buffingItems.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BuffingItemsUpdateArgs>(args: SelectSubset<T, BuffingItemsUpdateArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BuffingItems.
+     * @param {BuffingItemsDeleteManyArgs} args - Arguments to filter BuffingItems to delete.
+     * @example
+     * // Delete a few BuffingItems
+     * const { count } = await prisma.buffingItems.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BuffingItemsDeleteManyArgs>(args?: SelectSubset<T, BuffingItemsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BuffingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingItemsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BuffingItems
+     * const buffingItems = await prisma.buffingItems.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BuffingItemsUpdateManyArgs>(args: SelectSubset<T, BuffingItemsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one BuffingItems.
+     * @param {BuffingItemsUpsertArgs} args - Arguments to update or create a BuffingItems.
+     * @example
+     * // Update or create a BuffingItems
+     * const buffingItems = await prisma.buffingItems.upsert({
+     *   create: {
+     *     // ... data to create a BuffingItems
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BuffingItems we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BuffingItemsUpsertArgs>(args: SelectSubset<T, BuffingItemsUpsertArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BuffingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingItemsCountArgs} args - Arguments to filter BuffingItems to count.
+     * @example
+     * // Count the number of BuffingItems
+     * const count = await prisma.buffingItems.count({
+     *   where: {
+     *     // ... the filter for the BuffingItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends BuffingItemsCountArgs>(
+      args?: Subset<T, BuffingItemsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BuffingItemsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BuffingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingItemsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BuffingItemsAggregateArgs>(args: Subset<T, BuffingItemsAggregateArgs>): Prisma.PrismaPromise<GetBuffingItemsAggregateType<T>>
+
+    /**
+     * Group by BuffingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingItemsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BuffingItemsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BuffingItemsGroupByArgs['orderBy'] }
+        : { orderBy?: BuffingItemsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BuffingItemsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBuffingItemsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BuffingItems model
+   */
+  readonly fields: BuffingItemsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BuffingItems.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BuffingItemsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    item<T extends AddItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddItemDefaultArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    touch<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    stock<T extends BuffingItems$stockArgs<ExtArgs> = {}>(args?: Subset<T, BuffingItems$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    buffing_wastage<T extends BuffingItems$buffing_wastageArgs<ExtArgs> = {}>(args?: Subset<T, BuffingItems$buffing_wastageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BuffingItems model
+   */
+  interface BuffingItemsFieldRefs {
+    readonly id: FieldRef<"BuffingItems", 'Int'>
+    readonly createdAt: FieldRef<"BuffingItems", 'DateTime'>
+    readonly receipt_weight: FieldRef<"BuffingItems", 'Float'>
+    readonly remarks: FieldRef<"BuffingItems", 'String'>
+    readonly wastage: FieldRef<"BuffingItems", 'Boolean'>
+    readonly type: FieldRef<"BuffingItems", 'CASTINGENTRYTYPE'>
+    readonly item_id: FieldRef<"BuffingItems", 'Int'>
+    readonly scrap_weight: FieldRef<"BuffingItems", 'Float'>
+    readonly touch_id: FieldRef<"BuffingItems", 'Int'>
+    readonly item_purity: FieldRef<"BuffingItems", 'Float'>
+    readonly scrap_remarks: FieldRef<"BuffingItems", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BuffingItems findUnique
+   */
+  export type BuffingItemsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingItems to fetch.
+     */
+    where: BuffingItemsWhereUniqueInput
+  }
+
+  /**
+   * BuffingItems findUniqueOrThrow
+   */
+  export type BuffingItemsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingItems to fetch.
+     */
+    where: BuffingItemsWhereUniqueInput
+  }
+
+  /**
+   * BuffingItems findFirst
+   */
+  export type BuffingItemsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingItems to fetch.
+     */
+    where?: BuffingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingItems to fetch.
+     */
+    orderBy?: BuffingItemsOrderByWithRelationInput | BuffingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BuffingItems.
+     */
+    cursor?: BuffingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BuffingItems.
+     */
+    distinct?: BuffingItemsScalarFieldEnum | BuffingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingItems findFirstOrThrow
+   */
+  export type BuffingItemsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingItems to fetch.
+     */
+    where?: BuffingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingItems to fetch.
+     */
+    orderBy?: BuffingItemsOrderByWithRelationInput | BuffingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BuffingItems.
+     */
+    cursor?: BuffingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BuffingItems.
+     */
+    distinct?: BuffingItemsScalarFieldEnum | BuffingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingItems findMany
+   */
+  export type BuffingItemsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingItems to fetch.
+     */
+    where?: BuffingItemsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingItems to fetch.
+     */
+    orderBy?: BuffingItemsOrderByWithRelationInput | BuffingItemsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BuffingItems.
+     */
+    cursor?: BuffingItemsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingItems.
+     */
+    skip?: number
+    distinct?: BuffingItemsScalarFieldEnum | BuffingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingItems create
+   */
+  export type BuffingItemsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BuffingItems.
+     */
+    data: XOR<BuffingItemsCreateInput, BuffingItemsUncheckedCreateInput>
+  }
+
+  /**
+   * BuffingItems createMany
+   */
+  export type BuffingItemsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BuffingItems.
+     */
+    data: BuffingItemsCreateManyInput | BuffingItemsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BuffingItems update
+   */
+  export type BuffingItemsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BuffingItems.
+     */
+    data: XOR<BuffingItemsUpdateInput, BuffingItemsUncheckedUpdateInput>
+    /**
+     * Choose, which BuffingItems to update.
+     */
+    where: BuffingItemsWhereUniqueInput
+  }
+
+  /**
+   * BuffingItems updateMany
+   */
+  export type BuffingItemsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BuffingItems.
+     */
+    data: XOR<BuffingItemsUpdateManyMutationInput, BuffingItemsUncheckedUpdateManyInput>
+    /**
+     * Filter which BuffingItems to update
+     */
+    where?: BuffingItemsWhereInput
+    /**
+     * Limit how many BuffingItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BuffingItems upsert
+   */
+  export type BuffingItemsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BuffingItems to update in case it exists.
+     */
+    where: BuffingItemsWhereUniqueInput
+    /**
+     * In case the BuffingItems found by the `where` argument doesn't exist, create a new BuffingItems with this data.
+     */
+    create: XOR<BuffingItemsCreateInput, BuffingItemsUncheckedCreateInput>
+    /**
+     * In case the BuffingItems was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BuffingItemsUpdateInput, BuffingItemsUncheckedUpdateInput>
+  }
+
+  /**
+   * BuffingItems delete
+   */
+  export type BuffingItemsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    /**
+     * Filter which BuffingItems to delete.
+     */
+    where: BuffingItemsWhereUniqueInput
+  }
+
+  /**
+   * BuffingItems deleteMany
+   */
+  export type BuffingItemsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BuffingItems to delete
+     */
+    where?: BuffingItemsWhereInput
+    /**
+     * Limit how many BuffingItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BuffingItems.stock
+   */
+  export type BuffingItems$stockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stock
+     */
+    select?: StockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stock
+     */
+    omit?: StockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StockInclude<ExtArgs> | null
+    where?: StockWhereInput
+    orderBy?: StockOrderByWithRelationInput | StockOrderByWithRelationInput[]
+    cursor?: StockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StockScalarFieldEnum | StockScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingItems.buffing_wastage
+   */
+  export type BuffingItems$buffing_wastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    where?: BuffingWastageWhereInput
+    orderBy?: BuffingWastageOrderByWithRelationInput | BuffingWastageOrderByWithRelationInput[]
+    cursor?: BuffingWastageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BuffingWastageScalarFieldEnum | BuffingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingItems without action
+   */
+  export type BuffingItemsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BuffingWastage
+   */
+
+  export type AggregateBuffingWastage = {
+    _count: BuffingWastageCountAggregateOutputType | null
+    _avg: BuffingWastageAvgAggregateOutputType | null
+    _sum: BuffingWastageSumAggregateOutputType | null
+    _min: BuffingWastageMinAggregateOutputType | null
+    _max: BuffingWastageMaxAggregateOutputType | null
+  }
+
+  export type BuffingWastageAvgAggregateOutputType = {
+    id: number | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type BuffingWastageSumAggregateOutputType = {
+    id: number | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type BuffingWastageMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type BuffingWastageMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    wastage_percentage: number | null
+    given_gold: number | null
+    add_wastage: number | null
+  }
+
+  export type BuffingWastageCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    wastage_percentage: number
+    given_gold: number
+    add_wastage: number
+    _all: number
+  }
+
+
+  export type BuffingWastageAvgAggregateInputType = {
+    id?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type BuffingWastageSumAggregateInputType = {
+    id?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type BuffingWastageMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type BuffingWastageMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+  }
+
+  export type BuffingWastageCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    wastage_percentage?: true
+    given_gold?: true
+    add_wastage?: true
+    _all?: true
+  }
+
+  export type BuffingWastageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BuffingWastage to aggregate.
+     */
+    where?: BuffingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingWastages to fetch.
+     */
+    orderBy?: BuffingWastageOrderByWithRelationInput | BuffingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BuffingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingWastages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BuffingWastages
+    **/
+    _count?: true | BuffingWastageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BuffingWastageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BuffingWastageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BuffingWastageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BuffingWastageMaxAggregateInputType
+  }
+
+  export type GetBuffingWastageAggregateType<T extends BuffingWastageAggregateArgs> = {
+        [P in keyof T & keyof AggregateBuffingWastage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBuffingWastage[P]>
+      : GetScalarType<T[P], AggregateBuffingWastage[P]>
+  }
+
+
+
+
+  export type BuffingWastageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuffingWastageWhereInput
+    orderBy?: BuffingWastageOrderByWithAggregationInput | BuffingWastageOrderByWithAggregationInput[]
+    by: BuffingWastageScalarFieldEnum[] | BuffingWastageScalarFieldEnum
+    having?: BuffingWastageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BuffingWastageCountAggregateInputType | true
+    _avg?: BuffingWastageAvgAggregateInputType
+    _sum?: BuffingWastageSumAggregateInputType
+    _min?: BuffingWastageMinAggregateInputType
+    _max?: BuffingWastageMaxAggregateInputType
+  }
+
+  export type BuffingWastageGroupByOutputType = {
+    id: number
+    createdAt: Date
+    wastage_percentage: number
+    given_gold: number | null
+    add_wastage: number | null
+    _count: BuffingWastageCountAggregateOutputType | null
+    _avg: BuffingWastageAvgAggregateOutputType | null
+    _sum: BuffingWastageSumAggregateOutputType | null
+    _min: BuffingWastageMinAggregateOutputType | null
+    _max: BuffingWastageMaxAggregateOutputType | null
+  }
+
+  type GetBuffingWastageGroupByPayload<T extends BuffingWastageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BuffingWastageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BuffingWastageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BuffingWastageGroupByOutputType[P]>
+            : GetScalarType<T[P], BuffingWastageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BuffingWastageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    wastage_percentage?: boolean
+    given_gold?: boolean
+    add_wastage?: boolean
+    buffing_items?: boolean | BuffingWastage$buffing_itemsArgs<ExtArgs>
+    _count?: boolean | BuffingWastageCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["buffingWastage"]>
+
+
+
+  export type BuffingWastageSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    wastage_percentage?: boolean
+    given_gold?: boolean
+    add_wastage?: boolean
+  }
+
+  export type BuffingWastageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "wastage_percentage" | "given_gold" | "add_wastage", ExtArgs["result"]["buffingWastage"]>
+  export type BuffingWastageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    buffing_items?: boolean | BuffingWastage$buffing_itemsArgs<ExtArgs>
+    _count?: boolean | BuffingWastageCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $BuffingWastagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BuffingWastage"
+    objects: {
+      buffing_items: Prisma.$BuffingItemsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      wastage_percentage: number
+      given_gold: number | null
+      add_wastage: number | null
+    }, ExtArgs["result"]["buffingWastage"]>
+    composites: {}
+  }
+
+  type BuffingWastageGetPayload<S extends boolean | null | undefined | BuffingWastageDefaultArgs> = $Result.GetResult<Prisma.$BuffingWastagePayload, S>
+
+  type BuffingWastageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BuffingWastageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BuffingWastageCountAggregateInputType | true
+    }
+
+  export interface BuffingWastageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BuffingWastage'], meta: { name: 'BuffingWastage' } }
+    /**
+     * Find zero or one BuffingWastage that matches the filter.
+     * @param {BuffingWastageFindUniqueArgs} args - Arguments to find a BuffingWastage
+     * @example
+     * // Get one BuffingWastage
+     * const buffingWastage = await prisma.buffingWastage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BuffingWastageFindUniqueArgs>(args: SelectSubset<T, BuffingWastageFindUniqueArgs<ExtArgs>>): Prisma__BuffingWastageClient<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BuffingWastage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BuffingWastageFindUniqueOrThrowArgs} args - Arguments to find a BuffingWastage
+     * @example
+     * // Get one BuffingWastage
+     * const buffingWastage = await prisma.buffingWastage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BuffingWastageFindUniqueOrThrowArgs>(args: SelectSubset<T, BuffingWastageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BuffingWastageClient<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BuffingWastage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingWastageFindFirstArgs} args - Arguments to find a BuffingWastage
+     * @example
+     * // Get one BuffingWastage
+     * const buffingWastage = await prisma.buffingWastage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BuffingWastageFindFirstArgs>(args?: SelectSubset<T, BuffingWastageFindFirstArgs<ExtArgs>>): Prisma__BuffingWastageClient<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BuffingWastage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingWastageFindFirstOrThrowArgs} args - Arguments to find a BuffingWastage
+     * @example
+     * // Get one BuffingWastage
+     * const buffingWastage = await prisma.buffingWastage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BuffingWastageFindFirstOrThrowArgs>(args?: SelectSubset<T, BuffingWastageFindFirstOrThrowArgs<ExtArgs>>): Prisma__BuffingWastageClient<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BuffingWastages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingWastageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BuffingWastages
+     * const buffingWastages = await prisma.buffingWastage.findMany()
+     * 
+     * // Get first 10 BuffingWastages
+     * const buffingWastages = await prisma.buffingWastage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const buffingWastageWithIdOnly = await prisma.buffingWastage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BuffingWastageFindManyArgs>(args?: SelectSubset<T, BuffingWastageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BuffingWastage.
+     * @param {BuffingWastageCreateArgs} args - Arguments to create a BuffingWastage.
+     * @example
+     * // Create one BuffingWastage
+     * const BuffingWastage = await prisma.buffingWastage.create({
+     *   data: {
+     *     // ... data to create a BuffingWastage
+     *   }
+     * })
+     * 
+     */
+    create<T extends BuffingWastageCreateArgs>(args: SelectSubset<T, BuffingWastageCreateArgs<ExtArgs>>): Prisma__BuffingWastageClient<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BuffingWastages.
+     * @param {BuffingWastageCreateManyArgs} args - Arguments to create many BuffingWastages.
+     * @example
+     * // Create many BuffingWastages
+     * const buffingWastage = await prisma.buffingWastage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BuffingWastageCreateManyArgs>(args?: SelectSubset<T, BuffingWastageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a BuffingWastage.
+     * @param {BuffingWastageDeleteArgs} args - Arguments to delete one BuffingWastage.
+     * @example
+     * // Delete one BuffingWastage
+     * const BuffingWastage = await prisma.buffingWastage.delete({
+     *   where: {
+     *     // ... filter to delete one BuffingWastage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BuffingWastageDeleteArgs>(args: SelectSubset<T, BuffingWastageDeleteArgs<ExtArgs>>): Prisma__BuffingWastageClient<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BuffingWastage.
+     * @param {BuffingWastageUpdateArgs} args - Arguments to update one BuffingWastage.
+     * @example
+     * // Update one BuffingWastage
+     * const buffingWastage = await prisma.buffingWastage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BuffingWastageUpdateArgs>(args: SelectSubset<T, BuffingWastageUpdateArgs<ExtArgs>>): Prisma__BuffingWastageClient<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BuffingWastages.
+     * @param {BuffingWastageDeleteManyArgs} args - Arguments to filter BuffingWastages to delete.
+     * @example
+     * // Delete a few BuffingWastages
+     * const { count } = await prisma.buffingWastage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BuffingWastageDeleteManyArgs>(args?: SelectSubset<T, BuffingWastageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BuffingWastages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingWastageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BuffingWastages
+     * const buffingWastage = await prisma.buffingWastage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BuffingWastageUpdateManyArgs>(args: SelectSubset<T, BuffingWastageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one BuffingWastage.
+     * @param {BuffingWastageUpsertArgs} args - Arguments to update or create a BuffingWastage.
+     * @example
+     * // Update or create a BuffingWastage
+     * const buffingWastage = await prisma.buffingWastage.upsert({
+     *   create: {
+     *     // ... data to create a BuffingWastage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BuffingWastage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BuffingWastageUpsertArgs>(args: SelectSubset<T, BuffingWastageUpsertArgs<ExtArgs>>): Prisma__BuffingWastageClient<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BuffingWastages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingWastageCountArgs} args - Arguments to filter BuffingWastages to count.
+     * @example
+     * // Count the number of BuffingWastages
+     * const count = await prisma.buffingWastage.count({
+     *   where: {
+     *     // ... the filter for the BuffingWastages we want to count
+     *   }
+     * })
+    **/
+    count<T extends BuffingWastageCountArgs>(
+      args?: Subset<T, BuffingWastageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BuffingWastageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BuffingWastage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingWastageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BuffingWastageAggregateArgs>(args: Subset<T, BuffingWastageAggregateArgs>): Prisma.PrismaPromise<GetBuffingWastageAggregateType<T>>
+
+    /**
+     * Group by BuffingWastage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingWastageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BuffingWastageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BuffingWastageGroupByArgs['orderBy'] }
+        : { orderBy?: BuffingWastageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BuffingWastageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBuffingWastageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BuffingWastage model
+   */
+  readonly fields: BuffingWastageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BuffingWastage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BuffingWastageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    buffing_items<T extends BuffingWastage$buffing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, BuffingWastage$buffing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BuffingWastage model
+   */
+  interface BuffingWastageFieldRefs {
+    readonly id: FieldRef<"BuffingWastage", 'Int'>
+    readonly createdAt: FieldRef<"BuffingWastage", 'DateTime'>
+    readonly wastage_percentage: FieldRef<"BuffingWastage", 'Int'>
+    readonly given_gold: FieldRef<"BuffingWastage", 'Int'>
+    readonly add_wastage: FieldRef<"BuffingWastage", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BuffingWastage findUnique
+   */
+  export type BuffingWastageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingWastage to fetch.
+     */
+    where: BuffingWastageWhereUniqueInput
+  }
+
+  /**
+   * BuffingWastage findUniqueOrThrow
+   */
+  export type BuffingWastageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingWastage to fetch.
+     */
+    where: BuffingWastageWhereUniqueInput
+  }
+
+  /**
+   * BuffingWastage findFirst
+   */
+  export type BuffingWastageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingWastage to fetch.
+     */
+    where?: BuffingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingWastages to fetch.
+     */
+    orderBy?: BuffingWastageOrderByWithRelationInput | BuffingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BuffingWastages.
+     */
+    cursor?: BuffingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingWastages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BuffingWastages.
+     */
+    distinct?: BuffingWastageScalarFieldEnum | BuffingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingWastage findFirstOrThrow
+   */
+  export type BuffingWastageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingWastage to fetch.
+     */
+    where?: BuffingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingWastages to fetch.
+     */
+    orderBy?: BuffingWastageOrderByWithRelationInput | BuffingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BuffingWastages.
+     */
+    cursor?: BuffingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingWastages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BuffingWastages.
+     */
+    distinct?: BuffingWastageScalarFieldEnum | BuffingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingWastage findMany
+   */
+  export type BuffingWastageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingWastages to fetch.
+     */
+    where?: BuffingWastageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingWastages to fetch.
+     */
+    orderBy?: BuffingWastageOrderByWithRelationInput | BuffingWastageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BuffingWastages.
+     */
+    cursor?: BuffingWastageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingWastages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingWastages.
+     */
+    skip?: number
+    distinct?: BuffingWastageScalarFieldEnum | BuffingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingWastage create
+   */
+  export type BuffingWastageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BuffingWastage.
+     */
+    data: XOR<BuffingWastageCreateInput, BuffingWastageUncheckedCreateInput>
+  }
+
+  /**
+   * BuffingWastage createMany
+   */
+  export type BuffingWastageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BuffingWastages.
+     */
+    data: BuffingWastageCreateManyInput | BuffingWastageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BuffingWastage update
+   */
+  export type BuffingWastageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BuffingWastage.
+     */
+    data: XOR<BuffingWastageUpdateInput, BuffingWastageUncheckedUpdateInput>
+    /**
+     * Choose, which BuffingWastage to update.
+     */
+    where: BuffingWastageWhereUniqueInput
+  }
+
+  /**
+   * BuffingWastage updateMany
+   */
+  export type BuffingWastageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BuffingWastages.
+     */
+    data: XOR<BuffingWastageUpdateManyMutationInput, BuffingWastageUncheckedUpdateManyInput>
+    /**
+     * Filter which BuffingWastages to update
+     */
+    where?: BuffingWastageWhereInput
+    /**
+     * Limit how many BuffingWastages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BuffingWastage upsert
+   */
+  export type BuffingWastageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BuffingWastage to update in case it exists.
+     */
+    where: BuffingWastageWhereUniqueInput
+    /**
+     * In case the BuffingWastage found by the `where` argument doesn't exist, create a new BuffingWastage with this data.
+     */
+    create: XOR<BuffingWastageCreateInput, BuffingWastageUncheckedCreateInput>
+    /**
+     * In case the BuffingWastage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BuffingWastageUpdateInput, BuffingWastageUncheckedUpdateInput>
+  }
+
+  /**
+   * BuffingWastage delete
+   */
+  export type BuffingWastageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    /**
+     * Filter which BuffingWastage to delete.
+     */
+    where: BuffingWastageWhereUniqueInput
+  }
+
+  /**
+   * BuffingWastage deleteMany
+   */
+  export type BuffingWastageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BuffingWastages to delete
+     */
+    where?: BuffingWastageWhereInput
+    /**
+     * Limit how many BuffingWastages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BuffingWastage.buffing_items
+   */
+  export type BuffingWastage$buffing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    where?: BuffingItemsWhereInput
+    orderBy?: BuffingItemsOrderByWithRelationInput | BuffingItemsOrderByWithRelationInput[]
+    cursor?: BuffingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BuffingItemsScalarFieldEnum | BuffingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingWastage without action
+   */
+  export type BuffingWastageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Stock
    */
 
@@ -17041,11 +25370,13 @@ export namespace Prisma {
   export type StockAvgAggregateOutputType = {
     id: number | null
     casting_item_id: number | null
+    filing_item_id: number | null
+    setting_item_id: number | null
+    buffing_item_id: number | null
     item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
     scrap_weight: number | null
+    touch_id: number | null
+    item_purity: number | null
     scrap_wastage: number | null
     casting_customer_id: number | null
   }
@@ -17053,11 +25384,13 @@ export namespace Prisma {
   export type StockSumAggregateOutputType = {
     id: number | null
     casting_item_id: number | null
+    filing_item_id: number | null
+    setting_item_id: number | null
+    buffing_item_id: number | null
     item_id: number | null
-    weight: number | null
-    touch: number | null
-    item_purity: number | null
     scrap_weight: number | null
+    touch_id: number | null
+    item_purity: number | null
     scrap_wastage: number | null
     casting_customer_id: number | null
   }
@@ -17066,12 +25399,14 @@ export namespace Prisma {
     id: number | null
     createdAt: Date | null
     casting_item_id: number | null
+    filing_item_id: number | null
+    setting_item_id: number | null
+    buffing_item_id: number | null
     item_id: number | null
-    weight: number | null
-    touch: number | null
+    scrap_weight: number | null
+    touch_id: number | null
     item_purity: number | null
     remarks: string | null
-    scrap_weight: number | null
     scrap_wastage: number | null
     casting_customer_id: number | null
   }
@@ -17080,12 +25415,14 @@ export namespace Prisma {
     id: number | null
     createdAt: Date | null
     casting_item_id: number | null
+    filing_item_id: number | null
+    setting_item_id: number | null
+    buffing_item_id: number | null
     item_id: number | null
-    weight: number | null
-    touch: number | null
+    scrap_weight: number | null
+    touch_id: number | null
     item_purity: number | null
     remarks: string | null
-    scrap_weight: number | null
     scrap_wastage: number | null
     casting_customer_id: number | null
   }
@@ -17094,12 +25431,14 @@ export namespace Prisma {
     id: number
     createdAt: number
     casting_item_id: number
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
     item_id: number
-    weight: number
-    touch: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks: number
-    scrap_weight: number
     scrap_wastage: number
     casting_customer_id: number
     _all: number
@@ -17109,11 +25448,13 @@ export namespace Prisma {
   export type StockAvgAggregateInputType = {
     id?: true
     casting_item_id?: true
+    filing_item_id?: true
+    setting_item_id?: true
+    buffing_item_id?: true
     item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
     scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
     scrap_wastage?: true
     casting_customer_id?: true
   }
@@ -17121,11 +25462,13 @@ export namespace Prisma {
   export type StockSumAggregateInputType = {
     id?: true
     casting_item_id?: true
+    filing_item_id?: true
+    setting_item_id?: true
+    buffing_item_id?: true
     item_id?: true
-    weight?: true
-    touch?: true
-    item_purity?: true
     scrap_weight?: true
+    touch_id?: true
+    item_purity?: true
     scrap_wastage?: true
     casting_customer_id?: true
   }
@@ -17134,12 +25477,14 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     casting_item_id?: true
+    filing_item_id?: true
+    setting_item_id?: true
+    buffing_item_id?: true
     item_id?: true
-    weight?: true
-    touch?: true
+    scrap_weight?: true
+    touch_id?: true
     item_purity?: true
     remarks?: true
-    scrap_weight?: true
     scrap_wastage?: true
     casting_customer_id?: true
   }
@@ -17148,12 +25493,14 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     casting_item_id?: true
+    filing_item_id?: true
+    setting_item_id?: true
+    buffing_item_id?: true
     item_id?: true
-    weight?: true
-    touch?: true
+    scrap_weight?: true
+    touch_id?: true
     item_purity?: true
     remarks?: true
-    scrap_weight?: true
     scrap_wastage?: true
     casting_customer_id?: true
   }
@@ -17162,12 +25509,14 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     casting_item_id?: true
+    filing_item_id?: true
+    setting_item_id?: true
+    buffing_item_id?: true
     item_id?: true
-    weight?: true
-    touch?: true
+    scrap_weight?: true
+    touch_id?: true
     item_purity?: true
     remarks?: true
-    scrap_weight?: true
     scrap_wastage?: true
     casting_customer_id?: true
     _all?: true
@@ -17263,12 +25612,14 @@ export namespace Prisma {
     id: number
     createdAt: Date
     casting_item_id: number
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
     item_id: number
-    weight: number
-    touch: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks: string | null
-    scrap_weight: number | null
     scrap_wastage: number | null
     casting_customer_id: number
     _count: StockCountAggregateOutputType | null
@@ -17296,16 +25647,22 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     casting_item_id?: boolean
+    filing_item_id?: boolean
+    setting_item_id?: boolean
+    buffing_item_id?: boolean
     item_id?: boolean
-    weight?: boolean
-    touch?: boolean
+    scrap_weight?: boolean
+    touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
-    scrap_weight?: boolean
     scrap_wastage?: boolean
     casting_customer_id?: boolean
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
+    filingItem?: boolean | FilingItemsDefaultArgs<ExtArgs>
+    settingItem?: boolean | SettingItemsDefaultArgs<ExtArgs>
+    buffingItem?: boolean | BuffingItemsDefaultArgs<ExtArgs>
     item?: boolean | AddItemDefaultArgs<ExtArgs>
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["stock"]>
 
@@ -17315,20 +25672,26 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     casting_item_id?: boolean
+    filing_item_id?: boolean
+    setting_item_id?: boolean
+    buffing_item_id?: boolean
     item_id?: boolean
-    weight?: boolean
-    touch?: boolean
+    scrap_weight?: boolean
+    touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
-    scrap_weight?: boolean
     scrap_wastage?: boolean
     casting_customer_id?: boolean
   }
 
-  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "casting_item_id" | "item_id" | "weight" | "touch" | "item_purity" | "remarks" | "scrap_weight" | "scrap_wastage" | "casting_customer_id", ExtArgs["result"]["stock"]>
+  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "casting_item_id" | "filing_item_id" | "setting_item_id" | "buffing_item_id" | "item_id" | "scrap_weight" | "touch_id" | "item_purity" | "remarks" | "scrap_wastage" | "casting_customer_id", ExtArgs["result"]["stock"]>
   export type StockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
+    filingItem?: boolean | FilingItemsDefaultArgs<ExtArgs>
+    settingItem?: boolean | SettingItemsDefaultArgs<ExtArgs>
+    buffingItem?: boolean | BuffingItemsDefaultArgs<ExtArgs>
     item?: boolean | AddItemDefaultArgs<ExtArgs>
+    touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
   }
 
@@ -17336,19 +25699,25 @@ export namespace Prisma {
     name: "Stock"
     objects: {
       castingItem: Prisma.$CastingItemsPayload<ExtArgs>
+      filingItem: Prisma.$FilingItemsPayload<ExtArgs>
+      settingItem: Prisma.$SettingItemsPayload<ExtArgs>
+      buffingItem: Prisma.$BuffingItemsPayload<ExtArgs>
       item: Prisma.$AddItemPayload<ExtArgs>
+      touch: Prisma.$AddTouchPayload<ExtArgs>
       casting_customer: Prisma.$AddCastingPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
       casting_item_id: number
+      filing_item_id: number
+      setting_item_id: number
+      buffing_item_id: number
       item_id: number
-      weight: number
-      touch: number
+      scrap_weight: number
+      touch_id: number
       item_purity: number
       remarks: string | null
-      scrap_weight: number | null
       scrap_wastage: number | null
       casting_customer_id: number
     }, ExtArgs["result"]["stock"]>
@@ -17692,7 +26061,11 @@ export namespace Prisma {
   export interface Prisma__StockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     castingItem<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    filingItem<T extends FilingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FilingItemsDefaultArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    settingItem<T extends SettingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SettingItemsDefaultArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    buffingItem<T extends BuffingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BuffingItemsDefaultArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     item<T extends AddItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddItemDefaultArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    touch<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     casting_customer<T extends AddCastingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddCastingDefaultArgs<ExtArgs>>): Prisma__AddCastingClient<$Result.GetResult<Prisma.$AddCastingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -17726,12 +26099,14 @@ export namespace Prisma {
     readonly id: FieldRef<"Stock", 'Int'>
     readonly createdAt: FieldRef<"Stock", 'DateTime'>
     readonly casting_item_id: FieldRef<"Stock", 'Int'>
+    readonly filing_item_id: FieldRef<"Stock", 'Int'>
+    readonly setting_item_id: FieldRef<"Stock", 'Int'>
+    readonly buffing_item_id: FieldRef<"Stock", 'Int'>
     readonly item_id: FieldRef<"Stock", 'Int'>
-    readonly weight: FieldRef<"Stock", 'Float'>
-    readonly touch: FieldRef<"Stock", 'Float'>
+    readonly scrap_weight: FieldRef<"Stock", 'Float'>
+    readonly touch_id: FieldRef<"Stock", 'Int'>
     readonly item_purity: FieldRef<"Stock", 'Float'>
     readonly remarks: FieldRef<"Stock", 'String'>
-    readonly scrap_weight: FieldRef<"Stock", 'Float'>
     readonly scrap_wastage: FieldRef<"Stock", 'Float'>
     readonly casting_customer_id: FieldRef<"Stock", 'Int'>
   }
@@ -18225,12 +26600,21 @@ export namespace Prisma {
   export type AddItemScalarFieldEnum = (typeof AddItemScalarFieldEnum)[keyof typeof AddItemScalarFieldEnum]
 
 
+  export const AddTouchScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    touch: 'touch'
+  };
+
+  export type AddTouchScalarFieldEnum = (typeof AddTouchScalarFieldEnum)[keyof typeof AddTouchScalarFieldEnum]
+
+
   export const CastingEntryScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
     date: 'date',
     given_gold: 'given_gold',
-    given_touch: 'given_touch',
+    touch_id: 'touch_id',
     purity: 'purity',
     final_touch: 'final_touch',
     pure_value: 'pure_value',
@@ -18248,7 +26632,7 @@ export namespace Prisma {
     type: 'type',
     item_id: 'item_id',
     weight: 'weight',
-    touch: 'touch',
+    touch_id: 'touch_id',
     item_purity: 'item_purity',
     remarks: 'remarks',
     after_weight: 'after_weight',
@@ -18265,62 +26649,132 @@ export namespace Prisma {
     id: 'id',
     createdAt: 'createdAt',
     filing_person_id: 'filing_person_id',
-    casting_item_id: 'casting_item_id',
-    weight: 'weight',
-    touch: 'touch',
-    item_purity: 'item_purity',
-    remarks: 'remarks',
-    after_weight: 'after_weight',
-    stone_option: 'stone_option'
+    casting_item_id: 'casting_item_id'
   };
 
   export type FilingEntryScalarFieldEnum = (typeof FilingEntryScalarFieldEnum)[keyof typeof FilingEntryScalarFieldEnum]
+
+
+  export const FilingItemsScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    type: 'type',
+    item_id: 'item_id',
+    weight: 'weight',
+    touch_id: 'touch_id',
+    item_purity: 'item_purity',
+    remarks: 'remarks',
+    wastage: 'wastage',
+    stone_option: 'stone_option',
+    after_weight: 'after_weight',
+    scrap_weight: 'scrap_weight',
+    scrap_wastage: 'scrap_wastage'
+  };
+
+  export type FilingItemsScalarFieldEnum = (typeof FilingItemsScalarFieldEnum)[keyof typeof FilingItemsScalarFieldEnum]
+
+
+  export const FilingWastageScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    wastage_percentage: 'wastage_percentage',
+    given_gold: 'given_gold',
+    add_wastage: 'add_wastage'
+  };
+
+  export type FilingWastageScalarFieldEnum = (typeof FilingWastageScalarFieldEnum)[keyof typeof FilingWastageScalarFieldEnum]
 
 
   export const SettingEntryScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
     setting_person_id: 'setting_person_id',
-    casting_item_id: 'casting_item_id',
-    weight: 'weight',
-    touch: 'touch',
-    item_purity: 'item_purity',
-    remarks: 'remarks',
-    after_weight: 'after_weight',
-    filing_entry_id: 'filing_entry_id'
+    casting_item_id: 'casting_item_id'
   };
 
   export type SettingEntryScalarFieldEnum = (typeof SettingEntryScalarFieldEnum)[keyof typeof SettingEntryScalarFieldEnum]
+
+
+  export const SettingItemsScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    receipt_weight: 'receipt_weight',
+    stone_count: 'stone_count',
+    stone_weight: 'stone_weight',
+    remarks: 'remarks',
+    wastage: 'wastage',
+    type: 'type',
+    item_id: 'item_id',
+    scrap_weight: 'scrap_weight',
+    touch_id: 'touch_id',
+    item_purity: 'item_purity',
+    scrap_remarks: 'scrap_remarks'
+  };
+
+  export type SettingItemsScalarFieldEnum = (typeof SettingItemsScalarFieldEnum)[keyof typeof SettingItemsScalarFieldEnum]
+
+
+  export const SettingWastageScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    wastage_percentage: 'wastage_percentage',
+    given_gold: 'given_gold',
+    add_wastage: 'add_wastage'
+  };
+
+  export type SettingWastageScalarFieldEnum = (typeof SettingWastageScalarFieldEnum)[keyof typeof SettingWastageScalarFieldEnum]
 
 
   export const BuffingEntryScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
     buffing_person_id: 'buffing_person_id',
-    casting_item_id: 'casting_item_id',
-    weight: 'weight',
-    touch: 'touch',
-    item_purity: 'item_purity',
-    remarks: 'remarks',
-    after_weight: 'after_weight',
-    setting_entry_id: 'setting_entry_id',
-    filing_entry_id: 'filing_entry_id',
-    type: 'type'
+    casting_item_id: 'casting_item_id'
   };
 
   export type BuffingEntryScalarFieldEnum = (typeof BuffingEntryScalarFieldEnum)[keyof typeof BuffingEntryScalarFieldEnum]
+
+
+  export const BuffingItemsScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    receipt_weight: 'receipt_weight',
+    remarks: 'remarks',
+    wastage: 'wastage',
+    type: 'type',
+    item_id: 'item_id',
+    scrap_weight: 'scrap_weight',
+    touch_id: 'touch_id',
+    item_purity: 'item_purity',
+    scrap_remarks: 'scrap_remarks'
+  };
+
+  export type BuffingItemsScalarFieldEnum = (typeof BuffingItemsScalarFieldEnum)[keyof typeof BuffingItemsScalarFieldEnum]
+
+
+  export const BuffingWastageScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    wastage_percentage: 'wastage_percentage',
+    given_gold: 'given_gold',
+    add_wastage: 'add_wastage'
+  };
+
+  export type BuffingWastageScalarFieldEnum = (typeof BuffingWastageScalarFieldEnum)[keyof typeof BuffingWastageScalarFieldEnum]
 
 
   export const StockScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
     casting_item_id: 'casting_item_id',
+    filing_item_id: 'filing_item_id',
+    setting_item_id: 'setting_item_id',
+    buffing_item_id: 'buffing_item_id',
     item_id: 'item_id',
-    weight: 'weight',
-    touch: 'touch',
+    scrap_weight: 'scrap_weight',
+    touch_id: 'touch_id',
     item_purity: 'item_purity',
     remarks: 'remarks',
-    scrap_weight: 'scrap_weight',
     scrap_wastage: 'scrap_wastage',
     casting_customer_id: 'casting_customer_id'
   };
@@ -18432,25 +26886,27 @@ export namespace Prisma {
   export type CastingItemsOrderByRelevanceFieldEnum = (typeof CastingItemsOrderByRelevanceFieldEnum)[keyof typeof CastingItemsOrderByRelevanceFieldEnum]
 
 
-  export const FilingEntryOrderByRelevanceFieldEnum: {
+  export const FilingItemsOrderByRelevanceFieldEnum: {
     remarks: 'remarks'
   };
 
-  export type FilingEntryOrderByRelevanceFieldEnum = (typeof FilingEntryOrderByRelevanceFieldEnum)[keyof typeof FilingEntryOrderByRelevanceFieldEnum]
+  export type FilingItemsOrderByRelevanceFieldEnum = (typeof FilingItemsOrderByRelevanceFieldEnum)[keyof typeof FilingItemsOrderByRelevanceFieldEnum]
 
 
-  export const SettingEntryOrderByRelevanceFieldEnum: {
-    remarks: 'remarks'
+  export const SettingItemsOrderByRelevanceFieldEnum: {
+    remarks: 'remarks',
+    scrap_remarks: 'scrap_remarks'
   };
 
-  export type SettingEntryOrderByRelevanceFieldEnum = (typeof SettingEntryOrderByRelevanceFieldEnum)[keyof typeof SettingEntryOrderByRelevanceFieldEnum]
+  export type SettingItemsOrderByRelevanceFieldEnum = (typeof SettingItemsOrderByRelevanceFieldEnum)[keyof typeof SettingItemsOrderByRelevanceFieldEnum]
 
 
-  export const BuffingEntryOrderByRelevanceFieldEnum: {
-    remarks: 'remarks'
+  export const BuffingItemsOrderByRelevanceFieldEnum: {
+    remarks: 'remarks',
+    scrap_remarks: 'scrap_remarks'
   };
 
-  export type BuffingEntryOrderByRelevanceFieldEnum = (typeof BuffingEntryOrderByRelevanceFieldEnum)[keyof typeof BuffingEntryOrderByRelevanceFieldEnum]
+  export type BuffingItemsOrderByRelevanceFieldEnum = (typeof BuffingItemsOrderByRelevanceFieldEnum)[keyof typeof BuffingItemsOrderByRelevanceFieldEnum]
 
 
   export const StockOrderByRelevanceFieldEnum: {
@@ -18504,6 +26960,13 @@ export namespace Prisma {
    * Reference to a field of type 'CASTINGENTRYTYPE'
    */
   export type EnumCASTINGENTRYTYPEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CASTINGENTRYTYPE'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -19083,16 +27546,22 @@ export namespace Prisma {
     id?: IntFilter<"AddItem"> | number
     createdAt?: DateTimeFilter<"AddItem"> | Date | string
     name?: StringFilter<"AddItem"> | string
-    castingItems?: CastingItemsListRelationFilter
+    casting_items?: CastingItemsListRelationFilter
     stock?: StockListRelationFilter
+    filing_items?: FilingItemsListRelationFilter
+    setting_items?: SettingItemsListRelationFilter
+    buffing_items?: BuffingItemsListRelationFilter
   }
 
   export type AddItemOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
     name?: SortOrder
-    castingItems?: CastingItemsOrderByRelationAggregateInput
+    casting_items?: CastingItemsOrderByRelationAggregateInput
     stock?: StockOrderByRelationAggregateInput
+    filing_items?: FilingItemsOrderByRelationAggregateInput
+    setting_items?: SettingItemsOrderByRelationAggregateInput
+    buffing_items?: BuffingItemsOrderByRelationAggregateInput
     _relevance?: AddItemOrderByRelevanceInput
   }
 
@@ -19103,8 +27572,11 @@ export namespace Prisma {
     NOT?: AddItemWhereInput | AddItemWhereInput[]
     createdAt?: DateTimeFilter<"AddItem"> | Date | string
     name?: StringFilter<"AddItem"> | string
-    castingItems?: CastingItemsListRelationFilter
+    casting_items?: CastingItemsListRelationFilter
     stock?: StockListRelationFilter
+    filing_items?: FilingItemsListRelationFilter
+    setting_items?: SettingItemsListRelationFilter
+    buffing_items?: BuffingItemsListRelationFilter
   }, "id">
 
   export type AddItemOrderByWithAggregationInput = {
@@ -19127,6 +27599,68 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"AddItem"> | string
   }
 
+  export type AddTouchWhereInput = {
+    AND?: AddTouchWhereInput | AddTouchWhereInput[]
+    OR?: AddTouchWhereInput[]
+    NOT?: AddTouchWhereInput | AddTouchWhereInput[]
+    id?: IntFilter<"AddTouch"> | number
+    createdAt?: DateTimeFilter<"AddTouch"> | Date | string
+    touch?: FloatFilter<"AddTouch"> | number
+    casting_entry?: CastingEntryListRelationFilter
+    casting_items?: CastingItemsListRelationFilter
+    filing_items?: FilingItemsListRelationFilter
+    setting_items?: SettingItemsListRelationFilter
+    buffing_items?: BuffingItemsListRelationFilter
+    stock?: StockListRelationFilter
+  }
+
+  export type AddTouchOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    touch?: SortOrder
+    casting_entry?: CastingEntryOrderByRelationAggregateInput
+    casting_items?: CastingItemsOrderByRelationAggregateInput
+    filing_items?: FilingItemsOrderByRelationAggregateInput
+    setting_items?: SettingItemsOrderByRelationAggregateInput
+    buffing_items?: BuffingItemsOrderByRelationAggregateInput
+    stock?: StockOrderByRelationAggregateInput
+  }
+
+  export type AddTouchWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: AddTouchWhereInput | AddTouchWhereInput[]
+    OR?: AddTouchWhereInput[]
+    NOT?: AddTouchWhereInput | AddTouchWhereInput[]
+    createdAt?: DateTimeFilter<"AddTouch"> | Date | string
+    touch?: FloatFilter<"AddTouch"> | number
+    casting_entry?: CastingEntryListRelationFilter
+    casting_items?: CastingItemsListRelationFilter
+    filing_items?: FilingItemsListRelationFilter
+    setting_items?: SettingItemsListRelationFilter
+    buffing_items?: BuffingItemsListRelationFilter
+    stock?: StockListRelationFilter
+  }, "id">
+
+  export type AddTouchOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    touch?: SortOrder
+    _count?: AddTouchCountOrderByAggregateInput
+    _avg?: AddTouchAvgOrderByAggregateInput
+    _max?: AddTouchMaxOrderByAggregateInput
+    _min?: AddTouchMinOrderByAggregateInput
+    _sum?: AddTouchSumOrderByAggregateInput
+  }
+
+  export type AddTouchScalarWhereWithAggregatesInput = {
+    AND?: AddTouchScalarWhereWithAggregatesInput | AddTouchScalarWhereWithAggregatesInput[]
+    OR?: AddTouchScalarWhereWithAggregatesInput[]
+    NOT?: AddTouchScalarWhereWithAggregatesInput | AddTouchScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"AddTouch"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AddTouch"> | Date | string
+    touch?: FloatWithAggregatesFilter<"AddTouch"> | number
+  }
+
   export type CastingEntryWhereInput = {
     AND?: CastingEntryWhereInput | CastingEntryWhereInput[]
     OR?: CastingEntryWhereInput[]
@@ -19135,13 +27669,14 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"CastingEntry"> | Date | string
     date?: DateTimeFilter<"CastingEntry"> | Date | string
     given_gold?: FloatFilter<"CastingEntry"> | number
-    given_touch?: FloatFilter<"CastingEntry"> | number
+    touch_id?: IntFilter<"CastingEntry"> | number
     purity?: FloatFilter<"CastingEntry"> | number
     final_touch?: FloatFilter<"CastingEntry"> | number
     pure_value?: FloatFilter<"CastingEntry"> | number
     copper?: FloatFilter<"CastingEntry"> | number
     final_weight?: FloatFilter<"CastingEntry"> | number
     casting_customer_id?: IntFilter<"CastingEntry"> | number
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     casting_customer?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
     items?: CastingItemsListRelationFilter
   }
@@ -19151,13 +27686,14 @@ export namespace Prisma {
     createdAt?: SortOrder
     date?: SortOrder
     given_gold?: SortOrder
-    given_touch?: SortOrder
+    touch_id?: SortOrder
     purity?: SortOrder
     final_touch?: SortOrder
     pure_value?: SortOrder
     copper?: SortOrder
     final_weight?: SortOrder
     casting_customer_id?: SortOrder
+    touch?: AddTouchOrderByWithRelationInput
     casting_customer?: AddCastingOrderByWithRelationInput
     items?: CastingItemsOrderByRelationAggregateInput
   }
@@ -19170,13 +27706,14 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"CastingEntry"> | Date | string
     date?: DateTimeFilter<"CastingEntry"> | Date | string
     given_gold?: FloatFilter<"CastingEntry"> | number
-    given_touch?: FloatFilter<"CastingEntry"> | number
+    touch_id?: IntFilter<"CastingEntry"> | number
     purity?: FloatFilter<"CastingEntry"> | number
     final_touch?: FloatFilter<"CastingEntry"> | number
     pure_value?: FloatFilter<"CastingEntry"> | number
     copper?: FloatFilter<"CastingEntry"> | number
     final_weight?: FloatFilter<"CastingEntry"> | number
     casting_customer_id?: IntFilter<"CastingEntry"> | number
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     casting_customer?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
     items?: CastingItemsListRelationFilter
   }, "id">
@@ -19186,7 +27723,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     date?: SortOrder
     given_gold?: SortOrder
-    given_touch?: SortOrder
+    touch_id?: SortOrder
     purity?: SortOrder
     final_touch?: SortOrder
     pure_value?: SortOrder
@@ -19208,7 +27745,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"CastingEntry"> | Date | string
     date?: DateTimeWithAggregatesFilter<"CastingEntry"> | Date | string
     given_gold?: FloatWithAggregatesFilter<"CastingEntry"> | number
-    given_touch?: FloatWithAggregatesFilter<"CastingEntry"> | number
+    touch_id?: IntWithAggregatesFilter<"CastingEntry"> | number
     purity?: FloatWithAggregatesFilter<"CastingEntry"> | number
     final_touch?: FloatWithAggregatesFilter<"CastingEntry"> | number
     pure_value?: FloatWithAggregatesFilter<"CastingEntry"> | number
@@ -19226,7 +27763,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFilter<"CastingItems"> | $Enums.CASTINGENTRYTYPE
     item_id?: IntFilter<"CastingItems"> | number
     weight?: FloatFilter<"CastingItems"> | number
-    touch?: FloatFilter<"CastingItems"> | number
+    touch_id?: IntFilter<"CastingItems"> | number
     item_purity?: FloatFilter<"CastingItems"> | number
     remarks?: StringNullableFilter<"CastingItems"> | string | null
     after_weight?: FloatNullableFilter<"CastingItems"> | number | null
@@ -19234,9 +27771,10 @@ export namespace Prisma {
     scrap_wastage?: FloatNullableFilter<"CastingItems"> | number | null
     casting_entry_id?: IntFilter<"CastingItems"> | number
     casting_customer_id?: IntFilter<"CastingItems"> | number
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     castingEntry?: XOR<CastingEntryScalarRelationFilter, CastingEntryWhereInput>
-    filingEntry?: XOR<FilingEntryNullableScalarRelationFilter, FilingEntryWhereInput> | null
+    filingEntry?: FilingEntryListRelationFilter
     settingEntry?: XOR<SettingEntryNullableScalarRelationFilter, SettingEntryWhereInput> | null
     buffingEntry?: XOR<BuffingEntryNullableScalarRelationFilter, BuffingEntryWhereInput> | null
     stock?: StockListRelationFilter
@@ -19249,7 +27787,7 @@ export namespace Prisma {
     type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
-    touch?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
     after_weight?: SortOrderInput | SortOrder
@@ -19257,9 +27795,10 @@ export namespace Prisma {
     scrap_wastage?: SortOrderInput | SortOrder
     casting_entry_id?: SortOrder
     casting_customer_id?: SortOrder
+    touch?: AddTouchOrderByWithRelationInput
     item?: AddItemOrderByWithRelationInput
     castingEntry?: CastingEntryOrderByWithRelationInput
-    filingEntry?: FilingEntryOrderByWithRelationInput
+    filingEntry?: FilingEntryOrderByRelationAggregateInput
     settingEntry?: SettingEntryOrderByWithRelationInput
     buffingEntry?: BuffingEntryOrderByWithRelationInput
     stock?: StockOrderByRelationAggregateInput
@@ -19276,7 +27815,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFilter<"CastingItems"> | $Enums.CASTINGENTRYTYPE
     item_id?: IntFilter<"CastingItems"> | number
     weight?: FloatFilter<"CastingItems"> | number
-    touch?: FloatFilter<"CastingItems"> | number
+    touch_id?: IntFilter<"CastingItems"> | number
     item_purity?: FloatFilter<"CastingItems"> | number
     remarks?: StringNullableFilter<"CastingItems"> | string | null
     after_weight?: FloatNullableFilter<"CastingItems"> | number | null
@@ -19284,9 +27823,10 @@ export namespace Prisma {
     scrap_wastage?: FloatNullableFilter<"CastingItems"> | number | null
     casting_entry_id?: IntFilter<"CastingItems"> | number
     casting_customer_id?: IntFilter<"CastingItems"> | number
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     castingEntry?: XOR<CastingEntryScalarRelationFilter, CastingEntryWhereInput>
-    filingEntry?: XOR<FilingEntryNullableScalarRelationFilter, FilingEntryWhereInput> | null
+    filingEntry?: FilingEntryListRelationFilter
     settingEntry?: XOR<SettingEntryNullableScalarRelationFilter, SettingEntryWhereInput> | null
     buffingEntry?: XOR<BuffingEntryNullableScalarRelationFilter, BuffingEntryWhereInput> | null
     stock?: StockListRelationFilter
@@ -19299,7 +27839,7 @@ export namespace Prisma {
     type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
-    touch?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
     after_weight?: SortOrderInput | SortOrder
@@ -19323,7 +27863,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEWithAggregatesFilter<"CastingItems"> | $Enums.CASTINGENTRYTYPE
     item_id?: IntWithAggregatesFilter<"CastingItems"> | number
     weight?: FloatWithAggregatesFilter<"CastingItems"> | number
-    touch?: FloatWithAggregatesFilter<"CastingItems"> | number
+    touch_id?: IntWithAggregatesFilter<"CastingItems"> | number
     item_purity?: FloatWithAggregatesFilter<"CastingItems"> | number
     remarks?: StringNullableWithAggregatesFilter<"CastingItems"> | string | null
     after_weight?: FloatNullableWithAggregatesFilter<"CastingItems"> | number | null
@@ -19341,16 +27881,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FilingEntry"> | Date | string
     filing_person_id?: IntFilter<"FilingEntry"> | number
     casting_item_id?: IntFilter<"FilingEntry"> | number
-    weight?: FloatFilter<"FilingEntry"> | number
-    touch?: FloatFilter<"FilingEntry"> | number
-    item_purity?: FloatFilter<"FilingEntry"> | number
-    remarks?: StringNullableFilter<"FilingEntry"> | string | null
-    after_weight?: FloatNullableFilter<"FilingEntry"> | number | null
-    stone_option?: EnumSTONEOPTIONFilter<"FilingEntry"> | $Enums.STONEOPTION
     filing_person?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
-    settingEntry?: SettingEntryListRelationFilter
-    buffingEntries?: BuffingEntryListRelationFilter
   }
 
   export type FilingEntryOrderByWithRelationInput = {
@@ -19358,50 +27890,27 @@ export namespace Prisma {
     createdAt?: SortOrder
     filing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrderInput | SortOrder
-    after_weight?: SortOrderInput | SortOrder
-    stone_option?: SortOrder
     filing_person?: AddFilingOrderByWithRelationInput
     castingItem?: CastingItemsOrderByWithRelationInput
-    settingEntry?: SettingEntryOrderByRelationAggregateInput
-    buffingEntries?: BuffingEntryOrderByRelationAggregateInput
-    _relevance?: FilingEntryOrderByRelevanceInput
   }
 
   export type FilingEntryWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    casting_item_id?: number
     AND?: FilingEntryWhereInput | FilingEntryWhereInput[]
     OR?: FilingEntryWhereInput[]
     NOT?: FilingEntryWhereInput | FilingEntryWhereInput[]
     createdAt?: DateTimeFilter<"FilingEntry"> | Date | string
     filing_person_id?: IntFilter<"FilingEntry"> | number
-    weight?: FloatFilter<"FilingEntry"> | number
-    touch?: FloatFilter<"FilingEntry"> | number
-    item_purity?: FloatFilter<"FilingEntry"> | number
-    remarks?: StringNullableFilter<"FilingEntry"> | string | null
-    after_weight?: FloatNullableFilter<"FilingEntry"> | number | null
-    stone_option?: EnumSTONEOPTIONFilter<"FilingEntry"> | $Enums.STONEOPTION
+    casting_item_id?: IntFilter<"FilingEntry"> | number
     filing_person?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
-    settingEntry?: SettingEntryListRelationFilter
-    buffingEntries?: BuffingEntryListRelationFilter
-  }, "id" | "casting_item_id">
+  }, "id">
 
   export type FilingEntryOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
     filing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrderInput | SortOrder
-    after_weight?: SortOrderInput | SortOrder
-    stone_option?: SortOrder
     _count?: FilingEntryCountOrderByAggregateInput
     _avg?: FilingEntryAvgOrderByAggregateInput
     _max?: FilingEntryMaxOrderByAggregateInput
@@ -19417,12 +27926,176 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"FilingEntry"> | Date | string
     filing_person_id?: IntWithAggregatesFilter<"FilingEntry"> | number
     casting_item_id?: IntWithAggregatesFilter<"FilingEntry"> | number
-    weight?: FloatWithAggregatesFilter<"FilingEntry"> | number
-    touch?: FloatWithAggregatesFilter<"FilingEntry"> | number
-    item_purity?: FloatWithAggregatesFilter<"FilingEntry"> | number
-    remarks?: StringNullableWithAggregatesFilter<"FilingEntry"> | string | null
-    after_weight?: FloatNullableWithAggregatesFilter<"FilingEntry"> | number | null
-    stone_option?: EnumSTONEOPTIONWithAggregatesFilter<"FilingEntry"> | $Enums.STONEOPTION
+  }
+
+  export type FilingItemsWhereInput = {
+    AND?: FilingItemsWhereInput | FilingItemsWhereInput[]
+    OR?: FilingItemsWhereInput[]
+    NOT?: FilingItemsWhereInput | FilingItemsWhereInput[]
+    id?: IntFilter<"FilingItems"> | number
+    createdAt?: DateTimeFilter<"FilingItems"> | Date | string
+    type?: EnumCASTINGENTRYTYPEFilter<"FilingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"FilingItems"> | number
+    weight?: FloatFilter<"FilingItems"> | number
+    touch_id?: IntFilter<"FilingItems"> | number
+    item_purity?: FloatFilter<"FilingItems"> | number
+    remarks?: StringNullableFilter<"FilingItems"> | string | null
+    wastage?: BoolNullableFilter<"FilingItems"> | boolean | null
+    stone_option?: EnumSTONEOPTIONNullableFilter<"FilingItems"> | $Enums.STONEOPTION | null
+    after_weight?: FloatNullableFilter<"FilingItems"> | number | null
+    scrap_weight?: FloatNullableFilter<"FilingItems"> | number | null
+    scrap_wastage?: FloatNullableFilter<"FilingItems"> | number | null
+    item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
+    stock?: StockListRelationFilter
+    setting_entry?: SettingEntryListRelationFilter
+    buffing_entry?: BuffingEntryListRelationFilter
+    filing_wastage?: FilingWastageListRelationFilter
+  }
+
+  export type FilingItemsOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    wastage?: SortOrderInput | SortOrder
+    stone_option?: SortOrderInput | SortOrder
+    after_weight?: SortOrderInput | SortOrder
+    scrap_weight?: SortOrderInput | SortOrder
+    scrap_wastage?: SortOrderInput | SortOrder
+    item?: AddItemOrderByWithRelationInput
+    touch?: AddTouchOrderByWithRelationInput
+    stock?: StockOrderByRelationAggregateInput
+    setting_entry?: SettingEntryOrderByRelationAggregateInput
+    buffing_entry?: BuffingEntryOrderByRelationAggregateInput
+    filing_wastage?: FilingWastageOrderByRelationAggregateInput
+    _relevance?: FilingItemsOrderByRelevanceInput
+  }
+
+  export type FilingItemsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: FilingItemsWhereInput | FilingItemsWhereInput[]
+    OR?: FilingItemsWhereInput[]
+    NOT?: FilingItemsWhereInput | FilingItemsWhereInput[]
+    createdAt?: DateTimeFilter<"FilingItems"> | Date | string
+    type?: EnumCASTINGENTRYTYPEFilter<"FilingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"FilingItems"> | number
+    weight?: FloatFilter<"FilingItems"> | number
+    touch_id?: IntFilter<"FilingItems"> | number
+    item_purity?: FloatFilter<"FilingItems"> | number
+    remarks?: StringNullableFilter<"FilingItems"> | string | null
+    wastage?: BoolNullableFilter<"FilingItems"> | boolean | null
+    stone_option?: EnumSTONEOPTIONNullableFilter<"FilingItems"> | $Enums.STONEOPTION | null
+    after_weight?: FloatNullableFilter<"FilingItems"> | number | null
+    scrap_weight?: FloatNullableFilter<"FilingItems"> | number | null
+    scrap_wastage?: FloatNullableFilter<"FilingItems"> | number | null
+    item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
+    stock?: StockListRelationFilter
+    setting_entry?: SettingEntryListRelationFilter
+    buffing_entry?: BuffingEntryListRelationFilter
+    filing_wastage?: FilingWastageListRelationFilter
+  }, "id">
+
+  export type FilingItemsOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    wastage?: SortOrderInput | SortOrder
+    stone_option?: SortOrderInput | SortOrder
+    after_weight?: SortOrderInput | SortOrder
+    scrap_weight?: SortOrderInput | SortOrder
+    scrap_wastage?: SortOrderInput | SortOrder
+    _count?: FilingItemsCountOrderByAggregateInput
+    _avg?: FilingItemsAvgOrderByAggregateInput
+    _max?: FilingItemsMaxOrderByAggregateInput
+    _min?: FilingItemsMinOrderByAggregateInput
+    _sum?: FilingItemsSumOrderByAggregateInput
+  }
+
+  export type FilingItemsScalarWhereWithAggregatesInput = {
+    AND?: FilingItemsScalarWhereWithAggregatesInput | FilingItemsScalarWhereWithAggregatesInput[]
+    OR?: FilingItemsScalarWhereWithAggregatesInput[]
+    NOT?: FilingItemsScalarWhereWithAggregatesInput | FilingItemsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"FilingItems"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"FilingItems"> | Date | string
+    type?: EnumCASTINGENTRYTYPEWithAggregatesFilter<"FilingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntWithAggregatesFilter<"FilingItems"> | number
+    weight?: FloatWithAggregatesFilter<"FilingItems"> | number
+    touch_id?: IntWithAggregatesFilter<"FilingItems"> | number
+    item_purity?: FloatWithAggregatesFilter<"FilingItems"> | number
+    remarks?: StringNullableWithAggregatesFilter<"FilingItems"> | string | null
+    wastage?: BoolNullableWithAggregatesFilter<"FilingItems"> | boolean | null
+    stone_option?: EnumSTONEOPTIONNullableWithAggregatesFilter<"FilingItems"> | $Enums.STONEOPTION | null
+    after_weight?: FloatNullableWithAggregatesFilter<"FilingItems"> | number | null
+    scrap_weight?: FloatNullableWithAggregatesFilter<"FilingItems"> | number | null
+    scrap_wastage?: FloatNullableWithAggregatesFilter<"FilingItems"> | number | null
+  }
+
+  export type FilingWastageWhereInput = {
+    AND?: FilingWastageWhereInput | FilingWastageWhereInput[]
+    OR?: FilingWastageWhereInput[]
+    NOT?: FilingWastageWhereInput | FilingWastageWhereInput[]
+    id?: IntFilter<"FilingWastage"> | number
+    createdAt?: DateTimeFilter<"FilingWastage"> | Date | string
+    wastage_percentage?: IntFilter<"FilingWastage"> | number
+    given_gold?: IntNullableFilter<"FilingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"FilingWastage"> | number | null
+    filing_items?: FilingItemsListRelationFilter
+  }
+
+  export type FilingWastageOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrderInput | SortOrder
+    add_wastage?: SortOrderInput | SortOrder
+    filing_items?: FilingItemsOrderByRelationAggregateInput
+  }
+
+  export type FilingWastageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: FilingWastageWhereInput | FilingWastageWhereInput[]
+    OR?: FilingWastageWhereInput[]
+    NOT?: FilingWastageWhereInput | FilingWastageWhereInput[]
+    createdAt?: DateTimeFilter<"FilingWastage"> | Date | string
+    wastage_percentage?: IntFilter<"FilingWastage"> | number
+    given_gold?: IntNullableFilter<"FilingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"FilingWastage"> | number | null
+    filing_items?: FilingItemsListRelationFilter
+  }, "id">
+
+  export type FilingWastageOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrderInput | SortOrder
+    add_wastage?: SortOrderInput | SortOrder
+    _count?: FilingWastageCountOrderByAggregateInput
+    _avg?: FilingWastageAvgOrderByAggregateInput
+    _max?: FilingWastageMaxOrderByAggregateInput
+    _min?: FilingWastageMinOrderByAggregateInput
+    _sum?: FilingWastageSumOrderByAggregateInput
+  }
+
+  export type FilingWastageScalarWhereWithAggregatesInput = {
+    AND?: FilingWastageScalarWhereWithAggregatesInput | FilingWastageScalarWhereWithAggregatesInput[]
+    OR?: FilingWastageScalarWhereWithAggregatesInput[]
+    NOT?: FilingWastageScalarWhereWithAggregatesInput | FilingWastageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"FilingWastage"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"FilingWastage"> | Date | string
+    wastage_percentage?: IntWithAggregatesFilter<"FilingWastage"> | number
+    given_gold?: IntNullableWithAggregatesFilter<"FilingWastage"> | number | null
+    add_wastage?: FloatNullableWithAggregatesFilter<"FilingWastage"> | number | null
   }
 
   export type SettingEntryWhereInput = {
@@ -19433,16 +28106,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"SettingEntry"> | Date | string
     setting_person_id?: IntFilter<"SettingEntry"> | number
     casting_item_id?: IntFilter<"SettingEntry"> | number
-    weight?: FloatFilter<"SettingEntry"> | number
-    touch?: FloatFilter<"SettingEntry"> | number
-    item_purity?: FloatFilter<"SettingEntry"> | number
-    remarks?: StringNullableFilter<"SettingEntry"> | string | null
-    after_weight?: FloatNullableFilter<"SettingEntry"> | number | null
-    filing_entry_id?: IntFilter<"SettingEntry"> | number
     setting_person?: XOR<AddSettingScalarRelationFilter, AddSettingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
-    filingEntry?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
-    buffingEntries?: BuffingEntryListRelationFilter
+    filingItems?: FilingItemsListRelationFilter
   }
 
   export type SettingEntryOrderByWithRelationInput = {
@@ -19450,17 +28116,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     setting_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrderInput | SortOrder
-    after_weight?: SortOrderInput | SortOrder
-    filing_entry_id?: SortOrder
     setting_person?: AddSettingOrderByWithRelationInput
     castingItem?: CastingItemsOrderByWithRelationInput
-    filingEntry?: FilingEntryOrderByWithRelationInput
-    buffingEntries?: BuffingEntryOrderByRelationAggregateInput
-    _relevance?: SettingEntryOrderByRelevanceInput
+    filingItems?: FilingItemsOrderByRelationAggregateInput
   }
 
   export type SettingEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -19471,16 +28129,9 @@ export namespace Prisma {
     NOT?: SettingEntryWhereInput | SettingEntryWhereInput[]
     createdAt?: DateTimeFilter<"SettingEntry"> | Date | string
     setting_person_id?: IntFilter<"SettingEntry"> | number
-    weight?: FloatFilter<"SettingEntry"> | number
-    touch?: FloatFilter<"SettingEntry"> | number
-    item_purity?: FloatFilter<"SettingEntry"> | number
-    remarks?: StringNullableFilter<"SettingEntry"> | string | null
-    after_weight?: FloatNullableFilter<"SettingEntry"> | number | null
-    filing_entry_id?: IntFilter<"SettingEntry"> | number
     setting_person?: XOR<AddSettingScalarRelationFilter, AddSettingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
-    filingEntry?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
-    buffingEntries?: BuffingEntryListRelationFilter
+    filingItems?: FilingItemsListRelationFilter
   }, "id" | "casting_item_id">
 
   export type SettingEntryOrderByWithAggregationInput = {
@@ -19488,12 +28139,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     setting_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrderInput | SortOrder
-    after_weight?: SortOrderInput | SortOrder
-    filing_entry_id?: SortOrder
     _count?: SettingEntryCountOrderByAggregateInput
     _avg?: SettingEntryAvgOrderByAggregateInput
     _max?: SettingEntryMaxOrderByAggregateInput
@@ -19509,12 +28154,173 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"SettingEntry"> | Date | string
     setting_person_id?: IntWithAggregatesFilter<"SettingEntry"> | number
     casting_item_id?: IntWithAggregatesFilter<"SettingEntry"> | number
-    weight?: FloatWithAggregatesFilter<"SettingEntry"> | number
-    touch?: FloatWithAggregatesFilter<"SettingEntry"> | number
-    item_purity?: FloatWithAggregatesFilter<"SettingEntry"> | number
-    remarks?: StringNullableWithAggregatesFilter<"SettingEntry"> | string | null
-    after_weight?: FloatNullableWithAggregatesFilter<"SettingEntry"> | number | null
-    filing_entry_id?: IntWithAggregatesFilter<"SettingEntry"> | number
+  }
+
+  export type SettingItemsWhereInput = {
+    AND?: SettingItemsWhereInput | SettingItemsWhereInput[]
+    OR?: SettingItemsWhereInput[]
+    NOT?: SettingItemsWhereInput | SettingItemsWhereInput[]
+    id?: IntFilter<"SettingItems"> | number
+    createdAt?: DateTimeFilter<"SettingItems"> | Date | string
+    receipt_weight?: FloatFilter<"SettingItems"> | number
+    stone_count?: FloatFilter<"SettingItems"> | number
+    stone_weight?: FloatFilter<"SettingItems"> | number
+    remarks?: StringNullableFilter<"SettingItems"> | string | null
+    wastage?: BoolFilter<"SettingItems"> | boolean
+    type?: EnumCASTINGENTRYTYPEFilter<"SettingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"SettingItems"> | number
+    scrap_weight?: FloatFilter<"SettingItems"> | number
+    touch_id?: IntFilter<"SettingItems"> | number
+    item_purity?: FloatFilter<"SettingItems"> | number
+    scrap_remarks?: StringNullableFilter<"SettingItems"> | string | null
+    item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
+    setting_wastage?: SettingWastageListRelationFilter
+    buffing_entry?: BuffingEntryListRelationFilter
+    stock?: StockListRelationFilter
+  }
+
+  export type SettingItemsOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    wastage?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    scrap_remarks?: SortOrderInput | SortOrder
+    item?: AddItemOrderByWithRelationInput
+    touch?: AddTouchOrderByWithRelationInput
+    setting_wastage?: SettingWastageOrderByRelationAggregateInput
+    buffing_entry?: BuffingEntryOrderByRelationAggregateInput
+    stock?: StockOrderByRelationAggregateInput
+    _relevance?: SettingItemsOrderByRelevanceInput
+  }
+
+  export type SettingItemsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: SettingItemsWhereInput | SettingItemsWhereInput[]
+    OR?: SettingItemsWhereInput[]
+    NOT?: SettingItemsWhereInput | SettingItemsWhereInput[]
+    createdAt?: DateTimeFilter<"SettingItems"> | Date | string
+    receipt_weight?: FloatFilter<"SettingItems"> | number
+    stone_count?: FloatFilter<"SettingItems"> | number
+    stone_weight?: FloatFilter<"SettingItems"> | number
+    remarks?: StringNullableFilter<"SettingItems"> | string | null
+    wastage?: BoolFilter<"SettingItems"> | boolean
+    type?: EnumCASTINGENTRYTYPEFilter<"SettingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"SettingItems"> | number
+    scrap_weight?: FloatFilter<"SettingItems"> | number
+    touch_id?: IntFilter<"SettingItems"> | number
+    item_purity?: FloatFilter<"SettingItems"> | number
+    scrap_remarks?: StringNullableFilter<"SettingItems"> | string | null
+    item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
+    setting_wastage?: SettingWastageListRelationFilter
+    buffing_entry?: BuffingEntryListRelationFilter
+    stock?: StockListRelationFilter
+  }, "id">
+
+  export type SettingItemsOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    wastage?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    scrap_remarks?: SortOrderInput | SortOrder
+    _count?: SettingItemsCountOrderByAggregateInput
+    _avg?: SettingItemsAvgOrderByAggregateInput
+    _max?: SettingItemsMaxOrderByAggregateInput
+    _min?: SettingItemsMinOrderByAggregateInput
+    _sum?: SettingItemsSumOrderByAggregateInput
+  }
+
+  export type SettingItemsScalarWhereWithAggregatesInput = {
+    AND?: SettingItemsScalarWhereWithAggregatesInput | SettingItemsScalarWhereWithAggregatesInput[]
+    OR?: SettingItemsScalarWhereWithAggregatesInput[]
+    NOT?: SettingItemsScalarWhereWithAggregatesInput | SettingItemsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"SettingItems"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"SettingItems"> | Date | string
+    receipt_weight?: FloatWithAggregatesFilter<"SettingItems"> | number
+    stone_count?: FloatWithAggregatesFilter<"SettingItems"> | number
+    stone_weight?: FloatWithAggregatesFilter<"SettingItems"> | number
+    remarks?: StringNullableWithAggregatesFilter<"SettingItems"> | string | null
+    wastage?: BoolWithAggregatesFilter<"SettingItems"> | boolean
+    type?: EnumCASTINGENTRYTYPEWithAggregatesFilter<"SettingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntWithAggregatesFilter<"SettingItems"> | number
+    scrap_weight?: FloatWithAggregatesFilter<"SettingItems"> | number
+    touch_id?: IntWithAggregatesFilter<"SettingItems"> | number
+    item_purity?: FloatWithAggregatesFilter<"SettingItems"> | number
+    scrap_remarks?: StringNullableWithAggregatesFilter<"SettingItems"> | string | null
+  }
+
+  export type SettingWastageWhereInput = {
+    AND?: SettingWastageWhereInput | SettingWastageWhereInput[]
+    OR?: SettingWastageWhereInput[]
+    NOT?: SettingWastageWhereInput | SettingWastageWhereInput[]
+    id?: IntFilter<"SettingWastage"> | number
+    createdAt?: DateTimeFilter<"SettingWastage"> | Date | string
+    wastage_percentage?: IntFilter<"SettingWastage"> | number
+    given_gold?: IntNullableFilter<"SettingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"SettingWastage"> | number | null
+    setting_items?: SettingItemsListRelationFilter
+  }
+
+  export type SettingWastageOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrderInput | SortOrder
+    add_wastage?: SortOrderInput | SortOrder
+    setting_items?: SettingItemsOrderByRelationAggregateInput
+  }
+
+  export type SettingWastageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: SettingWastageWhereInput | SettingWastageWhereInput[]
+    OR?: SettingWastageWhereInput[]
+    NOT?: SettingWastageWhereInput | SettingWastageWhereInput[]
+    createdAt?: DateTimeFilter<"SettingWastage"> | Date | string
+    wastage_percentage?: IntFilter<"SettingWastage"> | number
+    given_gold?: IntNullableFilter<"SettingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"SettingWastage"> | number | null
+    setting_items?: SettingItemsListRelationFilter
+  }, "id">
+
+  export type SettingWastageOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrderInput | SortOrder
+    add_wastage?: SortOrderInput | SortOrder
+    _count?: SettingWastageCountOrderByAggregateInput
+    _avg?: SettingWastageAvgOrderByAggregateInput
+    _max?: SettingWastageMaxOrderByAggregateInput
+    _min?: SettingWastageMinOrderByAggregateInput
+    _sum?: SettingWastageSumOrderByAggregateInput
+  }
+
+  export type SettingWastageScalarWhereWithAggregatesInput = {
+    AND?: SettingWastageScalarWhereWithAggregatesInput | SettingWastageScalarWhereWithAggregatesInput[]
+    OR?: SettingWastageScalarWhereWithAggregatesInput[]
+    NOT?: SettingWastageScalarWhereWithAggregatesInput | SettingWastageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"SettingWastage"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"SettingWastage"> | Date | string
+    wastage_percentage?: IntWithAggregatesFilter<"SettingWastage"> | number
+    given_gold?: IntNullableWithAggregatesFilter<"SettingWastage"> | number | null
+    add_wastage?: FloatNullableWithAggregatesFilter<"SettingWastage"> | number | null
   }
 
   export type BuffingEntryWhereInput = {
@@ -19525,18 +28331,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"BuffingEntry"> | Date | string
     buffing_person_id?: IntFilter<"BuffingEntry"> | number
     casting_item_id?: IntFilter<"BuffingEntry"> | number
-    weight?: FloatFilter<"BuffingEntry"> | number
-    touch?: FloatFilter<"BuffingEntry"> | number
-    item_purity?: FloatFilter<"BuffingEntry"> | number
-    remarks?: StringNullableFilter<"BuffingEntry"> | string | null
-    after_weight?: FloatNullableFilter<"BuffingEntry"> | number | null
-    setting_entry_id?: IntFilter<"BuffingEntry"> | number
-    filing_entry_id?: IntFilter<"BuffingEntry"> | number
-    type?: EnumSTONEOPTIONFilter<"BuffingEntry"> | $Enums.STONEOPTION
     buffing_person?: XOR<AddBuffingScalarRelationFilter, AddBuffingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
-    settingEntry?: XOR<SettingEntryScalarRelationFilter, SettingEntryWhereInput>
-    filingEntry?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
+    filing_items?: FilingItemsListRelationFilter
+    setting_items?: SettingItemsListRelationFilter
   }
 
   export type BuffingEntryOrderByWithRelationInput = {
@@ -19544,19 +28342,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     buffing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrderInput | SortOrder
-    after_weight?: SortOrderInput | SortOrder
-    setting_entry_id?: SortOrder
-    filing_entry_id?: SortOrder
-    type?: SortOrder
     buffing_person?: AddBuffingOrderByWithRelationInput
     castingItem?: CastingItemsOrderByWithRelationInput
-    settingEntry?: SettingEntryOrderByWithRelationInput
-    filingEntry?: FilingEntryOrderByWithRelationInput
-    _relevance?: BuffingEntryOrderByRelevanceInput
+    filing_items?: FilingItemsOrderByRelationAggregateInput
+    setting_items?: SettingItemsOrderByRelationAggregateInput
   }
 
   export type BuffingEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -19567,18 +28356,10 @@ export namespace Prisma {
     NOT?: BuffingEntryWhereInput | BuffingEntryWhereInput[]
     createdAt?: DateTimeFilter<"BuffingEntry"> | Date | string
     buffing_person_id?: IntFilter<"BuffingEntry"> | number
-    weight?: FloatFilter<"BuffingEntry"> | number
-    touch?: FloatFilter<"BuffingEntry"> | number
-    item_purity?: FloatFilter<"BuffingEntry"> | number
-    remarks?: StringNullableFilter<"BuffingEntry"> | string | null
-    after_weight?: FloatNullableFilter<"BuffingEntry"> | number | null
-    setting_entry_id?: IntFilter<"BuffingEntry"> | number
-    filing_entry_id?: IntFilter<"BuffingEntry"> | number
-    type?: EnumSTONEOPTIONFilter<"BuffingEntry"> | $Enums.STONEOPTION
     buffing_person?: XOR<AddBuffingScalarRelationFilter, AddBuffingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
-    settingEntry?: XOR<SettingEntryScalarRelationFilter, SettingEntryWhereInput>
-    filingEntry?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
+    filing_items?: FilingItemsListRelationFilter
+    setting_items?: SettingItemsListRelationFilter
   }, "id" | "casting_item_id">
 
   export type BuffingEntryOrderByWithAggregationInput = {
@@ -19586,14 +28367,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     buffing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrderInput | SortOrder
-    after_weight?: SortOrderInput | SortOrder
-    setting_entry_id?: SortOrder
-    filing_entry_id?: SortOrder
-    type?: SortOrder
     _count?: BuffingEntryCountOrderByAggregateInput
     _avg?: BuffingEntryAvgOrderByAggregateInput
     _max?: BuffingEntryMaxOrderByAggregateInput
@@ -19609,14 +28382,160 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"BuffingEntry"> | Date | string
     buffing_person_id?: IntWithAggregatesFilter<"BuffingEntry"> | number
     casting_item_id?: IntWithAggregatesFilter<"BuffingEntry"> | number
-    weight?: FloatWithAggregatesFilter<"BuffingEntry"> | number
-    touch?: FloatWithAggregatesFilter<"BuffingEntry"> | number
-    item_purity?: FloatWithAggregatesFilter<"BuffingEntry"> | number
-    remarks?: StringNullableWithAggregatesFilter<"BuffingEntry"> | string | null
-    after_weight?: FloatNullableWithAggregatesFilter<"BuffingEntry"> | number | null
-    setting_entry_id?: IntWithAggregatesFilter<"BuffingEntry"> | number
-    filing_entry_id?: IntWithAggregatesFilter<"BuffingEntry"> | number
-    type?: EnumSTONEOPTIONWithAggregatesFilter<"BuffingEntry"> | $Enums.STONEOPTION
+  }
+
+  export type BuffingItemsWhereInput = {
+    AND?: BuffingItemsWhereInput | BuffingItemsWhereInput[]
+    OR?: BuffingItemsWhereInput[]
+    NOT?: BuffingItemsWhereInput | BuffingItemsWhereInput[]
+    id?: IntFilter<"BuffingItems"> | number
+    createdAt?: DateTimeFilter<"BuffingItems"> | Date | string
+    receipt_weight?: FloatFilter<"BuffingItems"> | number
+    remarks?: StringFilter<"BuffingItems"> | string
+    wastage?: BoolFilter<"BuffingItems"> | boolean
+    type?: EnumCASTINGENTRYTYPEFilter<"BuffingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"BuffingItems"> | number
+    scrap_weight?: FloatFilter<"BuffingItems"> | number
+    touch_id?: IntFilter<"BuffingItems"> | number
+    item_purity?: FloatFilter<"BuffingItems"> | number
+    scrap_remarks?: StringFilter<"BuffingItems"> | string
+    item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
+    stock?: StockListRelationFilter
+    buffing_wastage?: BuffingWastageListRelationFilter
+  }
+
+  export type BuffingItemsOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    scrap_remarks?: SortOrder
+    item?: AddItemOrderByWithRelationInput
+    touch?: AddTouchOrderByWithRelationInput
+    stock?: StockOrderByRelationAggregateInput
+    buffing_wastage?: BuffingWastageOrderByRelationAggregateInput
+    _relevance?: BuffingItemsOrderByRelevanceInput
+  }
+
+  export type BuffingItemsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BuffingItemsWhereInput | BuffingItemsWhereInput[]
+    OR?: BuffingItemsWhereInput[]
+    NOT?: BuffingItemsWhereInput | BuffingItemsWhereInput[]
+    createdAt?: DateTimeFilter<"BuffingItems"> | Date | string
+    receipt_weight?: FloatFilter<"BuffingItems"> | number
+    remarks?: StringFilter<"BuffingItems"> | string
+    wastage?: BoolFilter<"BuffingItems"> | boolean
+    type?: EnumCASTINGENTRYTYPEFilter<"BuffingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"BuffingItems"> | number
+    scrap_weight?: FloatFilter<"BuffingItems"> | number
+    touch_id?: IntFilter<"BuffingItems"> | number
+    item_purity?: FloatFilter<"BuffingItems"> | number
+    scrap_remarks?: StringFilter<"BuffingItems"> | string
+    item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
+    stock?: StockListRelationFilter
+    buffing_wastage?: BuffingWastageListRelationFilter
+  }, "id">
+
+  export type BuffingItemsOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    scrap_remarks?: SortOrder
+    _count?: BuffingItemsCountOrderByAggregateInput
+    _avg?: BuffingItemsAvgOrderByAggregateInput
+    _max?: BuffingItemsMaxOrderByAggregateInput
+    _min?: BuffingItemsMinOrderByAggregateInput
+    _sum?: BuffingItemsSumOrderByAggregateInput
+  }
+
+  export type BuffingItemsScalarWhereWithAggregatesInput = {
+    AND?: BuffingItemsScalarWhereWithAggregatesInput | BuffingItemsScalarWhereWithAggregatesInput[]
+    OR?: BuffingItemsScalarWhereWithAggregatesInput[]
+    NOT?: BuffingItemsScalarWhereWithAggregatesInput | BuffingItemsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"BuffingItems"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"BuffingItems"> | Date | string
+    receipt_weight?: FloatWithAggregatesFilter<"BuffingItems"> | number
+    remarks?: StringWithAggregatesFilter<"BuffingItems"> | string
+    wastage?: BoolWithAggregatesFilter<"BuffingItems"> | boolean
+    type?: EnumCASTINGENTRYTYPEWithAggregatesFilter<"BuffingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntWithAggregatesFilter<"BuffingItems"> | number
+    scrap_weight?: FloatWithAggregatesFilter<"BuffingItems"> | number
+    touch_id?: IntWithAggregatesFilter<"BuffingItems"> | number
+    item_purity?: FloatWithAggregatesFilter<"BuffingItems"> | number
+    scrap_remarks?: StringWithAggregatesFilter<"BuffingItems"> | string
+  }
+
+  export type BuffingWastageWhereInput = {
+    AND?: BuffingWastageWhereInput | BuffingWastageWhereInput[]
+    OR?: BuffingWastageWhereInput[]
+    NOT?: BuffingWastageWhereInput | BuffingWastageWhereInput[]
+    id?: IntFilter<"BuffingWastage"> | number
+    createdAt?: DateTimeFilter<"BuffingWastage"> | Date | string
+    wastage_percentage?: IntFilter<"BuffingWastage"> | number
+    given_gold?: IntNullableFilter<"BuffingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"BuffingWastage"> | number | null
+    buffing_items?: BuffingItemsListRelationFilter
+  }
+
+  export type BuffingWastageOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrderInput | SortOrder
+    add_wastage?: SortOrderInput | SortOrder
+    buffing_items?: BuffingItemsOrderByRelationAggregateInput
+  }
+
+  export type BuffingWastageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BuffingWastageWhereInput | BuffingWastageWhereInput[]
+    OR?: BuffingWastageWhereInput[]
+    NOT?: BuffingWastageWhereInput | BuffingWastageWhereInput[]
+    createdAt?: DateTimeFilter<"BuffingWastage"> | Date | string
+    wastage_percentage?: IntFilter<"BuffingWastage"> | number
+    given_gold?: IntNullableFilter<"BuffingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"BuffingWastage"> | number | null
+    buffing_items?: BuffingItemsListRelationFilter
+  }, "id">
+
+  export type BuffingWastageOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrderInput | SortOrder
+    add_wastage?: SortOrderInput | SortOrder
+    _count?: BuffingWastageCountOrderByAggregateInput
+    _avg?: BuffingWastageAvgOrderByAggregateInput
+    _max?: BuffingWastageMaxOrderByAggregateInput
+    _min?: BuffingWastageMinOrderByAggregateInput
+    _sum?: BuffingWastageSumOrderByAggregateInput
+  }
+
+  export type BuffingWastageScalarWhereWithAggregatesInput = {
+    AND?: BuffingWastageScalarWhereWithAggregatesInput | BuffingWastageScalarWhereWithAggregatesInput[]
+    OR?: BuffingWastageScalarWhereWithAggregatesInput[]
+    NOT?: BuffingWastageScalarWhereWithAggregatesInput | BuffingWastageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"BuffingWastage"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"BuffingWastage"> | Date | string
+    wastage_percentage?: IntWithAggregatesFilter<"BuffingWastage"> | number
+    given_gold?: IntNullableWithAggregatesFilter<"BuffingWastage"> | number | null
+    add_wastage?: FloatNullableWithAggregatesFilter<"BuffingWastage"> | number | null
   }
 
   export type StockWhereInput = {
@@ -19626,16 +28545,22 @@ export namespace Prisma {
     id?: IntFilter<"Stock"> | number
     createdAt?: DateTimeFilter<"Stock"> | Date | string
     casting_item_id?: IntFilter<"Stock"> | number
+    filing_item_id?: IntFilter<"Stock"> | number
+    setting_item_id?: IntFilter<"Stock"> | number
+    buffing_item_id?: IntFilter<"Stock"> | number
     item_id?: IntFilter<"Stock"> | number
-    weight?: FloatFilter<"Stock"> | number
-    touch?: FloatFilter<"Stock"> | number
+    scrap_weight?: FloatFilter<"Stock"> | number
+    touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
-    scrap_weight?: FloatNullableFilter<"Stock"> | number | null
     scrap_wastage?: FloatNullableFilter<"Stock"> | number | null
     casting_customer_id?: IntFilter<"Stock"> | number
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
+    filingItem?: XOR<FilingItemsScalarRelationFilter, FilingItemsWhereInput>
+    settingItem?: XOR<SettingItemsScalarRelationFilter, SettingItemsWhereInput>
+    buffingItem?: XOR<BuffingItemsScalarRelationFilter, BuffingItemsWhereInput>
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     casting_customer?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
   }
 
@@ -19643,16 +28568,22 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     casting_item_id?: SortOrder
+    filing_item_id?: SortOrder
+    setting_item_id?: SortOrder
+    buffing_item_id?: SortOrder
     item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
-    scrap_weight?: SortOrderInput | SortOrder
     scrap_wastage?: SortOrderInput | SortOrder
     casting_customer_id?: SortOrder
     castingItem?: CastingItemsOrderByWithRelationInput
+    filingItem?: FilingItemsOrderByWithRelationInput
+    settingItem?: SettingItemsOrderByWithRelationInput
+    buffingItem?: BuffingItemsOrderByWithRelationInput
     item?: AddItemOrderByWithRelationInput
+    touch?: AddTouchOrderByWithRelationInput
     casting_customer?: AddCastingOrderByWithRelationInput
     _relevance?: StockOrderByRelevanceInput
   }
@@ -19664,16 +28595,22 @@ export namespace Prisma {
     NOT?: StockWhereInput | StockWhereInput[]
     createdAt?: DateTimeFilter<"Stock"> | Date | string
     casting_item_id?: IntFilter<"Stock"> | number
+    filing_item_id?: IntFilter<"Stock"> | number
+    setting_item_id?: IntFilter<"Stock"> | number
+    buffing_item_id?: IntFilter<"Stock"> | number
     item_id?: IntFilter<"Stock"> | number
-    weight?: FloatFilter<"Stock"> | number
-    touch?: FloatFilter<"Stock"> | number
+    scrap_weight?: FloatFilter<"Stock"> | number
+    touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
-    scrap_weight?: FloatNullableFilter<"Stock"> | number | null
     scrap_wastage?: FloatNullableFilter<"Stock"> | number | null
     casting_customer_id?: IntFilter<"Stock"> | number
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
+    filingItem?: XOR<FilingItemsScalarRelationFilter, FilingItemsWhereInput>
+    settingItem?: XOR<SettingItemsScalarRelationFilter, SettingItemsWhereInput>
+    buffingItem?: XOR<BuffingItemsScalarRelationFilter, BuffingItemsWhereInput>
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     casting_customer?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
   }, "id">
 
@@ -19681,12 +28618,14 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     casting_item_id?: SortOrder
+    filing_item_id?: SortOrder
+    setting_item_id?: SortOrder
+    buffing_item_id?: SortOrder
     item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
-    scrap_weight?: SortOrderInput | SortOrder
     scrap_wastage?: SortOrderInput | SortOrder
     casting_customer_id?: SortOrder
     _count?: StockCountOrderByAggregateInput
@@ -19703,12 +28642,14 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Stock"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Stock"> | Date | string
     casting_item_id?: IntWithAggregatesFilter<"Stock"> | number
+    filing_item_id?: IntWithAggregatesFilter<"Stock"> | number
+    setting_item_id?: IntWithAggregatesFilter<"Stock"> | number
+    buffing_item_id?: IntWithAggregatesFilter<"Stock"> | number
     item_id?: IntWithAggregatesFilter<"Stock"> | number
-    weight?: FloatWithAggregatesFilter<"Stock"> | number
-    touch?: FloatWithAggregatesFilter<"Stock"> | number
+    scrap_weight?: FloatWithAggregatesFilter<"Stock"> | number
+    touch_id?: IntWithAggregatesFilter<"Stock"> | number
     item_purity?: FloatWithAggregatesFilter<"Stock"> | number
     remarks?: StringNullableWithAggregatesFilter<"Stock"> | string | null
-    scrap_weight?: FloatNullableWithAggregatesFilter<"Stock"> | number | null
     scrap_wastage?: FloatNullableWithAggregatesFilter<"Stock"> | number | null
     casting_customer_id?: IntWithAggregatesFilter<"Stock"> | number
   }
@@ -20300,31 +29241,43 @@ export namespace Prisma {
   export type AddItemCreateInput = {
     createdAt?: Date | string
     name: string
-    castingItems?: CastingItemsCreateNestedManyWithoutItemInput
+    casting_items?: CastingItemsCreateNestedManyWithoutItemInput
     stock?: StockCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsCreateNestedManyWithoutItemInput
+    setting_items?: SettingItemsCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
   }
 
   export type AddItemUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
     name: string
-    castingItems?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
     stock?: StockUncheckedCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutItemInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
   }
 
   export type AddItemUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    castingItems?: CastingItemsUpdateManyWithoutItemNestedInput
+    casting_items?: CastingItemsUpdateManyWithoutItemNestedInput
     stock?: StockUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutItemNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
   }
 
   export type AddItemUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    castingItems?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
     stock?: StockUncheckedUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutItemNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
   }
 
   export type AddItemCreateManyInput = {
@@ -20344,16 +29297,79 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
   }
 
+  export type AddTouchCreateInput = {
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
+    stock?: StockCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
+    stock?: StockUncheckedCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
+    stock?: StockUpdateManyWithoutTouchNestedInput
+  }
+
+  export type AddTouchUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
+  }
+
+  export type AddTouchCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+  }
+
+  export type AddTouchUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type AddTouchUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+  }
+
   export type CastingEntryCreateInput = {
     createdAt?: Date | string
     date: Date | string
     given_gold: number
-    given_touch: number
     purity: number
     final_touch: number
     pure_value: number
     copper: number
     final_weight: number
+    touch: AddTouchCreateNestedOneWithoutCasting_entryInput
     casting_customer: AddCastingCreateNestedOneWithoutEntriesInput
     items?: CastingItemsCreateNestedManyWithoutCastingEntryInput
   }
@@ -20363,7 +29379,7 @@ export namespace Prisma {
     createdAt?: Date | string
     date: Date | string
     given_gold: number
-    given_touch: number
+    touch_id: number
     purity: number
     final_touch: number
     pure_value: number
@@ -20377,12 +29393,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
-    given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     final_touch?: FloatFieldUpdateOperationsInput | number
     pure_value?: FloatFieldUpdateOperationsInput | number
     copper?: FloatFieldUpdateOperationsInput | number
     final_weight?: FloatFieldUpdateOperationsInput | number
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_entryNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutEntriesNestedInput
     items?: CastingItemsUpdateManyWithoutCastingEntryNestedInput
   }
@@ -20392,7 +29408,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
-    given_touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     final_touch?: FloatFieldUpdateOperationsInput | number
     pure_value?: FloatFieldUpdateOperationsInput | number
@@ -20407,7 +29423,7 @@ export namespace Prisma {
     createdAt?: Date | string
     date: Date | string
     given_gold: number
-    given_touch: number
+    touch_id: number
     purity: number
     final_touch: number
     pure_value: number
@@ -20420,7 +29436,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
-    given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     final_touch?: FloatFieldUpdateOperationsInput | number
     pure_value?: FloatFieldUpdateOperationsInput | number
@@ -20433,7 +29448,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
-    given_touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     final_touch?: FloatFieldUpdateOperationsInput | number
     pure_value?: FloatFieldUpdateOperationsInput | number
@@ -20446,15 +29461,15 @@ export namespace Prisma {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item: AddItemCreateNestedOneWithoutCastingItemsInput
+    touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
+    item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
-    filingEntry?: FilingEntryCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryCreateNestedOneWithoutCastingItemInput
     stock?: StockCreateNestedManyWithoutCastingItemInput
@@ -20467,7 +29482,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
@@ -20475,7 +29490,7 @@ export namespace Prisma {
     scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
-    filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     stock?: StockUncheckedCreateNestedManyWithoutCastingItemInput
@@ -20485,15 +29500,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item?: AddItemUpdateOneRequiredWithoutCastingItemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
+    item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
-    filingEntry?: FilingEntryUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUpdateOneWithoutCastingItemNestedInput
     stock?: StockUpdateManyWithoutCastingItemNestedInput
@@ -20506,7 +29521,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -20514,7 +29529,7 @@ export namespace Prisma {
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
-    filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -20526,7 +29541,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
@@ -20540,7 +29555,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -20554,7 +29568,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -20566,16 +29580,8 @@ export namespace Prisma {
 
   export type FilingEntryCreateInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
-    settingEntry?: SettingEntryCreateNestedManyWithoutFilingEntryInput
-    buffingEntries?: BuffingEntryCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUncheckedCreateInput = {
@@ -20583,28 +29589,12 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
-    settingEntry?: SettingEntryUncheckedCreateNestedManyWithoutFilingEntryInput
-    buffingEntries?: BuffingEntryUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
-    settingEntry?: SettingEntryUpdateManyWithoutFilingEntryNestedInput
-    buffingEntries?: BuffingEntryUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateInput = {
@@ -20612,14 +29602,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
-    settingEntry?: SettingEntryUncheckedUpdateManyWithoutFilingEntryNestedInput
-    buffingEntries?: BuffingEntryUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryCreateManyInput = {
@@ -20627,22 +29609,10 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
   }
 
   export type FilingEntryUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
   }
 
   export type FilingEntryUncheckedUpdateManyInput = {
@@ -20650,25 +29620,193 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FilingItemsCreateInput = {
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    item: AddItemCreateNestedOneWithoutFiling_itemsInput
+    touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
+    stock?: StockCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageUncheckedCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
+    stock?: StockUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUncheckedUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+  }
+
+  export type FilingItemsUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type FilingItemsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type FilingWastageCreateInput = {
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    filing_items?: FilingItemsCreateNestedManyWithoutFiling_wastageInput
+  }
+
+  export type FilingWastageUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFiling_wastageInput
+  }
+
+  export type FilingWastageUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    filing_items?: FilingItemsUpdateManyWithoutFiling_wastageNestedInput
+  }
+
+  export type FilingWastageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutFiling_wastageNestedInput
+  }
+
+  export type FilingWastageCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+  }
+
+  export type FilingWastageUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type FilingWastageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type SettingEntryCreateInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
     setting_person: AddSettingCreateNestedOneWithoutSettingsInput
     castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
-    filingEntry: FilingEntryCreateNestedOneWithoutSettingEntryInput
-    buffingEntries?: BuffingEntryCreateNestedManyWithoutSettingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
   }
 
   export type SettingEntryUncheckedCreateInput = {
@@ -20676,26 +29814,14 @@ export namespace Prisma {
     createdAt?: Date | string
     setting_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    filing_entry_id: number
-    buffingEntries?: BuffingEntryUncheckedCreateNestedManyWithoutSettingEntryInput
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
   }
 
   export type SettingEntryUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
-    filingEntry?: FilingEntryUpdateOneRequiredWithoutSettingEntryNestedInput
-    buffingEntries?: BuffingEntryUpdateManyWithoutSettingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateInput = {
@@ -20703,13 +29829,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     setting_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    buffingEntries?: BuffingEntryUncheckedUpdateManyWithoutSettingEntryNestedInput
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
   }
 
   export type SettingEntryCreateManyInput = {
@@ -20717,21 +29837,10 @@ export namespace Prisma {
     createdAt?: Date | string
     setting_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    filing_entry_id: number
   }
 
   export type SettingEntryUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type SettingEntryUncheckedUpdateManyInput = {
@@ -20739,26 +29848,190 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     setting_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type SettingItemsCreateInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks?: string | null
+    item: AddItemCreateNestedOneWithoutSetting_itemsInput
+    touch: AddTouchCreateNestedOneWithoutSetting_itemsInput
+    setting_wastage?: SettingWastageCreateNestedManyWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockCreateNestedManyWithoutSettingItemInput
+  }
+
+  export type SettingItemsUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks?: string | null
+    setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
+  }
+
+  export type SettingItemsUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    item?: AddItemUpdateOneRequiredWithoutSetting_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutSetting_itemsNestedInput
+    setting_wastage?: SettingWastageUpdateManyWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUpdateManyWithoutSettingItemNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
+  }
+
+  export type SettingItemsCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks?: string | null
+  }
+
+  export type SettingItemsUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SettingItemsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SettingWastageCreateInput = {
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    setting_items?: SettingItemsCreateNestedManyWithoutSetting_wastageInput
+  }
+
+  export type SettingWastageUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutSetting_wastageInput
+  }
+
+  export type SettingWastageUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    setting_items?: SettingItemsUpdateManyWithoutSetting_wastageNestedInput
+  }
+
+  export type SettingWastageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutSetting_wastageNestedInput
+  }
+
+  export type SettingWastageCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+  }
+
+  export type SettingWastageUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingWastageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type BuffingEntryCreateInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    type: $Enums.STONEOPTION
     buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
     castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
-    settingEntry: SettingEntryCreateNestedOneWithoutBuffingEntriesInput
-    filingEntry: FilingEntryCreateNestedOneWithoutBuffingEntriesInput
+    filing_items?: FilingItemsCreateNestedManyWithoutBuffing_entryInput
+    setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
   }
 
   export type BuffingEntryUncheckedCreateInput = {
@@ -20766,28 +30039,16 @@ export namespace Prisma {
     createdAt?: Date | string
     buffing_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    setting_entry_id: number
-    filing_entry_id: number
-    type: $Enums.STONEOPTION
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
   }
 
   export type BuffingEntryUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
     buffing_person?: AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutBuffingEntryNestedInput
-    settingEntry?: SettingEntryUpdateOneRequiredWithoutBuffingEntriesNestedInput
-    filingEntry?: FilingEntryUpdateOneRequiredWithoutBuffingEntriesNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateInput = {
@@ -20795,14 +30056,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buffing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    setting_entry_id?: IntFieldUpdateOperationsInput | number
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
   }
 
   export type BuffingEntryCreateManyInput = {
@@ -20810,24 +30065,10 @@ export namespace Prisma {
     createdAt?: Date | string
     buffing_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    setting_entry_id: number
-    filing_entry_id: number
-    type: $Enums.STONEOPTION
   }
 
   export type BuffingEntryUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
   }
 
   export type BuffingEntryUncheckedUpdateManyInput = {
@@ -20835,26 +30076,178 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buffing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type BuffingItemsCreateInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks: string
+    item: AddItemCreateNestedOneWithoutBuffing_itemsInput
+    touch: AddTouchCreateNestedOneWithoutBuffing_itemsInput
+    stock?: StockCreateNestedManyWithoutBuffingItemInput
+    buffing_wastage?: BuffingWastageCreateNestedManyWithoutBuffing_itemsInput
+  }
+
+  export type BuffingItemsUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks: string
+    stock?: StockUncheckedCreateNestedManyWithoutBuffingItemInput
+    buffing_wastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffing_itemsInput
+  }
+
+  export type BuffingItemsUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    setting_entry_id?: IntFieldUpdateOperationsInput | number
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+    item?: AddItemUpdateOneRequiredWithoutBuffing_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutBuffing_itemsNestedInput
+    stock?: StockUpdateManyWithoutBuffingItemNestedInput
+    buffing_wastage?: BuffingWastageUpdateManyWithoutBuffing_itemsNestedInput
+  }
+
+  export type BuffingItemsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+    stock?: StockUncheckedUpdateManyWithoutBuffingItemNestedInput
+    buffing_wastage?: BuffingWastageUncheckedUpdateManyWithoutBuffing_itemsNestedInput
+  }
+
+  export type BuffingItemsCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks: string
+  }
+
+  export type BuffingItemsUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BuffingItemsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BuffingWastageCreateInput = {
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    buffing_items?: BuffingItemsCreateNestedManyWithoutBuffing_wastageInput
+  }
+
+  export type BuffingWastageUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutBuffing_wastageInput
+  }
+
+  export type BuffingWastageUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    buffing_items?: BuffingItemsUpdateManyWithoutBuffing_wastageNestedInput
+  }
+
+  export type BuffingWastageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutBuffing_wastageNestedInput
+  }
+
+  export type BuffingWastageCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+  }
+
+  export type BuffingWastageUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type BuffingWastageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type StockCreateInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
+    scrap_weight: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
     castingItem: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
     item: AddItemCreateNestedOneWithoutStockInput
+    touch: AddTouchCreateNestedOneWithoutStockInput
     casting_customer: AddCastingCreateNestedOneWithoutStockInput
   }
 
@@ -20862,26 +30255,30 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
     item_id: number
-    weight: number
-    touch: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
     casting_customer_id: number
   }
 
   export type StockUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
     item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
   }
 
@@ -20889,12 +30286,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
@@ -20903,23 +30302,23 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
     item_id: number
-    weight: number
-    touch: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
     casting_customer_id: number
   }
 
   export type StockUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
@@ -20927,12 +30326,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
@@ -21624,6 +31025,36 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type FilingItemsListRelationFilter = {
+    every?: FilingItemsWhereInput
+    some?: FilingItemsWhereInput
+    none?: FilingItemsWhereInput
+  }
+
+  export type SettingItemsListRelationFilter = {
+    every?: SettingItemsWhereInput
+    some?: SettingItemsWhereInput
+    none?: SettingItemsWhereInput
+  }
+
+  export type BuffingItemsListRelationFilter = {
+    every?: BuffingItemsWhereInput
+    some?: BuffingItemsWhereInput
+    none?: BuffingItemsWhereInput
+  }
+
+  export type FilingItemsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SettingItemsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BuffingItemsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type AddItemOrderByRelevanceInput = {
     fields: AddItemOrderByRelevanceFieldEnum | AddItemOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -21656,6 +31087,39 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type AddTouchCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    touch?: SortOrder
+  }
+
+  export type AddTouchAvgOrderByAggregateInput = {
+    id?: SortOrder
+    touch?: SortOrder
+  }
+
+  export type AddTouchMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    touch?: SortOrder
+  }
+
+  export type AddTouchMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    touch?: SortOrder
+  }
+
+  export type AddTouchSumOrderByAggregateInput = {
+    id?: SortOrder
+    touch?: SortOrder
+  }
+
+  export type AddTouchScalarRelationFilter = {
+    is?: AddTouchWhereInput
+    isNot?: AddTouchWhereInput
+  }
+
   export type AddCastingScalarRelationFilter = {
     is?: AddCastingWhereInput
     isNot?: AddCastingWhereInput
@@ -21666,7 +31130,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     date?: SortOrder
     given_gold?: SortOrder
-    given_touch?: SortOrder
+    touch_id?: SortOrder
     purity?: SortOrder
     final_touch?: SortOrder
     pure_value?: SortOrder
@@ -21678,7 +31142,7 @@ export namespace Prisma {
   export type CastingEntryAvgOrderByAggregateInput = {
     id?: SortOrder
     given_gold?: SortOrder
-    given_touch?: SortOrder
+    touch_id?: SortOrder
     purity?: SortOrder
     final_touch?: SortOrder
     pure_value?: SortOrder
@@ -21692,7 +31156,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     date?: SortOrder
     given_gold?: SortOrder
-    given_touch?: SortOrder
+    touch_id?: SortOrder
     purity?: SortOrder
     final_touch?: SortOrder
     pure_value?: SortOrder
@@ -21706,7 +31170,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     date?: SortOrder
     given_gold?: SortOrder
-    given_touch?: SortOrder
+    touch_id?: SortOrder
     purity?: SortOrder
     final_touch?: SortOrder
     pure_value?: SortOrder
@@ -21718,7 +31182,7 @@ export namespace Prisma {
   export type CastingEntrySumOrderByAggregateInput = {
     id?: SortOrder
     given_gold?: SortOrder
-    given_touch?: SortOrder
+    touch_id?: SortOrder
     purity?: SortOrder
     final_touch?: SortOrder
     pure_value?: SortOrder
@@ -21744,11 +31208,6 @@ export namespace Prisma {
     isNot?: CastingEntryWhereInput
   }
 
-  export type FilingEntryNullableScalarRelationFilter = {
-    is?: FilingEntryWhereInput | null
-    isNot?: FilingEntryWhereInput | null
-  }
-
   export type SettingEntryNullableScalarRelationFilter = {
     is?: SettingEntryWhereInput | null
     isNot?: SettingEntryWhereInput | null
@@ -21771,7 +31230,7 @@ export namespace Prisma {
     type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
-    touch?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
     after_weight?: SortOrder
@@ -21785,7 +31244,7 @@ export namespace Prisma {
     id?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
-    touch?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     after_weight?: SortOrder
     scrap_weight?: SortOrder
@@ -21800,7 +31259,7 @@ export namespace Prisma {
     type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
-    touch?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
     after_weight?: SortOrder
@@ -21816,7 +31275,7 @@ export namespace Prisma {
     type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
-    touch?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
     after_weight?: SortOrder
@@ -21830,7 +31289,7 @@ export namespace Prisma {
     id?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
-    touch?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     after_weight?: SortOrder
     scrap_weight?: SortOrder
@@ -21849,13 +31308,6 @@ export namespace Prisma {
     _max?: NestedEnumCASTINGENTRYTYPEFilter<$PrismaModel>
   }
 
-  export type EnumSTONEOPTIONFilter<$PrismaModel = never> = {
-    equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel>
-    in?: $Enums.STONEOPTION[]
-    notIn?: $Enums.STONEOPTION[]
-    not?: NestedEnumSTONEOPTIONFilter<$PrismaModel> | $Enums.STONEOPTION
-  }
-
   export type AddFilingScalarRelationFilter = {
     is?: AddFilingWhereInput
     isNot?: AddFilingWhereInput
@@ -21866,33 +31318,17 @@ export namespace Prisma {
     isNot?: CastingItemsWhereInput
   }
 
-  export type FilingEntryOrderByRelevanceInput = {
-    fields: FilingEntryOrderByRelevanceFieldEnum | FilingEntryOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
   export type FilingEntryCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
     filing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrder
-    after_weight?: SortOrder
-    stone_option?: SortOrder
   }
 
   export type FilingEntryAvgOrderByAggregateInput = {
     id?: SortOrder
     filing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    after_weight?: SortOrder
   }
 
   export type FilingEntryMaxOrderByAggregateInput = {
@@ -21900,12 +31336,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     filing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrder
-    after_weight?: SortOrder
-    stone_option?: SortOrder
   }
 
   export type FilingEntryMinOrderByAggregateInput = {
@@ -21913,32 +31343,166 @@ export namespace Prisma {
     createdAt?: SortOrder
     filing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrder
-    after_weight?: SortOrder
-    stone_option?: SortOrder
   }
 
   export type FilingEntrySumOrderByAggregateInput = {
     id?: SortOrder
     filing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    after_weight?: SortOrder
   }
 
-  export type EnumSTONEOPTIONWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel>
-    in?: $Enums.STONEOPTION[]
-    notIn?: $Enums.STONEOPTION[]
-    not?: NestedEnumSTONEOPTIONWithAggregatesFilter<$PrismaModel> | $Enums.STONEOPTION
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSTONEOPTIONFilter<$PrismaModel>
-    _max?: NestedEnumSTONEOPTIONFilter<$PrismaModel>
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type EnumSTONEOPTIONNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel> | null
+    in?: $Enums.STONEOPTION[] | null
+    notIn?: $Enums.STONEOPTION[] | null
+    not?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel> | $Enums.STONEOPTION | null
+  }
+
+  export type FilingWastageListRelationFilter = {
+    every?: FilingWastageWhereInput
+    some?: FilingWastageWhereInput
+    none?: FilingWastageWhereInput
+  }
+
+  export type FilingWastageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FilingItemsOrderByRelevanceInput = {
+    fields: FilingItemsOrderByRelevanceFieldEnum | FilingItemsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type FilingItemsCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    stone_option?: SortOrder
+    after_weight?: SortOrder
+    scrap_weight?: SortOrder
+    scrap_wastage?: SortOrder
+  }
+
+  export type FilingItemsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    after_weight?: SortOrder
+    scrap_weight?: SortOrder
+    scrap_wastage?: SortOrder
+  }
+
+  export type FilingItemsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    stone_option?: SortOrder
+    after_weight?: SortOrder
+    scrap_weight?: SortOrder
+    scrap_wastage?: SortOrder
+  }
+
+  export type FilingItemsMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    stone_option?: SortOrder
+    after_weight?: SortOrder
+    scrap_weight?: SortOrder
+    scrap_wastage?: SortOrder
+  }
+
+  export type FilingItemsSumOrderByAggregateInput = {
+    id?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    after_weight?: SortOrder
+    scrap_weight?: SortOrder
+    scrap_wastage?: SortOrder
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type EnumSTONEOPTIONNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel> | null
+    in?: $Enums.STONEOPTION[] | null
+    notIn?: $Enums.STONEOPTION[] | null
+    not?: NestedEnumSTONEOPTIONNullableWithAggregatesFilter<$PrismaModel> | $Enums.STONEOPTION | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel>
+    _max?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel>
+  }
+
+  export type FilingWastageCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type FilingWastageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type FilingWastageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type FilingWastageMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type FilingWastageSumOrderByAggregateInput = {
+    id?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
   }
 
   export type AddSettingScalarRelationFilter = {
@@ -21946,39 +31510,17 @@ export namespace Prisma {
     isNot?: AddSettingWhereInput
   }
 
-  export type FilingEntryScalarRelationFilter = {
-    is?: FilingEntryWhereInput
-    isNot?: FilingEntryWhereInput
-  }
-
-  export type SettingEntryOrderByRelevanceInput = {
-    fields: SettingEntryOrderByRelevanceFieldEnum | SettingEntryOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
   export type SettingEntryCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
     setting_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrder
-    after_weight?: SortOrder
-    filing_entry_id?: SortOrder
   }
 
   export type SettingEntryAvgOrderByAggregateInput = {
     id?: SortOrder
     setting_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    after_weight?: SortOrder
-    filing_entry_id?: SortOrder
   }
 
   export type SettingEntryMaxOrderByAggregateInput = {
@@ -21986,12 +31528,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     setting_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrder
-    after_weight?: SortOrder
-    filing_entry_id?: SortOrder
   }
 
   export type SettingEntryMinOrderByAggregateInput = {
@@ -21999,23 +31535,149 @@ export namespace Prisma {
     createdAt?: SortOrder
     setting_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrder
-    after_weight?: SortOrder
-    filing_entry_id?: SortOrder
   }
 
   export type SettingEntrySumOrderByAggregateInput = {
     id?: SortOrder
     setting_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type SettingWastageListRelationFilter = {
+    every?: SettingWastageWhereInput
+    some?: SettingWastageWhereInput
+    none?: SettingWastageWhereInput
+  }
+
+  export type SettingWastageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SettingItemsOrderByRelevanceInput = {
+    fields: SettingItemsOrderByRelevanceFieldEnum | SettingItemsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type SettingItemsCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
-    after_weight?: SortOrder
-    filing_entry_id?: SortOrder
+    scrap_remarks?: SortOrder
+  }
+
+  export type SettingItemsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+  }
+
+  export type SettingItemsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    scrap_remarks?: SortOrder
+  }
+
+  export type SettingItemsMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    scrap_remarks?: SortOrder
+  }
+
+  export type SettingItemsSumOrderByAggregateInput = {
+    id?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type SettingWastageCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type SettingWastageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type SettingWastageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type SettingWastageMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type SettingWastageSumOrderByAggregateInput = {
+    id?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
   }
 
   export type AddBuffingScalarRelationFilter = {
@@ -22023,42 +31685,17 @@ export namespace Prisma {
     isNot?: AddBuffingWhereInput
   }
 
-  export type SettingEntryScalarRelationFilter = {
-    is?: SettingEntryWhereInput
-    isNot?: SettingEntryWhereInput
-  }
-
-  export type BuffingEntryOrderByRelevanceInput = {
-    fields: BuffingEntryOrderByRelevanceFieldEnum | BuffingEntryOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
   export type BuffingEntryCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
     buffing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrder
-    after_weight?: SortOrder
-    setting_entry_id?: SortOrder
-    filing_entry_id?: SortOrder
-    type?: SortOrder
   }
 
   export type BuffingEntryAvgOrderByAggregateInput = {
     id?: SortOrder
     buffing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    after_weight?: SortOrder
-    setting_entry_id?: SortOrder
-    filing_entry_id?: SortOrder
   }
 
   export type BuffingEntryMaxOrderByAggregateInput = {
@@ -22066,14 +31703,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     buffing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrder
-    after_weight?: SortOrder
-    setting_entry_id?: SortOrder
-    filing_entry_id?: SortOrder
-    type?: SortOrder
   }
 
   export type BuffingEntryMinOrderByAggregateInput = {
@@ -22081,26 +31710,141 @@ export namespace Prisma {
     createdAt?: SortOrder
     buffing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
-    remarks?: SortOrder
-    after_weight?: SortOrder
-    setting_entry_id?: SortOrder
-    filing_entry_id?: SortOrder
-    type?: SortOrder
   }
 
   export type BuffingEntrySumOrderByAggregateInput = {
     id?: SortOrder
     buffing_person_id?: SortOrder
     casting_item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
+  }
+
+  export type BuffingWastageListRelationFilter = {
+    every?: BuffingWastageWhereInput
+    some?: BuffingWastageWhereInput
+    none?: BuffingWastageWhereInput
+  }
+
+  export type BuffingWastageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BuffingItemsOrderByRelevanceInput = {
+    fields: BuffingItemsOrderByRelevanceFieldEnum | BuffingItemsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type BuffingItemsCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
-    after_weight?: SortOrder
-    setting_entry_id?: SortOrder
-    filing_entry_id?: SortOrder
+    scrap_remarks?: SortOrder
+  }
+
+  export type BuffingItemsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    receipt_weight?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+  }
+
+  export type BuffingItemsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    scrap_remarks?: SortOrder
+  }
+
+  export type BuffingItemsMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    type?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+    scrap_remarks?: SortOrder
+  }
+
+  export type BuffingItemsSumOrderByAggregateInput = {
+    id?: SortOrder
+    receipt_weight?: SortOrder
+    item_id?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
+  }
+
+  export type BuffingWastageCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type BuffingWastageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type BuffingWastageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type BuffingWastageMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type BuffingWastageSumOrderByAggregateInput = {
+    id?: SortOrder
+    wastage_percentage?: SortOrder
+    given_gold?: SortOrder
+    add_wastage?: SortOrder
+  }
+
+  export type FilingItemsScalarRelationFilter = {
+    is?: FilingItemsWhereInput
+    isNot?: FilingItemsWhereInput
+  }
+
+  export type SettingItemsScalarRelationFilter = {
+    is?: SettingItemsWhereInput
+    isNot?: SettingItemsWhereInput
+  }
+
+  export type BuffingItemsScalarRelationFilter = {
+    is?: BuffingItemsWhereInput
+    isNot?: BuffingItemsWhereInput
   }
 
   export type StockOrderByRelevanceInput = {
@@ -22113,12 +31857,14 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     casting_item_id?: SortOrder
+    filing_item_id?: SortOrder
+    setting_item_id?: SortOrder
+    buffing_item_id?: SortOrder
     item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    scrap_weight?: SortOrder
     scrap_wastage?: SortOrder
     casting_customer_id?: SortOrder
   }
@@ -22126,11 +31872,13 @@ export namespace Prisma {
   export type StockAvgOrderByAggregateInput = {
     id?: SortOrder
     casting_item_id?: SortOrder
+    filing_item_id?: SortOrder
+    setting_item_id?: SortOrder
+    buffing_item_id?: SortOrder
     item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
     scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
     scrap_wastage?: SortOrder
     casting_customer_id?: SortOrder
   }
@@ -22139,12 +31887,14 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     casting_item_id?: SortOrder
+    filing_item_id?: SortOrder
+    setting_item_id?: SortOrder
+    buffing_item_id?: SortOrder
     item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    scrap_weight?: SortOrder
     scrap_wastage?: SortOrder
     casting_customer_id?: SortOrder
   }
@@ -22153,12 +31903,14 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     casting_item_id?: SortOrder
+    filing_item_id?: SortOrder
+    setting_item_id?: SortOrder
+    buffing_item_id?: SortOrder
     item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
+    scrap_weight?: SortOrder
+    touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    scrap_weight?: SortOrder
     scrap_wastage?: SortOrder
     casting_customer_id?: SortOrder
   }
@@ -22166,11 +31918,13 @@ export namespace Prisma {
   export type StockSumOrderByAggregateInput = {
     id?: SortOrder
     casting_item_id?: SortOrder
+    filing_item_id?: SortOrder
+    setting_item_id?: SortOrder
+    buffing_item_id?: SortOrder
     item_id?: SortOrder
-    weight?: SortOrder
-    touch?: SortOrder
-    item_purity?: SortOrder
     scrap_weight?: SortOrder
+    touch_id?: SortOrder
+    item_purity?: SortOrder
     scrap_wastage?: SortOrder
     casting_customer_id?: SortOrder
   }
@@ -22545,6 +32299,27 @@ export namespace Prisma {
     connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
   }
 
+  export type FilingItemsCreateNestedManyWithoutItemInput = {
+    create?: XOR<FilingItemsCreateWithoutItemInput, FilingItemsUncheckedCreateWithoutItemInput> | FilingItemsCreateWithoutItemInput[] | FilingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutItemInput | FilingItemsCreateOrConnectWithoutItemInput[]
+    createMany?: FilingItemsCreateManyItemInputEnvelope
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type SettingItemsCreateNestedManyWithoutItemInput = {
+    create?: XOR<SettingItemsCreateWithoutItemInput, SettingItemsUncheckedCreateWithoutItemInput> | SettingItemsCreateWithoutItemInput[] | SettingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutItemInput | SettingItemsCreateOrConnectWithoutItemInput[]
+    createMany?: SettingItemsCreateManyItemInputEnvelope
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+  }
+
+  export type BuffingItemsCreateNestedManyWithoutItemInput = {
+    create?: XOR<BuffingItemsCreateWithoutItemInput, BuffingItemsUncheckedCreateWithoutItemInput> | BuffingItemsCreateWithoutItemInput[] | BuffingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutItemInput | BuffingItemsCreateOrConnectWithoutItemInput[]
+    createMany?: BuffingItemsCreateManyItemInputEnvelope
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+  }
+
   export type CastingItemsUncheckedCreateNestedManyWithoutItemInput = {
     create?: XOR<CastingItemsCreateWithoutItemInput, CastingItemsUncheckedCreateWithoutItemInput> | CastingItemsCreateWithoutItemInput[] | CastingItemsUncheckedCreateWithoutItemInput[]
     connectOrCreate?: CastingItemsCreateOrConnectWithoutItemInput | CastingItemsCreateOrConnectWithoutItemInput[]
@@ -22557,6 +32332,27 @@ export namespace Prisma {
     connectOrCreate?: StockCreateOrConnectWithoutItemInput | StockCreateOrConnectWithoutItemInput[]
     createMany?: StockCreateManyItemInputEnvelope
     connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  }
+
+  export type FilingItemsUncheckedCreateNestedManyWithoutItemInput = {
+    create?: XOR<FilingItemsCreateWithoutItemInput, FilingItemsUncheckedCreateWithoutItemInput> | FilingItemsCreateWithoutItemInput[] | FilingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutItemInput | FilingItemsCreateOrConnectWithoutItemInput[]
+    createMany?: FilingItemsCreateManyItemInputEnvelope
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type SettingItemsUncheckedCreateNestedManyWithoutItemInput = {
+    create?: XOR<SettingItemsCreateWithoutItemInput, SettingItemsUncheckedCreateWithoutItemInput> | SettingItemsCreateWithoutItemInput[] | SettingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutItemInput | SettingItemsCreateOrConnectWithoutItemInput[]
+    createMany?: SettingItemsCreateManyItemInputEnvelope
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+  }
+
+  export type BuffingItemsUncheckedCreateNestedManyWithoutItemInput = {
+    create?: XOR<BuffingItemsCreateWithoutItemInput, BuffingItemsUncheckedCreateWithoutItemInput> | BuffingItemsCreateWithoutItemInput[] | BuffingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutItemInput | BuffingItemsCreateOrConnectWithoutItemInput[]
+    createMany?: BuffingItemsCreateManyItemInputEnvelope
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
   }
 
   export type CastingItemsUpdateManyWithoutItemNestedInput = {
@@ -22587,6 +32383,48 @@ export namespace Prisma {
     deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
   }
 
+  export type FilingItemsUpdateManyWithoutItemNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutItemInput, FilingItemsUncheckedCreateWithoutItemInput> | FilingItemsCreateWithoutItemInput[] | FilingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutItemInput | FilingItemsCreateOrConnectWithoutItemInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutItemInput | FilingItemsUpsertWithWhereUniqueWithoutItemInput[]
+    createMany?: FilingItemsCreateManyItemInputEnvelope
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutItemInput | FilingItemsUpdateWithWhereUniqueWithoutItemInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutItemInput | FilingItemsUpdateManyWithWhereWithoutItemInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type SettingItemsUpdateManyWithoutItemNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutItemInput, SettingItemsUncheckedCreateWithoutItemInput> | SettingItemsCreateWithoutItemInput[] | SettingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutItemInput | SettingItemsCreateOrConnectWithoutItemInput[]
+    upsert?: SettingItemsUpsertWithWhereUniqueWithoutItemInput | SettingItemsUpsertWithWhereUniqueWithoutItemInput[]
+    createMany?: SettingItemsCreateManyItemInputEnvelope
+    set?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    disconnect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    delete?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    update?: SettingItemsUpdateWithWhereUniqueWithoutItemInput | SettingItemsUpdateWithWhereUniqueWithoutItemInput[]
+    updateMany?: SettingItemsUpdateManyWithWhereWithoutItemInput | SettingItemsUpdateManyWithWhereWithoutItemInput[]
+    deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
+  export type BuffingItemsUpdateManyWithoutItemNestedInput = {
+    create?: XOR<BuffingItemsCreateWithoutItemInput, BuffingItemsUncheckedCreateWithoutItemInput> | BuffingItemsCreateWithoutItemInput[] | BuffingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutItemInput | BuffingItemsCreateOrConnectWithoutItemInput[]
+    upsert?: BuffingItemsUpsertWithWhereUniqueWithoutItemInput | BuffingItemsUpsertWithWhereUniqueWithoutItemInput[]
+    createMany?: BuffingItemsCreateManyItemInputEnvelope
+    set?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    disconnect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    delete?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    update?: BuffingItemsUpdateWithWhereUniqueWithoutItemInput | BuffingItemsUpdateWithWhereUniqueWithoutItemInput[]
+    updateMany?: BuffingItemsUpdateManyWithWhereWithoutItemInput | BuffingItemsUpdateManyWithWhereWithoutItemInput[]
+    deleteMany?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
+  }
+
   export type CastingItemsUncheckedUpdateManyWithoutItemNestedInput = {
     create?: XOR<CastingItemsCreateWithoutItemInput, CastingItemsUncheckedCreateWithoutItemInput> | CastingItemsCreateWithoutItemInput[] | CastingItemsUncheckedCreateWithoutItemInput[]
     connectOrCreate?: CastingItemsCreateOrConnectWithoutItemInput | CastingItemsCreateOrConnectWithoutItemInput[]
@@ -22615,6 +32453,306 @@ export namespace Prisma {
     deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
   }
 
+  export type FilingItemsUncheckedUpdateManyWithoutItemNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutItemInput, FilingItemsUncheckedCreateWithoutItemInput> | FilingItemsCreateWithoutItemInput[] | FilingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutItemInput | FilingItemsCreateOrConnectWithoutItemInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutItemInput | FilingItemsUpsertWithWhereUniqueWithoutItemInput[]
+    createMany?: FilingItemsCreateManyItemInputEnvelope
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutItemInput | FilingItemsUpdateWithWhereUniqueWithoutItemInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutItemInput | FilingItemsUpdateManyWithWhereWithoutItemInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type SettingItemsUncheckedUpdateManyWithoutItemNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutItemInput, SettingItemsUncheckedCreateWithoutItemInput> | SettingItemsCreateWithoutItemInput[] | SettingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutItemInput | SettingItemsCreateOrConnectWithoutItemInput[]
+    upsert?: SettingItemsUpsertWithWhereUniqueWithoutItemInput | SettingItemsUpsertWithWhereUniqueWithoutItemInput[]
+    createMany?: SettingItemsCreateManyItemInputEnvelope
+    set?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    disconnect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    delete?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    update?: SettingItemsUpdateWithWhereUniqueWithoutItemInput | SettingItemsUpdateWithWhereUniqueWithoutItemInput[]
+    updateMany?: SettingItemsUpdateManyWithWhereWithoutItemInput | SettingItemsUpdateManyWithWhereWithoutItemInput[]
+    deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
+  export type BuffingItemsUncheckedUpdateManyWithoutItemNestedInput = {
+    create?: XOR<BuffingItemsCreateWithoutItemInput, BuffingItemsUncheckedCreateWithoutItemInput> | BuffingItemsCreateWithoutItemInput[] | BuffingItemsUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutItemInput | BuffingItemsCreateOrConnectWithoutItemInput[]
+    upsert?: BuffingItemsUpsertWithWhereUniqueWithoutItemInput | BuffingItemsUpsertWithWhereUniqueWithoutItemInput[]
+    createMany?: BuffingItemsCreateManyItemInputEnvelope
+    set?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    disconnect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    delete?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    update?: BuffingItemsUpdateWithWhereUniqueWithoutItemInput | BuffingItemsUpdateWithWhereUniqueWithoutItemInput[]
+    updateMany?: BuffingItemsUpdateManyWithWhereWithoutItemInput | BuffingItemsUpdateManyWithWhereWithoutItemInput[]
+    deleteMany?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
+  }
+
+  export type CastingEntryCreateNestedManyWithoutTouchInput = {
+    create?: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput> | CastingEntryCreateWithoutTouchInput[] | CastingEntryUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: CastingEntryCreateOrConnectWithoutTouchInput | CastingEntryCreateOrConnectWithoutTouchInput[]
+    createMany?: CastingEntryCreateManyTouchInputEnvelope
+    connect?: CastingEntryWhereUniqueInput | CastingEntryWhereUniqueInput[]
+  }
+
+  export type CastingItemsCreateNestedManyWithoutTouchInput = {
+    create?: XOR<CastingItemsCreateWithoutTouchInput, CastingItemsUncheckedCreateWithoutTouchInput> | CastingItemsCreateWithoutTouchInput[] | CastingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: CastingItemsCreateOrConnectWithoutTouchInput | CastingItemsCreateOrConnectWithoutTouchInput[]
+    createMany?: CastingItemsCreateManyTouchInputEnvelope
+    connect?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+  }
+
+  export type FilingItemsCreateNestedManyWithoutTouchInput = {
+    create?: XOR<FilingItemsCreateWithoutTouchInput, FilingItemsUncheckedCreateWithoutTouchInput> | FilingItemsCreateWithoutTouchInput[] | FilingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutTouchInput | FilingItemsCreateOrConnectWithoutTouchInput[]
+    createMany?: FilingItemsCreateManyTouchInputEnvelope
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type SettingItemsCreateNestedManyWithoutTouchInput = {
+    create?: XOR<SettingItemsCreateWithoutTouchInput, SettingItemsUncheckedCreateWithoutTouchInput> | SettingItemsCreateWithoutTouchInput[] | SettingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutTouchInput | SettingItemsCreateOrConnectWithoutTouchInput[]
+    createMany?: SettingItemsCreateManyTouchInputEnvelope
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+  }
+
+  export type BuffingItemsCreateNestedManyWithoutTouchInput = {
+    create?: XOR<BuffingItemsCreateWithoutTouchInput, BuffingItemsUncheckedCreateWithoutTouchInput> | BuffingItemsCreateWithoutTouchInput[] | BuffingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutTouchInput | BuffingItemsCreateOrConnectWithoutTouchInput[]
+    createMany?: BuffingItemsCreateManyTouchInputEnvelope
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+  }
+
+  export type StockCreateNestedManyWithoutTouchInput = {
+    create?: XOR<StockCreateWithoutTouchInput, StockUncheckedCreateWithoutTouchInput> | StockCreateWithoutTouchInput[] | StockUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutTouchInput | StockCreateOrConnectWithoutTouchInput[]
+    createMany?: StockCreateManyTouchInputEnvelope
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  }
+
+  export type CastingEntryUncheckedCreateNestedManyWithoutTouchInput = {
+    create?: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput> | CastingEntryCreateWithoutTouchInput[] | CastingEntryUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: CastingEntryCreateOrConnectWithoutTouchInput | CastingEntryCreateOrConnectWithoutTouchInput[]
+    createMany?: CastingEntryCreateManyTouchInputEnvelope
+    connect?: CastingEntryWhereUniqueInput | CastingEntryWhereUniqueInput[]
+  }
+
+  export type CastingItemsUncheckedCreateNestedManyWithoutTouchInput = {
+    create?: XOR<CastingItemsCreateWithoutTouchInput, CastingItemsUncheckedCreateWithoutTouchInput> | CastingItemsCreateWithoutTouchInput[] | CastingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: CastingItemsCreateOrConnectWithoutTouchInput | CastingItemsCreateOrConnectWithoutTouchInput[]
+    createMany?: CastingItemsCreateManyTouchInputEnvelope
+    connect?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+  }
+
+  export type FilingItemsUncheckedCreateNestedManyWithoutTouchInput = {
+    create?: XOR<FilingItemsCreateWithoutTouchInput, FilingItemsUncheckedCreateWithoutTouchInput> | FilingItemsCreateWithoutTouchInput[] | FilingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutTouchInput | FilingItemsCreateOrConnectWithoutTouchInput[]
+    createMany?: FilingItemsCreateManyTouchInputEnvelope
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type SettingItemsUncheckedCreateNestedManyWithoutTouchInput = {
+    create?: XOR<SettingItemsCreateWithoutTouchInput, SettingItemsUncheckedCreateWithoutTouchInput> | SettingItemsCreateWithoutTouchInput[] | SettingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutTouchInput | SettingItemsCreateOrConnectWithoutTouchInput[]
+    createMany?: SettingItemsCreateManyTouchInputEnvelope
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+  }
+
+  export type BuffingItemsUncheckedCreateNestedManyWithoutTouchInput = {
+    create?: XOR<BuffingItemsCreateWithoutTouchInput, BuffingItemsUncheckedCreateWithoutTouchInput> | BuffingItemsCreateWithoutTouchInput[] | BuffingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutTouchInput | BuffingItemsCreateOrConnectWithoutTouchInput[]
+    createMany?: BuffingItemsCreateManyTouchInputEnvelope
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+  }
+
+  export type StockUncheckedCreateNestedManyWithoutTouchInput = {
+    create?: XOR<StockCreateWithoutTouchInput, StockUncheckedCreateWithoutTouchInput> | StockCreateWithoutTouchInput[] | StockUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutTouchInput | StockCreateOrConnectWithoutTouchInput[]
+    createMany?: StockCreateManyTouchInputEnvelope
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  }
+
+  export type CastingEntryUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput> | CastingEntryCreateWithoutTouchInput[] | CastingEntryUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: CastingEntryCreateOrConnectWithoutTouchInput | CastingEntryCreateOrConnectWithoutTouchInput[]
+    upsert?: CastingEntryUpsertWithWhereUniqueWithoutTouchInput | CastingEntryUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: CastingEntryCreateManyTouchInputEnvelope
+    set?: CastingEntryWhereUniqueInput | CastingEntryWhereUniqueInput[]
+    disconnect?: CastingEntryWhereUniqueInput | CastingEntryWhereUniqueInput[]
+    delete?: CastingEntryWhereUniqueInput | CastingEntryWhereUniqueInput[]
+    connect?: CastingEntryWhereUniqueInput | CastingEntryWhereUniqueInput[]
+    update?: CastingEntryUpdateWithWhereUniqueWithoutTouchInput | CastingEntryUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: CastingEntryUpdateManyWithWhereWithoutTouchInput | CastingEntryUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: CastingEntryScalarWhereInput | CastingEntryScalarWhereInput[]
+  }
+
+  export type CastingItemsUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<CastingItemsCreateWithoutTouchInput, CastingItemsUncheckedCreateWithoutTouchInput> | CastingItemsCreateWithoutTouchInput[] | CastingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: CastingItemsCreateOrConnectWithoutTouchInput | CastingItemsCreateOrConnectWithoutTouchInput[]
+    upsert?: CastingItemsUpsertWithWhereUniqueWithoutTouchInput | CastingItemsUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: CastingItemsCreateManyTouchInputEnvelope
+    set?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+    disconnect?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+    delete?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+    connect?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+    update?: CastingItemsUpdateWithWhereUniqueWithoutTouchInput | CastingItemsUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: CastingItemsUpdateManyWithWhereWithoutTouchInput | CastingItemsUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: CastingItemsScalarWhereInput | CastingItemsScalarWhereInput[]
+  }
+
+  export type FilingItemsUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutTouchInput, FilingItemsUncheckedCreateWithoutTouchInput> | FilingItemsCreateWithoutTouchInput[] | FilingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutTouchInput | FilingItemsCreateOrConnectWithoutTouchInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutTouchInput | FilingItemsUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: FilingItemsCreateManyTouchInputEnvelope
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutTouchInput | FilingItemsUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutTouchInput | FilingItemsUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type SettingItemsUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutTouchInput, SettingItemsUncheckedCreateWithoutTouchInput> | SettingItemsCreateWithoutTouchInput[] | SettingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutTouchInput | SettingItemsCreateOrConnectWithoutTouchInput[]
+    upsert?: SettingItemsUpsertWithWhereUniqueWithoutTouchInput | SettingItemsUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: SettingItemsCreateManyTouchInputEnvelope
+    set?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    disconnect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    delete?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    update?: SettingItemsUpdateWithWhereUniqueWithoutTouchInput | SettingItemsUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: SettingItemsUpdateManyWithWhereWithoutTouchInput | SettingItemsUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
+  export type BuffingItemsUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<BuffingItemsCreateWithoutTouchInput, BuffingItemsUncheckedCreateWithoutTouchInput> | BuffingItemsCreateWithoutTouchInput[] | BuffingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutTouchInput | BuffingItemsCreateOrConnectWithoutTouchInput[]
+    upsert?: BuffingItemsUpsertWithWhereUniqueWithoutTouchInput | BuffingItemsUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: BuffingItemsCreateManyTouchInputEnvelope
+    set?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    disconnect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    delete?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    update?: BuffingItemsUpdateWithWhereUniqueWithoutTouchInput | BuffingItemsUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: BuffingItemsUpdateManyWithWhereWithoutTouchInput | BuffingItemsUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
+  }
+
+  export type StockUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<StockCreateWithoutTouchInput, StockUncheckedCreateWithoutTouchInput> | StockCreateWithoutTouchInput[] | StockUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutTouchInput | StockCreateOrConnectWithoutTouchInput[]
+    upsert?: StockUpsertWithWhereUniqueWithoutTouchInput | StockUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: StockCreateManyTouchInputEnvelope
+    set?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    disconnect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    delete?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    update?: StockUpdateWithWhereUniqueWithoutTouchInput | StockUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: StockUpdateManyWithWhereWithoutTouchInput | StockUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  }
+
+  export type CastingEntryUncheckedUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput> | CastingEntryCreateWithoutTouchInput[] | CastingEntryUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: CastingEntryCreateOrConnectWithoutTouchInput | CastingEntryCreateOrConnectWithoutTouchInput[]
+    upsert?: CastingEntryUpsertWithWhereUniqueWithoutTouchInput | CastingEntryUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: CastingEntryCreateManyTouchInputEnvelope
+    set?: CastingEntryWhereUniqueInput | CastingEntryWhereUniqueInput[]
+    disconnect?: CastingEntryWhereUniqueInput | CastingEntryWhereUniqueInput[]
+    delete?: CastingEntryWhereUniqueInput | CastingEntryWhereUniqueInput[]
+    connect?: CastingEntryWhereUniqueInput | CastingEntryWhereUniqueInput[]
+    update?: CastingEntryUpdateWithWhereUniqueWithoutTouchInput | CastingEntryUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: CastingEntryUpdateManyWithWhereWithoutTouchInput | CastingEntryUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: CastingEntryScalarWhereInput | CastingEntryScalarWhereInput[]
+  }
+
+  export type CastingItemsUncheckedUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<CastingItemsCreateWithoutTouchInput, CastingItemsUncheckedCreateWithoutTouchInput> | CastingItemsCreateWithoutTouchInput[] | CastingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: CastingItemsCreateOrConnectWithoutTouchInput | CastingItemsCreateOrConnectWithoutTouchInput[]
+    upsert?: CastingItemsUpsertWithWhereUniqueWithoutTouchInput | CastingItemsUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: CastingItemsCreateManyTouchInputEnvelope
+    set?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+    disconnect?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+    delete?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+    connect?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+    update?: CastingItemsUpdateWithWhereUniqueWithoutTouchInput | CastingItemsUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: CastingItemsUpdateManyWithWhereWithoutTouchInput | CastingItemsUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: CastingItemsScalarWhereInput | CastingItemsScalarWhereInput[]
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutTouchInput, FilingItemsUncheckedCreateWithoutTouchInput> | FilingItemsCreateWithoutTouchInput[] | FilingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutTouchInput | FilingItemsCreateOrConnectWithoutTouchInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutTouchInput | FilingItemsUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: FilingItemsCreateManyTouchInputEnvelope
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutTouchInput | FilingItemsUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutTouchInput | FilingItemsUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type SettingItemsUncheckedUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutTouchInput, SettingItemsUncheckedCreateWithoutTouchInput> | SettingItemsCreateWithoutTouchInput[] | SettingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutTouchInput | SettingItemsCreateOrConnectWithoutTouchInput[]
+    upsert?: SettingItemsUpsertWithWhereUniqueWithoutTouchInput | SettingItemsUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: SettingItemsCreateManyTouchInputEnvelope
+    set?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    disconnect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    delete?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    update?: SettingItemsUpdateWithWhereUniqueWithoutTouchInput | SettingItemsUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: SettingItemsUpdateManyWithWhereWithoutTouchInput | SettingItemsUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
+  export type BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<BuffingItemsCreateWithoutTouchInput, BuffingItemsUncheckedCreateWithoutTouchInput> | BuffingItemsCreateWithoutTouchInput[] | BuffingItemsUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutTouchInput | BuffingItemsCreateOrConnectWithoutTouchInput[]
+    upsert?: BuffingItemsUpsertWithWhereUniqueWithoutTouchInput | BuffingItemsUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: BuffingItemsCreateManyTouchInputEnvelope
+    set?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    disconnect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    delete?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    update?: BuffingItemsUpdateWithWhereUniqueWithoutTouchInput | BuffingItemsUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: BuffingItemsUpdateManyWithWhereWithoutTouchInput | BuffingItemsUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
+  }
+
+  export type StockUncheckedUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<StockCreateWithoutTouchInput, StockUncheckedCreateWithoutTouchInput> | StockCreateWithoutTouchInput[] | StockUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutTouchInput | StockCreateOrConnectWithoutTouchInput[]
+    upsert?: StockUpsertWithWhereUniqueWithoutTouchInput | StockUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: StockCreateManyTouchInputEnvelope
+    set?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    disconnect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    delete?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    update?: StockUpdateWithWhereUniqueWithoutTouchInput | StockUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: StockUpdateManyWithWhereWithoutTouchInput | StockUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  }
+
+  export type AddTouchCreateNestedOneWithoutCasting_entryInput = {
+    create?: XOR<AddTouchCreateWithoutCasting_entryInput, AddTouchUncheckedCreateWithoutCasting_entryInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutCasting_entryInput
+    connect?: AddTouchWhereUniqueInput
+  }
+
   export type AddCastingCreateNestedOneWithoutEntriesInput = {
     create?: XOR<AddCastingCreateWithoutEntriesInput, AddCastingUncheckedCreateWithoutEntriesInput>
     connectOrCreate?: AddCastingCreateOrConnectWithoutEntriesInput
@@ -22633,6 +32771,14 @@ export namespace Prisma {
     connectOrCreate?: CastingItemsCreateOrConnectWithoutCastingEntryInput | CastingItemsCreateOrConnectWithoutCastingEntryInput[]
     createMany?: CastingItemsCreateManyCastingEntryInputEnvelope
     connect?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+  }
+
+  export type AddTouchUpdateOneRequiredWithoutCasting_entryNestedInput = {
+    create?: XOR<AddTouchCreateWithoutCasting_entryInput, AddTouchUncheckedCreateWithoutCasting_entryInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutCasting_entryInput
+    upsert?: AddTouchUpsertWithoutCasting_entryInput
+    connect?: AddTouchWhereUniqueInput
+    update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutCasting_entryInput, AddTouchUpdateWithoutCasting_entryInput>, AddTouchUncheckedUpdateWithoutCasting_entryInput>
   }
 
   export type AddCastingUpdateOneRequiredWithoutEntriesNestedInput = {
@@ -22671,9 +32817,15 @@ export namespace Prisma {
     deleteMany?: CastingItemsScalarWhereInput | CastingItemsScalarWhereInput[]
   }
 
-  export type AddItemCreateNestedOneWithoutCastingItemsInput = {
-    create?: XOR<AddItemCreateWithoutCastingItemsInput, AddItemUncheckedCreateWithoutCastingItemsInput>
-    connectOrCreate?: AddItemCreateOrConnectWithoutCastingItemsInput
+  export type AddTouchCreateNestedOneWithoutCasting_itemsInput = {
+    create?: XOR<AddTouchCreateWithoutCasting_itemsInput, AddTouchUncheckedCreateWithoutCasting_itemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutCasting_itemsInput
+    connect?: AddTouchWhereUniqueInput
+  }
+
+  export type AddItemCreateNestedOneWithoutCasting_itemsInput = {
+    create?: XOR<AddItemCreateWithoutCasting_itemsInput, AddItemUncheckedCreateWithoutCasting_itemsInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutCasting_itemsInput
     connect?: AddItemWhereUniqueInput
   }
 
@@ -22683,10 +32835,11 @@ export namespace Prisma {
     connect?: CastingEntryWhereUniqueInput
   }
 
-  export type FilingEntryCreateNestedOneWithoutCastingItemInput = {
-    create?: XOR<FilingEntryCreateWithoutCastingItemInput, FilingEntryUncheckedCreateWithoutCastingItemInput>
-    connectOrCreate?: FilingEntryCreateOrConnectWithoutCastingItemInput
-    connect?: FilingEntryWhereUniqueInput
+  export type FilingEntryCreateNestedManyWithoutCastingItemInput = {
+    create?: XOR<FilingEntryCreateWithoutCastingItemInput, FilingEntryUncheckedCreateWithoutCastingItemInput> | FilingEntryCreateWithoutCastingItemInput[] | FilingEntryUncheckedCreateWithoutCastingItemInput[]
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutCastingItemInput | FilingEntryCreateOrConnectWithoutCastingItemInput[]
+    createMany?: FilingEntryCreateManyCastingItemInputEnvelope
+    connect?: FilingEntryWhereUniqueInput | FilingEntryWhereUniqueInput[]
   }
 
   export type SettingEntryCreateNestedOneWithoutCastingItemInput = {
@@ -22714,10 +32867,11 @@ export namespace Prisma {
     connect?: AddCastingWhereUniqueInput
   }
 
-  export type FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput = {
-    create?: XOR<FilingEntryCreateWithoutCastingItemInput, FilingEntryUncheckedCreateWithoutCastingItemInput>
-    connectOrCreate?: FilingEntryCreateOrConnectWithoutCastingItemInput
-    connect?: FilingEntryWhereUniqueInput
+  export type FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput = {
+    create?: XOR<FilingEntryCreateWithoutCastingItemInput, FilingEntryUncheckedCreateWithoutCastingItemInput> | FilingEntryCreateWithoutCastingItemInput[] | FilingEntryUncheckedCreateWithoutCastingItemInput[]
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutCastingItemInput | FilingEntryCreateOrConnectWithoutCastingItemInput[]
+    createMany?: FilingEntryCreateManyCastingItemInputEnvelope
+    connect?: FilingEntryWhereUniqueInput | FilingEntryWhereUniqueInput[]
   }
 
   export type SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput = {
@@ -22743,12 +32897,20 @@ export namespace Prisma {
     set?: $Enums.CASTINGENTRYTYPE
   }
 
-  export type AddItemUpdateOneRequiredWithoutCastingItemsNestedInput = {
-    create?: XOR<AddItemCreateWithoutCastingItemsInput, AddItemUncheckedCreateWithoutCastingItemsInput>
-    connectOrCreate?: AddItemCreateOrConnectWithoutCastingItemsInput
-    upsert?: AddItemUpsertWithoutCastingItemsInput
+  export type AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput = {
+    create?: XOR<AddTouchCreateWithoutCasting_itemsInput, AddTouchUncheckedCreateWithoutCasting_itemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutCasting_itemsInput
+    upsert?: AddTouchUpsertWithoutCasting_itemsInput
+    connect?: AddTouchWhereUniqueInput
+    update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutCasting_itemsInput, AddTouchUpdateWithoutCasting_itemsInput>, AddTouchUncheckedUpdateWithoutCasting_itemsInput>
+  }
+
+  export type AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput = {
+    create?: XOR<AddItemCreateWithoutCasting_itemsInput, AddItemUncheckedCreateWithoutCasting_itemsInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutCasting_itemsInput
+    upsert?: AddItemUpsertWithoutCasting_itemsInput
     connect?: AddItemWhereUniqueInput
-    update?: XOR<XOR<AddItemUpdateToOneWithWhereWithoutCastingItemsInput, AddItemUpdateWithoutCastingItemsInput>, AddItemUncheckedUpdateWithoutCastingItemsInput>
+    update?: XOR<XOR<AddItemUpdateToOneWithWhereWithoutCasting_itemsInput, AddItemUpdateWithoutCasting_itemsInput>, AddItemUncheckedUpdateWithoutCasting_itemsInput>
   }
 
   export type CastingEntryUpdateOneRequiredWithoutItemsNestedInput = {
@@ -22759,14 +32921,18 @@ export namespace Prisma {
     update?: XOR<XOR<CastingEntryUpdateToOneWithWhereWithoutItemsInput, CastingEntryUpdateWithoutItemsInput>, CastingEntryUncheckedUpdateWithoutItemsInput>
   }
 
-  export type FilingEntryUpdateOneWithoutCastingItemNestedInput = {
-    create?: XOR<FilingEntryCreateWithoutCastingItemInput, FilingEntryUncheckedCreateWithoutCastingItemInput>
-    connectOrCreate?: FilingEntryCreateOrConnectWithoutCastingItemInput
-    upsert?: FilingEntryUpsertWithoutCastingItemInput
-    disconnect?: FilingEntryWhereInput | boolean
-    delete?: FilingEntryWhereInput | boolean
-    connect?: FilingEntryWhereUniqueInput
-    update?: XOR<XOR<FilingEntryUpdateToOneWithWhereWithoutCastingItemInput, FilingEntryUpdateWithoutCastingItemInput>, FilingEntryUncheckedUpdateWithoutCastingItemInput>
+  export type FilingEntryUpdateManyWithoutCastingItemNestedInput = {
+    create?: XOR<FilingEntryCreateWithoutCastingItemInput, FilingEntryUncheckedCreateWithoutCastingItemInput> | FilingEntryCreateWithoutCastingItemInput[] | FilingEntryUncheckedCreateWithoutCastingItemInput[]
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutCastingItemInput | FilingEntryCreateOrConnectWithoutCastingItemInput[]
+    upsert?: FilingEntryUpsertWithWhereUniqueWithoutCastingItemInput | FilingEntryUpsertWithWhereUniqueWithoutCastingItemInput[]
+    createMany?: FilingEntryCreateManyCastingItemInputEnvelope
+    set?: FilingEntryWhereUniqueInput | FilingEntryWhereUniqueInput[]
+    disconnect?: FilingEntryWhereUniqueInput | FilingEntryWhereUniqueInput[]
+    delete?: FilingEntryWhereUniqueInput | FilingEntryWhereUniqueInput[]
+    connect?: FilingEntryWhereUniqueInput | FilingEntryWhereUniqueInput[]
+    update?: FilingEntryUpdateWithWhereUniqueWithoutCastingItemInput | FilingEntryUpdateWithWhereUniqueWithoutCastingItemInput[]
+    updateMany?: FilingEntryUpdateManyWithWhereWithoutCastingItemInput | FilingEntryUpdateManyWithWhereWithoutCastingItemInput[]
+    deleteMany?: FilingEntryScalarWhereInput | FilingEntryScalarWhereInput[]
   }
 
   export type SettingEntryUpdateOneWithoutCastingItemNestedInput = {
@@ -22811,14 +32977,18 @@ export namespace Prisma {
     update?: XOR<XOR<AddCastingUpdateToOneWithWhereWithoutCastingitemsInput, AddCastingUpdateWithoutCastingitemsInput>, AddCastingUncheckedUpdateWithoutCastingitemsInput>
   }
 
-  export type FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput = {
-    create?: XOR<FilingEntryCreateWithoutCastingItemInput, FilingEntryUncheckedCreateWithoutCastingItemInput>
-    connectOrCreate?: FilingEntryCreateOrConnectWithoutCastingItemInput
-    upsert?: FilingEntryUpsertWithoutCastingItemInput
-    disconnect?: FilingEntryWhereInput | boolean
-    delete?: FilingEntryWhereInput | boolean
-    connect?: FilingEntryWhereUniqueInput
-    update?: XOR<XOR<FilingEntryUpdateToOneWithWhereWithoutCastingItemInput, FilingEntryUpdateWithoutCastingItemInput>, FilingEntryUncheckedUpdateWithoutCastingItemInput>
+  export type FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput = {
+    create?: XOR<FilingEntryCreateWithoutCastingItemInput, FilingEntryUncheckedCreateWithoutCastingItemInput> | FilingEntryCreateWithoutCastingItemInput[] | FilingEntryUncheckedCreateWithoutCastingItemInput[]
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutCastingItemInput | FilingEntryCreateOrConnectWithoutCastingItemInput[]
+    upsert?: FilingEntryUpsertWithWhereUniqueWithoutCastingItemInput | FilingEntryUpsertWithWhereUniqueWithoutCastingItemInput[]
+    createMany?: FilingEntryCreateManyCastingItemInputEnvelope
+    set?: FilingEntryWhereUniqueInput | FilingEntryWhereUniqueInput[]
+    disconnect?: FilingEntryWhereUniqueInput | FilingEntryWhereUniqueInput[]
+    delete?: FilingEntryWhereUniqueInput | FilingEntryWhereUniqueInput[]
+    connect?: FilingEntryWhereUniqueInput | FilingEntryWhereUniqueInput[]
+    update?: FilingEntryUpdateWithWhereUniqueWithoutCastingItemInput | FilingEntryUpdateWithWhereUniqueWithoutCastingItemInput[]
+    updateMany?: FilingEntryUpdateManyWithWhereWithoutCastingItemInput | FilingEntryUpdateManyWithWhereWithoutCastingItemInput[]
+    deleteMany?: FilingEntryScalarWhereInput | FilingEntryScalarWhereInput[]
   }
 
   export type SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput = {
@@ -22867,38 +33037,6 @@ export namespace Prisma {
     connect?: CastingItemsWhereUniqueInput
   }
 
-  export type SettingEntryCreateNestedManyWithoutFilingEntryInput = {
-    create?: XOR<SettingEntryCreateWithoutFilingEntryInput, SettingEntryUncheckedCreateWithoutFilingEntryInput> | SettingEntryCreateWithoutFilingEntryInput[] | SettingEntryUncheckedCreateWithoutFilingEntryInput[]
-    connectOrCreate?: SettingEntryCreateOrConnectWithoutFilingEntryInput | SettingEntryCreateOrConnectWithoutFilingEntryInput[]
-    createMany?: SettingEntryCreateManyFilingEntryInputEnvelope
-    connect?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
-  }
-
-  export type BuffingEntryCreateNestedManyWithoutFilingEntryInput = {
-    create?: XOR<BuffingEntryCreateWithoutFilingEntryInput, BuffingEntryUncheckedCreateWithoutFilingEntryInput> | BuffingEntryCreateWithoutFilingEntryInput[] | BuffingEntryUncheckedCreateWithoutFilingEntryInput[]
-    connectOrCreate?: BuffingEntryCreateOrConnectWithoutFilingEntryInput | BuffingEntryCreateOrConnectWithoutFilingEntryInput[]
-    createMany?: BuffingEntryCreateManyFilingEntryInputEnvelope
-    connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
-  }
-
-  export type SettingEntryUncheckedCreateNestedManyWithoutFilingEntryInput = {
-    create?: XOR<SettingEntryCreateWithoutFilingEntryInput, SettingEntryUncheckedCreateWithoutFilingEntryInput> | SettingEntryCreateWithoutFilingEntryInput[] | SettingEntryUncheckedCreateWithoutFilingEntryInput[]
-    connectOrCreate?: SettingEntryCreateOrConnectWithoutFilingEntryInput | SettingEntryCreateOrConnectWithoutFilingEntryInput[]
-    createMany?: SettingEntryCreateManyFilingEntryInputEnvelope
-    connect?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
-  }
-
-  export type BuffingEntryUncheckedCreateNestedManyWithoutFilingEntryInput = {
-    create?: XOR<BuffingEntryCreateWithoutFilingEntryInput, BuffingEntryUncheckedCreateWithoutFilingEntryInput> | BuffingEntryCreateWithoutFilingEntryInput[] | BuffingEntryUncheckedCreateWithoutFilingEntryInput[]
-    connectOrCreate?: BuffingEntryCreateOrConnectWithoutFilingEntryInput | BuffingEntryCreateOrConnectWithoutFilingEntryInput[]
-    createMany?: BuffingEntryCreateManyFilingEntryInputEnvelope
-    connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
-  }
-
-  export type EnumSTONEOPTIONFieldUpdateOperationsInput = {
-    set?: $Enums.STONEOPTION
-  }
-
   export type AddFilingUpdateOneRequiredWithoutFilingsNestedInput = {
     create?: XOR<AddFilingCreateWithoutFilingsInput, AddFilingUncheckedCreateWithoutFilingsInput>
     connectOrCreate?: AddFilingCreateOrConnectWithoutFilingsInput
@@ -22915,60 +33053,234 @@ export namespace Prisma {
     update?: XOR<XOR<CastingItemsUpdateToOneWithWhereWithoutFilingEntryInput, CastingItemsUpdateWithoutFilingEntryInput>, CastingItemsUncheckedUpdateWithoutFilingEntryInput>
   }
 
-  export type SettingEntryUpdateManyWithoutFilingEntryNestedInput = {
-    create?: XOR<SettingEntryCreateWithoutFilingEntryInput, SettingEntryUncheckedCreateWithoutFilingEntryInput> | SettingEntryCreateWithoutFilingEntryInput[] | SettingEntryUncheckedCreateWithoutFilingEntryInput[]
-    connectOrCreate?: SettingEntryCreateOrConnectWithoutFilingEntryInput | SettingEntryCreateOrConnectWithoutFilingEntryInput[]
-    upsert?: SettingEntryUpsertWithWhereUniqueWithoutFilingEntryInput | SettingEntryUpsertWithWhereUniqueWithoutFilingEntryInput[]
-    createMany?: SettingEntryCreateManyFilingEntryInputEnvelope
+  export type AddItemCreateNestedOneWithoutFiling_itemsInput = {
+    create?: XOR<AddItemCreateWithoutFiling_itemsInput, AddItemUncheckedCreateWithoutFiling_itemsInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutFiling_itemsInput
+    connect?: AddItemWhereUniqueInput
+  }
+
+  export type AddTouchCreateNestedOneWithoutFiling_itemsInput = {
+    create?: XOR<AddTouchCreateWithoutFiling_itemsInput, AddTouchUncheckedCreateWithoutFiling_itemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutFiling_itemsInput
+    connect?: AddTouchWhereUniqueInput
+  }
+
+  export type StockCreateNestedManyWithoutFilingItemInput = {
+    create?: XOR<StockCreateWithoutFilingItemInput, StockUncheckedCreateWithoutFilingItemInput> | StockCreateWithoutFilingItemInput[] | StockUncheckedCreateWithoutFilingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutFilingItemInput | StockCreateOrConnectWithoutFilingItemInput[]
+    createMany?: StockCreateManyFilingItemInputEnvelope
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  }
+
+  export type SettingEntryCreateNestedManyWithoutFilingItemsInput = {
+    create?: XOR<SettingEntryCreateWithoutFilingItemsInput, SettingEntryUncheckedCreateWithoutFilingItemsInput> | SettingEntryCreateWithoutFilingItemsInput[] | SettingEntryUncheckedCreateWithoutFilingItemsInput[]
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutFilingItemsInput | SettingEntryCreateOrConnectWithoutFilingItemsInput[]
+    connect?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
+  }
+
+  export type BuffingEntryCreateNestedManyWithoutFiling_itemsInput = {
+    create?: XOR<BuffingEntryCreateWithoutFiling_itemsInput, BuffingEntryUncheckedCreateWithoutFiling_itemsInput> | BuffingEntryCreateWithoutFiling_itemsInput[] | BuffingEntryUncheckedCreateWithoutFiling_itemsInput[]
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutFiling_itemsInput | BuffingEntryCreateOrConnectWithoutFiling_itemsInput[]
+    connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
+  }
+
+  export type FilingWastageCreateNestedManyWithoutFiling_itemsInput = {
+    create?: XOR<FilingWastageCreateWithoutFiling_itemsInput, FilingWastageUncheckedCreateWithoutFiling_itemsInput> | FilingWastageCreateWithoutFiling_itemsInput[] | FilingWastageUncheckedCreateWithoutFiling_itemsInput[]
+    connectOrCreate?: FilingWastageCreateOrConnectWithoutFiling_itemsInput | FilingWastageCreateOrConnectWithoutFiling_itemsInput[]
+    connect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+  }
+
+  export type StockUncheckedCreateNestedManyWithoutFilingItemInput = {
+    create?: XOR<StockCreateWithoutFilingItemInput, StockUncheckedCreateWithoutFilingItemInput> | StockCreateWithoutFilingItemInput[] | StockUncheckedCreateWithoutFilingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutFilingItemInput | StockCreateOrConnectWithoutFilingItemInput[]
+    createMany?: StockCreateManyFilingItemInputEnvelope
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  }
+
+  export type SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput = {
+    create?: XOR<SettingEntryCreateWithoutFilingItemsInput, SettingEntryUncheckedCreateWithoutFilingItemsInput> | SettingEntryCreateWithoutFilingItemsInput[] | SettingEntryUncheckedCreateWithoutFilingItemsInput[]
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutFilingItemsInput | SettingEntryCreateOrConnectWithoutFilingItemsInput[]
+    connect?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
+  }
+
+  export type BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput = {
+    create?: XOR<BuffingEntryCreateWithoutFiling_itemsInput, BuffingEntryUncheckedCreateWithoutFiling_itemsInput> | BuffingEntryCreateWithoutFiling_itemsInput[] | BuffingEntryUncheckedCreateWithoutFiling_itemsInput[]
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutFiling_itemsInput | BuffingEntryCreateOrConnectWithoutFiling_itemsInput[]
+    connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
+  }
+
+  export type FilingWastageUncheckedCreateNestedManyWithoutFiling_itemsInput = {
+    create?: XOR<FilingWastageCreateWithoutFiling_itemsInput, FilingWastageUncheckedCreateWithoutFiling_itemsInput> | FilingWastageCreateWithoutFiling_itemsInput[] | FilingWastageUncheckedCreateWithoutFiling_itemsInput[]
+    connectOrCreate?: FilingWastageCreateOrConnectWithoutFiling_itemsInput | FilingWastageCreateOrConnectWithoutFiling_itemsInput[]
+    connect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
+  export type NullableEnumSTONEOPTIONFieldUpdateOperationsInput = {
+    set?: $Enums.STONEOPTION | null
+  }
+
+  export type AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput = {
+    create?: XOR<AddItemCreateWithoutFiling_itemsInput, AddItemUncheckedCreateWithoutFiling_itemsInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutFiling_itemsInput
+    upsert?: AddItemUpsertWithoutFiling_itemsInput
+    connect?: AddItemWhereUniqueInput
+    update?: XOR<XOR<AddItemUpdateToOneWithWhereWithoutFiling_itemsInput, AddItemUpdateWithoutFiling_itemsInput>, AddItemUncheckedUpdateWithoutFiling_itemsInput>
+  }
+
+  export type AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput = {
+    create?: XOR<AddTouchCreateWithoutFiling_itemsInput, AddTouchUncheckedCreateWithoutFiling_itemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutFiling_itemsInput
+    upsert?: AddTouchUpsertWithoutFiling_itemsInput
+    connect?: AddTouchWhereUniqueInput
+    update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutFiling_itemsInput, AddTouchUpdateWithoutFiling_itemsInput>, AddTouchUncheckedUpdateWithoutFiling_itemsInput>
+  }
+
+  export type StockUpdateManyWithoutFilingItemNestedInput = {
+    create?: XOR<StockCreateWithoutFilingItemInput, StockUncheckedCreateWithoutFilingItemInput> | StockCreateWithoutFilingItemInput[] | StockUncheckedCreateWithoutFilingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutFilingItemInput | StockCreateOrConnectWithoutFilingItemInput[]
+    upsert?: StockUpsertWithWhereUniqueWithoutFilingItemInput | StockUpsertWithWhereUniqueWithoutFilingItemInput[]
+    createMany?: StockCreateManyFilingItemInputEnvelope
+    set?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    disconnect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    delete?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    update?: StockUpdateWithWhereUniqueWithoutFilingItemInput | StockUpdateWithWhereUniqueWithoutFilingItemInput[]
+    updateMany?: StockUpdateManyWithWhereWithoutFilingItemInput | StockUpdateManyWithWhereWithoutFilingItemInput[]
+    deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  }
+
+  export type SettingEntryUpdateManyWithoutFilingItemsNestedInput = {
+    create?: XOR<SettingEntryCreateWithoutFilingItemsInput, SettingEntryUncheckedCreateWithoutFilingItemsInput> | SettingEntryCreateWithoutFilingItemsInput[] | SettingEntryUncheckedCreateWithoutFilingItemsInput[]
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutFilingItemsInput | SettingEntryCreateOrConnectWithoutFilingItemsInput[]
+    upsert?: SettingEntryUpsertWithWhereUniqueWithoutFilingItemsInput | SettingEntryUpsertWithWhereUniqueWithoutFilingItemsInput[]
     set?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
     disconnect?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
     delete?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
     connect?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
-    update?: SettingEntryUpdateWithWhereUniqueWithoutFilingEntryInput | SettingEntryUpdateWithWhereUniqueWithoutFilingEntryInput[]
-    updateMany?: SettingEntryUpdateManyWithWhereWithoutFilingEntryInput | SettingEntryUpdateManyWithWhereWithoutFilingEntryInput[]
+    update?: SettingEntryUpdateWithWhereUniqueWithoutFilingItemsInput | SettingEntryUpdateWithWhereUniqueWithoutFilingItemsInput[]
+    updateMany?: SettingEntryUpdateManyWithWhereWithoutFilingItemsInput | SettingEntryUpdateManyWithWhereWithoutFilingItemsInput[]
     deleteMany?: SettingEntryScalarWhereInput | SettingEntryScalarWhereInput[]
   }
 
-  export type BuffingEntryUpdateManyWithoutFilingEntryNestedInput = {
-    create?: XOR<BuffingEntryCreateWithoutFilingEntryInput, BuffingEntryUncheckedCreateWithoutFilingEntryInput> | BuffingEntryCreateWithoutFilingEntryInput[] | BuffingEntryUncheckedCreateWithoutFilingEntryInput[]
-    connectOrCreate?: BuffingEntryCreateOrConnectWithoutFilingEntryInput | BuffingEntryCreateOrConnectWithoutFilingEntryInput[]
-    upsert?: BuffingEntryUpsertWithWhereUniqueWithoutFilingEntryInput | BuffingEntryUpsertWithWhereUniqueWithoutFilingEntryInput[]
-    createMany?: BuffingEntryCreateManyFilingEntryInputEnvelope
+  export type BuffingEntryUpdateManyWithoutFiling_itemsNestedInput = {
+    create?: XOR<BuffingEntryCreateWithoutFiling_itemsInput, BuffingEntryUncheckedCreateWithoutFiling_itemsInput> | BuffingEntryCreateWithoutFiling_itemsInput[] | BuffingEntryUncheckedCreateWithoutFiling_itemsInput[]
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutFiling_itemsInput | BuffingEntryCreateOrConnectWithoutFiling_itemsInput[]
+    upsert?: BuffingEntryUpsertWithWhereUniqueWithoutFiling_itemsInput | BuffingEntryUpsertWithWhereUniqueWithoutFiling_itemsInput[]
     set?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     disconnect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     delete?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
-    update?: BuffingEntryUpdateWithWhereUniqueWithoutFilingEntryInput | BuffingEntryUpdateWithWhereUniqueWithoutFilingEntryInput[]
-    updateMany?: BuffingEntryUpdateManyWithWhereWithoutFilingEntryInput | BuffingEntryUpdateManyWithWhereWithoutFilingEntryInput[]
+    update?: BuffingEntryUpdateWithWhereUniqueWithoutFiling_itemsInput | BuffingEntryUpdateWithWhereUniqueWithoutFiling_itemsInput[]
+    updateMany?: BuffingEntryUpdateManyWithWhereWithoutFiling_itemsInput | BuffingEntryUpdateManyWithWhereWithoutFiling_itemsInput[]
     deleteMany?: BuffingEntryScalarWhereInput | BuffingEntryScalarWhereInput[]
   }
 
-  export type SettingEntryUncheckedUpdateManyWithoutFilingEntryNestedInput = {
-    create?: XOR<SettingEntryCreateWithoutFilingEntryInput, SettingEntryUncheckedCreateWithoutFilingEntryInput> | SettingEntryCreateWithoutFilingEntryInput[] | SettingEntryUncheckedCreateWithoutFilingEntryInput[]
-    connectOrCreate?: SettingEntryCreateOrConnectWithoutFilingEntryInput | SettingEntryCreateOrConnectWithoutFilingEntryInput[]
-    upsert?: SettingEntryUpsertWithWhereUniqueWithoutFilingEntryInput | SettingEntryUpsertWithWhereUniqueWithoutFilingEntryInput[]
-    createMany?: SettingEntryCreateManyFilingEntryInputEnvelope
+  export type FilingWastageUpdateManyWithoutFiling_itemsNestedInput = {
+    create?: XOR<FilingWastageCreateWithoutFiling_itemsInput, FilingWastageUncheckedCreateWithoutFiling_itemsInput> | FilingWastageCreateWithoutFiling_itemsInput[] | FilingWastageUncheckedCreateWithoutFiling_itemsInput[]
+    connectOrCreate?: FilingWastageCreateOrConnectWithoutFiling_itemsInput | FilingWastageCreateOrConnectWithoutFiling_itemsInput[]
+    upsert?: FilingWastageUpsertWithWhereUniqueWithoutFiling_itemsInput | FilingWastageUpsertWithWhereUniqueWithoutFiling_itemsInput[]
+    set?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    disconnect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    delete?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    connect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    update?: FilingWastageUpdateWithWhereUniqueWithoutFiling_itemsInput | FilingWastageUpdateWithWhereUniqueWithoutFiling_itemsInput[]
+    updateMany?: FilingWastageUpdateManyWithWhereWithoutFiling_itemsInput | FilingWastageUpdateManyWithWhereWithoutFiling_itemsInput[]
+    deleteMany?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
+  }
+
+  export type StockUncheckedUpdateManyWithoutFilingItemNestedInput = {
+    create?: XOR<StockCreateWithoutFilingItemInput, StockUncheckedCreateWithoutFilingItemInput> | StockCreateWithoutFilingItemInput[] | StockUncheckedCreateWithoutFilingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutFilingItemInput | StockCreateOrConnectWithoutFilingItemInput[]
+    upsert?: StockUpsertWithWhereUniqueWithoutFilingItemInput | StockUpsertWithWhereUniqueWithoutFilingItemInput[]
+    createMany?: StockCreateManyFilingItemInputEnvelope
+    set?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    disconnect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    delete?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    update?: StockUpdateWithWhereUniqueWithoutFilingItemInput | StockUpdateWithWhereUniqueWithoutFilingItemInput[]
+    updateMany?: StockUpdateManyWithWhereWithoutFilingItemInput | StockUpdateManyWithWhereWithoutFilingItemInput[]
+    deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  }
+
+  export type SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput = {
+    create?: XOR<SettingEntryCreateWithoutFilingItemsInput, SettingEntryUncheckedCreateWithoutFilingItemsInput> | SettingEntryCreateWithoutFilingItemsInput[] | SettingEntryUncheckedCreateWithoutFilingItemsInput[]
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutFilingItemsInput | SettingEntryCreateOrConnectWithoutFilingItemsInput[]
+    upsert?: SettingEntryUpsertWithWhereUniqueWithoutFilingItemsInput | SettingEntryUpsertWithWhereUniqueWithoutFilingItemsInput[]
     set?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
     disconnect?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
     delete?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
     connect?: SettingEntryWhereUniqueInput | SettingEntryWhereUniqueInput[]
-    update?: SettingEntryUpdateWithWhereUniqueWithoutFilingEntryInput | SettingEntryUpdateWithWhereUniqueWithoutFilingEntryInput[]
-    updateMany?: SettingEntryUpdateManyWithWhereWithoutFilingEntryInput | SettingEntryUpdateManyWithWhereWithoutFilingEntryInput[]
+    update?: SettingEntryUpdateWithWhereUniqueWithoutFilingItemsInput | SettingEntryUpdateWithWhereUniqueWithoutFilingItemsInput[]
+    updateMany?: SettingEntryUpdateManyWithWhereWithoutFilingItemsInput | SettingEntryUpdateManyWithWhereWithoutFilingItemsInput[]
     deleteMany?: SettingEntryScalarWhereInput | SettingEntryScalarWhereInput[]
   }
 
-  export type BuffingEntryUncheckedUpdateManyWithoutFilingEntryNestedInput = {
-    create?: XOR<BuffingEntryCreateWithoutFilingEntryInput, BuffingEntryUncheckedCreateWithoutFilingEntryInput> | BuffingEntryCreateWithoutFilingEntryInput[] | BuffingEntryUncheckedCreateWithoutFilingEntryInput[]
-    connectOrCreate?: BuffingEntryCreateOrConnectWithoutFilingEntryInput | BuffingEntryCreateOrConnectWithoutFilingEntryInput[]
-    upsert?: BuffingEntryUpsertWithWhereUniqueWithoutFilingEntryInput | BuffingEntryUpsertWithWhereUniqueWithoutFilingEntryInput[]
-    createMany?: BuffingEntryCreateManyFilingEntryInputEnvelope
+  export type BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput = {
+    create?: XOR<BuffingEntryCreateWithoutFiling_itemsInput, BuffingEntryUncheckedCreateWithoutFiling_itemsInput> | BuffingEntryCreateWithoutFiling_itemsInput[] | BuffingEntryUncheckedCreateWithoutFiling_itemsInput[]
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutFiling_itemsInput | BuffingEntryCreateOrConnectWithoutFiling_itemsInput[]
+    upsert?: BuffingEntryUpsertWithWhereUniqueWithoutFiling_itemsInput | BuffingEntryUpsertWithWhereUniqueWithoutFiling_itemsInput[]
     set?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     disconnect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     delete?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
-    update?: BuffingEntryUpdateWithWhereUniqueWithoutFilingEntryInput | BuffingEntryUpdateWithWhereUniqueWithoutFilingEntryInput[]
-    updateMany?: BuffingEntryUpdateManyWithWhereWithoutFilingEntryInput | BuffingEntryUpdateManyWithWhereWithoutFilingEntryInput[]
+    update?: BuffingEntryUpdateWithWhereUniqueWithoutFiling_itemsInput | BuffingEntryUpdateWithWhereUniqueWithoutFiling_itemsInput[]
+    updateMany?: BuffingEntryUpdateManyWithWhereWithoutFiling_itemsInput | BuffingEntryUpdateManyWithWhereWithoutFiling_itemsInput[]
     deleteMany?: BuffingEntryScalarWhereInput | BuffingEntryScalarWhereInput[]
+  }
+
+  export type FilingWastageUncheckedUpdateManyWithoutFiling_itemsNestedInput = {
+    create?: XOR<FilingWastageCreateWithoutFiling_itemsInput, FilingWastageUncheckedCreateWithoutFiling_itemsInput> | FilingWastageCreateWithoutFiling_itemsInput[] | FilingWastageUncheckedCreateWithoutFiling_itemsInput[]
+    connectOrCreate?: FilingWastageCreateOrConnectWithoutFiling_itemsInput | FilingWastageCreateOrConnectWithoutFiling_itemsInput[]
+    upsert?: FilingWastageUpsertWithWhereUniqueWithoutFiling_itemsInput | FilingWastageUpsertWithWhereUniqueWithoutFiling_itemsInput[]
+    set?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    disconnect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    delete?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    connect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    update?: FilingWastageUpdateWithWhereUniqueWithoutFiling_itemsInput | FilingWastageUpdateWithWhereUniqueWithoutFiling_itemsInput[]
+    updateMany?: FilingWastageUpdateManyWithWhereWithoutFiling_itemsInput | FilingWastageUpdateManyWithWhereWithoutFiling_itemsInput[]
+    deleteMany?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
+  }
+
+  export type FilingItemsCreateNestedManyWithoutFiling_wastageInput = {
+    create?: XOR<FilingItemsCreateWithoutFiling_wastageInput, FilingItemsUncheckedCreateWithoutFiling_wastageInput> | FilingItemsCreateWithoutFiling_wastageInput[] | FilingItemsUncheckedCreateWithoutFiling_wastageInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_wastageInput | FilingItemsCreateOrConnectWithoutFiling_wastageInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type FilingItemsUncheckedCreateNestedManyWithoutFiling_wastageInput = {
+    create?: XOR<FilingItemsCreateWithoutFiling_wastageInput, FilingItemsUncheckedCreateWithoutFiling_wastageInput> | FilingItemsCreateWithoutFiling_wastageInput[] | FilingItemsUncheckedCreateWithoutFiling_wastageInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_wastageInput | FilingItemsCreateOrConnectWithoutFiling_wastageInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type FilingItemsUpdateManyWithoutFiling_wastageNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutFiling_wastageInput, FilingItemsUncheckedCreateWithoutFiling_wastageInput> | FilingItemsCreateWithoutFiling_wastageInput[] | FilingItemsUncheckedCreateWithoutFiling_wastageInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_wastageInput | FilingItemsCreateOrConnectWithoutFiling_wastageInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutFiling_wastageInput | FilingItemsUpsertWithWhereUniqueWithoutFiling_wastageInput[]
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutFiling_wastageInput | FilingItemsUpdateWithWhereUniqueWithoutFiling_wastageInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutFiling_wastageInput | FilingItemsUpdateManyWithWhereWithoutFiling_wastageInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutFiling_wastageNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutFiling_wastageInput, FilingItemsUncheckedCreateWithoutFiling_wastageInput> | FilingItemsCreateWithoutFiling_wastageInput[] | FilingItemsUncheckedCreateWithoutFiling_wastageInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_wastageInput | FilingItemsCreateOrConnectWithoutFiling_wastageInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutFiling_wastageInput | FilingItemsUpsertWithWhereUniqueWithoutFiling_wastageInput[]
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutFiling_wastageInput | FilingItemsUpdateWithWhereUniqueWithoutFiling_wastageInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutFiling_wastageInput | FilingItemsUpdateManyWithWhereWithoutFiling_wastageInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
   }
 
   export type AddSettingCreateNestedOneWithoutSettingsInput = {
@@ -22983,24 +33295,16 @@ export namespace Prisma {
     connect?: CastingItemsWhereUniqueInput
   }
 
-  export type FilingEntryCreateNestedOneWithoutSettingEntryInput = {
-    create?: XOR<FilingEntryCreateWithoutSettingEntryInput, FilingEntryUncheckedCreateWithoutSettingEntryInput>
-    connectOrCreate?: FilingEntryCreateOrConnectWithoutSettingEntryInput
-    connect?: FilingEntryWhereUniqueInput
+  export type FilingItemsCreateNestedManyWithoutSetting_entryInput = {
+    create?: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput> | FilingItemsCreateWithoutSetting_entryInput[] | FilingItemsUncheckedCreateWithoutSetting_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutSetting_entryInput | FilingItemsCreateOrConnectWithoutSetting_entryInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
   }
 
-  export type BuffingEntryCreateNestedManyWithoutSettingEntryInput = {
-    create?: XOR<BuffingEntryCreateWithoutSettingEntryInput, BuffingEntryUncheckedCreateWithoutSettingEntryInput> | BuffingEntryCreateWithoutSettingEntryInput[] | BuffingEntryUncheckedCreateWithoutSettingEntryInput[]
-    connectOrCreate?: BuffingEntryCreateOrConnectWithoutSettingEntryInput | BuffingEntryCreateOrConnectWithoutSettingEntryInput[]
-    createMany?: BuffingEntryCreateManySettingEntryInputEnvelope
-    connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
-  }
-
-  export type BuffingEntryUncheckedCreateNestedManyWithoutSettingEntryInput = {
-    create?: XOR<BuffingEntryCreateWithoutSettingEntryInput, BuffingEntryUncheckedCreateWithoutSettingEntryInput> | BuffingEntryCreateWithoutSettingEntryInput[] | BuffingEntryUncheckedCreateWithoutSettingEntryInput[]
-    connectOrCreate?: BuffingEntryCreateOrConnectWithoutSettingEntryInput | BuffingEntryCreateOrConnectWithoutSettingEntryInput[]
-    createMany?: BuffingEntryCreateManySettingEntryInputEnvelope
-    connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
+  export type FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput = {
+    create?: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput> | FilingItemsCreateWithoutSetting_entryInput[] | FilingItemsUncheckedCreateWithoutSetting_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutSetting_entryInput | FilingItemsCreateOrConnectWithoutSetting_entryInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
   }
 
   export type AddSettingUpdateOneRequiredWithoutSettingsNestedInput = {
@@ -23019,40 +33323,218 @@ export namespace Prisma {
     update?: XOR<XOR<CastingItemsUpdateToOneWithWhereWithoutSettingEntryInput, CastingItemsUpdateWithoutSettingEntryInput>, CastingItemsUncheckedUpdateWithoutSettingEntryInput>
   }
 
-  export type FilingEntryUpdateOneRequiredWithoutSettingEntryNestedInput = {
-    create?: XOR<FilingEntryCreateWithoutSettingEntryInput, FilingEntryUncheckedCreateWithoutSettingEntryInput>
-    connectOrCreate?: FilingEntryCreateOrConnectWithoutSettingEntryInput
-    upsert?: FilingEntryUpsertWithoutSettingEntryInput
-    connect?: FilingEntryWhereUniqueInput
-    update?: XOR<XOR<FilingEntryUpdateToOneWithWhereWithoutSettingEntryInput, FilingEntryUpdateWithoutSettingEntryInput>, FilingEntryUncheckedUpdateWithoutSettingEntryInput>
+  export type FilingItemsUpdateManyWithoutSetting_entryNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput> | FilingItemsCreateWithoutSetting_entryInput[] | FilingItemsUncheckedCreateWithoutSetting_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutSetting_entryInput | FilingItemsCreateOrConnectWithoutSetting_entryInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutSetting_entryInput | FilingItemsUpsertWithWhereUniqueWithoutSetting_entryInput[]
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutSetting_entryInput | FilingItemsUpdateWithWhereUniqueWithoutSetting_entryInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutSetting_entryInput | FilingItemsUpdateManyWithWhereWithoutSetting_entryInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
   }
 
-  export type BuffingEntryUpdateManyWithoutSettingEntryNestedInput = {
-    create?: XOR<BuffingEntryCreateWithoutSettingEntryInput, BuffingEntryUncheckedCreateWithoutSettingEntryInput> | BuffingEntryCreateWithoutSettingEntryInput[] | BuffingEntryUncheckedCreateWithoutSettingEntryInput[]
-    connectOrCreate?: BuffingEntryCreateOrConnectWithoutSettingEntryInput | BuffingEntryCreateOrConnectWithoutSettingEntryInput[]
-    upsert?: BuffingEntryUpsertWithWhereUniqueWithoutSettingEntryInput | BuffingEntryUpsertWithWhereUniqueWithoutSettingEntryInput[]
-    createMany?: BuffingEntryCreateManySettingEntryInputEnvelope
+  export type FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput> | FilingItemsCreateWithoutSetting_entryInput[] | FilingItemsUncheckedCreateWithoutSetting_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutSetting_entryInput | FilingItemsCreateOrConnectWithoutSetting_entryInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutSetting_entryInput | FilingItemsUpsertWithWhereUniqueWithoutSetting_entryInput[]
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutSetting_entryInput | FilingItemsUpdateWithWhereUniqueWithoutSetting_entryInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutSetting_entryInput | FilingItemsUpdateManyWithWhereWithoutSetting_entryInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type AddItemCreateNestedOneWithoutSetting_itemsInput = {
+    create?: XOR<AddItemCreateWithoutSetting_itemsInput, AddItemUncheckedCreateWithoutSetting_itemsInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutSetting_itemsInput
+    connect?: AddItemWhereUniqueInput
+  }
+
+  export type AddTouchCreateNestedOneWithoutSetting_itemsInput = {
+    create?: XOR<AddTouchCreateWithoutSetting_itemsInput, AddTouchUncheckedCreateWithoutSetting_itemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutSetting_itemsInput
+    connect?: AddTouchWhereUniqueInput
+  }
+
+  export type SettingWastageCreateNestedManyWithoutSetting_itemsInput = {
+    create?: XOR<SettingWastageCreateWithoutSetting_itemsInput, SettingWastageUncheckedCreateWithoutSetting_itemsInput> | SettingWastageCreateWithoutSetting_itemsInput[] | SettingWastageUncheckedCreateWithoutSetting_itemsInput[]
+    connectOrCreate?: SettingWastageCreateOrConnectWithoutSetting_itemsInput | SettingWastageCreateOrConnectWithoutSetting_itemsInput[]
+    connect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+  }
+
+  export type BuffingEntryCreateNestedManyWithoutSetting_itemsInput = {
+    create?: XOR<BuffingEntryCreateWithoutSetting_itemsInput, BuffingEntryUncheckedCreateWithoutSetting_itemsInput> | BuffingEntryCreateWithoutSetting_itemsInput[] | BuffingEntryUncheckedCreateWithoutSetting_itemsInput[]
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutSetting_itemsInput | BuffingEntryCreateOrConnectWithoutSetting_itemsInput[]
+    connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
+  }
+
+  export type StockCreateNestedManyWithoutSettingItemInput = {
+    create?: XOR<StockCreateWithoutSettingItemInput, StockUncheckedCreateWithoutSettingItemInput> | StockCreateWithoutSettingItemInput[] | StockUncheckedCreateWithoutSettingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutSettingItemInput | StockCreateOrConnectWithoutSettingItemInput[]
+    createMany?: StockCreateManySettingItemInputEnvelope
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  }
+
+  export type SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput = {
+    create?: XOR<SettingWastageCreateWithoutSetting_itemsInput, SettingWastageUncheckedCreateWithoutSetting_itemsInput> | SettingWastageCreateWithoutSetting_itemsInput[] | SettingWastageUncheckedCreateWithoutSetting_itemsInput[]
+    connectOrCreate?: SettingWastageCreateOrConnectWithoutSetting_itemsInput | SettingWastageCreateOrConnectWithoutSetting_itemsInput[]
+    connect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+  }
+
+  export type BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput = {
+    create?: XOR<BuffingEntryCreateWithoutSetting_itemsInput, BuffingEntryUncheckedCreateWithoutSetting_itemsInput> | BuffingEntryCreateWithoutSetting_itemsInput[] | BuffingEntryUncheckedCreateWithoutSetting_itemsInput[]
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutSetting_itemsInput | BuffingEntryCreateOrConnectWithoutSetting_itemsInput[]
+    connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
+  }
+
+  export type StockUncheckedCreateNestedManyWithoutSettingItemInput = {
+    create?: XOR<StockCreateWithoutSettingItemInput, StockUncheckedCreateWithoutSettingItemInput> | StockCreateWithoutSettingItemInput[] | StockUncheckedCreateWithoutSettingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutSettingItemInput | StockCreateOrConnectWithoutSettingItemInput[]
+    createMany?: StockCreateManySettingItemInputEnvelope
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type AddItemUpdateOneRequiredWithoutSetting_itemsNestedInput = {
+    create?: XOR<AddItemCreateWithoutSetting_itemsInput, AddItemUncheckedCreateWithoutSetting_itemsInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutSetting_itemsInput
+    upsert?: AddItemUpsertWithoutSetting_itemsInput
+    connect?: AddItemWhereUniqueInput
+    update?: XOR<XOR<AddItemUpdateToOneWithWhereWithoutSetting_itemsInput, AddItemUpdateWithoutSetting_itemsInput>, AddItemUncheckedUpdateWithoutSetting_itemsInput>
+  }
+
+  export type AddTouchUpdateOneRequiredWithoutSetting_itemsNestedInput = {
+    create?: XOR<AddTouchCreateWithoutSetting_itemsInput, AddTouchUncheckedCreateWithoutSetting_itemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutSetting_itemsInput
+    upsert?: AddTouchUpsertWithoutSetting_itemsInput
+    connect?: AddTouchWhereUniqueInput
+    update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutSetting_itemsInput, AddTouchUpdateWithoutSetting_itemsInput>, AddTouchUncheckedUpdateWithoutSetting_itemsInput>
+  }
+
+  export type SettingWastageUpdateManyWithoutSetting_itemsNestedInput = {
+    create?: XOR<SettingWastageCreateWithoutSetting_itemsInput, SettingWastageUncheckedCreateWithoutSetting_itemsInput> | SettingWastageCreateWithoutSetting_itemsInput[] | SettingWastageUncheckedCreateWithoutSetting_itemsInput[]
+    connectOrCreate?: SettingWastageCreateOrConnectWithoutSetting_itemsInput | SettingWastageCreateOrConnectWithoutSetting_itemsInput[]
+    upsert?: SettingWastageUpsertWithWhereUniqueWithoutSetting_itemsInput | SettingWastageUpsertWithWhereUniqueWithoutSetting_itemsInput[]
+    set?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    disconnect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    delete?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    connect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    update?: SettingWastageUpdateWithWhereUniqueWithoutSetting_itemsInput | SettingWastageUpdateWithWhereUniqueWithoutSetting_itemsInput[]
+    updateMany?: SettingWastageUpdateManyWithWhereWithoutSetting_itemsInput | SettingWastageUpdateManyWithWhereWithoutSetting_itemsInput[]
+    deleteMany?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
+  }
+
+  export type BuffingEntryUpdateManyWithoutSetting_itemsNestedInput = {
+    create?: XOR<BuffingEntryCreateWithoutSetting_itemsInput, BuffingEntryUncheckedCreateWithoutSetting_itemsInput> | BuffingEntryCreateWithoutSetting_itemsInput[] | BuffingEntryUncheckedCreateWithoutSetting_itemsInput[]
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutSetting_itemsInput | BuffingEntryCreateOrConnectWithoutSetting_itemsInput[]
+    upsert?: BuffingEntryUpsertWithWhereUniqueWithoutSetting_itemsInput | BuffingEntryUpsertWithWhereUniqueWithoutSetting_itemsInput[]
     set?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     disconnect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     delete?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
-    update?: BuffingEntryUpdateWithWhereUniqueWithoutSettingEntryInput | BuffingEntryUpdateWithWhereUniqueWithoutSettingEntryInput[]
-    updateMany?: BuffingEntryUpdateManyWithWhereWithoutSettingEntryInput | BuffingEntryUpdateManyWithWhereWithoutSettingEntryInput[]
+    update?: BuffingEntryUpdateWithWhereUniqueWithoutSetting_itemsInput | BuffingEntryUpdateWithWhereUniqueWithoutSetting_itemsInput[]
+    updateMany?: BuffingEntryUpdateManyWithWhereWithoutSetting_itemsInput | BuffingEntryUpdateManyWithWhereWithoutSetting_itemsInput[]
     deleteMany?: BuffingEntryScalarWhereInput | BuffingEntryScalarWhereInput[]
   }
 
-  export type BuffingEntryUncheckedUpdateManyWithoutSettingEntryNestedInput = {
-    create?: XOR<BuffingEntryCreateWithoutSettingEntryInput, BuffingEntryUncheckedCreateWithoutSettingEntryInput> | BuffingEntryCreateWithoutSettingEntryInput[] | BuffingEntryUncheckedCreateWithoutSettingEntryInput[]
-    connectOrCreate?: BuffingEntryCreateOrConnectWithoutSettingEntryInput | BuffingEntryCreateOrConnectWithoutSettingEntryInput[]
-    upsert?: BuffingEntryUpsertWithWhereUniqueWithoutSettingEntryInput | BuffingEntryUpsertWithWhereUniqueWithoutSettingEntryInput[]
-    createMany?: BuffingEntryCreateManySettingEntryInputEnvelope
+  export type StockUpdateManyWithoutSettingItemNestedInput = {
+    create?: XOR<StockCreateWithoutSettingItemInput, StockUncheckedCreateWithoutSettingItemInput> | StockCreateWithoutSettingItemInput[] | StockUncheckedCreateWithoutSettingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutSettingItemInput | StockCreateOrConnectWithoutSettingItemInput[]
+    upsert?: StockUpsertWithWhereUniqueWithoutSettingItemInput | StockUpsertWithWhereUniqueWithoutSettingItemInput[]
+    createMany?: StockCreateManySettingItemInputEnvelope
+    set?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    disconnect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    delete?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    update?: StockUpdateWithWhereUniqueWithoutSettingItemInput | StockUpdateWithWhereUniqueWithoutSettingItemInput[]
+    updateMany?: StockUpdateManyWithWhereWithoutSettingItemInput | StockUpdateManyWithWhereWithoutSettingItemInput[]
+    deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  }
+
+  export type SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput = {
+    create?: XOR<SettingWastageCreateWithoutSetting_itemsInput, SettingWastageUncheckedCreateWithoutSetting_itemsInput> | SettingWastageCreateWithoutSetting_itemsInput[] | SettingWastageUncheckedCreateWithoutSetting_itemsInput[]
+    connectOrCreate?: SettingWastageCreateOrConnectWithoutSetting_itemsInput | SettingWastageCreateOrConnectWithoutSetting_itemsInput[]
+    upsert?: SettingWastageUpsertWithWhereUniqueWithoutSetting_itemsInput | SettingWastageUpsertWithWhereUniqueWithoutSetting_itemsInput[]
+    set?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    disconnect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    delete?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    connect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    update?: SettingWastageUpdateWithWhereUniqueWithoutSetting_itemsInput | SettingWastageUpdateWithWhereUniqueWithoutSetting_itemsInput[]
+    updateMany?: SettingWastageUpdateManyWithWhereWithoutSetting_itemsInput | SettingWastageUpdateManyWithWhereWithoutSetting_itemsInput[]
+    deleteMany?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
+  }
+
+  export type BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput = {
+    create?: XOR<BuffingEntryCreateWithoutSetting_itemsInput, BuffingEntryUncheckedCreateWithoutSetting_itemsInput> | BuffingEntryCreateWithoutSetting_itemsInput[] | BuffingEntryUncheckedCreateWithoutSetting_itemsInput[]
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutSetting_itemsInput | BuffingEntryCreateOrConnectWithoutSetting_itemsInput[]
+    upsert?: BuffingEntryUpsertWithWhereUniqueWithoutSetting_itemsInput | BuffingEntryUpsertWithWhereUniqueWithoutSetting_itemsInput[]
     set?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     disconnect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     delete?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
     connect?: BuffingEntryWhereUniqueInput | BuffingEntryWhereUniqueInput[]
-    update?: BuffingEntryUpdateWithWhereUniqueWithoutSettingEntryInput | BuffingEntryUpdateWithWhereUniqueWithoutSettingEntryInput[]
-    updateMany?: BuffingEntryUpdateManyWithWhereWithoutSettingEntryInput | BuffingEntryUpdateManyWithWhereWithoutSettingEntryInput[]
+    update?: BuffingEntryUpdateWithWhereUniqueWithoutSetting_itemsInput | BuffingEntryUpdateWithWhereUniqueWithoutSetting_itemsInput[]
+    updateMany?: BuffingEntryUpdateManyWithWhereWithoutSetting_itemsInput | BuffingEntryUpdateManyWithWhereWithoutSetting_itemsInput[]
     deleteMany?: BuffingEntryScalarWhereInput | BuffingEntryScalarWhereInput[]
+  }
+
+  export type StockUncheckedUpdateManyWithoutSettingItemNestedInput = {
+    create?: XOR<StockCreateWithoutSettingItemInput, StockUncheckedCreateWithoutSettingItemInput> | StockCreateWithoutSettingItemInput[] | StockUncheckedCreateWithoutSettingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutSettingItemInput | StockCreateOrConnectWithoutSettingItemInput[]
+    upsert?: StockUpsertWithWhereUniqueWithoutSettingItemInput | StockUpsertWithWhereUniqueWithoutSettingItemInput[]
+    createMany?: StockCreateManySettingItemInputEnvelope
+    set?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    disconnect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    delete?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    update?: StockUpdateWithWhereUniqueWithoutSettingItemInput | StockUpdateWithWhereUniqueWithoutSettingItemInput[]
+    updateMany?: StockUpdateManyWithWhereWithoutSettingItemInput | StockUpdateManyWithWhereWithoutSettingItemInput[]
+    deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  }
+
+  export type SettingItemsCreateNestedManyWithoutSetting_wastageInput = {
+    create?: XOR<SettingItemsCreateWithoutSetting_wastageInput, SettingItemsUncheckedCreateWithoutSetting_wastageInput> | SettingItemsCreateWithoutSetting_wastageInput[] | SettingItemsUncheckedCreateWithoutSetting_wastageInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutSetting_wastageInput | SettingItemsCreateOrConnectWithoutSetting_wastageInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+  }
+
+  export type SettingItemsUncheckedCreateNestedManyWithoutSetting_wastageInput = {
+    create?: XOR<SettingItemsCreateWithoutSetting_wastageInput, SettingItemsUncheckedCreateWithoutSetting_wastageInput> | SettingItemsCreateWithoutSetting_wastageInput[] | SettingItemsUncheckedCreateWithoutSetting_wastageInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutSetting_wastageInput | SettingItemsCreateOrConnectWithoutSetting_wastageInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+  }
+
+  export type SettingItemsUpdateManyWithoutSetting_wastageNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutSetting_wastageInput, SettingItemsUncheckedCreateWithoutSetting_wastageInput> | SettingItemsCreateWithoutSetting_wastageInput[] | SettingItemsUncheckedCreateWithoutSetting_wastageInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutSetting_wastageInput | SettingItemsCreateOrConnectWithoutSetting_wastageInput[]
+    upsert?: SettingItemsUpsertWithWhereUniqueWithoutSetting_wastageInput | SettingItemsUpsertWithWhereUniqueWithoutSetting_wastageInput[]
+    set?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    disconnect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    delete?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    update?: SettingItemsUpdateWithWhereUniqueWithoutSetting_wastageInput | SettingItemsUpdateWithWhereUniqueWithoutSetting_wastageInput[]
+    updateMany?: SettingItemsUpdateManyWithWhereWithoutSetting_wastageInput | SettingItemsUpdateManyWithWhereWithoutSetting_wastageInput[]
+    deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
+  export type SettingItemsUncheckedUpdateManyWithoutSetting_wastageNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutSetting_wastageInput, SettingItemsUncheckedCreateWithoutSetting_wastageInput> | SettingItemsCreateWithoutSetting_wastageInput[] | SettingItemsUncheckedCreateWithoutSetting_wastageInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutSetting_wastageInput | SettingItemsCreateOrConnectWithoutSetting_wastageInput[]
+    upsert?: SettingItemsUpsertWithWhereUniqueWithoutSetting_wastageInput | SettingItemsUpsertWithWhereUniqueWithoutSetting_wastageInput[]
+    set?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    disconnect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    delete?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    update?: SettingItemsUpdateWithWhereUniqueWithoutSetting_wastageInput | SettingItemsUpdateWithWhereUniqueWithoutSetting_wastageInput[]
+    updateMany?: SettingItemsUpdateManyWithWhereWithoutSetting_wastageInput | SettingItemsUpdateManyWithWhereWithoutSetting_wastageInput[]
+    deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
   }
 
   export type AddBuffingCreateNestedOneWithoutBuffingsInput = {
@@ -23067,16 +33549,28 @@ export namespace Prisma {
     connect?: CastingItemsWhereUniqueInput
   }
 
-  export type SettingEntryCreateNestedOneWithoutBuffingEntriesInput = {
-    create?: XOR<SettingEntryCreateWithoutBuffingEntriesInput, SettingEntryUncheckedCreateWithoutBuffingEntriesInput>
-    connectOrCreate?: SettingEntryCreateOrConnectWithoutBuffingEntriesInput
-    connect?: SettingEntryWhereUniqueInput
+  export type FilingItemsCreateNestedManyWithoutBuffing_entryInput = {
+    create?: XOR<FilingItemsCreateWithoutBuffing_entryInput, FilingItemsUncheckedCreateWithoutBuffing_entryInput> | FilingItemsCreateWithoutBuffing_entryInput[] | FilingItemsUncheckedCreateWithoutBuffing_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutBuffing_entryInput | FilingItemsCreateOrConnectWithoutBuffing_entryInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
   }
 
-  export type FilingEntryCreateNestedOneWithoutBuffingEntriesInput = {
-    create?: XOR<FilingEntryCreateWithoutBuffingEntriesInput, FilingEntryUncheckedCreateWithoutBuffingEntriesInput>
-    connectOrCreate?: FilingEntryCreateOrConnectWithoutBuffingEntriesInput
-    connect?: FilingEntryWhereUniqueInput
+  export type SettingItemsCreateNestedManyWithoutBuffing_entryInput = {
+    create?: XOR<SettingItemsCreateWithoutBuffing_entryInput, SettingItemsUncheckedCreateWithoutBuffing_entryInput> | SettingItemsCreateWithoutBuffing_entryInput[] | SettingItemsUncheckedCreateWithoutBuffing_entryInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutBuffing_entryInput | SettingItemsCreateOrConnectWithoutBuffing_entryInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+  }
+
+  export type FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput = {
+    create?: XOR<FilingItemsCreateWithoutBuffing_entryInput, FilingItemsUncheckedCreateWithoutBuffing_entryInput> | FilingItemsCreateWithoutBuffing_entryInput[] | FilingItemsUncheckedCreateWithoutBuffing_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutBuffing_entryInput | FilingItemsCreateOrConnectWithoutBuffing_entryInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput = {
+    create?: XOR<SettingItemsCreateWithoutBuffing_entryInput, SettingItemsUncheckedCreateWithoutBuffing_entryInput> | SettingItemsCreateWithoutBuffing_entryInput[] | SettingItemsUncheckedCreateWithoutBuffing_entryInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutBuffing_entryInput | SettingItemsCreateOrConnectWithoutBuffing_entryInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
   }
 
   export type AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput = {
@@ -23095,20 +33589,202 @@ export namespace Prisma {
     update?: XOR<XOR<CastingItemsUpdateToOneWithWhereWithoutBuffingEntryInput, CastingItemsUpdateWithoutBuffingEntryInput>, CastingItemsUncheckedUpdateWithoutBuffingEntryInput>
   }
 
-  export type SettingEntryUpdateOneRequiredWithoutBuffingEntriesNestedInput = {
-    create?: XOR<SettingEntryCreateWithoutBuffingEntriesInput, SettingEntryUncheckedCreateWithoutBuffingEntriesInput>
-    connectOrCreate?: SettingEntryCreateOrConnectWithoutBuffingEntriesInput
-    upsert?: SettingEntryUpsertWithoutBuffingEntriesInput
-    connect?: SettingEntryWhereUniqueInput
-    update?: XOR<XOR<SettingEntryUpdateToOneWithWhereWithoutBuffingEntriesInput, SettingEntryUpdateWithoutBuffingEntriesInput>, SettingEntryUncheckedUpdateWithoutBuffingEntriesInput>
+  export type FilingItemsUpdateManyWithoutBuffing_entryNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutBuffing_entryInput, FilingItemsUncheckedCreateWithoutBuffing_entryInput> | FilingItemsCreateWithoutBuffing_entryInput[] | FilingItemsUncheckedCreateWithoutBuffing_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutBuffing_entryInput | FilingItemsCreateOrConnectWithoutBuffing_entryInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutBuffing_entryInput | FilingItemsUpsertWithWhereUniqueWithoutBuffing_entryInput[]
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput | FilingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutBuffing_entryInput | FilingItemsUpdateManyWithWhereWithoutBuffing_entryInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
   }
 
-  export type FilingEntryUpdateOneRequiredWithoutBuffingEntriesNestedInput = {
-    create?: XOR<FilingEntryCreateWithoutBuffingEntriesInput, FilingEntryUncheckedCreateWithoutBuffingEntriesInput>
-    connectOrCreate?: FilingEntryCreateOrConnectWithoutBuffingEntriesInput
-    upsert?: FilingEntryUpsertWithoutBuffingEntriesInput
-    connect?: FilingEntryWhereUniqueInput
-    update?: XOR<XOR<FilingEntryUpdateToOneWithWhereWithoutBuffingEntriesInput, FilingEntryUpdateWithoutBuffingEntriesInput>, FilingEntryUncheckedUpdateWithoutBuffingEntriesInput>
+  export type SettingItemsUpdateManyWithoutBuffing_entryNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutBuffing_entryInput, SettingItemsUncheckedCreateWithoutBuffing_entryInput> | SettingItemsCreateWithoutBuffing_entryInput[] | SettingItemsUncheckedCreateWithoutBuffing_entryInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutBuffing_entryInput | SettingItemsCreateOrConnectWithoutBuffing_entryInput[]
+    upsert?: SettingItemsUpsertWithWhereUniqueWithoutBuffing_entryInput | SettingItemsUpsertWithWhereUniqueWithoutBuffing_entryInput[]
+    set?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    disconnect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    delete?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    update?: SettingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput | SettingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput[]
+    updateMany?: SettingItemsUpdateManyWithWhereWithoutBuffing_entryInput | SettingItemsUpdateManyWithWhereWithoutBuffing_entryInput[]
+    deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutBuffing_entryInput, FilingItemsUncheckedCreateWithoutBuffing_entryInput> | FilingItemsCreateWithoutBuffing_entryInput[] | FilingItemsUncheckedCreateWithoutBuffing_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutBuffing_entryInput | FilingItemsCreateOrConnectWithoutBuffing_entryInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutBuffing_entryInput | FilingItemsUpsertWithWhereUniqueWithoutBuffing_entryInput[]
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput | FilingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutBuffing_entryInput | FilingItemsUpdateManyWithWhereWithoutBuffing_entryInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutBuffing_entryInput, SettingItemsUncheckedCreateWithoutBuffing_entryInput> | SettingItemsCreateWithoutBuffing_entryInput[] | SettingItemsUncheckedCreateWithoutBuffing_entryInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutBuffing_entryInput | SettingItemsCreateOrConnectWithoutBuffing_entryInput[]
+    upsert?: SettingItemsUpsertWithWhereUniqueWithoutBuffing_entryInput | SettingItemsUpsertWithWhereUniqueWithoutBuffing_entryInput[]
+    set?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    disconnect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    delete?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    update?: SettingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput | SettingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput[]
+    updateMany?: SettingItemsUpdateManyWithWhereWithoutBuffing_entryInput | SettingItemsUpdateManyWithWhereWithoutBuffing_entryInput[]
+    deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
+  export type AddItemCreateNestedOneWithoutBuffing_itemsInput = {
+    create?: XOR<AddItemCreateWithoutBuffing_itemsInput, AddItemUncheckedCreateWithoutBuffing_itemsInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutBuffing_itemsInput
+    connect?: AddItemWhereUniqueInput
+  }
+
+  export type AddTouchCreateNestedOneWithoutBuffing_itemsInput = {
+    create?: XOR<AddTouchCreateWithoutBuffing_itemsInput, AddTouchUncheckedCreateWithoutBuffing_itemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutBuffing_itemsInput
+    connect?: AddTouchWhereUniqueInput
+  }
+
+  export type StockCreateNestedManyWithoutBuffingItemInput = {
+    create?: XOR<StockCreateWithoutBuffingItemInput, StockUncheckedCreateWithoutBuffingItemInput> | StockCreateWithoutBuffingItemInput[] | StockUncheckedCreateWithoutBuffingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutBuffingItemInput | StockCreateOrConnectWithoutBuffingItemInput[]
+    createMany?: StockCreateManyBuffingItemInputEnvelope
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  }
+
+  export type BuffingWastageCreateNestedManyWithoutBuffing_itemsInput = {
+    create?: XOR<BuffingWastageCreateWithoutBuffing_itemsInput, BuffingWastageUncheckedCreateWithoutBuffing_itemsInput> | BuffingWastageCreateWithoutBuffing_itemsInput[] | BuffingWastageUncheckedCreateWithoutBuffing_itemsInput[]
+    connectOrCreate?: BuffingWastageCreateOrConnectWithoutBuffing_itemsInput | BuffingWastageCreateOrConnectWithoutBuffing_itemsInput[]
+    connect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+  }
+
+  export type StockUncheckedCreateNestedManyWithoutBuffingItemInput = {
+    create?: XOR<StockCreateWithoutBuffingItemInput, StockUncheckedCreateWithoutBuffingItemInput> | StockCreateWithoutBuffingItemInput[] | StockUncheckedCreateWithoutBuffingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutBuffingItemInput | StockCreateOrConnectWithoutBuffingItemInput[]
+    createMany?: StockCreateManyBuffingItemInputEnvelope
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+  }
+
+  export type BuffingWastageUncheckedCreateNestedManyWithoutBuffing_itemsInput = {
+    create?: XOR<BuffingWastageCreateWithoutBuffing_itemsInput, BuffingWastageUncheckedCreateWithoutBuffing_itemsInput> | BuffingWastageCreateWithoutBuffing_itemsInput[] | BuffingWastageUncheckedCreateWithoutBuffing_itemsInput[]
+    connectOrCreate?: BuffingWastageCreateOrConnectWithoutBuffing_itemsInput | BuffingWastageCreateOrConnectWithoutBuffing_itemsInput[]
+    connect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+  }
+
+  export type AddItemUpdateOneRequiredWithoutBuffing_itemsNestedInput = {
+    create?: XOR<AddItemCreateWithoutBuffing_itemsInput, AddItemUncheckedCreateWithoutBuffing_itemsInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutBuffing_itemsInput
+    upsert?: AddItemUpsertWithoutBuffing_itemsInput
+    connect?: AddItemWhereUniqueInput
+    update?: XOR<XOR<AddItemUpdateToOneWithWhereWithoutBuffing_itemsInput, AddItemUpdateWithoutBuffing_itemsInput>, AddItemUncheckedUpdateWithoutBuffing_itemsInput>
+  }
+
+  export type AddTouchUpdateOneRequiredWithoutBuffing_itemsNestedInput = {
+    create?: XOR<AddTouchCreateWithoutBuffing_itemsInput, AddTouchUncheckedCreateWithoutBuffing_itemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutBuffing_itemsInput
+    upsert?: AddTouchUpsertWithoutBuffing_itemsInput
+    connect?: AddTouchWhereUniqueInput
+    update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutBuffing_itemsInput, AddTouchUpdateWithoutBuffing_itemsInput>, AddTouchUncheckedUpdateWithoutBuffing_itemsInput>
+  }
+
+  export type StockUpdateManyWithoutBuffingItemNestedInput = {
+    create?: XOR<StockCreateWithoutBuffingItemInput, StockUncheckedCreateWithoutBuffingItemInput> | StockCreateWithoutBuffingItemInput[] | StockUncheckedCreateWithoutBuffingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutBuffingItemInput | StockCreateOrConnectWithoutBuffingItemInput[]
+    upsert?: StockUpsertWithWhereUniqueWithoutBuffingItemInput | StockUpsertWithWhereUniqueWithoutBuffingItemInput[]
+    createMany?: StockCreateManyBuffingItemInputEnvelope
+    set?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    disconnect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    delete?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    update?: StockUpdateWithWhereUniqueWithoutBuffingItemInput | StockUpdateWithWhereUniqueWithoutBuffingItemInput[]
+    updateMany?: StockUpdateManyWithWhereWithoutBuffingItemInput | StockUpdateManyWithWhereWithoutBuffingItemInput[]
+    deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  }
+
+  export type BuffingWastageUpdateManyWithoutBuffing_itemsNestedInput = {
+    create?: XOR<BuffingWastageCreateWithoutBuffing_itemsInput, BuffingWastageUncheckedCreateWithoutBuffing_itemsInput> | BuffingWastageCreateWithoutBuffing_itemsInput[] | BuffingWastageUncheckedCreateWithoutBuffing_itemsInput[]
+    connectOrCreate?: BuffingWastageCreateOrConnectWithoutBuffing_itemsInput | BuffingWastageCreateOrConnectWithoutBuffing_itemsInput[]
+    upsert?: BuffingWastageUpsertWithWhereUniqueWithoutBuffing_itemsInput | BuffingWastageUpsertWithWhereUniqueWithoutBuffing_itemsInput[]
+    set?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    disconnect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    delete?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    connect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    update?: BuffingWastageUpdateWithWhereUniqueWithoutBuffing_itemsInput | BuffingWastageUpdateWithWhereUniqueWithoutBuffing_itemsInput[]
+    updateMany?: BuffingWastageUpdateManyWithWhereWithoutBuffing_itemsInput | BuffingWastageUpdateManyWithWhereWithoutBuffing_itemsInput[]
+    deleteMany?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
+  }
+
+  export type StockUncheckedUpdateManyWithoutBuffingItemNestedInput = {
+    create?: XOR<StockCreateWithoutBuffingItemInput, StockUncheckedCreateWithoutBuffingItemInput> | StockCreateWithoutBuffingItemInput[] | StockUncheckedCreateWithoutBuffingItemInput[]
+    connectOrCreate?: StockCreateOrConnectWithoutBuffingItemInput | StockCreateOrConnectWithoutBuffingItemInput[]
+    upsert?: StockUpsertWithWhereUniqueWithoutBuffingItemInput | StockUpsertWithWhereUniqueWithoutBuffingItemInput[]
+    createMany?: StockCreateManyBuffingItemInputEnvelope
+    set?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    disconnect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    delete?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
+    update?: StockUpdateWithWhereUniqueWithoutBuffingItemInput | StockUpdateWithWhereUniqueWithoutBuffingItemInput[]
+    updateMany?: StockUpdateManyWithWhereWithoutBuffingItemInput | StockUpdateManyWithWhereWithoutBuffingItemInput[]
+    deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
+  }
+
+  export type BuffingWastageUncheckedUpdateManyWithoutBuffing_itemsNestedInput = {
+    create?: XOR<BuffingWastageCreateWithoutBuffing_itemsInput, BuffingWastageUncheckedCreateWithoutBuffing_itemsInput> | BuffingWastageCreateWithoutBuffing_itemsInput[] | BuffingWastageUncheckedCreateWithoutBuffing_itemsInput[]
+    connectOrCreate?: BuffingWastageCreateOrConnectWithoutBuffing_itemsInput | BuffingWastageCreateOrConnectWithoutBuffing_itemsInput[]
+    upsert?: BuffingWastageUpsertWithWhereUniqueWithoutBuffing_itemsInput | BuffingWastageUpsertWithWhereUniqueWithoutBuffing_itemsInput[]
+    set?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    disconnect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    delete?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    connect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    update?: BuffingWastageUpdateWithWhereUniqueWithoutBuffing_itemsInput | BuffingWastageUpdateWithWhereUniqueWithoutBuffing_itemsInput[]
+    updateMany?: BuffingWastageUpdateManyWithWhereWithoutBuffing_itemsInput | BuffingWastageUpdateManyWithWhereWithoutBuffing_itemsInput[]
+    deleteMany?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
+  }
+
+  export type BuffingItemsCreateNestedManyWithoutBuffing_wastageInput = {
+    create?: XOR<BuffingItemsCreateWithoutBuffing_wastageInput, BuffingItemsUncheckedCreateWithoutBuffing_wastageInput> | BuffingItemsCreateWithoutBuffing_wastageInput[] | BuffingItemsUncheckedCreateWithoutBuffing_wastageInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutBuffing_wastageInput | BuffingItemsCreateOrConnectWithoutBuffing_wastageInput[]
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+  }
+
+  export type BuffingItemsUncheckedCreateNestedManyWithoutBuffing_wastageInput = {
+    create?: XOR<BuffingItemsCreateWithoutBuffing_wastageInput, BuffingItemsUncheckedCreateWithoutBuffing_wastageInput> | BuffingItemsCreateWithoutBuffing_wastageInput[] | BuffingItemsUncheckedCreateWithoutBuffing_wastageInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutBuffing_wastageInput | BuffingItemsCreateOrConnectWithoutBuffing_wastageInput[]
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+  }
+
+  export type BuffingItemsUpdateManyWithoutBuffing_wastageNestedInput = {
+    create?: XOR<BuffingItemsCreateWithoutBuffing_wastageInput, BuffingItemsUncheckedCreateWithoutBuffing_wastageInput> | BuffingItemsCreateWithoutBuffing_wastageInput[] | BuffingItemsUncheckedCreateWithoutBuffing_wastageInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutBuffing_wastageInput | BuffingItemsCreateOrConnectWithoutBuffing_wastageInput[]
+    upsert?: BuffingItemsUpsertWithWhereUniqueWithoutBuffing_wastageInput | BuffingItemsUpsertWithWhereUniqueWithoutBuffing_wastageInput[]
+    set?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    disconnect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    delete?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    update?: BuffingItemsUpdateWithWhereUniqueWithoutBuffing_wastageInput | BuffingItemsUpdateWithWhereUniqueWithoutBuffing_wastageInput[]
+    updateMany?: BuffingItemsUpdateManyWithWhereWithoutBuffing_wastageInput | BuffingItemsUpdateManyWithWhereWithoutBuffing_wastageInput[]
+    deleteMany?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
+  }
+
+  export type BuffingItemsUncheckedUpdateManyWithoutBuffing_wastageNestedInput = {
+    create?: XOR<BuffingItemsCreateWithoutBuffing_wastageInput, BuffingItemsUncheckedCreateWithoutBuffing_wastageInput> | BuffingItemsCreateWithoutBuffing_wastageInput[] | BuffingItemsUncheckedCreateWithoutBuffing_wastageInput[]
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutBuffing_wastageInput | BuffingItemsCreateOrConnectWithoutBuffing_wastageInput[]
+    upsert?: BuffingItemsUpsertWithWhereUniqueWithoutBuffing_wastageInput | BuffingItemsUpsertWithWhereUniqueWithoutBuffing_wastageInput[]
+    set?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    disconnect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    delete?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+    update?: BuffingItemsUpdateWithWhereUniqueWithoutBuffing_wastageInput | BuffingItemsUpdateWithWhereUniqueWithoutBuffing_wastageInput[]
+    updateMany?: BuffingItemsUpdateManyWithWhereWithoutBuffing_wastageInput | BuffingItemsUpdateManyWithWhereWithoutBuffing_wastageInput[]
+    deleteMany?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
   }
 
   export type CastingItemsCreateNestedOneWithoutStockInput = {
@@ -23117,10 +33793,34 @@ export namespace Prisma {
     connect?: CastingItemsWhereUniqueInput
   }
 
+  export type FilingItemsCreateNestedOneWithoutStockInput = {
+    create?: XOR<FilingItemsCreateWithoutStockInput, FilingItemsUncheckedCreateWithoutStockInput>
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutStockInput
+    connect?: FilingItemsWhereUniqueInput
+  }
+
+  export type SettingItemsCreateNestedOneWithoutStockInput = {
+    create?: XOR<SettingItemsCreateWithoutStockInput, SettingItemsUncheckedCreateWithoutStockInput>
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutStockInput
+    connect?: SettingItemsWhereUniqueInput
+  }
+
+  export type BuffingItemsCreateNestedOneWithoutStockInput = {
+    create?: XOR<BuffingItemsCreateWithoutStockInput, BuffingItemsUncheckedCreateWithoutStockInput>
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutStockInput
+    connect?: BuffingItemsWhereUniqueInput
+  }
+
   export type AddItemCreateNestedOneWithoutStockInput = {
     create?: XOR<AddItemCreateWithoutStockInput, AddItemUncheckedCreateWithoutStockInput>
     connectOrCreate?: AddItemCreateOrConnectWithoutStockInput
     connect?: AddItemWhereUniqueInput
+  }
+
+  export type AddTouchCreateNestedOneWithoutStockInput = {
+    create?: XOR<AddTouchCreateWithoutStockInput, AddTouchUncheckedCreateWithoutStockInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutStockInput
+    connect?: AddTouchWhereUniqueInput
   }
 
   export type AddCastingCreateNestedOneWithoutStockInput = {
@@ -23137,12 +33837,44 @@ export namespace Prisma {
     update?: XOR<XOR<CastingItemsUpdateToOneWithWhereWithoutStockInput, CastingItemsUpdateWithoutStockInput>, CastingItemsUncheckedUpdateWithoutStockInput>
   }
 
+  export type FilingItemsUpdateOneRequiredWithoutStockNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutStockInput, FilingItemsUncheckedCreateWithoutStockInput>
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutStockInput
+    upsert?: FilingItemsUpsertWithoutStockInput
+    connect?: FilingItemsWhereUniqueInput
+    update?: XOR<XOR<FilingItemsUpdateToOneWithWhereWithoutStockInput, FilingItemsUpdateWithoutStockInput>, FilingItemsUncheckedUpdateWithoutStockInput>
+  }
+
+  export type SettingItemsUpdateOneRequiredWithoutStockNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutStockInput, SettingItemsUncheckedCreateWithoutStockInput>
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutStockInput
+    upsert?: SettingItemsUpsertWithoutStockInput
+    connect?: SettingItemsWhereUniqueInput
+    update?: XOR<XOR<SettingItemsUpdateToOneWithWhereWithoutStockInput, SettingItemsUpdateWithoutStockInput>, SettingItemsUncheckedUpdateWithoutStockInput>
+  }
+
+  export type BuffingItemsUpdateOneRequiredWithoutStockNestedInput = {
+    create?: XOR<BuffingItemsCreateWithoutStockInput, BuffingItemsUncheckedCreateWithoutStockInput>
+    connectOrCreate?: BuffingItemsCreateOrConnectWithoutStockInput
+    upsert?: BuffingItemsUpsertWithoutStockInput
+    connect?: BuffingItemsWhereUniqueInput
+    update?: XOR<XOR<BuffingItemsUpdateToOneWithWhereWithoutStockInput, BuffingItemsUpdateWithoutStockInput>, BuffingItemsUncheckedUpdateWithoutStockInput>
+  }
+
   export type AddItemUpdateOneRequiredWithoutStockNestedInput = {
     create?: XOR<AddItemCreateWithoutStockInput, AddItemUncheckedCreateWithoutStockInput>
     connectOrCreate?: AddItemCreateOrConnectWithoutStockInput
     upsert?: AddItemUpsertWithoutStockInput
     connect?: AddItemWhereUniqueInput
     update?: XOR<XOR<AddItemUpdateToOneWithWhereWithoutStockInput, AddItemUpdateWithoutStockInput>, AddItemUncheckedUpdateWithoutStockInput>
+  }
+
+  export type AddTouchUpdateOneRequiredWithoutStockNestedInput = {
+    create?: XOR<AddTouchCreateWithoutStockInput, AddTouchUncheckedCreateWithoutStockInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutStockInput
+    upsert?: AddTouchUpsertWithoutStockInput
+    connect?: AddTouchWhereUniqueInput
+    update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutStockInput, AddTouchUpdateWithoutStockInput>, AddTouchUncheckedUpdateWithoutStockInput>
   }
 
   export type AddCastingUpdateOneRequiredWithoutStockNestedInput = {
@@ -23386,21 +34118,47 @@ export namespace Prisma {
     _max?: NestedEnumCASTINGENTRYTYPEFilter<$PrismaModel>
   }
 
-  export type NestedEnumSTONEOPTIONFilter<$PrismaModel = never> = {
-    equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel>
-    in?: $Enums.STONEOPTION[]
-    notIn?: $Enums.STONEOPTION[]
-    not?: NestedEnumSTONEOPTIONFilter<$PrismaModel> | $Enums.STONEOPTION
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
-  export type NestedEnumSTONEOPTIONWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel>
-    in?: $Enums.STONEOPTION[]
-    notIn?: $Enums.STONEOPTION[]
-    not?: NestedEnumSTONEOPTIONWithAggregatesFilter<$PrismaModel> | $Enums.STONEOPTION
+  export type NestedEnumSTONEOPTIONNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel> | null
+    in?: $Enums.STONEOPTION[] | null
+    notIn?: $Enums.STONEOPTION[] | null
+    not?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel> | $Enums.STONEOPTION | null
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumSTONEOPTIONNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel> | null
+    in?: $Enums.STONEOPTION[] | null
+    notIn?: $Enums.STONEOPTION[] | null
+    not?: NestedEnumSTONEOPTIONNullableWithAggregatesFilter<$PrismaModel> | $Enums.STONEOPTION | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel>
+    _max?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSTONEOPTIONFilter<$PrismaModel>
-    _max?: NestedEnumSTONEOPTIONFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type CustomerTransactionCreateWithoutCustomerInput = {
@@ -23469,12 +34227,12 @@ export namespace Prisma {
     createdAt?: Date | string
     date: Date | string
     given_gold: number
-    given_touch: number
     purity: number
     final_touch: number
     pure_value: number
     copper: number
     final_weight: number
+    touch: AddTouchCreateNestedOneWithoutCasting_entryInput
     items?: CastingItemsCreateNestedManyWithoutCastingEntryInput
   }
 
@@ -23483,7 +34241,7 @@ export namespace Prisma {
     createdAt?: Date | string
     date: Date | string
     given_gold: number
-    given_touch: number
+    touch_id: number
     purity: number
     final_touch: number
     pure_value: number
@@ -23506,15 +34264,15 @@ export namespace Prisma {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item: AddItemCreateNestedOneWithoutCastingItemsInput
+    touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
+    item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
-    filingEntry?: FilingEntryCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryCreateNestedOneWithoutCastingItemInput
     stock?: StockCreateNestedManyWithoutCastingItemInput
@@ -23526,14 +34284,14 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
     casting_entry_id: number
-    filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     stock?: StockUncheckedCreateNestedManyWithoutCastingItemInput
@@ -23551,26 +34309,30 @@ export namespace Prisma {
 
   export type StockCreateWithoutCasting_customerInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
+    scrap_weight: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
     castingItem: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
     item: AddItemCreateNestedOneWithoutStockInput
+    touch: AddTouchCreateNestedOneWithoutStockInput
   }
 
   export type StockUncheckedCreateWithoutCasting_customerInput = {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
     item_id: number
-    weight: number
-    touch: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
   }
 
@@ -23608,7 +34370,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"CastingEntry"> | Date | string
     date?: DateTimeFilter<"CastingEntry"> | Date | string
     given_gold?: FloatFilter<"CastingEntry"> | number
-    given_touch?: FloatFilter<"CastingEntry"> | number
+    touch_id?: IntFilter<"CastingEntry"> | number
     purity?: FloatFilter<"CastingEntry"> | number
     final_touch?: FloatFilter<"CastingEntry"> | number
     pure_value?: FloatFilter<"CastingEntry"> | number
@@ -23642,7 +34404,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFilter<"CastingItems"> | $Enums.CASTINGENTRYTYPE
     item_id?: IntFilter<"CastingItems"> | number
     weight?: FloatFilter<"CastingItems"> | number
-    touch?: FloatFilter<"CastingItems"> | number
+    touch_id?: IntFilter<"CastingItems"> | number
     item_purity?: FloatFilter<"CastingItems"> | number
     remarks?: StringNullableFilter<"CastingItems"> | string | null
     after_weight?: FloatNullableFilter<"CastingItems"> | number | null
@@ -23675,41 +34437,27 @@ export namespace Prisma {
     id?: IntFilter<"Stock"> | number
     createdAt?: DateTimeFilter<"Stock"> | Date | string
     casting_item_id?: IntFilter<"Stock"> | number
+    filing_item_id?: IntFilter<"Stock"> | number
+    setting_item_id?: IntFilter<"Stock"> | number
+    buffing_item_id?: IntFilter<"Stock"> | number
     item_id?: IntFilter<"Stock"> | number
-    weight?: FloatFilter<"Stock"> | number
-    touch?: FloatFilter<"Stock"> | number
+    scrap_weight?: FloatFilter<"Stock"> | number
+    touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
-    scrap_weight?: FloatNullableFilter<"Stock"> | number | null
     scrap_wastage?: FloatNullableFilter<"Stock"> | number | null
     casting_customer_id?: IntFilter<"Stock"> | number
   }
 
   export type FilingEntryCreateWithoutFiling_personInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
-    settingEntry?: SettingEntryCreateNestedManyWithoutFilingEntryInput
-    buffingEntries?: BuffingEntryCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUncheckedCreateWithoutFiling_personInput = {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
-    settingEntry?: SettingEntryUncheckedCreateNestedManyWithoutFilingEntryInput
-    buffingEntries?: BuffingEntryUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryCreateOrConnectWithoutFiling_personInput = {
@@ -23746,37 +34494,19 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FilingEntry"> | Date | string
     filing_person_id?: IntFilter<"FilingEntry"> | number
     casting_item_id?: IntFilter<"FilingEntry"> | number
-    weight?: FloatFilter<"FilingEntry"> | number
-    touch?: FloatFilter<"FilingEntry"> | number
-    item_purity?: FloatFilter<"FilingEntry"> | number
-    remarks?: StringNullableFilter<"FilingEntry"> | string | null
-    after_weight?: FloatNullableFilter<"FilingEntry"> | number | null
-    stone_option?: EnumSTONEOPTIONFilter<"FilingEntry"> | $Enums.STONEOPTION
   }
 
   export type SettingEntryCreateWithoutSetting_personInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
     castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
-    filingEntry: FilingEntryCreateNestedOneWithoutSettingEntryInput
-    buffingEntries?: BuffingEntryCreateNestedManyWithoutSettingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
   }
 
   export type SettingEntryUncheckedCreateWithoutSetting_personInput = {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    filing_entry_id: number
-    buffingEntries?: BuffingEntryUncheckedCreateNestedManyWithoutSettingEntryInput
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
   }
 
   export type SettingEntryCreateOrConnectWithoutSetting_personInput = {
@@ -23813,39 +34543,21 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"SettingEntry"> | Date | string
     setting_person_id?: IntFilter<"SettingEntry"> | number
     casting_item_id?: IntFilter<"SettingEntry"> | number
-    weight?: FloatFilter<"SettingEntry"> | number
-    touch?: FloatFilter<"SettingEntry"> | number
-    item_purity?: FloatFilter<"SettingEntry"> | number
-    remarks?: StringNullableFilter<"SettingEntry"> | string | null
-    after_weight?: FloatNullableFilter<"SettingEntry"> | number | null
-    filing_entry_id?: IntFilter<"SettingEntry"> | number
   }
 
   export type BuffingEntryCreateWithoutBuffing_personInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    type: $Enums.STONEOPTION
     castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
-    settingEntry: SettingEntryCreateNestedOneWithoutBuffingEntriesInput
-    filingEntry: FilingEntryCreateNestedOneWithoutBuffingEntriesInput
+    filing_items?: FilingItemsCreateNestedManyWithoutBuffing_entryInput
+    setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
   }
 
   export type BuffingEntryUncheckedCreateWithoutBuffing_personInput = {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    setting_entry_id: number
-    filing_entry_id: number
-    type: $Enums.STONEOPTION
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
   }
 
   export type BuffingEntryCreateOrConnectWithoutBuffing_personInput = {
@@ -23882,14 +34594,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"BuffingEntry"> | Date | string
     buffing_person_id?: IntFilter<"BuffingEntry"> | number
     casting_item_id?: IntFilter<"BuffingEntry"> | number
-    weight?: FloatFilter<"BuffingEntry"> | number
-    touch?: FloatFilter<"BuffingEntry"> | number
-    item_purity?: FloatFilter<"BuffingEntry"> | number
-    remarks?: StringNullableFilter<"BuffingEntry"> | string | null
-    after_weight?: FloatNullableFilter<"BuffingEntry"> | number | null
-    setting_entry_id?: IntFilter<"BuffingEntry"> | number
-    filing_entry_id?: IntFilter<"BuffingEntry"> | number
-    type?: EnumSTONEOPTIONFilter<"BuffingEntry"> | $Enums.STONEOPTION
   }
 
   export type AddCustomerCreateWithoutTransactionsInput = {
@@ -23946,14 +34650,14 @@ export namespace Prisma {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
+    touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
-    filingEntry?: FilingEntryCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryCreateNestedOneWithoutCastingItemInput
     stock?: StockCreateNestedManyWithoutCastingItemInput
@@ -23965,7 +34669,7 @@ export namespace Prisma {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
@@ -23973,7 +34677,7 @@ export namespace Prisma {
     scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
-    filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     stock?: StockUncheckedCreateNestedManyWithoutCastingItemInput
@@ -23991,13 +34695,15 @@ export namespace Prisma {
 
   export type StockCreateWithoutItemInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
+    scrap_weight: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
     castingItem: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    touch: AddTouchCreateNestedOneWithoutStockInput
     casting_customer: AddCastingCreateNestedOneWithoutStockInput
   }
 
@@ -24005,11 +34711,13 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
-    weight: number
-    touch: number
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
     casting_customer_id: number
   }
@@ -24021,6 +34729,137 @@ export namespace Prisma {
 
   export type StockCreateManyItemInputEnvelope = {
     data: StockCreateManyItemInput | StockCreateManyItemInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FilingItemsCreateWithoutItemInput = {
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
+    stock?: StockCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsUncheckedCreateWithoutItemInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageUncheckedCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsCreateOrConnectWithoutItemInput = {
+    where: FilingItemsWhereUniqueInput
+    create: XOR<FilingItemsCreateWithoutItemInput, FilingItemsUncheckedCreateWithoutItemInput>
+  }
+
+  export type FilingItemsCreateManyItemInputEnvelope = {
+    data: FilingItemsCreateManyItemInput | FilingItemsCreateManyItemInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SettingItemsCreateWithoutItemInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks?: string | null
+    touch: AddTouchCreateNestedOneWithoutSetting_itemsInput
+    setting_wastage?: SettingWastageCreateNestedManyWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockCreateNestedManyWithoutSettingItemInput
+  }
+
+  export type SettingItemsUncheckedCreateWithoutItemInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks?: string | null
+    setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
+  }
+
+  export type SettingItemsCreateOrConnectWithoutItemInput = {
+    where: SettingItemsWhereUniqueInput
+    create: XOR<SettingItemsCreateWithoutItemInput, SettingItemsUncheckedCreateWithoutItemInput>
+  }
+
+  export type SettingItemsCreateManyItemInputEnvelope = {
+    data: SettingItemsCreateManyItemInput | SettingItemsCreateManyItemInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BuffingItemsCreateWithoutItemInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks: string
+    touch: AddTouchCreateNestedOneWithoutBuffing_itemsInput
+    stock?: StockCreateNestedManyWithoutBuffingItemInput
+    buffing_wastage?: BuffingWastageCreateNestedManyWithoutBuffing_itemsInput
+  }
+
+  export type BuffingItemsUncheckedCreateWithoutItemInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks: string
+    stock?: StockUncheckedCreateNestedManyWithoutBuffingItemInput
+    buffing_wastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffing_itemsInput
+  }
+
+  export type BuffingItemsCreateOrConnectWithoutItemInput = {
+    where: BuffingItemsWhereUniqueInput
+    create: XOR<BuffingItemsCreateWithoutItemInput, BuffingItemsUncheckedCreateWithoutItemInput>
+  }
+
+  export type BuffingItemsCreateManyItemInputEnvelope = {
+    data: BuffingItemsCreateManyItemInput | BuffingItemsCreateManyItemInput[]
     skipDuplicates?: boolean
   }
 
@@ -24056,6 +34895,485 @@ export namespace Prisma {
     data: XOR<StockUpdateManyMutationInput, StockUncheckedUpdateManyWithoutItemInput>
   }
 
+  export type FilingItemsUpsertWithWhereUniqueWithoutItemInput = {
+    where: FilingItemsWhereUniqueInput
+    update: XOR<FilingItemsUpdateWithoutItemInput, FilingItemsUncheckedUpdateWithoutItemInput>
+    create: XOR<FilingItemsCreateWithoutItemInput, FilingItemsUncheckedCreateWithoutItemInput>
+  }
+
+  export type FilingItemsUpdateWithWhereUniqueWithoutItemInput = {
+    where: FilingItemsWhereUniqueInput
+    data: XOR<FilingItemsUpdateWithoutItemInput, FilingItemsUncheckedUpdateWithoutItemInput>
+  }
+
+  export type FilingItemsUpdateManyWithWhereWithoutItemInput = {
+    where: FilingItemsScalarWhereInput
+    data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutItemInput>
+  }
+
+  export type FilingItemsScalarWhereInput = {
+    AND?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+    OR?: FilingItemsScalarWhereInput[]
+    NOT?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+    id?: IntFilter<"FilingItems"> | number
+    createdAt?: DateTimeFilter<"FilingItems"> | Date | string
+    type?: EnumCASTINGENTRYTYPEFilter<"FilingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"FilingItems"> | number
+    weight?: FloatFilter<"FilingItems"> | number
+    touch_id?: IntFilter<"FilingItems"> | number
+    item_purity?: FloatFilter<"FilingItems"> | number
+    remarks?: StringNullableFilter<"FilingItems"> | string | null
+    wastage?: BoolNullableFilter<"FilingItems"> | boolean | null
+    stone_option?: EnumSTONEOPTIONNullableFilter<"FilingItems"> | $Enums.STONEOPTION | null
+    after_weight?: FloatNullableFilter<"FilingItems"> | number | null
+    scrap_weight?: FloatNullableFilter<"FilingItems"> | number | null
+    scrap_wastage?: FloatNullableFilter<"FilingItems"> | number | null
+  }
+
+  export type SettingItemsUpsertWithWhereUniqueWithoutItemInput = {
+    where: SettingItemsWhereUniqueInput
+    update: XOR<SettingItemsUpdateWithoutItemInput, SettingItemsUncheckedUpdateWithoutItemInput>
+    create: XOR<SettingItemsCreateWithoutItemInput, SettingItemsUncheckedCreateWithoutItemInput>
+  }
+
+  export type SettingItemsUpdateWithWhereUniqueWithoutItemInput = {
+    where: SettingItemsWhereUniqueInput
+    data: XOR<SettingItemsUpdateWithoutItemInput, SettingItemsUncheckedUpdateWithoutItemInput>
+  }
+
+  export type SettingItemsUpdateManyWithWhereWithoutItemInput = {
+    where: SettingItemsScalarWhereInput
+    data: XOR<SettingItemsUpdateManyMutationInput, SettingItemsUncheckedUpdateManyWithoutItemInput>
+  }
+
+  export type SettingItemsScalarWhereInput = {
+    AND?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+    OR?: SettingItemsScalarWhereInput[]
+    NOT?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+    id?: IntFilter<"SettingItems"> | number
+    createdAt?: DateTimeFilter<"SettingItems"> | Date | string
+    receipt_weight?: FloatFilter<"SettingItems"> | number
+    stone_count?: FloatFilter<"SettingItems"> | number
+    stone_weight?: FloatFilter<"SettingItems"> | number
+    remarks?: StringNullableFilter<"SettingItems"> | string | null
+    wastage?: BoolFilter<"SettingItems"> | boolean
+    type?: EnumCASTINGENTRYTYPEFilter<"SettingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"SettingItems"> | number
+    scrap_weight?: FloatFilter<"SettingItems"> | number
+    touch_id?: IntFilter<"SettingItems"> | number
+    item_purity?: FloatFilter<"SettingItems"> | number
+    scrap_remarks?: StringNullableFilter<"SettingItems"> | string | null
+  }
+
+  export type BuffingItemsUpsertWithWhereUniqueWithoutItemInput = {
+    where: BuffingItemsWhereUniqueInput
+    update: XOR<BuffingItemsUpdateWithoutItemInput, BuffingItemsUncheckedUpdateWithoutItemInput>
+    create: XOR<BuffingItemsCreateWithoutItemInput, BuffingItemsUncheckedCreateWithoutItemInput>
+  }
+
+  export type BuffingItemsUpdateWithWhereUniqueWithoutItemInput = {
+    where: BuffingItemsWhereUniqueInput
+    data: XOR<BuffingItemsUpdateWithoutItemInput, BuffingItemsUncheckedUpdateWithoutItemInput>
+  }
+
+  export type BuffingItemsUpdateManyWithWhereWithoutItemInput = {
+    where: BuffingItemsScalarWhereInput
+    data: XOR<BuffingItemsUpdateManyMutationInput, BuffingItemsUncheckedUpdateManyWithoutItemInput>
+  }
+
+  export type BuffingItemsScalarWhereInput = {
+    AND?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
+    OR?: BuffingItemsScalarWhereInput[]
+    NOT?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
+    id?: IntFilter<"BuffingItems"> | number
+    createdAt?: DateTimeFilter<"BuffingItems"> | Date | string
+    receipt_weight?: FloatFilter<"BuffingItems"> | number
+    remarks?: StringFilter<"BuffingItems"> | string
+    wastage?: BoolFilter<"BuffingItems"> | boolean
+    type?: EnumCASTINGENTRYTYPEFilter<"BuffingItems"> | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFilter<"BuffingItems"> | number
+    scrap_weight?: FloatFilter<"BuffingItems"> | number
+    touch_id?: IntFilter<"BuffingItems"> | number
+    item_purity?: FloatFilter<"BuffingItems"> | number
+    scrap_remarks?: StringFilter<"BuffingItems"> | string
+  }
+
+  export type CastingEntryCreateWithoutTouchInput = {
+    createdAt?: Date | string
+    date: Date | string
+    given_gold: number
+    purity: number
+    final_touch: number
+    pure_value: number
+    copper: number
+    final_weight: number
+    casting_customer: AddCastingCreateNestedOneWithoutEntriesInput
+    items?: CastingItemsCreateNestedManyWithoutCastingEntryInput
+  }
+
+  export type CastingEntryUncheckedCreateWithoutTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    date: Date | string
+    given_gold: number
+    purity: number
+    final_touch: number
+    pure_value: number
+    copper: number
+    final_weight: number
+    casting_customer_id: number
+    items?: CastingItemsUncheckedCreateNestedManyWithoutCastingEntryInput
+  }
+
+  export type CastingEntryCreateOrConnectWithoutTouchInput = {
+    where: CastingEntryWhereUniqueInput
+    create: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput>
+  }
+
+  export type CastingEntryCreateManyTouchInputEnvelope = {
+    data: CastingEntryCreateManyTouchInput | CastingEntryCreateManyTouchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CastingItemsCreateWithoutTouchInput = {
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    item: AddItemCreateNestedOneWithoutCasting_itemsInput
+    castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
+    filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
+    settingEntry?: SettingEntryCreateNestedOneWithoutCastingItemInput
+    buffingEntry?: BuffingEntryCreateNestedOneWithoutCastingItemInput
+    stock?: StockCreateNestedManyWithoutCastingItemInput
+    casting_customer: AddCastingCreateNestedOneWithoutCastingitemsInput
+  }
+
+  export type CastingItemsUncheckedCreateWithoutTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    casting_entry_id: number
+    casting_customer_id: number
+    filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
+    settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    stock?: StockUncheckedCreateNestedManyWithoutCastingItemInput
+  }
+
+  export type CastingItemsCreateOrConnectWithoutTouchInput = {
+    where: CastingItemsWhereUniqueInput
+    create: XOR<CastingItemsCreateWithoutTouchInput, CastingItemsUncheckedCreateWithoutTouchInput>
+  }
+
+  export type CastingItemsCreateManyTouchInputEnvelope = {
+    data: CastingItemsCreateManyTouchInput | CastingItemsCreateManyTouchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FilingItemsCreateWithoutTouchInput = {
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    item: AddItemCreateNestedOneWithoutFiling_itemsInput
+    stock?: StockCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsUncheckedCreateWithoutTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageUncheckedCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsCreateOrConnectWithoutTouchInput = {
+    where: FilingItemsWhereUniqueInput
+    create: XOR<FilingItemsCreateWithoutTouchInput, FilingItemsUncheckedCreateWithoutTouchInput>
+  }
+
+  export type FilingItemsCreateManyTouchInputEnvelope = {
+    data: FilingItemsCreateManyTouchInput | FilingItemsCreateManyTouchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SettingItemsCreateWithoutTouchInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks?: string | null
+    item: AddItemCreateNestedOneWithoutSetting_itemsInput
+    setting_wastage?: SettingWastageCreateNestedManyWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockCreateNestedManyWithoutSettingItemInput
+  }
+
+  export type SettingItemsUncheckedCreateWithoutTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks?: string | null
+    setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
+  }
+
+  export type SettingItemsCreateOrConnectWithoutTouchInput = {
+    where: SettingItemsWhereUniqueInput
+    create: XOR<SettingItemsCreateWithoutTouchInput, SettingItemsUncheckedCreateWithoutTouchInput>
+  }
+
+  export type SettingItemsCreateManyTouchInputEnvelope = {
+    data: SettingItemsCreateManyTouchInput | SettingItemsCreateManyTouchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BuffingItemsCreateWithoutTouchInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks: string
+    item: AddItemCreateNestedOneWithoutBuffing_itemsInput
+    stock?: StockCreateNestedManyWithoutBuffingItemInput
+    buffing_wastage?: BuffingWastageCreateNestedManyWithoutBuffing_itemsInput
+  }
+
+  export type BuffingItemsUncheckedCreateWithoutTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks: string
+    stock?: StockUncheckedCreateNestedManyWithoutBuffingItemInput
+    buffing_wastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffing_itemsInput
+  }
+
+  export type BuffingItemsCreateOrConnectWithoutTouchInput = {
+    where: BuffingItemsWhereUniqueInput
+    create: XOR<BuffingItemsCreateWithoutTouchInput, BuffingItemsUncheckedCreateWithoutTouchInput>
+  }
+
+  export type BuffingItemsCreateManyTouchInputEnvelope = {
+    data: BuffingItemsCreateManyTouchInput | BuffingItemsCreateManyTouchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StockCreateWithoutTouchInput = {
+    createdAt?: Date | string
+    scrap_weight: number
+    item_purity: number
+    remarks?: string | null
+    scrap_wastage?: number | null
+    castingItem: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    item: AddItemCreateNestedOneWithoutStockInput
+    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+  }
+
+  export type StockUncheckedCreateWithoutTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    casting_item_id: number
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
+    item_id: number
+    scrap_weight: number
+    item_purity: number
+    remarks?: string | null
+    scrap_wastage?: number | null
+    casting_customer_id: number
+  }
+
+  export type StockCreateOrConnectWithoutTouchInput = {
+    where: StockWhereUniqueInput
+    create: XOR<StockCreateWithoutTouchInput, StockUncheckedCreateWithoutTouchInput>
+  }
+
+  export type StockCreateManyTouchInputEnvelope = {
+    data: StockCreateManyTouchInput | StockCreateManyTouchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CastingEntryUpsertWithWhereUniqueWithoutTouchInput = {
+    where: CastingEntryWhereUniqueInput
+    update: XOR<CastingEntryUpdateWithoutTouchInput, CastingEntryUncheckedUpdateWithoutTouchInput>
+    create: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput>
+  }
+
+  export type CastingEntryUpdateWithWhereUniqueWithoutTouchInput = {
+    where: CastingEntryWhereUniqueInput
+    data: XOR<CastingEntryUpdateWithoutTouchInput, CastingEntryUncheckedUpdateWithoutTouchInput>
+  }
+
+  export type CastingEntryUpdateManyWithWhereWithoutTouchInput = {
+    where: CastingEntryScalarWhereInput
+    data: XOR<CastingEntryUpdateManyMutationInput, CastingEntryUncheckedUpdateManyWithoutTouchInput>
+  }
+
+  export type CastingItemsUpsertWithWhereUniqueWithoutTouchInput = {
+    where: CastingItemsWhereUniqueInput
+    update: XOR<CastingItemsUpdateWithoutTouchInput, CastingItemsUncheckedUpdateWithoutTouchInput>
+    create: XOR<CastingItemsCreateWithoutTouchInput, CastingItemsUncheckedCreateWithoutTouchInput>
+  }
+
+  export type CastingItemsUpdateWithWhereUniqueWithoutTouchInput = {
+    where: CastingItemsWhereUniqueInput
+    data: XOR<CastingItemsUpdateWithoutTouchInput, CastingItemsUncheckedUpdateWithoutTouchInput>
+  }
+
+  export type CastingItemsUpdateManyWithWhereWithoutTouchInput = {
+    where: CastingItemsScalarWhereInput
+    data: XOR<CastingItemsUpdateManyMutationInput, CastingItemsUncheckedUpdateManyWithoutTouchInput>
+  }
+
+  export type FilingItemsUpsertWithWhereUniqueWithoutTouchInput = {
+    where: FilingItemsWhereUniqueInput
+    update: XOR<FilingItemsUpdateWithoutTouchInput, FilingItemsUncheckedUpdateWithoutTouchInput>
+    create: XOR<FilingItemsCreateWithoutTouchInput, FilingItemsUncheckedCreateWithoutTouchInput>
+  }
+
+  export type FilingItemsUpdateWithWhereUniqueWithoutTouchInput = {
+    where: FilingItemsWhereUniqueInput
+    data: XOR<FilingItemsUpdateWithoutTouchInput, FilingItemsUncheckedUpdateWithoutTouchInput>
+  }
+
+  export type FilingItemsUpdateManyWithWhereWithoutTouchInput = {
+    where: FilingItemsScalarWhereInput
+    data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutTouchInput>
+  }
+
+  export type SettingItemsUpsertWithWhereUniqueWithoutTouchInput = {
+    where: SettingItemsWhereUniqueInput
+    update: XOR<SettingItemsUpdateWithoutTouchInput, SettingItemsUncheckedUpdateWithoutTouchInput>
+    create: XOR<SettingItemsCreateWithoutTouchInput, SettingItemsUncheckedCreateWithoutTouchInput>
+  }
+
+  export type SettingItemsUpdateWithWhereUniqueWithoutTouchInput = {
+    where: SettingItemsWhereUniqueInput
+    data: XOR<SettingItemsUpdateWithoutTouchInput, SettingItemsUncheckedUpdateWithoutTouchInput>
+  }
+
+  export type SettingItemsUpdateManyWithWhereWithoutTouchInput = {
+    where: SettingItemsScalarWhereInput
+    data: XOR<SettingItemsUpdateManyMutationInput, SettingItemsUncheckedUpdateManyWithoutTouchInput>
+  }
+
+  export type BuffingItemsUpsertWithWhereUniqueWithoutTouchInput = {
+    where: BuffingItemsWhereUniqueInput
+    update: XOR<BuffingItemsUpdateWithoutTouchInput, BuffingItemsUncheckedUpdateWithoutTouchInput>
+    create: XOR<BuffingItemsCreateWithoutTouchInput, BuffingItemsUncheckedCreateWithoutTouchInput>
+  }
+
+  export type BuffingItemsUpdateWithWhereUniqueWithoutTouchInput = {
+    where: BuffingItemsWhereUniqueInput
+    data: XOR<BuffingItemsUpdateWithoutTouchInput, BuffingItemsUncheckedUpdateWithoutTouchInput>
+  }
+
+  export type BuffingItemsUpdateManyWithWhereWithoutTouchInput = {
+    where: BuffingItemsScalarWhereInput
+    data: XOR<BuffingItemsUpdateManyMutationInput, BuffingItemsUncheckedUpdateManyWithoutTouchInput>
+  }
+
+  export type StockUpsertWithWhereUniqueWithoutTouchInput = {
+    where: StockWhereUniqueInput
+    update: XOR<StockUpdateWithoutTouchInput, StockUncheckedUpdateWithoutTouchInput>
+    create: XOR<StockCreateWithoutTouchInput, StockUncheckedCreateWithoutTouchInput>
+  }
+
+  export type StockUpdateWithWhereUniqueWithoutTouchInput = {
+    where: StockWhereUniqueInput
+    data: XOR<StockUpdateWithoutTouchInput, StockUncheckedUpdateWithoutTouchInput>
+  }
+
+  export type StockUpdateManyWithWhereWithoutTouchInput = {
+    where: StockScalarWhereInput
+    data: XOR<StockUpdateManyMutationInput, StockUncheckedUpdateManyWithoutTouchInput>
+  }
+
+  export type AddTouchCreateWithoutCasting_entryInput = {
+    createdAt?: Date | string
+    touch: number
+    casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
+    stock?: StockCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchUncheckedCreateWithoutCasting_entryInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
+    stock?: StockUncheckedCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchCreateOrConnectWithoutCasting_entryInput = {
+    where: AddTouchWhereUniqueInput
+    create: XOR<AddTouchCreateWithoutCasting_entryInput, AddTouchUncheckedCreateWithoutCasting_entryInput>
+  }
+
   export type AddCastingCreateWithoutEntriesInput = {
     createdAt?: Date | string
     name: string
@@ -24086,14 +35404,14 @@ export namespace Prisma {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item: AddItemCreateNestedOneWithoutCastingItemsInput
-    filingEntry?: FilingEntryCreateNestedOneWithoutCastingItemInput
+    touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
+    item: AddItemCreateNestedOneWithoutCasting_itemsInput
+    filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryCreateNestedOneWithoutCastingItemInput
     stock?: StockCreateNestedManyWithoutCastingItemInput
@@ -24106,14 +35424,14 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
     casting_customer_id: number
-    filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     stock?: StockUncheckedCreateNestedManyWithoutCastingItemInput
@@ -24127,6 +35445,38 @@ export namespace Prisma {
   export type CastingItemsCreateManyCastingEntryInputEnvelope = {
     data: CastingItemsCreateManyCastingEntryInput | CastingItemsCreateManyCastingEntryInput[]
     skipDuplicates?: boolean
+  }
+
+  export type AddTouchUpsertWithoutCasting_entryInput = {
+    update: XOR<AddTouchUpdateWithoutCasting_entryInput, AddTouchUncheckedUpdateWithoutCasting_entryInput>
+    create: XOR<AddTouchCreateWithoutCasting_entryInput, AddTouchUncheckedCreateWithoutCasting_entryInput>
+    where?: AddTouchWhereInput
+  }
+
+  export type AddTouchUpdateToOneWithWhereWithoutCasting_entryInput = {
+    where?: AddTouchWhereInput
+    data: XOR<AddTouchUpdateWithoutCasting_entryInput, AddTouchUncheckedUpdateWithoutCasting_entryInput>
+  }
+
+  export type AddTouchUpdateWithoutCasting_entryInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
+    stock?: StockUpdateManyWithoutTouchNestedInput
+  }
+
+  export type AddTouchUncheckedUpdateWithoutCasting_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type AddCastingUpsertWithoutEntriesInput = {
@@ -24177,34 +35527,66 @@ export namespace Prisma {
     data: XOR<CastingItemsUpdateManyMutationInput, CastingItemsUncheckedUpdateManyWithoutCastingEntryInput>
   }
 
-  export type AddItemCreateWithoutCastingItemsInput = {
+  export type AddTouchCreateWithoutCasting_itemsInput = {
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
+    stock?: StockCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchUncheckedCreateWithoutCasting_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
+    stock?: StockUncheckedCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchCreateOrConnectWithoutCasting_itemsInput = {
+    where: AddTouchWhereUniqueInput
+    create: XOR<AddTouchCreateWithoutCasting_itemsInput, AddTouchUncheckedCreateWithoutCasting_itemsInput>
+  }
+
+  export type AddItemCreateWithoutCasting_itemsInput = {
     createdAt?: Date | string
     name: string
     stock?: StockCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsCreateNestedManyWithoutItemInput
+    setting_items?: SettingItemsCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
   }
 
-  export type AddItemUncheckedCreateWithoutCastingItemsInput = {
+  export type AddItemUncheckedCreateWithoutCasting_itemsInput = {
     id?: number
     createdAt?: Date | string
     name: string
     stock?: StockUncheckedCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutItemInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
   }
 
-  export type AddItemCreateOrConnectWithoutCastingItemsInput = {
+  export type AddItemCreateOrConnectWithoutCasting_itemsInput = {
     where: AddItemWhereUniqueInput
-    create: XOR<AddItemCreateWithoutCastingItemsInput, AddItemUncheckedCreateWithoutCastingItemsInput>
+    create: XOR<AddItemCreateWithoutCasting_itemsInput, AddItemUncheckedCreateWithoutCasting_itemsInput>
   }
 
   export type CastingEntryCreateWithoutItemsInput = {
     createdAt?: Date | string
     date: Date | string
     given_gold: number
-    given_touch: number
     purity: number
     final_touch: number
     pure_value: number
     copper: number
     final_weight: number
+    touch: AddTouchCreateNestedOneWithoutCasting_entryInput
     casting_customer: AddCastingCreateNestedOneWithoutEntriesInput
   }
 
@@ -24213,7 +35595,7 @@ export namespace Prisma {
     createdAt?: Date | string
     date: Date | string
     given_gold: number
-    given_touch: number
+    touch_id: number
     purity: number
     final_touch: number
     pure_value: number
@@ -24229,29 +35611,13 @@ export namespace Prisma {
 
   export type FilingEntryCreateWithoutCastingItemInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
-    settingEntry?: SettingEntryCreateNestedManyWithoutFilingEntryInput
-    buffingEntries?: BuffingEntryCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUncheckedCreateWithoutCastingItemInput = {
     id?: number
     createdAt?: Date | string
     filing_person_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
-    settingEntry?: SettingEntryUncheckedCreateNestedManyWithoutFilingEntryInput
-    buffingEntries?: BuffingEntryUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryCreateOrConnectWithoutCastingItemInput = {
@@ -24259,29 +35625,22 @@ export namespace Prisma {
     create: XOR<FilingEntryCreateWithoutCastingItemInput, FilingEntryUncheckedCreateWithoutCastingItemInput>
   }
 
+  export type FilingEntryCreateManyCastingItemInputEnvelope = {
+    data: FilingEntryCreateManyCastingItemInput | FilingEntryCreateManyCastingItemInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SettingEntryCreateWithoutCastingItemInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
     setting_person: AddSettingCreateNestedOneWithoutSettingsInput
-    filingEntry: FilingEntryCreateNestedOneWithoutSettingEntryInput
-    buffingEntries?: BuffingEntryCreateNestedManyWithoutSettingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
   }
 
   export type SettingEntryUncheckedCreateWithoutCastingItemInput = {
     id?: number
     createdAt?: Date | string
     setting_person_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    filing_entry_id: number
-    buffingEntries?: BuffingEntryUncheckedCreateNestedManyWithoutSettingEntryInput
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
   }
 
   export type SettingEntryCreateOrConnectWithoutCastingItemInput = {
@@ -24291,29 +35650,17 @@ export namespace Prisma {
 
   export type BuffingEntryCreateWithoutCastingItemInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    type: $Enums.STONEOPTION
     buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
-    settingEntry: SettingEntryCreateNestedOneWithoutBuffingEntriesInput
-    filingEntry: FilingEntryCreateNestedOneWithoutBuffingEntriesInput
+    filing_items?: FilingItemsCreateNestedManyWithoutBuffing_entryInput
+    setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
   }
 
   export type BuffingEntryUncheckedCreateWithoutCastingItemInput = {
     id?: number
     createdAt?: Date | string
     buffing_person_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    setting_entry_id: number
-    filing_entry_id: number
-    type: $Enums.STONEOPTION
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
   }
 
   export type BuffingEntryCreateOrConnectWithoutCastingItemInput = {
@@ -24323,25 +35670,29 @@ export namespace Prisma {
 
   export type StockCreateWithoutCastingItemInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
+    scrap_weight: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
+    filingItem: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
     item: AddItemCreateNestedOneWithoutStockInput
+    touch: AddTouchCreateNestedOneWithoutStockInput
     casting_customer: AddCastingCreateNestedOneWithoutStockInput
   }
 
   export type StockUncheckedCreateWithoutCastingItemInput = {
     id?: number
     createdAt?: Date | string
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
     item_id: number
-    weight: number
-    touch: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
     casting_customer_id: number
   }
@@ -24382,28 +35733,66 @@ export namespace Prisma {
     create: XOR<AddCastingCreateWithoutCastingitemsInput, AddCastingUncheckedCreateWithoutCastingitemsInput>
   }
 
-  export type AddItemUpsertWithoutCastingItemsInput = {
-    update: XOR<AddItemUpdateWithoutCastingItemsInput, AddItemUncheckedUpdateWithoutCastingItemsInput>
-    create: XOR<AddItemCreateWithoutCastingItemsInput, AddItemUncheckedCreateWithoutCastingItemsInput>
+  export type AddTouchUpsertWithoutCasting_itemsInput = {
+    update: XOR<AddTouchUpdateWithoutCasting_itemsInput, AddTouchUncheckedUpdateWithoutCasting_itemsInput>
+    create: XOR<AddTouchCreateWithoutCasting_itemsInput, AddTouchUncheckedCreateWithoutCasting_itemsInput>
+    where?: AddTouchWhereInput
+  }
+
+  export type AddTouchUpdateToOneWithWhereWithoutCasting_itemsInput = {
+    where?: AddTouchWhereInput
+    data: XOR<AddTouchUpdateWithoutCasting_itemsInput, AddTouchUncheckedUpdateWithoutCasting_itemsInput>
+  }
+
+  export type AddTouchUpdateWithoutCasting_itemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
+    stock?: StockUpdateManyWithoutTouchNestedInput
+  }
+
+  export type AddTouchUncheckedUpdateWithoutCasting_itemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
+  }
+
+  export type AddItemUpsertWithoutCasting_itemsInput = {
+    update: XOR<AddItemUpdateWithoutCasting_itemsInput, AddItemUncheckedUpdateWithoutCasting_itemsInput>
+    create: XOR<AddItemCreateWithoutCasting_itemsInput, AddItemUncheckedCreateWithoutCasting_itemsInput>
     where?: AddItemWhereInput
   }
 
-  export type AddItemUpdateToOneWithWhereWithoutCastingItemsInput = {
+  export type AddItemUpdateToOneWithWhereWithoutCasting_itemsInput = {
     where?: AddItemWhereInput
-    data: XOR<AddItemUpdateWithoutCastingItemsInput, AddItemUncheckedUpdateWithoutCastingItemsInput>
+    data: XOR<AddItemUpdateWithoutCasting_itemsInput, AddItemUncheckedUpdateWithoutCasting_itemsInput>
   }
 
-  export type AddItemUpdateWithoutCastingItemsInput = {
+  export type AddItemUpdateWithoutCasting_itemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     stock?: StockUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutItemNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
   }
 
-  export type AddItemUncheckedUpdateWithoutCastingItemsInput = {
+  export type AddItemUncheckedUpdateWithoutCasting_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     stock?: StockUncheckedUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutItemNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
   }
 
   export type CastingEntryUpsertWithoutItemsInput = {
@@ -24421,12 +35810,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
-    given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     final_touch?: FloatFieldUpdateOperationsInput | number
     pure_value?: FloatFieldUpdateOperationsInput | number
     copper?: FloatFieldUpdateOperationsInput | number
     final_weight?: FloatFieldUpdateOperationsInput | number
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_entryNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutEntriesNestedInput
   }
 
@@ -24435,7 +35824,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
-    given_touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     final_touch?: FloatFieldUpdateOperationsInput | number
     pure_value?: FloatFieldUpdateOperationsInput | number
@@ -24444,42 +35833,20 @@ export namespace Prisma {
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type FilingEntryUpsertWithoutCastingItemInput = {
+  export type FilingEntryUpsertWithWhereUniqueWithoutCastingItemInput = {
+    where: FilingEntryWhereUniqueInput
     update: XOR<FilingEntryUpdateWithoutCastingItemInput, FilingEntryUncheckedUpdateWithoutCastingItemInput>
     create: XOR<FilingEntryCreateWithoutCastingItemInput, FilingEntryUncheckedCreateWithoutCastingItemInput>
-    where?: FilingEntryWhereInput
   }
 
-  export type FilingEntryUpdateToOneWithWhereWithoutCastingItemInput = {
-    where?: FilingEntryWhereInput
+  export type FilingEntryUpdateWithWhereUniqueWithoutCastingItemInput = {
+    where: FilingEntryWhereUniqueInput
     data: XOR<FilingEntryUpdateWithoutCastingItemInput, FilingEntryUncheckedUpdateWithoutCastingItemInput>
   }
 
-  export type FilingEntryUpdateWithoutCastingItemInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
-    filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
-    settingEntry?: SettingEntryUpdateManyWithoutFilingEntryNestedInput
-    buffingEntries?: BuffingEntryUpdateManyWithoutFilingEntryNestedInput
-  }
-
-  export type FilingEntryUncheckedUpdateWithoutCastingItemInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    filing_person_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
-    settingEntry?: SettingEntryUncheckedUpdateManyWithoutFilingEntryNestedInput
-    buffingEntries?: BuffingEntryUncheckedUpdateManyWithoutFilingEntryNestedInput
+  export type FilingEntryUpdateManyWithWhereWithoutCastingItemInput = {
+    where: FilingEntryScalarWhereInput
+    data: XOR<FilingEntryUpdateManyMutationInput, FilingEntryUncheckedUpdateManyWithoutCastingItemInput>
   }
 
   export type SettingEntryUpsertWithoutCastingItemInput = {
@@ -24495,27 +35862,15 @@ export namespace Prisma {
 
   export type SettingEntryUpdateWithoutCastingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
-    filingEntry?: FilingEntryUpdateOneRequiredWithoutSettingEntryNestedInput
-    buffingEntries?: BuffingEntryUpdateManyWithoutSettingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutCastingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     setting_person_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    buffingEntries?: BuffingEntryUncheckedUpdateManyWithoutSettingEntryNestedInput
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
   }
 
   export type BuffingEntryUpsertWithoutCastingItemInput = {
@@ -24531,29 +35886,17 @@ export namespace Prisma {
 
   export type BuffingEntryUpdateWithoutCastingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
     buffing_person?: AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput
-    settingEntry?: SettingEntryUpdateOneRequiredWithoutBuffingEntriesNestedInput
-    filingEntry?: FilingEntryUpdateOneRequiredWithoutBuffingEntriesNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateWithoutCastingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buffing_person_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    setting_entry_id?: IntFieldUpdateOperationsInput | number
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
   }
 
   export type StockUpsertWithWhereUniqueWithoutCastingItemInput = {
@@ -24630,13 +35973,13 @@ export namespace Prisma {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item: AddItemCreateNestedOneWithoutCastingItemsInput
+    touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
+    item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
     settingEntry?: SettingEntryCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryCreateNestedOneWithoutCastingItemInput
@@ -24650,7 +35993,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
@@ -24666,78 +36009,6 @@ export namespace Prisma {
   export type CastingItemsCreateOrConnectWithoutFilingEntryInput = {
     where: CastingItemsWhereUniqueInput
     create: XOR<CastingItemsCreateWithoutFilingEntryInput, CastingItemsUncheckedCreateWithoutFilingEntryInput>
-  }
-
-  export type SettingEntryCreateWithoutFilingEntryInput = {
-    createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    setting_person: AddSettingCreateNestedOneWithoutSettingsInput
-    castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
-    buffingEntries?: BuffingEntryCreateNestedManyWithoutSettingEntryInput
-  }
-
-  export type SettingEntryUncheckedCreateWithoutFilingEntryInput = {
-    id?: number
-    createdAt?: Date | string
-    setting_person_id: number
-    casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    buffingEntries?: BuffingEntryUncheckedCreateNestedManyWithoutSettingEntryInput
-  }
-
-  export type SettingEntryCreateOrConnectWithoutFilingEntryInput = {
-    where: SettingEntryWhereUniqueInput
-    create: XOR<SettingEntryCreateWithoutFilingEntryInput, SettingEntryUncheckedCreateWithoutFilingEntryInput>
-  }
-
-  export type SettingEntryCreateManyFilingEntryInputEnvelope = {
-    data: SettingEntryCreateManyFilingEntryInput | SettingEntryCreateManyFilingEntryInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type BuffingEntryCreateWithoutFilingEntryInput = {
-    createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    type: $Enums.STONEOPTION
-    buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
-    castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
-    settingEntry: SettingEntryCreateNestedOneWithoutBuffingEntriesInput
-  }
-
-  export type BuffingEntryUncheckedCreateWithoutFilingEntryInput = {
-    id?: number
-    createdAt?: Date | string
-    buffing_person_id: number
-    casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    setting_entry_id: number
-    type: $Enums.STONEOPTION
-  }
-
-  export type BuffingEntryCreateOrConnectWithoutFilingEntryInput = {
-    where: BuffingEntryWhereUniqueInput
-    create: XOR<BuffingEntryCreateWithoutFilingEntryInput, BuffingEntryUncheckedCreateWithoutFilingEntryInput>
-  }
-
-  export type BuffingEntryCreateManyFilingEntryInputEnvelope = {
-    data: BuffingEntryCreateManyFilingEntryInput | BuffingEntryCreateManyFilingEntryInput[]
-    skipDuplicates?: boolean
   }
 
   export type AddFilingUpsertWithoutFilingsInput = {
@@ -24783,13 +36054,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item?: AddItemUpdateOneRequiredWithoutCastingItemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
+    item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
     settingEntry?: SettingEntryUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUpdateOneWithoutCastingItemNestedInput
@@ -24803,7 +36074,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -24816,36 +36087,346 @@ export namespace Prisma {
     stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
   }
 
-  export type SettingEntryUpsertWithWhereUniqueWithoutFilingEntryInput = {
-    where: SettingEntryWhereUniqueInput
-    update: XOR<SettingEntryUpdateWithoutFilingEntryInput, SettingEntryUncheckedUpdateWithoutFilingEntryInput>
-    create: XOR<SettingEntryCreateWithoutFilingEntryInput, SettingEntryUncheckedCreateWithoutFilingEntryInput>
+  export type AddItemCreateWithoutFiling_itemsInput = {
+    createdAt?: Date | string
+    name: string
+    casting_items?: CastingItemsCreateNestedManyWithoutItemInput
+    stock?: StockCreateNestedManyWithoutItemInput
+    setting_items?: SettingItemsCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
   }
 
-  export type SettingEntryUpdateWithWhereUniqueWithoutFilingEntryInput = {
-    where: SettingEntryWhereUniqueInput
-    data: XOR<SettingEntryUpdateWithoutFilingEntryInput, SettingEntryUncheckedUpdateWithoutFilingEntryInput>
+  export type AddItemUncheckedCreateWithoutFiling_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    name: string
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
+    stock?: StockUncheckedCreateNestedManyWithoutItemInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
   }
 
-  export type SettingEntryUpdateManyWithWhereWithoutFilingEntryInput = {
+  export type AddItemCreateOrConnectWithoutFiling_itemsInput = {
+    where: AddItemWhereUniqueInput
+    create: XOR<AddItemCreateWithoutFiling_itemsInput, AddItemUncheckedCreateWithoutFiling_itemsInput>
+  }
+
+  export type AddTouchCreateWithoutFiling_itemsInput = {
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
+    stock?: StockCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchUncheckedCreateWithoutFiling_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
+    stock?: StockUncheckedCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchCreateOrConnectWithoutFiling_itemsInput = {
+    where: AddTouchWhereUniqueInput
+    create: XOR<AddTouchCreateWithoutFiling_itemsInput, AddTouchUncheckedCreateWithoutFiling_itemsInput>
+  }
+
+  export type StockCreateWithoutFilingItemInput = {
+    createdAt?: Date | string
+    scrap_weight: number
+    item_purity: number
+    remarks?: string | null
+    scrap_wastage?: number | null
+    castingItem: CastingItemsCreateNestedOneWithoutStockInput
+    settingItem: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    item: AddItemCreateNestedOneWithoutStockInput
+    touch: AddTouchCreateNestedOneWithoutStockInput
+    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+  }
+
+  export type StockUncheckedCreateWithoutFilingItemInput = {
+    id?: number
+    createdAt?: Date | string
+    casting_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    scrap_wastage?: number | null
+    casting_customer_id: number
+  }
+
+  export type StockCreateOrConnectWithoutFilingItemInput = {
+    where: StockWhereUniqueInput
+    create: XOR<StockCreateWithoutFilingItemInput, StockUncheckedCreateWithoutFilingItemInput>
+  }
+
+  export type StockCreateManyFilingItemInputEnvelope = {
+    data: StockCreateManyFilingItemInput | StockCreateManyFilingItemInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SettingEntryCreateWithoutFilingItemsInput = {
+    createdAt?: Date | string
+    setting_person: AddSettingCreateNestedOneWithoutSettingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
+  }
+
+  export type SettingEntryUncheckedCreateWithoutFilingItemsInput = {
+    id?: number
+    createdAt?: Date | string
+    setting_person_id: number
+    casting_item_id: number
+  }
+
+  export type SettingEntryCreateOrConnectWithoutFilingItemsInput = {
+    where: SettingEntryWhereUniqueInput
+    create: XOR<SettingEntryCreateWithoutFilingItemsInput, SettingEntryUncheckedCreateWithoutFilingItemsInput>
+  }
+
+  export type BuffingEntryCreateWithoutFiling_itemsInput = {
+    createdAt?: Date | string
+    buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
+    setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
+  }
+
+  export type BuffingEntryUncheckedCreateWithoutFiling_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    buffing_person_id: number
+    casting_item_id: number
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+  }
+
+  export type BuffingEntryCreateOrConnectWithoutFiling_itemsInput = {
+    where: BuffingEntryWhereUniqueInput
+    create: XOR<BuffingEntryCreateWithoutFiling_itemsInput, BuffingEntryUncheckedCreateWithoutFiling_itemsInput>
+  }
+
+  export type FilingWastageCreateWithoutFiling_itemsInput = {
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+  }
+
+  export type FilingWastageUncheckedCreateWithoutFiling_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+  }
+
+  export type FilingWastageCreateOrConnectWithoutFiling_itemsInput = {
+    where: FilingWastageWhereUniqueInput
+    create: XOR<FilingWastageCreateWithoutFiling_itemsInput, FilingWastageUncheckedCreateWithoutFiling_itemsInput>
+  }
+
+  export type AddItemUpsertWithoutFiling_itemsInput = {
+    update: XOR<AddItemUpdateWithoutFiling_itemsInput, AddItemUncheckedUpdateWithoutFiling_itemsInput>
+    create: XOR<AddItemCreateWithoutFiling_itemsInput, AddItemUncheckedCreateWithoutFiling_itemsInput>
+    where?: AddItemWhereInput
+  }
+
+  export type AddItemUpdateToOneWithWhereWithoutFiling_itemsInput = {
+    where?: AddItemWhereInput
+    data: XOR<AddItemUpdateWithoutFiling_itemsInput, AddItemUncheckedUpdateWithoutFiling_itemsInput>
+  }
+
+  export type AddItemUpdateWithoutFiling_itemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    casting_items?: CastingItemsUpdateManyWithoutItemNestedInput
+    stock?: StockUpdateManyWithoutItemNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
+  }
+
+  export type AddItemUncheckedUpdateWithoutFiling_itemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
+    stock?: StockUncheckedUpdateManyWithoutItemNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+  }
+
+  export type AddTouchUpsertWithoutFiling_itemsInput = {
+    update: XOR<AddTouchUpdateWithoutFiling_itemsInput, AddTouchUncheckedUpdateWithoutFiling_itemsInput>
+    create: XOR<AddTouchCreateWithoutFiling_itemsInput, AddTouchUncheckedCreateWithoutFiling_itemsInput>
+    where?: AddTouchWhereInput
+  }
+
+  export type AddTouchUpdateToOneWithWhereWithoutFiling_itemsInput = {
+    where?: AddTouchWhereInput
+    data: XOR<AddTouchUpdateWithoutFiling_itemsInput, AddTouchUncheckedUpdateWithoutFiling_itemsInput>
+  }
+
+  export type AddTouchUpdateWithoutFiling_itemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
+    stock?: StockUpdateManyWithoutTouchNestedInput
+  }
+
+  export type AddTouchUncheckedUpdateWithoutFiling_itemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
+  }
+
+  export type StockUpsertWithWhereUniqueWithoutFilingItemInput = {
+    where: StockWhereUniqueInput
+    update: XOR<StockUpdateWithoutFilingItemInput, StockUncheckedUpdateWithoutFilingItemInput>
+    create: XOR<StockCreateWithoutFilingItemInput, StockUncheckedCreateWithoutFilingItemInput>
+  }
+
+  export type StockUpdateWithWhereUniqueWithoutFilingItemInput = {
+    where: StockWhereUniqueInput
+    data: XOR<StockUpdateWithoutFilingItemInput, StockUncheckedUpdateWithoutFilingItemInput>
+  }
+
+  export type StockUpdateManyWithWhereWithoutFilingItemInput = {
+    where: StockScalarWhereInput
+    data: XOR<StockUpdateManyMutationInput, StockUncheckedUpdateManyWithoutFilingItemInput>
+  }
+
+  export type SettingEntryUpsertWithWhereUniqueWithoutFilingItemsInput = {
+    where: SettingEntryWhereUniqueInput
+    update: XOR<SettingEntryUpdateWithoutFilingItemsInput, SettingEntryUncheckedUpdateWithoutFilingItemsInput>
+    create: XOR<SettingEntryCreateWithoutFilingItemsInput, SettingEntryUncheckedCreateWithoutFilingItemsInput>
+  }
+
+  export type SettingEntryUpdateWithWhereUniqueWithoutFilingItemsInput = {
+    where: SettingEntryWhereUniqueInput
+    data: XOR<SettingEntryUpdateWithoutFilingItemsInput, SettingEntryUncheckedUpdateWithoutFilingItemsInput>
+  }
+
+  export type SettingEntryUpdateManyWithWhereWithoutFilingItemsInput = {
     where: SettingEntryScalarWhereInput
-    data: XOR<SettingEntryUpdateManyMutationInput, SettingEntryUncheckedUpdateManyWithoutFilingEntryInput>
+    data: XOR<SettingEntryUpdateManyMutationInput, SettingEntryUncheckedUpdateManyWithoutFilingItemsInput>
   }
 
-  export type BuffingEntryUpsertWithWhereUniqueWithoutFilingEntryInput = {
+  export type BuffingEntryUpsertWithWhereUniqueWithoutFiling_itemsInput = {
     where: BuffingEntryWhereUniqueInput
-    update: XOR<BuffingEntryUpdateWithoutFilingEntryInput, BuffingEntryUncheckedUpdateWithoutFilingEntryInput>
-    create: XOR<BuffingEntryCreateWithoutFilingEntryInput, BuffingEntryUncheckedCreateWithoutFilingEntryInput>
+    update: XOR<BuffingEntryUpdateWithoutFiling_itemsInput, BuffingEntryUncheckedUpdateWithoutFiling_itemsInput>
+    create: XOR<BuffingEntryCreateWithoutFiling_itemsInput, BuffingEntryUncheckedCreateWithoutFiling_itemsInput>
   }
 
-  export type BuffingEntryUpdateWithWhereUniqueWithoutFilingEntryInput = {
+  export type BuffingEntryUpdateWithWhereUniqueWithoutFiling_itemsInput = {
     where: BuffingEntryWhereUniqueInput
-    data: XOR<BuffingEntryUpdateWithoutFilingEntryInput, BuffingEntryUncheckedUpdateWithoutFilingEntryInput>
+    data: XOR<BuffingEntryUpdateWithoutFiling_itemsInput, BuffingEntryUncheckedUpdateWithoutFiling_itemsInput>
   }
 
-  export type BuffingEntryUpdateManyWithWhereWithoutFilingEntryInput = {
+  export type BuffingEntryUpdateManyWithWhereWithoutFiling_itemsInput = {
     where: BuffingEntryScalarWhereInput
-    data: XOR<BuffingEntryUpdateManyMutationInput, BuffingEntryUncheckedUpdateManyWithoutFilingEntryInput>
+    data: XOR<BuffingEntryUpdateManyMutationInput, BuffingEntryUncheckedUpdateManyWithoutFiling_itemsInput>
+  }
+
+  export type FilingWastageUpsertWithWhereUniqueWithoutFiling_itemsInput = {
+    where: FilingWastageWhereUniqueInput
+    update: XOR<FilingWastageUpdateWithoutFiling_itemsInput, FilingWastageUncheckedUpdateWithoutFiling_itemsInput>
+    create: XOR<FilingWastageCreateWithoutFiling_itemsInput, FilingWastageUncheckedCreateWithoutFiling_itemsInput>
+  }
+
+  export type FilingWastageUpdateWithWhereUniqueWithoutFiling_itemsInput = {
+    where: FilingWastageWhereUniqueInput
+    data: XOR<FilingWastageUpdateWithoutFiling_itemsInput, FilingWastageUncheckedUpdateWithoutFiling_itemsInput>
+  }
+
+  export type FilingWastageUpdateManyWithWhereWithoutFiling_itemsInput = {
+    where: FilingWastageScalarWhereInput
+    data: XOR<FilingWastageUpdateManyMutationInput, FilingWastageUncheckedUpdateManyWithoutFiling_itemsInput>
+  }
+
+  export type FilingWastageScalarWhereInput = {
+    AND?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
+    OR?: FilingWastageScalarWhereInput[]
+    NOT?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
+    id?: IntFilter<"FilingWastage"> | number
+    createdAt?: DateTimeFilter<"FilingWastage"> | Date | string
+    wastage_percentage?: IntFilter<"FilingWastage"> | number
+    given_gold?: IntNullableFilter<"FilingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"FilingWastage"> | number | null
+  }
+
+  export type FilingItemsCreateWithoutFiling_wastageInput = {
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    item: AddItemCreateNestedOneWithoutFiling_itemsInput
+    touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
+    stock?: StockCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsUncheckedCreateWithoutFiling_wastageInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsCreateOrConnectWithoutFiling_wastageInput = {
+    where: FilingItemsWhereUniqueInput
+    create: XOR<FilingItemsCreateWithoutFiling_wastageInput, FilingItemsUncheckedCreateWithoutFiling_wastageInput>
+  }
+
+  export type FilingItemsUpsertWithWhereUniqueWithoutFiling_wastageInput = {
+    where: FilingItemsWhereUniqueInput
+    update: XOR<FilingItemsUpdateWithoutFiling_wastageInput, FilingItemsUncheckedUpdateWithoutFiling_wastageInput>
+    create: XOR<FilingItemsCreateWithoutFiling_wastageInput, FilingItemsUncheckedCreateWithoutFiling_wastageInput>
+  }
+
+  export type FilingItemsUpdateWithWhereUniqueWithoutFiling_wastageInput = {
+    where: FilingItemsWhereUniqueInput
+    data: XOR<FilingItemsUpdateWithoutFiling_wastageInput, FilingItemsUncheckedUpdateWithoutFiling_wastageInput>
+  }
+
+  export type FilingItemsUpdateManyWithWhereWithoutFiling_wastageInput = {
+    where: FilingItemsScalarWhereInput
+    data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutFiling_wastageInput>
   }
 
   export type AddSettingCreateWithoutSettingsInput = {
@@ -24874,15 +36455,15 @@ export namespace Prisma {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item: AddItemCreateNestedOneWithoutCastingItemsInput
+    touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
+    item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
-    filingEntry?: FilingEntryCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
     buffingEntry?: BuffingEntryCreateNestedOneWithoutCastingItemInput
     stock?: StockCreateNestedManyWithoutCastingItemInput
     casting_customer: AddCastingCreateNestedOneWithoutCastingitemsInput
@@ -24894,7 +36475,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
@@ -24902,7 +36483,7 @@ export namespace Prisma {
     scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
-    filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
     buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     stock?: StockUncheckedCreateNestedManyWithoutCastingItemInput
   }
@@ -24912,73 +36493,46 @@ export namespace Prisma {
     create: XOR<CastingItemsCreateWithoutSettingEntryInput, CastingItemsUncheckedCreateWithoutSettingEntryInput>
   }
 
-  export type FilingEntryCreateWithoutSettingEntryInput = {
+  export type FilingItemsCreateWithoutSetting_entryInput = {
     createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
     item_purity: number
     remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
     after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
-    filing_person: AddFilingCreateNestedOneWithoutFilingsInput
-    castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
-    buffingEntries?: BuffingEntryCreateNestedManyWithoutFilingEntryInput
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    item: AddItemCreateNestedOneWithoutFiling_itemsInput
+    touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
+    stock?: StockCreateNestedManyWithoutFilingItemInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageCreateNestedManyWithoutFiling_itemsInput
   }
 
-  export type FilingEntryUncheckedCreateWithoutSettingEntryInput = {
+  export type FilingItemsUncheckedCreateWithoutSetting_entryInput = {
     id?: number
     createdAt?: Date | string
-    filing_person_id: number
-    casting_item_id: number
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
     after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
-    buffingEntries?: BuffingEntryUncheckedCreateNestedManyWithoutFilingEntryInput
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageUncheckedCreateNestedManyWithoutFiling_itemsInput
   }
 
-  export type FilingEntryCreateOrConnectWithoutSettingEntryInput = {
-    where: FilingEntryWhereUniqueInput
-    create: XOR<FilingEntryCreateWithoutSettingEntryInput, FilingEntryUncheckedCreateWithoutSettingEntryInput>
-  }
-
-  export type BuffingEntryCreateWithoutSettingEntryInput = {
-    createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    type: $Enums.STONEOPTION
-    buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
-    castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
-    filingEntry: FilingEntryCreateNestedOneWithoutBuffingEntriesInput
-  }
-
-  export type BuffingEntryUncheckedCreateWithoutSettingEntryInput = {
-    id?: number
-    createdAt?: Date | string
-    buffing_person_id: number
-    casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    filing_entry_id: number
-    type: $Enums.STONEOPTION
-  }
-
-  export type BuffingEntryCreateOrConnectWithoutSettingEntryInput = {
-    where: BuffingEntryWhereUniqueInput
-    create: XOR<BuffingEntryCreateWithoutSettingEntryInput, BuffingEntryUncheckedCreateWithoutSettingEntryInput>
-  }
-
-  export type BuffingEntryCreateManySettingEntryInputEnvelope = {
-    data: BuffingEntryCreateManySettingEntryInput | BuffingEntryCreateManySettingEntryInput[]
-    skipDuplicates?: boolean
+  export type FilingItemsCreateOrConnectWithoutSetting_entryInput = {
+    where: FilingItemsWhereUniqueInput
+    create: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput>
   }
 
   export type AddSettingUpsertWithoutSettingsInput = {
@@ -25024,15 +36578,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item?: AddItemUpdateOneRequiredWithoutCastingItemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
+    item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
-    filingEntry?: FilingEntryUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUpdateOneWithoutCastingItemNestedInput
     stock?: StockUpdateManyWithoutCastingItemNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutCastingitemsNestedInput
@@ -25044,7 +36598,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -25052,63 +36606,331 @@ export namespace Prisma {
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
-    filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
   }
 
-  export type FilingEntryUpsertWithoutSettingEntryInput = {
-    update: XOR<FilingEntryUpdateWithoutSettingEntryInput, FilingEntryUncheckedUpdateWithoutSettingEntryInput>
-    create: XOR<FilingEntryCreateWithoutSettingEntryInput, FilingEntryUncheckedCreateWithoutSettingEntryInput>
-    where?: FilingEntryWhereInput
+  export type FilingItemsUpsertWithWhereUniqueWithoutSetting_entryInput = {
+    where: FilingItemsWhereUniqueInput
+    update: XOR<FilingItemsUpdateWithoutSetting_entryInput, FilingItemsUncheckedUpdateWithoutSetting_entryInput>
+    create: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput>
   }
 
-  export type FilingEntryUpdateToOneWithWhereWithoutSettingEntryInput = {
-    where?: FilingEntryWhereInput
-    data: XOR<FilingEntryUpdateWithoutSettingEntryInput, FilingEntryUncheckedUpdateWithoutSettingEntryInput>
+  export type FilingItemsUpdateWithWhereUniqueWithoutSetting_entryInput = {
+    where: FilingItemsWhereUniqueInput
+    data: XOR<FilingItemsUpdateWithoutSetting_entryInput, FilingItemsUncheckedUpdateWithoutSetting_entryInput>
   }
 
-  export type FilingEntryUpdateWithoutSettingEntryInput = {
+  export type FilingItemsUpdateManyWithWhereWithoutSetting_entryInput = {
+    where: FilingItemsScalarWhereInput
+    data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutSetting_entryInput>
+  }
+
+  export type AddItemCreateWithoutSetting_itemsInput = {
+    createdAt?: Date | string
+    name: string
+    casting_items?: CastingItemsCreateNestedManyWithoutItemInput
+    stock?: StockCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
+  }
+
+  export type AddItemUncheckedCreateWithoutSetting_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    name: string
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
+    stock?: StockUncheckedCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
+  }
+
+  export type AddItemCreateOrConnectWithoutSetting_itemsInput = {
+    where: AddItemWhereUniqueInput
+    create: XOR<AddItemCreateWithoutSetting_itemsInput, AddItemUncheckedCreateWithoutSetting_itemsInput>
+  }
+
+  export type AddTouchCreateWithoutSetting_itemsInput = {
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
+    stock?: StockCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchUncheckedCreateWithoutSetting_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
+    stock?: StockUncheckedCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchCreateOrConnectWithoutSetting_itemsInput = {
+    where: AddTouchWhereUniqueInput
+    create: XOR<AddTouchCreateWithoutSetting_itemsInput, AddTouchUncheckedCreateWithoutSetting_itemsInput>
+  }
+
+  export type SettingWastageCreateWithoutSetting_itemsInput = {
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+  }
+
+  export type SettingWastageUncheckedCreateWithoutSetting_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+  }
+
+  export type SettingWastageCreateOrConnectWithoutSetting_itemsInput = {
+    where: SettingWastageWhereUniqueInput
+    create: XOR<SettingWastageCreateWithoutSetting_itemsInput, SettingWastageUncheckedCreateWithoutSetting_itemsInput>
+  }
+
+  export type BuffingEntryCreateWithoutSetting_itemsInput = {
+    createdAt?: Date | string
+    buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
+    filing_items?: FilingItemsCreateNestedManyWithoutBuffing_entryInput
+  }
+
+  export type BuffingEntryUncheckedCreateWithoutSetting_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    buffing_person_id: number
+    casting_item_id: number
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+  }
+
+  export type BuffingEntryCreateOrConnectWithoutSetting_itemsInput = {
+    where: BuffingEntryWhereUniqueInput
+    create: XOR<BuffingEntryCreateWithoutSetting_itemsInput, BuffingEntryUncheckedCreateWithoutSetting_itemsInput>
+  }
+
+  export type StockCreateWithoutSettingItemInput = {
+    createdAt?: Date | string
+    scrap_weight: number
+    item_purity: number
+    remarks?: string | null
+    scrap_wastage?: number | null
+    castingItem: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem: FilingItemsCreateNestedOneWithoutStockInput
+    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    item: AddItemCreateNestedOneWithoutStockInput
+    touch: AddTouchCreateNestedOneWithoutStockInput
+    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+  }
+
+  export type StockUncheckedCreateWithoutSettingItemInput = {
+    id?: number
+    createdAt?: Date | string
+    casting_item_id: number
+    filing_item_id: number
+    buffing_item_id: number
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    scrap_wastage?: number | null
+    casting_customer_id: number
+  }
+
+  export type StockCreateOrConnectWithoutSettingItemInput = {
+    where: StockWhereUniqueInput
+    create: XOR<StockCreateWithoutSettingItemInput, StockUncheckedCreateWithoutSettingItemInput>
+  }
+
+  export type StockCreateManySettingItemInputEnvelope = {
+    data: StockCreateManySettingItemInput | StockCreateManySettingItemInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AddItemUpsertWithoutSetting_itemsInput = {
+    update: XOR<AddItemUpdateWithoutSetting_itemsInput, AddItemUncheckedUpdateWithoutSetting_itemsInput>
+    create: XOR<AddItemCreateWithoutSetting_itemsInput, AddItemUncheckedCreateWithoutSetting_itemsInput>
+    where?: AddItemWhereInput
+  }
+
+  export type AddItemUpdateToOneWithWhereWithoutSetting_itemsInput = {
+    where?: AddItemWhereInput
+    data: XOR<AddItemUpdateWithoutSetting_itemsInput, AddItemUncheckedUpdateWithoutSetting_itemsInput>
+  }
+
+  export type AddItemUpdateWithoutSetting_itemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
-    filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
-    castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
-    buffingEntries?: BuffingEntryUpdateManyWithoutFilingEntryNestedInput
+    name?: StringFieldUpdateOperationsInput | string
+    casting_items?: CastingItemsUpdateManyWithoutItemNestedInput
+    stock?: StockUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
   }
 
-  export type FilingEntryUncheckedUpdateWithoutSettingEntryInput = {
+  export type AddItemUncheckedUpdateWithoutSetting_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    filing_person_id?: IntFieldUpdateOperationsInput | number
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
+    stock?: StockUncheckedUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+  }
+
+  export type AddTouchUpsertWithoutSetting_itemsInput = {
+    update: XOR<AddTouchUpdateWithoutSetting_itemsInput, AddTouchUncheckedUpdateWithoutSetting_itemsInput>
+    create: XOR<AddTouchCreateWithoutSetting_itemsInput, AddTouchUncheckedCreateWithoutSetting_itemsInput>
+    where?: AddTouchWhereInput
+  }
+
+  export type AddTouchUpdateToOneWithWhereWithoutSetting_itemsInput = {
+    where?: AddTouchWhereInput
+    data: XOR<AddTouchUpdateWithoutSetting_itemsInput, AddTouchUncheckedUpdateWithoutSetting_itemsInput>
+  }
+
+  export type AddTouchUpdateWithoutSetting_itemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
-    buffingEntries?: BuffingEntryUncheckedUpdateManyWithoutFilingEntryNestedInput
+    casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
+    stock?: StockUpdateManyWithoutTouchNestedInput
   }
 
-  export type BuffingEntryUpsertWithWhereUniqueWithoutSettingEntryInput = {
+  export type AddTouchUncheckedUpdateWithoutSetting_itemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
+  }
+
+  export type SettingWastageUpsertWithWhereUniqueWithoutSetting_itemsInput = {
+    where: SettingWastageWhereUniqueInput
+    update: XOR<SettingWastageUpdateWithoutSetting_itemsInput, SettingWastageUncheckedUpdateWithoutSetting_itemsInput>
+    create: XOR<SettingWastageCreateWithoutSetting_itemsInput, SettingWastageUncheckedCreateWithoutSetting_itemsInput>
+  }
+
+  export type SettingWastageUpdateWithWhereUniqueWithoutSetting_itemsInput = {
+    where: SettingWastageWhereUniqueInput
+    data: XOR<SettingWastageUpdateWithoutSetting_itemsInput, SettingWastageUncheckedUpdateWithoutSetting_itemsInput>
+  }
+
+  export type SettingWastageUpdateManyWithWhereWithoutSetting_itemsInput = {
+    where: SettingWastageScalarWhereInput
+    data: XOR<SettingWastageUpdateManyMutationInput, SettingWastageUncheckedUpdateManyWithoutSetting_itemsInput>
+  }
+
+  export type SettingWastageScalarWhereInput = {
+    AND?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
+    OR?: SettingWastageScalarWhereInput[]
+    NOT?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
+    id?: IntFilter<"SettingWastage"> | number
+    createdAt?: DateTimeFilter<"SettingWastage"> | Date | string
+    wastage_percentage?: IntFilter<"SettingWastage"> | number
+    given_gold?: IntNullableFilter<"SettingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"SettingWastage"> | number | null
+  }
+
+  export type BuffingEntryUpsertWithWhereUniqueWithoutSetting_itemsInput = {
     where: BuffingEntryWhereUniqueInput
-    update: XOR<BuffingEntryUpdateWithoutSettingEntryInput, BuffingEntryUncheckedUpdateWithoutSettingEntryInput>
-    create: XOR<BuffingEntryCreateWithoutSettingEntryInput, BuffingEntryUncheckedCreateWithoutSettingEntryInput>
+    update: XOR<BuffingEntryUpdateWithoutSetting_itemsInput, BuffingEntryUncheckedUpdateWithoutSetting_itemsInput>
+    create: XOR<BuffingEntryCreateWithoutSetting_itemsInput, BuffingEntryUncheckedCreateWithoutSetting_itemsInput>
   }
 
-  export type BuffingEntryUpdateWithWhereUniqueWithoutSettingEntryInput = {
+  export type BuffingEntryUpdateWithWhereUniqueWithoutSetting_itemsInput = {
     where: BuffingEntryWhereUniqueInput
-    data: XOR<BuffingEntryUpdateWithoutSettingEntryInput, BuffingEntryUncheckedUpdateWithoutSettingEntryInput>
+    data: XOR<BuffingEntryUpdateWithoutSetting_itemsInput, BuffingEntryUncheckedUpdateWithoutSetting_itemsInput>
   }
 
-  export type BuffingEntryUpdateManyWithWhereWithoutSettingEntryInput = {
+  export type BuffingEntryUpdateManyWithWhereWithoutSetting_itemsInput = {
     where: BuffingEntryScalarWhereInput
-    data: XOR<BuffingEntryUpdateManyMutationInput, BuffingEntryUncheckedUpdateManyWithoutSettingEntryInput>
+    data: XOR<BuffingEntryUpdateManyMutationInput, BuffingEntryUncheckedUpdateManyWithoutSetting_itemsInput>
+  }
+
+  export type StockUpsertWithWhereUniqueWithoutSettingItemInput = {
+    where: StockWhereUniqueInput
+    update: XOR<StockUpdateWithoutSettingItemInput, StockUncheckedUpdateWithoutSettingItemInput>
+    create: XOR<StockCreateWithoutSettingItemInput, StockUncheckedCreateWithoutSettingItemInput>
+  }
+
+  export type StockUpdateWithWhereUniqueWithoutSettingItemInput = {
+    where: StockWhereUniqueInput
+    data: XOR<StockUpdateWithoutSettingItemInput, StockUncheckedUpdateWithoutSettingItemInput>
+  }
+
+  export type StockUpdateManyWithWhereWithoutSettingItemInput = {
+    where: StockScalarWhereInput
+    data: XOR<StockUpdateManyMutationInput, StockUncheckedUpdateManyWithoutSettingItemInput>
+  }
+
+  export type SettingItemsCreateWithoutSetting_wastageInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks?: string | null
+    item: AddItemCreateNestedOneWithoutSetting_itemsInput
+    touch: AddTouchCreateNestedOneWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockCreateNestedManyWithoutSettingItemInput
+  }
+
+  export type SettingItemsUncheckedCreateWithoutSetting_wastageInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks?: string | null
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
+  }
+
+  export type SettingItemsCreateOrConnectWithoutSetting_wastageInput = {
+    where: SettingItemsWhereUniqueInput
+    create: XOR<SettingItemsCreateWithoutSetting_wastageInput, SettingItemsUncheckedCreateWithoutSetting_wastageInput>
+  }
+
+  export type SettingItemsUpsertWithWhereUniqueWithoutSetting_wastageInput = {
+    where: SettingItemsWhereUniqueInput
+    update: XOR<SettingItemsUpdateWithoutSetting_wastageInput, SettingItemsUncheckedUpdateWithoutSetting_wastageInput>
+    create: XOR<SettingItemsCreateWithoutSetting_wastageInput, SettingItemsUncheckedCreateWithoutSetting_wastageInput>
+  }
+
+  export type SettingItemsUpdateWithWhereUniqueWithoutSetting_wastageInput = {
+    where: SettingItemsWhereUniqueInput
+    data: XOR<SettingItemsUpdateWithoutSetting_wastageInput, SettingItemsUncheckedUpdateWithoutSetting_wastageInput>
+  }
+
+  export type SettingItemsUpdateManyWithWhereWithoutSetting_wastageInput = {
+    where: SettingItemsScalarWhereInput
+    data: XOR<SettingItemsUpdateManyMutationInput, SettingItemsUncheckedUpdateManyWithoutSetting_wastageInput>
   }
 
   export type AddBuffingCreateWithoutBuffingsInput = {
@@ -25137,15 +36959,15 @@ export namespace Prisma {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item: AddItemCreateNestedOneWithoutCastingItemsInput
+    touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
+    item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
-    filingEntry?: FilingEntryCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryCreateNestedOneWithoutCastingItemInput
     stock?: StockCreateNestedManyWithoutCastingItemInput
     casting_customer: AddCastingCreateNestedOneWithoutCastingitemsInput
@@ -25157,7 +36979,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
@@ -25165,7 +36987,7 @@ export namespace Prisma {
     scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
-    filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     stock?: StockUncheckedCreateNestedManyWithoutCastingItemInput
   }
@@ -25175,66 +36997,86 @@ export namespace Prisma {
     create: XOR<CastingItemsCreateWithoutBuffingEntryInput, CastingItemsUncheckedCreateWithoutBuffingEntryInput>
   }
 
-  export type SettingEntryCreateWithoutBuffingEntriesInput = {
+  export type FilingItemsCreateWithoutBuffing_entryInput = {
     createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
     item_purity: number
     remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
     after_weight?: number | null
-    setting_person: AddSettingCreateNestedOneWithoutSettingsInput
-    castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
-    filingEntry: FilingEntryCreateNestedOneWithoutSettingEntryInput
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    item: AddItemCreateNestedOneWithoutFiling_itemsInput
+    touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
+    stock?: StockCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
+    filing_wastage?: FilingWastageCreateNestedManyWithoutFiling_itemsInput
   }
 
-  export type SettingEntryUncheckedCreateWithoutBuffingEntriesInput = {
+  export type FilingItemsUncheckedCreateWithoutBuffing_entryInput = {
     id?: number
     createdAt?: Date | string
-    setting_person_id: number
-    casting_item_id: number
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
     after_weight?: number | null
-    filing_entry_id: number
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
+    filing_wastage?: FilingWastageUncheckedCreateNestedManyWithoutFiling_itemsInput
   }
 
-  export type SettingEntryCreateOrConnectWithoutBuffingEntriesInput = {
-    where: SettingEntryWhereUniqueInput
-    create: XOR<SettingEntryCreateWithoutBuffingEntriesInput, SettingEntryUncheckedCreateWithoutBuffingEntriesInput>
+  export type FilingItemsCreateOrConnectWithoutBuffing_entryInput = {
+    where: FilingItemsWhereUniqueInput
+    create: XOR<FilingItemsCreateWithoutBuffing_entryInput, FilingItemsUncheckedCreateWithoutBuffing_entryInput>
   }
 
-  export type FilingEntryCreateWithoutBuffingEntriesInput = {
+  export type SettingItemsCreateWithoutBuffing_entryInput = {
     createdAt?: Date | string
-    weight: number
-    touch: number
-    item_purity: number
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
     remarks?: string | null
-    after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
-    filing_person: AddFilingCreateNestedOneWithoutFilingsInput
-    castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
-    settingEntry?: SettingEntryCreateNestedManyWithoutFilingEntryInput
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks?: string | null
+    item: AddItemCreateNestedOneWithoutSetting_itemsInput
+    touch: AddTouchCreateNestedOneWithoutSetting_itemsInput
+    setting_wastage?: SettingWastageCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockCreateNestedManyWithoutSettingItemInput
   }
 
-  export type FilingEntryUncheckedCreateWithoutBuffingEntriesInput = {
+  export type SettingItemsUncheckedCreateWithoutBuffing_entryInput = {
     id?: number
     createdAt?: Date | string
-    filing_person_id: number
-    casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
     remarks?: string | null
-    after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
-    settingEntry?: SettingEntryUncheckedCreateNestedManyWithoutFilingEntryInput
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks?: string | null
+    setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
   }
 
-  export type FilingEntryCreateOrConnectWithoutBuffingEntriesInput = {
-    where: FilingEntryWhereUniqueInput
-    create: XOR<FilingEntryCreateWithoutBuffingEntriesInput, FilingEntryUncheckedCreateWithoutBuffingEntriesInput>
+  export type SettingItemsCreateOrConnectWithoutBuffing_entryInput = {
+    where: SettingItemsWhereUniqueInput
+    create: XOR<SettingItemsCreateWithoutBuffing_entryInput, SettingItemsUncheckedCreateWithoutBuffing_entryInput>
   }
 
   export type AddBuffingUpsertWithoutBuffingsInput = {
@@ -25280,15 +37122,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item?: AddItemUpdateOneRequiredWithoutCastingItemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
+    item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
-    filingEntry?: FilingEntryUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUpdateOneWithoutCastingItemNestedInput
     stock?: StockUpdateManyWithoutCastingItemNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutCastingitemsNestedInput
@@ -25300,7 +37142,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -25308,98 +37150,320 @@ export namespace Prisma {
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
-    filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
   }
 
-  export type SettingEntryUpsertWithoutBuffingEntriesInput = {
-    update: XOR<SettingEntryUpdateWithoutBuffingEntriesInput, SettingEntryUncheckedUpdateWithoutBuffingEntriesInput>
-    create: XOR<SettingEntryCreateWithoutBuffingEntriesInput, SettingEntryUncheckedCreateWithoutBuffingEntriesInput>
-    where?: SettingEntryWhereInput
+  export type FilingItemsUpsertWithWhereUniqueWithoutBuffing_entryInput = {
+    where: FilingItemsWhereUniqueInput
+    update: XOR<FilingItemsUpdateWithoutBuffing_entryInput, FilingItemsUncheckedUpdateWithoutBuffing_entryInput>
+    create: XOR<FilingItemsCreateWithoutBuffing_entryInput, FilingItemsUncheckedCreateWithoutBuffing_entryInput>
   }
 
-  export type SettingEntryUpdateToOneWithWhereWithoutBuffingEntriesInput = {
-    where?: SettingEntryWhereInput
-    data: XOR<SettingEntryUpdateWithoutBuffingEntriesInput, SettingEntryUncheckedUpdateWithoutBuffingEntriesInput>
+  export type FilingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput = {
+    where: FilingItemsWhereUniqueInput
+    data: XOR<FilingItemsUpdateWithoutBuffing_entryInput, FilingItemsUncheckedUpdateWithoutBuffing_entryInput>
   }
 
-  export type SettingEntryUpdateWithoutBuffingEntriesInput = {
+  export type FilingItemsUpdateManyWithWhereWithoutBuffing_entryInput = {
+    where: FilingItemsScalarWhereInput
+    data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutBuffing_entryInput>
+  }
+
+  export type SettingItemsUpsertWithWhereUniqueWithoutBuffing_entryInput = {
+    where: SettingItemsWhereUniqueInput
+    update: XOR<SettingItemsUpdateWithoutBuffing_entryInput, SettingItemsUncheckedUpdateWithoutBuffing_entryInput>
+    create: XOR<SettingItemsCreateWithoutBuffing_entryInput, SettingItemsUncheckedCreateWithoutBuffing_entryInput>
+  }
+
+  export type SettingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput = {
+    where: SettingItemsWhereUniqueInput
+    data: XOR<SettingItemsUpdateWithoutBuffing_entryInput, SettingItemsUncheckedUpdateWithoutBuffing_entryInput>
+  }
+
+  export type SettingItemsUpdateManyWithWhereWithoutBuffing_entryInput = {
+    where: SettingItemsScalarWhereInput
+    data: XOR<SettingItemsUpdateManyMutationInput, SettingItemsUncheckedUpdateManyWithoutBuffing_entryInput>
+  }
+
+  export type AddItemCreateWithoutBuffing_itemsInput = {
+    createdAt?: Date | string
+    name: string
+    casting_items?: CastingItemsCreateNestedManyWithoutItemInput
+    stock?: StockCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsCreateNestedManyWithoutItemInput
+    setting_items?: SettingItemsCreateNestedManyWithoutItemInput
+  }
+
+  export type AddItemUncheckedCreateWithoutBuffing_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    name: string
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
+    stock?: StockUncheckedCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutItemInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
+  }
+
+  export type AddItemCreateOrConnectWithoutBuffing_itemsInput = {
+    where: AddItemWhereUniqueInput
+    create: XOR<AddItemCreateWithoutBuffing_itemsInput, AddItemUncheckedCreateWithoutBuffing_itemsInput>
+  }
+
+  export type AddTouchCreateWithoutBuffing_itemsInput = {
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
+    stock?: StockCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchUncheckedCreateWithoutBuffing_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
+    stock?: StockUncheckedCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchCreateOrConnectWithoutBuffing_itemsInput = {
+    where: AddTouchWhereUniqueInput
+    create: XOR<AddTouchCreateWithoutBuffing_itemsInput, AddTouchUncheckedCreateWithoutBuffing_itemsInput>
+  }
+
+  export type StockCreateWithoutBuffingItemInput = {
+    createdAt?: Date | string
+    scrap_weight: number
+    item_purity: number
+    remarks?: string | null
+    scrap_wastage?: number | null
+    castingItem: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem: SettingItemsCreateNestedOneWithoutStockInput
+    item: AddItemCreateNestedOneWithoutStockInput
+    touch: AddTouchCreateNestedOneWithoutStockInput
+    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+  }
+
+  export type StockUncheckedCreateWithoutBuffingItemInput = {
+    id?: number
+    createdAt?: Date | string
+    casting_item_id: number
+    filing_item_id: number
+    setting_item_id: number
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    scrap_wastage?: number | null
+    casting_customer_id: number
+  }
+
+  export type StockCreateOrConnectWithoutBuffingItemInput = {
+    where: StockWhereUniqueInput
+    create: XOR<StockCreateWithoutBuffingItemInput, StockUncheckedCreateWithoutBuffingItemInput>
+  }
+
+  export type StockCreateManyBuffingItemInputEnvelope = {
+    data: StockCreateManyBuffingItemInput | StockCreateManyBuffingItemInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BuffingWastageCreateWithoutBuffing_itemsInput = {
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+  }
+
+  export type BuffingWastageUncheckedCreateWithoutBuffing_itemsInput = {
+    id?: number
+    createdAt?: Date | string
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+  }
+
+  export type BuffingWastageCreateOrConnectWithoutBuffing_itemsInput = {
+    where: BuffingWastageWhereUniqueInput
+    create: XOR<BuffingWastageCreateWithoutBuffing_itemsInput, BuffingWastageUncheckedCreateWithoutBuffing_itemsInput>
+  }
+
+  export type AddItemUpsertWithoutBuffing_itemsInput = {
+    update: XOR<AddItemUpdateWithoutBuffing_itemsInput, AddItemUncheckedUpdateWithoutBuffing_itemsInput>
+    create: XOR<AddItemCreateWithoutBuffing_itemsInput, AddItemUncheckedCreateWithoutBuffing_itemsInput>
+    where?: AddItemWhereInput
+  }
+
+  export type AddItemUpdateToOneWithWhereWithoutBuffing_itemsInput = {
+    where?: AddItemWhereInput
+    data: XOR<AddItemUpdateWithoutBuffing_itemsInput, AddItemUncheckedUpdateWithoutBuffing_itemsInput>
+  }
+
+  export type AddItemUpdateWithoutBuffing_itemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
-    castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
-    filingEntry?: FilingEntryUpdateOneRequiredWithoutSettingEntryNestedInput
+    name?: StringFieldUpdateOperationsInput | string
+    casting_items?: CastingItemsUpdateManyWithoutItemNestedInput
+    stock?: StockUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutItemNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
   }
 
-  export type SettingEntryUncheckedUpdateWithoutBuffingEntriesInput = {
+  export type AddItemUncheckedUpdateWithoutBuffing_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    setting_person_id?: IntFieldUpdateOperationsInput | number
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
+    stock?: StockUncheckedUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutItemNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
   }
 
-  export type FilingEntryUpsertWithoutBuffingEntriesInput = {
-    update: XOR<FilingEntryUpdateWithoutBuffingEntriesInput, FilingEntryUncheckedUpdateWithoutBuffingEntriesInput>
-    create: XOR<FilingEntryCreateWithoutBuffingEntriesInput, FilingEntryUncheckedCreateWithoutBuffingEntriesInput>
-    where?: FilingEntryWhereInput
+  export type AddTouchUpsertWithoutBuffing_itemsInput = {
+    update: XOR<AddTouchUpdateWithoutBuffing_itemsInput, AddTouchUncheckedUpdateWithoutBuffing_itemsInput>
+    create: XOR<AddTouchCreateWithoutBuffing_itemsInput, AddTouchUncheckedCreateWithoutBuffing_itemsInput>
+    where?: AddTouchWhereInput
   }
 
-  export type FilingEntryUpdateToOneWithWhereWithoutBuffingEntriesInput = {
-    where?: FilingEntryWhereInput
-    data: XOR<FilingEntryUpdateWithoutBuffingEntriesInput, FilingEntryUncheckedUpdateWithoutBuffingEntriesInput>
+  export type AddTouchUpdateToOneWithWhereWithoutBuffing_itemsInput = {
+    where?: AddTouchWhereInput
+    data: XOR<AddTouchUpdateWithoutBuffing_itemsInput, AddTouchUncheckedUpdateWithoutBuffing_itemsInput>
   }
 
-  export type FilingEntryUpdateWithoutBuffingEntriesInput = {
+  export type AddTouchUpdateWithoutBuffing_itemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
     touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
-    filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
-    castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
-    settingEntry?: SettingEntryUpdateManyWithoutFilingEntryNestedInput
+    casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
+    stock?: StockUpdateManyWithoutTouchNestedInput
   }
 
-  export type FilingEntryUncheckedUpdateWithoutBuffingEntriesInput = {
+  export type AddTouchUncheckedUpdateWithoutBuffing_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    filing_person_id?: IntFieldUpdateOperationsInput | number
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
     touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
-    settingEntry?: SettingEntryUncheckedUpdateManyWithoutFilingEntryNestedInput
+    casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
+  }
+
+  export type StockUpsertWithWhereUniqueWithoutBuffingItemInput = {
+    where: StockWhereUniqueInput
+    update: XOR<StockUpdateWithoutBuffingItemInput, StockUncheckedUpdateWithoutBuffingItemInput>
+    create: XOR<StockCreateWithoutBuffingItemInput, StockUncheckedCreateWithoutBuffingItemInput>
+  }
+
+  export type StockUpdateWithWhereUniqueWithoutBuffingItemInput = {
+    where: StockWhereUniqueInput
+    data: XOR<StockUpdateWithoutBuffingItemInput, StockUncheckedUpdateWithoutBuffingItemInput>
+  }
+
+  export type StockUpdateManyWithWhereWithoutBuffingItemInput = {
+    where: StockScalarWhereInput
+    data: XOR<StockUpdateManyMutationInput, StockUncheckedUpdateManyWithoutBuffingItemInput>
+  }
+
+  export type BuffingWastageUpsertWithWhereUniqueWithoutBuffing_itemsInput = {
+    where: BuffingWastageWhereUniqueInput
+    update: XOR<BuffingWastageUpdateWithoutBuffing_itemsInput, BuffingWastageUncheckedUpdateWithoutBuffing_itemsInput>
+    create: XOR<BuffingWastageCreateWithoutBuffing_itemsInput, BuffingWastageUncheckedCreateWithoutBuffing_itemsInput>
+  }
+
+  export type BuffingWastageUpdateWithWhereUniqueWithoutBuffing_itemsInput = {
+    where: BuffingWastageWhereUniqueInput
+    data: XOR<BuffingWastageUpdateWithoutBuffing_itemsInput, BuffingWastageUncheckedUpdateWithoutBuffing_itemsInput>
+  }
+
+  export type BuffingWastageUpdateManyWithWhereWithoutBuffing_itemsInput = {
+    where: BuffingWastageScalarWhereInput
+    data: XOR<BuffingWastageUpdateManyMutationInput, BuffingWastageUncheckedUpdateManyWithoutBuffing_itemsInput>
+  }
+
+  export type BuffingWastageScalarWhereInput = {
+    AND?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
+    OR?: BuffingWastageScalarWhereInput[]
+    NOT?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
+    id?: IntFilter<"BuffingWastage"> | number
+    createdAt?: DateTimeFilter<"BuffingWastage"> | Date | string
+    wastage_percentage?: IntFilter<"BuffingWastage"> | number
+    given_gold?: IntNullableFilter<"BuffingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"BuffingWastage"> | number | null
+  }
+
+  export type BuffingItemsCreateWithoutBuffing_wastageInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks: string
+    item: AddItemCreateNestedOneWithoutBuffing_itemsInput
+    touch: AddTouchCreateNestedOneWithoutBuffing_itemsInput
+    stock?: StockCreateNestedManyWithoutBuffingItemInput
+  }
+
+  export type BuffingItemsUncheckedCreateWithoutBuffing_wastageInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks: string
+    stock?: StockUncheckedCreateNestedManyWithoutBuffingItemInput
+  }
+
+  export type BuffingItemsCreateOrConnectWithoutBuffing_wastageInput = {
+    where: BuffingItemsWhereUniqueInput
+    create: XOR<BuffingItemsCreateWithoutBuffing_wastageInput, BuffingItemsUncheckedCreateWithoutBuffing_wastageInput>
+  }
+
+  export type BuffingItemsUpsertWithWhereUniqueWithoutBuffing_wastageInput = {
+    where: BuffingItemsWhereUniqueInput
+    update: XOR<BuffingItemsUpdateWithoutBuffing_wastageInput, BuffingItemsUncheckedUpdateWithoutBuffing_wastageInput>
+    create: XOR<BuffingItemsCreateWithoutBuffing_wastageInput, BuffingItemsUncheckedCreateWithoutBuffing_wastageInput>
+  }
+
+  export type BuffingItemsUpdateWithWhereUniqueWithoutBuffing_wastageInput = {
+    where: BuffingItemsWhereUniqueInput
+    data: XOR<BuffingItemsUpdateWithoutBuffing_wastageInput, BuffingItemsUncheckedUpdateWithoutBuffing_wastageInput>
+  }
+
+  export type BuffingItemsUpdateManyWithWhereWithoutBuffing_wastageInput = {
+    where: BuffingItemsScalarWhereInput
+    data: XOR<BuffingItemsUpdateManyMutationInput, BuffingItemsUncheckedUpdateManyWithoutBuffing_wastageInput>
   }
 
   export type CastingItemsCreateWithoutStockInput = {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
-    item: AddItemCreateNestedOneWithoutCastingItemsInput
+    touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
+    item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
-    filingEntry?: FilingEntryCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryCreateNestedOneWithoutCastingItemInput
     casting_customer: AddCastingCreateNestedOneWithoutCastingitemsInput
@@ -25411,7 +37475,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
@@ -25419,7 +37483,7 @@ export namespace Prisma {
     scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
-    filingEntry?: FilingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
     buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
   }
@@ -25429,22 +37493,170 @@ export namespace Prisma {
     create: XOR<CastingItemsCreateWithoutStockInput, CastingItemsUncheckedCreateWithoutStockInput>
   }
 
+  export type FilingItemsCreateWithoutStockInput = {
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    item: AddItemCreateNestedOneWithoutFiling_itemsInput
+    touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
+    setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsUncheckedCreateWithoutStockInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageUncheckedCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsCreateOrConnectWithoutStockInput = {
+    where: FilingItemsWhereUniqueInput
+    create: XOR<FilingItemsCreateWithoutStockInput, FilingItemsUncheckedCreateWithoutStockInput>
+  }
+
+  export type SettingItemsCreateWithoutStockInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks?: string | null
+    item: AddItemCreateNestedOneWithoutSetting_itemsInput
+    touch: AddTouchCreateNestedOneWithoutSetting_itemsInput
+    setting_wastage?: SettingWastageCreateNestedManyWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
+  }
+
+  export type SettingItemsUncheckedCreateWithoutStockInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks?: string | null
+    setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
+  }
+
+  export type SettingItemsCreateOrConnectWithoutStockInput = {
+    where: SettingItemsWhereUniqueInput
+    create: XOR<SettingItemsCreateWithoutStockInput, SettingItemsUncheckedCreateWithoutStockInput>
+  }
+
+  export type BuffingItemsCreateWithoutStockInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks: string
+    item: AddItemCreateNestedOneWithoutBuffing_itemsInput
+    touch: AddTouchCreateNestedOneWithoutBuffing_itemsInput
+    buffing_wastage?: BuffingWastageCreateNestedManyWithoutBuffing_itemsInput
+  }
+
+  export type BuffingItemsUncheckedCreateWithoutStockInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks: string
+    buffing_wastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffing_itemsInput
+  }
+
+  export type BuffingItemsCreateOrConnectWithoutStockInput = {
+    where: BuffingItemsWhereUniqueInput
+    create: XOR<BuffingItemsCreateWithoutStockInput, BuffingItemsUncheckedCreateWithoutStockInput>
+  }
+
   export type AddItemCreateWithoutStockInput = {
     createdAt?: Date | string
     name: string
-    castingItems?: CastingItemsCreateNestedManyWithoutItemInput
+    casting_items?: CastingItemsCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsCreateNestedManyWithoutItemInput
+    setting_items?: SettingItemsCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
   }
 
   export type AddItemUncheckedCreateWithoutStockInput = {
     id?: number
     createdAt?: Date | string
     name: string
-    castingItems?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutItemInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
   }
 
   export type AddItemCreateOrConnectWithoutStockInput = {
     where: AddItemWhereUniqueInput
     create: XOR<AddItemCreateWithoutStockInput, AddItemUncheckedCreateWithoutStockInput>
+  }
+
+  export type AddTouchCreateWithoutStockInput = {
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchUncheckedCreateWithoutStockInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchCreateOrConnectWithoutStockInput = {
+    where: AddTouchWhereUniqueInput
+    create: XOR<AddTouchCreateWithoutStockInput, AddTouchUncheckedCreateWithoutStockInput>
   }
 
   export type AddCastingCreateWithoutStockInput = {
@@ -25488,15 +37700,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item?: AddItemUpdateOneRequiredWithoutCastingItemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
+    item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
-    filingEntry?: FilingEntryUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUpdateOneWithoutCastingItemNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutCastingitemsNestedInput
@@ -25508,7 +37720,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -25516,9 +37728,143 @@ export namespace Prisma {
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
-    filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+  }
+
+  export type FilingItemsUpsertWithoutStockInput = {
+    update: XOR<FilingItemsUpdateWithoutStockInput, FilingItemsUncheckedUpdateWithoutStockInput>
+    create: XOR<FilingItemsCreateWithoutStockInput, FilingItemsUncheckedCreateWithoutStockInput>
+    where?: FilingItemsWhereInput
+  }
+
+  export type FilingItemsUpdateToOneWithWhereWithoutStockInput = {
+    where?: FilingItemsWhereInput
+    data: XOR<FilingItemsUpdateWithoutStockInput, FilingItemsUncheckedUpdateWithoutStockInput>
+  }
+
+  export type FilingItemsUpdateWithoutStockInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
+    setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateWithoutStockInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUncheckedUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type SettingItemsUpsertWithoutStockInput = {
+    update: XOR<SettingItemsUpdateWithoutStockInput, SettingItemsUncheckedUpdateWithoutStockInput>
+    create: XOR<SettingItemsCreateWithoutStockInput, SettingItemsUncheckedCreateWithoutStockInput>
+    where?: SettingItemsWhereInput
+  }
+
+  export type SettingItemsUpdateToOneWithWhereWithoutStockInput = {
+    where?: SettingItemsWhereInput
+    data: XOR<SettingItemsUpdateWithoutStockInput, SettingItemsUncheckedUpdateWithoutStockInput>
+  }
+
+  export type SettingItemsUpdateWithoutStockInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    item?: AddItemUpdateOneRequiredWithoutSetting_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutSetting_itemsNestedInput
+    setting_wastage?: SettingWastageUpdateManyWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateWithoutStockInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
+  }
+
+  export type BuffingItemsUpsertWithoutStockInput = {
+    update: XOR<BuffingItemsUpdateWithoutStockInput, BuffingItemsUncheckedUpdateWithoutStockInput>
+    create: XOR<BuffingItemsCreateWithoutStockInput, BuffingItemsUncheckedCreateWithoutStockInput>
+    where?: BuffingItemsWhereInput
+  }
+
+  export type BuffingItemsUpdateToOneWithWhereWithoutStockInput = {
+    where?: BuffingItemsWhereInput
+    data: XOR<BuffingItemsUpdateWithoutStockInput, BuffingItemsUncheckedUpdateWithoutStockInput>
+  }
+
+  export type BuffingItemsUpdateWithoutStockInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+    item?: AddItemUpdateOneRequiredWithoutBuffing_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutBuffing_itemsNestedInput
+    buffing_wastage?: BuffingWastageUpdateManyWithoutBuffing_itemsNestedInput
+  }
+
+  export type BuffingItemsUncheckedUpdateWithoutStockInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+    buffing_wastage?: BuffingWastageUncheckedUpdateManyWithoutBuffing_itemsNestedInput
   }
 
   export type AddItemUpsertWithoutStockInput = {
@@ -25535,14 +37881,52 @@ export namespace Prisma {
   export type AddItemUpdateWithoutStockInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    castingItems?: CastingItemsUpdateManyWithoutItemNestedInput
+    casting_items?: CastingItemsUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutItemNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutStockInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    castingItems?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutItemNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+  }
+
+  export type AddTouchUpsertWithoutStockInput = {
+    update: XOR<AddTouchUpdateWithoutStockInput, AddTouchUncheckedUpdateWithoutStockInput>
+    create: XOR<AddTouchCreateWithoutStockInput, AddTouchUncheckedCreateWithoutStockInput>
+    where?: AddTouchWhereInput
+  }
+
+  export type AddTouchUpdateToOneWithWhereWithoutStockInput = {
+    where?: AddTouchWhereInput
+    data: XOR<AddTouchUpdateWithoutStockInput, AddTouchUncheckedUpdateWithoutStockInput>
+  }
+
+  export type AddTouchUpdateWithoutStockInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
+  }
+
+  export type AddTouchUncheckedUpdateWithoutStockInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type AddCastingUpsertWithoutStockInput = {
@@ -25625,7 +38009,7 @@ export namespace Prisma {
     createdAt?: Date | string
     date: Date | string
     given_gold: number
-    given_touch: number
+    touch_id: number
     purity: number
     final_touch: number
     pure_value: number
@@ -25639,7 +38023,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
@@ -25652,12 +38036,14 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
     item_id: number
-    weight: number
-    touch: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
   }
 
@@ -25665,12 +38051,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
-    given_touch?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     final_touch?: FloatFieldUpdateOperationsInput | number
     pure_value?: FloatFieldUpdateOperationsInput | number
     copper?: FloatFieldUpdateOperationsInput | number
     final_weight?: FloatFieldUpdateOperationsInput | number
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_entryNestedInput
     items?: CastingItemsUpdateManyWithoutCastingEntryNestedInput
   }
 
@@ -25679,7 +38065,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
-    given_touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     final_touch?: FloatFieldUpdateOperationsInput | number
     pure_value?: FloatFieldUpdateOperationsInput | number
@@ -25693,7 +38079,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     given_gold?: FloatFieldUpdateOperationsInput | number
-    given_touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     final_touch?: FloatFieldUpdateOperationsInput | number
     pure_value?: FloatFieldUpdateOperationsInput | number
@@ -25705,15 +38091,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item?: AddItemUpdateOneRequiredWithoutCastingItemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
+    item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
-    filingEntry?: FilingEntryUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUpdateOneWithoutCastingItemNestedInput
     stock?: StockUpdateManyWithoutCastingItemNestedInput
@@ -25725,14 +38111,14 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
-    filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -25744,7 +38130,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -25755,26 +38141,30 @@ export namespace Prisma {
 
   export type StockUpdateWithoutCasting_customerInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
     item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
   }
 
   export type StockUncheckedUpdateWithoutCasting_customerInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
@@ -25782,12 +38172,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
@@ -25795,155 +38187,75 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    stone_option: $Enums.STONEOPTION
   }
 
   export type FilingEntryUpdateWithoutFiling_personInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
-    settingEntry?: SettingEntryUpdateManyWithoutFilingEntryNestedInput
-    buffingEntries?: BuffingEntryUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutFiling_personInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
-    settingEntry?: SettingEntryUncheckedUpdateManyWithoutFilingEntryNestedInput
-    buffingEntries?: BuffingEntryUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateManyWithoutFiling_personInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    stone_option?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
   }
 
   export type SettingEntryCreateManySetting_personInput = {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    filing_entry_id: number
   }
 
   export type SettingEntryUpdateWithoutSetting_personInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
-    filingEntry?: FilingEntryUpdateOneRequiredWithoutSettingEntryNestedInput
-    buffingEntries?: BuffingEntryUpdateManyWithoutSettingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutSetting_personInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    buffingEntries?: BuffingEntryUncheckedUpdateManyWithoutSettingEntryNestedInput
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateManyWithoutSetting_personInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type BuffingEntryCreateManyBuffing_personInput = {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    setting_entry_id: number
-    filing_entry_id: number
-    type: $Enums.STONEOPTION
   }
 
   export type BuffingEntryUpdateWithoutBuffing_personInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
     castingItem?: CastingItemsUpdateOneRequiredWithoutBuffingEntryNestedInput
-    settingEntry?: SettingEntryUpdateOneRequiredWithoutBuffingEntriesNestedInput
-    filingEntry?: FilingEntryUpdateOneRequiredWithoutBuffingEntriesNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateWithoutBuffing_personInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    setting_entry_id?: IntFieldUpdateOperationsInput | number
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateManyWithoutBuffing_personInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    setting_entry_id?: IntFieldUpdateOperationsInput | number
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
   }
 
   export type CastingItemsCreateManyItemInput = {
@@ -25951,7 +38263,7 @@ export namespace Prisma {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
@@ -25965,27 +38277,72 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
-    weight: number
-    touch: number
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
     casting_customer_id: number
+  }
+
+  export type FilingItemsCreateManyItemInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+  }
+
+  export type SettingItemsCreateManyItemInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks?: string | null
+  }
+
+  export type BuffingItemsCreateManyItemInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks: string
   }
 
   export type CastingItemsUpdateWithoutItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
-    filingEntry?: FilingEntryUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUpdateOneWithoutCastingItemNestedInput
     stock?: StockUpdateManyWithoutCastingItemNestedInput
@@ -25997,7 +38354,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -26005,7 +38362,7 @@ export namespace Prisma {
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
-    filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -26016,7 +38373,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -26028,13 +38385,15 @@ export namespace Prisma {
 
   export type StockUpdateWithoutItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
   }
 
@@ -26042,11 +38401,13 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
@@ -26055,11 +38416,523 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FilingItemsUpdateWithoutItemInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
+    stock?: StockUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateWithoutItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUncheckedUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingItemsUpdateWithoutItemInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    touch?: AddTouchUpdateOneRequiredWithoutSetting_itemsNestedInput
+    setting_wastage?: SettingWastageUpdateManyWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUpdateManyWithoutSettingItemNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateWithoutItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateManyWithoutItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BuffingItemsUpdateWithoutItemInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+    touch?: AddTouchUpdateOneRequiredWithoutBuffing_itemsNestedInput
+    stock?: StockUpdateManyWithoutBuffingItemNestedInput
+    buffing_wastage?: BuffingWastageUpdateManyWithoutBuffing_itemsNestedInput
+  }
+
+  export type BuffingItemsUncheckedUpdateWithoutItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+    stock?: StockUncheckedUpdateManyWithoutBuffingItemNestedInput
+    buffing_wastage?: BuffingWastageUncheckedUpdateManyWithoutBuffing_itemsNestedInput
+  }
+
+  export type BuffingItemsUncheckedUpdateManyWithoutItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CastingEntryCreateManyTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    date: Date | string
+    given_gold: number
+    purity: number
+    final_touch: number
+    pure_value: number
+    copper: number
+    final_weight: number
+    casting_customer_id: number
+  }
+
+  export type CastingItemsCreateManyTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    casting_entry_id: number
+    casting_customer_id: number
+  }
+
+  export type FilingItemsCreateManyTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+  }
+
+  export type SettingItemsCreateManyTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks?: string | null
+  }
+
+  export type BuffingItemsCreateManyTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks: string
+  }
+
+  export type StockCreateManyTouchInput = {
+    id?: number
+    createdAt?: Date | string
+    casting_item_id: number
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
+    item_id: number
+    scrap_weight: number
+    item_purity: number
+    remarks?: string | null
+    scrap_wastage?: number | null
+    casting_customer_id: number
+  }
+
+  export type CastingEntryUpdateWithoutTouchInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    given_gold?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    final_touch?: FloatFieldUpdateOperationsInput | number
+    pure_value?: FloatFieldUpdateOperationsInput | number
+    copper?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    casting_customer?: AddCastingUpdateOneRequiredWithoutEntriesNestedInput
+    items?: CastingItemsUpdateManyWithoutCastingEntryNestedInput
+  }
+
+  export type CastingEntryUncheckedUpdateWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    given_gold?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    final_touch?: FloatFieldUpdateOperationsInput | number
+    pure_value?: FloatFieldUpdateOperationsInput | number
+    copper?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    items?: CastingItemsUncheckedUpdateManyWithoutCastingEntryNestedInput
+  }
+
+  export type CastingEntryUncheckedUpdateManyWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    given_gold?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    final_touch?: FloatFieldUpdateOperationsInput | number
+    pure_value?: FloatFieldUpdateOperationsInput | number
+    copper?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CastingItemsUpdateWithoutTouchInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
+    castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
+    filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
+    settingEntry?: SettingEntryUpdateOneWithoutCastingItemNestedInput
+    buffingEntry?: BuffingEntryUpdateOneWithoutCastingItemNestedInput
+    stock?: StockUpdateManyWithoutCastingItemNestedInput
+    casting_customer?: AddCastingUpdateOneRequiredWithoutCastingitemsNestedInput
+  }
+
+  export type CastingItemsUncheckedUpdateWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    casting_entry_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
+    settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
+  }
+
+  export type CastingItemsUncheckedUpdateManyWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    casting_entry_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FilingItemsUpdateWithoutTouchInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
+    stock?: StockUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUncheckedUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingItemsUpdateWithoutTouchInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    item?: AddItemUpdateOneRequiredWithoutSetting_itemsNestedInput
+    setting_wastage?: SettingWastageUpdateManyWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUpdateManyWithoutSettingItemNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateManyWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BuffingItemsUpdateWithoutTouchInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+    item?: AddItemUpdateOneRequiredWithoutBuffing_itemsNestedInput
+    stock?: StockUpdateManyWithoutBuffingItemNestedInput
+    buffing_wastage?: BuffingWastageUpdateManyWithoutBuffing_itemsNestedInput
+  }
+
+  export type BuffingItemsUncheckedUpdateWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+    stock?: StockUncheckedUpdateManyWithoutBuffingItemNestedInput
+    buffing_wastage?: BuffingWastageUncheckedUpdateManyWithoutBuffing_itemsNestedInput
+  }
+
+  export type BuffingItemsUncheckedUpdateManyWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StockUpdateWithoutTouchInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+  }
+
+  export type StockUncheckedUpdateWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StockUncheckedUpdateManyWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
@@ -26070,7 +38943,7 @@ export namespace Prisma {
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
-    touch: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
     after_weight?: number | null
@@ -26083,14 +38956,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    item?: AddItemUpdateOneRequiredWithoutCastingItemsNestedInput
-    filingEntry?: FilingEntryUpdateOneWithoutCastingItemNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
+    item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
+    filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUpdateOneWithoutCastingItemNestedInput
     stock?: StockUpdateManyWithoutCastingItemNestedInput
@@ -26103,14 +38976,14 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
-    filingEntry?: FilingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
     stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -26122,7 +38995,7 @@ export namespace Prisma {
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -26131,40 +39004,69 @@ export namespace Prisma {
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type FilingEntryCreateManyCastingItemInput = {
+    id?: number
+    createdAt?: Date | string
+    filing_person_id: number
+  }
+
   export type StockCreateManyCastingItemInput = {
     id?: number
     createdAt?: Date | string
+    filing_item_id: number
+    setting_item_id: number
+    buffing_item_id: number
     item_id: number
-    weight: number
-    touch: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_weight?: number | null
     scrap_wastage?: number | null
     casting_customer_id: number
   }
 
+  export type FilingEntryUpdateWithoutCastingItemInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
+  }
+
+  export type FilingEntryUncheckedUpdateWithoutCastingItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FilingEntryUncheckedUpdateManyWithoutCastingItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person_id?: IntFieldUpdateOperationsInput | number
+  }
+
   export type StockUpdateWithoutCastingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
     item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
   }
 
   export type StockUncheckedUpdateWithoutCastingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
@@ -26172,173 +39074,630 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyWithoutCastingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type SettingEntryCreateManyFilingEntryInput = {
+  export type StockCreateManyFilingItemInput = {
     id?: number
     createdAt?: Date | string
-    setting_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
+    setting_item_id: number
+    buffing_item_id: number
+    item_id: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
+    scrap_wastage?: number | null
+    casting_customer_id: number
   }
 
-  export type BuffingEntryCreateManyFilingEntryInput = {
-    id?: number
-    createdAt?: Date | string
-    buffing_person_id: number
-    casting_item_id: number
-    weight: number
-    touch: number
-    item_purity: number
-    remarks?: string | null
-    after_weight?: number | null
-    setting_entry_id: number
-    type: $Enums.STONEOPTION
-  }
-
-  export type SettingEntryUpdateWithoutFilingEntryInput = {
+  export type StockUpdateWithoutFilingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+  }
+
+  export type StockUncheckedUpdateWithoutFilingItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StockUncheckedUpdateManyWithoutFilingItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SettingEntryUpdateWithoutFilingItemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
-    buffingEntries?: BuffingEntryUpdateManyWithoutSettingEntryNestedInput
   }
 
-  export type SettingEntryUncheckedUpdateWithoutFilingEntryInput = {
+  export type SettingEntryUncheckedUpdateWithoutFilingItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     setting_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    buffingEntries?: BuffingEntryUncheckedUpdateManyWithoutSettingEntryNestedInput
   }
 
-  export type SettingEntryUncheckedUpdateManyWithoutFilingEntryInput = {
+  export type SettingEntryUncheckedUpdateManyWithoutFilingItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     setting_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
-  export type BuffingEntryUpdateWithoutFilingEntryInput = {
+  export type BuffingEntryUpdateWithoutFiling_itemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
     buffing_person?: AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutBuffingEntryNestedInput
-    settingEntry?: SettingEntryUpdateOneRequiredWithoutBuffingEntriesNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
   }
 
-  export type BuffingEntryUncheckedUpdateWithoutFilingEntryInput = {
+  export type BuffingEntryUncheckedUpdateWithoutFiling_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buffing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    setting_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
   }
 
-  export type BuffingEntryUncheckedUpdateManyWithoutFilingEntryInput = {
+  export type BuffingEntryUncheckedUpdateManyWithoutFiling_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buffing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    setting_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
   }
 
-  export type BuffingEntryCreateManySettingEntryInput = {
+  export type FilingWastageUpdateWithoutFiling_itemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type FilingWastageUncheckedUpdateWithoutFiling_itemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type FilingWastageUncheckedUpdateManyWithoutFiling_itemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type FilingItemsUpdateWithoutFiling_wastageInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
+    stock?: StockUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateWithoutFiling_wastageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutFiling_wastageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type FilingItemsUpdateWithoutSetting_entryInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
+    stock?: StockUpdateManyWithoutFilingItemNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateWithoutSetting_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUncheckedUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutSetting_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type StockCreateManySettingItemInput = {
     id?: number
     createdAt?: Date | string
-    buffing_person_id: number
     casting_item_id: number
-    weight: number
-    touch: number
+    filing_item_id: number
+    buffing_item_id: number
+    item_id: number
+    scrap_weight: number
+    touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    filing_entry_id: number
-    type: $Enums.STONEOPTION
+    scrap_wastage?: number | null
+    casting_customer_id: number
   }
 
-  export type BuffingEntryUpdateWithoutSettingEntryInput = {
+  export type SettingWastageUpdateWithoutSetting_itemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingWastageUncheckedUpdateWithoutSetting_itemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingWastageUncheckedUpdateManyWithoutSetting_itemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type BuffingEntryUpdateWithoutSetting_itemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buffing_person?: AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutBuffingEntryNestedInput
-    filingEntry?: FilingEntryUpdateOneRequiredWithoutBuffingEntriesNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
   }
 
-  export type BuffingEntryUncheckedUpdateWithoutSettingEntryInput = {
+  export type BuffingEntryUncheckedUpdateWithoutSetting_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buffing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
   }
 
-  export type BuffingEntryUncheckedUpdateManyWithoutSettingEntryInput = {
+  export type BuffingEntryUncheckedUpdateManyWithoutSetting_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     buffing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type StockUpdateWithoutSettingItemInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+  }
+
+  export type StockUncheckedUpdateWithoutSettingItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StockUncheckedUpdateManyWithoutSettingItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SettingItemsUpdateWithoutSetting_wastageInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    item?: AddItemUpdateOneRequiredWithoutSetting_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUpdateManyWithoutSettingItemNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateWithoutSetting_wastageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateManyWithoutSetting_wastageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FilingItemsUpdateWithoutBuffing_entryInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
+    stock?: StockUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
+    filing_wastage?: FilingWastageUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateWithoutBuffing_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
+    filing_wastage?: FilingWastageUncheckedUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutBuffing_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingItemsUpdateWithoutBuffing_entryInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    item?: AddItemUpdateOneRequiredWithoutSetting_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutSetting_itemsNestedInput
+    setting_wastage?: SettingWastageUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUpdateManyWithoutSettingItemNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateWithoutBuffing_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateManyWithoutBuffing_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type StockCreateManyBuffingItemInput = {
+    id?: number
+    createdAt?: Date | string
+    casting_item_id: number
+    filing_item_id: number
+    setting_item_id: number
+    item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    scrap_wastage?: number | null
+    casting_customer_id: number
+  }
+
+  export type StockUpdateWithoutBuffingItemInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+  }
+
+  export type StockUncheckedUpdateWithoutBuffingItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StockUncheckedUpdateManyWithoutBuffingItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BuffingWastageUpdateWithoutBuffing_itemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type BuffingWastageUncheckedUpdateWithoutBuffing_itemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type BuffingWastageUncheckedUpdateManyWithoutBuffing_itemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type BuffingItemsUpdateWithoutBuffing_wastageInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+    item?: AddItemUpdateOneRequiredWithoutBuffing_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutBuffing_itemsNestedInput
+    stock?: StockUpdateManyWithoutBuffingItemNestedInput
+  }
+
+  export type BuffingItemsUncheckedUpdateWithoutBuffing_wastageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
+    stock?: StockUncheckedUpdateManyWithoutBuffingItemNestedInput
+  }
+
+  export type BuffingItemsUncheckedUpdateManyWithoutBuffing_wastageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: StringFieldUpdateOperationsInput | string
   }
 
 

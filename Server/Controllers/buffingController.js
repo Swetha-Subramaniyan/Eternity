@@ -29,10 +29,30 @@ export const getBuffing = async (req,res)=>{
 
 
     }catch(error){
-        res.status(400).json(error)
+        console.error("Error fetching Buffing by ID:", error);
+        res.status(500).json({ error: "Internal server error" });
     }
 
 }
+
+export const getBuffingById = async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const buffing = await prisma.addBuffing.findUnique({
+        where: { id: Number(id) },
+      });
+  
+      if (!buffing) {
+        return res.status(404).json({ message: "Buffing member not found" });
+      }
+  
+      res.status(200).json(buffing);
+    } catch (error) {
+      console.error("Error fetching buffing by ID:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  };
 
 
 export const updateBuffing = async(req,res) =>{

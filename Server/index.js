@@ -13,6 +13,8 @@ import transactionRoutes from "./Routes/transcationRoutes.js";
 import castingentryRoutes from "./Routes/castingEntryRoutes.js";
 import castingItemsRoutes from "./Routes/castingItemsRoutes.js";
 import castingStockRoutes from "./Routes/castingStockRoutes.js";
+import filingEntryRoutes from "./Routes/filingEntryRoutes.js";
+import addTouchRoutes from "./Routes/addTouchRoutes.js";
 
 
 
@@ -29,12 +31,14 @@ app.use("/api/filing",filingRoutes);
 app.use("/api/setting",settingRoutes);
 app.use("/api/buffing",buffingRoutes);
 app.use("/api/additem",additemRoutes);
+app.use("/api/addtouch",addTouchRoutes);
 app.use("/api/addsupplier", supplierRoutes);
 app.use("/api/purchase",purchaseRoutes);
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/castingentry",castingentryRoutes);
 app.use("/api/castingitems",castingItemsRoutes);
 app.use("/api/stock",castingStockRoutes);
+app.use("/api/filingentry",filingEntryRoutes );
 
 app.get("/", (req, res) => {
   res.send("Hellooo");

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, Paper, TableFooter } from "@mui/material";
 import { FaEye } from "react-icons/fa";
 import { Delete } from '@mui/icons-material';
-import styles from './SettingReport.module.css';
+import styles from './SettingLotDetails.module.css';
 import Navbar from '../Navbar/Navbar';
 
 const getTodayDate = () => {
@@ -10,7 +10,7 @@ const getTodayDate = () => {
   return today.toISOString().split('T')[0];
 };
 
-const SettingReport = () => {
+const SettingLotDetails = () => {
   const [isAssignOpen, setIsAssignOpen] = useState(false);
   const [viewEntry, setViewEntry] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -699,7 +699,7 @@ const filteredEntries = entries.filter(entry => {
   );
 };
 
-export default SettingReport;
+export default SettingLotDetails;
 
 
 

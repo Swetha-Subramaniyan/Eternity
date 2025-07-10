@@ -3,6 +3,7 @@ import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
 export const createCastingItem = async (req, res) => {
+  
   try {
     const {
       weight,
@@ -42,21 +43,6 @@ export const createCastingItem = async (req, res) => {
       },
     });
 
-    // if (type === "ScrapItems") {
-    //   await prisma.stock.create({
-    //     data: {
-    //       item_id: parseInt(item_id),
-    //       weight,
-    //       touch,
-    //       item_purity,
-    //       remarks: `Auto-added from scrap in casting ID ${castingEntryId}`,
-    //       casting_item_id: newItem.id,
-    //       scrap_weight,
-    //       scrap_wastage,
-    //       casting_customer_id: castingEntry.casting_customer_id,
-    //     },
-    //   });
-    // }
     if (type === "ScrapItems") {
       await prisma.stock.create({
         data: {
@@ -64,7 +50,7 @@ export const createCastingItem = async (req, res) => {
           weight,
           touch,
           item_purity,
-          remarks, // use user-provided remarks directly
+          remarks, 
           casting_item_id: newItem.id,
           scrap_weight,
           scrap_wastage,
@@ -73,8 +59,6 @@ export const createCastingItem = async (req, res) => {
       });
     }
     
-    
-
     res.status(201).json(newItem);
   } catch (err) {
     console.error("Error creating casting item:", err);

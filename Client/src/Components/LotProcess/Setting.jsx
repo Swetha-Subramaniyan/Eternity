@@ -249,7 +249,7 @@ const Setting = () => {
         <TableCell align="center">{row.phoneNumber || "-"}</TableCell>
         <TableCell align="center">{row.address || "-"}</TableCell>
         <TableCell align="center">
-          <Link to={`/filinglot/${row.id}/${encodeURIComponent(row.name)}`}>
+          <Link to={`/settinglot/${row.id}/${encodeURIComponent(row.name)}`}>
   <IconButton>
     <PreviewIcon color="primary" />
   </IconButton>
@@ -265,7 +265,6 @@ const Setting = () => {
     </TableRow>
   )}
 </TableBody>
-
             </Table>
           </TableContainer>
         </Paper>

@@ -209,12 +209,18 @@ exports.Prisma.AddItemScalarFieldEnum = {
   name: 'name'
 };
 
+exports.Prisma.AddTouchScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  touch: 'touch'
+};
+
 exports.Prisma.CastingEntryScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   date: 'date',
   given_gold: 'given_gold',
-  given_touch: 'given_touch',
+  touch_id: 'touch_id',
   purity: 'purity',
   final_touch: 'final_touch',
   pure_value: 'pure_value',
@@ -229,7 +235,7 @@ exports.Prisma.CastingItemsScalarFieldEnum = {
   type: 'type',
   item_id: 'item_id',
   weight: 'weight',
-  touch: 'touch',
+  touch_id: 'touch_id',
   item_purity: 'item_purity',
   remarks: 'remarks',
   after_weight: 'after_weight',
@@ -243,53 +249,105 @@ exports.Prisma.FilingEntryScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   filing_person_id: 'filing_person_id',
-  casting_item_id: 'casting_item_id',
+  casting_item_id: 'casting_item_id'
+};
+
+exports.Prisma.FilingItemsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  type: 'type',
+  item_id: 'item_id',
   weight: 'weight',
-  touch: 'touch',
+  touch_id: 'touch_id',
   item_purity: 'item_purity',
   remarks: 'remarks',
+  wastage: 'wastage',
+  stone_option: 'stone_option',
   after_weight: 'after_weight',
-  stone_option: 'stone_option'
+  scrap_weight: 'scrap_weight',
+  scrap_wastage: 'scrap_wastage'
+};
+
+exports.Prisma.FilingWastageScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  wastage_percentage: 'wastage_percentage',
+  given_gold: 'given_gold',
+  add_wastage: 'add_wastage'
 };
 
 exports.Prisma.SettingEntryScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   setting_person_id: 'setting_person_id',
-  casting_item_id: 'casting_item_id',
-  weight: 'weight',
-  touch: 'touch',
-  item_purity: 'item_purity',
+  casting_item_id: 'casting_item_id'
+};
+
+exports.Prisma.SettingItemsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  receipt_weight: 'receipt_weight',
+  stone_count: 'stone_count',
+  stone_weight: 'stone_weight',
   remarks: 'remarks',
-  after_weight: 'after_weight',
-  filing_entry_id: 'filing_entry_id'
+  wastage: 'wastage',
+  type: 'type',
+  item_id: 'item_id',
+  scrap_weight: 'scrap_weight',
+  touch_id: 'touch_id',
+  item_purity: 'item_purity',
+  scrap_remarks: 'scrap_remarks'
+};
+
+exports.Prisma.SettingWastageScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  wastage_percentage: 'wastage_percentage',
+  given_gold: 'given_gold',
+  add_wastage: 'add_wastage'
 };
 
 exports.Prisma.BuffingEntryScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   buffing_person_id: 'buffing_person_id',
-  casting_item_id: 'casting_item_id',
-  weight: 'weight',
-  touch: 'touch',
-  item_purity: 'item_purity',
+  casting_item_id: 'casting_item_id'
+};
+
+exports.Prisma.BuffingItemsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  receipt_weight: 'receipt_weight',
   remarks: 'remarks',
-  after_weight: 'after_weight',
-  setting_entry_id: 'setting_entry_id',
-  filing_entry_id: 'filing_entry_id',
-  type: 'type'
+  wastage: 'wastage',
+  type: 'type',
+  item_id: 'item_id',
+  scrap_weight: 'scrap_weight',
+  touch_id: 'touch_id',
+  item_purity: 'item_purity',
+  scrap_remarks: 'scrap_remarks'
+};
+
+exports.Prisma.BuffingWastageScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  wastage_percentage: 'wastage_percentage',
+  given_gold: 'given_gold',
+  add_wastage: 'add_wastage'
 };
 
 exports.Prisma.StockScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   casting_item_id: 'casting_item_id',
+  filing_item_id: 'filing_item_id',
+  setting_item_id: 'setting_item_id',
+  buffing_item_id: 'buffing_item_id',
   item_id: 'item_id',
-  weight: 'weight',
-  touch: 'touch',
+  scrap_weight: 'scrap_weight',
+  touch_id: 'touch_id',
   item_purity: 'item_purity',
   remarks: 'remarks',
-  scrap_weight: 'scrap_weight',
   scrap_wastage: 'scrap_wastage',
   casting_customer_id: 'casting_customer_id'
 };
@@ -362,16 +420,18 @@ exports.Prisma.CastingItemsOrderByRelevanceFieldEnum = {
   remarks: 'remarks'
 };
 
-exports.Prisma.FilingEntryOrderByRelevanceFieldEnum = {
+exports.Prisma.FilingItemsOrderByRelevanceFieldEnum = {
   remarks: 'remarks'
 };
 
-exports.Prisma.SettingEntryOrderByRelevanceFieldEnum = {
-  remarks: 'remarks'
+exports.Prisma.SettingItemsOrderByRelevanceFieldEnum = {
+  remarks: 'remarks',
+  scrap_remarks: 'scrap_remarks'
 };
 
-exports.Prisma.BuffingEntryOrderByRelevanceFieldEnum = {
-  remarks: 'remarks'
+exports.Prisma.BuffingItemsOrderByRelevanceFieldEnum = {
+  remarks: 'remarks',
+  scrap_remarks: 'scrap_remarks'
 };
 
 exports.Prisma.StockOrderByRelevanceFieldEnum = {
@@ -402,11 +462,18 @@ exports.Prisma.ModelName = {
   AddPurchaseStock: 'AddPurchaseStock',
   CustomerTransaction: 'CustomerTransaction',
   AddItem: 'AddItem',
+  AddTouch: 'AddTouch',
   CastingEntry: 'CastingEntry',
   CastingItems: 'CastingItems',
   FilingEntry: 'FilingEntry',
+  FilingItems: 'FilingItems',
+  FilingWastage: 'FilingWastage',
   SettingEntry: 'SettingEntry',
+  SettingItems: 'SettingItems',
+  SettingWastage: 'SettingWastage',
   BuffingEntry: 'BuffingEntry',
+  BuffingItems: 'BuffingItems',
+  BuffingWastage: 'BuffingWastage',
   Stock: 'Stock'
 };
 
