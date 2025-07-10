@@ -1,138 +1,30 @@
-// import React, { useState } from "react";
-// import {
-//   Container,
-//   Paper,
-//   Typography,
-//   Table,
-//   TableHead,
-//   TableBody,
-//   TableRow,
-//   TableCell,
-//   TableContainer,
-//   IconButton,
-//   TextField,
-//   InputAdornment,
-// } from "@mui/material";
-// import SearchIcon from "@mui/icons-material/Search";
-// import PreviewIcon from "@mui/icons-material/Preview";
-// import Navbar from "../Navbar/Navbar";
-// import { Link } from "react-router-dom";
-
-// const Buffing = () => {
-//   const [searchTerm, setSearchTerm] = useState("");
-
-//   return (
-//     <>
-
-//       <Navbar />
-//       <Container maxWidth="lg">
-//         <Paper className="customer-table-container" elevation={3} sx={{ p: 3 }}>
-//           <Typography variant="h5" align="center" gutterBottom>
-//             Buffing Details
-//           </Typography>
-//           <TextField
-//             label="Search Buffing Member"
-//             variant="outlined"
-//             fullWidth
-//             margin="normal"
-//             value={searchTerm}
-//             onChange={(e) => setSearchTerm(e.target.value)}
-//             sx={{
-//               "& .MuiOutlinedInput-root": {
-//                 borderRadius: "30px",
-//                 width: "20rem",
-//                 backgroundColor: "#f8f9fa",
-//                 "&.Mui-focused": {
-//                   backgroundColor: "#ffffff",
-//                 },
-//               },
-//             }}
-//             InputProps={{
-//               startAdornment: (
-//                 <InputAdornment position="start">
-//                   <SearchIcon style={{ color: "#777" }} />
-//                 </InputAdornment>
-//               ),
-//             }}
-//           />
-
-//           <TableContainer>
-//             <Table>
-//               <TableHead>
-//                 <TableRow>
-//                   <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>S.No</TableCell>
-//                   <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Buffing Member Name</TableCell>
-//                   <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Phone Number</TableCell>
-//                   <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Address</TableCell>
-//                   <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Actions</TableCell>
-//                 </TableRow>
-//               </TableHead>
-//               <TableBody>
-//                 <TableRow>
-//                 <TableCell align="center">1 </TableCell>
-//                   <TableCell align="center">Dhanusha</TableCell>
-//                   <TableCell align="center">9321345672</TableCell>
-//                   <TableCell align="center">4/213, Coimbatore, Buffing</TableCell>
-//                   <TableCell align="center">
-             
-//                     <Link to={'/buffinglot'}> 
-//                     <IconButton>
-//                       <PreviewIcon color="primary"  /> 
-//                     </IconButton>
-//                     </Link>
-//                   </TableCell> 
-//                 </TableRow>
-//               </TableBody>
-//             </Table>
-//           </TableContainer>
-//         </Paper>
-//       </Container>
-      
-//     </>
-//   );
-// };
-
-// export default Buffing;
-
-
-
-import React, { useState } from "react";
-import {
-  Container,
-  Paper,
-  Typography,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableContainer,
-  IconButton,
-  TextField,
-  InputAdornment,
-} from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Container, Paper, Typography, Table, TableHead, TableBody, TableRow, TableCell, TableContainer,IconButton,TextField, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import PreviewIcon from "@mui/icons-material/Preview";
 import Navbar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { BACKEND_SERVER_URL } from "../../../Config/config";
 
 const Buffing = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [buffingData, setBuffingData] = useState([]);
 
-  const buffingMembers = [
-    {
-      id: 1,
-      name: "Dhanusha",
-      phone: "9321345672",
-      address: "4/213, Coimbatore",
-    }
-  ];
-
-  const filteredMembers = buffingMembers.filter(
-    (member) =>
-      member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      member.phone.includes(searchTerm) ||
-      member.address.toLowerCase().includes(searchTerm.toLowerCase())
+  useEffect(() => {
+    const fetchBuffingData = async () => {
+      try {
+        const response = await axios.get(`${BACKEND_SERVER_URL}/api/buffing`);
+        setBuffingData(response.data);
+      } catch (error) {
+        console.error("Error fetching filing data:", error);
+      }
+    };
+    fetchBuffingData();
+  }, []);
+  
+  const filteredData = buffingData.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -145,7 +37,7 @@ const Buffing = () => {
           </Typography>
 
           <TextField
-            label="Search Buffing Member"
+            label="Search Filing Member"
             variant="outlined"
             fullWidth
             margin="normal"
@@ -169,13 +61,18 @@ const Buffing = () => {
               ),
             }}
           />
-
           <TableContainer>
             <Table>
               <TableHead>
                 <TableRow>
                   <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
                     <strong>S.No</strong>
+                  </TableCell>
+                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
+                    <strong>Date </strong>
+                  </TableCell>
+                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
+                    <strong>Time </strong>
                   </TableCell>
                   <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
                     <strong>Buffing Member Name</strong>
@@ -191,31 +88,38 @@ const Buffing = () => {
                   </TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {filteredMembers.length > 0 ? (
-                  filteredMembers.map((member, index) => (
-                    <TableRow key={member.id}>
-                      <TableCell align="center">{index + 1}</TableCell>
-                      <TableCell align="center">{member.name}</TableCell>
-                      <TableCell align="center">{member.phone}</TableCell>
-                      <TableCell align="center">{member.address}</TableCell>
-                      <TableCell align="center">
-                        <Link to="/buffinglot">
-                          <IconButton>
-                            <PreviewIcon color="primary" />
-                          </IconButton>
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={5} align="center">
-                      No records found.
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
+              
+<TableBody>
+  {filteredData.length > 0 ? (
+    filteredData.map((row, index) => (
+      <TableRow key={row.id}>
+        <TableCell align="center">{index + 1}</TableCell>
+        <TableCell align="center">
+          {new Date(row.createdAt).toLocaleDateString()}
+        </TableCell>
+        <TableCell align="center">
+          {new Date(row.createdAt).toLocaleTimeString()}
+        </TableCell>
+        <TableCell align="center">{row.name}</TableCell>
+        <TableCell align="center">{row.phoneNumber || "-"}</TableCell>
+        <TableCell align="center">{row.address || "-"}</TableCell>
+        <TableCell align="center">
+          <Link to={`/buffinglot/${row.id}/${encodeURIComponent(row.name)}`}>
+  <IconButton>
+    <PreviewIcon color="primary" />
+  </IconButton>
+</Link>
+        </TableCell>       
+      </TableRow>
+    ))
+  ) : (
+    <TableRow>
+      <TableCell colSpan={7} align="center">
+        No records found.
+      </TableCell>
+    </TableRow>
+  )}
+</TableBody>
             </Table>
           </TableContainer>
         </Paper>

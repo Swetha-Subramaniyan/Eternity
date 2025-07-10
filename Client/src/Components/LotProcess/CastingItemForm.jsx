@@ -19,6 +19,7 @@ const CastingItemForm = ({ castingEntryId, items, setItems, scrapItems, setScrap
     };
     fetchItems();
   }, []);
+  
 
   useEffect(() => {
     if (castingEntryId && availableItems.length > 0) {

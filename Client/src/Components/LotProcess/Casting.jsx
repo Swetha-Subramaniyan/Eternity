@@ -216,7 +216,6 @@ export default function Casting() {
     }
   };
   
-
   const resetForm = () => {
     setForm({
       date: new Date().toISOString().split("T")[0],

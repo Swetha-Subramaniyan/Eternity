@@ -20,9 +20,7 @@ import MasterAddSupplier from './Components/Master/MasterAddSupplier';
 import CustomerTranscation from './Components/Customer/CustomerTranscation';
 import Stock from './Components/LotProcess/Stock';
 import FilingLot from './Components/LotProcess/FilingLot';
-import SettingReport from './Components/LotProcess/SettingReport';
 import BuffingLot from './Components/LotProcess/BuffingLot';
-import BuffingReport from './Components/LotProcess/BuffingReport';
 import SettingLot from './Components/LotProcess/SettingLot';
 import MasterJewelStock from './Components/Master/MasterJewelStock';
 import Billing from './Components/Billing/Billing';
@@ -37,6 +35,8 @@ import SettingReports from './Components/Report/SettingReports';
 import FilingReports from './Components/Report/FilingReports';
 import BuffingReports from './Components/Report/BuffingReports';
 import FilingLotDetails from './Components/LotProcess/FilingLotDetails';
+import BuffingLotDetails from './Components/LotProcess/BuffingLotDetails';
+import SettingLotDetails from './Components/LotProcess/SettingLotDetails';
 
 
 const App = () => {
@@ -65,10 +65,10 @@ const App = () => {
     <Route path='/stock' element={<Stock/>} />
     <Route path='/filingLotDetails/:id/:name' element={<FilingLotDetails/>}/> 
     <Route path='/filinglot/:id/:name' element={<FilingLot/>}/> 
-    <Route path='/settinglot' element={< SettingLot />}/> 
-    <Route path='/settingreport' element={<SettingReport/>}/>
-    <Route path='/buffinglot' element={<BuffingLot/>}/>
-    <Route path='/buffingreport' element={<BuffingReport/>}/>
+    <Route path='/settinglot/:id/:name' element={< SettingLot />}/> 
+    <Route path='/settingLotDetails/:id/:name' element={<SettingLotDetails/>} />
+    <Route path='/buffinglot/:id/:name' element={<BuffingLot/>}/>
+    <Route path='/buffingLotDetails/:id/:name' element={<BuffingLotDetails/>}/>
     <Route path='/masterjewel' element={< MasterJewelStock />} />
     <Route path='/billing' element={<Billing />}/>
     <Route path='/report' element={< Report/>}/>

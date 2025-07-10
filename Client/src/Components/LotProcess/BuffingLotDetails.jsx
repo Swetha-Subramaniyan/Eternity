@@ -7,7 +7,7 @@ import {
 import { FaEye } from "react-icons/fa";
 import Navbar from '../Navbar/Navbar';
 import { Delete } from "@mui/icons-material";
-import styles from './BuffingReport.module.css';
+import styles from './BuffingLotDetails.module.css';
 import { Tooltip } from '@mui/material'; 
 
 const getTodayDate = () => {
@@ -15,7 +15,7 @@ const getTodayDate = () => {
   return today.toISOString().split('T')[0];
 };
 
-const BuffingReport = () => {
+const BuffingLotDetails = () => {
   const [isAssignOpen, setIsAssignOpen] = useState(false);
   const [viewEntry, setViewEntry] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -734,4 +734,4 @@ const settlementMessage =
   );
 };
 
-export default BuffingReport;
+export default BuffingLotDetails;
