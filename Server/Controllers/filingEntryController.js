@@ -6,31 +6,13 @@ const prisma = new PrismaClient();
 // CREATE filing entry
 export const createFilingEntry = async (req, res) => {
   try {
-    const {
-      filing_person_id,
-      casting_item_id,
-      type,       // "Items" or "ScrapItems"
-      item,       // Item name string
-      weight,
-      touch,
-      item_purity,
-      remarks,
-      after_weight,
-      stone_option, // "WithStone" or "WithoutStone"
-    } = req.body;
+    const { filing_person_id, casting_item_id } = req.body;
 
     const newEntry = await prisma.filingEntry.create({
       data: {
         filing_person_id,
         casting_item_id,
-        type,
-        item,
-        weight,
-        touch,
-        item_purity,
-        remarks,
-        after_weight,
-        stone_option,
+  
       },
     });
 
@@ -41,10 +23,54 @@ export const createFilingEntry = async (req, res) => {
   }
 };
 
-// READ ALL filing entries
-export const getAllFilingEntry = async (req, res) => {
+
+export const getAllFilingEntries = async (req, res) => {
   try {
     const entries = await prisma.filingEntry.findMany({
+      include: {
+        filingItems: true,
+        castingItem: {
+          include: {
+            item: true
+          }
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+
+    const formattedEntries = entries.map(entry => {
+      const productItems = entry.filingItems.filter(item => item.type === 'Items');
+      const scrapItems = entry.filingItems.filter(item => item.type === 'ScrapItems');
+
+      return {
+        ...entry,
+        productItems,
+        date: entry.createdAt,
+        scrapItems,
+        wastage: productItems.some(i => i.wastage === true) ? 'Yes' : 'No',
+        items: entry.castingItem ? [{
+          item: entry.castingItem.item.name,
+          beforeWeight: entry.castingItem.weight
+        }] : []
+      };
+    });
+
+    res.status(200).json(formattedEntries);
+  } catch (error) {
+    console.error("Failed to fetch filing entries:", error);
+    res.status(500).json({ message: "Error fetching entries" });
+  }
+};
+
+
+export const getFilingEntryById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const entry = await prisma.filingEntry.findUnique({
+      where: { id: parseInt(id) },
       include: {
         filing_person: true,
         castingItem: {
@@ -53,71 +79,31 @@ export const getAllFilingEntry = async (req, res) => {
             casting_customer: true,
           },
         },
-        settingEntry: true,
-        buffingEntries: true,
-      },
-      orderBy: { createdAt: "desc" },
-    });
-    res.json(entries);
-  } catch (error) {
-    console.error("Error fetching filing entries:", error);
-    res.status(500).json({ error: "Failed to fetch filing entries" });
-  }
-};
-
-// READ filing entry by ID
-export const getFilingEntryById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const entry = await prisma.filingEntry.findUnique({
-      where: { id: parseInt(id) },
-      include: {
-        filing_person: true,
-        castingItem: {
-          include: { item: true, casting_customer: true },
-        },
-        settingEntry: true,
-        buffingEntries: true,
       },
     });
 
-    if (!entry) return res.status(404).json({ error: "Entry not found" });
+    if (!entry) {
+      return res.status(404).json({ error: "Filing entry not found" });
+    }
 
     res.json(entry);
   } catch (error) {
-    console.error("Error fetching filing entry by ID:", error);
+    console.error("Error fetching filing entry:", error);
     res.status(500).json({ error: "Failed to fetch filing entry" });
   }
 };
 
-// UPDATE filing entry
+
 export const updateFilingEntry = async (req, res) => {
   try {
     const { id } = req.params;
-    const {
-      filing_person_id,
-      type,
-      item,
-      weight,
-      touch,
-      item_purity,
-      remarks,
-      after_weight,
-      stone_option,
-    } = req.body;
+    const { filing_person_id, casting_item_id } = req.body;
 
     const updatedEntry = await prisma.filingEntry.update({
       where: { id: parseInt(id) },
       data: {
         filing_person_id,
-        type,
-        item,
-        weight,
-        touch,
-        item_purity,
-        remarks,
-        after_weight,
-        stone_option,
+        casting_item_id,
       },
     });
 
@@ -128,7 +114,7 @@ export const updateFilingEntry = async (req, res) => {
   }
 };
 
-// DELETE filing entry
+
 export const deleteFilingEntry = async (req, res) => {
   try {
     const { id } = req.params;

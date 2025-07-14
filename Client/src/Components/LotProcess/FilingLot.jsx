@@ -15,6 +15,7 @@ const FilingLot = () => {
       try {
         const response = await axios.get(`${BACKEND_SERVER_URL}/api/filing/${id}`)
         setUserDetails(response.data);
+        console.log('Filing Member:', response.data)
       } catch (error) {
         console.error('Error fetching user details:', error);
       }
@@ -47,7 +48,6 @@ const FilingLot = () => {
               <label className={styles.lotLabel}>Lot No: {lot.id}</label>
               <div className={styles.actions}>
               <Link to={`/filingLotDetails/${id}/${encodeURIComponent(name)}`}>
-
                   <button className={styles.button}>View</button>
                 </Link>
               </div>

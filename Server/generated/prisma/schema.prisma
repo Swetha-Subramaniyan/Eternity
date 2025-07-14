@@ -187,17 +187,20 @@ model CastingItems {
 }
 
 model FilingEntry {
-  id               Int          @id @default(autoincrement())
-  createdAt        DateTime     @default(now())
-  filing_person    AddFiling    @relation(fields: [filing_person_id], references: [id])
+  id               Int           @id @default(autoincrement())
+  createdAt        DateTime      @default(now())
+  filing_person    AddFiling     @relation(fields: [filing_person_id], references: [id])
   filing_person_id Int
-  castingItem      CastingItems @relation(fields: [casting_item_id], references: [id])
+  castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])
   casting_item_id  Int
+  filingItems      FilingItems[]
 }
 
 model FilingItems {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
+  id              Int         @id @default(autoincrement())
+  createdAt       DateTime    @default(now())
+  filing_entry_id Int
+  filing_entry    FilingEntry @relation(fields: [filing_entry_id], references: [id], onDelete: Cascade)
 
   type           CASTINGENTRYTYPE
   item_id        Int
@@ -315,21 +318,21 @@ model Stock {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  casting_item_id Int
-  castingItem     CastingItems @relation(fields: [casting_item_id], references: [id], onDelete: Cascade)
+  casting_item_id Int?
+  castingItem     CastingItems? @relation(fields: [casting_item_id], references: [id], onDelete: Cascade)
 
-  filing_item_id Int
-  filingItem     FilingItems @relation(fields: [filing_item_id], references: [id], onDelete: Cascade)
+  filing_item_id Int?
+  filingItem     FilingItems? @relation(fields: [filing_item_id], references: [id], onDelete: Cascade)
 
-  setting_item_id Int
-  settingItem     SettingItems @relation(fields: [setting_item_id], references: [id], onDelete: Cascade)
+  setting_item_id Int?
+  settingItem     SettingItems? @relation(fields: [setting_item_id], references: [id], onDelete: Cascade)
 
-  buffing_item_id Int
-  buffingItem     BuffingItems @relation(fields: [buffing_item_id], references: [id], onDelete: Cascade)
+  buffing_item_id Int?
+  buffingItem     BuffingItems? @relation(fields: [buffing_item_id], references: [id], onDelete: Cascade)
 
   item_id       Int
   item          AddItem  @relation(fields: [item_id], references: [id])
-  scrap_weight  Float
+  weight        Float
   touch_id      Int
   touch         AddTouch @relation(fields: [touch_id], references: [id])
   item_purity   Float

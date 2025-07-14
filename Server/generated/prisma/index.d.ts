@@ -3028,6 +3028,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type FilingEntryCountOutputType
+   */
+
+  export type FilingEntryCountOutputType = {
+    filingItems: number
+  }
+
+  export type FilingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filingItems?: boolean | FilingEntryCountOutputTypeCountFilingItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FilingEntryCountOutputType without action
+   */
+  export type FilingEntryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingEntryCountOutputType
+     */
+    select?: FilingEntryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FilingEntryCountOutputType without action
+   */
+  export type FilingEntryCountOutputTypeCountFilingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingItemsWhereInput
+  }
+
+
+  /**
    * Count Type FilingItemsCountOutputType
    */
 
@@ -16095,6 +16126,8 @@ export namespace Prisma {
     casting_item_id?: boolean
     filing_person?: boolean | AddFilingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
+    filingItems?: boolean | FilingEntry$filingItemsArgs<ExtArgs>
+    _count?: boolean | FilingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["filingEntry"]>
 
 
@@ -16110,6 +16143,8 @@ export namespace Prisma {
   export type FilingEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filing_person?: boolean | AddFilingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
+    filingItems?: boolean | FilingEntry$filingItemsArgs<ExtArgs>
+    _count?: boolean | FilingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $FilingEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -16117,6 +16152,7 @@ export namespace Prisma {
     objects: {
       filing_person: Prisma.$AddFilingPayload<ExtArgs>
       castingItem: Prisma.$CastingItemsPayload<ExtArgs>
+      filingItems: Prisma.$FilingItemsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -16465,6 +16501,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     filing_person<T extends AddFilingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddFilingDefaultArgs<ExtArgs>>): Prisma__AddFilingClient<$Result.GetResult<Prisma.$AddFilingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     castingItem<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    filingItems<T extends FilingEntry$filingItemsArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$filingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16841,6 +16878,30 @@ export namespace Prisma {
   }
 
   /**
+   * FilingEntry.filingItems
+   */
+  export type FilingEntry$filingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    where?: FilingItemsWhereInput
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    cursor?: FilingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
+  }
+
+  /**
    * FilingEntry without action
    */
   export type FilingEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -16873,6 +16934,7 @@ export namespace Prisma {
 
   export type FilingItemsAvgAggregateOutputType = {
     id: number | null
+    filing_entry_id: number | null
     item_id: number | null
     weight: number | null
     touch_id: number | null
@@ -16884,6 +16946,7 @@ export namespace Prisma {
 
   export type FilingItemsSumAggregateOutputType = {
     id: number | null
+    filing_entry_id: number | null
     item_id: number | null
     weight: number | null
     touch_id: number | null
@@ -16896,6 +16959,7 @@ export namespace Prisma {
   export type FilingItemsMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    filing_entry_id: number | null
     type: $Enums.CASTINGENTRYTYPE | null
     item_id: number | null
     weight: number | null
@@ -16912,6 +16976,7 @@ export namespace Prisma {
   export type FilingItemsMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    filing_entry_id: number | null
     type: $Enums.CASTINGENTRYTYPE | null
     item_id: number | null
     weight: number | null
@@ -16928,6 +16993,7 @@ export namespace Prisma {
   export type FilingItemsCountAggregateOutputType = {
     id: number
     createdAt: number
+    filing_entry_id: number
     type: number
     item_id: number
     weight: number
@@ -16945,6 +17011,7 @@ export namespace Prisma {
 
   export type FilingItemsAvgAggregateInputType = {
     id?: true
+    filing_entry_id?: true
     item_id?: true
     weight?: true
     touch_id?: true
@@ -16956,6 +17023,7 @@ export namespace Prisma {
 
   export type FilingItemsSumAggregateInputType = {
     id?: true
+    filing_entry_id?: true
     item_id?: true
     weight?: true
     touch_id?: true
@@ -16968,6 +17036,7 @@ export namespace Prisma {
   export type FilingItemsMinAggregateInputType = {
     id?: true
     createdAt?: true
+    filing_entry_id?: true
     type?: true
     item_id?: true
     weight?: true
@@ -16984,6 +17053,7 @@ export namespace Prisma {
   export type FilingItemsMaxAggregateInputType = {
     id?: true
     createdAt?: true
+    filing_entry_id?: true
     type?: true
     item_id?: true
     weight?: true
@@ -17000,6 +17070,7 @@ export namespace Prisma {
   export type FilingItemsCountAggregateInputType = {
     id?: true
     createdAt?: true
+    filing_entry_id?: true
     type?: true
     item_id?: true
     weight?: true
@@ -17103,6 +17174,7 @@ export namespace Prisma {
   export type FilingItemsGroupByOutputType = {
     id: number
     createdAt: Date
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
@@ -17138,6 +17210,7 @@ export namespace Prisma {
   export type FilingItemsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    filing_entry_id?: boolean
     type?: boolean
     item_id?: boolean
     weight?: boolean
@@ -17149,6 +17222,7 @@ export namespace Prisma {
     after_weight?: boolean
     scrap_weight?: boolean
     scrap_wastage?: boolean
+    filing_entry?: boolean | FilingEntryDefaultArgs<ExtArgs>
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     stock?: boolean | FilingItems$stockArgs<ExtArgs>
@@ -17163,6 +17237,7 @@ export namespace Prisma {
   export type FilingItemsSelectScalar = {
     id?: boolean
     createdAt?: boolean
+    filing_entry_id?: boolean
     type?: boolean
     item_id?: boolean
     weight?: boolean
@@ -17176,8 +17251,9 @@ export namespace Prisma {
     scrap_wastage?: boolean
   }
 
-  export type FilingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "wastage" | "stone_option" | "after_weight" | "scrap_weight" | "scrap_wastage", ExtArgs["result"]["filingItems"]>
+  export type FilingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "filing_entry_id" | "type" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "wastage" | "stone_option" | "after_weight" | "scrap_weight" | "scrap_wastage", ExtArgs["result"]["filingItems"]>
   export type FilingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filing_entry?: boolean | FilingEntryDefaultArgs<ExtArgs>
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     stock?: boolean | FilingItems$stockArgs<ExtArgs>
@@ -17190,6 +17266,7 @@ export namespace Prisma {
   export type $FilingItemsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FilingItems"
     objects: {
+      filing_entry: Prisma.$FilingEntryPayload<ExtArgs>
       item: Prisma.$AddItemPayload<ExtArgs>
       touch: Prisma.$AddTouchPayload<ExtArgs>
       stock: Prisma.$StockPayload<ExtArgs>[]
@@ -17200,6 +17277,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
+      filing_entry_id: number
       type: $Enums.CASTINGENTRYTYPE
       item_id: number
       weight: number
@@ -17551,6 +17629,7 @@ export namespace Prisma {
    */
   export interface Prisma__FilingItemsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    filing_entry<T extends FilingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntryDefaultArgs<ExtArgs>>): Prisma__FilingEntryClient<$Result.GetResult<Prisma.$FilingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     item<T extends AddItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddItemDefaultArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     touch<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     stock<T extends FilingItems$stockArgs<ExtArgs> = {}>(args?: Subset<T, FilingItems$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -17588,6 +17667,7 @@ export namespace Prisma {
   interface FilingItemsFieldRefs {
     readonly id: FieldRef<"FilingItems", 'Int'>
     readonly createdAt: FieldRef<"FilingItems", 'DateTime'>
+    readonly filing_entry_id: FieldRef<"FilingItems", 'Int'>
     readonly type: FieldRef<"FilingItems", 'CASTINGENTRYTYPE'>
     readonly item_id: FieldRef<"FilingItems", 'Int'>
     readonly weight: FieldRef<"FilingItems", 'Float'>
@@ -25374,7 +25454,7 @@ export namespace Prisma {
     setting_item_id: number | null
     buffing_item_id: number | null
     item_id: number | null
-    scrap_weight: number | null
+    weight: number | null
     touch_id: number | null
     item_purity: number | null
     scrap_wastage: number | null
@@ -25388,7 +25468,7 @@ export namespace Prisma {
     setting_item_id: number | null
     buffing_item_id: number | null
     item_id: number | null
-    scrap_weight: number | null
+    weight: number | null
     touch_id: number | null
     item_purity: number | null
     scrap_wastage: number | null
@@ -25403,7 +25483,7 @@ export namespace Prisma {
     setting_item_id: number | null
     buffing_item_id: number | null
     item_id: number | null
-    scrap_weight: number | null
+    weight: number | null
     touch_id: number | null
     item_purity: number | null
     remarks: string | null
@@ -25419,7 +25499,7 @@ export namespace Prisma {
     setting_item_id: number | null
     buffing_item_id: number | null
     item_id: number | null
-    scrap_weight: number | null
+    weight: number | null
     touch_id: number | null
     item_purity: number | null
     remarks: string | null
@@ -25435,7 +25515,7 @@ export namespace Prisma {
     setting_item_id: number
     buffing_item_id: number
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks: number
@@ -25452,7 +25532,7 @@ export namespace Prisma {
     setting_item_id?: true
     buffing_item_id?: true
     item_id?: true
-    scrap_weight?: true
+    weight?: true
     touch_id?: true
     item_purity?: true
     scrap_wastage?: true
@@ -25466,7 +25546,7 @@ export namespace Prisma {
     setting_item_id?: true
     buffing_item_id?: true
     item_id?: true
-    scrap_weight?: true
+    weight?: true
     touch_id?: true
     item_purity?: true
     scrap_wastage?: true
@@ -25481,7 +25561,7 @@ export namespace Prisma {
     setting_item_id?: true
     buffing_item_id?: true
     item_id?: true
-    scrap_weight?: true
+    weight?: true
     touch_id?: true
     item_purity?: true
     remarks?: true
@@ -25497,7 +25577,7 @@ export namespace Prisma {
     setting_item_id?: true
     buffing_item_id?: true
     item_id?: true
-    scrap_weight?: true
+    weight?: true
     touch_id?: true
     item_purity?: true
     remarks?: true
@@ -25513,7 +25593,7 @@ export namespace Prisma {
     setting_item_id?: true
     buffing_item_id?: true
     item_id?: true
-    scrap_weight?: true
+    weight?: true
     touch_id?: true
     item_purity?: true
     remarks?: true
@@ -25611,12 +25691,12 @@ export namespace Prisma {
   export type StockGroupByOutputType = {
     id: number
     createdAt: Date
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    casting_item_id: number | null
+    filing_item_id: number | null
+    setting_item_id: number | null
+    buffing_item_id: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks: string | null
@@ -25651,16 +25731,16 @@ export namespace Prisma {
     setting_item_id?: boolean
     buffing_item_id?: boolean
     item_id?: boolean
-    scrap_weight?: boolean
+    weight?: boolean
     touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
     scrap_wastage?: boolean
     casting_customer_id?: boolean
-    castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
-    filingItem?: boolean | FilingItemsDefaultArgs<ExtArgs>
-    settingItem?: boolean | SettingItemsDefaultArgs<ExtArgs>
-    buffingItem?: boolean | BuffingItemsDefaultArgs<ExtArgs>
+    castingItem?: boolean | Stock$castingItemArgs<ExtArgs>
+    filingItem?: boolean | Stock$filingItemArgs<ExtArgs>
+    settingItem?: boolean | Stock$settingItemArgs<ExtArgs>
+    buffingItem?: boolean | Stock$buffingItemArgs<ExtArgs>
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
@@ -25676,7 +25756,7 @@ export namespace Prisma {
     setting_item_id?: boolean
     buffing_item_id?: boolean
     item_id?: boolean
-    scrap_weight?: boolean
+    weight?: boolean
     touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
@@ -25684,12 +25764,12 @@ export namespace Prisma {
     casting_customer_id?: boolean
   }
 
-  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "casting_item_id" | "filing_item_id" | "setting_item_id" | "buffing_item_id" | "item_id" | "scrap_weight" | "touch_id" | "item_purity" | "remarks" | "scrap_wastage" | "casting_customer_id", ExtArgs["result"]["stock"]>
+  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "casting_item_id" | "filing_item_id" | "setting_item_id" | "buffing_item_id" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "scrap_wastage" | "casting_customer_id", ExtArgs["result"]["stock"]>
   export type StockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
-    filingItem?: boolean | FilingItemsDefaultArgs<ExtArgs>
-    settingItem?: boolean | SettingItemsDefaultArgs<ExtArgs>
-    buffingItem?: boolean | BuffingItemsDefaultArgs<ExtArgs>
+    castingItem?: boolean | Stock$castingItemArgs<ExtArgs>
+    filingItem?: boolean | Stock$filingItemArgs<ExtArgs>
+    settingItem?: boolean | Stock$settingItemArgs<ExtArgs>
+    buffingItem?: boolean | Stock$buffingItemArgs<ExtArgs>
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
@@ -25698,10 +25778,10 @@ export namespace Prisma {
   export type $StockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Stock"
     objects: {
-      castingItem: Prisma.$CastingItemsPayload<ExtArgs>
-      filingItem: Prisma.$FilingItemsPayload<ExtArgs>
-      settingItem: Prisma.$SettingItemsPayload<ExtArgs>
-      buffingItem: Prisma.$BuffingItemsPayload<ExtArgs>
+      castingItem: Prisma.$CastingItemsPayload<ExtArgs> | null
+      filingItem: Prisma.$FilingItemsPayload<ExtArgs> | null
+      settingItem: Prisma.$SettingItemsPayload<ExtArgs> | null
+      buffingItem: Prisma.$BuffingItemsPayload<ExtArgs> | null
       item: Prisma.$AddItemPayload<ExtArgs>
       touch: Prisma.$AddTouchPayload<ExtArgs>
       casting_customer: Prisma.$AddCastingPayload<ExtArgs>
@@ -25709,12 +25789,12 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
-      casting_item_id: number
-      filing_item_id: number
-      setting_item_id: number
-      buffing_item_id: number
+      casting_item_id: number | null
+      filing_item_id: number | null
+      setting_item_id: number | null
+      buffing_item_id: number | null
       item_id: number
-      scrap_weight: number
+      weight: number
       touch_id: number
       item_purity: number
       remarks: string | null
@@ -26060,10 +26140,10 @@ export namespace Prisma {
    */
   export interface Prisma__StockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    castingItem<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    filingItem<T extends FilingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FilingItemsDefaultArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    settingItem<T extends SettingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SettingItemsDefaultArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    buffingItem<T extends BuffingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BuffingItemsDefaultArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    castingItem<T extends Stock$castingItemArgs<ExtArgs> = {}>(args?: Subset<T, Stock$castingItemArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    filingItem<T extends Stock$filingItemArgs<ExtArgs> = {}>(args?: Subset<T, Stock$filingItemArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    settingItem<T extends Stock$settingItemArgs<ExtArgs> = {}>(args?: Subset<T, Stock$settingItemArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    buffingItem<T extends Stock$buffingItemArgs<ExtArgs> = {}>(args?: Subset<T, Stock$buffingItemArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     item<T extends AddItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddItemDefaultArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     touch<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     casting_customer<T extends AddCastingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddCastingDefaultArgs<ExtArgs>>): Prisma__AddCastingClient<$Result.GetResult<Prisma.$AddCastingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -26103,7 +26183,7 @@ export namespace Prisma {
     readonly setting_item_id: FieldRef<"Stock", 'Int'>
     readonly buffing_item_id: FieldRef<"Stock", 'Int'>
     readonly item_id: FieldRef<"Stock", 'Int'>
-    readonly scrap_weight: FieldRef<"Stock", 'Float'>
+    readonly weight: FieldRef<"Stock", 'Float'>
     readonly touch_id: FieldRef<"Stock", 'Int'>
     readonly item_purity: FieldRef<"Stock", 'Float'>
     readonly remarks: FieldRef<"Stock", 'String'>
@@ -26452,6 +26532,82 @@ export namespace Prisma {
   }
 
   /**
+   * Stock.castingItem
+   */
+  export type Stock$castingItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastingItems
+     */
+    select?: CastingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastingItems
+     */
+    omit?: CastingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastingItemsInclude<ExtArgs> | null
+    where?: CastingItemsWhereInput
+  }
+
+  /**
+   * Stock.filingItem
+   */
+  export type Stock$filingItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    where?: FilingItemsWhereInput
+  }
+
+  /**
+   * Stock.settingItem
+   */
+  export type Stock$settingItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    where?: SettingItemsWhereInput
+  }
+
+  /**
+   * Stock.buffingItem
+   */
+  export type Stock$buffingItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingItems
+     */
+    select?: BuffingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingItems
+     */
+    omit?: BuffingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingItemsInclude<ExtArgs> | null
+    where?: BuffingItemsWhereInput
+  }
+
+  /**
    * Stock without action
    */
   export type StockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -26658,6 +26814,7 @@ export namespace Prisma {
   export const FilingItemsScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
+    filing_entry_id: 'filing_entry_id',
     type: 'type',
     item_id: 'item_id',
     weight: 'weight',
@@ -26771,7 +26928,7 @@ export namespace Prisma {
     setting_item_id: 'setting_item_id',
     buffing_item_id: 'buffing_item_id',
     item_id: 'item_id',
-    scrap_weight: 'scrap_weight',
+    weight: 'weight',
     touch_id: 'touch_id',
     item_purity: 'item_purity',
     remarks: 'remarks',
@@ -27883,6 +28040,7 @@ export namespace Prisma {
     casting_item_id?: IntFilter<"FilingEntry"> | number
     filing_person?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
+    filingItems?: FilingItemsListRelationFilter
   }
 
   export type FilingEntryOrderByWithRelationInput = {
@@ -27892,6 +28050,7 @@ export namespace Prisma {
     casting_item_id?: SortOrder
     filing_person?: AddFilingOrderByWithRelationInput
     castingItem?: CastingItemsOrderByWithRelationInput
+    filingItems?: FilingItemsOrderByRelationAggregateInput
   }
 
   export type FilingEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -27904,6 +28063,7 @@ export namespace Prisma {
     casting_item_id?: IntFilter<"FilingEntry"> | number
     filing_person?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
+    filingItems?: FilingItemsListRelationFilter
   }, "id">
 
   export type FilingEntryOrderByWithAggregationInput = {
@@ -27934,6 +28094,7 @@ export namespace Prisma {
     NOT?: FilingItemsWhereInput | FilingItemsWhereInput[]
     id?: IntFilter<"FilingItems"> | number
     createdAt?: DateTimeFilter<"FilingItems"> | Date | string
+    filing_entry_id?: IntFilter<"FilingItems"> | number
     type?: EnumCASTINGENTRYTYPEFilter<"FilingItems"> | $Enums.CASTINGENTRYTYPE
     item_id?: IntFilter<"FilingItems"> | number
     weight?: FloatFilter<"FilingItems"> | number
@@ -27945,6 +28106,7 @@ export namespace Prisma {
     after_weight?: FloatNullableFilter<"FilingItems"> | number | null
     scrap_weight?: FloatNullableFilter<"FilingItems"> | number | null
     scrap_wastage?: FloatNullableFilter<"FilingItems"> | number | null
+    filing_entry?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     stock?: StockListRelationFilter
@@ -27956,6 +28118,7 @@ export namespace Prisma {
   export type FilingItemsOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    filing_entry_id?: SortOrder
     type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
@@ -27967,6 +28130,7 @@ export namespace Prisma {
     after_weight?: SortOrderInput | SortOrder
     scrap_weight?: SortOrderInput | SortOrder
     scrap_wastage?: SortOrderInput | SortOrder
+    filing_entry?: FilingEntryOrderByWithRelationInput
     item?: AddItemOrderByWithRelationInput
     touch?: AddTouchOrderByWithRelationInput
     stock?: StockOrderByRelationAggregateInput
@@ -27982,6 +28146,7 @@ export namespace Prisma {
     OR?: FilingItemsWhereInput[]
     NOT?: FilingItemsWhereInput | FilingItemsWhereInput[]
     createdAt?: DateTimeFilter<"FilingItems"> | Date | string
+    filing_entry_id?: IntFilter<"FilingItems"> | number
     type?: EnumCASTINGENTRYTYPEFilter<"FilingItems"> | $Enums.CASTINGENTRYTYPE
     item_id?: IntFilter<"FilingItems"> | number
     weight?: FloatFilter<"FilingItems"> | number
@@ -27993,6 +28158,7 @@ export namespace Prisma {
     after_weight?: FloatNullableFilter<"FilingItems"> | number | null
     scrap_weight?: FloatNullableFilter<"FilingItems"> | number | null
     scrap_wastage?: FloatNullableFilter<"FilingItems"> | number | null
+    filing_entry?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     stock?: StockListRelationFilter
@@ -28004,6 +28170,7 @@ export namespace Prisma {
   export type FilingItemsOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    filing_entry_id?: SortOrder
     type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
@@ -28028,6 +28195,7 @@ export namespace Prisma {
     NOT?: FilingItemsScalarWhereWithAggregatesInput | FilingItemsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"FilingItems"> | number
     createdAt?: DateTimeWithAggregatesFilter<"FilingItems"> | Date | string
+    filing_entry_id?: IntWithAggregatesFilter<"FilingItems"> | number
     type?: EnumCASTINGENTRYTYPEWithAggregatesFilter<"FilingItems"> | $Enums.CASTINGENTRYTYPE
     item_id?: IntWithAggregatesFilter<"FilingItems"> | number
     weight?: FloatWithAggregatesFilter<"FilingItems"> | number
@@ -28544,21 +28712,21 @@ export namespace Prisma {
     NOT?: StockWhereInput | StockWhereInput[]
     id?: IntFilter<"Stock"> | number
     createdAt?: DateTimeFilter<"Stock"> | Date | string
-    casting_item_id?: IntFilter<"Stock"> | number
-    filing_item_id?: IntFilter<"Stock"> | number
-    setting_item_id?: IntFilter<"Stock"> | number
-    buffing_item_id?: IntFilter<"Stock"> | number
+    casting_item_id?: IntNullableFilter<"Stock"> | number | null
+    filing_item_id?: IntNullableFilter<"Stock"> | number | null
+    setting_item_id?: IntNullableFilter<"Stock"> | number | null
+    buffing_item_id?: IntNullableFilter<"Stock"> | number | null
     item_id?: IntFilter<"Stock"> | number
-    scrap_weight?: FloatFilter<"Stock"> | number
+    weight?: FloatFilter<"Stock"> | number
     touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
     scrap_wastage?: FloatNullableFilter<"Stock"> | number | null
     casting_customer_id?: IntFilter<"Stock"> | number
-    castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
-    filingItem?: XOR<FilingItemsScalarRelationFilter, FilingItemsWhereInput>
-    settingItem?: XOR<SettingItemsScalarRelationFilter, SettingItemsWhereInput>
-    buffingItem?: XOR<BuffingItemsScalarRelationFilter, BuffingItemsWhereInput>
+    castingItem?: XOR<CastingItemsNullableScalarRelationFilter, CastingItemsWhereInput> | null
+    filingItem?: XOR<FilingItemsNullableScalarRelationFilter, FilingItemsWhereInput> | null
+    settingItem?: XOR<SettingItemsNullableScalarRelationFilter, SettingItemsWhereInput> | null
+    buffingItem?: XOR<BuffingItemsNullableScalarRelationFilter, BuffingItemsWhereInput> | null
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     casting_customer?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
@@ -28567,12 +28735,12 @@ export namespace Prisma {
   export type StockOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    casting_item_id?: SortOrder
-    filing_item_id?: SortOrder
-    setting_item_id?: SortOrder
-    buffing_item_id?: SortOrder
+    casting_item_id?: SortOrderInput | SortOrder
+    filing_item_id?: SortOrderInput | SortOrder
+    setting_item_id?: SortOrderInput | SortOrder
+    buffing_item_id?: SortOrderInput | SortOrder
     item_id?: SortOrder
-    scrap_weight?: SortOrder
+    weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
@@ -28594,21 +28762,21 @@ export namespace Prisma {
     OR?: StockWhereInput[]
     NOT?: StockWhereInput | StockWhereInput[]
     createdAt?: DateTimeFilter<"Stock"> | Date | string
-    casting_item_id?: IntFilter<"Stock"> | number
-    filing_item_id?: IntFilter<"Stock"> | number
-    setting_item_id?: IntFilter<"Stock"> | number
-    buffing_item_id?: IntFilter<"Stock"> | number
+    casting_item_id?: IntNullableFilter<"Stock"> | number | null
+    filing_item_id?: IntNullableFilter<"Stock"> | number | null
+    setting_item_id?: IntNullableFilter<"Stock"> | number | null
+    buffing_item_id?: IntNullableFilter<"Stock"> | number | null
     item_id?: IntFilter<"Stock"> | number
-    scrap_weight?: FloatFilter<"Stock"> | number
+    weight?: FloatFilter<"Stock"> | number
     touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
     scrap_wastage?: FloatNullableFilter<"Stock"> | number | null
     casting_customer_id?: IntFilter<"Stock"> | number
-    castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
-    filingItem?: XOR<FilingItemsScalarRelationFilter, FilingItemsWhereInput>
-    settingItem?: XOR<SettingItemsScalarRelationFilter, SettingItemsWhereInput>
-    buffingItem?: XOR<BuffingItemsScalarRelationFilter, BuffingItemsWhereInput>
+    castingItem?: XOR<CastingItemsNullableScalarRelationFilter, CastingItemsWhereInput> | null
+    filingItem?: XOR<FilingItemsNullableScalarRelationFilter, FilingItemsWhereInput> | null
+    settingItem?: XOR<SettingItemsNullableScalarRelationFilter, SettingItemsWhereInput> | null
+    buffingItem?: XOR<BuffingItemsNullableScalarRelationFilter, BuffingItemsWhereInput> | null
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     casting_customer?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
@@ -28617,12 +28785,12 @@ export namespace Prisma {
   export type StockOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    casting_item_id?: SortOrder
-    filing_item_id?: SortOrder
-    setting_item_id?: SortOrder
-    buffing_item_id?: SortOrder
+    casting_item_id?: SortOrderInput | SortOrder
+    filing_item_id?: SortOrderInput | SortOrder
+    setting_item_id?: SortOrderInput | SortOrder
+    buffing_item_id?: SortOrderInput | SortOrder
     item_id?: SortOrder
-    scrap_weight?: SortOrder
+    weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
@@ -28641,12 +28809,12 @@ export namespace Prisma {
     NOT?: StockScalarWhereWithAggregatesInput | StockScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Stock"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Stock"> | Date | string
-    casting_item_id?: IntWithAggregatesFilter<"Stock"> | number
-    filing_item_id?: IntWithAggregatesFilter<"Stock"> | number
-    setting_item_id?: IntWithAggregatesFilter<"Stock"> | number
-    buffing_item_id?: IntWithAggregatesFilter<"Stock"> | number
+    casting_item_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
+    filing_item_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
+    setting_item_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
+    buffing_item_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
     item_id?: IntWithAggregatesFilter<"Stock"> | number
-    scrap_weight?: FloatWithAggregatesFilter<"Stock"> | number
+    weight?: FloatWithAggregatesFilter<"Stock"> | number
     touch_id?: IntWithAggregatesFilter<"Stock"> | number
     item_purity?: FloatWithAggregatesFilter<"Stock"> | number
     remarks?: StringNullableWithAggregatesFilter<"Stock"> | string | null
@@ -29582,6 +29750,7 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
   }
 
   export type FilingEntryUncheckedCreateInput = {
@@ -29589,12 +29758,14 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person_id: number
     casting_item_id: number
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
   }
 
   export type FilingEntryUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateInput = {
@@ -29602,6 +29773,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
   }
 
   export type FilingEntryCreateManyInput = {
@@ -29633,6 +29805,7 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
+    filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     item: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
     stock?: StockCreateNestedManyWithoutFilingItemInput
@@ -29644,6 +29817,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
@@ -29672,6 +29846,7 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
     stock?: StockUpdateManyWithoutFilingItemNestedInput
@@ -29683,6 +29858,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -29703,6 +29879,7 @@ export namespace Prisma {
   export type FilingItemsCreateManyInput = {
     id?: number
     createdAt?: Date | string
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
@@ -29732,6 +29909,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -30238,14 +30416,14 @@ export namespace Prisma {
 
   export type StockCreateInput = {
     createdAt?: Date | string
-    scrap_weight: number
+    weight: number
     item_purity: number
     remarks?: string | null
     scrap_wastage?: number | null
-    castingItem: CastingItemsCreateNestedOneWithoutStockInput
-    filingItem: FilingItemsCreateNestedOneWithoutStockInput
-    settingItem: SettingItemsCreateNestedOneWithoutStockInput
-    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    castingItem?: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem?: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem?: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
     item: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
     casting_customer: AddCastingCreateNestedOneWithoutStockInput
@@ -30254,12 +30432,12 @@ export namespace Prisma {
   export type StockUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -30269,14 +30447,14 @@ export namespace Prisma {
 
   export type StockUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
-    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
-    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
-    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
     item?: AddItemUpdateOneRequiredWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
@@ -30285,12 +30463,12 @@ export namespace Prisma {
   export type StockUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30301,12 +30479,12 @@ export namespace Prisma {
   export type StockCreateManyInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -30316,7 +30494,7 @@ export namespace Prisma {
 
   export type StockUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -30325,12 +30503,12 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31363,6 +31541,11 @@ export namespace Prisma {
     not?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel> | $Enums.STONEOPTION | null
   }
 
+  export type FilingEntryScalarRelationFilter = {
+    is?: FilingEntryWhereInput
+    isNot?: FilingEntryWhereInput
+  }
+
   export type FilingWastageListRelationFilter = {
     every?: FilingWastageWhereInput
     some?: FilingWastageWhereInput
@@ -31382,6 +31565,7 @@ export namespace Prisma {
   export type FilingItemsCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    filing_entry_id?: SortOrder
     type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
@@ -31397,6 +31581,7 @@ export namespace Prisma {
 
   export type FilingItemsAvgOrderByAggregateInput = {
     id?: SortOrder
+    filing_entry_id?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
     touch_id?: SortOrder
@@ -31409,6 +31594,7 @@ export namespace Prisma {
   export type FilingItemsMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    filing_entry_id?: SortOrder
     type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
@@ -31425,6 +31611,7 @@ export namespace Prisma {
   export type FilingItemsMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    filing_entry_id?: SortOrder
     type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
@@ -31440,6 +31627,7 @@ export namespace Prisma {
 
   export type FilingItemsSumOrderByAggregateInput = {
     id?: SortOrder
+    filing_entry_id?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
     touch_id?: SortOrder
@@ -31832,19 +32020,24 @@ export namespace Prisma {
     add_wastage?: SortOrder
   }
 
-  export type FilingItemsScalarRelationFilter = {
-    is?: FilingItemsWhereInput
-    isNot?: FilingItemsWhereInput
+  export type CastingItemsNullableScalarRelationFilter = {
+    is?: CastingItemsWhereInput | null
+    isNot?: CastingItemsWhereInput | null
   }
 
-  export type SettingItemsScalarRelationFilter = {
-    is?: SettingItemsWhereInput
-    isNot?: SettingItemsWhereInput
+  export type FilingItemsNullableScalarRelationFilter = {
+    is?: FilingItemsWhereInput | null
+    isNot?: FilingItemsWhereInput | null
   }
 
-  export type BuffingItemsScalarRelationFilter = {
-    is?: BuffingItemsWhereInput
-    isNot?: BuffingItemsWhereInput
+  export type SettingItemsNullableScalarRelationFilter = {
+    is?: SettingItemsWhereInput | null
+    isNot?: SettingItemsWhereInput | null
+  }
+
+  export type BuffingItemsNullableScalarRelationFilter = {
+    is?: BuffingItemsWhereInput | null
+    isNot?: BuffingItemsWhereInput | null
   }
 
   export type StockOrderByRelevanceInput = {
@@ -31861,7 +32054,7 @@ export namespace Prisma {
     setting_item_id?: SortOrder
     buffing_item_id?: SortOrder
     item_id?: SortOrder
-    scrap_weight?: SortOrder
+    weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
@@ -31876,7 +32069,7 @@ export namespace Prisma {
     setting_item_id?: SortOrder
     buffing_item_id?: SortOrder
     item_id?: SortOrder
-    scrap_weight?: SortOrder
+    weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
     scrap_wastage?: SortOrder
@@ -31891,7 +32084,7 @@ export namespace Prisma {
     setting_item_id?: SortOrder
     buffing_item_id?: SortOrder
     item_id?: SortOrder
-    scrap_weight?: SortOrder
+    weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
@@ -31907,7 +32100,7 @@ export namespace Prisma {
     setting_item_id?: SortOrder
     buffing_item_id?: SortOrder
     item_id?: SortOrder
-    scrap_weight?: SortOrder
+    weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
@@ -31922,7 +32115,7 @@ export namespace Prisma {
     setting_item_id?: SortOrder
     buffing_item_id?: SortOrder
     item_id?: SortOrder
-    scrap_weight?: SortOrder
+    weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
     scrap_wastage?: SortOrder
@@ -33037,6 +33230,20 @@ export namespace Prisma {
     connect?: CastingItemsWhereUniqueInput
   }
 
+  export type FilingItemsCreateNestedManyWithoutFiling_entryInput = {
+    create?: XOR<FilingItemsCreateWithoutFiling_entryInput, FilingItemsUncheckedCreateWithoutFiling_entryInput> | FilingItemsCreateWithoutFiling_entryInput[] | FilingItemsUncheckedCreateWithoutFiling_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_entryInput | FilingItemsCreateOrConnectWithoutFiling_entryInput[]
+    createMany?: FilingItemsCreateManyFiling_entryInputEnvelope
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput = {
+    create?: XOR<FilingItemsCreateWithoutFiling_entryInput, FilingItemsUncheckedCreateWithoutFiling_entryInput> | FilingItemsCreateWithoutFiling_entryInput[] | FilingItemsUncheckedCreateWithoutFiling_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_entryInput | FilingItemsCreateOrConnectWithoutFiling_entryInput[]
+    createMany?: FilingItemsCreateManyFiling_entryInputEnvelope
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
   export type AddFilingUpdateOneRequiredWithoutFilingsNestedInput = {
     create?: XOR<AddFilingCreateWithoutFilingsInput, AddFilingUncheckedCreateWithoutFilingsInput>
     connectOrCreate?: AddFilingCreateOrConnectWithoutFilingsInput
@@ -33051,6 +33258,40 @@ export namespace Prisma {
     upsert?: CastingItemsUpsertWithoutFilingEntryInput
     connect?: CastingItemsWhereUniqueInput
     update?: XOR<XOR<CastingItemsUpdateToOneWithWhereWithoutFilingEntryInput, CastingItemsUpdateWithoutFilingEntryInput>, CastingItemsUncheckedUpdateWithoutFilingEntryInput>
+  }
+
+  export type FilingItemsUpdateManyWithoutFiling_entryNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutFiling_entryInput, FilingItemsUncheckedCreateWithoutFiling_entryInput> | FilingItemsCreateWithoutFiling_entryInput[] | FilingItemsUncheckedCreateWithoutFiling_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_entryInput | FilingItemsCreateOrConnectWithoutFiling_entryInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutFiling_entryInput | FilingItemsUpsertWithWhereUniqueWithoutFiling_entryInput[]
+    createMany?: FilingItemsCreateManyFiling_entryInputEnvelope
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutFiling_entryInput | FilingItemsUpdateWithWhereUniqueWithoutFiling_entryInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutFiling_entryInput | FilingItemsUpdateManyWithWhereWithoutFiling_entryInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutFiling_entryInput, FilingItemsUncheckedCreateWithoutFiling_entryInput> | FilingItemsCreateWithoutFiling_entryInput[] | FilingItemsUncheckedCreateWithoutFiling_entryInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_entryInput | FilingItemsCreateOrConnectWithoutFiling_entryInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutFiling_entryInput | FilingItemsUpsertWithWhereUniqueWithoutFiling_entryInput[]
+    createMany?: FilingItemsCreateManyFiling_entryInputEnvelope
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutFiling_entryInput | FilingItemsUpdateWithWhereUniqueWithoutFiling_entryInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutFiling_entryInput | FilingItemsUpdateManyWithWhereWithoutFiling_entryInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type FilingEntryCreateNestedOneWithoutFilingItemsInput = {
+    create?: XOR<FilingEntryCreateWithoutFilingItemsInput, FilingEntryUncheckedCreateWithoutFilingItemsInput>
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutFilingItemsInput
+    connect?: FilingEntryWhereUniqueInput
   }
 
   export type AddItemCreateNestedOneWithoutFiling_itemsInput = {
@@ -33121,6 +33362,14 @@ export namespace Prisma {
 
   export type NullableEnumSTONEOPTIONFieldUpdateOperationsInput = {
     set?: $Enums.STONEOPTION | null
+  }
+
+  export type FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput = {
+    create?: XOR<FilingEntryCreateWithoutFilingItemsInput, FilingEntryUncheckedCreateWithoutFilingItemsInput>
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutFilingItemsInput
+    upsert?: FilingEntryUpsertWithoutFilingItemsInput
+    connect?: FilingEntryWhereUniqueInput
+    update?: XOR<XOR<FilingEntryUpdateToOneWithWhereWithoutFilingItemsInput, FilingEntryUpdateWithoutFilingItemsInput>, FilingEntryUncheckedUpdateWithoutFilingItemsInput>
   }
 
   export type AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput = {
@@ -33829,34 +34078,42 @@ export namespace Prisma {
     connect?: AddCastingWhereUniqueInput
   }
 
-  export type CastingItemsUpdateOneRequiredWithoutStockNestedInput = {
+  export type CastingItemsUpdateOneWithoutStockNestedInput = {
     create?: XOR<CastingItemsCreateWithoutStockInput, CastingItemsUncheckedCreateWithoutStockInput>
     connectOrCreate?: CastingItemsCreateOrConnectWithoutStockInput
     upsert?: CastingItemsUpsertWithoutStockInput
+    disconnect?: CastingItemsWhereInput | boolean
+    delete?: CastingItemsWhereInput | boolean
     connect?: CastingItemsWhereUniqueInput
     update?: XOR<XOR<CastingItemsUpdateToOneWithWhereWithoutStockInput, CastingItemsUpdateWithoutStockInput>, CastingItemsUncheckedUpdateWithoutStockInput>
   }
 
-  export type FilingItemsUpdateOneRequiredWithoutStockNestedInput = {
+  export type FilingItemsUpdateOneWithoutStockNestedInput = {
     create?: XOR<FilingItemsCreateWithoutStockInput, FilingItemsUncheckedCreateWithoutStockInput>
     connectOrCreate?: FilingItemsCreateOrConnectWithoutStockInput
     upsert?: FilingItemsUpsertWithoutStockInput
+    disconnect?: FilingItemsWhereInput | boolean
+    delete?: FilingItemsWhereInput | boolean
     connect?: FilingItemsWhereUniqueInput
     update?: XOR<XOR<FilingItemsUpdateToOneWithWhereWithoutStockInput, FilingItemsUpdateWithoutStockInput>, FilingItemsUncheckedUpdateWithoutStockInput>
   }
 
-  export type SettingItemsUpdateOneRequiredWithoutStockNestedInput = {
+  export type SettingItemsUpdateOneWithoutStockNestedInput = {
     create?: XOR<SettingItemsCreateWithoutStockInput, SettingItemsUncheckedCreateWithoutStockInput>
     connectOrCreate?: SettingItemsCreateOrConnectWithoutStockInput
     upsert?: SettingItemsUpsertWithoutStockInput
+    disconnect?: SettingItemsWhereInput | boolean
+    delete?: SettingItemsWhereInput | boolean
     connect?: SettingItemsWhereUniqueInput
     update?: XOR<XOR<SettingItemsUpdateToOneWithWhereWithoutStockInput, SettingItemsUpdateWithoutStockInput>, SettingItemsUncheckedUpdateWithoutStockInput>
   }
 
-  export type BuffingItemsUpdateOneRequiredWithoutStockNestedInput = {
+  export type BuffingItemsUpdateOneWithoutStockNestedInput = {
     create?: XOR<BuffingItemsCreateWithoutStockInput, BuffingItemsUncheckedCreateWithoutStockInput>
     connectOrCreate?: BuffingItemsCreateOrConnectWithoutStockInput
     upsert?: BuffingItemsUpsertWithoutStockInput
+    disconnect?: BuffingItemsWhereInput | boolean
+    delete?: BuffingItemsWhereInput | boolean
     connect?: BuffingItemsWhereUniqueInput
     update?: XOR<XOR<BuffingItemsUpdateToOneWithWhereWithoutStockInput, BuffingItemsUpdateWithoutStockInput>, BuffingItemsUncheckedUpdateWithoutStockInput>
   }
@@ -34309,14 +34566,14 @@ export namespace Prisma {
 
   export type StockCreateWithoutCasting_customerInput = {
     createdAt?: Date | string
-    scrap_weight: number
+    weight: number
     item_purity: number
     remarks?: string | null
     scrap_wastage?: number | null
-    castingItem: CastingItemsCreateNestedOneWithoutStockInput
-    filingItem: FilingItemsCreateNestedOneWithoutStockInput
-    settingItem: SettingItemsCreateNestedOneWithoutStockInput
-    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    castingItem?: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem?: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem?: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
     item: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
   }
@@ -34324,12 +34581,12 @@ export namespace Prisma {
   export type StockUncheckedCreateWithoutCasting_customerInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -34436,12 +34693,12 @@ export namespace Prisma {
     NOT?: StockScalarWhereInput | StockScalarWhereInput[]
     id?: IntFilter<"Stock"> | number
     createdAt?: DateTimeFilter<"Stock"> | Date | string
-    casting_item_id?: IntFilter<"Stock"> | number
-    filing_item_id?: IntFilter<"Stock"> | number
-    setting_item_id?: IntFilter<"Stock"> | number
-    buffing_item_id?: IntFilter<"Stock"> | number
+    casting_item_id?: IntNullableFilter<"Stock"> | number | null
+    filing_item_id?: IntNullableFilter<"Stock"> | number | null
+    setting_item_id?: IntNullableFilter<"Stock"> | number | null
+    buffing_item_id?: IntNullableFilter<"Stock"> | number | null
     item_id?: IntFilter<"Stock"> | number
-    scrap_weight?: FloatFilter<"Stock"> | number
+    weight?: FloatFilter<"Stock"> | number
     touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
@@ -34452,12 +34709,14 @@ export namespace Prisma {
   export type FilingEntryCreateWithoutFiling_personInput = {
     createdAt?: Date | string
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
   }
 
   export type FilingEntryUncheckedCreateWithoutFiling_personInput = {
     id?: number
     createdAt?: Date | string
     casting_item_id: number
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
   }
 
   export type FilingEntryCreateOrConnectWithoutFiling_personInput = {
@@ -34695,14 +34954,14 @@ export namespace Prisma {
 
   export type StockCreateWithoutItemInput = {
     createdAt?: Date | string
-    scrap_weight: number
+    weight: number
     item_purity: number
     remarks?: string | null
     scrap_wastage?: number | null
-    castingItem: CastingItemsCreateNestedOneWithoutStockInput
-    filingItem: FilingItemsCreateNestedOneWithoutStockInput
-    settingItem: SettingItemsCreateNestedOneWithoutStockInput
-    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    castingItem?: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem?: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem?: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
     casting_customer: AddCastingCreateNestedOneWithoutStockInput
   }
@@ -34710,11 +34969,11 @@ export namespace Prisma {
   export type StockUncheckedCreateWithoutItemInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
-    scrap_weight: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -34743,6 +35002,7 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
+    filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
     stock?: StockCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
@@ -34753,6 +35013,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedCreateWithoutItemInput = {
     id?: number
     createdAt?: Date | string
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch_id: number
@@ -34917,6 +35178,7 @@ export namespace Prisma {
     NOT?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
     id?: IntFilter<"FilingItems"> | number
     createdAt?: DateTimeFilter<"FilingItems"> | Date | string
+    filing_entry_id?: IntFilter<"FilingItems"> | number
     type?: EnumCASTINGENTRYTYPEFilter<"FilingItems"> | $Enums.CASTINGENTRYTYPE
     item_id?: IntFilter<"FilingItems"> | number
     weight?: FloatFilter<"FilingItems"> | number
@@ -35093,6 +35355,7 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
+    filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     item: AddItemCreateNestedOneWithoutFiling_itemsInput
     stock?: StockCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
@@ -35103,6 +35366,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedCreateWithoutTouchInput = {
     id?: number
     createdAt?: Date | string
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
@@ -35215,14 +35479,14 @@ export namespace Prisma {
 
   export type StockCreateWithoutTouchInput = {
     createdAt?: Date | string
-    scrap_weight: number
+    weight: number
     item_purity: number
     remarks?: string | null
     scrap_wastage?: number | null
-    castingItem: CastingItemsCreateNestedOneWithoutStockInput
-    filingItem: FilingItemsCreateNestedOneWithoutStockInput
-    settingItem: SettingItemsCreateNestedOneWithoutStockInput
-    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    castingItem?: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem?: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem?: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
     item: AddItemCreateNestedOneWithoutStockInput
     casting_customer: AddCastingCreateNestedOneWithoutStockInput
   }
@@ -35230,12 +35494,12 @@ export namespace Prisma {
   export type StockUncheckedCreateWithoutTouchInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     item_purity: number
     remarks?: string | null
     scrap_wastage?: number | null
@@ -35612,12 +35876,14 @@ export namespace Prisma {
   export type FilingEntryCreateWithoutCastingItemInput = {
     createdAt?: Date | string
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
+    filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
   }
 
   export type FilingEntryUncheckedCreateWithoutCastingItemInput = {
     id?: number
     createdAt?: Date | string
     filing_person_id: number
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
   }
 
   export type FilingEntryCreateOrConnectWithoutCastingItemInput = {
@@ -35670,13 +35936,13 @@ export namespace Prisma {
 
   export type StockCreateWithoutCastingItemInput = {
     createdAt?: Date | string
-    scrap_weight: number
+    weight: number
     item_purity: number
     remarks?: string | null
     scrap_wastage?: number | null
-    filingItem: FilingItemsCreateNestedOneWithoutStockInput
-    settingItem: SettingItemsCreateNestedOneWithoutStockInput
-    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    filingItem?: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem?: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
     item: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
     casting_customer: AddCastingCreateNestedOneWithoutStockInput
@@ -35685,11 +35951,11 @@ export namespace Prisma {
   export type StockUncheckedCreateWithoutCastingItemInput = {
     id?: number
     createdAt?: Date | string
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    filing_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -36011,6 +36277,55 @@ export namespace Prisma {
     create: XOR<CastingItemsCreateWithoutFilingEntryInput, CastingItemsUncheckedCreateWithoutFilingEntryInput>
   }
 
+  export type FilingItemsCreateWithoutFiling_entryInput = {
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    item: AddItemCreateNestedOneWithoutFiling_itemsInput
+    touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
+    stock?: StockCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsUncheckedCreateWithoutFiling_entryInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+    stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageUncheckedCreateNestedManyWithoutFiling_itemsInput
+  }
+
+  export type FilingItemsCreateOrConnectWithoutFiling_entryInput = {
+    where: FilingItemsWhereUniqueInput
+    create: XOR<FilingItemsCreateWithoutFiling_entryInput, FilingItemsUncheckedCreateWithoutFiling_entryInput>
+  }
+
+  export type FilingItemsCreateManyFiling_entryInputEnvelope = {
+    data: FilingItemsCreateManyFiling_entryInput | FilingItemsCreateManyFiling_entryInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AddFilingUpsertWithoutFilingsInput = {
     update: XOR<AddFilingUpdateWithoutFilingsInput, AddFilingUncheckedUpdateWithoutFilingsInput>
     create: XOR<AddFilingCreateWithoutFilingsInput, AddFilingUncheckedCreateWithoutFilingsInput>
@@ -36087,6 +36402,40 @@ export namespace Prisma {
     stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
   }
 
+  export type FilingItemsUpsertWithWhereUniqueWithoutFiling_entryInput = {
+    where: FilingItemsWhereUniqueInput
+    update: XOR<FilingItemsUpdateWithoutFiling_entryInput, FilingItemsUncheckedUpdateWithoutFiling_entryInput>
+    create: XOR<FilingItemsCreateWithoutFiling_entryInput, FilingItemsUncheckedCreateWithoutFiling_entryInput>
+  }
+
+  export type FilingItemsUpdateWithWhereUniqueWithoutFiling_entryInput = {
+    where: FilingItemsWhereUniqueInput
+    data: XOR<FilingItemsUpdateWithoutFiling_entryInput, FilingItemsUncheckedUpdateWithoutFiling_entryInput>
+  }
+
+  export type FilingItemsUpdateManyWithWhereWithoutFiling_entryInput = {
+    where: FilingItemsScalarWhereInput
+    data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutFiling_entryInput>
+  }
+
+  export type FilingEntryCreateWithoutFilingItemsInput = {
+    createdAt?: Date | string
+    filing_person: AddFilingCreateNestedOneWithoutFilingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
+  }
+
+  export type FilingEntryUncheckedCreateWithoutFilingItemsInput = {
+    id?: number
+    createdAt?: Date | string
+    filing_person_id: number
+    casting_item_id: number
+  }
+
+  export type FilingEntryCreateOrConnectWithoutFilingItemsInput = {
+    where: FilingEntryWhereUniqueInput
+    create: XOR<FilingEntryCreateWithoutFilingItemsInput, FilingEntryUncheckedCreateWithoutFilingItemsInput>
+  }
+
   export type AddItemCreateWithoutFiling_itemsInput = {
     createdAt?: Date | string
     name: string
@@ -36139,13 +36488,13 @@ export namespace Prisma {
 
   export type StockCreateWithoutFilingItemInput = {
     createdAt?: Date | string
-    scrap_weight: number
+    weight: number
     item_purity: number
     remarks?: string | null
     scrap_wastage?: number | null
-    castingItem: CastingItemsCreateNestedOneWithoutStockInput
-    settingItem: SettingItemsCreateNestedOneWithoutStockInput
-    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    castingItem?: CastingItemsCreateNestedOneWithoutStockInput
+    settingItem?: SettingItemsCreateNestedOneWithoutStockInput
+    buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
     item: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
     casting_customer: AddCastingCreateNestedOneWithoutStockInput
@@ -36154,11 +36503,11 @@ export namespace Prisma {
   export type StockUncheckedCreateWithoutFilingItemInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    casting_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -36232,6 +36581,30 @@ export namespace Prisma {
   export type FilingWastageCreateOrConnectWithoutFiling_itemsInput = {
     where: FilingWastageWhereUniqueInput
     create: XOR<FilingWastageCreateWithoutFiling_itemsInput, FilingWastageUncheckedCreateWithoutFiling_itemsInput>
+  }
+
+  export type FilingEntryUpsertWithoutFilingItemsInput = {
+    update: XOR<FilingEntryUpdateWithoutFilingItemsInput, FilingEntryUncheckedUpdateWithoutFilingItemsInput>
+    create: XOR<FilingEntryCreateWithoutFilingItemsInput, FilingEntryUncheckedCreateWithoutFilingItemsInput>
+    where?: FilingEntryWhereInput
+  }
+
+  export type FilingEntryUpdateToOneWithWhereWithoutFilingItemsInput = {
+    where?: FilingEntryWhereInput
+    data: XOR<FilingEntryUpdateWithoutFilingItemsInput, FilingEntryUncheckedUpdateWithoutFilingItemsInput>
+  }
+
+  export type FilingEntryUpdateWithoutFilingItemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
+    castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
+  }
+
+  export type FilingEntryUncheckedUpdateWithoutFilingItemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type AddItemUpsertWithoutFiling_itemsInput = {
@@ -36382,6 +36755,7 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
+    filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     item: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
     stock?: StockCreateNestedManyWithoutFilingItemInput
@@ -36392,6 +36766,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedCreateWithoutFiling_wastageInput = {
     id?: number
     createdAt?: Date | string
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
@@ -36504,6 +36879,7 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
+    filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     item: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
     stock?: StockCreateNestedManyWithoutFilingItemInput
@@ -36514,6 +36890,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedCreateWithoutSetting_entryInput = {
     id?: number
     createdAt?: Date | string
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
@@ -36719,13 +37096,13 @@ export namespace Prisma {
 
   export type StockCreateWithoutSettingItemInput = {
     createdAt?: Date | string
-    scrap_weight: number
+    weight: number
     item_purity: number
     remarks?: string | null
     scrap_wastage?: number | null
-    castingItem: CastingItemsCreateNestedOneWithoutStockInput
-    filingItem: FilingItemsCreateNestedOneWithoutStockInput
-    buffingItem: BuffingItemsCreateNestedOneWithoutStockInput
+    castingItem?: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem?: FilingItemsCreateNestedOneWithoutStockInput
+    buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
     item: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
     casting_customer: AddCastingCreateNestedOneWithoutStockInput
@@ -36734,11 +37111,11 @@ export namespace Prisma {
   export type StockUncheckedCreateWithoutSettingItemInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    buffing_item_id: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -37008,6 +37385,7 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
+    filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     item: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
     stock?: StockCreateNestedManyWithoutFilingItemInput
@@ -37018,6 +37396,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedCreateWithoutBuffing_entryInput = {
     id?: number
     createdAt?: Date | string
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
@@ -37239,13 +37618,13 @@ export namespace Prisma {
 
   export type StockCreateWithoutBuffingItemInput = {
     createdAt?: Date | string
-    scrap_weight: number
+    weight: number
     item_purity: number
     remarks?: string | null
     scrap_wastage?: number | null
-    castingItem: CastingItemsCreateNestedOneWithoutStockInput
-    filingItem: FilingItemsCreateNestedOneWithoutStockInput
-    settingItem: SettingItemsCreateNestedOneWithoutStockInput
+    castingItem?: CastingItemsCreateNestedOneWithoutStockInput
+    filingItem?: FilingItemsCreateNestedOneWithoutStockInput
+    settingItem?: SettingItemsCreateNestedOneWithoutStockInput
     item: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
     casting_customer: AddCastingCreateNestedOneWithoutStockInput
@@ -37254,11 +37633,11 @@ export namespace Prisma {
   export type StockUncheckedCreateWithoutBuffingItemInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    setting_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -37504,6 +37883,7 @@ export namespace Prisma {
     after_weight?: number | null
     scrap_weight?: number | null
     scrap_wastage?: number | null
+    filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     item: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
     setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
@@ -37514,6 +37894,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedCreateWithoutStockInput = {
     id?: number
     createdAt?: Date | string
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
@@ -37755,6 +38136,7 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
     setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
@@ -37765,6 +38147,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateWithoutStockInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -38035,12 +38418,12 @@ export namespace Prisma {
   export type StockCreateManyCasting_customerInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -38141,14 +38524,14 @@ export namespace Prisma {
 
   export type StockUpdateWithoutCasting_customerInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
-    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
-    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
-    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
     item?: AddItemUpdateOneRequiredWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
   }
@@ -38156,12 +38539,12 @@ export namespace Prisma {
   export type StockUncheckedUpdateWithoutCasting_customerInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38171,12 +38554,12 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyWithoutCasting_customerInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38192,12 +38575,14 @@ export namespace Prisma {
   export type FilingEntryUpdateWithoutFiling_personInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutFiling_personInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateManyWithoutFiling_personInput = {
@@ -38276,11 +38661,11 @@ export namespace Prisma {
   export type StockCreateManyItemInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
-    scrap_weight: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -38291,6 +38676,7 @@ export namespace Prisma {
   export type FilingItemsCreateManyItemInput = {
     id?: number
     createdAt?: Date | string
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     touch_id: number
@@ -38385,14 +38771,14 @@ export namespace Prisma {
 
   export type StockUpdateWithoutItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
-    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
-    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
-    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
   }
@@ -38400,11 +38786,11 @@ export namespace Prisma {
   export type StockUncheckedUpdateWithoutItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38415,11 +38801,11 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyWithoutItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38438,6 +38824,7 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
     stock?: StockUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
@@ -38448,6 +38835,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateWithoutItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
@@ -38467,6 +38855,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateManyWithoutItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
@@ -38602,6 +38991,7 @@ export namespace Prisma {
   export type FilingItemsCreateManyTouchInput = {
     id?: number
     createdAt?: Date | string
+    filing_entry_id: number
     type: $Enums.CASTINGENTRYTYPE
     item_id: number
     weight: number
@@ -38645,12 +39035,12 @@ export namespace Prisma {
   export type StockCreateManyTouchInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     item_purity: number
     remarks?: string | null
     scrap_wastage?: number | null
@@ -38760,6 +39150,7 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     stock?: StockUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
@@ -38770,6 +39161,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateWithoutTouchInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -38789,6 +39181,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateManyWithoutTouchInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -38895,14 +39288,14 @@ export namespace Prisma {
 
   export type StockUpdateWithoutTouchInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
-    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
-    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
-    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
     item?: AddItemUpdateOneRequiredWithoutStockNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
   }
@@ -38910,12 +39303,12 @@ export namespace Prisma {
   export type StockUncheckedUpdateWithoutTouchInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -38925,12 +39318,12 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyWithoutTouchInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -39013,11 +39406,11 @@ export namespace Prisma {
   export type StockCreateManyCastingItemInput = {
     id?: number
     createdAt?: Date | string
-    filing_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    filing_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -39028,12 +39421,14 @@ export namespace Prisma {
   export type FilingEntryUpdateWithoutCastingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutCastingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person_id?: IntFieldUpdateOperationsInput | number
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateManyWithoutCastingItemInput = {
@@ -39044,13 +39439,13 @@ export namespace Prisma {
 
   export type StockUpdateWithoutCastingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
-    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
-    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
     item?: AddItemUpdateOneRequiredWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
@@ -39059,11 +39454,11 @@ export namespace Prisma {
   export type StockUncheckedUpdateWithoutCastingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39074,11 +39469,11 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyWithoutCastingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39086,14 +39481,85 @@ export namespace Prisma {
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type FilingItemsCreateManyFiling_entryInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    wastage?: boolean | null
+    stone_option?: $Enums.STONEOPTION | null
+    after_weight?: number | null
+    scrap_weight?: number | null
+    scrap_wastage?: number | null
+  }
+
+  export type FilingItemsUpdateWithoutFiling_entryInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
+    stock?: StockUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateWithoutFiling_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUncheckedUpdateManyWithoutFiling_itemsNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutFiling_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
   export type StockCreateManyFilingItemInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    setting_item_id: number
-    buffing_item_id: number
+    casting_item_id?: number | null
+    setting_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -39103,13 +39569,13 @@ export namespace Prisma {
 
   export type StockUpdateWithoutFilingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
-    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
-    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
     item?: AddItemUpdateOneRequiredWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
@@ -39118,11 +39584,11 @@ export namespace Prisma {
   export type StockUncheckedUpdateWithoutFilingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39133,11 +39599,11 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyWithoutFilingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39221,6 +39687,7 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
     stock?: StockUpdateManyWithoutFilingItemNestedInput
@@ -39231,6 +39698,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateWithoutFiling_wastageInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -39250,6 +39718,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateManyWithoutFiling_wastageInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -39274,6 +39743,7 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
     stock?: StockUpdateManyWithoutFilingItemNestedInput
@@ -39284,6 +39754,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateWithoutSetting_entryInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -39303,6 +39774,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateManyWithoutSetting_entryInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -39319,11 +39791,11 @@ export namespace Prisma {
   export type StockCreateManySettingItemInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    buffing_item_id: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    buffing_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -39378,13 +39850,13 @@ export namespace Prisma {
 
   export type StockUpdateWithoutSettingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
-    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
-    buffingItem?: BuffingItemsUpdateOneRequiredWithoutStockNestedInput
+    castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
+    buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
     item?: AddItemUpdateOneRequiredWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
@@ -39393,11 +39865,11 @@ export namespace Prisma {
   export type StockUncheckedUpdateWithoutSettingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39408,11 +39880,11 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyWithoutSettingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    buffing_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39482,6 +39954,7 @@ export namespace Prisma {
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
     stock?: StockUpdateManyWithoutFilingItemNestedInput
@@ -39492,6 +39965,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateWithoutBuffing_entryInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -39511,6 +39985,7 @@ export namespace Prisma {
   export type FilingItemsUncheckedUpdateManyWithoutBuffing_entryInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
@@ -39578,11 +40053,11 @@ export namespace Prisma {
   export type StockCreateManyBuffingItemInput = {
     id?: number
     createdAt?: Date | string
-    casting_item_id: number
-    filing_item_id: number
-    setting_item_id: number
+    casting_item_id?: number | null
+    filing_item_id?: number | null
+    setting_item_id?: number | null
     item_id: number
-    scrap_weight: number
+    weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
@@ -39592,13 +40067,13 @@ export namespace Prisma {
 
   export type StockUpdateWithoutBuffingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
-    castingItem?: CastingItemsUpdateOneRequiredWithoutStockNestedInput
-    filingItem?: FilingItemsUpdateOneRequiredWithoutStockNestedInput
-    settingItem?: SettingItemsUpdateOneRequiredWithoutStockNestedInput
+    castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
+    filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
+    settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
     item?: AddItemUpdateOneRequiredWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
@@ -39607,11 +40082,11 @@ export namespace Prisma {
   export type StockUncheckedUpdateWithoutBuffingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39622,11 +40097,11 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyWithoutBuffingItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    casting_item_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    setting_item_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     item_id?: IntFieldUpdateOperationsInput | number
-    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null

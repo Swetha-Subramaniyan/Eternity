@@ -15,8 +15,7 @@ import castingItemsRoutes from "./Routes/castingItemsRoutes.js";
 import castingStockRoutes from "./Routes/castingStockRoutes.js";
 import filingEntryRoutes from "./Routes/filingEntryRoutes.js";
 import addTouchRoutes from "./Routes/addTouchRoutes.js";
-
-
+import filingItemsRoutes from "./Routes/filingItemsRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT ||  5000;
@@ -39,6 +38,7 @@ app.use("/api/castingentry",castingentryRoutes);
 app.use("/api/castingitems",castingItemsRoutes);
 app.use("/api/stock",castingStockRoutes);
 app.use("/api/filingentry",filingEntryRoutes );
+app.use("/api/filingitems",filingItemsRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hellooo");
@@ -47,5 +47,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
-
-

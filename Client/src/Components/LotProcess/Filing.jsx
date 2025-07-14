@@ -29,6 +29,7 @@ const Filing = () => {
       try {
         const response = await axios.get(`${BACKEND_SERVER_URL}/api/filing`);
         setFilingData(response.data);
+        console.log("Available filing Members:", response.data)
       } catch (error) {
         console.error("Error fetching filing data:", error);
       }
@@ -40,8 +41,6 @@ const Filing = () => {
   const filteredData = filingData.filter((item) =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
-
 
   return (
     <>

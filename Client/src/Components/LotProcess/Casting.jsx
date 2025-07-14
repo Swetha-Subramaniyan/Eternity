@@ -11,14 +11,14 @@ import Stock from "./Stock";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
 
-
 export default function Casting() {
   const [showPopup, setShowPopup] = useState(false);
   const [form, setForm] = useState({
     date: new Date().toISOString().split("T")[0],
     name: "",
     givenGold: "",
-    givenTouch: "",
+    givenTouchId: "",
+    givenTouchValue: "",
     copperTouch: "",
     finalTouch: "",
   });
@@ -34,6 +34,8 @@ export default function Casting() {
   const [availableItems, setAvailableItems] = useState([]);
   const [castingEntryId, setCastingEntryId] = useState(null);
   const [refreshFlag, setRefreshFlag] = useState(false);
+  const [touchOptions, setTouchOptions] = useState([]);
+
 
   const triggerRefresh = () => {
     setRefreshFlag((prev) => !prev);
@@ -42,14 +44,30 @@ export default function Casting() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/additem");
+        const res = await axios.get(`${BACKEND_SERVER_URL}/api/additem`);
         setAvailableItems(res.data);
+        console.log("Fetched the items:",res)
       } catch (err) {
         console.error("Failed to fetch available items:", err);
       }
     };
     fetchItems();
   }, []);
+  
+
+  useEffect(()=>{
+    const fetchTouch = async ()=>{
+      try{
+       const res = await axios.get (`${BACKEND_SERVER_URL}/api/addtouch`);
+       setTouchOptions(res.data);
+     console.log('Fetched the touch values:',res)
+      }catch(err){
+        console.log("Failed to fetch Touch values", err);
+      }
+    }
+    fetchTouch();
+  },[])
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -114,7 +132,9 @@ export default function Casting() {
     }
   }, [fromDate, toDate, savedCastings]);
 
-  const purity = (parseFloat(form.givenGold || 0) * parseFloat(form.givenTouch || 0)) / 100;
+  // const purity = (parseFloat(form.givenGold || 0) * parseFloat(form.givenTouch || 0)) / 100;
+  const purity = (parseFloat(form.givenGold || 0) * parseFloat(form.givenTouchValue || 0)) / 100;
+
   const pureValue = parseFloat(form.finalTouch || 0) / 100;
   const finalWeight = pureValue ? purity / pureValue : 0;
   const copper = parseFloat(form.givenGold || 0) - finalWeight;
@@ -147,7 +167,7 @@ export default function Casting() {
       const payload = {
         date: form.date,
         given_gold: form.givenGold,
-        given_touch: form.givenTouch,
+        touch_id: parseInt(form.givenTouchId),
         purity: purity.toFixed(2),
         final_touch: form.finalTouch,
         pure_value: pureValue.toFixed(2),
@@ -234,26 +254,37 @@ export default function Casting() {
   const handleEdit = async (index) => {
     const data = filteredCastings[index];
   
-    setForm({
+    // ✅ Find the touch value using touch_id from data and touchOptions
+    const matchedTouch = touchOptions.find(t => t.id === data.touch_id);
+  
+    const updatedForm = {
       date: data.date ? new Date(data.date).toISOString().split("T")[0] : new Date().toISOString().split("T")[0],
       name: castingNames[data.casting_customer_id - 1] || "",
       givenGold: data.given_gold,
-      givenTouch: data.given_touch,
       finalTouch: data.final_touch,
-    });
+      givenTouchId: data.touch_id,
+      givenTouchValue: matchedTouch?.touch || "", // ✅ Ensure this is correct
+    };
   
-    setEditIndex(index);
-    setCastingEntryId(data.id);
-    setShowPopup(true);
+    // ✅ Now update state and show popup after
+    setForm(updatedForm);
+  
+    // ✅ Delay popup slightly to ensure values are rendered first
+    setTimeout(() => {
+      setEditIndex(index);
+      setCastingEntryId(data.id);
+      setShowPopup(true);
+    }, 0);
   
     try {
       const response = await axios.get(`${BACKEND_SERVER_URL}/api/castingitems`, {
         params: { casting_entry_id: data.id },
-      }); 
-      const fetchedItems = response.data; 
+      });
+  
+      const fetchedItems = response.data;
       const itemList = fetchedItems.filter(item => item.type === "Items");
       const scrapList = fetchedItems.filter(item => item.type === "ScrapItems");
-
+  
       setItems(itemList);
       setScrapItems(scrapList);
     } catch (error) {
@@ -261,7 +292,7 @@ export default function Casting() {
       toast.error("Failed to load casting items.");
     }
   };
-
+  
   return (
     <>
       <Navbar />
@@ -344,14 +375,29 @@ export default function Casting() {
         onChange={(e) => setForm({ ...form, givenGold: e.target.value })}
       />
     </div>
+
     <div className="form-field">
-      <label>Given Touch</label>
-      <input
-        type="number"
-        value={form.givenTouch}
-        onChange={(e) => setForm({ ...form, givenTouch: e.target.value })}
-      />
-    </div>
+  <label>Given Touch</label>
+  <select
+    value={form.givenTouchId}
+    onChange={(e) => {
+      const selected = touchOptions.find(t => t.id === parseInt(e.target.value));
+      setForm({
+        ...form,
+        givenTouchId: selected?.id || "",
+        givenTouchValue: selected?.touch || "",
+      });
+    }}
+  >
+    <option value="">Select Touch</option>
+    {touchOptions.map((option) => (
+      <option key={option.id} value={option.id}>
+        {option.touch}
+      </option>
+    ))}
+  </select>
+</div>
+
   </div>
 
   {/* Row 2 */}
