@@ -81,3 +81,6 @@
   margin-left: 30rem;
   font-weight: bold;
 }
+/* <td>
+{((parseFloat(item.weight || 0) * parseFloat(item.touch || 0)) / 100).toFixed(3)}
+</td> */

@@ -7,12 +7,9 @@ export const createCastingItem = async (req, res) => {
   try {
     const {
       weight,
-      touch,
+      touch_id,
       item_purity,
       remarks,
-      after_weight,
-      scrap_weight,
-      scrap_wastage,
       castingEntryId,
       item_id,
       type,
@@ -20,7 +17,7 @@ export const createCastingItem = async (req, res) => {
 
     const castingEntry = await prisma.castingEntry.findUnique({
       where: { id: parseInt(castingEntryId) },
-      select: { casting_customer_id: true }
+      select: { casting_customer_id: true },
     });
 
     if (!castingEntry) {
@@ -30,12 +27,9 @@ export const createCastingItem = async (req, res) => {
     const newItem = await prisma.castingItems.create({
       data: {
         weight,
-        touch,
+        touch_id,
         item_purity,
         remarks,
-        after_weight,
-        scrap_weight,
-        scrap_wastage,
         casting_entry_id: parseInt(castingEntryId),
         casting_customer_id: castingEntry.casting_customer_id,
         item_id: parseInt(item_id),
@@ -47,14 +41,13 @@ export const createCastingItem = async (req, res) => {
       await prisma.stock.create({
         data: {
           item_id: parseInt(item_id),
-          weight,
-          touch,
+          touch_id,
           item_purity,
           remarks, 
           casting_item_id: newItem.id,
-          scrap_weight,
-          scrap_wastage,
+          weight,
           casting_customer_id: castingEntry.casting_customer_id,
+        
         },
       });
     }
@@ -81,7 +74,8 @@ export const getAllCastingItems = async (req, res) => {
               id: true,
               date: true,
             }
-          }
+          },
+          touch:true
         }
       }
     );

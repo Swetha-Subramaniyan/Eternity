@@ -5,13 +5,31 @@ import { Button } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import './CastingItemForm.css'
+import { BACKEND_SERVER_URL } from "../../../Config/config";
 
 const CastingItemForm = ({ castingEntryId, items, setItems, scrapItems, setScrapItems,afterWeight,totalScrapWeight,wastage,totalWastage,totalItemWeight,onStockUpdate,onCastingDataRefresh,}) => {
   const [availableItems, setAvailableItems] = useState([]);
+  const [touchOptions, setTouchOptions] = useState([]);
+
+
+  useEffect(() => {
+    const fetchTouch = async () => {
+      try {
+        const res = await axios.get(`${BACKEND_SERVER_URL}/api/addtouch`);
+        console.log('Fetched the touch values:', res);
+        setTouchOptions(res.data); 
+      } catch (err) {
+        console.log("Failed to fetch Touch values", err);
+      }
+    };
+    fetchTouch();
+  }, []);
+  
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/additem");
+        const res = await axios.get(`${BACKEND_SERVER_URL}/api/additem`);
         setAvailableItems(res.data);
       } catch (err) {
         console.error("Failed to fetch available items:", err);
@@ -39,10 +57,10 @@ const CastingItemForm = ({ castingEntryId, items, setItems, scrapItems, setScrap
     setList(updated);
   };
   const addItem = () => {
-    setItems([...items, { item_id: "", name: "", weight: "", touch: "", remarks: "" }]);
+    setItems([...items, { item_id: "", name: "", weight: "", touch: "",touch_id:"", remarks: "" }]);
   };
   const addScrapItem = () => {
-    setScrapItems([...scrapItems, { item_id: "", name: "", weight: "", touch: "", remarks: "" }]);
+    setScrapItems([...scrapItems, { item_id: "", name: "", weight: "", touch: "",touch_id:"", remarks: "" }]);
   };
 
 
@@ -66,7 +84,7 @@ const CastingItemForm = ({ castingEntryId, items, setItems, scrapItems, setScrap
 
         const payload = {
           weight,
-          touch,
+          touch_id:item.touch_id,
           item_purity,
           remarks: item.remarks,
           after_weight: !isScrap && !isAfterWeightSaved ? totalItemWeight : 0,
@@ -118,6 +136,8 @@ const fetchCastingItems = async () => {
             ...item,
             id: item.id, 
             item_id: item.item_id,
+            touch_id: item.touch_id,
+            touch: item.touch?.touch || "", // fallback
             name: matched?.name || "",
           };
         });
@@ -205,13 +225,27 @@ const fetchCastingItems = async () => {
                   />
                 </td>
                 <td>
-                  <input
-                    type="number"
-                    value={item.touch}
-                    onChange={(e) =>
-                      handleItemChange(items, setItems, index, "touch", e.target.value)
-                    }
-                  />
+    
+<select
+  style={{ height: '1.7rem', width: '6rem' }}
+  value={item.touch_id}
+  onChange={(e) => {
+    const selectedTouch = touchOptions.find(t => t.id === parseInt(e.target.value));
+    const updated = [...items];
+    updated[index].touch_id = selectedTouch?.id || "";
+    updated[index].touch = selectedTouch?.touch || "";
+    setItems(updated);
+  }}
+>
+  <option value="">Select</option>
+  {touchOptions.map((t) => (
+    <option key={t.id} value={t.id}>
+      {t.touch}
+    </option>
+  ))}
+</select>
+
+
                 </td>
                 <td>
                   {((parseFloat(item.weight || 0) * parseFloat(item.touch || 0)) / 100).toFixed(3)}
@@ -277,11 +311,27 @@ const fetchCastingItems = async () => {
                       handleItemChange(scrapItems, setScrapItems, index, "weight", e.target.value) }/>
                 </td>
                 <td>
-                  <input
-                    type="number"
-                    value={item.touch}
-                    onChange={(e) =>
-                      handleItemChange(scrapItems, setScrapItems, index, "touch", e.target.value) }/>
+             
+<select
+  style={{ height: '1.7rem', width: '6rem' }}
+  value={item.touch_id}
+  onChange={(e) => {
+    const selectedTouch = touchOptions.find(t => t.id === parseInt(e.target.value));
+    const updated = [...scrapItems];
+    updated[index].touch_id = selectedTouch?.id || "";
+    updated[index].touch = selectedTouch?.touch || "";
+    setScrapItems(updated);
+  }}
+>
+  <option value="">Select</option>
+  {touchOptions.map((t) => (
+    <option key={t.id} value={t.id}>
+      {t.touch}
+    </option>
+  ))}
+</select>
+
+
                 </td>
                 <td>
                   {((parseFloat(item.weight || 0) * parseFloat(item.touch || 0)) / 100).toFixed(3)}

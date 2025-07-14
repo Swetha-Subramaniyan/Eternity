@@ -19,7 +19,8 @@ import {
   getAllStock,
   getStockById,
   updateStock,
-  deleteStock
+  deleteStock,
+  getAllStockItems
 } from '../Controllers/castingStockController.js';
 
 const router = express.Router();
@@ -29,5 +30,7 @@ router.get('/', getAllStock);           // READ ALL
 router.get('/:id', getStockById);       // READ BY ID
 router.put('/:id', updateStock);        // UPDATE
 router.delete('/:id', deleteStock);     // DELETE
+
+router.get("/", getAllStockItems)
 
 export default router;

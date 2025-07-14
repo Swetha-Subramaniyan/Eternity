@@ -255,6 +255,7 @@ exports.Prisma.FilingEntryScalarFieldEnum = {
 exports.Prisma.FilingItemsScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  filing_entry_id: 'filing_entry_id',
   type: 'type',
   item_id: 'item_id',
   weight: 'weight',
@@ -344,7 +345,7 @@ exports.Prisma.StockScalarFieldEnum = {
   setting_item_id: 'setting_item_id',
   buffing_item_id: 'buffing_item_id',
   item_id: 'item_id',
-  scrap_weight: 'scrap_weight',
+  weight: 'weight',
   touch_id: 'touch_id',
   item_purity: 'item_purity',
   remarks: 'remarks',
