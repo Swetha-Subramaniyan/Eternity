@@ -11,8 +11,7 @@ export const createFilingEntry = async (req, res) => {
     const newEntry = await prisma.filingEntry.create({
       data: {
         filing_person_id,
-        casting_item_id,
-  
+        casting_item_id, 
       },
     });
 
