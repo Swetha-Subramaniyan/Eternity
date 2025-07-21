@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Styles from './MasterAddTouch.module.css';
-import Master from './Master';
+import Master from './MasterNavbar';
 import { BACKEND_SERVER_URL } from '../../../Config/config';
 
 const MasterAddTouch = () => {

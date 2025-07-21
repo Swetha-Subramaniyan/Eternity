@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 export const createCastingItem = async (req, res) => {
   
   try {
+
     const {
       weight,
       touch_id,
@@ -13,7 +14,11 @@ export const createCastingItem = async (req, res) => {
       castingEntryId,
       item_id,
       type,
+      after_weight,
+      scrap_weight,
+      scrap_wastage
     } = req.body;
+    
 
     const castingEntry = await prisma.castingEntry.findUnique({
       where: { id: parseInt(castingEntryId) },
@@ -34,6 +39,10 @@ export const createCastingItem = async (req, res) => {
         casting_customer_id: castingEntry.casting_customer_id,
         item_id: parseInt(item_id),
         type,
+        after_weight,
+        scrap_weight,
+        scrap_wastage,
+
       },
     });
 
@@ -144,5 +153,51 @@ export const deleteCastingItem = async (req, res) => {
     res.status(200).json({ message: "Casting item deleted successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+};
+
+
+
+// controllers/castingItemsController.js
+// export const getAvailableCastingItems = async (req, res) => {
+//   try {
+//     const items = await prisma.castingItems.findMany({
+//       where: {
+//         type: "Items",
+//       },
+//       include: {
+//         item: true,
+//         touch: true
+//       }
+//     });
+//     res.json(items);
+//   } catch (err) {
+//     res.status(500).json({ error: "Failed to fetch casting items" });
+//   }
+// };
+
+
+export const getAvailableCastingItems = async (req, res) => {
+  try {
+    const items = await prisma.castingItems.findMany({
+      where: {
+        type: "Items",
+      },
+      include: {
+        item: true,
+        touch: true,
+        filingEntry: true, // include relation to check if assigned
+      }
+    });
+
+    const itemsWithStatus = items.map(item => ({
+      ...item,
+      status: item.filingEntry.length > 0 ? "Assigned" : "Unassigned",
+    }));
+
+    res.json(itemsWithStatus);
+  } catch (err) {
+    console.error("Failed to fetch casting items", err);
+    res.status(500).json({ error: "Failed to fetch casting items" });
   }
 };

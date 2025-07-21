@@ -11,7 +11,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
-import Master from "./Master";
+import Master from "./MasterNavbar";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 
 function MasterBuffing() {
@@ -76,6 +76,7 @@ function MasterBuffing() {
         // POST request for adding new customer
         const response = await axios.post(`${BACKEND_SERVER_URL}/api/buffing`, customerData);
         setCustomers((prev) => [...prev, response.data]);
+        console.log('Buffing Members:', response.data)
       }
       closeModal();
     } catch (error) {

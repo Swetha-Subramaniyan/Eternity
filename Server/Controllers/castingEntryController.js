@@ -96,6 +96,7 @@ export const getCastingEntryById = async (req, res) => {
 };
 
 // UPDATE Casting Entry
+
 export const updateCastingEntry = async (req, res) => {
   try {
     const { id } = req.params;
@@ -109,8 +110,11 @@ export const updateCastingEntry = async (req, res) => {
       copper,
       final_weight,
       casting_customer_id,
+      items,
+      scrapItems,
     } = req.body;
 
+    // Step 1: Update the main casting entry
     const updatedEntry = await prisma.castingEntry.update({
       where: { id: parseInt(id) },
       data: {
@@ -125,38 +129,82 @@ export const updateCastingEntry = async (req, res) => {
         casting_customer_id: parseInt(casting_customer_id),
       },
     });
-   console.log(updatedEntry);
-    res.status(200).json({ message: 'Casting entry updated successfully', data: updatedEntry });
+
+    console.log("✅ Updated casting entry:", updatedEntry);
+
+    // Step 2: Delete previous castingItems
+    await prisma.castingItems.deleteMany({
+      where: { casting_entry_id: parseInt(id) },
+    });
+
+    console.log("🗑️ Deleted previous casting items");
+
+    // Step 3: Format and re-insert all items
+    const formattedItems = [
+      ...(items || []).map((item) => ({
+        ...item,
+        casting_entry_id: parseInt(id),
+        casting_customer_id: parseInt(casting_customer_id),
+        createdAt: new Date(),
+      })),
+      ...(scrapItems || []).map((item) => ({
+        ...item,
+        casting_entry_id: parseInt(id),
+        casting_customer_id: parseInt(casting_customer_id),
+        createdAt: new Date(),
+      })),
+    ];
+
+    if (formattedItems.length > 0) {
+      await prisma.castingItems.createMany({ data: formattedItems });
+      console.log("✅ Re-created casting items:", formattedItems.length);
+    } else {
+      console.log("⚠️ No casting items provided to re-create");
+    }
+
+    res.status(200).json({ message: 'Casting entry and items updated successfully', data: updatedEntry });
   } catch (error) {
-    console.error("Error updating entry:", error);
+    console.error("❌ Error updating entry:", error);
     res.status(500).json({ error: 'Failed to update casting entry' });
   }
 };
 
-
-
-// DELETE Casting Entry
-// export const deleteCastingEntry = async (req, res) => {
+// export const updateCastingEntry = async (req, res) => {
 //   try {
 //     const { id } = req.params;
+//     const {
+//       date,
+//       given_gold,
+//       touch_id,
+//       purity,
+//       final_touch,
+//       pure_value,
+//       copper,
+//       final_weight,
+//       casting_customer_id,
+//     } = req.body;
 
-//     // First, delete related items
-//     await prisma.castingItems.deleteMany({
-//       where: { casting_entry_id: parseInt(id) },
-//     });
-
-//     // Then, delete the casting entry
-//     await prisma.castingEntry.delete({
+//     const updatedEntry = await prisma.castingEntry.update({
 //       where: { id: parseInt(id) },
+//       data: {
+//         date: new Date(date),
+//         given_gold: parseFloat(given_gold),
+//         touch_id: parseFloat(touch_id),
+//         purity: parseFloat(purity),
+//         final_touch: parseFloat(final_touch),
+//         pure_value: parseFloat(pure_value),
+//         copper: parseFloat(copper),
+//         final_weight: parseFloat(final_weight),
+//         casting_customer_id: parseInt(casting_customer_id),
+//       },
 //     });
-
-//     res.status(200).json({ message: 'Casting entry and its items deleted successfully' });
+//    console.log(updatedEntry);
+//     res.status(200).json({ message: 'Casting entry updated successfully', data: updatedEntry });
 //   } catch (error) {
-//     console.error("Error deleting entry:", error);
-//     res.status(500).json({ error: 'Failed to delete casting entryyyy' });
+//     console.error("Error updating entry:", error);
+//     res.status(500).json({ error: 'Failed to update casting entry' });
 //   }
 // };
-
 
 
 export const deleteCastingEntry = async (req, res) => {

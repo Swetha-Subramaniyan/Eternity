@@ -147,6 +147,32 @@ exports.Prisma.AddFilingScalarFieldEnum = {
   email: 'email'
 };
 
+exports.Prisma.LotInfoScalarFieldEnum = {
+  id: 'id',
+  lotNumber: 'lotNumber',
+  filing_customer_id: 'filing_customer_id',
+  setting_customer_id: 'setting_customer_id',
+  buffing_customer_id: 'buffing_customer_id'
+};
+
+exports.Prisma.LotFilingMapperScalarFieldEnum = {
+  id: 'id',
+  filing_id: 'filing_id',
+  lot_id: 'lot_id'
+};
+
+exports.Prisma.LotSettingMapperScalarFieldEnum = {
+  id: 'id',
+  setting_id: 'setting_id',
+  lot_id: 'lot_id'
+};
+
+exports.Prisma.LotBuffingMapperScalarFieldEnum = {
+  id: 'id',
+  buffing_id: 'buffing_id',
+  lot_id: 'lot_id'
+};
+
 exports.Prisma.AddSettingScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
@@ -457,6 +483,10 @@ exports.Prisma.ModelName = {
   AddCustomer: 'AddCustomer',
   AddCasting: 'AddCasting',
   AddFiling: 'AddFiling',
+  LotInfo: 'LotInfo',
+  LotFilingMapper: 'LotFilingMapper',
+  LotSettingMapper: 'LotSettingMapper',
+  LotBuffingMapper: 'LotBuffingMapper',
   AddSetting: 'AddSetting',
   AddBuffing: 'AddBuffing',
   AddSupplierItem: 'AddSupplierItem',

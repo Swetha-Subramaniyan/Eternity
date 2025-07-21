@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Master from "./Master";
+import Master from "./MasterNavbar";
 import "./MasterPurchaseStock.css";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import { Edit, Delete, Search } from "@mui/icons-material";

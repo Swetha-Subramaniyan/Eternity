@@ -80,9 +80,9 @@ export const createFilingItem = async (req, res) => {
     try {
       const items = await prisma.filingItems.findMany({
         include: {
-          item: true,         // includes AddItem relation
-          touch: true,        // includes AddTouch relation
-          filing_entry: true, // includes FilingEntry relation
+          item: true,         
+          touch: true,        
+          filing_entry: true, 
         },
       });
       res.status(200).json(items);
@@ -176,6 +176,82 @@ export const createFilingItem = async (req, res) => {
     } catch (error) {
       console.error("Error deleting filing item:", error);
       res.status(500).json({ error: "Failed to delete filing item" });
+    }
+  };
+  
+
+
+
+  export const createFilingItemsBulk = async (req, res) => {
+    try {
+      const { filing_entry_id, after_weight, productItems = [], scrapItems = [] } = req.body;
+  
+      // Validate filing_entry_id
+      if (!filing_entry_id || isNaN(filing_entry_id)) {
+        return res.status(400).json({ error: "Invalid or missing filing_entry_id" });
+      }
+  
+      console.log(" Received filing:", filing_entry_id);
+  
+
+      const filingEntry = await prisma.filingEntry.findUnique({
+        where: { id: Number(filing_entry_id) },
+        include: {
+          castingItem: {
+            select: {
+              casting_customer_id: true,
+            },
+          },
+        },
+      });
+  
+      if (!filingEntry || !filingEntry.castingItem) {
+        return res.status(404).json({ error: "Casting customer not found for this filing entry." });
+      }
+  
+      const castingCustomerId = filingEntry.castingItem.casting_customer_id;
+  
+      const allItems = [...productItems, ...scrapItems];
+  
+      const createdItems = [];
+  
+      for (const item of allItems) {
+        const created = await prisma.filingItems.create({
+          data: {
+            filing_entry_id: Number(filing_entry_id),
+            type: item.type,
+            item_id: Number(item.item_id),
+            weight: Number(item.weight),
+            touch_id: Number(item.touch_id),
+            item_purity: Number(item.item_purity),
+            remarks: item.remarks,
+            stone_option: item.stone_option || null,
+            after_weight: Number(after_weight),
+            wastage: item.wastage || null,
+          },
+        });
+  
+        if (item.type === "ScrapItems") {
+          await prisma.stock.create({
+            data: {
+              item: { connect: { id: Number(item.item_id) } },
+              weight: Number(item.weight),
+              touch: { connect: { id: Number(item.touch_id) } },
+              item_purity: Number(item.item_purity),
+              remarks: item.remarks,
+              filingItem: { connect: { id: created.id } },
+              casting_customer: { connect: { id: castingCustomerId } },
+            },
+          });
+        }
+  
+        createdItems.push(created);
+      }
+  
+      res.status(201).json({ message: "Filing items created successfully", items: createdItems });
+    } catch (error) {
+      console.error(" Error in bulk filing item creation:", error);
+      res.status(500).json({ error: "Failed to create filing items in bulk" });
     }
   };
   

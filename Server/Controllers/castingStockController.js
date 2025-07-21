@@ -2,32 +2,6 @@ import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
 
-// GET /api/stock
-// export const getAllStockItems = async (req, res) => {
-//   try {
-//     const stocks = await prisma.stock.findMany({
-//       include: {
-//         item: true,
-//         touch: true,
-//         casting_customer: true,
-//         casting_item: {
-//           include: {
-//             castingEntry: true,
-//           },
-//         },
-//       },
-//       orderBy: {
-//         id: 'desc',
-//       },
-//     });
-
-//     res.status(200).json(stocks);
-//   } catch (error) {
-//     console.error("Error fetching stock items:", error);
-//     res.status(500).json({ error: "Failed to fetch stock items" });
-//   }
-// };
-
 export const getAllStockItems = async (req, res) => {
   try {
     const stocks = await prisma.stock.findMany({
@@ -111,7 +85,8 @@ export const addToStock = async (req, res) => {
         casting_item_id: castingItem.id,
         item_id: castingItem.item_id,
         weight: castingItem.weight,
-        touch: castingItem.touch,
+        touch_id: castingItem.touch_id,
+
         purity: castingItem.item_purity,
         remarks: castingItem.remarks,
         scrap_weight: castingItem.scrap_weight,

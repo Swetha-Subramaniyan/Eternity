@@ -7,7 +7,6 @@ router.post("/",createSetting);
 router.get("/",getSetting);
 router.put("/:id",updateSetting);
 router.delete("/:id",deleteSetting);
-router.get("/:id", getSettingById)
-
+router.get('/:id', getSettingById);
 
 export default router;
