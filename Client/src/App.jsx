@@ -3,12 +3,11 @@ import {BrowserRouter,Routes,Route, Outlet} from 'react-router-dom'
 import Login from './Components/Login/Login';
 import Navbar from './Components/Navbar/Navbar';
 import Customer from './Components/Customer/Customer';
-import Master from './Components/Master/Master';
 import Goldsmith from './Components/Goldsmith/Goldsmith';
-import Casting from './Components/LotProcess/Casting';
-import Filing from './Components/LotProcess/Filing';
-import Setting from './Components/LotProcess/Setting';
-import Buffing from './Components/LotProcess/Buffing';
+import Casting from './Components/LotProcess/CastingProcess/Casting';
+import Filing from './Components/LotProcess/FilingProcess/Filing';
+import Setting from './Components/LotProcess/SettingProcess/Setting';
+import Buffing from './Components/LotProcess/BuffingProcess/Buffing';
 import MasterCustomer from './Components/Master/MasterCustomer';
 import MasterFiling from './Components/Master/MasterFiling';
 import MasterSetting from './Components/Master/MasterSetting';
@@ -19,9 +18,9 @@ import MasterPurchaseStock from './Components/Master/MasterPurchaseStock';
 import MasterAddSupplier from './Components/Master/MasterAddSupplier';
 import CustomerTranscation from './Components/Customer/CustomerTranscation';
 import Stock from './Components/LotProcess/Stock';
-import FilingLot from './Components/LotProcess/FilingLot';
-import BuffingLot from './Components/LotProcess/BuffingLot';
-import SettingLot from './Components/LotProcess/SettingLot';
+import FilingLot from './Components/LotProcess/FilingProcess/FilingLot';
+import BuffingLot from './Components/LotProcess/BuffingProcess/BuffingLot';
+import SettingLot from './Components/LotProcess/SettingProcess/SettingLot';
 import MasterJewelStock from './Components/Master/MasterJewelStock';
 import Billing from './Components/Billing/Billing';
 import Report from './Components/Report/Report';
@@ -34,10 +33,10 @@ import CastingMeltingReports from './Components/Report/CastingMeltingReports';
 import SettingReports from './Components/Report/SettingReports';
 import FilingReports from './Components/Report/FilingReports';
 import BuffingReports from './Components/Report/BuffingReports';
-import FilingLotDetails from './Components/LotProcess/FilingLotDetails';
-import BuffingLotDetails from './Components/LotProcess/BuffingLotDetails';
-import SettingLotDetails from './Components/LotProcess/SettingLotDetails';
-
+import FilingLotDetails from './Components/LotProcess/FilingProcess/FilingLotDetails';
+import BuffingLotDetails from './Components/LotProcess/BuffingProcess/BuffingLotDetails';
+import SettingLotDetails from './Components/LotProcess/SettingProcess/SettingLotDetails';
+import MasterNavbar from './Components/Master/MasterNavbar';
 
 const App = () => {
   return (
@@ -47,12 +46,14 @@ const App = () => {
     <Route path='/navbar' element={<Navbar/>} />
     <Route path='/customer' element={<Customer/>}/>
     <Route path='/customertranscation' element={<CustomerTranscation/>}/>
-    <Route path='/master' element={<Master/>} />
+    <Route path='/master' element={<MasterNavbar/>} />
+
     <Route path='/goldsmith' element={<Goldsmith/>} />
     <Route path='/casting' element={<Casting/>} />
     <Route path='/filing' element={<Filing/>}/>
     <Route path='/setting' element={<Setting/>}/>
     <Route path='/buffing' element={<Buffing/>}/> 
+
     <Route path='/mastercustomer' element={<MasterCustomer/>} />
     <Route path='/masterfiling' element={<MasterFiling/>} />
     <Route path='/mastersetting' element={<MasterSetting/>} />

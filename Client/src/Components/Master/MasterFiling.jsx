@@ -19,7 +19,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
-import Master from "./Master";
+import Master from "./MasterNavbar";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 
 function MasterFiling() {

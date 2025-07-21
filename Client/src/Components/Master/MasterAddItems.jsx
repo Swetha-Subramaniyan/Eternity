@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./MasterAdditems.css";
-import Master from "./Master";
+import Master from "./MasterNavbar";
 import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 

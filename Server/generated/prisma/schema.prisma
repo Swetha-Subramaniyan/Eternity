@@ -52,33 +52,77 @@ model AddCasting {
 }
 
 model AddFiling {
-  id          Int           @id @default(autoincrement())
-  createdAt   DateTime      @default(now())
-  name        String
-  phoneNumber String?
-  address     String?
-  email       String?
-  filings     FilingEntry[]
+  id              Int               @id @default(autoincrement())
+  createdAt       DateTime          @default(now())
+  name            String
+  phoneNumber     String?
+  address         String?
+  email           String?
+  filings         FilingEntry[]
+  lotInfo         LotInfo[]
+  lotFilingMapper LotFilingMapper[]
+}
+
+model LotInfo {
+  id                  Int                @id @default(autoincrement())
+  lotNumber           Int
+  filing_customer_id  Int?
+  filingCustomerId    AddFiling?         @relation(fields: [filing_customer_id], references: [id])
+  setting_customer_id Int?
+  settingCustomerId   AddSetting?        @relation(fields: [setting_customer_id], references: [id])
+  buffing_customer_id Int?
+  buffingCustomerId   AddBuffing?        @relation(fields: [buffing_customer_id], references: [id])
+  filingMapper        LotFilingMapper[]
+  settingMapper       LotSettingMapper[]
+  buffingMapper       LotBuffingMapper[]
+}
+
+model LotFilingMapper {
+  id        Int       @id @default(autoincrement())
+  filing_id Int
+  filingId  AddFiling @relation(fields: [filing_id], references: [id])
+  lot_id    Int
+  lotId     LotInfo   @relation(fields: [lot_id], references: [id])
+}
+
+model LotSettingMapper {
+  id         Int        @id @default(autoincrement())
+  setting_id Int
+  settingId  AddSetting @relation(fields: [setting_id], references: [id])
+  lot_id     Int
+  lotId      LotInfo    @relation(fields: [lot_id], references: [id])
+}
+
+model LotBuffingMapper {
+  id         Int        @id @default(autoincrement())
+  buffing_id Int
+  buffingId  AddBuffing @relation(fields: [buffing_id], references: [id])
+  lot_id     Int
+  lotId      LotInfo    @relation(fields: [lot_id], references: [id])
 }
 
 model AddSetting {
-  id          Int            @id @default(autoincrement())
-  createdAt   DateTime       @default(now())
-  name        String
-  phoneNumber String?
-  address     String?
-  email       String?
-  settings    SettingEntry[]
+  id            Int                @id @default(autoincrement())
+  createdAt     DateTime           @default(now())
+  name          String
+  phoneNumber   String?
+  address       String?
+  email         String?
+  settings      SettingEntry[]
+  settingMapper LotSettingMapper[]
+  lotInfo       LotInfo[]
 }
 
 model AddBuffing {
-  id          Int            @id @default(autoincrement())
-  createdAt   DateTime       @default(now())
-  name        String
-  phoneNumber String?
-  address     String?
-  email       String?
-  buffings    BuffingEntry[]
+  id            Int                @id @default(autoincrement())
+  createdAt     DateTime           @default(now())
+  name          String
+  phoneNumber   String?
+  address       String?
+  email         String?
+  buffings      BuffingEntry[]
+  buffingMapper LotBuffingMapper[]
+  lotInfo       LotInfo[]
 }
 
 model AddSupplierItem {

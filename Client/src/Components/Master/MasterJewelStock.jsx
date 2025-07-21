@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./MasterJewelStock.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Master from "./Master";
+import Master from "./MasterNavbar";
 import { Button } from "@mui/material";
 
 const MasterJewelStock = () => {

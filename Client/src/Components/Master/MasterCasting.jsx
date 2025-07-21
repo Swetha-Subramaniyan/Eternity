@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./MasterCasting.css";
+import styles from "./MasterCasting.module.css";
 import axios from "axios";
 import {
   Button,
@@ -12,7 +12,7 @@ import {
   TextareaAutosize,
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
-import Master from "./Master";
+import Master from "./MasterNavbar";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 
 function MasterCasting() {
@@ -119,8 +119,8 @@ function MasterCasting() {
   return (
     <>
       <Master />
-      <div className="customer-container">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", marginTop: "2rem" }}>
+      <div className={styles.customerContainer}>
+        <div className={styles.headerRow}>
           <Button
             style={{
               backgroundColor: "#F5F5F5",
@@ -134,12 +134,14 @@ function MasterCasting() {
           >
             Add Casting / Melting
           </Button>
-          <TextField
+
+<TextField
             placeholder="Search by Name"
             variant="outlined"
             size="small"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            sx={{ marginLeft: "46rem" }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -148,6 +150,19 @@ function MasterCasting() {
               ),
             }}
           />
+          <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft: "1.2rem",
+            }}
+            onClick={() => setSearchTerm("")}
+          >
+            Reset
+          </Button>
         </div>
 
         <Dialog open={isModalOpen} onClose={closeModal}>
@@ -197,42 +212,60 @@ function MasterCasting() {
           </DialogActions>
         </Dialog>
 
-<div className="item-listt"> 
-<table >
+<div className={styles.itemList}> 
+<table className={styles.customerTable} >
   <thead>
-    <tr>
-      <th><strong>S.No</strong></th>
-      <th><strong>Name</strong></th>
-      <th><strong>Phone</strong></th>
-      <th><strong>Email</strong></th>
-      <th><strong>Address</strong></th>
-      <th><strong>Actions</strong></th>
-    </tr>
+      <tr>
+                <th>S.No</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Actions</th>
+              </tr>
   </thead>
   <tbody>
-    {filteredCustomers.length > 0 ? (
-      filteredCustomers.map((customer, index) => (
+  {filteredCustomers.length > 0 ? (
+    filteredCustomers.map((customer, index) => {
+      const createdAt = new Date(customer.createdAt); 
+      const date = createdAt.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      });
+      const time = createdAt.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+
+      return (
         <tr key={index}>
           <td>{index + 1}</td>
+          <td>{date}</td>       {/* 👈 Display formatted date */}
+          <td>{time}</td>       {/* 👈 Display formatted time */}
           <td>{customer.name}</td>
           <td>{customer.phoneNumber}</td>
           <td>{customer.email}</td>
           <td>{customer.address}</td>
-          <td style={{width:"7rem"}}>
-           <Edit  onClick={() => handleEdit(index)} style={{ marginRight: "8px" }} />
-           <Delete onClick={() => handleDelete(index)} style={{ color: "red", marginLeft:'0.5rem' }} />          
+          <td className={styles.tableActions}>
+            <Edit onClick={() => handleEdit(index)} className={styles.actionIcon} />
+            <Delete onClick={() => handleDelete(index)} className={styles.deleteIcon} />
           </td>
-          
         </tr>
-      ))
-    ) : (
-      <tr>
-        <td colSpan="6" style={{ textAlign: "center" }}>
-          Name not found
-        </td>
-      </tr>
-    )}
-  </tbody>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="8" style={{ textAlign: "center" }}>
+        Name not found
+      </td>
+    </tr>
+  )}
+</tbody>
+
 </table>
 </div>
 

@@ -59,6 +59,46 @@ model AddFiling {
   address     String?
   email       String?       
   filings     FilingEntry[]
+  lotInfo  LotInfo[]
+  lotFilingMapper LotFilingMapper[]
+}
+
+model LotInfo {
+  id Int  @id @default(autoincrement())
+  lotNumber  Int 
+  filing_customer_id Int?
+  filingCustomerId AddFiling? @relation(fields: [filing_customer_id], references: [id], onDelete: Cascade)
+  setting_customer_id Int?
+  settingCustomerId   AddSetting?   @relation(fields: [setting_customer_id], references: [id], onDelete: Cascade)
+  buffing_customer_id Int?
+  buffingCustomerId   AddBuffing?   @relation(fields: [buffing_customer_id], references: [id], onDelete: Cascade)
+  filingMapper LotFilingMapper[]
+  settingMapper LotSettingMapper[]
+  buffingMapper LotBuffingMapper[]
+}
+
+model LotFilingMapper {
+  id Int @id @default(autoincrement())
+  filing_id Int 
+  filingId AddFiling @relation(fields: [filing_id], references: [id], onDelete: Cascade)
+  lot_id Int 
+  lotId LotInfo @relation(fields:[lot_id], references: [id], onDelete: Cascade)
+}
+
+model LotSettingMapper {
+  id Int @id @default(autoincrement())
+  setting_id Int
+  settingId AddSetting @relation(fields: [setting_id], references: [id], onDelete: Cascade)
+  lot_id Int
+  lotId LotInfo @relation(fields: [lot_id], references: [id], onDelete: Cascade)
+}
+
+model LotBuffingMapper{
+  id Int @id @default(autoincrement())
+  buffing_id Int
+  buffingId AddBuffing @relation(fields: [buffing_id], references: [id], onDelete: Cascade)
+  lot_id Int 
+  lotId LotInfo @relation(fields: [lot_id], references: [id], onDelete: Cascade)
 }
 
 model AddSetting {
@@ -69,6 +109,8 @@ model AddSetting {
   address     String?
   email       String?        
   settings    SettingEntry[]
+  settingMapper LotSettingMapper[]
+  lotInfo  LotInfo[]
 }
 
 model AddBuffing {
@@ -79,6 +121,8 @@ model AddBuffing {
   address     String?
   email       String?       
   buffings    BuffingEntry[]
+  buffingMapper LotBuffingMapper[]
+  lotInfo LotInfo[]
 }
 
 model AddSupplierItem {
@@ -265,7 +309,6 @@ model SettingItems {
   item_purity Float
   scrap_remarks String?
   setting_wastage SettingWastage[]
-
   buffing_entry  BuffingEntry[]
   stock Stock[]
 
@@ -320,11 +363,9 @@ model BuffingWastage {
   wastage_percentage Int
   given_gold Int? 
   add_wastage Float? 
-buffing_items BuffingItems[]
+  buffing_items BuffingItems[]
 
 }
-
-
 
 model Stock {
   id               Int           @id @default(autoincrement())
