@@ -119,7 +119,7 @@ const Filing = () => {
         <TableCell align="center">{row.phoneNumber || "-"}</TableCell>
         <TableCell align="center">{row.address || "-"}</TableCell>
         <TableCell align="center">
-          <Link to={`/filinglot/${row.id}/${encodeURIComponent(row.name)}`}>
+          <Link to={`/filinglot/${row.id}/${encodeURIComponent(row.name)}/${row.lotInfo?.[0]?.lotNumber || 0}`}>
   <IconButton>
     <PreviewIcon color="primary" />
   </IconButton>

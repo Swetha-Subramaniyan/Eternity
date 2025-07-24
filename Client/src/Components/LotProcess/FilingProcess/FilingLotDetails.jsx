@@ -984,7 +984,6 @@
 
 
 
-
 import React, { useState, useEffect } from 'react';
 import {Box, Button, Dialog, DialogActions, DialogContent, DialogTitle,Checkbox, Table, TableBody, TableCell,TableContainer, TableHead, TableRow, TextField, Typography, Paper} from "@mui/material";
 import { FaEye } from "react-icons/fa";
@@ -1041,6 +1040,7 @@ useEffect(() => {
 
   fetchItems();
 }, []);
+
 
 const handleBulkAssign = async () => {
   try {
@@ -1112,7 +1112,6 @@ useEffect(() => {
     setEntries(updatedEntries);
     setViewEntry(null);
     console.log('Updated Dats',updatedEntries)
-    
   };
 
   const totalReceipt = entries.reduce((acc, group) => {
@@ -1132,7 +1131,6 @@ useEffect(() => {
   return (
     <>
       <Navbar />
-
       <div className={styles.datefields}>
         <TextField
             id="from-date"
@@ -1157,11 +1155,9 @@ useEffect(() => {
            select
            label="Status"
            value={status}
-           onChange={(e) => setStatus(e.target.value)}
-         
+           onChange={(e) => setStatus(e.target.value)}        
             InputLabelProps={{ shrink: true }}
-            SelectProps={{ native: true }}
-         
+            SelectProps={{ native: true }}         
             sx={{ ml: "1.5rem", mt:'0rem' }}>
 
             <option value="All">All</option>
@@ -1384,7 +1380,6 @@ sx={{ ml:'37rem'}}
       <TableRow key={item.id}>
         <TableCell align="center">
     
-
 <TableCell align="center">
   <Checkbox
     disabled={item.status === "Assigned"}
@@ -1406,8 +1401,6 @@ sx={{ ml:'37rem'}}
     }}
   />
 </TableCell>
-
-
         </TableCell>
         <TableCell align="center">{item.item?.name}</TableCell>
         <TableCell align="center">{item.weight}</TableCell>
@@ -1425,7 +1418,6 @@ sx={{ ml:'37rem'}}
 <Button onClick={() => setIsAssignOpen(false)}>Cancel</Button>
 <Button variant="contained" color="primary"  disabled={selectedItemIds.length === 0} 
 onClick={handleBulkAssign}> Assign  </Button>
-
 
         </DialogActions>
       </Dialog>

@@ -70,12 +70,14 @@ function MasterSetting() {
         const id = customers[editIndex].id; // assuming your customers have unique IDs
         const response = await axios.put(`${BACKEND_SERVER_URL}/api/setting/${id}`, customerData);
         const updated = [...customers];
-        updated[editIndex] = response.data;
+        updated[editIndex] = response.data.setting || response.data; 
         setCustomers(updated);
       } else {
         // POST request for adding new customer
         const response = await axios.post(`${BACKEND_SERVER_URL}/api/setting`, customerData);
         setCustomers((prev) => [...prev, response.data]);
+        setCustomers((prev) => [...prev, response.data.setting]);
+
         console.log('setting members:',response)
       }
       closeModal();
@@ -98,14 +100,15 @@ function MasterSetting() {
     setEditIndex(originalIndex);
     openModal();
   };
-  const handleDelete = async (index) => {
-    const customer = customers[index];
-    const confirmed = window.confirm(`Are you sure you want to delete "${customer.name}"?`);
+
+
+  const handleDelete = async (id) => {
+    const confirmed = window.confirm(`Are you sure you want to delete this customer?`);
     if (!confirmed) return;
+  
     try {
-      await axios.delete(`${BACKEND_SERVER_URL}/api/setting/${customer.id}`);
-      const updatedCustomers = [...customers];
-      updatedCustomers.splice(index, 1);
+      await axios.delete(`${BACKEND_SERVER_URL}/api/setting/${id}`);
+      const updatedCustomers = customers.filter((customer) => customer.id !== id);
       setCustomers(updatedCustomers);
     } catch (error) {
       console.error("Error deleting customer:", error.response?.data || error.message);
@@ -113,11 +116,11 @@ function MasterSetting() {
     }
   };
   
-
+  
   const filteredCustomers = customers.filter((customer) =>
-    customer.name.toLowerCase().includes(searchTerm.toLowerCase())
+    customer.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+  
   return (
     <>
       <Master />
@@ -224,9 +227,10 @@ function MasterSetting() {
             <b onClick={() => handleEdit(index)} style={{ marginRight: "8px" }}>
            <Edit />
             </b>
-            <b onClick={() => handleDelete(index)} style={{ color: "red", marginLeft:'0.5rem' }}>
-                <Delete />
-            </b>
+            <b onClick={() => handleDelete(customer.id)} style={{ color: "red", marginLeft:'0.5rem' }}>
+  <Delete />
+</b>
+
           </td>
         </tr>
       ))

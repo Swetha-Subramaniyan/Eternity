@@ -70,12 +70,12 @@ function MasterBuffing() {
         const id = customers[editIndex].id; // assuming your customers have unique IDs
         const response = await axios.put(`${BACKEND_SERVER_URL}/api/buffing/${id}`, customerData);
         const updated = [...customers];
-        updated[editIndex] = response.data;
+        updated[editIndex] = response.data.buffing || response.data;;
         setCustomers(updated);
       } else {
         // POST request for adding new customer
         const response = await axios.post(`${BACKEND_SERVER_URL}/api/buffing`, customerData);
-        setCustomers((prev) => [...prev, response.data]);
+        setCustomers((prev) => [...prev, response.data.buffing]);
         console.log('Buffing Members:', response.data)
       }
       closeModal();
@@ -114,10 +114,10 @@ function MasterBuffing() {
     }
   };
   
-
   const filteredCustomers = customers.filter((customer) =>
-    customer.name.toLowerCase().includes(searchTerm.toLowerCase())
+    customer.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  
 
   return (
     <>

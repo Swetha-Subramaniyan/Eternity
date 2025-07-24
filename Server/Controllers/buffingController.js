@@ -69,7 +69,11 @@ export const getBuffing = async (req, res) => {
         where: { id: Number(id) },
         include: {
           lotInfo: true,
-          lotBuffingMapper: true,
+          buffingMapper: {
+            include: {
+              lotId: true 
+            }
+          },
         }
       });
   
@@ -77,9 +81,9 @@ export const getBuffing = async (req, res) => {
         return res.status(404).json({ message: "Buffing member not found" });
       }
   
-      res.status(200).json(filing);
+      res.status(200).json(buffing);
     } catch (error) {
-      console.error(" Error in getBuffingById:", error); 
+      console.error("Error in getBuffingById:", error);
       res.status(500).json({ error: "Internal server error" });
     }
   };
@@ -95,7 +99,6 @@ export const updateBuffing = async(req,res) =>{
             }
         )
         res.status(201).json(updated)
-
 
     }catch(error){
         res.status(400).json(error)

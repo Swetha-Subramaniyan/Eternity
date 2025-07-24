@@ -20,7 +20,11 @@ import filingItemsRoutes from "./Routes/filingItemsRoutes.js";
 const app = express();
 const PORT = process.env.PORT ||  5000;
 
-app.use(express.json());
+// app.use(express.json());
+app.use(express.json({
+  strict: true, 
+}));
+
 app.use(cors());
 dotenv.config();
 
@@ -39,7 +43,6 @@ app.use("/api/castingitems",castingItemsRoutes);
 app.use("/api/stock",castingStockRoutes);
 app.use("/api/filingentry",filingEntryRoutes );
 app.use("/api/filingitems",filingItemsRoutes);
-
 
 app.get("/", (req, res) => {
   res.send("Hellooo");

@@ -137,7 +137,7 @@ export const updateCastingEntry = async (req, res) => {
       where: { casting_entry_id: parseInt(id) },
     });
 
-    console.log("🗑️ Deleted previous casting items");
+    console.log(" Deleted previous casting items");
 
     // Step 3: Format and re-insert all items
     const formattedItems = [
@@ -164,7 +164,7 @@ export const updateCastingEntry = async (req, res) => {
 
     res.status(200).json({ message: 'Casting entry and items updated successfully', data: updatedEntry });
   } catch (error) {
-    console.error("❌ Error updating entry:", error);
+    console.error("Error updating entry:", error);
     res.status(500).json({ error: 'Failed to update casting entry' });
   }
 };

@@ -63,43 +63,6 @@ model AddFiling {
   lotFilingMapper LotFilingMapper[]
 }
 
-model LotInfo {
-  id Int  @id @default(autoincrement())
-  lotNumber  Int 
-  filing_customer_id Int?
-  filingCustomerId AddFiling? @relation(fields: [filing_customer_id], references: [id], onDelete: Cascade)
-  setting_customer_id Int?
-  settingCustomerId   AddSetting?   @relation(fields: [setting_customer_id], references: [id], onDelete: Cascade)
-  buffing_customer_id Int?
-  buffingCustomerId   AddBuffing?   @relation(fields: [buffing_customer_id], references: [id], onDelete: Cascade)
-  filingMapper LotFilingMapper[]
-  settingMapper LotSettingMapper[]
-  buffingMapper LotBuffingMapper[]
-}
-
-model LotFilingMapper {
-  id Int @id @default(autoincrement())
-  filing_id Int 
-  filingId AddFiling @relation(fields: [filing_id], references: [id], onDelete: Cascade)
-  lot_id Int 
-  lotId LotInfo @relation(fields:[lot_id], references: [id], onDelete: Cascade)
-}
-
-model LotSettingMapper {
-  id Int @id @default(autoincrement())
-  setting_id Int
-  settingId AddSetting @relation(fields: [setting_id], references: [id], onDelete: Cascade)
-  lot_id Int
-  lotId LotInfo @relation(fields: [lot_id], references: [id], onDelete: Cascade)
-}
-
-model LotBuffingMapper{
-  id Int @id @default(autoincrement())
-  buffing_id Int
-  buffingId AddBuffing @relation(fields: [buffing_id], references: [id], onDelete: Cascade)
-  lot_id Int 
-  lotId LotInfo @relation(fields: [lot_id], references: [id], onDelete: Cascade)
-}
 
 model AddSetting {
   id          Int           @id @default(autoincrement())
@@ -227,10 +190,25 @@ model CastingItems {
   settingEntry   SettingEntry?
   buffingEntry   BuffingEntry?
   stock          Stock[]
+  filingLotMapper LotFilingMapper[]
 
   casting_customer_id Int
   casting_customer     AddCasting   @relation(fields: [casting_customer_id], references: [id])
 }
+model LotInfo {
+  id Int  @id @default(autoincrement())
+  lotNumber  Int 
+  filing_customer_id Int?
+  filingCustomerId AddFiling? @relation(fields: [filing_customer_id], references: [id], onDelete: Cascade)
+  setting_customer_id Int?
+  settingCustomerId   AddSetting?   @relation(fields: [setting_customer_id], references: [id], onDelete: Cascade)
+  buffing_customer_id Int?
+  buffingCustomerId   AddBuffing?   @relation(fields: [buffing_customer_id], references: [id], onDelete: Cascade)
+  filingMapper LotFilingMapper[]
+  settingMapper LotSettingMapper[]
+  buffingMapper LotBuffingMapper[]
+}
+
 
 model FilingEntry {
   id               Int            @id @default(autoincrement())
@@ -251,8 +229,8 @@ model FilingItems {
 
 
   type CASTINGENTRYTYPE
-  item_id        Int
-  item           AddItem        @relation(fields: [item_id], references: [id])
+  filing_item_id        Int
+  filingitem           AddItem        @relation(fields: [filing_item_id], references: [id])
   weight         Float
   touch_id       Int
   touch          AddTouch  @relation(fields: [touch_id], references: [id])
@@ -267,6 +245,19 @@ model FilingItems {
   setting_entry  SettingEntry[]
   buffing_entry  BuffingEntry[]
   filing_wastage  FilingWastage[]
+  lot_setting_mapper LotSettingMapper[]
+  LotBuffingMapper LotBuffingMapper[]
+}
+
+model LotFilingMapper {
+  id Int @id @default(autoincrement())
+  filing_id Int 
+  filingId AddFiling @relation(fields: [filing_id], references: [id], onDelete: Cascade)
+  lot_id Int 
+  lotId LotInfo @relation(fields:[lot_id], references: [id], onDelete: Cascade)
+  item_id Int
+  itemId CastingItems @relation(fields: [item_id], references: [id], onDelete: Cascade)
+
 }
 
 model FilingWastage {
@@ -301,8 +292,8 @@ model SettingItems {
   wastage Boolean
 
   type CASTINGENTRYTYPE
-  item_id Int 
-  item AddItem @relation(fields: [item_id], references: [id])
+  setting_item_id Int 
+  item AddItem @relation(fields: [setting_item_id], references: [id])
   scrap_weight Float
   touch_id Int
   touch AddTouch @relation(fields: [touch_id], references: [id])
@@ -311,7 +302,18 @@ model SettingItems {
   setting_wastage SettingWastage[]
   buffing_entry  BuffingEntry[]
   stock Stock[]
+  LotBuffingMapper LotBuffingMapper[]
+}
 
+
+model LotSettingMapper {
+  id Int @id @default(autoincrement())
+  setting_id Int
+  settingId AddSetting @relation(fields: [setting_id], references: [id], onDelete: Cascade)
+  lot_id Int
+  lotId LotInfo @relation(fields: [lot_id], references: [id], onDelete: Cascade)
+  filing_item_id Int 
+  itemId FilingItems @relation(fields: [filing_item_id],references: [id],onDelete: Cascade)
 }
 
 model SettingWastage {
@@ -345,8 +347,8 @@ model BuffingItems {
   wastage Boolean
 
   type CASTINGENTRYTYPE 
-  item_id Int 
-  item AddItem @relation(fields: [item_id], references: [id])
+  buffing_item_id Int 
+  item AddItem @relation(fields: [buffing_item_id], references: [id])
   scrap_weight Float 
   touch_id Int
   touch AddTouch @relation(fields: [touch_id], references: [id])
@@ -355,6 +357,18 @@ model BuffingItems {
   stock Stock[]
   buffing_wastage BuffingWastage[]
 
+}
+
+model LotBuffingMapper{
+  id Int @id @default(autoincrement())
+  buffing_id Int
+  buffingId AddBuffing @relation(fields: [buffing_id], references: [id], onDelete: Cascade)
+  lot_id Int 
+  lotId LotInfo @relation(fields: [lot_id], references: [id], onDelete: Cascade)
+  setting_item_id Int?
+  settingItemId SettingItems? @relation(fields: [setting_item_id], references: [id], onDelete: Cascade)
+  filing_item_id Int?
+  filingItemId FilingItems ? @relation(fields: [filing_item_id], references: [id], onDelete: Cascade)
 }
 
 model BuffingWastage {

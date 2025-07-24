@@ -64,12 +64,12 @@ const App = () => {
     <Route path='/masterpurchasestock' element={<MasterPurchaseStock/>} />
     <Route path='/mastersupplier' element={<MasterAddSupplier />} />
     <Route path='/stock' element={<Stock/>} />
-    <Route path='/filingLotDetails/:id/:name' element={<FilingLotDetails/>}/> 
-    <Route path='/filinglot/:id/:name' element={<FilingLot/>}/> 
-    <Route path='/settinglot/:id/:name' element={< SettingLot />}/> 
-    <Route path='/settingLotDetails/:id/:name' element={<SettingLotDetails/>} />
-    <Route path='/buffinglot/:id/:name' element={<BuffingLot/>}/>
-    <Route path='/buffingLotDetails/:id/:name' element={<BuffingLotDetails/>}/>
+    <Route path='/filingLotDetails/:id/:name/:lotNumber' element={<FilingLotDetails/>}/> 
+    <Route path='/filinglot/:id/:name/:lotNumber' element={<FilingLot />} />
+    <Route path='/settinglot/:id/:name/:lotNumber' element={<SettingLot />} />
+    <Route path='/settingLotDetails/:id/:name/:lotNumber' element={<SettingLotDetails />} />
+    <Route path='/buffinglot/:id/:name/:lotNumber' element={<BuffingLot/>}/>
+    <Route path='/buffingLotDetails/:id/:name/:lotNumber' element={<BuffingLotDetails/>}/>
     <Route path='/masterjewel' element={< MasterJewelStock />} />
     <Route path='/billing' element={<Billing />}/>
     <Route path='/report' element={< Report/>}/>
@@ -77,7 +77,6 @@ const App = () => {
     <Route path='/settingreports' element={< SettingReports />}/>
     <Route path='/filingreports' element={< FilingReports />}/>
     <Route path='/buffingreports' element={< BuffingReports  />}/>
-
     <Route path='/customerreport' element={< CustomerReport/>}/>
     <Route path='/salesreport' element={<SalesReport />}/>
     <Route path='/stockreport' element={< StockReport/>}/>
