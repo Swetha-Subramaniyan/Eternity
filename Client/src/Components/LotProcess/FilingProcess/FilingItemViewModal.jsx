@@ -12,7 +12,6 @@ import {
   TableBody,
   TextField,
 } from '@mui/material';
-import {  } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { DialogActions, Button, Box ,TableFooter} from '@mui/material';
 import { Delete } from '@mui/icons-material';
@@ -22,7 +21,7 @@ import { BACKEND_SERVER_URL } from "../../../../Config/config";
 const FilingItemViewModal = ({ open, onClose, entry, setEntry}) => {
   if (!entry) return null;
 
-  const [itemOptions, setItemOptions] = useState([]);
+const [itemOptions, setItemOptions] = useState([]);
 const [touchOptions, setTouchOptions] = useState([]);
 
 useEffect(() => {
@@ -70,12 +69,13 @@ const handleSaveViewEntry = async () => {
       })),
       wastage: entry.wastage === "Yes"
     };
+    console.log("Saving with filing_entry_id:", entry.id);
 
     const res = await axios.post(`${BACKEND_SERVER_URL}/api/filingitems/bulk`, payload);
 
     if (res.data.success) {
       alert("Filing items saved successfully.");
-      onClose(); // optionally close the dialog
+      onClose(); 
     } else {
       console.error("Save failed:", res.data);
       alert("Error saving filing items.");

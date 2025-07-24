@@ -147,32 +147,6 @@ exports.Prisma.AddFilingScalarFieldEnum = {
   email: 'email'
 };
 
-exports.Prisma.LotInfoScalarFieldEnum = {
-  id: 'id',
-  lotNumber: 'lotNumber',
-  filing_customer_id: 'filing_customer_id',
-  setting_customer_id: 'setting_customer_id',
-  buffing_customer_id: 'buffing_customer_id'
-};
-
-exports.Prisma.LotFilingMapperScalarFieldEnum = {
-  id: 'id',
-  filing_id: 'filing_id',
-  lot_id: 'lot_id'
-};
-
-exports.Prisma.LotSettingMapperScalarFieldEnum = {
-  id: 'id',
-  setting_id: 'setting_id',
-  lot_id: 'lot_id'
-};
-
-exports.Prisma.LotBuffingMapperScalarFieldEnum = {
-  id: 'id',
-  buffing_id: 'buffing_id',
-  lot_id: 'lot_id'
-};
-
 exports.Prisma.AddSettingScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
@@ -271,6 +245,14 @@ exports.Prisma.CastingItemsScalarFieldEnum = {
   casting_customer_id: 'casting_customer_id'
 };
 
+exports.Prisma.LotInfoScalarFieldEnum = {
+  id: 'id',
+  lotNumber: 'lotNumber',
+  filing_customer_id: 'filing_customer_id',
+  setting_customer_id: 'setting_customer_id',
+  buffing_customer_id: 'buffing_customer_id'
+};
+
 exports.Prisma.FilingEntryScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
@@ -283,7 +265,7 @@ exports.Prisma.FilingItemsScalarFieldEnum = {
   createdAt: 'createdAt',
   filing_entry_id: 'filing_entry_id',
   type: 'type',
-  item_id: 'item_id',
+  filing_item_id: 'filing_item_id',
   weight: 'weight',
   touch_id: 'touch_id',
   item_purity: 'item_purity',
@@ -293,6 +275,13 @@ exports.Prisma.FilingItemsScalarFieldEnum = {
   after_weight: 'after_weight',
   scrap_weight: 'scrap_weight',
   scrap_wastage: 'scrap_wastage'
+};
+
+exports.Prisma.LotFilingMapperScalarFieldEnum = {
+  id: 'id',
+  filing_id: 'filing_id',
+  lot_id: 'lot_id',
+  item_id: 'item_id'
 };
 
 exports.Prisma.FilingWastageScalarFieldEnum = {
@@ -319,11 +308,18 @@ exports.Prisma.SettingItemsScalarFieldEnum = {
   remarks: 'remarks',
   wastage: 'wastage',
   type: 'type',
-  item_id: 'item_id',
+  setting_item_id: 'setting_item_id',
   scrap_weight: 'scrap_weight',
   touch_id: 'touch_id',
   item_purity: 'item_purity',
   scrap_remarks: 'scrap_remarks'
+};
+
+exports.Prisma.LotSettingMapperScalarFieldEnum = {
+  id: 'id',
+  setting_id: 'setting_id',
+  lot_id: 'lot_id',
+  filing_item_id: 'filing_item_id'
 };
 
 exports.Prisma.SettingWastageScalarFieldEnum = {
@@ -348,11 +344,19 @@ exports.Prisma.BuffingItemsScalarFieldEnum = {
   remarks: 'remarks',
   wastage: 'wastage',
   type: 'type',
-  item_id: 'item_id',
+  buffing_item_id: 'buffing_item_id',
   scrap_weight: 'scrap_weight',
   touch_id: 'touch_id',
   item_purity: 'item_purity',
   scrap_remarks: 'scrap_remarks'
+};
+
+exports.Prisma.LotBuffingMapperScalarFieldEnum = {
+  id: 'id',
+  buffing_id: 'buffing_id',
+  lot_id: 'lot_id',
+  setting_item_id: 'setting_item_id',
+  filing_item_id: 'filing_item_id'
 };
 
 exports.Prisma.BuffingWastageScalarFieldEnum = {
@@ -483,10 +487,6 @@ exports.Prisma.ModelName = {
   AddCustomer: 'AddCustomer',
   AddCasting: 'AddCasting',
   AddFiling: 'AddFiling',
-  LotInfo: 'LotInfo',
-  LotFilingMapper: 'LotFilingMapper',
-  LotSettingMapper: 'LotSettingMapper',
-  LotBuffingMapper: 'LotBuffingMapper',
   AddSetting: 'AddSetting',
   AddBuffing: 'AddBuffing',
   AddSupplierItem: 'AddSupplierItem',
@@ -496,14 +496,18 @@ exports.Prisma.ModelName = {
   AddTouch: 'AddTouch',
   CastingEntry: 'CastingEntry',
   CastingItems: 'CastingItems',
+  LotInfo: 'LotInfo',
   FilingEntry: 'FilingEntry',
   FilingItems: 'FilingItems',
+  LotFilingMapper: 'LotFilingMapper',
   FilingWastage: 'FilingWastage',
   SettingEntry: 'SettingEntry',
   SettingItems: 'SettingItems',
+  LotSettingMapper: 'LotSettingMapper',
   SettingWastage: 'SettingWastage',
   BuffingEntry: 'BuffingEntry',
   BuffingItems: 'BuffingItems',
+  LotBuffingMapper: 'LotBuffingMapper',
   BuffingWastage: 'BuffingWastage',
   Stock: 'Stock'
 };

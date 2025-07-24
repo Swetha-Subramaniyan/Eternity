@@ -6,16 +6,20 @@ import styles from './FilingLot.module.css';
 import { BACKEND_SERVER_URL } from '../../../../Config/config';
 
 const FilingLot = () => {
-  const { id, name } = useParams();  
+  const { id, name, lotNumber } = useParams();  
+  console.log("Lot Name from URL:", name ,id ,"lotNumber:",lotNumber);
   const [userDetails, setUserDetails] = useState(null);
-  const [lots, setLots] = useState([{ id: 1 }]);
+  const [lotList, setLotList] = useState([]);
 
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const response = await axios.get(`${BACKEND_SERVER_URL}/api/filing/${id}`)
-        setUserDetails(response.data);
-        console.log('Filing Member:', response.data)
+        const response = await axios.get(`${BACKEND_SERVER_URL}/api/filing/${id}`);
+        const data = response.data;
+        setUserDetails(data);
+        setLotList(data.lotInfo || []);
+        console.log('Fetched Filing Details:', data);
+        console.log('lot Info:', data.lotInfo)
       } catch (error) {
         console.error('Error fetching user details:', error);
       }
@@ -23,11 +27,6 @@ const FilingLot = () => {
 
     fetchDetails();
   }, [id]);
-
-  const handleCloseLot = () => {
-    const nextId = lots.length + 1;
-    setLots([...lots, { id: nextId }]);
-  };
 
   return (
     <>
@@ -42,12 +41,12 @@ const FilingLot = () => {
       </div>
 
       <div className={styles.container}>
-        {lots.map((lot) => (
+        {lotList.map((lot) => (
           <div key={lot.id} className={styles.card}>
             <div className={styles.header}>
-              <label className={styles.lotLabel}>Lot No: {lot.id}</label>
+              <label className={styles.lotLabel}>Lot No: {lot.lotNumber}</label>
               <div className={styles.actions}>
-              <Link to={`/filingLotDetails/${id}/${encodeURIComponent(name)}`}>
+              <Link to={`/filingLotDetails/${id}/${encodeURIComponent(name)}/${lot.lotNumber || 0}`}>
                   <button className={styles.button}>View</button>
                 </Link>
               </div>

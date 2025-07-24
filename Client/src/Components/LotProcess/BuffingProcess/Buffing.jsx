@@ -16,6 +16,7 @@ const Buffing = () => {
       try {
         const response = await axios.get(`${BACKEND_SERVER_URL}/api/buffing`);
         setBuffingData(response.data);
+        console.log("Available buffing Members:", response.data)
       } catch (error) {
         console.error("Error fetching filing data:", error);
       }
@@ -104,7 +105,8 @@ const Buffing = () => {
         <TableCell align="center">{row.phoneNumber || "-"}</TableCell>
         <TableCell align="center">{row.address || "-"}</TableCell>
         <TableCell align="center">
-          <Link to={`/buffinglot/${row.id}/${encodeURIComponent(row.name)}`}>
+
+          <Link to={`/buffinglot/${row.id}/${encodeURIComponent(row.name)}/${row.lotInfo?.[0]?.lotNumber || 0}`}>
   <IconButton>
     <PreviewIcon color="primary" />
   </IconButton>

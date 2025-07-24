@@ -186,7 +186,7 @@ export const getAvailableCastingItems = async (req, res) => {
       include: {
         item: true,
         touch: true,
-        filingEntry: true, // include relation to check if assigned
+        filingEntry: true, 
       }
     });
 

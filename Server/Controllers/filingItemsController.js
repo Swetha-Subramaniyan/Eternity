@@ -8,79 +8,80 @@ export const createFilingItem = async (req, res) => {
     const {
       filing_entry_id,
       type,
-      item_id,
+      filing_item_id,
       weight,
       touch_id,
       item_purity,
       remarks,
+      wastage,
       stone_option,
       after_weight,
-      wastage,
+      scrap_weight,
+      scrap_wastage,
     } = req.body;
 
-    // Step 1: Get casting_customer_id via the related castingItem
-    const filingEntry = await prisma.filingEntry.findUnique({
-      where: { id: parseInt(filing_entry_id) },
-      include: {
-        castingItem: {
-          select: {
-            casting_customer_id: true,
-          },
-        },
-      },
-    });
-
-    if (!filingEntry || !filingEntry.castingItem) {
-      return res.status(404).json({ error: "Casting customer not found for this filing entry." });
+    // Check required fields
+    if (!filing_entry_id || !filing_item_id || !type || !weight || !touch_id || !item_purity) {
+      return res.status(400).json({ message: "Missing required fields" });
     }
-
-    const castingCustomerId = filingEntry.castingItem.casting_customer_id;
-
-    // Step 2: Create the Filing Item
-    const created = await prisma.filingItems.create({
+    const wastageBool = wastage === "Yes" ? true : false;
+    // Create Filing Item
+    const filingItem = await prisma.filingItems.create({
       data: {
-        filing_entry_id: Number(filing_entry_id),
+        filing_entry_id,
         type,
-        item_id: Number(item_id),
-        weight: Number(weight),
-        touch_id: Number(touch_id),
-        item_purity: Number(item_purity),
+        filing_item_id,
+        weight,
+        touch_id,
+        item_purity,
         remarks,
+        wastage: wastageBool,
         stone_option,
-        after_weight: Number(after_weight),
-        wastage,
+        after_weight,
+        scrap_weight,
+        scrap_wastage,
       },
     });
 
-    // Step 3: If ScrapItem, create a stock entry
+    // If item type is ScrapItems, add to Stock table
     if (type === "ScrapItems") {
+      // Get casting_customer_id from filingEntry -> castingItem -> casting_customer_id
+      const filingEntry = await prisma.filingEntry.findUnique({
+        where: { id: filing_entry_id },
+        include: {
+          castingItem: true,
+        },
+      });
+
+      if (!filingEntry) {
+        return res.status(404).json({ message: "Filing entry not found" });
+      }
+
       await prisma.stock.create({
         data: {
-          item: { connect: { id: Number(item_id) } },
-          weight: Number(weight),
-          touch: { connect: { id: Number(touch_id) } },
-          item_purity: Number(item_purity),
+          filing_item_id: filingItem.id,
+          item_id: filing_item_id,
+          weight,
+          touch_id,
+          item_purity,
           remarks,
-          filingItem: {
-            connect: { id: created.id },
-          },
-          casting_customer: { connect: { id: castingCustomerId } },
+          scrap_wastage,
+          casting_customer_id: filingEntry.castingItem.casting_customer_id,
         },
       });
     }
 
-    res.status(201).json(created);
+    res.status(201).json({ message: "Filing item created successfully", filingItem });
   } catch (error) {
-    console.error("Filing item creation error:", error);
-    res.status(500).json({ message: "Failed to create filing item" });
+    console.error("Error creating filing item:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
   export const getAllFilingItems = async (req, res) => {
     try {
       const items = await prisma.filingItems.findMany({
-        include: {
-          item: true,         
+        include: {      
           touch: true,        
           filing_entry: true, 
         },
@@ -101,13 +102,13 @@ export const createFilingItem = async (req, res) => {
   
       const item = await prisma.filingItems.findUnique({
         where: { id: parseInt(id) },
-        include: {
-          item: true,
+        include: {       
           touch: true,
           stock: true,
           setting_entry: true,
           buffing_entry: true,
           filing_wastage: true,
+          filing_entry: true,
         },
       });
   
@@ -123,32 +124,38 @@ export const createFilingItem = async (req, res) => {
 
 
   export const updateFilingItem = async (req, res) => {
+    const { id } = req.params;
+    const {
+      type,
+      filing_item_id,
+      weight,
+      touch_id,
+      item_purity,
+      remarks,
+      wastage,
+      stone_option,
+      after_weight,
+      scrap_weight,
+      scrap_wastage,
+    } = req.body;
+  
     try {
-      const { id } = req.params;
-      const {
-        item_id,
-        type,
-        weight,
-        touch_id,
-        item_purity,
-        remarks,
-        wastage,
-        stone_option,
-        after_weight,
-        scrap_weight,
-        scrap_wastage,
-      } = req.body;
+      const existingItem = await prisma.filingItems.findUnique({ where: { id: Number(id) } });
+  
+      if (!existingItem) {
+        return res.status(404).json({ message: "Filing item not found" });
+      }
   
       const updatedItem = await prisma.filingItems.update({
-        where: { id: parseInt(id) },
+        where: { id: Number(id) },
         data: {
-          item_id,
           type,
+          filing_item_id,
           weight,
           touch_id,
           item_purity,
           remarks,
-          wastage,
+          wastage: wastage === "Yes" ? true : false,
           stone_option,
           after_weight,
           scrap_weight,
@@ -156,102 +163,36 @@ export const createFilingItem = async (req, res) => {
         },
       });
   
-      res.json(updatedItem);
+      res.status(200).json({ message: "Filing item updated", updatedItem });
     } catch (error) {
       console.error("Error updating filing item:", error);
-      res.status(500).json({ error: "Failed to update filing item" });
+      res.status(500).json({ message: "Internal server error" });
     }
   };
+  
 
   
   export const deleteFilingItem = async (req, res) => {
+    const { id } = req.params;
+  
     try {
-      const { id } = req.params;
+      const existingItem = await prisma.filingItems.findUnique({ where: { id: Number(id) } });
   
-      await prisma.filingItems.delete({
-        where: { id: parseInt(id) },
-      });
+      if (!existingItem) {
+        return res.status(404).json({ message: "Filing item not found" });
+      }
   
-      res.json({ message: "Filing item deleted successfully" });
+      await prisma.filingItems.delete({ where: { id: Number(id) } });
+  
+      res.status(200).json({ message: "Filing item deleted successfully" });
     } catch (error) {
       console.error("Error deleting filing item:", error);
-      res.status(500).json({ error: "Failed to delete filing item" });
+      res.status(500).json({ message: "Internal server error" });
     }
   };
   
 
 
 
-  export const createFilingItemsBulk = async (req, res) => {
-    try {
-      const { filing_entry_id, after_weight, productItems = [], scrapItems = [] } = req.body;
-  
-      // Validate filing_entry_id
-      if (!filing_entry_id || isNaN(filing_entry_id)) {
-        return res.status(400).json({ error: "Invalid or missing filing_entry_id" });
-      }
-  
-      console.log(" Received filing:", filing_entry_id);
-  
 
-      const filingEntry = await prisma.filingEntry.findUnique({
-        where: { id: Number(filing_entry_id) },
-        include: {
-          castingItem: {
-            select: {
-              casting_customer_id: true,
-            },
-          },
-        },
-      });
-  
-      if (!filingEntry || !filingEntry.castingItem) {
-        return res.status(404).json({ error: "Casting customer not found for this filing entry." });
-      }
-  
-      const castingCustomerId = filingEntry.castingItem.casting_customer_id;
-  
-      const allItems = [...productItems, ...scrapItems];
-  
-      const createdItems = [];
-  
-      for (const item of allItems) {
-        const created = await prisma.filingItems.create({
-          data: {
-            filing_entry_id: Number(filing_entry_id),
-            type: item.type,
-            item_id: Number(item.item_id),
-            weight: Number(item.weight),
-            touch_id: Number(item.touch_id),
-            item_purity: Number(item.item_purity),
-            remarks: item.remarks,
-            stone_option: item.stone_option || null,
-            after_weight: Number(after_weight),
-            wastage: item.wastage || null,
-          },
-        });
-  
-        if (item.type === "ScrapItems") {
-          await prisma.stock.create({
-            data: {
-              item: { connect: { id: Number(item.item_id) } },
-              weight: Number(item.weight),
-              touch: { connect: { id: Number(item.touch_id) } },
-              item_purity: Number(item.item_purity),
-              remarks: item.remarks,
-              filingItem: { connect: { id: created.id } },
-              casting_customer: { connect: { id: castingCustomerId } },
-            },
-          });
-        }
-  
-        createdItems.push(created);
-      }
-  
-      res.status(201).json({ message: "Filing items created successfully", items: createdItems });
-    } catch (error) {
-      console.error(" Error in bulk filing item creation:", error);
-      res.status(500).json({ error: "Failed to create filing items in bulk" });
-    }
-  };
   

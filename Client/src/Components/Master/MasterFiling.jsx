@@ -62,29 +62,28 @@ function MasterFiling() {
     fetchCustomers();
   }, []);
 
-  
+
+
 
   const handleSave = async () => {
     const customerData = {
       name: customerName,
-      phoneNumber ,
+      phoneNumber,
       address,
       email,
     };
   
     try {
       if (editIndex !== null) {
-        // PUT request for updating customer
-        const id = customers[editIndex].id; // assuming your customers have unique IDs
+        const id = customers[editIndex].id;
         const response = await axios.put(`${BACKEND_SERVER_URL}/api/filing/${id}`, customerData);
         const updated = [...customers];
-        updated[editIndex] = response.data;
+        updated[editIndex] = response.data.filing || response.data; 
         setCustomers(updated);
       } else {
-        // POST request for adding new customer
         const response = await axios.post(`${BACKEND_SERVER_URL}/api/filing`, customerData);
-        setCustomers((prev) => [...prev, response.data]);
-        console.log('posting filing',response)
+        console.log('posting filing', response);
+        setCustomers((prev) => [...prev, response.data.filing]);
       }
       closeModal();
     } catch (error) {
@@ -121,10 +120,10 @@ function MasterFiling() {
     }
   };
   
-
   const filteredCustomers = customers.filter((customer) =>
-    customer.name.toLowerCase().includes(searchTerm.toLowerCase())
+    customer.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  
 
   return (
     <>
