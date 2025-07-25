@@ -17,12 +17,15 @@ import { DialogActions, Button, Box ,TableFooter} from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import axios from 'axios';
 import { BACKEND_SERVER_URL } from "../../../../Config/config";
+import { toast } from 'react-toastify';
+
 
 const FilingItemViewModal = ({ open, onClose, entry, setEntry}) => {
   if (!entry) return null;
 
 const [itemOptions, setItemOptions] = useState([]);
 const [touchOptions, setTouchOptions] = useState([]);
+const [filingItems, setFilingItems] = useState([]);
 
 useEffect(() => {
   const fetchDropdownData = async () => {
@@ -42,50 +45,119 @@ useEffect(() => {
 }, []);
 
 
+
+useEffect(() => {
+  const fetchFilingItems = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/filingitems");
+      setFilingItems(response.data); 
+      console.log("Fetched filing items:", response.data);
+    } catch (error) {
+      console.error("Error fetching filing items:", error);
+    }
+  };
+
+  fetchFilingItems();
+}, []);
+
+
 const handleSaveViewEntry = async () => {
   try {
-    if (!entry?.id) {
-      alert("Missing filing entry ID.");
-      return;
+    // Save Product Items
+    for (const item of entry.productItems || []) {
+      const payload = {
+        filing_entry_id: parseInt(entry.id) ,
+        item_id: parseInt(item.itemId),
+        type: 'ProductItem',
+        item_name: item.itemName,
+        weight: item.weight,
+        touch_id: item.touch,
+        item_purity: item.purity,
+        remarks: item.remarks || '',
+        stone_option: item.hasStone || 'No',
+        wastage: entry.wastage || 'No',
+        after_weight: entry.afterWeight || 0,
+      };
+
+      await axios.post(`${BACKEND_SERVER_URL}/api/filingitems`, payload);
     }
 
-    const payload = {
-      filing_entry_id: entry.id,
-      after_weight: parseFloat(entry.afterWeight) || 0,
-      product_items: (entry.productItems || []).map(item => ({
-        item_name: item.itemName,
-        weight: parseFloat(item.weight) || 0,
-        has_stone: item.hasStone === "Yes",
-        touch: parseFloat(item.touch) || 0,
-        purity: parseFloat(item.purity) || 0,
-        remarks: item.remarks || ""
-      })),
-      scrap_items: (entry.scrapItems || []).map(item => ({
-        item_name: item.itemName,
-        weight: parseFloat(item.weight) || 0,
-        touch: parseFloat(item.touch) || 0,
-        purity: parseFloat(item.purity) || 0,
-        remarks: item.remarks || ""
-      })),
-      wastage: entry.wastage === "Yes"
-    };
-    console.log("Saving with filing_entry_id:", entry.id);
+    // Save Scrap Items
+    for (const item of entry.scrapItems || []) {
+      const payload = {
 
-    const res = await axios.post(`${BACKEND_SERVER_URL}/api/filingitems/bulk`, payload);
+        filing_entry_id: parseInt(entry.id) ,
+        item_id: parseInt(item.itemId),       
+        type: 'ScrapItems',
+        item_name: item.itemName,
+        weight: item.weight,
+        touch_id: item.touch,
+        item_purity: item.purity,
+        remarks: item.remarks || '',
+        wastage: entry.wastage || 'No',
+        after_weight: entry.afterWeight || 0,
+      };
 
-    if (res.data.success) {
-      alert("Filing items saved successfully.");
-      onClose(); 
-    } else {
-      console.error("Save failed:", res.data);
-      alert("Error saving filing items.");
+      // Save to filingitems table
+      await axios.post(`${BACKEND_SERVER_URL}/api/filingitems`, payload);
+
+      // Also save to stock
+      await axios.post(`${BACKEND_SERVER_URL}/api/stock`, {
+        item_id: item.itemId, // assuming you have itemId in scrap item
+        weight: item.weight,
+        touch_id: item.touch,
+        item_purity: item.purity,
+        remarks: item.remarks || '',
+      });
     }
+
+    toast.success("Filing items saved successfully");
+
+    if (onSaveSuccess) {
+      onSaveSuccess(); // refresh parent table
+    }
+
+    onClose(); // close the modal
   } catch (error) {
-    console.error("Error during save:", error);
-    alert("Failed to save filing items.");
+    console.error("Failed to save filing item:", error);
+    toast.error("Failed to save filing items");
   }
 };
 
+
+
+// const handleSaveViewEntry = async () => {
+//   try {
+//     for (const item of viewItems) {
+//       const payload = {
+//         filing_entry_id: selectedViewRow.id,
+//         type: item.type, //  Correctly using type from item
+//         filing_item_id: item.id,
+//         weight: item.weight,
+//         touch_id: item.touch_id,
+//         item_purity: item.item_purity,
+//         remarks: item.remarks || '',
+//         wastage: item.wastage || 'No',
+//         stone_option: item.stone_option || 'No',
+//         after_weight: item.after_weight,
+//         scrap_weight: item.scrap_weight,
+//         scrap_wastage: item.scrap_wastage,
+//       };
+
+//       await axios.post(`${BACKEND_SERVER_URL}/api/filingitems`, payload);
+//     }
+
+//     if (onSaveSuccess) {
+//       onSaveSuccess(); 
+//     }
+
+//     toast.success("Filing items saved successfully");
+//     setOpen(false);
+//   } catch (error) {
+//     console.error("Failed to save filing item:", error);
+//     toast.error("Failed to save filing items");
+//   }
+// };
 
   return ( 
     <> 
@@ -305,8 +377,6 @@ const handleSaveViewEntry = async () => {
                   <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>Actions</TableCell>
                 </TableRow>
               </TableHead>
-
-
               <TableBody>
                 {(entry.scrapItems || []).map((item, index) => (
                   <TableRow key={index}>
@@ -403,16 +473,14 @@ const handleSaveViewEntry = async () => {
               }g
             </Typography>
           </Box>
-
-          </div>
+         </div>
         </>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
-        <Button variant="contained" onClick={handleSaveViewEntry}
+        <Button variant="contained" onClick={handleSaveViewEntry }
           disabled={entry?.wastage !== 'Yes' && entry?.wastage !== 'No'} >Save</Button>
          
-
       </DialogActions>
     </Dialog>
     </>

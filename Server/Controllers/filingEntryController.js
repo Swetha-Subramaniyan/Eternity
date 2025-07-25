@@ -3,39 +3,32 @@ const prisma = new PrismaClient();
 
 //  POST - http://localhost:5000/api/filingentry
 
-// CREATE filing entry
-// export const createFilingEntry = async (req, res) => {
-//   try {
-//     const { filing_person_id, casting_item_id } = req.body;
-
-//     const newEntry = await prisma.filingEntry.create({
-//       data: {
-
-//         filing_person_id: parseInt(filing_person_id),
-//         casting_item_id, 
-//       },
-//     });
-
-//     res.status(201).json(newEntry);
-//   } catch (error) {
-//     console.error("Error creating filing entry:", error);
-//     res.status(500).json({ error: "Failed to create filing entry" });
-//   }
-// };
-
-
 export const createFilingEntry = async (req, res) => {
   try {
-    const { filing_person_id, casting_item_id } = req.body;
+    const { filing_person_id, casting_item_id, lot_number } = req.body;
 
+    console.log(" Received request to create FilingEntry with:", {
+      filing_person_id,
+      casting_item_id,
+      lot_number
+    });
+
+    if (!filing_person_id || !casting_item_id || !lot_number) {
+      console.warn(" Missing required fields");
+      return res.status(400).json({ error: "filing_person_id, casting_item_id, and lot_number are required" });
+    }
+
+    // Check if casting item already assigned
     const existingEntry = await prisma.filingEntry.findFirst({
       where: { casting_item_id },
     });
 
     if (existingEntry) {
+      console.warn(" Casting item already assigned:", casting_item_id);
       return res.status(400).json({ message: 'Casting Item already assigned' });
     }
 
+    // Create Filing Entry
     const newFilingEntry = await prisma.filingEntry.create({
       data: {
         filing_person_id,
@@ -43,22 +36,46 @@ export const createFilingEntry = async (req, res) => {
       },
     });
 
-    res.status(201).json({ message: 'Filing Entry created', entry: newFilingEntry });
+    console.log(" Created new FilingEntry:", newFilingEntry);
+
+    // Create LotFilingMapper entry
+    const lotFilingMapper = await prisma.lotFilingMapper.create({
+      data: {
+        filing_id: filing_person_id,
+        lot_id: parseInt(lot_number),
+        item_id: casting_item_id,
+      }
+    });
+
+    console.log(" Created new LotFilingMapper:", lotFilingMapper);
+
+    res.status(201).json({
+      message: 'Filing Entry and Lot Mapping created successfully',
+      entry: newFilingEntry,
+      mapper: lotFilingMapper
+    });
+
   } catch (error) {
+    console.error(" Error creating filing entry:", error);
     res.status(500).json({ error: error.message });
   }
 };
 
 
-// Get All Filing Entries
 export const getAllFilingEntries = async (req, res) => {
   try {
     const entries = await prisma.filingEntry.findMany({
+
       include: {
+        castingItem: {
+          include: {
+            item: true,
+          }
+        },
         filing_person: true,
-        castingItem: true,
         filingItems: true,
-      },
+      }
+     
     });
     res.status(200).json(entries);
   } catch (error) {
@@ -66,15 +83,21 @@ export const getAllFilingEntries = async (req, res) => {
   }
 };
 
-// Get Filing Entry by ID
+
 export const getFilingEntryById = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
+
     const entry = await prisma.filingEntry.findUnique({
       where: { id },
       include: {
         filing_person: true,
-        castingItem: true,
+        castingItem: {
+          include: {
+            item: true,
+            touch: true,
+          },
+        },
         filingItems: true,
       },
     });
@@ -89,7 +112,44 @@ export const getFilingEntryById = async (req, res) => {
   }
 };
 
-// Update Filing Entry
+
+
+
+
+
+
+export const getFilingEntriesByPersonId = async (req, res) => {
+  try {
+    const filing_person_id = parseInt(req.params.filing_person_id);
+
+    const entries = await prisma.filingEntry.findMany({
+      where: { filing_person_id },
+      include: {
+        filing_person: true,
+        castingItem: {
+          include: {
+            item: true,
+            touch: true,
+          },
+        },
+        filingItems: true,
+      },
+      orderBy: { id: 'desc' },
+    });
+
+    if (!entries || entries.length === 0) {
+      return res.status(404).json({ message: 'No entries found for this person' });
+    }
+
+    res.status(200).json(entries);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+
 export const updateFilingEntry = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -109,7 +169,7 @@ export const updateFilingEntry = async (req, res) => {
   }
 };
 
-// Delete Filing Entry
+
 export const deleteFilingEntry = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -124,110 +184,3 @@ export const deleteFilingEntry = async (req, res) => {
   }
 };
 
-
-
-// export const getAllFilingEntries = async (req, res) => {
-//   try {
-//     const entries = await prisma.filingEntry.findMany({
-//       include: {
-//         filingItems: true,
-//         castingItem: {
-//           include: {
-//             item: true
-//           }
-//         }
-//       },
-//       orderBy: {
-//         createdAt: 'desc'
-//       }
-//     });
-
-//     const formattedEntries = entries.map(entry => {
-//       const productItems = entry.filingItems.filter(item => item.type === 'Items');
-//       const scrapItems = entry.filingItems.filter(item => item.type === 'ScrapItems');
-
-//       return {
-//         ...entry,
-//         productItems,
-//         date: entry.createdAt,
-//         scrapItems,
-//         wastage: productItems.some(i => i.wastage === true) ? 'Yes' : 'No',
-//         items: entry.castingItem ? [{
-//           item: entry.castingItem.item.name,
-//           beforeWeight: entry.castingItem.weight
-//         }] : []
-//       };
-//     });
-
-//     res.status(200).json(formattedEntries);
-//   } catch (error) {
-//     console.error("Failed to fetch filing entries:", error);
-//     res.status(500).json({ message: "Error fetching entries" });
-//   }
-// };
-
-
-// export const getFilingEntryById = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-
-//     const entry = await prisma.filingEntry.findUnique({
-//       where: { id: parseInt(id) },
-//       include: {
-//         filing_person: true,
-//         castingItem: {
-//           include: {
-//             item: true,
-//             casting_customer: true,
-//           },
-//         },
-//       },
-//     });
-
-//     if (!entry) {
-//       return res.status(404).json({ error: "Filing entry not found" });
-//     }
-
-//     res.json(entry);
-//   } catch (error) {
-//     console.error("Error fetching filing entry:", error);
-//     res.status(500).json({ error: "Failed to fetch filing entry" });
-//   }
-// };
-
-
-// export const updateFilingEntry = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { filing_person_id, casting_item_id } = req.body;
-
-//     const updatedEntry = await prisma.filingEntry.update({
-//       where: { id: parseInt(id) },
-//       data: {
-//         filing_person_id,
-//         casting_item_id,
-//       },
-//     });
-
-//     res.json(updatedEntry);
-//   } catch (error) {
-//     console.error("Error updating filing entry:", error);
-//     res.status(500).json({ error: "Failed to update filing entry" });
-//   }
-// };
-
-
-// export const deleteFilingEntry = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-
-//     await prisma.filingEntry.delete({
-//       where: { id: parseInt(id) },
-//     });
-
-//     res.json({ message: "Filing entry deleted successfully" });
-//   } catch (error) {
-//     console.error("Error deleting filing entry:", error);
-//     res.status(500).json({ error: "Failed to delete filing entry" });
-//   }
-// };

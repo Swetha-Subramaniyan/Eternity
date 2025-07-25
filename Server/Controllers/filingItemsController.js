@@ -1,7 +1,8 @@
+// app.use("/api/filingitems",filingItemsRoutes);
+
 import { PrismaClient } from "../generated/prisma/index.js";
 const prisma =new PrismaClient();
 
-// CREATE a new FilingItem
 
 export const createFilingItem = async (req, res) => {
   try {
@@ -18,36 +19,42 @@ export const createFilingItem = async (req, res) => {
       after_weight,
       scrap_weight,
       scrap_wastage,
+      lot_filing_mapper_id, // <-- ✅ NEW FIELD
     } = req.body;
 
-    // Check required fields
-    if (!filing_entry_id || !filing_item_id || !type || !weight || !touch_id || !item_purity) {
+    if (!filing_entry_id || !type || !weight || !touch_id || !item_purity) {
       return res.status(400).json({ message: "Missing required fields" });
     }
+
+    if (type !== "ScrapItems" && !filing_item_id) {
+      return res.status(400).json({ message: "filing_item_id is required for non-scrap items" });
+    }
+
     const wastageBool = wastage === "Yes" ? true : false;
-    // Create Filing Item
+
+    // ✅ Create FilingItem with optional lot_filing_mapper_id
     const filingItem = await prisma.filingItems.create({
       data: {
-        filing_entry_id,
+        filing_entry_id: parseInt(filing_entry_id),
         type,
-        filing_item_id,
-        weight,
-        touch_id,
-        item_purity,
+        filing_item_id: filing_item_id ? parseInt(filing_item_id) : null,
+        weight: parseFloat(weight),
+        touch_id: parseInt(touch_id),
+        item_purity: parseFloat(item_purity),
         remarks,
         wastage: wastageBool,
         stone_option,
-        after_weight,
-        scrap_weight,
-        scrap_wastage,
+        after_weight: after_weight ? parseFloat(after_weight) : null,
+        scrap_weight: scrap_weight ? parseFloat(scrap_weight) : null,
+        scrap_wastage: scrap_wastage ? parseFloat(scrap_wastage) : null,
+        lot_filing_mapper_id: lot_filing_mapper_id ? parseInt(lot_filing_mapper_id) : null,
       },
     });
 
-    // If item type is ScrapItems, add to Stock table
+    // ✅ If ScrapItem, also post to stock
     if (type === "ScrapItems") {
-      // Get casting_customer_id from filingEntry -> castingItem -> casting_customer_id
       const filingEntry = await prisma.filingEntry.findUnique({
-        where: { id: filing_entry_id },
+        where: { id: parseInt(filing_entry_id) },
         include: {
           castingItem: true,
         },
@@ -60,12 +67,12 @@ export const createFilingItem = async (req, res) => {
       await prisma.stock.create({
         data: {
           filing_item_id: filingItem.id,
-          item_id: filing_item_id,
-          weight,
-          touch_id,
-          item_purity,
+          item_id: filing_item_id ? parseInt(filing_item_id) : null,
+          weight: parseFloat(weight),
+          touch_id: parseInt(touch_id),
+          item_purity: parseFloat(item_purity),
           remarks,
-          scrap_wastage,
+          scrap_wastage: scrap_wastage ? parseFloat(scrap_wastage) : null,
           casting_customer_id: filingEntry.castingItem.casting_customer_id,
         },
       });
@@ -77,6 +84,88 @@ export const createFilingItem = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+
+// export const createFilingItem = async (req, res) => {
+//   try {
+//     const {
+//       filing_entry_id,
+//       type,
+//       filing_item_id,
+//       weight,
+//       touch_id,
+//       item_purity,
+//       remarks,
+//       wastage,
+//       stone_option,
+//       after_weight,
+//       scrap_weight,
+//       scrap_wastage,
+//       lot_filing_mapper_id,
+//     } = req.body;
+
+//     if (!filing_entry_id || !type || !weight || !touch_id || !item_purity) {
+//       return res.status(400).json({ message: "Missing required fields" });
+//     }
+    
+//     if (type !== "ScrapItems" && !filing_item_id) {
+//       return res.status(400).json({ message: "filing_item_id is required for non-scrap items" });
+//     }
+    
+//     const wastageBool = wastage === "Yes" ? true : false;
+
+//     const filingItem = await prisma.filingItems.create({
+//       data: {
+//         filing_entry_id,
+//         type,
+//         filing_item_id,
+//         weight,
+//         touch_id,
+//         item_purity,
+//         remarks,
+//         wastage: wastageBool,
+//         stone_option,
+//         after_weight,
+//         scrap_weight,
+//         scrap_wastage,
+//         lot_filing_mapper_id: lot_filing_mapper_id ? parseInt(lot_filing_mapper_id) : null,
+//       },
+//     });
+
+
+//     if (type === "ScrapItems") {
+  
+//       const filingEntry = await prisma.filingEntry.findUnique({
+//         where: { id: filing_entry_id },
+//         include: {
+//           castingItem: true,
+//         },
+//       });
+
+//       if (!filingEntry) {
+//         return res.status(404).json({ message: "Filing entry not found" });
+//       }
+
+//       await prisma.stock.create({
+//         data: {
+//           filing_item_id: parseInt(filingItem.id),
+//           item_id: filing_item_id,
+//           weight,
+//           touch_id,
+//           item_purity,
+//           remarks,
+//           scrap_wastage,
+//           casting_customer_id: filingEntry.castingItem.casting_customer_id,
+//         },
+//       });
+//     }
+
+//     res.status(201).json({ message: "Filing item created successfully", filingItem });
+//   } catch (error) {
+//     console.error("Error creating filing item:", error);
+//     res.status(500).json({ message: "Internal server error" });
+//   }
+// };
 
   export const getAllFilingItems = async (req, res) => {
     try {

@@ -274,7 +274,8 @@ exports.Prisma.FilingItemsScalarFieldEnum = {
   stone_option: 'stone_option',
   after_weight: 'after_weight',
   scrap_weight: 'scrap_weight',
-  scrap_wastage: 'scrap_wastage'
+  scrap_wastage: 'scrap_wastage',
+  lot_filing_mapper_id: 'lot_filing_mapper_id'
 };
 
 exports.Prisma.LotFilingMapperScalarFieldEnum = {

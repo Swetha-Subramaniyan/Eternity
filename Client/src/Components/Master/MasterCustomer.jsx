@@ -61,16 +61,31 @@ function MasterCustomer() {
     const nameRegex = /^[A-Za-z\s]+$/;
     const phoneRegex = /^[0-9]{7,15}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!customerName.trim()) {
+  
+    const trimmedName = customerName.trim();
+  
+    if (!trimmedName) {
       alert("Customer name is required.");
       return;
     }
-    if (!nameRegex.test(customerName.trim())) {
+    if (!nameRegex.test(trimmedName)) {
       alert("Invalid name. Only letters and spaces are allowed for NAME.");
       return;
     }
-
+  
+  
+    const isDuplicate = customers.some((cust, idx) => {
+      return (
+        cust.name.toLowerCase() === trimmedName.toLowerCase() &&
+        idx !== editIndex
+      );
+    });
+  
+    if (isDuplicate) {
+      alert("Customer name already exists. Please use a different name.");
+      return;
+    }
+  
     if (!phoneNumber.trim()) {
       alert("Phone number is required.");
       return;
@@ -100,18 +115,12 @@ function MasterCustomer() {
     try {
       if (editIndex !== null) {
         const id = customers[editIndex].id;
-        const response = await axios.put(
-          `${BACKEND_SERVER_URL}/api/customers/${id}`,
-          customerData
-        );
+        const response = await axios.put( `${BACKEND_SERVER_URL}/api/customers/${id}`,customerData);
         const updated = [...customers];
         updated[editIndex] = response.data;
         setCustomers(updated);
       } else {
-        const response = await axios.post(
-          `${BACKEND_SERVER_URL}/api/customers`,
-          customerData
-        );
+        const response = await axios.post( `${BACKEND_SERVER_URL}/api/customers`,customerData );
         setCustomers((prev) => [...prev, response.data]);
       }
       closeModal();

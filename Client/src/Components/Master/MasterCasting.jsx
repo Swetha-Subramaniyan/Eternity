@@ -244,8 +244,8 @@ function MasterCasting() {
       return (
         <tr key={index}>
           <td>{index + 1}</td>
-          <td>{date}</td>       {/* 👈 Display formatted date */}
-          <td>{time}</td>       {/* 👈 Display formatted time */}
+          <td>{date}</td>     
+          <td>{time}</td>     
           <td>{customer.name}</td>
           <td>{customer.phoneNumber}</td>
           <td>{customer.email}</td>

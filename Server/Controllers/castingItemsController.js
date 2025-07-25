@@ -18,7 +18,8 @@ export const createCastingItem = async (req, res) => {
       scrap_weight,
       scrap_wastage
     } = req.body;
-    
+
+
 
     const castingEntry = await prisma.castingEntry.findUnique({
       where: { id: parseInt(castingEntryId) },
@@ -158,25 +159,6 @@ export const deleteCastingItem = async (req, res) => {
 
 
 
-// controllers/castingItemsController.js
-// export const getAvailableCastingItems = async (req, res) => {
-//   try {
-//     const items = await prisma.castingItems.findMany({
-//       where: {
-//         type: "Items",
-//       },
-//       include: {
-//         item: true,
-//         touch: true
-//       }
-//     });
-//     res.json(items);
-//   } catch (err) {
-//     res.status(500).json({ error: "Failed to fetch casting items" });
-//   }
-// };
-
-
 export const getAvailableCastingItems = async (req, res) => {
   try {
     const items = await prisma.castingItems.findMany({
@@ -201,3 +183,5 @@ export const getAvailableCastingItems = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch casting items" });
   }
 };
+
+

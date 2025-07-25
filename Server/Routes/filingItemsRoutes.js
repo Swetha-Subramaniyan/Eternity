@@ -15,5 +15,4 @@ router.get("/:id", getFilingItemById);
 router.put("/:id", updateFilingItem);
 router.delete("/:id", deleteFilingItem);
 
-
 export default router;
