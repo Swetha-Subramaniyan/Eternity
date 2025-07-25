@@ -247,6 +247,10 @@ model FilingItems {
   filing_wastage  FilingWastage[]
   lot_setting_mapper LotSettingMapper[]
   LotBuffingMapper LotBuffingMapper[]
+
+  lot_filing_mapper_id Int?
+  lotFilingMapperId LotFilingMapper? @relation(fields: [lot_filing_mapper_id], references: [id])
+
 }
 
 model LotFilingMapper {
@@ -257,6 +261,7 @@ model LotFilingMapper {
   lotId LotInfo @relation(fields:[lot_id], references: [id], onDelete: Cascade)
   item_id Int
   itemId CastingItems @relation(fields: [item_id], references: [id], onDelete: Cascade)
+  filing_items FilingItems[]
 
 }
 

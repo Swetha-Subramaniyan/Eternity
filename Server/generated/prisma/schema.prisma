@@ -242,16 +242,20 @@ model FilingItems {
   filing_wastage     FilingWastage[]
   lot_setting_mapper LotSettingMapper[]
   LotBuffingMapper   LotBuffingMapper[]
+
+  lot_filing_mapper_id Int?
+  lotFilingMapperId    LotFilingMapper? @relation(fields: [lot_filing_mapper_id], references: [id])
 }
 
 model LotFilingMapper {
-  id        Int          @id @default(autoincrement())
-  filing_id Int
-  filingId  AddFiling    @relation(fields: [filing_id], references: [id], onDelete: Cascade)
-  lot_id    Int
-  lotId     LotInfo      @relation(fields: [lot_id], references: [id], onDelete: Cascade)
-  item_id   Int
-  itemId    CastingItems @relation(fields: [item_id], references: [id], onDelete: Cascade)
+  id           Int           @id @default(autoincrement())
+  filing_id    Int
+  filingId     AddFiling     @relation(fields: [filing_id], references: [id], onDelete: Cascade)
+  lot_id       Int
+  lotId        LotInfo       @relation(fields: [lot_id], references: [id], onDelete: Cascade)
+  item_id      Int
+  itemId       CastingItems  @relation(fields: [item_id], references: [id], onDelete: Cascade)
+  filing_items FilingItems[]
 }
 
 model FilingWastage {
