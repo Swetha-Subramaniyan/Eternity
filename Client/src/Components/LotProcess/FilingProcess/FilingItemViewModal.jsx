@@ -44,7 +44,10 @@ useEffect(() => {
   fetchDropdownData();
 }, []);
 
-
+useEffect(() => {
+  console.log("Received entry in child:", entry);
+  console.log("entry.items:", entry?.items);
+}, [entry]);
 
 useEffect(() => {
   const fetchFilingItems = async () => {
@@ -123,41 +126,6 @@ const handleSaveViewEntry = async () => {
     toast.error("Failed to save filing items");
   }
 };
-
-
-
-// const handleSaveViewEntry = async () => {
-//   try {
-//     for (const item of viewItems) {
-//       const payload = {
-//         filing_entry_id: selectedViewRow.id,
-//         type: item.type, //  Correctly using type from item
-//         filing_item_id: item.id,
-//         weight: item.weight,
-//         touch_id: item.touch_id,
-//         item_purity: item.item_purity,
-//         remarks: item.remarks || '',
-//         wastage: item.wastage || 'No',
-//         stone_option: item.stone_option || 'No',
-//         after_weight: item.after_weight,
-//         scrap_weight: item.scrap_weight,
-//         scrap_wastage: item.scrap_wastage,
-//       };
-
-//       await axios.post(`${BACKEND_SERVER_URL}/api/filingitems`, payload);
-//     }
-
-//     if (onSaveSuccess) {
-//       onSaveSuccess(); 
-//     }
-
-//     toast.success("Filing items saved successfully");
-//     setOpen(false);
-//   } catch (error) {
-//     console.error("Failed to save filing item:", error);
-//     toast.error("Failed to save filing items");
-//   }
-// };
 
   return ( 
     <> 
@@ -479,8 +447,7 @@ const handleSaveViewEntry = async () => {
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
         <Button variant="contained" onClick={handleSaveViewEntry }
-          disabled={entry?.wastage !== 'Yes' && entry?.wastage !== 'No'} >Save</Button>
-         
+          disabled={entry?.wastage !== 'Yes' && entry?.wastage !== 'No'} >Save</Button>        
       </DialogActions>
     </Dialog>
     </>

@@ -19,7 +19,7 @@ export const createFilingItem = async (req, res) => {
       after_weight,
       scrap_weight,
       scrap_wastage,
-      lot_filing_mapper_id, // <-- ✅ NEW FIELD
+      lot_filing_mapper_id, 
     } = req.body;
 
     if (!filing_entry_id || !type || !weight || !touch_id || !item_purity) {
@@ -32,7 +32,7 @@ export const createFilingItem = async (req, res) => {
 
     const wastageBool = wastage === "Yes" ? true : false;
 
-    // ✅ Create FilingItem with optional lot_filing_mapper_id
+    //  Create FilingItem with optional lot_filing_mapper_id
     const filingItem = await prisma.filingItems.create({
       data: {
         filing_entry_id: parseInt(filing_entry_id),
@@ -51,7 +51,7 @@ export const createFilingItem = async (req, res) => {
       },
     });
 
-    // ✅ If ScrapItem, also post to stock
+    //  If ScrapItem, also post to stock
     if (type === "ScrapItems") {
       const filingEntry = await prisma.filingEntry.findUnique({
         where: { id: parseInt(filing_entry_id) },

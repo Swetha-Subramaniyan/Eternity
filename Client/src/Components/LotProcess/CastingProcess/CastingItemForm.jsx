@@ -73,18 +73,19 @@ const CastingItemForm = ({ castingEntryId, items, setItems, scrapItems, setScrap
     let scrapItemSaved = false; //  Track if scrap item was saved
 
     try {
+
       for (const item of combinedItems) {
         const item_id = item.item_id;
         if (!item_id) continue;
-
+      
         const weight = parseFloat(item.weight) || 0;
         const touch = parseFloat(item.touch) || 0;
         const item_purity = (weight * touch) / 100;
         const isScrap = scrapItems.includes(item);
-
+      
         const payload = {
           weight,
-          touch_id:item.touch_id,
+          touch_id: item.touch_id,
           item_purity,
           remarks: item.remarks,
           after_weight: !isScrap && !isAfterWeightSaved ? totalItemWeight : 0,
@@ -94,22 +95,71 @@ const CastingItemForm = ({ castingEntryId, items, setItems, scrapItems, setScrap
           item_id,
           type: isScrap ? "ScrapItems" : "Items",
         };
-
+      
+        console.log("Submitting item:", item);
+        console.log("Payload:", payload);
+      
         if (!isScrap && !isAfterWeightSaved) isAfterWeightSaved = true;
         if (isScrap && !isScrapWeightSaved) isScrapWeightSaved = true;
         if (isScrap && !isScrapWastageSaved) isScrapWastageSaved = true;
-
-        if (item.id) {
-          await axios.put(`http://localhost:5000/api/castingitems/${item.id}`, payload);
-        } else {
-          await axios.post(`http://localhost:5000/api/castingitems`, payload);
+      
+        try {
+          if (item.id) {
+            console.log("PUT to /api/castingitems/", item.id);
+            await axios.put(`http://localhost:5000/api/castingitems/${item.id}`, payload);
+          } else {
+            console.log("POST to /api/castingitems");
+            await axios.post(`http://localhost:5000/api/castingitems`, payload);
+          }
+        } catch (err) {
+          console.error("API Error for item:", item, err);
         }
-
-        //  Notify Stock component to refresh after saving scrap
+      
         if (isScrap) {
           scrapItemSaved = true;
         }
       }
+      
+      // for (const item of combinedItems) {
+      //   const item_id = item.item_id;
+      //   if (!item_id) continue;
+
+      //   const weight = parseFloat(item.weight) || 0;
+      //   const touch = parseFloat(item.touch) || 0;
+      //   const item_purity = (weight * touch) / 100;
+      //   const isScrap = scrapItems.includes(item);
+
+      //   const payload = {
+      //     weight,
+      //     touch_id:item.touch_id,
+      //     item_purity,
+      //     remarks: item.remarks,
+      //     after_weight: !isScrap && !isAfterWeightSaved ? totalItemWeight : 0,
+      //     scrap_weight: isScrap && !isScrapWeightSaved ? totalScrapWeight : 0,
+      //     scrap_wastage: isScrap && !isScrapWastageSaved ? totalWastage : 0,
+      //     castingEntryId: entryId,
+      //     item_id,
+      //     type: isScrap ? "ScrapItems" : "Items",
+          
+      //   };
+
+      //   if (!isScrap && !isAfterWeightSaved) isAfterWeightSaved = true;
+      //   if (isScrap && !isScrapWeightSaved) isScrapWeightSaved = true;
+      //   if (isScrap && !isScrapWastageSaved) isScrapWastageSaved = true;
+
+      //   if (item.id) {
+      //     await axios.put(`http://localhost:5000/api/castingitems/${item.id}`, payload);
+      //   } else {
+      //     await axios.post(`http://localhost:5000/api/castingitems`, payload);
+      //   }
+
+      //   if (isScrap) {
+      //     scrapItemSaved = true;
+      //   }
+      // }
+
+ 
+
 
       //  Call onStockUpdate once after loop ends if any scrap saved
       if (scrapItemSaved && typeof onStockUpdate === "function") {
@@ -321,8 +371,8 @@ const fetchCastingItems = async () => {
     updated[index].touch_id = selectedTouch?.id || "";
     updated[index].touch = selectedTouch?.touch || "";
     setScrapItems(updated);
-  }}
->
+  }} >
+
   <option value="">Select</option>
   {touchOptions.map((t) => (
     <option key={t.id} value={t.id}>
@@ -330,8 +380,6 @@ const fetchCastingItems = async () => {
     </option>
   ))}
 </select>
-
-
                 </td>
                 <td>
                   {((parseFloat(item.weight || 0) * parseFloat(item.touch || 0)) / 100).toFixed(3)}
@@ -359,8 +407,7 @@ const fetchCastingItems = async () => {
   
 </div>
       <button className="save-btnn"
-        onClick={() => saveCastingItems(castingEntryId)}
-         >
+        onClick={() => saveCastingItems(castingEntryId)} >
         Save Casting Items
       </button>
     </>

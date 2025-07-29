@@ -37,6 +37,7 @@ import FilingLotDetails from './Components/LotProcess/FilingProcess/FilingLotDet
 import BuffingLotDetails from './Components/LotProcess/BuffingProcess/BuffingLotDetails';
 import SettingLotDetails from './Components/LotProcess/SettingProcess/SettingLotDetails';
 import MasterNavbar from './Components/Master/MasterNavbar';
+import CastingEntry from './Components/LotProcess/CastingProcess/CastingEntry';
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
 
     <Route path='/goldsmith' element={<Goldsmith/>} />
     <Route path='/casting' element={<Casting/>} />
+    <Route path='/castingentry' element={<CastingEntry/>}/>
     <Route path='/filing' element={<Filing/>}/>
     <Route path='/setting' element={<Setting/>}/>
     <Route path='/buffing' element={<Buffing/>}/> 

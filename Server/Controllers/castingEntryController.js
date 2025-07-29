@@ -8,46 +8,52 @@ export const createCastingEntry = async (req, res) => {
     const {
       date,
       given_gold,
-      touch_id, 
-      purity,
-      final_touch,
-      pure_value,
-      copper,
-      final_weight,
       casting_customer_id,
+      touch_id,
+      final_touch,
+      final_weight,
+      pure_value,
+      purity,
+      copper,
     } = req.body;
 
-    //  Check if the given touch_id exists in AddTouch table
-    const touchExists = await prisma.addTouch.findUnique({
-      where: { id: parseInt(touch_id) }
-    });
-
-    if (!touchExists) {
-      return res.status(400).json({ error: "Invalid touch_id: no such value exists in AddTouch table" });
+    // Validation
+    if (
+      !date ||
+      isNaN(given_gold) ||
+      isNaN(final_touch) ||
+      isNaN(final_weight) ||
+      isNaN(pure_value) ||
+      isNaN(purity) ||
+      isNaN(copper) ||
+      !casting_customer_id ||
+      !touch_id
+    ) {
+      return res.status(400).json({ error: "Invalid input values" });
     }
 
+    // Create casting entry
     const newEntry = await prisma.castingEntry.create({
       data: {
+        date: new Date(date),
         given_gold: parseFloat(given_gold),
-        touch_id: parseInt(touch_id), 
-        purity: parseFloat(purity),
         final_touch: parseFloat(final_touch),
-        pure_value: parseFloat(pure_value),
-        copper: parseFloat(copper),
         final_weight: parseFloat(final_weight),
-        casting_customer_id: parseInt(casting_customer_id),
-        date: new Date(date)
+        pure_value: parseFloat(pure_value),
+        purity: parseFloat(purity),
+        copper: parseFloat(copper),
+        casting_customer_id: Number(casting_customer_id),
+        touch_id: Number(touch_id),
       },
     });
+    res.status(201).json(newEntry); // flat response, includes id directly
 
-    res.status(201).json({ message: 'Casting entry created successfully', data: newEntry });
-    console.log(newEntry);
+    // res.status(201).json({ message: "Casting entry created successfully", data: newEntry });
   } catch (error) {
-    console.error("Error creating casting entry:", error);
-    res.status(500).json({ error: 'Failed to create casting entry' });
+    console.error( "Error creating casting entry:", error);
+    res.status(500).json({ error: "Failed to create casting entry" });
   }
 };
-
 
 // Post - http://localhost:5000/api/castingentry
 
@@ -60,7 +66,8 @@ export const getAllCastingEntry = async (req, res) => {
       include: {
         items: true,
         casting_customer: true,
-        touch:true
+        touch:true,
+        CastiingTotalBalance: true,
       },
     });
     res.status(200).json(entries);
@@ -80,7 +87,8 @@ export const getCastingEntryById = async (req, res) => {
       include: {
         items: true,
         casting_customer: true,
-        touch:true
+        touch:true,
+        CastiingTotalBalance:true,
       },
     });
 
@@ -130,7 +138,7 @@ export const updateCastingEntry = async (req, res) => {
       },
     });
 
-    console.log("✅ Updated casting entry:", updatedEntry);
+    console.log(" Updated casting entry:", updatedEntry);
 
     // Step 2: Delete previous castingItems
     await prisma.castingItems.deleteMany({
@@ -157,9 +165,9 @@ export const updateCastingEntry = async (req, res) => {
 
     if (formattedItems.length > 0) {
       await prisma.castingItems.createMany({ data: formattedItems });
-      console.log("✅ Re-created casting items:", formattedItems.length);
+      console.log(" Re-created casting items:", formattedItems.length);
     } else {
-      console.log("⚠️ No casting items provided to re-create");
+      console.log(" No casting items provided to re-create");
     }
 
     res.status(200).json({ message: 'Casting entry and items updated successfully', data: updatedEntry });
@@ -168,43 +176,6 @@ export const updateCastingEntry = async (req, res) => {
     res.status(500).json({ error: 'Failed to update casting entry' });
   }
 };
-
-// export const updateCastingEntry = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const {
-//       date,
-//       given_gold,
-//       touch_id,
-//       purity,
-//       final_touch,
-//       pure_value,
-//       copper,
-//       final_weight,
-//       casting_customer_id,
-//     } = req.body;
-
-//     const updatedEntry = await prisma.castingEntry.update({
-//       where: { id: parseInt(id) },
-//       data: {
-//         date: new Date(date),
-//         given_gold: parseFloat(given_gold),
-//         touch_id: parseFloat(touch_id),
-//         purity: parseFloat(purity),
-//         final_touch: parseFloat(final_touch),
-//         pure_value: parseFloat(pure_value),
-//         copper: parseFloat(copper),
-//         final_weight: parseFloat(final_weight),
-//         casting_customer_id: parseInt(casting_customer_id),
-//       },
-//     });
-//    console.log(updatedEntry);
-//     res.status(200).json({ message: 'Casting entry updated successfully', data: updatedEntry });
-//   } catch (error) {
-//     console.error("Error updating entry:", error);
-//     res.status(500).json({ error: 'Failed to update casting entry' });
-//   }
-// };
 
 
 export const deleteCastingEntry = async (req, res) => {
