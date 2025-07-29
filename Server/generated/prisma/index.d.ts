@@ -74,6 +74,11 @@ export type CastingEntry = $Result.DefaultSelection<Prisma.$CastingEntryPayload>
  */
 export type CastingItems = $Result.DefaultSelection<Prisma.$CastingItemsPayload>
 /**
+ * Model CastiingTotalBalance
+ * 
+ */
+export type CastiingTotalBalance = $Result.DefaultSelection<Prisma.$CastiingTotalBalancePayload>
+/**
  * Model LotInfo
  * 
  */
@@ -93,6 +98,11 @@ export type FilingItems = $Result.DefaultSelection<Prisma.$FilingItemsPayload>
  * 
  */
 export type LotFilingMapper = $Result.DefaultSelection<Prisma.$LotFilingMapperPayload>
+/**
+ * Model FilingTotalBalance
+ * 
+ */
+export type FilingTotalBalance = $Result.DefaultSelection<Prisma.$FilingTotalBalancePayload>
 /**
  * Model FilingWastage
  * 
@@ -114,6 +124,11 @@ export type SettingItems = $Result.DefaultSelection<Prisma.$SettingItemsPayload>
  */
 export type LotSettingMapper = $Result.DefaultSelection<Prisma.$LotSettingMapperPayload>
 /**
+ * Model SettingTotalBalance
+ * 
+ */
+export type SettingTotalBalance = $Result.DefaultSelection<Prisma.$SettingTotalBalancePayload>
+/**
  * Model SettingWastage
  * 
  */
@@ -128,6 +143,11 @@ export type BuffingEntry = $Result.DefaultSelection<Prisma.$BuffingEntryPayload>
  * 
  */
 export type BuffingItems = $Result.DefaultSelection<Prisma.$BuffingItemsPayload>
+/**
+ * Model BuffingTotalBalance
+ * 
+ */
+export type BuffingTotalBalance = $Result.DefaultSelection<Prisma.$BuffingTotalBalancePayload>
 /**
  * Model LotBuffingMapper
  * 
@@ -431,6 +451,16 @@ export class PrismaClient<
   get castingItems(): Prisma.CastingItemsDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.castiingTotalBalance`: Exposes CRUD operations for the **CastiingTotalBalance** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CastiingTotalBalances
+    * const castiingTotalBalances = await prisma.castiingTotalBalance.findMany()
+    * ```
+    */
+  get castiingTotalBalance(): Prisma.CastiingTotalBalanceDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.lotInfo`: Exposes CRUD operations for the **LotInfo** model.
     * Example usage:
     * ```ts
@@ -469,6 +499,16 @@ export class PrismaClient<
     * ```
     */
   get lotFilingMapper(): Prisma.LotFilingMapperDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.filingTotalBalance`: Exposes CRUD operations for the **FilingTotalBalance** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FilingTotalBalances
+    * const filingTotalBalances = await prisma.filingTotalBalance.findMany()
+    * ```
+    */
+  get filingTotalBalance(): Prisma.FilingTotalBalanceDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.filingWastage`: Exposes CRUD operations for the **FilingWastage** model.
@@ -511,6 +551,16 @@ export class PrismaClient<
   get lotSettingMapper(): Prisma.LotSettingMapperDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.settingTotalBalance`: Exposes CRUD operations for the **SettingTotalBalance** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SettingTotalBalances
+    * const settingTotalBalances = await prisma.settingTotalBalance.findMany()
+    * ```
+    */
+  get settingTotalBalance(): Prisma.SettingTotalBalanceDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.settingWastage`: Exposes CRUD operations for the **SettingWastage** model.
     * Example usage:
     * ```ts
@@ -539,6 +589,16 @@ export class PrismaClient<
     * ```
     */
   get buffingItems(): Prisma.BuffingItemsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.buffingTotalBalance`: Exposes CRUD operations for the **BuffingTotalBalance** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BuffingTotalBalances
+    * const buffingTotalBalances = await prisma.buffingTotalBalance.findMany()
+    * ```
+    */
+  get buffingTotalBalance(): Prisma.BuffingTotalBalanceDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.lotBuffingMapper`: Exposes CRUD operations for the **LotBuffingMapper** model.
@@ -1021,17 +1081,21 @@ export namespace Prisma {
     AddTouch: 'AddTouch',
     CastingEntry: 'CastingEntry',
     CastingItems: 'CastingItems',
+    CastiingTotalBalance: 'CastiingTotalBalance',
     LotInfo: 'LotInfo',
     FilingEntry: 'FilingEntry',
     FilingItems: 'FilingItems',
     LotFilingMapper: 'LotFilingMapper',
+    FilingTotalBalance: 'FilingTotalBalance',
     FilingWastage: 'FilingWastage',
     SettingEntry: 'SettingEntry',
     SettingItems: 'SettingItems',
     LotSettingMapper: 'LotSettingMapper',
+    SettingTotalBalance: 'SettingTotalBalance',
     SettingWastage: 'SettingWastage',
     BuffingEntry: 'BuffingEntry',
     BuffingItems: 'BuffingItems',
+    BuffingTotalBalance: 'BuffingTotalBalance',
     LotBuffingMapper: 'LotBuffingMapper',
     BuffingWastage: 'BuffingWastage',
     Stock: 'Stock'
@@ -1053,7 +1117,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addSupplierItem" | "addPurchaseStock" | "customerTransaction" | "addItem" | "addTouch" | "castingEntry" | "castingItems" | "lotInfo" | "filingEntry" | "filingItems" | "lotFilingMapper" | "filingWastage" | "settingEntry" | "settingItems" | "lotSettingMapper" | "settingWastage" | "buffingEntry" | "buffingItems" | "lotBuffingMapper" | "buffingWastage" | "stock"
+      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addSupplierItem" | "addPurchaseStock" | "customerTransaction" | "addItem" | "addTouch" | "castingEntry" | "castingItems" | "castiingTotalBalance" | "lotInfo" | "filingEntry" | "filingItems" | "lotFilingMapper" | "filingTotalBalance" | "filingWastage" | "settingEntry" | "settingItems" | "lotSettingMapper" | "settingTotalBalance" | "settingWastage" | "buffingEntry" | "buffingItems" | "buffingTotalBalance" | "lotBuffingMapper" | "buffingWastage" | "stock"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1849,6 +1913,72 @@ export namespace Prisma {
           }
         }
       }
+      CastiingTotalBalance: {
+        payload: Prisma.$CastiingTotalBalancePayload<ExtArgs>
+        fields: Prisma.CastiingTotalBalanceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CastiingTotalBalanceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastiingTotalBalancePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CastiingTotalBalanceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastiingTotalBalancePayload>
+          }
+          findFirst: {
+            args: Prisma.CastiingTotalBalanceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastiingTotalBalancePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CastiingTotalBalanceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastiingTotalBalancePayload>
+          }
+          findMany: {
+            args: Prisma.CastiingTotalBalanceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastiingTotalBalancePayload>[]
+          }
+          create: {
+            args: Prisma.CastiingTotalBalanceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastiingTotalBalancePayload>
+          }
+          createMany: {
+            args: Prisma.CastiingTotalBalanceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CastiingTotalBalanceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastiingTotalBalancePayload>
+          }
+          update: {
+            args: Prisma.CastiingTotalBalanceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastiingTotalBalancePayload>
+          }
+          deleteMany: {
+            args: Prisma.CastiingTotalBalanceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CastiingTotalBalanceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CastiingTotalBalanceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CastiingTotalBalancePayload>
+          }
+          aggregate: {
+            args: Prisma.CastiingTotalBalanceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCastiingTotalBalance>
+          }
+          groupBy: {
+            args: Prisma.CastiingTotalBalanceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CastiingTotalBalanceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CastiingTotalBalanceCountArgs<ExtArgs>
+            result: $Utils.Optional<CastiingTotalBalanceCountAggregateOutputType> | number
+          }
+        }
+      }
       LotInfo: {
         payload: Prisma.$LotInfoPayload<ExtArgs>
         fields: Prisma.LotInfoFieldRefs
@@ -2110,6 +2240,72 @@ export namespace Prisma {
           count: {
             args: Prisma.LotFilingMapperCountArgs<ExtArgs>
             result: $Utils.Optional<LotFilingMapperCountAggregateOutputType> | number
+          }
+        }
+      }
+      FilingTotalBalance: {
+        payload: Prisma.$FilingTotalBalancePayload<ExtArgs>
+        fields: Prisma.FilingTotalBalanceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FilingTotalBalanceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingTotalBalancePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FilingTotalBalanceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingTotalBalancePayload>
+          }
+          findFirst: {
+            args: Prisma.FilingTotalBalanceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingTotalBalancePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FilingTotalBalanceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingTotalBalancePayload>
+          }
+          findMany: {
+            args: Prisma.FilingTotalBalanceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingTotalBalancePayload>[]
+          }
+          create: {
+            args: Prisma.FilingTotalBalanceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingTotalBalancePayload>
+          }
+          createMany: {
+            args: Prisma.FilingTotalBalanceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.FilingTotalBalanceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingTotalBalancePayload>
+          }
+          update: {
+            args: Prisma.FilingTotalBalanceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingTotalBalancePayload>
+          }
+          deleteMany: {
+            args: Prisma.FilingTotalBalanceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FilingTotalBalanceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.FilingTotalBalanceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingTotalBalancePayload>
+          }
+          aggregate: {
+            args: Prisma.FilingTotalBalanceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFilingTotalBalance>
+          }
+          groupBy: {
+            args: Prisma.FilingTotalBalanceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FilingTotalBalanceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FilingTotalBalanceCountArgs<ExtArgs>
+            result: $Utils.Optional<FilingTotalBalanceCountAggregateOutputType> | number
           }
         }
       }
@@ -2377,6 +2573,72 @@ export namespace Prisma {
           }
         }
       }
+      SettingTotalBalance: {
+        payload: Prisma.$SettingTotalBalancePayload<ExtArgs>
+        fields: Prisma.SettingTotalBalanceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SettingTotalBalanceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingTotalBalancePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SettingTotalBalanceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingTotalBalancePayload>
+          }
+          findFirst: {
+            args: Prisma.SettingTotalBalanceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingTotalBalancePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SettingTotalBalanceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingTotalBalancePayload>
+          }
+          findMany: {
+            args: Prisma.SettingTotalBalanceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingTotalBalancePayload>[]
+          }
+          create: {
+            args: Prisma.SettingTotalBalanceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingTotalBalancePayload>
+          }
+          createMany: {
+            args: Prisma.SettingTotalBalanceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.SettingTotalBalanceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingTotalBalancePayload>
+          }
+          update: {
+            args: Prisma.SettingTotalBalanceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingTotalBalancePayload>
+          }
+          deleteMany: {
+            args: Prisma.SettingTotalBalanceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SettingTotalBalanceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SettingTotalBalanceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingTotalBalancePayload>
+          }
+          aggregate: {
+            args: Prisma.SettingTotalBalanceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSettingTotalBalance>
+          }
+          groupBy: {
+            args: Prisma.SettingTotalBalanceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SettingTotalBalanceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SettingTotalBalanceCountArgs<ExtArgs>
+            result: $Utils.Optional<SettingTotalBalanceCountAggregateOutputType> | number
+          }
+        }
+      }
       SettingWastage: {
         payload: Prisma.$SettingWastagePayload<ExtArgs>
         fields: Prisma.SettingWastageFieldRefs
@@ -2572,6 +2834,72 @@ export namespace Prisma {
           count: {
             args: Prisma.BuffingItemsCountArgs<ExtArgs>
             result: $Utils.Optional<BuffingItemsCountAggregateOutputType> | number
+          }
+        }
+      }
+      BuffingTotalBalance: {
+        payload: Prisma.$BuffingTotalBalancePayload<ExtArgs>
+        fields: Prisma.BuffingTotalBalanceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BuffingTotalBalanceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingTotalBalancePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BuffingTotalBalanceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingTotalBalancePayload>
+          }
+          findFirst: {
+            args: Prisma.BuffingTotalBalanceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingTotalBalancePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BuffingTotalBalanceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingTotalBalancePayload>
+          }
+          findMany: {
+            args: Prisma.BuffingTotalBalanceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingTotalBalancePayload>[]
+          }
+          create: {
+            args: Prisma.BuffingTotalBalanceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingTotalBalancePayload>
+          }
+          createMany: {
+            args: Prisma.BuffingTotalBalanceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.BuffingTotalBalanceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingTotalBalancePayload>
+          }
+          update: {
+            args: Prisma.BuffingTotalBalanceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingTotalBalancePayload>
+          }
+          deleteMany: {
+            args: Prisma.BuffingTotalBalanceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BuffingTotalBalanceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BuffingTotalBalanceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BuffingTotalBalancePayload>
+          }
+          aggregate: {
+            args: Prisma.BuffingTotalBalanceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBuffingTotalBalance>
+          }
+          groupBy: {
+            args: Prisma.BuffingTotalBalanceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BuffingTotalBalanceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BuffingTotalBalanceCountArgs<ExtArgs>
+            result: $Utils.Optional<BuffingTotalBalanceCountAggregateOutputType> | number
           }
         }
       }
@@ -2869,17 +3197,21 @@ export namespace Prisma {
     addTouch?: AddTouchOmit
     castingEntry?: CastingEntryOmit
     castingItems?: CastingItemsOmit
+    castiingTotalBalance?: CastiingTotalBalanceOmit
     lotInfo?: LotInfoOmit
     filingEntry?: FilingEntryOmit
     filingItems?: FilingItemsOmit
     lotFilingMapper?: LotFilingMapperOmit
+    filingTotalBalance?: FilingTotalBalanceOmit
     filingWastage?: FilingWastageOmit
     settingEntry?: SettingEntryOmit
     settingItems?: SettingItemsOmit
     lotSettingMapper?: LotSettingMapperOmit
+    settingTotalBalance?: SettingTotalBalanceOmit
     settingWastage?: SettingWastageOmit
     buffingEntry?: BuffingEntryOmit
     buffingItems?: BuffingItemsOmit
+    buffingTotalBalance?: BuffingTotalBalanceOmit
     lotBuffingMapper?: LotBuffingMapperOmit
     buffingWastage?: BuffingWastageOmit
     stock?: StockOmit
@@ -3348,10 +3680,12 @@ export namespace Prisma {
 
   export type CastingEntryCountOutputType = {
     items: number
+    CastiingTotalBalance: number
   }
 
   export type CastingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     items?: boolean | CastingEntryCountOutputTypeCountItemsArgs
+    CastiingTotalBalance?: boolean | CastingEntryCountOutputTypeCountCastiingTotalBalanceArgs
   }
 
   // Custom InputTypes
@@ -3370,6 +3704,13 @@ export namespace Prisma {
    */
   export type CastingEntryCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CastingItemsWhereInput
+  }
+
+  /**
+   * CastingEntryCountOutputType without action
+   */
+  export type CastingEntryCountOutputTypeCountCastiingTotalBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CastiingTotalBalanceWhereInput
   }
 
 
@@ -3477,10 +3818,14 @@ export namespace Prisma {
 
   export type FilingEntryCountOutputType = {
     filingItems: number
+    filingItemsId: number
+    FilingWastage: number
   }
 
   export type FilingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filingItems?: boolean | FilingEntryCountOutputTypeCountFilingItemsArgs
+    filingItemsId?: boolean | FilingEntryCountOutputTypeCountFilingItemsIdArgs
+    FilingWastage?: boolean | FilingEntryCountOutputTypeCountFilingWastageArgs
   }
 
   // Custom InputTypes
@@ -3499,6 +3844,20 @@ export namespace Prisma {
    */
   export type FilingEntryCountOutputTypeCountFilingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FilingItemsWhereInput
+  }
+
+  /**
+   * FilingEntryCountOutputType without action
+   */
+  export type FilingEntryCountOutputTypeCountFilingItemsIdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingTotalBalanceWhereInput
+  }
+
+  /**
+   * FilingEntryCountOutputType without action
+   */
+  export type FilingEntryCountOutputTypeCountFilingWastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingWastageWhereInput
   }
 
 
@@ -3646,10 +4005,14 @@ export namespace Prisma {
 
   export type SettingEntryCountOutputType = {
     filingItems: number
+    settingTotalBalance: number
+    settingWastage: number
   }
 
   export type SettingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filingItems?: boolean | SettingEntryCountOutputTypeCountFilingItemsArgs
+    settingTotalBalance?: boolean | SettingEntryCountOutputTypeCountSettingTotalBalanceArgs
+    settingWastage?: boolean | SettingEntryCountOutputTypeCountSettingWastageArgs
   }
 
   // Custom InputTypes
@@ -3668,6 +4031,20 @@ export namespace Prisma {
    */
   export type SettingEntryCountOutputTypeCountFilingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FilingItemsWhereInput
+  }
+
+  /**
+   * SettingEntryCountOutputType without action
+   */
+  export type SettingEntryCountOutputTypeCountSettingTotalBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingTotalBalanceWhereInput
+  }
+
+  /**
+   * SettingEntryCountOutputType without action
+   */
+  export type SettingEntryCountOutputTypeCountSettingWastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingWastageWhereInput
   }
 
 
@@ -3767,11 +4144,15 @@ export namespace Prisma {
   export type BuffingEntryCountOutputType = {
     filing_items: number
     setting_items: number
+    BuffingTotalBalance: number
+    BuffingWastage: number
   }
 
   export type BuffingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filing_items?: boolean | BuffingEntryCountOutputTypeCountFiling_itemsArgs
     setting_items?: boolean | BuffingEntryCountOutputTypeCountSetting_itemsArgs
+    BuffingTotalBalance?: boolean | BuffingEntryCountOutputTypeCountBuffingTotalBalanceArgs
+    BuffingWastage?: boolean | BuffingEntryCountOutputTypeCountBuffingWastageArgs
   }
 
   // Custom InputTypes
@@ -3797,6 +4178,20 @@ export namespace Prisma {
    */
   export type BuffingEntryCountOutputTypeCountSetting_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SettingItemsWhereInput
+  }
+
+  /**
+   * BuffingEntryCountOutputType without action
+   */
+  export type BuffingEntryCountOutputTypeCountBuffingTotalBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuffingTotalBalanceWhereInput
+  }
+
+  /**
+   * BuffingEntryCountOutputType without action
+   */
+  export type BuffingEntryCountOutputTypeCountBuffingWastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuffingWastageWhereInput
   }
 
 
@@ -14579,6 +14974,7 @@ export namespace Prisma {
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
     items?: boolean | CastingEntry$itemsArgs<ExtArgs>
+    CastiingTotalBalance?: boolean | CastingEntry$CastiingTotalBalanceArgs<ExtArgs>
     _count?: boolean | CastingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["castingEntry"]>
 
@@ -14603,6 +14999,7 @@ export namespace Prisma {
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
     items?: boolean | CastingEntry$itemsArgs<ExtArgs>
+    CastiingTotalBalance?: boolean | CastingEntry$CastiingTotalBalanceArgs<ExtArgs>
     _count?: boolean | CastingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -14612,6 +15009,7 @@ export namespace Prisma {
       touch: Prisma.$AddTouchPayload<ExtArgs>
       casting_customer: Prisma.$AddCastingPayload<ExtArgs>
       items: Prisma.$CastingItemsPayload<ExtArgs>[]
+      CastiingTotalBalance: Prisma.$CastiingTotalBalancePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -14968,6 +15366,7 @@ export namespace Prisma {
     touch<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     casting_customer<T extends AddCastingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddCastingDefaultArgs<ExtArgs>>): Prisma__AddCastingClient<$Result.GetResult<Prisma.$AddCastingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     items<T extends CastingEntry$itemsArgs<ExtArgs> = {}>(args?: Subset<T, CastingEntry$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    CastiingTotalBalance<T extends CastingEntry$CastiingTotalBalanceArgs<ExtArgs> = {}>(args?: Subset<T, CastingEntry$CastiingTotalBalanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastiingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15375,6 +15774,30 @@ export namespace Prisma {
   }
 
   /**
+   * CastingEntry.CastiingTotalBalance
+   */
+  export type CastingEntry$CastiingTotalBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
+    where?: CastiingTotalBalanceWhereInput
+    orderBy?: CastiingTotalBalanceOrderByWithRelationInput | CastiingTotalBalanceOrderByWithRelationInput[]
+    cursor?: CastiingTotalBalanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CastiingTotalBalanceScalarFieldEnum | CastiingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
    * CastingEntry without action
    */
   export type CastingEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15411,9 +15834,6 @@ export namespace Prisma {
     weight: number | null
     touch_id: number | null
     item_purity: number | null
-    after_weight: number | null
-    scrap_weight: number | null
-    scrap_wastage: number | null
     casting_entry_id: number | null
     casting_customer_id: number | null
   }
@@ -15424,9 +15844,6 @@ export namespace Prisma {
     weight: number | null
     touch_id: number | null
     item_purity: number | null
-    after_weight: number | null
-    scrap_weight: number | null
-    scrap_wastage: number | null
     casting_entry_id: number | null
     casting_customer_id: number | null
   }
@@ -15440,9 +15857,6 @@ export namespace Prisma {
     touch_id: number | null
     item_purity: number | null
     remarks: string | null
-    after_weight: number | null
-    scrap_weight: number | null
-    scrap_wastage: number | null
     casting_entry_id: number | null
     casting_customer_id: number | null
   }
@@ -15456,9 +15870,6 @@ export namespace Prisma {
     touch_id: number | null
     item_purity: number | null
     remarks: string | null
-    after_weight: number | null
-    scrap_weight: number | null
-    scrap_wastage: number | null
     casting_entry_id: number | null
     casting_customer_id: number | null
   }
@@ -15472,9 +15883,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks: number
-    after_weight: number
-    scrap_weight: number
-    scrap_wastage: number
     casting_entry_id: number
     casting_customer_id: number
     _all: number
@@ -15487,9 +15895,6 @@ export namespace Prisma {
     weight?: true
     touch_id?: true
     item_purity?: true
-    after_weight?: true
-    scrap_weight?: true
-    scrap_wastage?: true
     casting_entry_id?: true
     casting_customer_id?: true
   }
@@ -15500,9 +15905,6 @@ export namespace Prisma {
     weight?: true
     touch_id?: true
     item_purity?: true
-    after_weight?: true
-    scrap_weight?: true
-    scrap_wastage?: true
     casting_entry_id?: true
     casting_customer_id?: true
   }
@@ -15516,9 +15918,6 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     remarks?: true
-    after_weight?: true
-    scrap_weight?: true
-    scrap_wastage?: true
     casting_entry_id?: true
     casting_customer_id?: true
   }
@@ -15532,9 +15931,6 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     remarks?: true
-    after_weight?: true
-    scrap_weight?: true
-    scrap_wastage?: true
     casting_entry_id?: true
     casting_customer_id?: true
   }
@@ -15548,9 +15944,6 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     remarks?: true
-    after_weight?: true
-    scrap_weight?: true
-    scrap_wastage?: true
     casting_entry_id?: true
     casting_customer_id?: true
     _all?: true
@@ -15651,9 +16044,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks: string | null
-    after_weight: number | null
-    scrap_weight: number | null
-    scrap_wastage: number | null
     casting_entry_id: number
     casting_customer_id: number
     _count: CastingItemsCountAggregateOutputType | null
@@ -15686,9 +16076,6 @@ export namespace Prisma {
     touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
-    after_weight?: boolean
-    scrap_weight?: boolean
-    scrap_wastage?: boolean
     casting_entry_id?: boolean
     casting_customer_id?: boolean
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
@@ -15714,14 +16101,11 @@ export namespace Prisma {
     touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
-    after_weight?: boolean
-    scrap_weight?: boolean
-    scrap_wastage?: boolean
     casting_entry_id?: boolean
     casting_customer_id?: boolean
   }
 
-  export type CastingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "after_weight" | "scrap_weight" | "scrap_wastage" | "casting_entry_id" | "casting_customer_id", ExtArgs["result"]["castingItems"]>
+  export type CastingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "casting_entry_id" | "casting_customer_id", ExtArgs["result"]["castingItems"]>
   export type CastingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     item?: boolean | AddItemDefaultArgs<ExtArgs>
@@ -15757,9 +16141,6 @@ export namespace Prisma {
       touch_id: number
       item_purity: number
       remarks: string | null
-      after_weight: number | null
-      scrap_weight: number | null
-      scrap_wastage: number | null
       casting_entry_id: number
       casting_customer_id: number
     }, ExtArgs["result"]["castingItems"]>
@@ -16148,9 +16529,6 @@ export namespace Prisma {
     readonly touch_id: FieldRef<"CastingItems", 'Int'>
     readonly item_purity: FieldRef<"CastingItems", 'Float'>
     readonly remarks: FieldRef<"CastingItems", 'String'>
-    readonly after_weight: FieldRef<"CastingItems", 'Float'>
-    readonly scrap_weight: FieldRef<"CastingItems", 'Float'>
-    readonly scrap_wastage: FieldRef<"CastingItems", 'Float'>
     readonly casting_entry_id: FieldRef<"CastingItems", 'Int'>
     readonly casting_customer_id: FieldRef<"CastingItems", 'Int'>
   }
@@ -16621,6 +16999,1011 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CastingItemsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CastiingTotalBalance
+   */
+
+  export type AggregateCastiingTotalBalance = {
+    _count: CastiingTotalBalanceCountAggregateOutputType | null
+    _avg: CastiingTotalBalanceAvgAggregateOutputType | null
+    _sum: CastiingTotalBalanceSumAggregateOutputType | null
+    _min: CastiingTotalBalanceMinAggregateOutputType | null
+    _max: CastiingTotalBalanceMaxAggregateOutputType | null
+  }
+
+  export type CastiingTotalBalanceAvgAggregateOutputType = {
+    id: number | null
+    total_item_weight: number | null
+    current_balance_weight: number | null
+    total_scrap_weight: number | null
+    total_wastage: number | null
+    item_entry: number | null
+  }
+
+  export type CastiingTotalBalanceSumAggregateOutputType = {
+    id: number | null
+    total_item_weight: number | null
+    current_balance_weight: number | null
+    total_scrap_weight: number | null
+    total_wastage: number | null
+    item_entry: number | null
+  }
+
+  export type CastiingTotalBalanceMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    total_item_weight: number | null
+    current_balance_weight: number | null
+    total_scrap_weight: number | null
+    total_wastage: number | null
+    item_entry: number | null
+  }
+
+  export type CastiingTotalBalanceMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    total_item_weight: number | null
+    current_balance_weight: number | null
+    total_scrap_weight: number | null
+    total_wastage: number | null
+    item_entry: number | null
+  }
+
+  export type CastiingTotalBalanceCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    total_item_weight: number
+    current_balance_weight: number
+    total_scrap_weight: number
+    total_wastage: number
+    item_entry: number
+    _all: number
+  }
+
+
+  export type CastiingTotalBalanceAvgAggregateInputType = {
+    id?: true
+    total_item_weight?: true
+    current_balance_weight?: true
+    total_scrap_weight?: true
+    total_wastage?: true
+    item_entry?: true
+  }
+
+  export type CastiingTotalBalanceSumAggregateInputType = {
+    id?: true
+    total_item_weight?: true
+    current_balance_weight?: true
+    total_scrap_weight?: true
+    total_wastage?: true
+    item_entry?: true
+  }
+
+  export type CastiingTotalBalanceMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    total_item_weight?: true
+    current_balance_weight?: true
+    total_scrap_weight?: true
+    total_wastage?: true
+    item_entry?: true
+  }
+
+  export type CastiingTotalBalanceMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    total_item_weight?: true
+    current_balance_weight?: true
+    total_scrap_weight?: true
+    total_wastage?: true
+    item_entry?: true
+  }
+
+  export type CastiingTotalBalanceCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    total_item_weight?: true
+    current_balance_weight?: true
+    total_scrap_weight?: true
+    total_wastage?: true
+    item_entry?: true
+    _all?: true
+  }
+
+  export type CastiingTotalBalanceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CastiingTotalBalance to aggregate.
+     */
+    where?: CastiingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastiingTotalBalances to fetch.
+     */
+    orderBy?: CastiingTotalBalanceOrderByWithRelationInput | CastiingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CastiingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastiingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastiingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CastiingTotalBalances
+    **/
+    _count?: true | CastiingTotalBalanceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CastiingTotalBalanceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CastiingTotalBalanceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CastiingTotalBalanceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CastiingTotalBalanceMaxAggregateInputType
+  }
+
+  export type GetCastiingTotalBalanceAggregateType<T extends CastiingTotalBalanceAggregateArgs> = {
+        [P in keyof T & keyof AggregateCastiingTotalBalance]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCastiingTotalBalance[P]>
+      : GetScalarType<T[P], AggregateCastiingTotalBalance[P]>
+  }
+
+
+
+
+  export type CastiingTotalBalanceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CastiingTotalBalanceWhereInput
+    orderBy?: CastiingTotalBalanceOrderByWithAggregationInput | CastiingTotalBalanceOrderByWithAggregationInput[]
+    by: CastiingTotalBalanceScalarFieldEnum[] | CastiingTotalBalanceScalarFieldEnum
+    having?: CastiingTotalBalanceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CastiingTotalBalanceCountAggregateInputType | true
+    _avg?: CastiingTotalBalanceAvgAggregateInputType
+    _sum?: CastiingTotalBalanceSumAggregateInputType
+    _min?: CastiingTotalBalanceMinAggregateInputType
+    _max?: CastiingTotalBalanceMaxAggregateInputType
+  }
+
+  export type CastiingTotalBalanceGroupByOutputType = {
+    id: number
+    createdAt: Date
+    total_item_weight: number
+    current_balance_weight: number
+    total_scrap_weight: number | null
+    total_wastage: number
+    item_entry: number
+    _count: CastiingTotalBalanceCountAggregateOutputType | null
+    _avg: CastiingTotalBalanceAvgAggregateOutputType | null
+    _sum: CastiingTotalBalanceSumAggregateOutputType | null
+    _min: CastiingTotalBalanceMinAggregateOutputType | null
+    _max: CastiingTotalBalanceMaxAggregateOutputType | null
+  }
+
+  type GetCastiingTotalBalanceGroupByPayload<T extends CastiingTotalBalanceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CastiingTotalBalanceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CastiingTotalBalanceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CastiingTotalBalanceGroupByOutputType[P]>
+            : GetScalarType<T[P], CastiingTotalBalanceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CastiingTotalBalanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    total_item_weight?: boolean
+    current_balance_weight?: boolean
+    total_scrap_weight?: boolean
+    total_wastage?: boolean
+    item_entry?: boolean
+    item_entry_id?: boolean | CastingEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["castiingTotalBalance"]>
+
+
+
+  export type CastiingTotalBalanceSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    total_item_weight?: boolean
+    current_balance_weight?: boolean
+    total_scrap_weight?: boolean
+    total_wastage?: boolean
+    item_entry?: boolean
+  }
+
+  export type CastiingTotalBalanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "total_item_weight" | "current_balance_weight" | "total_scrap_weight" | "total_wastage" | "item_entry", ExtArgs["result"]["castiingTotalBalance"]>
+  export type CastiingTotalBalanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    item_entry_id?: boolean | CastingEntryDefaultArgs<ExtArgs>
+  }
+
+  export type $CastiingTotalBalancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CastiingTotalBalance"
+    objects: {
+      item_entry_id: Prisma.$CastingEntryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      total_item_weight: number
+      current_balance_weight: number
+      total_scrap_weight: number | null
+      total_wastage: number
+      item_entry: number
+    }, ExtArgs["result"]["castiingTotalBalance"]>
+    composites: {}
+  }
+
+  type CastiingTotalBalanceGetPayload<S extends boolean | null | undefined | CastiingTotalBalanceDefaultArgs> = $Result.GetResult<Prisma.$CastiingTotalBalancePayload, S>
+
+  type CastiingTotalBalanceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CastiingTotalBalanceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CastiingTotalBalanceCountAggregateInputType | true
+    }
+
+  export interface CastiingTotalBalanceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CastiingTotalBalance'], meta: { name: 'CastiingTotalBalance' } }
+    /**
+     * Find zero or one CastiingTotalBalance that matches the filter.
+     * @param {CastiingTotalBalanceFindUniqueArgs} args - Arguments to find a CastiingTotalBalance
+     * @example
+     * // Get one CastiingTotalBalance
+     * const castiingTotalBalance = await prisma.castiingTotalBalance.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CastiingTotalBalanceFindUniqueArgs>(args: SelectSubset<T, CastiingTotalBalanceFindUniqueArgs<ExtArgs>>): Prisma__CastiingTotalBalanceClient<$Result.GetResult<Prisma.$CastiingTotalBalancePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CastiingTotalBalance that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CastiingTotalBalanceFindUniqueOrThrowArgs} args - Arguments to find a CastiingTotalBalance
+     * @example
+     * // Get one CastiingTotalBalance
+     * const castiingTotalBalance = await prisma.castiingTotalBalance.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CastiingTotalBalanceFindUniqueOrThrowArgs>(args: SelectSubset<T, CastiingTotalBalanceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CastiingTotalBalanceClient<$Result.GetResult<Prisma.$CastiingTotalBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CastiingTotalBalance that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastiingTotalBalanceFindFirstArgs} args - Arguments to find a CastiingTotalBalance
+     * @example
+     * // Get one CastiingTotalBalance
+     * const castiingTotalBalance = await prisma.castiingTotalBalance.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CastiingTotalBalanceFindFirstArgs>(args?: SelectSubset<T, CastiingTotalBalanceFindFirstArgs<ExtArgs>>): Prisma__CastiingTotalBalanceClient<$Result.GetResult<Prisma.$CastiingTotalBalancePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CastiingTotalBalance that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastiingTotalBalanceFindFirstOrThrowArgs} args - Arguments to find a CastiingTotalBalance
+     * @example
+     * // Get one CastiingTotalBalance
+     * const castiingTotalBalance = await prisma.castiingTotalBalance.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CastiingTotalBalanceFindFirstOrThrowArgs>(args?: SelectSubset<T, CastiingTotalBalanceFindFirstOrThrowArgs<ExtArgs>>): Prisma__CastiingTotalBalanceClient<$Result.GetResult<Prisma.$CastiingTotalBalancePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CastiingTotalBalances that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastiingTotalBalanceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CastiingTotalBalances
+     * const castiingTotalBalances = await prisma.castiingTotalBalance.findMany()
+     * 
+     * // Get first 10 CastiingTotalBalances
+     * const castiingTotalBalances = await prisma.castiingTotalBalance.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const castiingTotalBalanceWithIdOnly = await prisma.castiingTotalBalance.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CastiingTotalBalanceFindManyArgs>(args?: SelectSubset<T, CastiingTotalBalanceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CastiingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CastiingTotalBalance.
+     * @param {CastiingTotalBalanceCreateArgs} args - Arguments to create a CastiingTotalBalance.
+     * @example
+     * // Create one CastiingTotalBalance
+     * const CastiingTotalBalance = await prisma.castiingTotalBalance.create({
+     *   data: {
+     *     // ... data to create a CastiingTotalBalance
+     *   }
+     * })
+     * 
+     */
+    create<T extends CastiingTotalBalanceCreateArgs>(args: SelectSubset<T, CastiingTotalBalanceCreateArgs<ExtArgs>>): Prisma__CastiingTotalBalanceClient<$Result.GetResult<Prisma.$CastiingTotalBalancePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CastiingTotalBalances.
+     * @param {CastiingTotalBalanceCreateManyArgs} args - Arguments to create many CastiingTotalBalances.
+     * @example
+     * // Create many CastiingTotalBalances
+     * const castiingTotalBalance = await prisma.castiingTotalBalance.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CastiingTotalBalanceCreateManyArgs>(args?: SelectSubset<T, CastiingTotalBalanceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a CastiingTotalBalance.
+     * @param {CastiingTotalBalanceDeleteArgs} args - Arguments to delete one CastiingTotalBalance.
+     * @example
+     * // Delete one CastiingTotalBalance
+     * const CastiingTotalBalance = await prisma.castiingTotalBalance.delete({
+     *   where: {
+     *     // ... filter to delete one CastiingTotalBalance
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CastiingTotalBalanceDeleteArgs>(args: SelectSubset<T, CastiingTotalBalanceDeleteArgs<ExtArgs>>): Prisma__CastiingTotalBalanceClient<$Result.GetResult<Prisma.$CastiingTotalBalancePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CastiingTotalBalance.
+     * @param {CastiingTotalBalanceUpdateArgs} args - Arguments to update one CastiingTotalBalance.
+     * @example
+     * // Update one CastiingTotalBalance
+     * const castiingTotalBalance = await prisma.castiingTotalBalance.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CastiingTotalBalanceUpdateArgs>(args: SelectSubset<T, CastiingTotalBalanceUpdateArgs<ExtArgs>>): Prisma__CastiingTotalBalanceClient<$Result.GetResult<Prisma.$CastiingTotalBalancePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CastiingTotalBalances.
+     * @param {CastiingTotalBalanceDeleteManyArgs} args - Arguments to filter CastiingTotalBalances to delete.
+     * @example
+     * // Delete a few CastiingTotalBalances
+     * const { count } = await prisma.castiingTotalBalance.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CastiingTotalBalanceDeleteManyArgs>(args?: SelectSubset<T, CastiingTotalBalanceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CastiingTotalBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastiingTotalBalanceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CastiingTotalBalances
+     * const castiingTotalBalance = await prisma.castiingTotalBalance.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CastiingTotalBalanceUpdateManyArgs>(args: SelectSubset<T, CastiingTotalBalanceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CastiingTotalBalance.
+     * @param {CastiingTotalBalanceUpsertArgs} args - Arguments to update or create a CastiingTotalBalance.
+     * @example
+     * // Update or create a CastiingTotalBalance
+     * const castiingTotalBalance = await prisma.castiingTotalBalance.upsert({
+     *   create: {
+     *     // ... data to create a CastiingTotalBalance
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CastiingTotalBalance we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CastiingTotalBalanceUpsertArgs>(args: SelectSubset<T, CastiingTotalBalanceUpsertArgs<ExtArgs>>): Prisma__CastiingTotalBalanceClient<$Result.GetResult<Prisma.$CastiingTotalBalancePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CastiingTotalBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastiingTotalBalanceCountArgs} args - Arguments to filter CastiingTotalBalances to count.
+     * @example
+     * // Count the number of CastiingTotalBalances
+     * const count = await prisma.castiingTotalBalance.count({
+     *   where: {
+     *     // ... the filter for the CastiingTotalBalances we want to count
+     *   }
+     * })
+    **/
+    count<T extends CastiingTotalBalanceCountArgs>(
+      args?: Subset<T, CastiingTotalBalanceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CastiingTotalBalanceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CastiingTotalBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastiingTotalBalanceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CastiingTotalBalanceAggregateArgs>(args: Subset<T, CastiingTotalBalanceAggregateArgs>): Prisma.PrismaPromise<GetCastiingTotalBalanceAggregateType<T>>
+
+    /**
+     * Group by CastiingTotalBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CastiingTotalBalanceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CastiingTotalBalanceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CastiingTotalBalanceGroupByArgs['orderBy'] }
+        : { orderBy?: CastiingTotalBalanceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CastiingTotalBalanceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCastiingTotalBalanceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CastiingTotalBalance model
+   */
+  readonly fields: CastiingTotalBalanceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CastiingTotalBalance.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CastiingTotalBalanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    item_entry_id<T extends CastingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingEntryDefaultArgs<ExtArgs>>): Prisma__CastingEntryClient<$Result.GetResult<Prisma.$CastingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CastiingTotalBalance model
+   */
+  interface CastiingTotalBalanceFieldRefs {
+    readonly id: FieldRef<"CastiingTotalBalance", 'Int'>
+    readonly createdAt: FieldRef<"CastiingTotalBalance", 'DateTime'>
+    readonly total_item_weight: FieldRef<"CastiingTotalBalance", 'Float'>
+    readonly current_balance_weight: FieldRef<"CastiingTotalBalance", 'Float'>
+    readonly total_scrap_weight: FieldRef<"CastiingTotalBalance", 'Float'>
+    readonly total_wastage: FieldRef<"CastiingTotalBalance", 'Float'>
+    readonly item_entry: FieldRef<"CastiingTotalBalance", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CastiingTotalBalance findUnique
+   */
+  export type CastiingTotalBalanceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which CastiingTotalBalance to fetch.
+     */
+    where: CastiingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * CastiingTotalBalance findUniqueOrThrow
+   */
+  export type CastiingTotalBalanceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which CastiingTotalBalance to fetch.
+     */
+    where: CastiingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * CastiingTotalBalance findFirst
+   */
+  export type CastiingTotalBalanceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which CastiingTotalBalance to fetch.
+     */
+    where?: CastiingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastiingTotalBalances to fetch.
+     */
+    orderBy?: CastiingTotalBalanceOrderByWithRelationInput | CastiingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CastiingTotalBalances.
+     */
+    cursor?: CastiingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastiingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastiingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CastiingTotalBalances.
+     */
+    distinct?: CastiingTotalBalanceScalarFieldEnum | CastiingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * CastiingTotalBalance findFirstOrThrow
+   */
+  export type CastiingTotalBalanceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which CastiingTotalBalance to fetch.
+     */
+    where?: CastiingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastiingTotalBalances to fetch.
+     */
+    orderBy?: CastiingTotalBalanceOrderByWithRelationInput | CastiingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CastiingTotalBalances.
+     */
+    cursor?: CastiingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastiingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastiingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CastiingTotalBalances.
+     */
+    distinct?: CastiingTotalBalanceScalarFieldEnum | CastiingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * CastiingTotalBalance findMany
+   */
+  export type CastiingTotalBalanceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which CastiingTotalBalances to fetch.
+     */
+    where?: CastiingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CastiingTotalBalances to fetch.
+     */
+    orderBy?: CastiingTotalBalanceOrderByWithRelationInput | CastiingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CastiingTotalBalances.
+     */
+    cursor?: CastiingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CastiingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CastiingTotalBalances.
+     */
+    skip?: number
+    distinct?: CastiingTotalBalanceScalarFieldEnum | CastiingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * CastiingTotalBalance create
+   */
+  export type CastiingTotalBalanceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CastiingTotalBalance.
+     */
+    data: XOR<CastiingTotalBalanceCreateInput, CastiingTotalBalanceUncheckedCreateInput>
+  }
+
+  /**
+   * CastiingTotalBalance createMany
+   */
+  export type CastiingTotalBalanceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CastiingTotalBalances.
+     */
+    data: CastiingTotalBalanceCreateManyInput | CastiingTotalBalanceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CastiingTotalBalance update
+   */
+  export type CastiingTotalBalanceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CastiingTotalBalance.
+     */
+    data: XOR<CastiingTotalBalanceUpdateInput, CastiingTotalBalanceUncheckedUpdateInput>
+    /**
+     * Choose, which CastiingTotalBalance to update.
+     */
+    where: CastiingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * CastiingTotalBalance updateMany
+   */
+  export type CastiingTotalBalanceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CastiingTotalBalances.
+     */
+    data: XOR<CastiingTotalBalanceUpdateManyMutationInput, CastiingTotalBalanceUncheckedUpdateManyInput>
+    /**
+     * Filter which CastiingTotalBalances to update
+     */
+    where?: CastiingTotalBalanceWhereInput
+    /**
+     * Limit how many CastiingTotalBalances to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CastiingTotalBalance upsert
+   */
+  export type CastiingTotalBalanceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CastiingTotalBalance to update in case it exists.
+     */
+    where: CastiingTotalBalanceWhereUniqueInput
+    /**
+     * In case the CastiingTotalBalance found by the `where` argument doesn't exist, create a new CastiingTotalBalance with this data.
+     */
+    create: XOR<CastiingTotalBalanceCreateInput, CastiingTotalBalanceUncheckedCreateInput>
+    /**
+     * In case the CastiingTotalBalance was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CastiingTotalBalanceUpdateInput, CastiingTotalBalanceUncheckedUpdateInput>
+  }
+
+  /**
+   * CastiingTotalBalance delete
+   */
+  export type CastiingTotalBalanceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter which CastiingTotalBalance to delete.
+     */
+    where: CastiingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * CastiingTotalBalance deleteMany
+   */
+  export type CastiingTotalBalanceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CastiingTotalBalances to delete
+     */
+    where?: CastiingTotalBalanceWhereInput
+    /**
+     * Limit how many CastiingTotalBalances to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CastiingTotalBalance without action
+   */
+  export type CastiingTotalBalanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CastiingTotalBalance
+     */
+    select?: CastiingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CastiingTotalBalance
+     */
+    omit?: CastiingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CastiingTotalBalanceInclude<ExtArgs> | null
   }
 
 
@@ -17955,6 +19338,8 @@ export namespace Prisma {
     filing_person?: boolean | AddFilingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
     filingItems?: boolean | FilingEntry$filingItemsArgs<ExtArgs>
+    filingItemsId?: boolean | FilingEntry$filingItemsIdArgs<ExtArgs>
+    FilingWastage?: boolean | FilingEntry$FilingWastageArgs<ExtArgs>
     _count?: boolean | FilingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["filingEntry"]>
 
@@ -17972,6 +19357,8 @@ export namespace Prisma {
     filing_person?: boolean | AddFilingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
     filingItems?: boolean | FilingEntry$filingItemsArgs<ExtArgs>
+    filingItemsId?: boolean | FilingEntry$filingItemsIdArgs<ExtArgs>
+    FilingWastage?: boolean | FilingEntry$FilingWastageArgs<ExtArgs>
     _count?: boolean | FilingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -17981,6 +19368,8 @@ export namespace Prisma {
       filing_person: Prisma.$AddFilingPayload<ExtArgs>
       castingItem: Prisma.$CastingItemsPayload<ExtArgs>
       filingItems: Prisma.$FilingItemsPayload<ExtArgs>[]
+      filingItemsId: Prisma.$FilingTotalBalancePayload<ExtArgs>[]
+      FilingWastage: Prisma.$FilingWastagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -18330,6 +19719,8 @@ export namespace Prisma {
     filing_person<T extends AddFilingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddFilingDefaultArgs<ExtArgs>>): Prisma__AddFilingClient<$Result.GetResult<Prisma.$AddFilingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     castingItem<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     filingItems<T extends FilingEntry$filingItemsArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$filingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    filingItemsId<T extends FilingEntry$filingItemsIdArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$filingItemsIdArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FilingWastage<T extends FilingEntry$FilingWastageArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$FilingWastageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18730,6 +20121,54 @@ export namespace Prisma {
   }
 
   /**
+   * FilingEntry.filingItemsId
+   */
+  export type FilingEntry$filingItemsIdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+    where?: FilingTotalBalanceWhereInput
+    orderBy?: FilingTotalBalanceOrderByWithRelationInput | FilingTotalBalanceOrderByWithRelationInput[]
+    cursor?: FilingTotalBalanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilingTotalBalanceScalarFieldEnum | FilingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * FilingEntry.FilingWastage
+   */
+  export type FilingEntry$FilingWastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingWastage
+     */
+    select?: FilingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingWastage
+     */
+    omit?: FilingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingWastageInclude<ExtArgs> | null
+    where?: FilingWastageWhereInput
+    orderBy?: FilingWastageOrderByWithRelationInput | FilingWastageOrderByWithRelationInput[]
+    cursor?: FilingWastageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilingWastageScalarFieldEnum | FilingWastageScalarFieldEnum[]
+  }
+
+  /**
    * FilingEntry without action
    */
   export type FilingEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18767,9 +20206,6 @@ export namespace Prisma {
     weight: number | null
     touch_id: number | null
     item_purity: number | null
-    after_weight: number | null
-    scrap_weight: number | null
-    scrap_wastage: number | null
     lot_filing_mapper_id: number | null
   }
 
@@ -18780,9 +20216,6 @@ export namespace Prisma {
     weight: number | null
     touch_id: number | null
     item_purity: number | null
-    after_weight: number | null
-    scrap_weight: number | null
-    scrap_wastage: number | null
     lot_filing_mapper_id: number | null
   }
 
@@ -18796,11 +20229,7 @@ export namespace Prisma {
     touch_id: number | null
     item_purity: number | null
     remarks: string | null
-    wastage: boolean | null
     stone_option: $Enums.STONEOPTION | null
-    after_weight: number | null
-    scrap_weight: number | null
-    scrap_wastage: number | null
     lot_filing_mapper_id: number | null
   }
 
@@ -18814,11 +20243,7 @@ export namespace Prisma {
     touch_id: number | null
     item_purity: number | null
     remarks: string | null
-    wastage: boolean | null
     stone_option: $Enums.STONEOPTION | null
-    after_weight: number | null
-    scrap_weight: number | null
-    scrap_wastage: number | null
     lot_filing_mapper_id: number | null
   }
 
@@ -18832,11 +20257,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks: number
-    wastage: number
     stone_option: number
-    after_weight: number
-    scrap_weight: number
-    scrap_wastage: number
     lot_filing_mapper_id: number
     _all: number
   }
@@ -18849,9 +20270,6 @@ export namespace Prisma {
     weight?: true
     touch_id?: true
     item_purity?: true
-    after_weight?: true
-    scrap_weight?: true
-    scrap_wastage?: true
     lot_filing_mapper_id?: true
   }
 
@@ -18862,9 +20280,6 @@ export namespace Prisma {
     weight?: true
     touch_id?: true
     item_purity?: true
-    after_weight?: true
-    scrap_weight?: true
-    scrap_wastage?: true
     lot_filing_mapper_id?: true
   }
 
@@ -18878,11 +20293,7 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     remarks?: true
-    wastage?: true
     stone_option?: true
-    after_weight?: true
-    scrap_weight?: true
-    scrap_wastage?: true
     lot_filing_mapper_id?: true
   }
 
@@ -18896,11 +20307,7 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     remarks?: true
-    wastage?: true
     stone_option?: true
-    after_weight?: true
-    scrap_weight?: true
-    scrap_wastage?: true
     lot_filing_mapper_id?: true
   }
 
@@ -18914,11 +20321,7 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     remarks?: true
-    wastage?: true
     stone_option?: true
-    after_weight?: true
-    scrap_weight?: true
-    scrap_wastage?: true
     lot_filing_mapper_id?: true
     _all?: true
   }
@@ -19019,11 +20422,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks: string | null
-    wastage: boolean | null
     stone_option: $Enums.STONEOPTION | null
-    after_weight: number | null
-    scrap_weight: number | null
-    scrap_wastage: number | null
     lot_filing_mapper_id: number | null
     _count: FilingItemsCountAggregateOutputType | null
     _avg: FilingItemsAvgAggregateOutputType | null
@@ -19056,11 +20455,7 @@ export namespace Prisma {
     touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
-    wastage?: boolean
     stone_option?: boolean
-    after_weight?: boolean
-    scrap_weight?: boolean
-    scrap_wastage?: boolean
     lot_filing_mapper_id?: boolean
     filing_entry?: boolean | FilingEntryDefaultArgs<ExtArgs>
     filingitem?: boolean | AddItemDefaultArgs<ExtArgs>
@@ -19087,15 +20482,11 @@ export namespace Prisma {
     touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
-    wastage?: boolean
     stone_option?: boolean
-    after_weight?: boolean
-    scrap_weight?: boolean
-    scrap_wastage?: boolean
     lot_filing_mapper_id?: boolean
   }
 
-  export type FilingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "filing_entry_id" | "type" | "filing_item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "wastage" | "stone_option" | "after_weight" | "scrap_weight" | "scrap_wastage" | "lot_filing_mapper_id", ExtArgs["result"]["filingItems"]>
+  export type FilingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "filing_entry_id" | "type" | "filing_item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "stone_option" | "lot_filing_mapper_id", ExtArgs["result"]["filingItems"]>
   export type FilingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filing_entry?: boolean | FilingEntryDefaultArgs<ExtArgs>
     filingitem?: boolean | AddItemDefaultArgs<ExtArgs>
@@ -19134,11 +20525,7 @@ export namespace Prisma {
       touch_id: number
       item_purity: number
       remarks: string | null
-      wastage: boolean | null
       stone_option: $Enums.STONEOPTION | null
-      after_weight: number | null
-      scrap_weight: number | null
-      scrap_wastage: number | null
       lot_filing_mapper_id: number | null
     }, ExtArgs["result"]["filingItems"]>
     composites: {}
@@ -19528,11 +20915,7 @@ export namespace Prisma {
     readonly touch_id: FieldRef<"FilingItems", 'Int'>
     readonly item_purity: FieldRef<"FilingItems", 'Float'>
     readonly remarks: FieldRef<"FilingItems", 'String'>
-    readonly wastage: FieldRef<"FilingItems", 'Boolean'>
     readonly stone_option: FieldRef<"FilingItems", 'STONEOPTION'>
-    readonly after_weight: FieldRef<"FilingItems", 'Float'>
-    readonly scrap_weight: FieldRef<"FilingItems", 'Float'>
-    readonly scrap_wastage: FieldRef<"FilingItems", 'Float'>
     readonly lot_filing_mapper_id: FieldRef<"FilingItems", 'Int'>
   }
     
@@ -21061,6 +22444,1022 @@ export namespace Prisma {
 
 
   /**
+   * Model FilingTotalBalance
+   */
+
+  export type AggregateFilingTotalBalance = {
+    _count: FilingTotalBalanceCountAggregateOutputType | null
+    _avg: FilingTotalBalanceAvgAggregateOutputType | null
+    _sum: FilingTotalBalanceSumAggregateOutputType | null
+    _min: FilingTotalBalanceMinAggregateOutputType | null
+    _max: FilingTotalBalanceMaxAggregateOutputType | null
+  }
+
+  export type FilingTotalBalanceAvgAggregateOutputType = {
+    id: number | null
+    after_weight: number | null
+    total_product_weight: number | null
+    total_scrap_weight: number | null
+    balance: number | null
+    filing_entry_id: number | null
+  }
+
+  export type FilingTotalBalanceSumAggregateOutputType = {
+    id: number | null
+    after_weight: number | null
+    total_product_weight: number | null
+    total_scrap_weight: number | null
+    balance: number | null
+    filing_entry_id: number | null
+  }
+
+  export type FilingTotalBalanceMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    after_weight: number | null
+    total_product_weight: number | null
+    total_scrap_weight: number | null
+    wastage: boolean | null
+    balance: number | null
+    filing_entry_id: number | null
+  }
+
+  export type FilingTotalBalanceMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    after_weight: number | null
+    total_product_weight: number | null
+    total_scrap_weight: number | null
+    wastage: boolean | null
+    balance: number | null
+    filing_entry_id: number | null
+  }
+
+  export type FilingTotalBalanceCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    after_weight: number
+    total_product_weight: number
+    total_scrap_weight: number
+    wastage: number
+    balance: number
+    filing_entry_id: number
+    _all: number
+  }
+
+
+  export type FilingTotalBalanceAvgAggregateInputType = {
+    id?: true
+    after_weight?: true
+    total_product_weight?: true
+    total_scrap_weight?: true
+    balance?: true
+    filing_entry_id?: true
+  }
+
+  export type FilingTotalBalanceSumAggregateInputType = {
+    id?: true
+    after_weight?: true
+    total_product_weight?: true
+    total_scrap_weight?: true
+    balance?: true
+    filing_entry_id?: true
+  }
+
+  export type FilingTotalBalanceMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    after_weight?: true
+    total_product_weight?: true
+    total_scrap_weight?: true
+    wastage?: true
+    balance?: true
+    filing_entry_id?: true
+  }
+
+  export type FilingTotalBalanceMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    after_weight?: true
+    total_product_weight?: true
+    total_scrap_weight?: true
+    wastage?: true
+    balance?: true
+    filing_entry_id?: true
+  }
+
+  export type FilingTotalBalanceCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    after_weight?: true
+    total_product_weight?: true
+    total_scrap_weight?: true
+    wastage?: true
+    balance?: true
+    filing_entry_id?: true
+    _all?: true
+  }
+
+  export type FilingTotalBalanceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FilingTotalBalance to aggregate.
+     */
+    where?: FilingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingTotalBalances to fetch.
+     */
+    orderBy?: FilingTotalBalanceOrderByWithRelationInput | FilingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FilingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FilingTotalBalances
+    **/
+    _count?: true | FilingTotalBalanceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FilingTotalBalanceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FilingTotalBalanceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FilingTotalBalanceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FilingTotalBalanceMaxAggregateInputType
+  }
+
+  export type GetFilingTotalBalanceAggregateType<T extends FilingTotalBalanceAggregateArgs> = {
+        [P in keyof T & keyof AggregateFilingTotalBalance]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFilingTotalBalance[P]>
+      : GetScalarType<T[P], AggregateFilingTotalBalance[P]>
+  }
+
+
+
+
+  export type FilingTotalBalanceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingTotalBalanceWhereInput
+    orderBy?: FilingTotalBalanceOrderByWithAggregationInput | FilingTotalBalanceOrderByWithAggregationInput[]
+    by: FilingTotalBalanceScalarFieldEnum[] | FilingTotalBalanceScalarFieldEnum
+    having?: FilingTotalBalanceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FilingTotalBalanceCountAggregateInputType | true
+    _avg?: FilingTotalBalanceAvgAggregateInputType
+    _sum?: FilingTotalBalanceSumAggregateInputType
+    _min?: FilingTotalBalanceMinAggregateInputType
+    _max?: FilingTotalBalanceMaxAggregateInputType
+  }
+
+  export type FilingTotalBalanceGroupByOutputType = {
+    id: number
+    createdAt: Date
+    after_weight: number | null
+    total_product_weight: number
+    total_scrap_weight: number | null
+    wastage: boolean
+    balance: number
+    filing_entry_id: number
+    _count: FilingTotalBalanceCountAggregateOutputType | null
+    _avg: FilingTotalBalanceAvgAggregateOutputType | null
+    _sum: FilingTotalBalanceSumAggregateOutputType | null
+    _min: FilingTotalBalanceMinAggregateOutputType | null
+    _max: FilingTotalBalanceMaxAggregateOutputType | null
+  }
+
+  type GetFilingTotalBalanceGroupByPayload<T extends FilingTotalBalanceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FilingTotalBalanceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FilingTotalBalanceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FilingTotalBalanceGroupByOutputType[P]>
+            : GetScalarType<T[P], FilingTotalBalanceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FilingTotalBalanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    after_weight?: boolean
+    total_product_weight?: boolean
+    total_scrap_weight?: boolean
+    wastage?: boolean
+    balance?: boolean
+    filing_entry_id?: boolean
+    filingEntryId?: boolean | FilingEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["filingTotalBalance"]>
+
+
+
+  export type FilingTotalBalanceSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    after_weight?: boolean
+    total_product_weight?: boolean
+    total_scrap_weight?: boolean
+    wastage?: boolean
+    balance?: boolean
+    filing_entry_id?: boolean
+  }
+
+  export type FilingTotalBalanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "after_weight" | "total_product_weight" | "total_scrap_weight" | "wastage" | "balance" | "filing_entry_id", ExtArgs["result"]["filingTotalBalance"]>
+  export type FilingTotalBalanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filingEntryId?: boolean | FilingEntryDefaultArgs<ExtArgs>
+  }
+
+  export type $FilingTotalBalancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FilingTotalBalance"
+    objects: {
+      filingEntryId: Prisma.$FilingEntryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      after_weight: number | null
+      total_product_weight: number
+      total_scrap_weight: number | null
+      wastage: boolean
+      balance: number
+      filing_entry_id: number
+    }, ExtArgs["result"]["filingTotalBalance"]>
+    composites: {}
+  }
+
+  type FilingTotalBalanceGetPayload<S extends boolean | null | undefined | FilingTotalBalanceDefaultArgs> = $Result.GetResult<Prisma.$FilingTotalBalancePayload, S>
+
+  type FilingTotalBalanceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FilingTotalBalanceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FilingTotalBalanceCountAggregateInputType | true
+    }
+
+  export interface FilingTotalBalanceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FilingTotalBalance'], meta: { name: 'FilingTotalBalance' } }
+    /**
+     * Find zero or one FilingTotalBalance that matches the filter.
+     * @param {FilingTotalBalanceFindUniqueArgs} args - Arguments to find a FilingTotalBalance
+     * @example
+     * // Get one FilingTotalBalance
+     * const filingTotalBalance = await prisma.filingTotalBalance.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FilingTotalBalanceFindUniqueArgs>(args: SelectSubset<T, FilingTotalBalanceFindUniqueArgs<ExtArgs>>): Prisma__FilingTotalBalanceClient<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FilingTotalBalance that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FilingTotalBalanceFindUniqueOrThrowArgs} args - Arguments to find a FilingTotalBalance
+     * @example
+     * // Get one FilingTotalBalance
+     * const filingTotalBalance = await prisma.filingTotalBalance.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FilingTotalBalanceFindUniqueOrThrowArgs>(args: SelectSubset<T, FilingTotalBalanceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FilingTotalBalanceClient<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FilingTotalBalance that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingTotalBalanceFindFirstArgs} args - Arguments to find a FilingTotalBalance
+     * @example
+     * // Get one FilingTotalBalance
+     * const filingTotalBalance = await prisma.filingTotalBalance.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FilingTotalBalanceFindFirstArgs>(args?: SelectSubset<T, FilingTotalBalanceFindFirstArgs<ExtArgs>>): Prisma__FilingTotalBalanceClient<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FilingTotalBalance that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingTotalBalanceFindFirstOrThrowArgs} args - Arguments to find a FilingTotalBalance
+     * @example
+     * // Get one FilingTotalBalance
+     * const filingTotalBalance = await prisma.filingTotalBalance.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FilingTotalBalanceFindFirstOrThrowArgs>(args?: SelectSubset<T, FilingTotalBalanceFindFirstOrThrowArgs<ExtArgs>>): Prisma__FilingTotalBalanceClient<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FilingTotalBalances that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingTotalBalanceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FilingTotalBalances
+     * const filingTotalBalances = await prisma.filingTotalBalance.findMany()
+     * 
+     * // Get first 10 FilingTotalBalances
+     * const filingTotalBalances = await prisma.filingTotalBalance.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const filingTotalBalanceWithIdOnly = await prisma.filingTotalBalance.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FilingTotalBalanceFindManyArgs>(args?: SelectSubset<T, FilingTotalBalanceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FilingTotalBalance.
+     * @param {FilingTotalBalanceCreateArgs} args - Arguments to create a FilingTotalBalance.
+     * @example
+     * // Create one FilingTotalBalance
+     * const FilingTotalBalance = await prisma.filingTotalBalance.create({
+     *   data: {
+     *     // ... data to create a FilingTotalBalance
+     *   }
+     * })
+     * 
+     */
+    create<T extends FilingTotalBalanceCreateArgs>(args: SelectSubset<T, FilingTotalBalanceCreateArgs<ExtArgs>>): Prisma__FilingTotalBalanceClient<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FilingTotalBalances.
+     * @param {FilingTotalBalanceCreateManyArgs} args - Arguments to create many FilingTotalBalances.
+     * @example
+     * // Create many FilingTotalBalances
+     * const filingTotalBalance = await prisma.filingTotalBalance.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FilingTotalBalanceCreateManyArgs>(args?: SelectSubset<T, FilingTotalBalanceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a FilingTotalBalance.
+     * @param {FilingTotalBalanceDeleteArgs} args - Arguments to delete one FilingTotalBalance.
+     * @example
+     * // Delete one FilingTotalBalance
+     * const FilingTotalBalance = await prisma.filingTotalBalance.delete({
+     *   where: {
+     *     // ... filter to delete one FilingTotalBalance
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FilingTotalBalanceDeleteArgs>(args: SelectSubset<T, FilingTotalBalanceDeleteArgs<ExtArgs>>): Prisma__FilingTotalBalanceClient<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FilingTotalBalance.
+     * @param {FilingTotalBalanceUpdateArgs} args - Arguments to update one FilingTotalBalance.
+     * @example
+     * // Update one FilingTotalBalance
+     * const filingTotalBalance = await prisma.filingTotalBalance.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FilingTotalBalanceUpdateArgs>(args: SelectSubset<T, FilingTotalBalanceUpdateArgs<ExtArgs>>): Prisma__FilingTotalBalanceClient<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FilingTotalBalances.
+     * @param {FilingTotalBalanceDeleteManyArgs} args - Arguments to filter FilingTotalBalances to delete.
+     * @example
+     * // Delete a few FilingTotalBalances
+     * const { count } = await prisma.filingTotalBalance.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FilingTotalBalanceDeleteManyArgs>(args?: SelectSubset<T, FilingTotalBalanceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FilingTotalBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingTotalBalanceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FilingTotalBalances
+     * const filingTotalBalance = await prisma.filingTotalBalance.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FilingTotalBalanceUpdateManyArgs>(args: SelectSubset<T, FilingTotalBalanceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one FilingTotalBalance.
+     * @param {FilingTotalBalanceUpsertArgs} args - Arguments to update or create a FilingTotalBalance.
+     * @example
+     * // Update or create a FilingTotalBalance
+     * const filingTotalBalance = await prisma.filingTotalBalance.upsert({
+     *   create: {
+     *     // ... data to create a FilingTotalBalance
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FilingTotalBalance we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FilingTotalBalanceUpsertArgs>(args: SelectSubset<T, FilingTotalBalanceUpsertArgs<ExtArgs>>): Prisma__FilingTotalBalanceClient<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FilingTotalBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingTotalBalanceCountArgs} args - Arguments to filter FilingTotalBalances to count.
+     * @example
+     * // Count the number of FilingTotalBalances
+     * const count = await prisma.filingTotalBalance.count({
+     *   where: {
+     *     // ... the filter for the FilingTotalBalances we want to count
+     *   }
+     * })
+    **/
+    count<T extends FilingTotalBalanceCountArgs>(
+      args?: Subset<T, FilingTotalBalanceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FilingTotalBalanceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FilingTotalBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingTotalBalanceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FilingTotalBalanceAggregateArgs>(args: Subset<T, FilingTotalBalanceAggregateArgs>): Prisma.PrismaPromise<GetFilingTotalBalanceAggregateType<T>>
+
+    /**
+     * Group by FilingTotalBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilingTotalBalanceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FilingTotalBalanceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FilingTotalBalanceGroupByArgs['orderBy'] }
+        : { orderBy?: FilingTotalBalanceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FilingTotalBalanceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFilingTotalBalanceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FilingTotalBalance model
+   */
+  readonly fields: FilingTotalBalanceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FilingTotalBalance.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FilingTotalBalanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    filingEntryId<T extends FilingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntryDefaultArgs<ExtArgs>>): Prisma__FilingEntryClient<$Result.GetResult<Prisma.$FilingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FilingTotalBalance model
+   */
+  interface FilingTotalBalanceFieldRefs {
+    readonly id: FieldRef<"FilingTotalBalance", 'Int'>
+    readonly createdAt: FieldRef<"FilingTotalBalance", 'DateTime'>
+    readonly after_weight: FieldRef<"FilingTotalBalance", 'Float'>
+    readonly total_product_weight: FieldRef<"FilingTotalBalance", 'Float'>
+    readonly total_scrap_weight: FieldRef<"FilingTotalBalance", 'Float'>
+    readonly wastage: FieldRef<"FilingTotalBalance", 'Boolean'>
+    readonly balance: FieldRef<"FilingTotalBalance", 'Float'>
+    readonly filing_entry_id: FieldRef<"FilingTotalBalance", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FilingTotalBalance findUnique
+   */
+  export type FilingTotalBalanceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingTotalBalance to fetch.
+     */
+    where: FilingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * FilingTotalBalance findUniqueOrThrow
+   */
+  export type FilingTotalBalanceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingTotalBalance to fetch.
+     */
+    where: FilingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * FilingTotalBalance findFirst
+   */
+  export type FilingTotalBalanceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingTotalBalance to fetch.
+     */
+    where?: FilingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingTotalBalances to fetch.
+     */
+    orderBy?: FilingTotalBalanceOrderByWithRelationInput | FilingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FilingTotalBalances.
+     */
+    cursor?: FilingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FilingTotalBalances.
+     */
+    distinct?: FilingTotalBalanceScalarFieldEnum | FilingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * FilingTotalBalance findFirstOrThrow
+   */
+  export type FilingTotalBalanceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingTotalBalance to fetch.
+     */
+    where?: FilingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingTotalBalances to fetch.
+     */
+    orderBy?: FilingTotalBalanceOrderByWithRelationInput | FilingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FilingTotalBalances.
+     */
+    cursor?: FilingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FilingTotalBalances.
+     */
+    distinct?: FilingTotalBalanceScalarFieldEnum | FilingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * FilingTotalBalance findMany
+   */
+  export type FilingTotalBalanceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which FilingTotalBalances to fetch.
+     */
+    where?: FilingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FilingTotalBalances to fetch.
+     */
+    orderBy?: FilingTotalBalanceOrderByWithRelationInput | FilingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FilingTotalBalances.
+     */
+    cursor?: FilingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FilingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FilingTotalBalances.
+     */
+    skip?: number
+    distinct?: FilingTotalBalanceScalarFieldEnum | FilingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * FilingTotalBalance create
+   */
+  export type FilingTotalBalanceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FilingTotalBalance.
+     */
+    data: XOR<FilingTotalBalanceCreateInput, FilingTotalBalanceUncheckedCreateInput>
+  }
+
+  /**
+   * FilingTotalBalance createMany
+   */
+  export type FilingTotalBalanceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FilingTotalBalances.
+     */
+    data: FilingTotalBalanceCreateManyInput | FilingTotalBalanceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FilingTotalBalance update
+   */
+  export type FilingTotalBalanceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FilingTotalBalance.
+     */
+    data: XOR<FilingTotalBalanceUpdateInput, FilingTotalBalanceUncheckedUpdateInput>
+    /**
+     * Choose, which FilingTotalBalance to update.
+     */
+    where: FilingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * FilingTotalBalance updateMany
+   */
+  export type FilingTotalBalanceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FilingTotalBalances.
+     */
+    data: XOR<FilingTotalBalanceUpdateManyMutationInput, FilingTotalBalanceUncheckedUpdateManyInput>
+    /**
+     * Filter which FilingTotalBalances to update
+     */
+    where?: FilingTotalBalanceWhereInput
+    /**
+     * Limit how many FilingTotalBalances to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FilingTotalBalance upsert
+   */
+  export type FilingTotalBalanceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FilingTotalBalance to update in case it exists.
+     */
+    where: FilingTotalBalanceWhereUniqueInput
+    /**
+     * In case the FilingTotalBalance found by the `where` argument doesn't exist, create a new FilingTotalBalance with this data.
+     */
+    create: XOR<FilingTotalBalanceCreateInput, FilingTotalBalanceUncheckedCreateInput>
+    /**
+     * In case the FilingTotalBalance was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FilingTotalBalanceUpdateInput, FilingTotalBalanceUncheckedUpdateInput>
+  }
+
+  /**
+   * FilingTotalBalance delete
+   */
+  export type FilingTotalBalanceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter which FilingTotalBalance to delete.
+     */
+    where: FilingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * FilingTotalBalance deleteMany
+   */
+  export type FilingTotalBalanceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FilingTotalBalances to delete
+     */
+    where?: FilingTotalBalanceWhereInput
+    /**
+     * Limit how many FilingTotalBalances to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FilingTotalBalance without action
+   */
+  export type FilingTotalBalanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingTotalBalance
+     */
+    select?: FilingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingTotalBalance
+     */
+    omit?: FilingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingTotalBalanceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model FilingWastage
    */
 
@@ -21074,80 +23473,150 @@ export namespace Prisma {
 
   export type FilingWastageAvgAggregateOutputType = {
     id: number | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    filing_entry_id: number | null
   }
 
   export type FilingWastageSumAggregateOutputType = {
     id: number | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    filing_entry_id: number | null
   }
 
   export type FilingWastageMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    filing_entry_id: number | null
   }
 
   export type FilingWastageMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    filing_entry_id: number | null
   }
 
   export type FilingWastageCountAggregateOutputType = {
     id: number
     createdAt: number
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold: number
     add_wastage: number
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    filing_entry_id: number
     _all: number
   }
 
 
   export type FilingWastageAvgAggregateInputType = {
     id?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    filing_entry_id?: true
   }
 
   export type FilingWastageSumAggregateInputType = {
     id?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    filing_entry_id?: true
   }
 
   export type FilingWastageMinAggregateInputType = {
     id?: true
     createdAt?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    filing_entry_id?: true
   }
 
   export type FilingWastageMaxAggregateInputType = {
     id?: true
     createdAt?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    filing_entry_id?: true
   }
 
   export type FilingWastageCountAggregateInputType = {
     id?: true
     createdAt?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    filing_entry_id?: true
     _all?: true
   }
 
@@ -21240,9 +23709,16 @@ export namespace Prisma {
   export type FilingWastageGroupByOutputType = {
     id: number
     createdAt: Date
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    filing_entry_id: number
     _count: FilingWastageCountAggregateOutputType | null
     _avg: FilingWastageAvgAggregateOutputType | null
     _sum: FilingWastageSumAggregateOutputType | null
@@ -21267,9 +23743,17 @@ export namespace Prisma {
   export type FilingWastageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    total_receipt?: boolean
+    total_wastage?: boolean
+    balance?: boolean
     wastage_percentage?: boolean
     given_gold?: boolean
     add_wastage?: boolean
+    overall_wastage?: boolean
+    closing_balance?: boolean
+    opening_balance?: boolean
+    filing_entry_id?: boolean
+    filingEntryId?: boolean | FilingEntryDefaultArgs<ExtArgs>
     filing_items?: boolean | FilingWastage$filing_itemsArgs<ExtArgs>
     _count?: boolean | FilingWastageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["filingWastage"]>
@@ -21279,13 +23763,21 @@ export namespace Prisma {
   export type FilingWastageSelectScalar = {
     id?: boolean
     createdAt?: boolean
+    total_receipt?: boolean
+    total_wastage?: boolean
+    balance?: boolean
     wastage_percentage?: boolean
     given_gold?: boolean
     add_wastage?: boolean
+    overall_wastage?: boolean
+    closing_balance?: boolean
+    opening_balance?: boolean
+    filing_entry_id?: boolean
   }
 
-  export type FilingWastageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "wastage_percentage" | "given_gold" | "add_wastage", ExtArgs["result"]["filingWastage"]>
+  export type FilingWastageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "total_receipt" | "total_wastage" | "balance" | "wastage_percentage" | "given_gold" | "add_wastage" | "overall_wastage" | "closing_balance" | "opening_balance" | "filing_entry_id", ExtArgs["result"]["filingWastage"]>
   export type FilingWastageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filingEntryId?: boolean | FilingEntryDefaultArgs<ExtArgs>
     filing_items?: boolean | FilingWastage$filing_itemsArgs<ExtArgs>
     _count?: boolean | FilingWastageCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -21293,14 +23785,22 @@ export namespace Prisma {
   export type $FilingWastagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FilingWastage"
     objects: {
+      filingEntryId: Prisma.$FilingEntryPayload<ExtArgs>
       filing_items: Prisma.$FilingItemsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
+      total_receipt: number
+      total_wastage: number
+      balance: number
       wastage_percentage: number
       given_gold: number | null
       add_wastage: number | null
+      overall_wastage: number
+      closing_balance: number
+      opening_balance: number
+      filing_entry_id: number
     }, ExtArgs["result"]["filingWastage"]>
     composites: {}
   }
@@ -21641,6 +24141,7 @@ export namespace Prisma {
    */
   export interface Prisma__FilingWastageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    filingEntryId<T extends FilingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntryDefaultArgs<ExtArgs>>): Prisma__FilingEntryClient<$Result.GetResult<Prisma.$FilingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     filing_items<T extends FilingWastage$filing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, FilingWastage$filing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -21673,9 +24174,16 @@ export namespace Prisma {
   interface FilingWastageFieldRefs {
     readonly id: FieldRef<"FilingWastage", 'Int'>
     readonly createdAt: FieldRef<"FilingWastage", 'DateTime'>
+    readonly total_receipt: FieldRef<"FilingWastage", 'Float'>
+    readonly total_wastage: FieldRef<"FilingWastage", 'Float'>
+    readonly balance: FieldRef<"FilingWastage", 'Float'>
     readonly wastage_percentage: FieldRef<"FilingWastage", 'Int'>
     readonly given_gold: FieldRef<"FilingWastage", 'Int'>
     readonly add_wastage: FieldRef<"FilingWastage", 'Float'>
+    readonly overall_wastage: FieldRef<"FilingWastage", 'Float'>
+    readonly closing_balance: FieldRef<"FilingWastage", 'Float'>
+    readonly opening_balance: FieldRef<"FilingWastage", 'Float'>
+    readonly filing_entry_id: FieldRef<"FilingWastage", 'Int'>
   }
     
 
@@ -22262,6 +24770,8 @@ export namespace Prisma {
     setting_person?: boolean | AddSettingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
     filingItems?: boolean | SettingEntry$filingItemsArgs<ExtArgs>
+    settingTotalBalance?: boolean | SettingEntry$settingTotalBalanceArgs<ExtArgs>
+    settingWastage?: boolean | SettingEntry$settingWastageArgs<ExtArgs>
     _count?: boolean | SettingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["settingEntry"]>
 
@@ -22279,6 +24789,8 @@ export namespace Prisma {
     setting_person?: boolean | AddSettingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
     filingItems?: boolean | SettingEntry$filingItemsArgs<ExtArgs>
+    settingTotalBalance?: boolean | SettingEntry$settingTotalBalanceArgs<ExtArgs>
+    settingWastage?: boolean | SettingEntry$settingWastageArgs<ExtArgs>
     _count?: boolean | SettingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -22288,6 +24800,8 @@ export namespace Prisma {
       setting_person: Prisma.$AddSettingPayload<ExtArgs>
       castingItem: Prisma.$CastingItemsPayload<ExtArgs>
       filingItems: Prisma.$FilingItemsPayload<ExtArgs>[]
+      settingTotalBalance: Prisma.$SettingTotalBalancePayload<ExtArgs>[]
+      settingWastage: Prisma.$SettingWastagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -22637,6 +25151,8 @@ export namespace Prisma {
     setting_person<T extends AddSettingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddSettingDefaultArgs<ExtArgs>>): Prisma__AddSettingClient<$Result.GetResult<Prisma.$AddSettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     castingItem<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     filingItems<T extends SettingEntry$filingItemsArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$filingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    settingTotalBalance<T extends SettingEntry$settingTotalBalanceArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$settingTotalBalanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    settingWastage<T extends SettingEntry$settingWastageArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$settingWastageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -23037,6 +25553,54 @@ export namespace Prisma {
   }
 
   /**
+   * SettingEntry.settingTotalBalance
+   */
+  export type SettingEntry$settingTotalBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+    where?: SettingTotalBalanceWhereInput
+    orderBy?: SettingTotalBalanceOrderByWithRelationInput | SettingTotalBalanceOrderByWithRelationInput[]
+    cursor?: SettingTotalBalanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SettingTotalBalanceScalarFieldEnum | SettingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * SettingEntry.settingWastage
+   */
+  export type SettingEntry$settingWastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingWastage
+     */
+    select?: SettingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingWastage
+     */
+    omit?: SettingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingWastageInclude<ExtArgs> | null
+    where?: SettingWastageWhereInput
+    orderBy?: SettingWastageOrderByWithRelationInput | SettingWastageOrderByWithRelationInput[]
+    cursor?: SettingWastageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SettingWastageScalarFieldEnum | SettingWastageScalarFieldEnum[]
+  }
+
+  /**
    * SettingEntry without action
    */
   export type SettingEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -23069,9 +25633,6 @@ export namespace Prisma {
 
   export type SettingItemsAvgAggregateOutputType = {
     id: number | null
-    receipt_weight: number | null
-    stone_count: number | null
-    stone_weight: number | null
     setting_item_id: number | null
     scrap_weight: number | null
     touch_id: number | null
@@ -23080,9 +25641,6 @@ export namespace Prisma {
 
   export type SettingItemsSumAggregateOutputType = {
     id: number | null
-    receipt_weight: number | null
-    stone_count: number | null
-    stone_weight: number | null
     setting_item_id: number | null
     scrap_weight: number | null
     touch_id: number | null
@@ -23092,11 +25650,6 @@ export namespace Prisma {
   export type SettingItemsMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
-    receipt_weight: number | null
-    stone_count: number | null
-    stone_weight: number | null
-    remarks: string | null
-    wastage: boolean | null
     type: $Enums.CASTINGENTRYTYPE | null
     setting_item_id: number | null
     scrap_weight: number | null
@@ -23108,11 +25661,6 @@ export namespace Prisma {
   export type SettingItemsMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
-    receipt_weight: number | null
-    stone_count: number | null
-    stone_weight: number | null
-    remarks: string | null
-    wastage: boolean | null
     type: $Enums.CASTINGENTRYTYPE | null
     setting_item_id: number | null
     scrap_weight: number | null
@@ -23124,11 +25672,6 @@ export namespace Prisma {
   export type SettingItemsCountAggregateOutputType = {
     id: number
     createdAt: number
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks: number
-    wastage: number
     type: number
     setting_item_id: number
     scrap_weight: number
@@ -23141,9 +25684,6 @@ export namespace Prisma {
 
   export type SettingItemsAvgAggregateInputType = {
     id?: true
-    receipt_weight?: true
-    stone_count?: true
-    stone_weight?: true
     setting_item_id?: true
     scrap_weight?: true
     touch_id?: true
@@ -23152,9 +25692,6 @@ export namespace Prisma {
 
   export type SettingItemsSumAggregateInputType = {
     id?: true
-    receipt_weight?: true
-    stone_count?: true
-    stone_weight?: true
     setting_item_id?: true
     scrap_weight?: true
     touch_id?: true
@@ -23164,11 +25701,6 @@ export namespace Prisma {
   export type SettingItemsMinAggregateInputType = {
     id?: true
     createdAt?: true
-    receipt_weight?: true
-    stone_count?: true
-    stone_weight?: true
-    remarks?: true
-    wastage?: true
     type?: true
     setting_item_id?: true
     scrap_weight?: true
@@ -23180,11 +25712,6 @@ export namespace Prisma {
   export type SettingItemsMaxAggregateInputType = {
     id?: true
     createdAt?: true
-    receipt_weight?: true
-    stone_count?: true
-    stone_weight?: true
-    remarks?: true
-    wastage?: true
     type?: true
     setting_item_id?: true
     scrap_weight?: true
@@ -23196,11 +25723,6 @@ export namespace Prisma {
   export type SettingItemsCountAggregateInputType = {
     id?: true
     createdAt?: true
-    receipt_weight?: true
-    stone_count?: true
-    stone_weight?: true
-    remarks?: true
-    wastage?: true
     type?: true
     setting_item_id?: true
     scrap_weight?: true
@@ -23299,11 +25821,6 @@ export namespace Prisma {
   export type SettingItemsGroupByOutputType = {
     id: number
     createdAt: Date
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     setting_item_id: number
     scrap_weight: number
@@ -23334,11 +25851,6 @@ export namespace Prisma {
   export type SettingItemsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
-    receipt_weight?: boolean
-    stone_count?: boolean
-    stone_weight?: boolean
-    remarks?: boolean
-    wastage?: boolean
     type?: boolean
     setting_item_id?: boolean
     scrap_weight?: boolean
@@ -23359,11 +25871,6 @@ export namespace Prisma {
   export type SettingItemsSelectScalar = {
     id?: boolean
     createdAt?: boolean
-    receipt_weight?: boolean
-    stone_count?: boolean
-    stone_weight?: boolean
-    remarks?: boolean
-    wastage?: boolean
     type?: boolean
     setting_item_id?: boolean
     scrap_weight?: boolean
@@ -23372,7 +25879,7 @@ export namespace Prisma {
     scrap_remarks?: boolean
   }
 
-  export type SettingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "receipt_weight" | "stone_count" | "stone_weight" | "remarks" | "wastage" | "type" | "setting_item_id" | "scrap_weight" | "touch_id" | "item_purity" | "scrap_remarks", ExtArgs["result"]["settingItems"]>
+  export type SettingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "setting_item_id" | "scrap_weight" | "touch_id" | "item_purity" | "scrap_remarks", ExtArgs["result"]["settingItems"]>
   export type SettingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
@@ -23396,11 +25903,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
-      receipt_weight: number
-      stone_count: number
-      stone_weight: number
-      remarks: string | null
-      wastage: boolean
       type: $Enums.CASTINGENTRYTYPE
       setting_item_id: number
       scrap_weight: number
@@ -23784,11 +26286,6 @@ export namespace Prisma {
   interface SettingItemsFieldRefs {
     readonly id: FieldRef<"SettingItems", 'Int'>
     readonly createdAt: FieldRef<"SettingItems", 'DateTime'>
-    readonly receipt_weight: FieldRef<"SettingItems", 'Float'>
-    readonly stone_count: FieldRef<"SettingItems", 'Float'>
-    readonly stone_weight: FieldRef<"SettingItems", 'Float'>
-    readonly remarks: FieldRef<"SettingItems", 'String'>
-    readonly wastage: FieldRef<"SettingItems", 'Boolean'>
     readonly type: FieldRef<"SettingItems", 'CASTINGENTRYTYPE'>
     readonly setting_item_id: FieldRef<"SettingItems", 'Int'>
     readonly scrap_weight: FieldRef<"SettingItems", 'Float'>
@@ -24427,7 +26924,7 @@ export namespace Prisma {
     id: number
     setting_id: number
     lot_id: number
-    filing_item_id: number
+    filing_item_id: number | null
     _count: LotSettingMapperCountAggregateOutputType | null
     _avg: LotSettingMapperAvgAggregateOutputType | null
     _sum: LotSettingMapperSumAggregateOutputType | null
@@ -24456,7 +26953,7 @@ export namespace Prisma {
     filing_item_id?: boolean
     settingId?: boolean | AddSettingDefaultArgs<ExtArgs>
     lotId?: boolean | LotInfoDefaultArgs<ExtArgs>
-    itemId?: boolean | FilingItemsDefaultArgs<ExtArgs>
+    itemId?: boolean | LotSettingMapper$itemIdArgs<ExtArgs>
   }, ExtArgs["result"]["lotSettingMapper"]>
 
 
@@ -24472,7 +26969,7 @@ export namespace Prisma {
   export type LotSettingMapperInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     settingId?: boolean | AddSettingDefaultArgs<ExtArgs>
     lotId?: boolean | LotInfoDefaultArgs<ExtArgs>
-    itemId?: boolean | FilingItemsDefaultArgs<ExtArgs>
+    itemId?: boolean | LotSettingMapper$itemIdArgs<ExtArgs>
   }
 
   export type $LotSettingMapperPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -24480,13 +26977,13 @@ export namespace Prisma {
     objects: {
       settingId: Prisma.$AddSettingPayload<ExtArgs>
       lotId: Prisma.$LotInfoPayload<ExtArgs>
-      itemId: Prisma.$FilingItemsPayload<ExtArgs>
+      itemId: Prisma.$FilingItemsPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       setting_id: number
       lot_id: number
-      filing_item_id: number
+      filing_item_id: number | null
     }, ExtArgs["result"]["lotSettingMapper"]>
     composites: {}
   }
@@ -24829,7 +27326,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     settingId<T extends AddSettingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddSettingDefaultArgs<ExtArgs>>): Prisma__AddSettingClient<$Result.GetResult<Prisma.$AddSettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     lotId<T extends LotInfoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LotInfoDefaultArgs<ExtArgs>>): Prisma__LotInfoClient<$Result.GetResult<Prisma.$LotInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    itemId<T extends FilingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FilingItemsDefaultArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    itemId<T extends LotSettingMapper$itemIdArgs<ExtArgs> = {}>(args?: Subset<T, LotSettingMapper$itemIdArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -25206,6 +27703,25 @@ export namespace Prisma {
   }
 
   /**
+   * LotSettingMapper.itemId
+   */
+  export type LotSettingMapper$itemIdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    where?: FilingItemsWhereInput
+  }
+
+  /**
    * LotSettingMapper without action
    */
   export type LotSettingMapperDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25225,6 +27741,1048 @@ export namespace Prisma {
 
 
   /**
+   * Model SettingTotalBalance
+   */
+
+  export type AggregateSettingTotalBalance = {
+    _count: SettingTotalBalanceCountAggregateOutputType | null
+    _avg: SettingTotalBalanceAvgAggregateOutputType | null
+    _sum: SettingTotalBalanceSumAggregateOutputType | null
+    _min: SettingTotalBalanceMinAggregateOutputType | null
+    _max: SettingTotalBalanceMaxAggregateOutputType | null
+  }
+
+  export type SettingTotalBalanceAvgAggregateOutputType = {
+    id: number | null
+    receipt_weight: number | null
+    stone_count: number | null
+    stone_weight: number | null
+    total_scrap_weight: number | null
+    balance: number | null
+    setting_entry_id: number | null
+  }
+
+  export type SettingTotalBalanceSumAggregateOutputType = {
+    id: number | null
+    receipt_weight: number | null
+    stone_count: number | null
+    stone_weight: number | null
+    total_scrap_weight: number | null
+    balance: number | null
+    setting_entry_id: number | null
+  }
+
+  export type SettingTotalBalanceMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    receipt_weight: number | null
+    stone_count: number | null
+    stone_weight: number | null
+    remarks: string | null
+    wastage: boolean | null
+    total_scrap_weight: number | null
+    balance: number | null
+    setting_entry_id: number | null
+  }
+
+  export type SettingTotalBalanceMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    receipt_weight: number | null
+    stone_count: number | null
+    stone_weight: number | null
+    remarks: string | null
+    wastage: boolean | null
+    total_scrap_weight: number | null
+    balance: number | null
+    setting_entry_id: number | null
+  }
+
+  export type SettingTotalBalanceCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks: number
+    wastage: number
+    total_scrap_weight: number
+    balance: number
+    setting_entry_id: number
+    _all: number
+  }
+
+
+  export type SettingTotalBalanceAvgAggregateInputType = {
+    id?: true
+    receipt_weight?: true
+    stone_count?: true
+    stone_weight?: true
+    total_scrap_weight?: true
+    balance?: true
+    setting_entry_id?: true
+  }
+
+  export type SettingTotalBalanceSumAggregateInputType = {
+    id?: true
+    receipt_weight?: true
+    stone_count?: true
+    stone_weight?: true
+    total_scrap_weight?: true
+    balance?: true
+    setting_entry_id?: true
+  }
+
+  export type SettingTotalBalanceMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    stone_count?: true
+    stone_weight?: true
+    remarks?: true
+    wastage?: true
+    total_scrap_weight?: true
+    balance?: true
+    setting_entry_id?: true
+  }
+
+  export type SettingTotalBalanceMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    stone_count?: true
+    stone_weight?: true
+    remarks?: true
+    wastage?: true
+    total_scrap_weight?: true
+    balance?: true
+    setting_entry_id?: true
+  }
+
+  export type SettingTotalBalanceCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    stone_count?: true
+    stone_weight?: true
+    remarks?: true
+    wastage?: true
+    total_scrap_weight?: true
+    balance?: true
+    setting_entry_id?: true
+    _all?: true
+  }
+
+  export type SettingTotalBalanceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SettingTotalBalance to aggregate.
+     */
+    where?: SettingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingTotalBalances to fetch.
+     */
+    orderBy?: SettingTotalBalanceOrderByWithRelationInput | SettingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SettingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SettingTotalBalances
+    **/
+    _count?: true | SettingTotalBalanceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SettingTotalBalanceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SettingTotalBalanceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SettingTotalBalanceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SettingTotalBalanceMaxAggregateInputType
+  }
+
+  export type GetSettingTotalBalanceAggregateType<T extends SettingTotalBalanceAggregateArgs> = {
+        [P in keyof T & keyof AggregateSettingTotalBalance]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSettingTotalBalance[P]>
+      : GetScalarType<T[P], AggregateSettingTotalBalance[P]>
+  }
+
+
+
+
+  export type SettingTotalBalanceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingTotalBalanceWhereInput
+    orderBy?: SettingTotalBalanceOrderByWithAggregationInput | SettingTotalBalanceOrderByWithAggregationInput[]
+    by: SettingTotalBalanceScalarFieldEnum[] | SettingTotalBalanceScalarFieldEnum
+    having?: SettingTotalBalanceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SettingTotalBalanceCountAggregateInputType | true
+    _avg?: SettingTotalBalanceAvgAggregateInputType
+    _sum?: SettingTotalBalanceSumAggregateInputType
+    _min?: SettingTotalBalanceMinAggregateInputType
+    _max?: SettingTotalBalanceMaxAggregateInputType
+  }
+
+  export type SettingTotalBalanceGroupByOutputType = {
+    id: number
+    createdAt: Date
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks: string | null
+    wastage: boolean
+    total_scrap_weight: number | null
+    balance: number | null
+    setting_entry_id: number
+    _count: SettingTotalBalanceCountAggregateOutputType | null
+    _avg: SettingTotalBalanceAvgAggregateOutputType | null
+    _sum: SettingTotalBalanceSumAggregateOutputType | null
+    _min: SettingTotalBalanceMinAggregateOutputType | null
+    _max: SettingTotalBalanceMaxAggregateOutputType | null
+  }
+
+  type GetSettingTotalBalanceGroupByPayload<T extends SettingTotalBalanceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SettingTotalBalanceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SettingTotalBalanceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SettingTotalBalanceGroupByOutputType[P]>
+            : GetScalarType<T[P], SettingTotalBalanceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SettingTotalBalanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    receipt_weight?: boolean
+    stone_count?: boolean
+    stone_weight?: boolean
+    remarks?: boolean
+    wastage?: boolean
+    total_scrap_weight?: boolean
+    balance?: boolean
+    setting_entry_id?: boolean
+    setting_entry?: boolean | SettingEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["settingTotalBalance"]>
+
+
+
+  export type SettingTotalBalanceSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    receipt_weight?: boolean
+    stone_count?: boolean
+    stone_weight?: boolean
+    remarks?: boolean
+    wastage?: boolean
+    total_scrap_weight?: boolean
+    balance?: boolean
+    setting_entry_id?: boolean
+  }
+
+  export type SettingTotalBalanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "receipt_weight" | "stone_count" | "stone_weight" | "remarks" | "wastage" | "total_scrap_weight" | "balance" | "setting_entry_id", ExtArgs["result"]["settingTotalBalance"]>
+  export type SettingTotalBalanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    setting_entry?: boolean | SettingEntryDefaultArgs<ExtArgs>
+  }
+
+  export type $SettingTotalBalancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SettingTotalBalance"
+    objects: {
+      setting_entry: Prisma.$SettingEntryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      receipt_weight: number
+      stone_count: number
+      stone_weight: number
+      remarks: string | null
+      wastage: boolean
+      total_scrap_weight: number | null
+      balance: number | null
+      setting_entry_id: number
+    }, ExtArgs["result"]["settingTotalBalance"]>
+    composites: {}
+  }
+
+  type SettingTotalBalanceGetPayload<S extends boolean | null | undefined | SettingTotalBalanceDefaultArgs> = $Result.GetResult<Prisma.$SettingTotalBalancePayload, S>
+
+  type SettingTotalBalanceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SettingTotalBalanceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SettingTotalBalanceCountAggregateInputType | true
+    }
+
+  export interface SettingTotalBalanceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SettingTotalBalance'], meta: { name: 'SettingTotalBalance' } }
+    /**
+     * Find zero or one SettingTotalBalance that matches the filter.
+     * @param {SettingTotalBalanceFindUniqueArgs} args - Arguments to find a SettingTotalBalance
+     * @example
+     * // Get one SettingTotalBalance
+     * const settingTotalBalance = await prisma.settingTotalBalance.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SettingTotalBalanceFindUniqueArgs>(args: SelectSubset<T, SettingTotalBalanceFindUniqueArgs<ExtArgs>>): Prisma__SettingTotalBalanceClient<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SettingTotalBalance that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SettingTotalBalanceFindUniqueOrThrowArgs} args - Arguments to find a SettingTotalBalance
+     * @example
+     * // Get one SettingTotalBalance
+     * const settingTotalBalance = await prisma.settingTotalBalance.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SettingTotalBalanceFindUniqueOrThrowArgs>(args: SelectSubset<T, SettingTotalBalanceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SettingTotalBalanceClient<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SettingTotalBalance that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingTotalBalanceFindFirstArgs} args - Arguments to find a SettingTotalBalance
+     * @example
+     * // Get one SettingTotalBalance
+     * const settingTotalBalance = await prisma.settingTotalBalance.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SettingTotalBalanceFindFirstArgs>(args?: SelectSubset<T, SettingTotalBalanceFindFirstArgs<ExtArgs>>): Prisma__SettingTotalBalanceClient<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SettingTotalBalance that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingTotalBalanceFindFirstOrThrowArgs} args - Arguments to find a SettingTotalBalance
+     * @example
+     * // Get one SettingTotalBalance
+     * const settingTotalBalance = await prisma.settingTotalBalance.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SettingTotalBalanceFindFirstOrThrowArgs>(args?: SelectSubset<T, SettingTotalBalanceFindFirstOrThrowArgs<ExtArgs>>): Prisma__SettingTotalBalanceClient<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SettingTotalBalances that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingTotalBalanceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SettingTotalBalances
+     * const settingTotalBalances = await prisma.settingTotalBalance.findMany()
+     * 
+     * // Get first 10 SettingTotalBalances
+     * const settingTotalBalances = await prisma.settingTotalBalance.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const settingTotalBalanceWithIdOnly = await prisma.settingTotalBalance.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SettingTotalBalanceFindManyArgs>(args?: SelectSubset<T, SettingTotalBalanceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SettingTotalBalance.
+     * @param {SettingTotalBalanceCreateArgs} args - Arguments to create a SettingTotalBalance.
+     * @example
+     * // Create one SettingTotalBalance
+     * const SettingTotalBalance = await prisma.settingTotalBalance.create({
+     *   data: {
+     *     // ... data to create a SettingTotalBalance
+     *   }
+     * })
+     * 
+     */
+    create<T extends SettingTotalBalanceCreateArgs>(args: SelectSubset<T, SettingTotalBalanceCreateArgs<ExtArgs>>): Prisma__SettingTotalBalanceClient<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SettingTotalBalances.
+     * @param {SettingTotalBalanceCreateManyArgs} args - Arguments to create many SettingTotalBalances.
+     * @example
+     * // Create many SettingTotalBalances
+     * const settingTotalBalance = await prisma.settingTotalBalance.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SettingTotalBalanceCreateManyArgs>(args?: SelectSubset<T, SettingTotalBalanceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a SettingTotalBalance.
+     * @param {SettingTotalBalanceDeleteArgs} args - Arguments to delete one SettingTotalBalance.
+     * @example
+     * // Delete one SettingTotalBalance
+     * const SettingTotalBalance = await prisma.settingTotalBalance.delete({
+     *   where: {
+     *     // ... filter to delete one SettingTotalBalance
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SettingTotalBalanceDeleteArgs>(args: SelectSubset<T, SettingTotalBalanceDeleteArgs<ExtArgs>>): Prisma__SettingTotalBalanceClient<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SettingTotalBalance.
+     * @param {SettingTotalBalanceUpdateArgs} args - Arguments to update one SettingTotalBalance.
+     * @example
+     * // Update one SettingTotalBalance
+     * const settingTotalBalance = await prisma.settingTotalBalance.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SettingTotalBalanceUpdateArgs>(args: SelectSubset<T, SettingTotalBalanceUpdateArgs<ExtArgs>>): Prisma__SettingTotalBalanceClient<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SettingTotalBalances.
+     * @param {SettingTotalBalanceDeleteManyArgs} args - Arguments to filter SettingTotalBalances to delete.
+     * @example
+     * // Delete a few SettingTotalBalances
+     * const { count } = await prisma.settingTotalBalance.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SettingTotalBalanceDeleteManyArgs>(args?: SelectSubset<T, SettingTotalBalanceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SettingTotalBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingTotalBalanceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SettingTotalBalances
+     * const settingTotalBalance = await prisma.settingTotalBalance.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SettingTotalBalanceUpdateManyArgs>(args: SelectSubset<T, SettingTotalBalanceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SettingTotalBalance.
+     * @param {SettingTotalBalanceUpsertArgs} args - Arguments to update or create a SettingTotalBalance.
+     * @example
+     * // Update or create a SettingTotalBalance
+     * const settingTotalBalance = await prisma.settingTotalBalance.upsert({
+     *   create: {
+     *     // ... data to create a SettingTotalBalance
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SettingTotalBalance we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SettingTotalBalanceUpsertArgs>(args: SelectSubset<T, SettingTotalBalanceUpsertArgs<ExtArgs>>): Prisma__SettingTotalBalanceClient<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SettingTotalBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingTotalBalanceCountArgs} args - Arguments to filter SettingTotalBalances to count.
+     * @example
+     * // Count the number of SettingTotalBalances
+     * const count = await prisma.settingTotalBalance.count({
+     *   where: {
+     *     // ... the filter for the SettingTotalBalances we want to count
+     *   }
+     * })
+    **/
+    count<T extends SettingTotalBalanceCountArgs>(
+      args?: Subset<T, SettingTotalBalanceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SettingTotalBalanceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SettingTotalBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingTotalBalanceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SettingTotalBalanceAggregateArgs>(args: Subset<T, SettingTotalBalanceAggregateArgs>): Prisma.PrismaPromise<GetSettingTotalBalanceAggregateType<T>>
+
+    /**
+     * Group by SettingTotalBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SettingTotalBalanceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SettingTotalBalanceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SettingTotalBalanceGroupByArgs['orderBy'] }
+        : { orderBy?: SettingTotalBalanceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SettingTotalBalanceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSettingTotalBalanceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SettingTotalBalance model
+   */
+  readonly fields: SettingTotalBalanceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SettingTotalBalance.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SettingTotalBalanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    setting_entry<T extends SettingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntryDefaultArgs<ExtArgs>>): Prisma__SettingEntryClient<$Result.GetResult<Prisma.$SettingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SettingTotalBalance model
+   */
+  interface SettingTotalBalanceFieldRefs {
+    readonly id: FieldRef<"SettingTotalBalance", 'Int'>
+    readonly createdAt: FieldRef<"SettingTotalBalance", 'DateTime'>
+    readonly receipt_weight: FieldRef<"SettingTotalBalance", 'Float'>
+    readonly stone_count: FieldRef<"SettingTotalBalance", 'Float'>
+    readonly stone_weight: FieldRef<"SettingTotalBalance", 'Float'>
+    readonly remarks: FieldRef<"SettingTotalBalance", 'String'>
+    readonly wastage: FieldRef<"SettingTotalBalance", 'Boolean'>
+    readonly total_scrap_weight: FieldRef<"SettingTotalBalance", 'Float'>
+    readonly balance: FieldRef<"SettingTotalBalance", 'Float'>
+    readonly setting_entry_id: FieldRef<"SettingTotalBalance", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SettingTotalBalance findUnique
+   */
+  export type SettingTotalBalanceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingTotalBalance to fetch.
+     */
+    where: SettingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * SettingTotalBalance findUniqueOrThrow
+   */
+  export type SettingTotalBalanceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingTotalBalance to fetch.
+     */
+    where: SettingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * SettingTotalBalance findFirst
+   */
+  export type SettingTotalBalanceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingTotalBalance to fetch.
+     */
+    where?: SettingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingTotalBalances to fetch.
+     */
+    orderBy?: SettingTotalBalanceOrderByWithRelationInput | SettingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SettingTotalBalances.
+     */
+    cursor?: SettingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SettingTotalBalances.
+     */
+    distinct?: SettingTotalBalanceScalarFieldEnum | SettingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * SettingTotalBalance findFirstOrThrow
+   */
+  export type SettingTotalBalanceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingTotalBalance to fetch.
+     */
+    where?: SettingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingTotalBalances to fetch.
+     */
+    orderBy?: SettingTotalBalanceOrderByWithRelationInput | SettingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SettingTotalBalances.
+     */
+    cursor?: SettingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SettingTotalBalances.
+     */
+    distinct?: SettingTotalBalanceScalarFieldEnum | SettingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * SettingTotalBalance findMany
+   */
+  export type SettingTotalBalanceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which SettingTotalBalances to fetch.
+     */
+    where?: SettingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SettingTotalBalances to fetch.
+     */
+    orderBy?: SettingTotalBalanceOrderByWithRelationInput | SettingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SettingTotalBalances.
+     */
+    cursor?: SettingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SettingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SettingTotalBalances.
+     */
+    skip?: number
+    distinct?: SettingTotalBalanceScalarFieldEnum | SettingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * SettingTotalBalance create
+   */
+  export type SettingTotalBalanceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SettingTotalBalance.
+     */
+    data: XOR<SettingTotalBalanceCreateInput, SettingTotalBalanceUncheckedCreateInput>
+  }
+
+  /**
+   * SettingTotalBalance createMany
+   */
+  export type SettingTotalBalanceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SettingTotalBalances.
+     */
+    data: SettingTotalBalanceCreateManyInput | SettingTotalBalanceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SettingTotalBalance update
+   */
+  export type SettingTotalBalanceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SettingTotalBalance.
+     */
+    data: XOR<SettingTotalBalanceUpdateInput, SettingTotalBalanceUncheckedUpdateInput>
+    /**
+     * Choose, which SettingTotalBalance to update.
+     */
+    where: SettingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * SettingTotalBalance updateMany
+   */
+  export type SettingTotalBalanceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SettingTotalBalances.
+     */
+    data: XOR<SettingTotalBalanceUpdateManyMutationInput, SettingTotalBalanceUncheckedUpdateManyInput>
+    /**
+     * Filter which SettingTotalBalances to update
+     */
+    where?: SettingTotalBalanceWhereInput
+    /**
+     * Limit how many SettingTotalBalances to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SettingTotalBalance upsert
+   */
+  export type SettingTotalBalanceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SettingTotalBalance to update in case it exists.
+     */
+    where: SettingTotalBalanceWhereUniqueInput
+    /**
+     * In case the SettingTotalBalance found by the `where` argument doesn't exist, create a new SettingTotalBalance with this data.
+     */
+    create: XOR<SettingTotalBalanceCreateInput, SettingTotalBalanceUncheckedCreateInput>
+    /**
+     * In case the SettingTotalBalance was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SettingTotalBalanceUpdateInput, SettingTotalBalanceUncheckedUpdateInput>
+  }
+
+  /**
+   * SettingTotalBalance delete
+   */
+  export type SettingTotalBalanceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter which SettingTotalBalance to delete.
+     */
+    where: SettingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * SettingTotalBalance deleteMany
+   */
+  export type SettingTotalBalanceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SettingTotalBalances to delete
+     */
+    where?: SettingTotalBalanceWhereInput
+    /**
+     * Limit how many SettingTotalBalances to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SettingTotalBalance without action
+   */
+  export type SettingTotalBalanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingTotalBalance
+     */
+    select?: SettingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingTotalBalance
+     */
+    omit?: SettingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingTotalBalanceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model SettingWastage
    */
 
@@ -25238,80 +28796,150 @@ export namespace Prisma {
 
   export type SettingWastageAvgAggregateOutputType = {
     id: number | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    setting_entry_id: number | null
   }
 
   export type SettingWastageSumAggregateOutputType = {
     id: number | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    setting_entry_id: number | null
   }
 
   export type SettingWastageMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    setting_entry_id: number | null
   }
 
   export type SettingWastageMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    setting_entry_id: number | null
   }
 
   export type SettingWastageCountAggregateOutputType = {
     id: number
     createdAt: number
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold: number
     add_wastage: number
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    setting_entry_id: number
     _all: number
   }
 
 
   export type SettingWastageAvgAggregateInputType = {
     id?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    setting_entry_id?: true
   }
 
   export type SettingWastageSumAggregateInputType = {
     id?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    setting_entry_id?: true
   }
 
   export type SettingWastageMinAggregateInputType = {
     id?: true
     createdAt?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    setting_entry_id?: true
   }
 
   export type SettingWastageMaxAggregateInputType = {
     id?: true
     createdAt?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    setting_entry_id?: true
   }
 
   export type SettingWastageCountAggregateInputType = {
     id?: true
     createdAt?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    setting_entry_id?: true
     _all?: true
   }
 
@@ -25404,9 +29032,16 @@ export namespace Prisma {
   export type SettingWastageGroupByOutputType = {
     id: number
     createdAt: Date
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    setting_entry_id: number
     _count: SettingWastageCountAggregateOutputType | null
     _avg: SettingWastageAvgAggregateOutputType | null
     _sum: SettingWastageSumAggregateOutputType | null
@@ -25431,10 +29066,18 @@ export namespace Prisma {
   export type SettingWastageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    total_receipt?: boolean
+    total_wastage?: boolean
+    balance?: boolean
     wastage_percentage?: boolean
     given_gold?: boolean
     add_wastage?: boolean
+    overall_wastage?: boolean
+    closing_balance?: boolean
+    opening_balance?: boolean
+    setting_entry_id?: boolean
     setting_items?: boolean | SettingWastage$setting_itemsArgs<ExtArgs>
+    SettingEntryId?: boolean | SettingEntryDefaultArgs<ExtArgs>
     _count?: boolean | SettingWastageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["settingWastage"]>
 
@@ -25443,14 +29086,22 @@ export namespace Prisma {
   export type SettingWastageSelectScalar = {
     id?: boolean
     createdAt?: boolean
+    total_receipt?: boolean
+    total_wastage?: boolean
+    balance?: boolean
     wastage_percentage?: boolean
     given_gold?: boolean
     add_wastage?: boolean
+    overall_wastage?: boolean
+    closing_balance?: boolean
+    opening_balance?: boolean
+    setting_entry_id?: boolean
   }
 
-  export type SettingWastageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "wastage_percentage" | "given_gold" | "add_wastage", ExtArgs["result"]["settingWastage"]>
+  export type SettingWastageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "total_receipt" | "total_wastage" | "balance" | "wastage_percentage" | "given_gold" | "add_wastage" | "overall_wastage" | "closing_balance" | "opening_balance" | "setting_entry_id", ExtArgs["result"]["settingWastage"]>
   export type SettingWastageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     setting_items?: boolean | SettingWastage$setting_itemsArgs<ExtArgs>
+    SettingEntryId?: boolean | SettingEntryDefaultArgs<ExtArgs>
     _count?: boolean | SettingWastageCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -25458,13 +29109,21 @@ export namespace Prisma {
     name: "SettingWastage"
     objects: {
       setting_items: Prisma.$SettingItemsPayload<ExtArgs>[]
+      SettingEntryId: Prisma.$SettingEntryPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
+      total_receipt: number
+      total_wastage: number
+      balance: number
       wastage_percentage: number
       given_gold: number | null
       add_wastage: number | null
+      overall_wastage: number
+      closing_balance: number
+      opening_balance: number
+      setting_entry_id: number
     }, ExtArgs["result"]["settingWastage"]>
     composites: {}
   }
@@ -25806,6 +29465,7 @@ export namespace Prisma {
   export interface Prisma__SettingWastageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     setting_items<T extends SettingWastage$setting_itemsArgs<ExtArgs> = {}>(args?: Subset<T, SettingWastage$setting_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    SettingEntryId<T extends SettingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntryDefaultArgs<ExtArgs>>): Prisma__SettingEntryClient<$Result.GetResult<Prisma.$SettingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -25837,9 +29497,16 @@ export namespace Prisma {
   interface SettingWastageFieldRefs {
     readonly id: FieldRef<"SettingWastage", 'Int'>
     readonly createdAt: FieldRef<"SettingWastage", 'DateTime'>
+    readonly total_receipt: FieldRef<"SettingWastage", 'Float'>
+    readonly total_wastage: FieldRef<"SettingWastage", 'Float'>
+    readonly balance: FieldRef<"SettingWastage", 'Float'>
     readonly wastage_percentage: FieldRef<"SettingWastage", 'Int'>
     readonly given_gold: FieldRef<"SettingWastage", 'Int'>
     readonly add_wastage: FieldRef<"SettingWastage", 'Float'>
+    readonly overall_wastage: FieldRef<"SettingWastage", 'Float'>
+    readonly closing_balance: FieldRef<"SettingWastage", 'Float'>
+    readonly opening_balance: FieldRef<"SettingWastage", 'Float'>
+    readonly setting_entry_id: FieldRef<"SettingWastage", 'Int'>
   }
     
 
@@ -26427,6 +30094,8 @@ export namespace Prisma {
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
     filing_items?: boolean | BuffingEntry$filing_itemsArgs<ExtArgs>
     setting_items?: boolean | BuffingEntry$setting_itemsArgs<ExtArgs>
+    BuffingTotalBalance?: boolean | BuffingEntry$BuffingTotalBalanceArgs<ExtArgs>
+    BuffingWastage?: boolean | BuffingEntry$BuffingWastageArgs<ExtArgs>
     _count?: boolean | BuffingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["buffingEntry"]>
 
@@ -26445,6 +30114,8 @@ export namespace Prisma {
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
     filing_items?: boolean | BuffingEntry$filing_itemsArgs<ExtArgs>
     setting_items?: boolean | BuffingEntry$setting_itemsArgs<ExtArgs>
+    BuffingTotalBalance?: boolean | BuffingEntry$BuffingTotalBalanceArgs<ExtArgs>
+    BuffingWastage?: boolean | BuffingEntry$BuffingWastageArgs<ExtArgs>
     _count?: boolean | BuffingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -26455,6 +30126,8 @@ export namespace Prisma {
       castingItem: Prisma.$CastingItemsPayload<ExtArgs>
       filing_items: Prisma.$FilingItemsPayload<ExtArgs>[]
       setting_items: Prisma.$SettingItemsPayload<ExtArgs>[]
+      BuffingTotalBalance: Prisma.$BuffingTotalBalancePayload<ExtArgs>[]
+      BuffingWastage: Prisma.$BuffingWastagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -26805,6 +30478,8 @@ export namespace Prisma {
     castingItem<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     filing_items<T extends BuffingEntry$filing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, BuffingEntry$filing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     setting_items<T extends BuffingEntry$setting_itemsArgs<ExtArgs> = {}>(args?: Subset<T, BuffingEntry$setting_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    BuffingTotalBalance<T extends BuffingEntry$BuffingTotalBalanceArgs<ExtArgs> = {}>(args?: Subset<T, BuffingEntry$BuffingTotalBalanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    BuffingWastage<T extends BuffingEntry$BuffingWastageArgs<ExtArgs> = {}>(args?: Subset<T, BuffingEntry$BuffingWastageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -27229,6 +30904,54 @@ export namespace Prisma {
   }
 
   /**
+   * BuffingEntry.BuffingTotalBalance
+   */
+  export type BuffingEntry$BuffingTotalBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
+    where?: BuffingTotalBalanceWhereInput
+    orderBy?: BuffingTotalBalanceOrderByWithRelationInput | BuffingTotalBalanceOrderByWithRelationInput[]
+    cursor?: BuffingTotalBalanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BuffingTotalBalanceScalarFieldEnum | BuffingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingEntry.BuffingWastage
+   */
+  export type BuffingEntry$BuffingWastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingWastage
+     */
+    select?: BuffingWastageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingWastage
+     */
+    omit?: BuffingWastageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingWastageInclude<ExtArgs> | null
+    where?: BuffingWastageWhereInput
+    orderBy?: BuffingWastageOrderByWithRelationInput | BuffingWastageOrderByWithRelationInput[]
+    cursor?: BuffingWastageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BuffingWastageScalarFieldEnum | BuffingWastageScalarFieldEnum[]
+  }
+
+  /**
    * BuffingEntry without action
    */
   export type BuffingEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -27261,7 +30984,6 @@ export namespace Prisma {
 
   export type BuffingItemsAvgAggregateOutputType = {
     id: number | null
-    receipt_weight: number | null
     buffing_item_id: number | null
     scrap_weight: number | null
     touch_id: number | null
@@ -27270,7 +30992,6 @@ export namespace Prisma {
 
   export type BuffingItemsSumAggregateOutputType = {
     id: number | null
-    receipt_weight: number | null
     buffing_item_id: number | null
     scrap_weight: number | null
     touch_id: number | null
@@ -27280,9 +31001,6 @@ export namespace Prisma {
   export type BuffingItemsMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
-    receipt_weight: number | null
-    remarks: string | null
-    wastage: boolean | null
     type: $Enums.CASTINGENTRYTYPE | null
     buffing_item_id: number | null
     scrap_weight: number | null
@@ -27294,9 +31012,6 @@ export namespace Prisma {
   export type BuffingItemsMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
-    receipt_weight: number | null
-    remarks: string | null
-    wastage: boolean | null
     type: $Enums.CASTINGENTRYTYPE | null
     buffing_item_id: number | null
     scrap_weight: number | null
@@ -27308,9 +31023,6 @@ export namespace Prisma {
   export type BuffingItemsCountAggregateOutputType = {
     id: number
     createdAt: number
-    receipt_weight: number
-    remarks: number
-    wastage: number
     type: number
     buffing_item_id: number
     scrap_weight: number
@@ -27323,7 +31035,6 @@ export namespace Prisma {
 
   export type BuffingItemsAvgAggregateInputType = {
     id?: true
-    receipt_weight?: true
     buffing_item_id?: true
     scrap_weight?: true
     touch_id?: true
@@ -27332,7 +31043,6 @@ export namespace Prisma {
 
   export type BuffingItemsSumAggregateInputType = {
     id?: true
-    receipt_weight?: true
     buffing_item_id?: true
     scrap_weight?: true
     touch_id?: true
@@ -27342,9 +31052,6 @@ export namespace Prisma {
   export type BuffingItemsMinAggregateInputType = {
     id?: true
     createdAt?: true
-    receipt_weight?: true
-    remarks?: true
-    wastage?: true
     type?: true
     buffing_item_id?: true
     scrap_weight?: true
@@ -27356,9 +31063,6 @@ export namespace Prisma {
   export type BuffingItemsMaxAggregateInputType = {
     id?: true
     createdAt?: true
-    receipt_weight?: true
-    remarks?: true
-    wastage?: true
     type?: true
     buffing_item_id?: true
     scrap_weight?: true
@@ -27370,9 +31074,6 @@ export namespace Prisma {
   export type BuffingItemsCountAggregateInputType = {
     id?: true
     createdAt?: true
-    receipt_weight?: true
-    remarks?: true
-    wastage?: true
     type?: true
     buffing_item_id?: true
     scrap_weight?: true
@@ -27471,9 +31172,6 @@ export namespace Prisma {
   export type BuffingItemsGroupByOutputType = {
     id: number
     createdAt: Date
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     buffing_item_id: number
     scrap_weight: number
@@ -27504,9 +31202,6 @@ export namespace Prisma {
   export type BuffingItemsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
-    receipt_weight?: boolean
-    remarks?: boolean
-    wastage?: boolean
     type?: boolean
     buffing_item_id?: boolean
     scrap_weight?: boolean
@@ -27525,9 +31220,6 @@ export namespace Prisma {
   export type BuffingItemsSelectScalar = {
     id?: boolean
     createdAt?: boolean
-    receipt_weight?: boolean
-    remarks?: boolean
-    wastage?: boolean
     type?: boolean
     buffing_item_id?: boolean
     scrap_weight?: boolean
@@ -27536,7 +31228,7 @@ export namespace Prisma {
     scrap_remarks?: boolean
   }
 
-  export type BuffingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "receipt_weight" | "remarks" | "wastage" | "type" | "buffing_item_id" | "scrap_weight" | "touch_id" | "item_purity" | "scrap_remarks", ExtArgs["result"]["buffingItems"]>
+  export type BuffingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "buffing_item_id" | "scrap_weight" | "touch_id" | "item_purity" | "scrap_remarks", ExtArgs["result"]["buffingItems"]>
   export type BuffingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
@@ -27556,9 +31248,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
-      receipt_weight: number
-      remarks: string
-      wastage: boolean
       type: $Enums.CASTINGENTRYTYPE
       buffing_item_id: number
       scrap_weight: number
@@ -27940,9 +31629,6 @@ export namespace Prisma {
   interface BuffingItemsFieldRefs {
     readonly id: FieldRef<"BuffingItems", 'Int'>
     readonly createdAt: FieldRef<"BuffingItems", 'DateTime'>
-    readonly receipt_weight: FieldRef<"BuffingItems", 'Float'>
-    readonly remarks: FieldRef<"BuffingItems", 'String'>
-    readonly wastage: FieldRef<"BuffingItems", 'Boolean'>
     readonly type: FieldRef<"BuffingItems", 'CASTINGENTRYTYPE'>
     readonly buffing_item_id: FieldRef<"BuffingItems", 'Int'>
     readonly scrap_weight: FieldRef<"BuffingItems", 'Float'>
@@ -28355,6 +32041,1018 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: BuffingItemsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BuffingTotalBalance
+   */
+
+  export type AggregateBuffingTotalBalance = {
+    _count: BuffingTotalBalanceCountAggregateOutputType | null
+    _avg: BuffingTotalBalanceAvgAggregateOutputType | null
+    _sum: BuffingTotalBalanceSumAggregateOutputType | null
+    _min: BuffingTotalBalanceMinAggregateOutputType | null
+    _max: BuffingTotalBalanceMaxAggregateOutputType | null
+  }
+
+  export type BuffingTotalBalanceAvgAggregateOutputType = {
+    id: number | null
+    receipt_weight: number | null
+    total_scrap_weight: number | null
+    balance: number | null
+    buffing_entry_id: number | null
+  }
+
+  export type BuffingTotalBalanceSumAggregateOutputType = {
+    id: number | null
+    receipt_weight: number | null
+    total_scrap_weight: number | null
+    balance: number | null
+    buffing_entry_id: number | null
+  }
+
+  export type BuffingTotalBalanceMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    receipt_weight: number | null
+    remarks: string | null
+    wastage: boolean | null
+    total_scrap_weight: number | null
+    balance: number | null
+    buffing_entry_id: number | null
+  }
+
+  export type BuffingTotalBalanceMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    receipt_weight: number | null
+    remarks: string | null
+    wastage: boolean | null
+    total_scrap_weight: number | null
+    balance: number | null
+    buffing_entry_id: number | null
+  }
+
+  export type BuffingTotalBalanceCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    receipt_weight: number
+    remarks: number
+    wastage: number
+    total_scrap_weight: number
+    balance: number
+    buffing_entry_id: number
+    _all: number
+  }
+
+
+  export type BuffingTotalBalanceAvgAggregateInputType = {
+    id?: true
+    receipt_weight?: true
+    total_scrap_weight?: true
+    balance?: true
+    buffing_entry_id?: true
+  }
+
+  export type BuffingTotalBalanceSumAggregateInputType = {
+    id?: true
+    receipt_weight?: true
+    total_scrap_weight?: true
+    balance?: true
+    buffing_entry_id?: true
+  }
+
+  export type BuffingTotalBalanceMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    remarks?: true
+    wastage?: true
+    total_scrap_weight?: true
+    balance?: true
+    buffing_entry_id?: true
+  }
+
+  export type BuffingTotalBalanceMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    remarks?: true
+    wastage?: true
+    total_scrap_weight?: true
+    balance?: true
+    buffing_entry_id?: true
+  }
+
+  export type BuffingTotalBalanceCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    receipt_weight?: true
+    remarks?: true
+    wastage?: true
+    total_scrap_weight?: true
+    balance?: true
+    buffing_entry_id?: true
+    _all?: true
+  }
+
+  export type BuffingTotalBalanceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BuffingTotalBalance to aggregate.
+     */
+    where?: BuffingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingTotalBalances to fetch.
+     */
+    orderBy?: BuffingTotalBalanceOrderByWithRelationInput | BuffingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BuffingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BuffingTotalBalances
+    **/
+    _count?: true | BuffingTotalBalanceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BuffingTotalBalanceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BuffingTotalBalanceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BuffingTotalBalanceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BuffingTotalBalanceMaxAggregateInputType
+  }
+
+  export type GetBuffingTotalBalanceAggregateType<T extends BuffingTotalBalanceAggregateArgs> = {
+        [P in keyof T & keyof AggregateBuffingTotalBalance]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBuffingTotalBalance[P]>
+      : GetScalarType<T[P], AggregateBuffingTotalBalance[P]>
+  }
+
+
+
+
+  export type BuffingTotalBalanceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuffingTotalBalanceWhereInput
+    orderBy?: BuffingTotalBalanceOrderByWithAggregationInput | BuffingTotalBalanceOrderByWithAggregationInput[]
+    by: BuffingTotalBalanceScalarFieldEnum[] | BuffingTotalBalanceScalarFieldEnum
+    having?: BuffingTotalBalanceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BuffingTotalBalanceCountAggregateInputType | true
+    _avg?: BuffingTotalBalanceAvgAggregateInputType
+    _sum?: BuffingTotalBalanceSumAggregateInputType
+    _min?: BuffingTotalBalanceMinAggregateInputType
+    _max?: BuffingTotalBalanceMaxAggregateInputType
+  }
+
+  export type BuffingTotalBalanceGroupByOutputType = {
+    id: number
+    createdAt: Date
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    total_scrap_weight: number | null
+    balance: number
+    buffing_entry_id: number
+    _count: BuffingTotalBalanceCountAggregateOutputType | null
+    _avg: BuffingTotalBalanceAvgAggregateOutputType | null
+    _sum: BuffingTotalBalanceSumAggregateOutputType | null
+    _min: BuffingTotalBalanceMinAggregateOutputType | null
+    _max: BuffingTotalBalanceMaxAggregateOutputType | null
+  }
+
+  type GetBuffingTotalBalanceGroupByPayload<T extends BuffingTotalBalanceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BuffingTotalBalanceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BuffingTotalBalanceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BuffingTotalBalanceGroupByOutputType[P]>
+            : GetScalarType<T[P], BuffingTotalBalanceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BuffingTotalBalanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    receipt_weight?: boolean
+    remarks?: boolean
+    wastage?: boolean
+    total_scrap_weight?: boolean
+    balance?: boolean
+    buffing_entry_id?: boolean
+    BuffingEntryId?: boolean | BuffingEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["buffingTotalBalance"]>
+
+
+
+  export type BuffingTotalBalanceSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    receipt_weight?: boolean
+    remarks?: boolean
+    wastage?: boolean
+    total_scrap_weight?: boolean
+    balance?: boolean
+    buffing_entry_id?: boolean
+  }
+
+  export type BuffingTotalBalanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "receipt_weight" | "remarks" | "wastage" | "total_scrap_weight" | "balance" | "buffing_entry_id", ExtArgs["result"]["buffingTotalBalance"]>
+  export type BuffingTotalBalanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BuffingEntryId?: boolean | BuffingEntryDefaultArgs<ExtArgs>
+  }
+
+  export type $BuffingTotalBalancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BuffingTotalBalance"
+    objects: {
+      BuffingEntryId: Prisma.$BuffingEntryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      receipt_weight: number
+      remarks: string
+      wastage: boolean
+      total_scrap_weight: number | null
+      balance: number
+      buffing_entry_id: number
+    }, ExtArgs["result"]["buffingTotalBalance"]>
+    composites: {}
+  }
+
+  type BuffingTotalBalanceGetPayload<S extends boolean | null | undefined | BuffingTotalBalanceDefaultArgs> = $Result.GetResult<Prisma.$BuffingTotalBalancePayload, S>
+
+  type BuffingTotalBalanceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BuffingTotalBalanceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BuffingTotalBalanceCountAggregateInputType | true
+    }
+
+  export interface BuffingTotalBalanceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BuffingTotalBalance'], meta: { name: 'BuffingTotalBalance' } }
+    /**
+     * Find zero or one BuffingTotalBalance that matches the filter.
+     * @param {BuffingTotalBalanceFindUniqueArgs} args - Arguments to find a BuffingTotalBalance
+     * @example
+     * // Get one BuffingTotalBalance
+     * const buffingTotalBalance = await prisma.buffingTotalBalance.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BuffingTotalBalanceFindUniqueArgs>(args: SelectSubset<T, BuffingTotalBalanceFindUniqueArgs<ExtArgs>>): Prisma__BuffingTotalBalanceClient<$Result.GetResult<Prisma.$BuffingTotalBalancePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BuffingTotalBalance that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BuffingTotalBalanceFindUniqueOrThrowArgs} args - Arguments to find a BuffingTotalBalance
+     * @example
+     * // Get one BuffingTotalBalance
+     * const buffingTotalBalance = await prisma.buffingTotalBalance.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BuffingTotalBalanceFindUniqueOrThrowArgs>(args: SelectSubset<T, BuffingTotalBalanceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BuffingTotalBalanceClient<$Result.GetResult<Prisma.$BuffingTotalBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BuffingTotalBalance that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingTotalBalanceFindFirstArgs} args - Arguments to find a BuffingTotalBalance
+     * @example
+     * // Get one BuffingTotalBalance
+     * const buffingTotalBalance = await prisma.buffingTotalBalance.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BuffingTotalBalanceFindFirstArgs>(args?: SelectSubset<T, BuffingTotalBalanceFindFirstArgs<ExtArgs>>): Prisma__BuffingTotalBalanceClient<$Result.GetResult<Prisma.$BuffingTotalBalancePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BuffingTotalBalance that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingTotalBalanceFindFirstOrThrowArgs} args - Arguments to find a BuffingTotalBalance
+     * @example
+     * // Get one BuffingTotalBalance
+     * const buffingTotalBalance = await prisma.buffingTotalBalance.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BuffingTotalBalanceFindFirstOrThrowArgs>(args?: SelectSubset<T, BuffingTotalBalanceFindFirstOrThrowArgs<ExtArgs>>): Prisma__BuffingTotalBalanceClient<$Result.GetResult<Prisma.$BuffingTotalBalancePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BuffingTotalBalances that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingTotalBalanceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BuffingTotalBalances
+     * const buffingTotalBalances = await prisma.buffingTotalBalance.findMany()
+     * 
+     * // Get first 10 BuffingTotalBalances
+     * const buffingTotalBalances = await prisma.buffingTotalBalance.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const buffingTotalBalanceWithIdOnly = await prisma.buffingTotalBalance.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BuffingTotalBalanceFindManyArgs>(args?: SelectSubset<T, BuffingTotalBalanceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BuffingTotalBalance.
+     * @param {BuffingTotalBalanceCreateArgs} args - Arguments to create a BuffingTotalBalance.
+     * @example
+     * // Create one BuffingTotalBalance
+     * const BuffingTotalBalance = await prisma.buffingTotalBalance.create({
+     *   data: {
+     *     // ... data to create a BuffingTotalBalance
+     *   }
+     * })
+     * 
+     */
+    create<T extends BuffingTotalBalanceCreateArgs>(args: SelectSubset<T, BuffingTotalBalanceCreateArgs<ExtArgs>>): Prisma__BuffingTotalBalanceClient<$Result.GetResult<Prisma.$BuffingTotalBalancePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BuffingTotalBalances.
+     * @param {BuffingTotalBalanceCreateManyArgs} args - Arguments to create many BuffingTotalBalances.
+     * @example
+     * // Create many BuffingTotalBalances
+     * const buffingTotalBalance = await prisma.buffingTotalBalance.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BuffingTotalBalanceCreateManyArgs>(args?: SelectSubset<T, BuffingTotalBalanceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a BuffingTotalBalance.
+     * @param {BuffingTotalBalanceDeleteArgs} args - Arguments to delete one BuffingTotalBalance.
+     * @example
+     * // Delete one BuffingTotalBalance
+     * const BuffingTotalBalance = await prisma.buffingTotalBalance.delete({
+     *   where: {
+     *     // ... filter to delete one BuffingTotalBalance
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BuffingTotalBalanceDeleteArgs>(args: SelectSubset<T, BuffingTotalBalanceDeleteArgs<ExtArgs>>): Prisma__BuffingTotalBalanceClient<$Result.GetResult<Prisma.$BuffingTotalBalancePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BuffingTotalBalance.
+     * @param {BuffingTotalBalanceUpdateArgs} args - Arguments to update one BuffingTotalBalance.
+     * @example
+     * // Update one BuffingTotalBalance
+     * const buffingTotalBalance = await prisma.buffingTotalBalance.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BuffingTotalBalanceUpdateArgs>(args: SelectSubset<T, BuffingTotalBalanceUpdateArgs<ExtArgs>>): Prisma__BuffingTotalBalanceClient<$Result.GetResult<Prisma.$BuffingTotalBalancePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BuffingTotalBalances.
+     * @param {BuffingTotalBalanceDeleteManyArgs} args - Arguments to filter BuffingTotalBalances to delete.
+     * @example
+     * // Delete a few BuffingTotalBalances
+     * const { count } = await prisma.buffingTotalBalance.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BuffingTotalBalanceDeleteManyArgs>(args?: SelectSubset<T, BuffingTotalBalanceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BuffingTotalBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingTotalBalanceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BuffingTotalBalances
+     * const buffingTotalBalance = await prisma.buffingTotalBalance.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BuffingTotalBalanceUpdateManyArgs>(args: SelectSubset<T, BuffingTotalBalanceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one BuffingTotalBalance.
+     * @param {BuffingTotalBalanceUpsertArgs} args - Arguments to update or create a BuffingTotalBalance.
+     * @example
+     * // Update or create a BuffingTotalBalance
+     * const buffingTotalBalance = await prisma.buffingTotalBalance.upsert({
+     *   create: {
+     *     // ... data to create a BuffingTotalBalance
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BuffingTotalBalance we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BuffingTotalBalanceUpsertArgs>(args: SelectSubset<T, BuffingTotalBalanceUpsertArgs<ExtArgs>>): Prisma__BuffingTotalBalanceClient<$Result.GetResult<Prisma.$BuffingTotalBalancePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BuffingTotalBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingTotalBalanceCountArgs} args - Arguments to filter BuffingTotalBalances to count.
+     * @example
+     * // Count the number of BuffingTotalBalances
+     * const count = await prisma.buffingTotalBalance.count({
+     *   where: {
+     *     // ... the filter for the BuffingTotalBalances we want to count
+     *   }
+     * })
+    **/
+    count<T extends BuffingTotalBalanceCountArgs>(
+      args?: Subset<T, BuffingTotalBalanceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BuffingTotalBalanceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BuffingTotalBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingTotalBalanceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BuffingTotalBalanceAggregateArgs>(args: Subset<T, BuffingTotalBalanceAggregateArgs>): Prisma.PrismaPromise<GetBuffingTotalBalanceAggregateType<T>>
+
+    /**
+     * Group by BuffingTotalBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BuffingTotalBalanceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BuffingTotalBalanceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BuffingTotalBalanceGroupByArgs['orderBy'] }
+        : { orderBy?: BuffingTotalBalanceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BuffingTotalBalanceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBuffingTotalBalanceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BuffingTotalBalance model
+   */
+  readonly fields: BuffingTotalBalanceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BuffingTotalBalance.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BuffingTotalBalanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    BuffingEntryId<T extends BuffingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BuffingEntryDefaultArgs<ExtArgs>>): Prisma__BuffingEntryClient<$Result.GetResult<Prisma.$BuffingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BuffingTotalBalance model
+   */
+  interface BuffingTotalBalanceFieldRefs {
+    readonly id: FieldRef<"BuffingTotalBalance", 'Int'>
+    readonly createdAt: FieldRef<"BuffingTotalBalance", 'DateTime'>
+    readonly receipt_weight: FieldRef<"BuffingTotalBalance", 'Float'>
+    readonly remarks: FieldRef<"BuffingTotalBalance", 'String'>
+    readonly wastage: FieldRef<"BuffingTotalBalance", 'Boolean'>
+    readonly total_scrap_weight: FieldRef<"BuffingTotalBalance", 'Float'>
+    readonly balance: FieldRef<"BuffingTotalBalance", 'Float'>
+    readonly buffing_entry_id: FieldRef<"BuffingTotalBalance", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BuffingTotalBalance findUnique
+   */
+  export type BuffingTotalBalanceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingTotalBalance to fetch.
+     */
+    where: BuffingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * BuffingTotalBalance findUniqueOrThrow
+   */
+  export type BuffingTotalBalanceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingTotalBalance to fetch.
+     */
+    where: BuffingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * BuffingTotalBalance findFirst
+   */
+  export type BuffingTotalBalanceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingTotalBalance to fetch.
+     */
+    where?: BuffingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingTotalBalances to fetch.
+     */
+    orderBy?: BuffingTotalBalanceOrderByWithRelationInput | BuffingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BuffingTotalBalances.
+     */
+    cursor?: BuffingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BuffingTotalBalances.
+     */
+    distinct?: BuffingTotalBalanceScalarFieldEnum | BuffingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingTotalBalance findFirstOrThrow
+   */
+  export type BuffingTotalBalanceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingTotalBalance to fetch.
+     */
+    where?: BuffingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingTotalBalances to fetch.
+     */
+    orderBy?: BuffingTotalBalanceOrderByWithRelationInput | BuffingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BuffingTotalBalances.
+     */
+    cursor?: BuffingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingTotalBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BuffingTotalBalances.
+     */
+    distinct?: BuffingTotalBalanceScalarFieldEnum | BuffingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingTotalBalance findMany
+   */
+  export type BuffingTotalBalanceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which BuffingTotalBalances to fetch.
+     */
+    where?: BuffingTotalBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BuffingTotalBalances to fetch.
+     */
+    orderBy?: BuffingTotalBalanceOrderByWithRelationInput | BuffingTotalBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BuffingTotalBalances.
+     */
+    cursor?: BuffingTotalBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BuffingTotalBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BuffingTotalBalances.
+     */
+    skip?: number
+    distinct?: BuffingTotalBalanceScalarFieldEnum | BuffingTotalBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * BuffingTotalBalance create
+   */
+  export type BuffingTotalBalanceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BuffingTotalBalance.
+     */
+    data: XOR<BuffingTotalBalanceCreateInput, BuffingTotalBalanceUncheckedCreateInput>
+  }
+
+  /**
+   * BuffingTotalBalance createMany
+   */
+  export type BuffingTotalBalanceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BuffingTotalBalances.
+     */
+    data: BuffingTotalBalanceCreateManyInput | BuffingTotalBalanceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BuffingTotalBalance update
+   */
+  export type BuffingTotalBalanceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BuffingTotalBalance.
+     */
+    data: XOR<BuffingTotalBalanceUpdateInput, BuffingTotalBalanceUncheckedUpdateInput>
+    /**
+     * Choose, which BuffingTotalBalance to update.
+     */
+    where: BuffingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * BuffingTotalBalance updateMany
+   */
+  export type BuffingTotalBalanceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BuffingTotalBalances.
+     */
+    data: XOR<BuffingTotalBalanceUpdateManyMutationInput, BuffingTotalBalanceUncheckedUpdateManyInput>
+    /**
+     * Filter which BuffingTotalBalances to update
+     */
+    where?: BuffingTotalBalanceWhereInput
+    /**
+     * Limit how many BuffingTotalBalances to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BuffingTotalBalance upsert
+   */
+  export type BuffingTotalBalanceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BuffingTotalBalance to update in case it exists.
+     */
+    where: BuffingTotalBalanceWhereUniqueInput
+    /**
+     * In case the BuffingTotalBalance found by the `where` argument doesn't exist, create a new BuffingTotalBalance with this data.
+     */
+    create: XOR<BuffingTotalBalanceCreateInput, BuffingTotalBalanceUncheckedCreateInput>
+    /**
+     * In case the BuffingTotalBalance was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BuffingTotalBalanceUpdateInput, BuffingTotalBalanceUncheckedUpdateInput>
+  }
+
+  /**
+   * BuffingTotalBalance delete
+   */
+  export type BuffingTotalBalanceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
+    /**
+     * Filter which BuffingTotalBalance to delete.
+     */
+    where: BuffingTotalBalanceWhereUniqueInput
+  }
+
+  /**
+   * BuffingTotalBalance deleteMany
+   */
+  export type BuffingTotalBalanceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BuffingTotalBalances to delete
+     */
+    where?: BuffingTotalBalanceWhereInput
+    /**
+     * Limit how many BuffingTotalBalances to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BuffingTotalBalance without action
+   */
+  export type BuffingTotalBalanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BuffingTotalBalance
+     */
+    select?: BuffingTotalBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BuffingTotalBalance
+     */
+    omit?: BuffingTotalBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BuffingTotalBalanceInclude<ExtArgs> | null
   }
 
 
@@ -29401,80 +34099,150 @@ export namespace Prisma {
 
   export type BuffingWastageAvgAggregateOutputType = {
     id: number | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    buffing_entry_id: number | null
   }
 
   export type BuffingWastageSumAggregateOutputType = {
     id: number | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    buffing_entry_id: number | null
   }
 
   export type BuffingWastageMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    buffing_entry_id: number | null
   }
 
   export type BuffingWastageMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    total_receipt: number | null
+    total_wastage: number | null
+    balance: number | null
     wastage_percentage: number | null
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number | null
+    closing_balance: number | null
+    opening_balance: number | null
+    buffing_entry_id: number | null
   }
 
   export type BuffingWastageCountAggregateOutputType = {
     id: number
     createdAt: number
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold: number
     add_wastage: number
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    buffing_entry_id: number
     _all: number
   }
 
 
   export type BuffingWastageAvgAggregateInputType = {
     id?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    buffing_entry_id?: true
   }
 
   export type BuffingWastageSumAggregateInputType = {
     id?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    buffing_entry_id?: true
   }
 
   export type BuffingWastageMinAggregateInputType = {
     id?: true
     createdAt?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    buffing_entry_id?: true
   }
 
   export type BuffingWastageMaxAggregateInputType = {
     id?: true
     createdAt?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    buffing_entry_id?: true
   }
 
   export type BuffingWastageCountAggregateInputType = {
     id?: true
     createdAt?: true
+    total_receipt?: true
+    total_wastage?: true
+    balance?: true
     wastage_percentage?: true
     given_gold?: true
     add_wastage?: true
+    overall_wastage?: true
+    closing_balance?: true
+    opening_balance?: true
+    buffing_entry_id?: true
     _all?: true
   }
 
@@ -29567,9 +34335,16 @@ export namespace Prisma {
   export type BuffingWastageGroupByOutputType = {
     id: number
     createdAt: Date
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold: number | null
     add_wastage: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    buffing_entry_id: number
     _count: BuffingWastageCountAggregateOutputType | null
     _avg: BuffingWastageAvgAggregateOutputType | null
     _sum: BuffingWastageSumAggregateOutputType | null
@@ -29594,9 +34369,17 @@ export namespace Prisma {
   export type BuffingWastageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    total_receipt?: boolean
+    total_wastage?: boolean
+    balance?: boolean
     wastage_percentage?: boolean
     given_gold?: boolean
     add_wastage?: boolean
+    overall_wastage?: boolean
+    closing_balance?: boolean
+    opening_balance?: boolean
+    buffing_entry_id?: boolean
+    BuffingEntryId?: boolean | BuffingEntryDefaultArgs<ExtArgs>
     buffing_items?: boolean | BuffingWastage$buffing_itemsArgs<ExtArgs>
     _count?: boolean | BuffingWastageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["buffingWastage"]>
@@ -29606,13 +34389,21 @@ export namespace Prisma {
   export type BuffingWastageSelectScalar = {
     id?: boolean
     createdAt?: boolean
+    total_receipt?: boolean
+    total_wastage?: boolean
+    balance?: boolean
     wastage_percentage?: boolean
     given_gold?: boolean
     add_wastage?: boolean
+    overall_wastage?: boolean
+    closing_balance?: boolean
+    opening_balance?: boolean
+    buffing_entry_id?: boolean
   }
 
-  export type BuffingWastageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "wastage_percentage" | "given_gold" | "add_wastage", ExtArgs["result"]["buffingWastage"]>
+  export type BuffingWastageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "total_receipt" | "total_wastage" | "balance" | "wastage_percentage" | "given_gold" | "add_wastage" | "overall_wastage" | "closing_balance" | "opening_balance" | "buffing_entry_id", ExtArgs["result"]["buffingWastage"]>
   export type BuffingWastageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BuffingEntryId?: boolean | BuffingEntryDefaultArgs<ExtArgs>
     buffing_items?: boolean | BuffingWastage$buffing_itemsArgs<ExtArgs>
     _count?: boolean | BuffingWastageCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -29620,14 +34411,22 @@ export namespace Prisma {
   export type $BuffingWastagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "BuffingWastage"
     objects: {
+      BuffingEntryId: Prisma.$BuffingEntryPayload<ExtArgs>
       buffing_items: Prisma.$BuffingItemsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
+      total_receipt: number
+      total_wastage: number
+      balance: number
       wastage_percentage: number
       given_gold: number | null
       add_wastage: number | null
+      overall_wastage: number
+      closing_balance: number
+      opening_balance: number
+      buffing_entry_id: number
     }, ExtArgs["result"]["buffingWastage"]>
     composites: {}
   }
@@ -29968,6 +34767,7 @@ export namespace Prisma {
    */
   export interface Prisma__BuffingWastageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    BuffingEntryId<T extends BuffingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BuffingEntryDefaultArgs<ExtArgs>>): Prisma__BuffingEntryClient<$Result.GetResult<Prisma.$BuffingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     buffing_items<T extends BuffingWastage$buffing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, BuffingWastage$buffing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -30000,9 +34800,16 @@ export namespace Prisma {
   interface BuffingWastageFieldRefs {
     readonly id: FieldRef<"BuffingWastage", 'Int'>
     readonly createdAt: FieldRef<"BuffingWastage", 'DateTime'>
+    readonly total_receipt: FieldRef<"BuffingWastage", 'Float'>
+    readonly total_wastage: FieldRef<"BuffingWastage", 'Float'>
+    readonly balance: FieldRef<"BuffingWastage", 'Float'>
     readonly wastage_percentage: FieldRef<"BuffingWastage", 'Int'>
-    readonly given_gold: FieldRef<"BuffingWastage", 'Int'>
+    readonly given_gold: FieldRef<"BuffingWastage", 'Float'>
     readonly add_wastage: FieldRef<"BuffingWastage", 'Float'>
+    readonly overall_wastage: FieldRef<"BuffingWastage", 'Float'>
+    readonly closing_balance: FieldRef<"BuffingWastage", 'Float'>
+    readonly opening_balance: FieldRef<"BuffingWastage", 'Float'>
+    readonly buffing_entry_id: FieldRef<"BuffingWastage", 'Int'>
   }
     
 
@@ -30410,7 +35217,6 @@ export namespace Prisma {
     weight: number | null
     touch_id: number | null
     item_purity: number | null
-    scrap_wastage: number | null
     casting_customer_id: number | null
   }
 
@@ -30424,7 +35230,6 @@ export namespace Prisma {
     weight: number | null
     touch_id: number | null
     item_purity: number | null
-    scrap_wastage: number | null
     casting_customer_id: number | null
   }
 
@@ -30440,7 +35245,6 @@ export namespace Prisma {
     touch_id: number | null
     item_purity: number | null
     remarks: string | null
-    scrap_wastage: number | null
     casting_customer_id: number | null
   }
 
@@ -30456,7 +35260,6 @@ export namespace Prisma {
     touch_id: number | null
     item_purity: number | null
     remarks: string | null
-    scrap_wastage: number | null
     casting_customer_id: number | null
   }
 
@@ -30472,7 +35275,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks: number
-    scrap_wastage: number
     casting_customer_id: number
     _all: number
   }
@@ -30488,7 +35290,6 @@ export namespace Prisma {
     weight?: true
     touch_id?: true
     item_purity?: true
-    scrap_wastage?: true
     casting_customer_id?: true
   }
 
@@ -30502,7 +35303,6 @@ export namespace Prisma {
     weight?: true
     touch_id?: true
     item_purity?: true
-    scrap_wastage?: true
     casting_customer_id?: true
   }
 
@@ -30518,7 +35318,6 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     remarks?: true
-    scrap_wastage?: true
     casting_customer_id?: true
   }
 
@@ -30534,7 +35333,6 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     remarks?: true
-    scrap_wastage?: true
     casting_customer_id?: true
   }
 
@@ -30550,7 +35348,6 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     remarks?: true
-    scrap_wastage?: true
     casting_customer_id?: true
     _all?: true
   }
@@ -30653,7 +35450,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks: string | null
-    scrap_wastage: number | null
     casting_customer_id: number
     _count: StockCountAggregateOutputType | null
     _avg: StockAvgAggregateOutputType | null
@@ -30688,7 +35484,6 @@ export namespace Prisma {
     touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
-    scrap_wastage?: boolean
     casting_customer_id?: boolean
     castingItem?: boolean | Stock$castingItemArgs<ExtArgs>
     filingItem?: boolean | Stock$filingItemArgs<ExtArgs>
@@ -30713,11 +35508,10 @@ export namespace Prisma {
     touch_id?: boolean
     item_purity?: boolean
     remarks?: boolean
-    scrap_wastage?: boolean
     casting_customer_id?: boolean
   }
 
-  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "casting_item_id" | "filing_item_id" | "setting_item_id" | "buffing_item_id" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "scrap_wastage" | "casting_customer_id", ExtArgs["result"]["stock"]>
+  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "casting_item_id" | "filing_item_id" | "setting_item_id" | "buffing_item_id" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "casting_customer_id", ExtArgs["result"]["stock"]>
   export type StockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     castingItem?: boolean | Stock$castingItemArgs<ExtArgs>
     filingItem?: boolean | Stock$filingItemArgs<ExtArgs>
@@ -30751,7 +35545,6 @@ export namespace Prisma {
       touch_id: number
       item_purity: number
       remarks: string | null
-      scrap_wastage: number | null
       casting_customer_id: number
     }, ExtArgs["result"]["stock"]>
     composites: {}
@@ -31140,7 +35933,6 @@ export namespace Prisma {
     readonly touch_id: FieldRef<"Stock", 'Int'>
     readonly item_purity: FieldRef<"Stock", 'Float'>
     readonly remarks: FieldRef<"Stock", 'String'>
-    readonly scrap_wastage: FieldRef<"Stock", 'Float'>
     readonly casting_customer_id: FieldRef<"Stock", 'Int'>
   }
     
@@ -31744,14 +36536,24 @@ export namespace Prisma {
     touch_id: 'touch_id',
     item_purity: 'item_purity',
     remarks: 'remarks',
-    after_weight: 'after_weight',
-    scrap_weight: 'scrap_weight',
-    scrap_wastage: 'scrap_wastage',
     casting_entry_id: 'casting_entry_id',
     casting_customer_id: 'casting_customer_id'
   };
 
   export type CastingItemsScalarFieldEnum = (typeof CastingItemsScalarFieldEnum)[keyof typeof CastingItemsScalarFieldEnum]
+
+
+  export const CastiingTotalBalanceScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    total_item_weight: 'total_item_weight',
+    current_balance_weight: 'current_balance_weight',
+    total_scrap_weight: 'total_scrap_weight',
+    total_wastage: 'total_wastage',
+    item_entry: 'item_entry'
+  };
+
+  export type CastiingTotalBalanceScalarFieldEnum = (typeof CastiingTotalBalanceScalarFieldEnum)[keyof typeof CastiingTotalBalanceScalarFieldEnum]
 
 
   export const LotInfoScalarFieldEnum: {
@@ -31785,11 +36587,7 @@ export namespace Prisma {
     touch_id: 'touch_id',
     item_purity: 'item_purity',
     remarks: 'remarks',
-    wastage: 'wastage',
     stone_option: 'stone_option',
-    after_weight: 'after_weight',
-    scrap_weight: 'scrap_weight',
-    scrap_wastage: 'scrap_wastage',
     lot_filing_mapper_id: 'lot_filing_mapper_id'
   };
 
@@ -31806,12 +36604,33 @@ export namespace Prisma {
   export type LotFilingMapperScalarFieldEnum = (typeof LotFilingMapperScalarFieldEnum)[keyof typeof LotFilingMapperScalarFieldEnum]
 
 
+  export const FilingTotalBalanceScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    after_weight: 'after_weight',
+    total_product_weight: 'total_product_weight',
+    total_scrap_weight: 'total_scrap_weight',
+    wastage: 'wastage',
+    balance: 'balance',
+    filing_entry_id: 'filing_entry_id'
+  };
+
+  export type FilingTotalBalanceScalarFieldEnum = (typeof FilingTotalBalanceScalarFieldEnum)[keyof typeof FilingTotalBalanceScalarFieldEnum]
+
+
   export const FilingWastageScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
+    total_receipt: 'total_receipt',
+    total_wastage: 'total_wastage',
+    balance: 'balance',
     wastage_percentage: 'wastage_percentage',
     given_gold: 'given_gold',
-    add_wastage: 'add_wastage'
+    add_wastage: 'add_wastage',
+    overall_wastage: 'overall_wastage',
+    closing_balance: 'closing_balance',
+    opening_balance: 'opening_balance',
+    filing_entry_id: 'filing_entry_id'
   };
 
   export type FilingWastageScalarFieldEnum = (typeof FilingWastageScalarFieldEnum)[keyof typeof FilingWastageScalarFieldEnum]
@@ -31830,11 +36649,6 @@ export namespace Prisma {
   export const SettingItemsScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
-    receipt_weight: 'receipt_weight',
-    stone_count: 'stone_count',
-    stone_weight: 'stone_weight',
-    remarks: 'remarks',
-    wastage: 'wastage',
     type: 'type',
     setting_item_id: 'setting_item_id',
     scrap_weight: 'scrap_weight',
@@ -31856,12 +36670,35 @@ export namespace Prisma {
   export type LotSettingMapperScalarFieldEnum = (typeof LotSettingMapperScalarFieldEnum)[keyof typeof LotSettingMapperScalarFieldEnum]
 
 
+  export const SettingTotalBalanceScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    receipt_weight: 'receipt_weight',
+    stone_count: 'stone_count',
+    stone_weight: 'stone_weight',
+    remarks: 'remarks',
+    wastage: 'wastage',
+    total_scrap_weight: 'total_scrap_weight',
+    balance: 'balance',
+    setting_entry_id: 'setting_entry_id'
+  };
+
+  export type SettingTotalBalanceScalarFieldEnum = (typeof SettingTotalBalanceScalarFieldEnum)[keyof typeof SettingTotalBalanceScalarFieldEnum]
+
+
   export const SettingWastageScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
+    total_receipt: 'total_receipt',
+    total_wastage: 'total_wastage',
+    balance: 'balance',
     wastage_percentage: 'wastage_percentage',
     given_gold: 'given_gold',
-    add_wastage: 'add_wastage'
+    add_wastage: 'add_wastage',
+    overall_wastage: 'overall_wastage',
+    closing_balance: 'closing_balance',
+    opening_balance: 'opening_balance',
+    setting_entry_id: 'setting_entry_id'
   };
 
   export type SettingWastageScalarFieldEnum = (typeof SettingWastageScalarFieldEnum)[keyof typeof SettingWastageScalarFieldEnum]
@@ -31880,9 +36717,6 @@ export namespace Prisma {
   export const BuffingItemsScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
-    receipt_weight: 'receipt_weight',
-    remarks: 'remarks',
-    wastage: 'wastage',
     type: 'type',
     buffing_item_id: 'buffing_item_id',
     scrap_weight: 'scrap_weight',
@@ -31892,6 +36726,20 @@ export namespace Prisma {
   };
 
   export type BuffingItemsScalarFieldEnum = (typeof BuffingItemsScalarFieldEnum)[keyof typeof BuffingItemsScalarFieldEnum]
+
+
+  export const BuffingTotalBalanceScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    receipt_weight: 'receipt_weight',
+    remarks: 'remarks',
+    wastage: 'wastage',
+    total_scrap_weight: 'total_scrap_weight',
+    balance: 'balance',
+    buffing_entry_id: 'buffing_entry_id'
+  };
+
+  export type BuffingTotalBalanceScalarFieldEnum = (typeof BuffingTotalBalanceScalarFieldEnum)[keyof typeof BuffingTotalBalanceScalarFieldEnum]
 
 
   export const LotBuffingMapperScalarFieldEnum: {
@@ -31908,9 +36756,16 @@ export namespace Prisma {
   export const BuffingWastageScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
+    total_receipt: 'total_receipt',
+    total_wastage: 'total_wastage',
+    balance: 'balance',
     wastage_percentage: 'wastage_percentage',
     given_gold: 'given_gold',
-    add_wastage: 'add_wastage'
+    add_wastage: 'add_wastage',
+    overall_wastage: 'overall_wastage',
+    closing_balance: 'closing_balance',
+    opening_balance: 'opening_balance',
+    buffing_entry_id: 'buffing_entry_id'
   };
 
   export type BuffingWastageScalarFieldEnum = (typeof BuffingWastageScalarFieldEnum)[keyof typeof BuffingWastageScalarFieldEnum]
@@ -31928,7 +36783,6 @@ export namespace Prisma {
     touch_id: 'touch_id',
     item_purity: 'item_purity',
     remarks: 'remarks',
-    scrap_wastage: 'scrap_wastage',
     casting_customer_id: 'casting_customer_id'
   };
 
@@ -32047,19 +36901,31 @@ export namespace Prisma {
 
 
   export const SettingItemsOrderByRelevanceFieldEnum: {
-    remarks: 'remarks',
     scrap_remarks: 'scrap_remarks'
   };
 
   export type SettingItemsOrderByRelevanceFieldEnum = (typeof SettingItemsOrderByRelevanceFieldEnum)[keyof typeof SettingItemsOrderByRelevanceFieldEnum]
 
 
+  export const SettingTotalBalanceOrderByRelevanceFieldEnum: {
+    remarks: 'remarks'
+  };
+
+  export type SettingTotalBalanceOrderByRelevanceFieldEnum = (typeof SettingTotalBalanceOrderByRelevanceFieldEnum)[keyof typeof SettingTotalBalanceOrderByRelevanceFieldEnum]
+
+
   export const BuffingItemsOrderByRelevanceFieldEnum: {
-    remarks: 'remarks',
     scrap_remarks: 'scrap_remarks'
   };
 
   export type BuffingItemsOrderByRelevanceFieldEnum = (typeof BuffingItemsOrderByRelevanceFieldEnum)[keyof typeof BuffingItemsOrderByRelevanceFieldEnum]
+
+
+  export const BuffingTotalBalanceOrderByRelevanceFieldEnum: {
+    remarks: 'remarks'
+  };
+
+  export type BuffingTotalBalanceOrderByRelevanceFieldEnum = (typeof BuffingTotalBalanceOrderByRelevanceFieldEnum)[keyof typeof BuffingTotalBalanceOrderByRelevanceFieldEnum]
 
 
   export const StockOrderByRelevanceFieldEnum: {
@@ -32117,16 +36983,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
+   * Reference to a field of type 'STONEOPTION'
    */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+  export type EnumSTONEOPTIONFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'STONEOPTION'>
     
 
 
   /**
-   * Reference to a field of type 'STONEOPTION'
+   * Reference to a field of type 'Boolean'
    */
-  export type EnumSTONEOPTIONFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'STONEOPTION'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -32850,6 +37716,7 @@ export namespace Prisma {
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     casting_customer?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
     items?: CastingItemsListRelationFilter
+    CastiingTotalBalance?: CastiingTotalBalanceListRelationFilter
   }
 
   export type CastingEntryOrderByWithRelationInput = {
@@ -32867,6 +37734,7 @@ export namespace Prisma {
     touch?: AddTouchOrderByWithRelationInput
     casting_customer?: AddCastingOrderByWithRelationInput
     items?: CastingItemsOrderByRelationAggregateInput
+    CastiingTotalBalance?: CastiingTotalBalanceOrderByRelationAggregateInput
   }
 
   export type CastingEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -32887,6 +37755,7 @@ export namespace Prisma {
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     casting_customer?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
     items?: CastingItemsListRelationFilter
+    CastiingTotalBalance?: CastiingTotalBalanceListRelationFilter
   }, "id">
 
   export type CastingEntryOrderByWithAggregationInput = {
@@ -32937,9 +37806,6 @@ export namespace Prisma {
     touch_id?: IntFilter<"CastingItems"> | number
     item_purity?: FloatFilter<"CastingItems"> | number
     remarks?: StringNullableFilter<"CastingItems"> | string | null
-    after_weight?: FloatNullableFilter<"CastingItems"> | number | null
-    scrap_weight?: FloatNullableFilter<"CastingItems"> | number | null
-    scrap_wastage?: FloatNullableFilter<"CastingItems"> | number | null
     casting_entry_id?: IntFilter<"CastingItems"> | number
     casting_customer_id?: IntFilter<"CastingItems"> | number
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
@@ -32962,9 +37828,6 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
-    after_weight?: SortOrderInput | SortOrder
-    scrap_weight?: SortOrderInput | SortOrder
-    scrap_wastage?: SortOrderInput | SortOrder
     casting_entry_id?: SortOrder
     casting_customer_id?: SortOrder
     touch?: AddTouchOrderByWithRelationInput
@@ -32991,9 +37854,6 @@ export namespace Prisma {
     touch_id?: IntFilter<"CastingItems"> | number
     item_purity?: FloatFilter<"CastingItems"> | number
     remarks?: StringNullableFilter<"CastingItems"> | string | null
-    after_weight?: FloatNullableFilter<"CastingItems"> | number | null
-    scrap_weight?: FloatNullableFilter<"CastingItems"> | number | null
-    scrap_wastage?: FloatNullableFilter<"CastingItems"> | number | null
     casting_entry_id?: IntFilter<"CastingItems"> | number
     casting_customer_id?: IntFilter<"CastingItems"> | number
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
@@ -33016,9 +37876,6 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
-    after_weight?: SortOrderInput | SortOrder
-    scrap_weight?: SortOrderInput | SortOrder
-    scrap_wastage?: SortOrderInput | SortOrder
     casting_entry_id?: SortOrder
     casting_customer_id?: SortOrder
     _count?: CastingItemsCountOrderByAggregateInput
@@ -33040,11 +37897,75 @@ export namespace Prisma {
     touch_id?: IntWithAggregatesFilter<"CastingItems"> | number
     item_purity?: FloatWithAggregatesFilter<"CastingItems"> | number
     remarks?: StringNullableWithAggregatesFilter<"CastingItems"> | string | null
-    after_weight?: FloatNullableWithAggregatesFilter<"CastingItems"> | number | null
-    scrap_weight?: FloatNullableWithAggregatesFilter<"CastingItems"> | number | null
-    scrap_wastage?: FloatNullableWithAggregatesFilter<"CastingItems"> | number | null
     casting_entry_id?: IntWithAggregatesFilter<"CastingItems"> | number
     casting_customer_id?: IntWithAggregatesFilter<"CastingItems"> | number
+  }
+
+  export type CastiingTotalBalanceWhereInput = {
+    AND?: CastiingTotalBalanceWhereInput | CastiingTotalBalanceWhereInput[]
+    OR?: CastiingTotalBalanceWhereInput[]
+    NOT?: CastiingTotalBalanceWhereInput | CastiingTotalBalanceWhereInput[]
+    id?: IntFilter<"CastiingTotalBalance"> | number
+    createdAt?: DateTimeFilter<"CastiingTotalBalance"> | Date | string
+    total_item_weight?: FloatFilter<"CastiingTotalBalance"> | number
+    current_balance_weight?: FloatFilter<"CastiingTotalBalance"> | number
+    total_scrap_weight?: FloatNullableFilter<"CastiingTotalBalance"> | number | null
+    total_wastage?: FloatFilter<"CastiingTotalBalance"> | number
+    item_entry?: IntFilter<"CastiingTotalBalance"> | number
+    item_entry_id?: XOR<CastingEntryScalarRelationFilter, CastingEntryWhereInput>
+  }
+
+  export type CastiingTotalBalanceOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    total_item_weight?: SortOrder
+    current_balance_weight?: SortOrder
+    total_scrap_weight?: SortOrderInput | SortOrder
+    total_wastage?: SortOrder
+    item_entry?: SortOrder
+    item_entry_id?: CastingEntryOrderByWithRelationInput
+  }
+
+  export type CastiingTotalBalanceWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    item_entry?: number
+    AND?: CastiingTotalBalanceWhereInput | CastiingTotalBalanceWhereInput[]
+    OR?: CastiingTotalBalanceWhereInput[]
+    NOT?: CastiingTotalBalanceWhereInput | CastiingTotalBalanceWhereInput[]
+    createdAt?: DateTimeFilter<"CastiingTotalBalance"> | Date | string
+    total_item_weight?: FloatFilter<"CastiingTotalBalance"> | number
+    current_balance_weight?: FloatFilter<"CastiingTotalBalance"> | number
+    total_scrap_weight?: FloatNullableFilter<"CastiingTotalBalance"> | number | null
+    total_wastage?: FloatFilter<"CastiingTotalBalance"> | number
+    item_entry_id?: XOR<CastingEntryScalarRelationFilter, CastingEntryWhereInput>
+  }, "id" | "item_entry">
+
+  export type CastiingTotalBalanceOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    total_item_weight?: SortOrder
+    current_balance_weight?: SortOrder
+    total_scrap_weight?: SortOrderInput | SortOrder
+    total_wastage?: SortOrder
+    item_entry?: SortOrder
+    _count?: CastiingTotalBalanceCountOrderByAggregateInput
+    _avg?: CastiingTotalBalanceAvgOrderByAggregateInput
+    _max?: CastiingTotalBalanceMaxOrderByAggregateInput
+    _min?: CastiingTotalBalanceMinOrderByAggregateInput
+    _sum?: CastiingTotalBalanceSumOrderByAggregateInput
+  }
+
+  export type CastiingTotalBalanceScalarWhereWithAggregatesInput = {
+    AND?: CastiingTotalBalanceScalarWhereWithAggregatesInput | CastiingTotalBalanceScalarWhereWithAggregatesInput[]
+    OR?: CastiingTotalBalanceScalarWhereWithAggregatesInput[]
+    NOT?: CastiingTotalBalanceScalarWhereWithAggregatesInput | CastiingTotalBalanceScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CastiingTotalBalance"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"CastiingTotalBalance"> | Date | string
+    total_item_weight?: FloatWithAggregatesFilter<"CastiingTotalBalance"> | number
+    current_balance_weight?: FloatWithAggregatesFilter<"CastiingTotalBalance"> | number
+    total_scrap_weight?: FloatNullableWithAggregatesFilter<"CastiingTotalBalance"> | number | null
+    total_wastage?: FloatWithAggregatesFilter<"CastiingTotalBalance"> | number
+    item_entry?: IntWithAggregatesFilter<"CastiingTotalBalance"> | number
   }
 
   export type LotInfoWhereInput = {
@@ -33130,6 +38051,8 @@ export namespace Prisma {
     filing_person?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
     filingItems?: FilingItemsListRelationFilter
+    filingItemsId?: FilingTotalBalanceListRelationFilter
+    FilingWastage?: FilingWastageListRelationFilter
   }
 
   export type FilingEntryOrderByWithRelationInput = {
@@ -33140,6 +38063,8 @@ export namespace Prisma {
     filing_person?: AddFilingOrderByWithRelationInput
     castingItem?: CastingItemsOrderByWithRelationInput
     filingItems?: FilingItemsOrderByRelationAggregateInput
+    filingItemsId?: FilingTotalBalanceOrderByRelationAggregateInput
+    FilingWastage?: FilingWastageOrderByRelationAggregateInput
   }
 
   export type FilingEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -33153,6 +38078,8 @@ export namespace Prisma {
     filing_person?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
     filingItems?: FilingItemsListRelationFilter
+    filingItemsId?: FilingTotalBalanceListRelationFilter
+    FilingWastage?: FilingWastageListRelationFilter
   }, "id">
 
   export type FilingEntryOrderByWithAggregationInput = {
@@ -33190,11 +38117,7 @@ export namespace Prisma {
     touch_id?: IntFilter<"FilingItems"> | number
     item_purity?: FloatFilter<"FilingItems"> | number
     remarks?: StringNullableFilter<"FilingItems"> | string | null
-    wastage?: BoolNullableFilter<"FilingItems"> | boolean | null
     stone_option?: EnumSTONEOPTIONNullableFilter<"FilingItems"> | $Enums.STONEOPTION | null
-    after_weight?: FloatNullableFilter<"FilingItems"> | number | null
-    scrap_weight?: FloatNullableFilter<"FilingItems"> | number | null
-    scrap_wastage?: FloatNullableFilter<"FilingItems"> | number | null
     lot_filing_mapper_id?: IntNullableFilter<"FilingItems"> | number | null
     filing_entry?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
     filingitem?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
@@ -33218,11 +38141,7 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
-    wastage?: SortOrderInput | SortOrder
     stone_option?: SortOrderInput | SortOrder
-    after_weight?: SortOrderInput | SortOrder
-    scrap_weight?: SortOrderInput | SortOrder
-    scrap_wastage?: SortOrderInput | SortOrder
     lot_filing_mapper_id?: SortOrderInput | SortOrder
     filing_entry?: FilingEntryOrderByWithRelationInput
     filingitem?: AddItemOrderByWithRelationInput
@@ -33250,11 +38169,7 @@ export namespace Prisma {
     touch_id?: IntFilter<"FilingItems"> | number
     item_purity?: FloatFilter<"FilingItems"> | number
     remarks?: StringNullableFilter<"FilingItems"> | string | null
-    wastage?: BoolNullableFilter<"FilingItems"> | boolean | null
     stone_option?: EnumSTONEOPTIONNullableFilter<"FilingItems"> | $Enums.STONEOPTION | null
-    after_weight?: FloatNullableFilter<"FilingItems"> | number | null
-    scrap_weight?: FloatNullableFilter<"FilingItems"> | number | null
-    scrap_wastage?: FloatNullableFilter<"FilingItems"> | number | null
     lot_filing_mapper_id?: IntNullableFilter<"FilingItems"> | number | null
     filing_entry?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
     filingitem?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
@@ -33278,11 +38193,7 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
-    wastage?: SortOrderInput | SortOrder
     stone_option?: SortOrderInput | SortOrder
-    after_weight?: SortOrderInput | SortOrder
-    scrap_weight?: SortOrderInput | SortOrder
-    scrap_wastage?: SortOrderInput | SortOrder
     lot_filing_mapper_id?: SortOrderInput | SortOrder
     _count?: FilingItemsCountOrderByAggregateInput
     _avg?: FilingItemsAvgOrderByAggregateInput
@@ -33304,11 +38215,7 @@ export namespace Prisma {
     touch_id?: IntWithAggregatesFilter<"FilingItems"> | number
     item_purity?: FloatWithAggregatesFilter<"FilingItems"> | number
     remarks?: StringNullableWithAggregatesFilter<"FilingItems"> | string | null
-    wastage?: BoolNullableWithAggregatesFilter<"FilingItems"> | boolean | null
     stone_option?: EnumSTONEOPTIONNullableWithAggregatesFilter<"FilingItems"> | $Enums.STONEOPTION | null
-    after_weight?: FloatNullableWithAggregatesFilter<"FilingItems"> | number | null
-    scrap_weight?: FloatNullableWithAggregatesFilter<"FilingItems"> | number | null
-    scrap_wastage?: FloatNullableWithAggregatesFilter<"FilingItems"> | number | null
     lot_filing_mapper_id?: IntNullableWithAggregatesFilter<"FilingItems"> | number | null
   }
 
@@ -33373,24 +38280,112 @@ export namespace Prisma {
     item_id?: IntWithAggregatesFilter<"LotFilingMapper"> | number
   }
 
+  export type FilingTotalBalanceWhereInput = {
+    AND?: FilingTotalBalanceWhereInput | FilingTotalBalanceWhereInput[]
+    OR?: FilingTotalBalanceWhereInput[]
+    NOT?: FilingTotalBalanceWhereInput | FilingTotalBalanceWhereInput[]
+    id?: IntFilter<"FilingTotalBalance"> | number
+    createdAt?: DateTimeFilter<"FilingTotalBalance"> | Date | string
+    after_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
+    total_product_weight?: FloatFilter<"FilingTotalBalance"> | number
+    total_scrap_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
+    wastage?: BoolFilter<"FilingTotalBalance"> | boolean
+    balance?: FloatFilter<"FilingTotalBalance"> | number
+    filing_entry_id?: IntFilter<"FilingTotalBalance"> | number
+    filingEntryId?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
+  }
+
+  export type FilingTotalBalanceOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    after_weight?: SortOrderInput | SortOrder
+    total_product_weight?: SortOrder
+    total_scrap_weight?: SortOrderInput | SortOrder
+    wastage?: SortOrder
+    balance?: SortOrder
+    filing_entry_id?: SortOrder
+    filingEntryId?: FilingEntryOrderByWithRelationInput
+  }
+
+  export type FilingTotalBalanceWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: FilingTotalBalanceWhereInput | FilingTotalBalanceWhereInput[]
+    OR?: FilingTotalBalanceWhereInput[]
+    NOT?: FilingTotalBalanceWhereInput | FilingTotalBalanceWhereInput[]
+    createdAt?: DateTimeFilter<"FilingTotalBalance"> | Date | string
+    after_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
+    total_product_weight?: FloatFilter<"FilingTotalBalance"> | number
+    total_scrap_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
+    wastage?: BoolFilter<"FilingTotalBalance"> | boolean
+    balance?: FloatFilter<"FilingTotalBalance"> | number
+    filing_entry_id?: IntFilter<"FilingTotalBalance"> | number
+    filingEntryId?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
+  }, "id">
+
+  export type FilingTotalBalanceOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    after_weight?: SortOrderInput | SortOrder
+    total_product_weight?: SortOrder
+    total_scrap_weight?: SortOrderInput | SortOrder
+    wastage?: SortOrder
+    balance?: SortOrder
+    filing_entry_id?: SortOrder
+    _count?: FilingTotalBalanceCountOrderByAggregateInput
+    _avg?: FilingTotalBalanceAvgOrderByAggregateInput
+    _max?: FilingTotalBalanceMaxOrderByAggregateInput
+    _min?: FilingTotalBalanceMinOrderByAggregateInput
+    _sum?: FilingTotalBalanceSumOrderByAggregateInput
+  }
+
+  export type FilingTotalBalanceScalarWhereWithAggregatesInput = {
+    AND?: FilingTotalBalanceScalarWhereWithAggregatesInput | FilingTotalBalanceScalarWhereWithAggregatesInput[]
+    OR?: FilingTotalBalanceScalarWhereWithAggregatesInput[]
+    NOT?: FilingTotalBalanceScalarWhereWithAggregatesInput | FilingTotalBalanceScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"FilingTotalBalance"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"FilingTotalBalance"> | Date | string
+    after_weight?: FloatNullableWithAggregatesFilter<"FilingTotalBalance"> | number | null
+    total_product_weight?: FloatWithAggregatesFilter<"FilingTotalBalance"> | number
+    total_scrap_weight?: FloatNullableWithAggregatesFilter<"FilingTotalBalance"> | number | null
+    wastage?: BoolWithAggregatesFilter<"FilingTotalBalance"> | boolean
+    balance?: FloatWithAggregatesFilter<"FilingTotalBalance"> | number
+    filing_entry_id?: IntWithAggregatesFilter<"FilingTotalBalance"> | number
+  }
+
   export type FilingWastageWhereInput = {
     AND?: FilingWastageWhereInput | FilingWastageWhereInput[]
     OR?: FilingWastageWhereInput[]
     NOT?: FilingWastageWhereInput | FilingWastageWhereInput[]
     id?: IntFilter<"FilingWastage"> | number
     createdAt?: DateTimeFilter<"FilingWastage"> | Date | string
+    total_receipt?: FloatFilter<"FilingWastage"> | number
+    total_wastage?: FloatFilter<"FilingWastage"> | number
+    balance?: FloatFilter<"FilingWastage"> | number
     wastage_percentage?: IntFilter<"FilingWastage"> | number
     given_gold?: IntNullableFilter<"FilingWastage"> | number | null
     add_wastage?: FloatNullableFilter<"FilingWastage"> | number | null
+    overall_wastage?: FloatFilter<"FilingWastage"> | number
+    closing_balance?: FloatFilter<"FilingWastage"> | number
+    opening_balance?: FloatFilter<"FilingWastage"> | number
+    filing_entry_id?: IntFilter<"FilingWastage"> | number
+    filingEntryId?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
     filing_items?: FilingItemsListRelationFilter
   }
 
   export type FilingWastageOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrderInput | SortOrder
     add_wastage?: SortOrderInput | SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    filing_entry_id?: SortOrder
+    filingEntryId?: FilingEntryOrderByWithRelationInput
     filing_items?: FilingItemsOrderByRelationAggregateInput
   }
 
@@ -33400,18 +38395,33 @@ export namespace Prisma {
     OR?: FilingWastageWhereInput[]
     NOT?: FilingWastageWhereInput | FilingWastageWhereInput[]
     createdAt?: DateTimeFilter<"FilingWastage"> | Date | string
+    total_receipt?: FloatFilter<"FilingWastage"> | number
+    total_wastage?: FloatFilter<"FilingWastage"> | number
+    balance?: FloatFilter<"FilingWastage"> | number
     wastage_percentage?: IntFilter<"FilingWastage"> | number
     given_gold?: IntNullableFilter<"FilingWastage"> | number | null
     add_wastage?: FloatNullableFilter<"FilingWastage"> | number | null
+    overall_wastage?: FloatFilter<"FilingWastage"> | number
+    closing_balance?: FloatFilter<"FilingWastage"> | number
+    opening_balance?: FloatFilter<"FilingWastage"> | number
+    filing_entry_id?: IntFilter<"FilingWastage"> | number
+    filingEntryId?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
     filing_items?: FilingItemsListRelationFilter
   }, "id">
 
   export type FilingWastageOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrderInput | SortOrder
     add_wastage?: SortOrderInput | SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    filing_entry_id?: SortOrder
     _count?: FilingWastageCountOrderByAggregateInput
     _avg?: FilingWastageAvgOrderByAggregateInput
     _max?: FilingWastageMaxOrderByAggregateInput
@@ -33425,9 +38435,16 @@ export namespace Prisma {
     NOT?: FilingWastageScalarWhereWithAggregatesInput | FilingWastageScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"FilingWastage"> | number
     createdAt?: DateTimeWithAggregatesFilter<"FilingWastage"> | Date | string
+    total_receipt?: FloatWithAggregatesFilter<"FilingWastage"> | number
+    total_wastage?: FloatWithAggregatesFilter<"FilingWastage"> | number
+    balance?: FloatWithAggregatesFilter<"FilingWastage"> | number
     wastage_percentage?: IntWithAggregatesFilter<"FilingWastage"> | number
     given_gold?: IntNullableWithAggregatesFilter<"FilingWastage"> | number | null
     add_wastage?: FloatNullableWithAggregatesFilter<"FilingWastage"> | number | null
+    overall_wastage?: FloatWithAggregatesFilter<"FilingWastage"> | number
+    closing_balance?: FloatWithAggregatesFilter<"FilingWastage"> | number
+    opening_balance?: FloatWithAggregatesFilter<"FilingWastage"> | number
+    filing_entry_id?: IntWithAggregatesFilter<"FilingWastage"> | number
   }
 
   export type SettingEntryWhereInput = {
@@ -33441,6 +38458,8 @@ export namespace Prisma {
     setting_person?: XOR<AddSettingScalarRelationFilter, AddSettingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
     filingItems?: FilingItemsListRelationFilter
+    settingTotalBalance?: SettingTotalBalanceListRelationFilter
+    settingWastage?: SettingWastageListRelationFilter
   }
 
   export type SettingEntryOrderByWithRelationInput = {
@@ -33451,6 +38470,8 @@ export namespace Prisma {
     setting_person?: AddSettingOrderByWithRelationInput
     castingItem?: CastingItemsOrderByWithRelationInput
     filingItems?: FilingItemsOrderByRelationAggregateInput
+    settingTotalBalance?: SettingTotalBalanceOrderByRelationAggregateInput
+    settingWastage?: SettingWastageOrderByRelationAggregateInput
   }
 
   export type SettingEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -33464,6 +38485,8 @@ export namespace Prisma {
     setting_person?: XOR<AddSettingScalarRelationFilter, AddSettingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
     filingItems?: FilingItemsListRelationFilter
+    settingTotalBalance?: SettingTotalBalanceListRelationFilter
+    settingWastage?: SettingWastageListRelationFilter
   }, "id" | "casting_item_id">
 
   export type SettingEntryOrderByWithAggregationInput = {
@@ -33494,11 +38517,6 @@ export namespace Prisma {
     NOT?: SettingItemsWhereInput | SettingItemsWhereInput[]
     id?: IntFilter<"SettingItems"> | number
     createdAt?: DateTimeFilter<"SettingItems"> | Date | string
-    receipt_weight?: FloatFilter<"SettingItems"> | number
-    stone_count?: FloatFilter<"SettingItems"> | number
-    stone_weight?: FloatFilter<"SettingItems"> | number
-    remarks?: StringNullableFilter<"SettingItems"> | string | null
-    wastage?: BoolFilter<"SettingItems"> | boolean
     type?: EnumCASTINGENTRYTYPEFilter<"SettingItems"> | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFilter<"SettingItems"> | number
     scrap_weight?: FloatFilter<"SettingItems"> | number
@@ -33516,11 +38534,6 @@ export namespace Prisma {
   export type SettingItemsOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    receipt_weight?: SortOrder
-    stone_count?: SortOrder
-    stone_weight?: SortOrder
-    remarks?: SortOrderInput | SortOrder
-    wastage?: SortOrder
     type?: SortOrder
     setting_item_id?: SortOrder
     scrap_weight?: SortOrder
@@ -33542,11 +38555,6 @@ export namespace Prisma {
     OR?: SettingItemsWhereInput[]
     NOT?: SettingItemsWhereInput | SettingItemsWhereInput[]
     createdAt?: DateTimeFilter<"SettingItems"> | Date | string
-    receipt_weight?: FloatFilter<"SettingItems"> | number
-    stone_count?: FloatFilter<"SettingItems"> | number
-    stone_weight?: FloatFilter<"SettingItems"> | number
-    remarks?: StringNullableFilter<"SettingItems"> | string | null
-    wastage?: BoolFilter<"SettingItems"> | boolean
     type?: EnumCASTINGENTRYTYPEFilter<"SettingItems"> | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFilter<"SettingItems"> | number
     scrap_weight?: FloatFilter<"SettingItems"> | number
@@ -33564,11 +38572,6 @@ export namespace Prisma {
   export type SettingItemsOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    receipt_weight?: SortOrder
-    stone_count?: SortOrder
-    stone_weight?: SortOrder
-    remarks?: SortOrderInput | SortOrder
-    wastage?: SortOrder
     type?: SortOrder
     setting_item_id?: SortOrder
     scrap_weight?: SortOrder
@@ -33588,11 +38591,6 @@ export namespace Prisma {
     NOT?: SettingItemsScalarWhereWithAggregatesInput | SettingItemsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"SettingItems"> | number
     createdAt?: DateTimeWithAggregatesFilter<"SettingItems"> | Date | string
-    receipt_weight?: FloatWithAggregatesFilter<"SettingItems"> | number
-    stone_count?: FloatWithAggregatesFilter<"SettingItems"> | number
-    stone_weight?: FloatWithAggregatesFilter<"SettingItems"> | number
-    remarks?: StringNullableWithAggregatesFilter<"SettingItems"> | string | null
-    wastage?: BoolWithAggregatesFilter<"SettingItems"> | boolean
     type?: EnumCASTINGENTRYTYPEWithAggregatesFilter<"SettingItems"> | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntWithAggregatesFilter<"SettingItems"> | number
     scrap_weight?: FloatWithAggregatesFilter<"SettingItems"> | number
@@ -33608,17 +38606,17 @@ export namespace Prisma {
     id?: IntFilter<"LotSettingMapper"> | number
     setting_id?: IntFilter<"LotSettingMapper"> | number
     lot_id?: IntFilter<"LotSettingMapper"> | number
-    filing_item_id?: IntFilter<"LotSettingMapper"> | number
+    filing_item_id?: IntNullableFilter<"LotSettingMapper"> | number | null
     settingId?: XOR<AddSettingScalarRelationFilter, AddSettingWhereInput>
     lotId?: XOR<LotInfoScalarRelationFilter, LotInfoWhereInput>
-    itemId?: XOR<FilingItemsScalarRelationFilter, FilingItemsWhereInput>
+    itemId?: XOR<FilingItemsNullableScalarRelationFilter, FilingItemsWhereInput> | null
   }
 
   export type LotSettingMapperOrderByWithRelationInput = {
     id?: SortOrder
     setting_id?: SortOrder
     lot_id?: SortOrder
-    filing_item_id?: SortOrder
+    filing_item_id?: SortOrderInput | SortOrder
     settingId?: AddSettingOrderByWithRelationInput
     lotId?: LotInfoOrderByWithRelationInput
     itemId?: FilingItemsOrderByWithRelationInput
@@ -33631,17 +38629,17 @@ export namespace Prisma {
     NOT?: LotSettingMapperWhereInput | LotSettingMapperWhereInput[]
     setting_id?: IntFilter<"LotSettingMapper"> | number
     lot_id?: IntFilter<"LotSettingMapper"> | number
-    filing_item_id?: IntFilter<"LotSettingMapper"> | number
+    filing_item_id?: IntNullableFilter<"LotSettingMapper"> | number | null
     settingId?: XOR<AddSettingScalarRelationFilter, AddSettingWhereInput>
     lotId?: XOR<LotInfoScalarRelationFilter, LotInfoWhereInput>
-    itemId?: XOR<FilingItemsScalarRelationFilter, FilingItemsWhereInput>
+    itemId?: XOR<FilingItemsNullableScalarRelationFilter, FilingItemsWhereInput> | null
   }, "id">
 
   export type LotSettingMapperOrderByWithAggregationInput = {
     id?: SortOrder
     setting_id?: SortOrder
     lot_id?: SortOrder
-    filing_item_id?: SortOrder
+    filing_item_id?: SortOrderInput | SortOrder
     _count?: LotSettingMapperCountOrderByAggregateInput
     _avg?: LotSettingMapperAvgOrderByAggregateInput
     _max?: LotSettingMapperMaxOrderByAggregateInput
@@ -33656,7 +38654,90 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"LotSettingMapper"> | number
     setting_id?: IntWithAggregatesFilter<"LotSettingMapper"> | number
     lot_id?: IntWithAggregatesFilter<"LotSettingMapper"> | number
-    filing_item_id?: IntWithAggregatesFilter<"LotSettingMapper"> | number
+    filing_item_id?: IntNullableWithAggregatesFilter<"LotSettingMapper"> | number | null
+  }
+
+  export type SettingTotalBalanceWhereInput = {
+    AND?: SettingTotalBalanceWhereInput | SettingTotalBalanceWhereInput[]
+    OR?: SettingTotalBalanceWhereInput[]
+    NOT?: SettingTotalBalanceWhereInput | SettingTotalBalanceWhereInput[]
+    id?: IntFilter<"SettingTotalBalance"> | number
+    createdAt?: DateTimeFilter<"SettingTotalBalance"> | Date | string
+    receipt_weight?: FloatFilter<"SettingTotalBalance"> | number
+    stone_count?: FloatFilter<"SettingTotalBalance"> | number
+    stone_weight?: FloatFilter<"SettingTotalBalance"> | number
+    remarks?: StringNullableFilter<"SettingTotalBalance"> | string | null
+    wastage?: BoolFilter<"SettingTotalBalance"> | boolean
+    total_scrap_weight?: FloatNullableFilter<"SettingTotalBalance"> | number | null
+    balance?: FloatNullableFilter<"SettingTotalBalance"> | number | null
+    setting_entry_id?: IntFilter<"SettingTotalBalance"> | number
+    setting_entry?: XOR<SettingEntryScalarRelationFilter, SettingEntryWhereInput>
+  }
+
+  export type SettingTotalBalanceOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    wastage?: SortOrder
+    total_scrap_weight?: SortOrderInput | SortOrder
+    balance?: SortOrderInput | SortOrder
+    setting_entry_id?: SortOrder
+    setting_entry?: SettingEntryOrderByWithRelationInput
+    _relevance?: SettingTotalBalanceOrderByRelevanceInput
+  }
+
+  export type SettingTotalBalanceWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: SettingTotalBalanceWhereInput | SettingTotalBalanceWhereInput[]
+    OR?: SettingTotalBalanceWhereInput[]
+    NOT?: SettingTotalBalanceWhereInput | SettingTotalBalanceWhereInput[]
+    createdAt?: DateTimeFilter<"SettingTotalBalance"> | Date | string
+    receipt_weight?: FloatFilter<"SettingTotalBalance"> | number
+    stone_count?: FloatFilter<"SettingTotalBalance"> | number
+    stone_weight?: FloatFilter<"SettingTotalBalance"> | number
+    remarks?: StringNullableFilter<"SettingTotalBalance"> | string | null
+    wastage?: BoolFilter<"SettingTotalBalance"> | boolean
+    total_scrap_weight?: FloatNullableFilter<"SettingTotalBalance"> | number | null
+    balance?: FloatNullableFilter<"SettingTotalBalance"> | number | null
+    setting_entry_id?: IntFilter<"SettingTotalBalance"> | number
+    setting_entry?: XOR<SettingEntryScalarRelationFilter, SettingEntryWhereInput>
+  }, "id">
+
+  export type SettingTotalBalanceOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    wastage?: SortOrder
+    total_scrap_weight?: SortOrderInput | SortOrder
+    balance?: SortOrderInput | SortOrder
+    setting_entry_id?: SortOrder
+    _count?: SettingTotalBalanceCountOrderByAggregateInput
+    _avg?: SettingTotalBalanceAvgOrderByAggregateInput
+    _max?: SettingTotalBalanceMaxOrderByAggregateInput
+    _min?: SettingTotalBalanceMinOrderByAggregateInput
+    _sum?: SettingTotalBalanceSumOrderByAggregateInput
+  }
+
+  export type SettingTotalBalanceScalarWhereWithAggregatesInput = {
+    AND?: SettingTotalBalanceScalarWhereWithAggregatesInput | SettingTotalBalanceScalarWhereWithAggregatesInput[]
+    OR?: SettingTotalBalanceScalarWhereWithAggregatesInput[]
+    NOT?: SettingTotalBalanceScalarWhereWithAggregatesInput | SettingTotalBalanceScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"SettingTotalBalance"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"SettingTotalBalance"> | Date | string
+    receipt_weight?: FloatWithAggregatesFilter<"SettingTotalBalance"> | number
+    stone_count?: FloatWithAggregatesFilter<"SettingTotalBalance"> | number
+    stone_weight?: FloatWithAggregatesFilter<"SettingTotalBalance"> | number
+    remarks?: StringNullableWithAggregatesFilter<"SettingTotalBalance"> | string | null
+    wastage?: BoolWithAggregatesFilter<"SettingTotalBalance"> | boolean
+    total_scrap_weight?: FloatNullableWithAggregatesFilter<"SettingTotalBalance"> | number | null
+    balance?: FloatNullableWithAggregatesFilter<"SettingTotalBalance"> | number | null
+    setting_entry_id?: IntWithAggregatesFilter<"SettingTotalBalance"> | number
   }
 
   export type SettingWastageWhereInput = {
@@ -33665,19 +38746,35 @@ export namespace Prisma {
     NOT?: SettingWastageWhereInput | SettingWastageWhereInput[]
     id?: IntFilter<"SettingWastage"> | number
     createdAt?: DateTimeFilter<"SettingWastage"> | Date | string
+    total_receipt?: FloatFilter<"SettingWastage"> | number
+    total_wastage?: FloatFilter<"SettingWastage"> | number
+    balance?: FloatFilter<"SettingWastage"> | number
     wastage_percentage?: IntFilter<"SettingWastage"> | number
     given_gold?: IntNullableFilter<"SettingWastage"> | number | null
     add_wastage?: FloatNullableFilter<"SettingWastage"> | number | null
+    overall_wastage?: FloatFilter<"SettingWastage"> | number
+    closing_balance?: FloatFilter<"SettingWastage"> | number
+    opening_balance?: FloatFilter<"SettingWastage"> | number
+    setting_entry_id?: IntFilter<"SettingWastage"> | number
     setting_items?: SettingItemsListRelationFilter
+    SettingEntryId?: XOR<SettingEntryScalarRelationFilter, SettingEntryWhereInput>
   }
 
   export type SettingWastageOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrderInput | SortOrder
     add_wastage?: SortOrderInput | SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    setting_entry_id?: SortOrder
     setting_items?: SettingItemsOrderByRelationAggregateInput
+    SettingEntryId?: SettingEntryOrderByWithRelationInput
   }
 
   export type SettingWastageWhereUniqueInput = Prisma.AtLeast<{
@@ -33686,18 +38783,33 @@ export namespace Prisma {
     OR?: SettingWastageWhereInput[]
     NOT?: SettingWastageWhereInput | SettingWastageWhereInput[]
     createdAt?: DateTimeFilter<"SettingWastage"> | Date | string
+    total_receipt?: FloatFilter<"SettingWastage"> | number
+    total_wastage?: FloatFilter<"SettingWastage"> | number
+    balance?: FloatFilter<"SettingWastage"> | number
     wastage_percentage?: IntFilter<"SettingWastage"> | number
     given_gold?: IntNullableFilter<"SettingWastage"> | number | null
     add_wastage?: FloatNullableFilter<"SettingWastage"> | number | null
+    overall_wastage?: FloatFilter<"SettingWastage"> | number
+    closing_balance?: FloatFilter<"SettingWastage"> | number
+    opening_balance?: FloatFilter<"SettingWastage"> | number
+    setting_entry_id?: IntFilter<"SettingWastage"> | number
     setting_items?: SettingItemsListRelationFilter
+    SettingEntryId?: XOR<SettingEntryScalarRelationFilter, SettingEntryWhereInput>
   }, "id">
 
   export type SettingWastageOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrderInput | SortOrder
     add_wastage?: SortOrderInput | SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    setting_entry_id?: SortOrder
     _count?: SettingWastageCountOrderByAggregateInput
     _avg?: SettingWastageAvgOrderByAggregateInput
     _max?: SettingWastageMaxOrderByAggregateInput
@@ -33711,9 +38823,16 @@ export namespace Prisma {
     NOT?: SettingWastageScalarWhereWithAggregatesInput | SettingWastageScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"SettingWastage"> | number
     createdAt?: DateTimeWithAggregatesFilter<"SettingWastage"> | Date | string
+    total_receipt?: FloatWithAggregatesFilter<"SettingWastage"> | number
+    total_wastage?: FloatWithAggregatesFilter<"SettingWastage"> | number
+    balance?: FloatWithAggregatesFilter<"SettingWastage"> | number
     wastage_percentage?: IntWithAggregatesFilter<"SettingWastage"> | number
     given_gold?: IntNullableWithAggregatesFilter<"SettingWastage"> | number | null
     add_wastage?: FloatNullableWithAggregatesFilter<"SettingWastage"> | number | null
+    overall_wastage?: FloatWithAggregatesFilter<"SettingWastage"> | number
+    closing_balance?: FloatWithAggregatesFilter<"SettingWastage"> | number
+    opening_balance?: FloatWithAggregatesFilter<"SettingWastage"> | number
+    setting_entry_id?: IntWithAggregatesFilter<"SettingWastage"> | number
   }
 
   export type BuffingEntryWhereInput = {
@@ -33728,6 +38847,8 @@ export namespace Prisma {
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
     filing_items?: FilingItemsListRelationFilter
     setting_items?: SettingItemsListRelationFilter
+    BuffingTotalBalance?: BuffingTotalBalanceListRelationFilter
+    BuffingWastage?: BuffingWastageListRelationFilter
   }
 
   export type BuffingEntryOrderByWithRelationInput = {
@@ -33739,6 +38860,8 @@ export namespace Prisma {
     castingItem?: CastingItemsOrderByWithRelationInput
     filing_items?: FilingItemsOrderByRelationAggregateInput
     setting_items?: SettingItemsOrderByRelationAggregateInput
+    BuffingTotalBalance?: BuffingTotalBalanceOrderByRelationAggregateInput
+    BuffingWastage?: BuffingWastageOrderByRelationAggregateInput
   }
 
   export type BuffingEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -33753,6 +38876,8 @@ export namespace Prisma {
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
     filing_items?: FilingItemsListRelationFilter
     setting_items?: SettingItemsListRelationFilter
+    BuffingTotalBalance?: BuffingTotalBalanceListRelationFilter
+    BuffingWastage?: BuffingWastageListRelationFilter
   }, "id" | "casting_item_id">
 
   export type BuffingEntryOrderByWithAggregationInput = {
@@ -33783,9 +38908,6 @@ export namespace Prisma {
     NOT?: BuffingItemsWhereInput | BuffingItemsWhereInput[]
     id?: IntFilter<"BuffingItems"> | number
     createdAt?: DateTimeFilter<"BuffingItems"> | Date | string
-    receipt_weight?: FloatFilter<"BuffingItems"> | number
-    remarks?: StringFilter<"BuffingItems"> | string
-    wastage?: BoolFilter<"BuffingItems"> | boolean
     type?: EnumCASTINGENTRYTYPEFilter<"BuffingItems"> | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntFilter<"BuffingItems"> | number
     scrap_weight?: FloatFilter<"BuffingItems"> | number
@@ -33801,9 +38923,6 @@ export namespace Prisma {
   export type BuffingItemsOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    receipt_weight?: SortOrder
-    remarks?: SortOrder
-    wastage?: SortOrder
     type?: SortOrder
     buffing_item_id?: SortOrder
     scrap_weight?: SortOrder
@@ -33823,9 +38942,6 @@ export namespace Prisma {
     OR?: BuffingItemsWhereInput[]
     NOT?: BuffingItemsWhereInput | BuffingItemsWhereInput[]
     createdAt?: DateTimeFilter<"BuffingItems"> | Date | string
-    receipt_weight?: FloatFilter<"BuffingItems"> | number
-    remarks?: StringFilter<"BuffingItems"> | string
-    wastage?: BoolFilter<"BuffingItems"> | boolean
     type?: EnumCASTINGENTRYTYPEFilter<"BuffingItems"> | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntFilter<"BuffingItems"> | number
     scrap_weight?: FloatFilter<"BuffingItems"> | number
@@ -33841,9 +38957,6 @@ export namespace Prisma {
   export type BuffingItemsOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    receipt_weight?: SortOrder
-    remarks?: SortOrder
-    wastage?: SortOrder
     type?: SortOrder
     buffing_item_id?: SortOrder
     scrap_weight?: SortOrder
@@ -33863,15 +38976,85 @@ export namespace Prisma {
     NOT?: BuffingItemsScalarWhereWithAggregatesInput | BuffingItemsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"BuffingItems"> | number
     createdAt?: DateTimeWithAggregatesFilter<"BuffingItems"> | Date | string
-    receipt_weight?: FloatWithAggregatesFilter<"BuffingItems"> | number
-    remarks?: StringWithAggregatesFilter<"BuffingItems"> | string
-    wastage?: BoolWithAggregatesFilter<"BuffingItems"> | boolean
     type?: EnumCASTINGENTRYTYPEWithAggregatesFilter<"BuffingItems"> | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntWithAggregatesFilter<"BuffingItems"> | number
     scrap_weight?: FloatWithAggregatesFilter<"BuffingItems"> | number
     touch_id?: IntWithAggregatesFilter<"BuffingItems"> | number
     item_purity?: FloatWithAggregatesFilter<"BuffingItems"> | number
     scrap_remarks?: StringWithAggregatesFilter<"BuffingItems"> | string
+  }
+
+  export type BuffingTotalBalanceWhereInput = {
+    AND?: BuffingTotalBalanceWhereInput | BuffingTotalBalanceWhereInput[]
+    OR?: BuffingTotalBalanceWhereInput[]
+    NOT?: BuffingTotalBalanceWhereInput | BuffingTotalBalanceWhereInput[]
+    id?: IntFilter<"BuffingTotalBalance"> | number
+    createdAt?: DateTimeFilter<"BuffingTotalBalance"> | Date | string
+    receipt_weight?: FloatFilter<"BuffingTotalBalance"> | number
+    remarks?: StringFilter<"BuffingTotalBalance"> | string
+    wastage?: BoolFilter<"BuffingTotalBalance"> | boolean
+    total_scrap_weight?: FloatNullableFilter<"BuffingTotalBalance"> | number | null
+    balance?: FloatFilter<"BuffingTotalBalance"> | number
+    buffing_entry_id?: IntFilter<"BuffingTotalBalance"> | number
+    BuffingEntryId?: XOR<BuffingEntryScalarRelationFilter, BuffingEntryWhereInput>
+  }
+
+  export type BuffingTotalBalanceOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    total_scrap_weight?: SortOrderInput | SortOrder
+    balance?: SortOrder
+    buffing_entry_id?: SortOrder
+    BuffingEntryId?: BuffingEntryOrderByWithRelationInput
+    _relevance?: BuffingTotalBalanceOrderByRelevanceInput
+  }
+
+  export type BuffingTotalBalanceWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BuffingTotalBalanceWhereInput | BuffingTotalBalanceWhereInput[]
+    OR?: BuffingTotalBalanceWhereInput[]
+    NOT?: BuffingTotalBalanceWhereInput | BuffingTotalBalanceWhereInput[]
+    createdAt?: DateTimeFilter<"BuffingTotalBalance"> | Date | string
+    receipt_weight?: FloatFilter<"BuffingTotalBalance"> | number
+    remarks?: StringFilter<"BuffingTotalBalance"> | string
+    wastage?: BoolFilter<"BuffingTotalBalance"> | boolean
+    total_scrap_weight?: FloatNullableFilter<"BuffingTotalBalance"> | number | null
+    balance?: FloatFilter<"BuffingTotalBalance"> | number
+    buffing_entry_id?: IntFilter<"BuffingTotalBalance"> | number
+    BuffingEntryId?: XOR<BuffingEntryScalarRelationFilter, BuffingEntryWhereInput>
+  }, "id">
+
+  export type BuffingTotalBalanceOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    total_scrap_weight?: SortOrderInput | SortOrder
+    balance?: SortOrder
+    buffing_entry_id?: SortOrder
+    _count?: BuffingTotalBalanceCountOrderByAggregateInput
+    _avg?: BuffingTotalBalanceAvgOrderByAggregateInput
+    _max?: BuffingTotalBalanceMaxOrderByAggregateInput
+    _min?: BuffingTotalBalanceMinOrderByAggregateInput
+    _sum?: BuffingTotalBalanceSumOrderByAggregateInput
+  }
+
+  export type BuffingTotalBalanceScalarWhereWithAggregatesInput = {
+    AND?: BuffingTotalBalanceScalarWhereWithAggregatesInput | BuffingTotalBalanceScalarWhereWithAggregatesInput[]
+    OR?: BuffingTotalBalanceScalarWhereWithAggregatesInput[]
+    NOT?: BuffingTotalBalanceScalarWhereWithAggregatesInput | BuffingTotalBalanceScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"BuffingTotalBalance"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"BuffingTotalBalance"> | Date | string
+    receipt_weight?: FloatWithAggregatesFilter<"BuffingTotalBalance"> | number
+    remarks?: StringWithAggregatesFilter<"BuffingTotalBalance"> | string
+    wastage?: BoolWithAggregatesFilter<"BuffingTotalBalance"> | boolean
+    total_scrap_weight?: FloatNullableWithAggregatesFilter<"BuffingTotalBalance"> | number | null
+    balance?: FloatWithAggregatesFilter<"BuffingTotalBalance"> | number
+    buffing_entry_id?: IntWithAggregatesFilter<"BuffingTotalBalance"> | number
   }
 
   export type LotBuffingMapperWhereInput = {
@@ -33946,18 +39129,34 @@ export namespace Prisma {
     NOT?: BuffingWastageWhereInput | BuffingWastageWhereInput[]
     id?: IntFilter<"BuffingWastage"> | number
     createdAt?: DateTimeFilter<"BuffingWastage"> | Date | string
+    total_receipt?: FloatFilter<"BuffingWastage"> | number
+    total_wastage?: FloatFilter<"BuffingWastage"> | number
+    balance?: FloatFilter<"BuffingWastage"> | number
     wastage_percentage?: IntFilter<"BuffingWastage"> | number
-    given_gold?: IntNullableFilter<"BuffingWastage"> | number | null
+    given_gold?: FloatNullableFilter<"BuffingWastage"> | number | null
     add_wastage?: FloatNullableFilter<"BuffingWastage"> | number | null
+    overall_wastage?: FloatFilter<"BuffingWastage"> | number
+    closing_balance?: FloatFilter<"BuffingWastage"> | number
+    opening_balance?: FloatFilter<"BuffingWastage"> | number
+    buffing_entry_id?: IntFilter<"BuffingWastage"> | number
+    BuffingEntryId?: XOR<BuffingEntryScalarRelationFilter, BuffingEntryWhereInput>
     buffing_items?: BuffingItemsListRelationFilter
   }
 
   export type BuffingWastageOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrderInput | SortOrder
     add_wastage?: SortOrderInput | SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    buffing_entry_id?: SortOrder
+    BuffingEntryId?: BuffingEntryOrderByWithRelationInput
     buffing_items?: BuffingItemsOrderByRelationAggregateInput
   }
 
@@ -33967,18 +39166,33 @@ export namespace Prisma {
     OR?: BuffingWastageWhereInput[]
     NOT?: BuffingWastageWhereInput | BuffingWastageWhereInput[]
     createdAt?: DateTimeFilter<"BuffingWastage"> | Date | string
+    total_receipt?: FloatFilter<"BuffingWastage"> | number
+    total_wastage?: FloatFilter<"BuffingWastage"> | number
+    balance?: FloatFilter<"BuffingWastage"> | number
     wastage_percentage?: IntFilter<"BuffingWastage"> | number
-    given_gold?: IntNullableFilter<"BuffingWastage"> | number | null
+    given_gold?: FloatNullableFilter<"BuffingWastage"> | number | null
     add_wastage?: FloatNullableFilter<"BuffingWastage"> | number | null
+    overall_wastage?: FloatFilter<"BuffingWastage"> | number
+    closing_balance?: FloatFilter<"BuffingWastage"> | number
+    opening_balance?: FloatFilter<"BuffingWastage"> | number
+    buffing_entry_id?: IntFilter<"BuffingWastage"> | number
+    BuffingEntryId?: XOR<BuffingEntryScalarRelationFilter, BuffingEntryWhereInput>
     buffing_items?: BuffingItemsListRelationFilter
   }, "id">
 
   export type BuffingWastageOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrderInput | SortOrder
     add_wastage?: SortOrderInput | SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    buffing_entry_id?: SortOrder
     _count?: BuffingWastageCountOrderByAggregateInput
     _avg?: BuffingWastageAvgOrderByAggregateInput
     _max?: BuffingWastageMaxOrderByAggregateInput
@@ -33992,9 +39206,16 @@ export namespace Prisma {
     NOT?: BuffingWastageScalarWhereWithAggregatesInput | BuffingWastageScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"BuffingWastage"> | number
     createdAt?: DateTimeWithAggregatesFilter<"BuffingWastage"> | Date | string
+    total_receipt?: FloatWithAggregatesFilter<"BuffingWastage"> | number
+    total_wastage?: FloatWithAggregatesFilter<"BuffingWastage"> | number
+    balance?: FloatWithAggregatesFilter<"BuffingWastage"> | number
     wastage_percentage?: IntWithAggregatesFilter<"BuffingWastage"> | number
-    given_gold?: IntNullableWithAggregatesFilter<"BuffingWastage"> | number | null
+    given_gold?: FloatNullableWithAggregatesFilter<"BuffingWastage"> | number | null
     add_wastage?: FloatNullableWithAggregatesFilter<"BuffingWastage"> | number | null
+    overall_wastage?: FloatWithAggregatesFilter<"BuffingWastage"> | number
+    closing_balance?: FloatWithAggregatesFilter<"BuffingWastage"> | number
+    opening_balance?: FloatWithAggregatesFilter<"BuffingWastage"> | number
+    buffing_entry_id?: IntWithAggregatesFilter<"BuffingWastage"> | number
   }
 
   export type StockWhereInput = {
@@ -34012,7 +39233,6 @@ export namespace Prisma {
     touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
-    scrap_wastage?: FloatNullableFilter<"Stock"> | number | null
     casting_customer_id?: IntFilter<"Stock"> | number
     castingItem?: XOR<CastingItemsNullableScalarRelationFilter, CastingItemsWhereInput> | null
     filingItem?: XOR<FilingItemsNullableScalarRelationFilter, FilingItemsWhereInput> | null
@@ -34035,7 +39255,6 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
-    scrap_wastage?: SortOrderInput | SortOrder
     casting_customer_id?: SortOrder
     castingItem?: CastingItemsOrderByWithRelationInput
     filingItem?: FilingItemsOrderByWithRelationInput
@@ -34062,7 +39281,6 @@ export namespace Prisma {
     touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
-    scrap_wastage?: FloatNullableFilter<"Stock"> | number | null
     casting_customer_id?: IntFilter<"Stock"> | number
     castingItem?: XOR<CastingItemsNullableScalarRelationFilter, CastingItemsWhereInput> | null
     filingItem?: XOR<FilingItemsNullableScalarRelationFilter, FilingItemsWhereInput> | null
@@ -34085,7 +39303,6 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
-    scrap_wastage?: SortOrderInput | SortOrder
     casting_customer_id?: SortOrder
     _count?: StockCountOrderByAggregateInput
     _avg?: StockAvgOrderByAggregateInput
@@ -34109,7 +39326,6 @@ export namespace Prisma {
     touch_id?: IntWithAggregatesFilter<"Stock"> | number
     item_purity?: FloatWithAggregatesFilter<"Stock"> | number
     remarks?: StringNullableWithAggregatesFilter<"Stock"> | string | null
-    scrap_wastage?: FloatNullableWithAggregatesFilter<"Stock"> | number | null
     casting_customer_id?: IntWithAggregatesFilter<"Stock"> | number
   }
 
@@ -34855,6 +40071,7 @@ export namespace Prisma {
     touch: AddTouchCreateNestedOneWithoutCasting_entryInput
     casting_customer: AddCastingCreateNestedOneWithoutEntriesInput
     items?: CastingItemsCreateNestedManyWithoutCastingEntryInput
+    CastiingTotalBalance?: CastiingTotalBalanceCreateNestedManyWithoutItem_entry_idInput
   }
 
   export type CastingEntryUncheckedCreateInput = {
@@ -34870,6 +40087,7 @@ export namespace Prisma {
     final_weight: number
     casting_customer_id: number
     items?: CastingItemsUncheckedCreateNestedManyWithoutCastingEntryInput
+    CastiingTotalBalance?: CastiingTotalBalanceUncheckedCreateNestedManyWithoutItem_entry_idInput
   }
 
   export type CastingEntryUpdateInput = {
@@ -34884,6 +40102,7 @@ export namespace Prisma {
     touch?: AddTouchUpdateOneRequiredWithoutCasting_entryNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutEntriesNestedInput
     items?: CastingItemsUpdateManyWithoutCastingEntryNestedInput
+    CastiingTotalBalance?: CastiingTotalBalanceUpdateManyWithoutItem_entry_idNestedInput
   }
 
   export type CastingEntryUncheckedUpdateInput = {
@@ -34899,6 +40118,7 @@ export namespace Prisma {
     final_weight?: FloatFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     items?: CastingItemsUncheckedUpdateManyWithoutCastingEntryNestedInput
+    CastiingTotalBalance?: CastiingTotalBalanceUncheckedUpdateManyWithoutItem_entry_idNestedInput
   }
 
   export type CastingEntryCreateManyInput = {
@@ -34946,9 +40166,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
     item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
@@ -34969,9 +40186,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
@@ -34987,9 +40201,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
@@ -35010,9 +40221,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -35031,9 +40239,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
   }
@@ -35044,9 +40249,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type CastingItemsUncheckedUpdateManyInput = {
@@ -35058,11 +40260,74 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CastiingTotalBalanceCreateInput = {
+    createdAt?: Date | string
+    total_item_weight: number
+    current_balance_weight: number
+    total_scrap_weight?: number | null
+    total_wastage: number
+    item_entry_id: CastingEntryCreateNestedOneWithoutCastiingTotalBalanceInput
+  }
+
+  export type CastiingTotalBalanceUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    total_item_weight: number
+    current_balance_weight: number
+    total_scrap_weight?: number | null
+    total_wastage: number
+    item_entry: number
+  }
+
+  export type CastiingTotalBalanceUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_item_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    item_entry_id?: CastingEntryUpdateOneRequiredWithoutCastiingTotalBalanceNestedInput
+  }
+
+  export type CastiingTotalBalanceUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_item_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    item_entry?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CastiingTotalBalanceCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    total_item_weight: number
+    current_balance_weight: number
+    total_scrap_weight?: number | null
+    total_wastage: number
+    item_entry: number
+  }
+
+  export type CastiingTotalBalanceUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_item_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type CastiingTotalBalanceUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_item_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    item_entry?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotInfoCreateInput = {
@@ -35132,6 +40397,8 @@ export namespace Prisma {
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
+    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
   }
 
   export type FilingEntryUncheckedCreateInput = {
@@ -35140,6 +40407,8 @@ export namespace Prisma {
     filing_person_id: number
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
+    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
   }
 
   export type FilingEntryUpdateInput = {
@@ -35147,6 +40416,8 @@ export namespace Prisma {
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
+    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
   }
 
   export type FilingEntryUncheckedUpdateInput = {
@@ -35155,6 +40426,8 @@ export namespace Prisma {
     filing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
+    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
   }
 
   export type FilingEntryCreateManyInput = {
@@ -35181,11 +40454,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
@@ -35208,11 +40477,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
     stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
@@ -35228,11 +40493,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
@@ -35255,11 +40516,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
     stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
@@ -35279,11 +40536,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
   }
 
@@ -35293,11 +40546,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type FilingItemsUncheckedUpdateManyInput = {
@@ -35310,11 +40559,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -35366,61 +40611,182 @@ export namespace Prisma {
     item_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type FilingTotalBalanceCreateInput = {
+    createdAt?: Date | string
+    after_weight?: number | null
+    total_product_weight: number
+    total_scrap_weight?: number | null
+    wastage: boolean
+    balance: number
+    filingEntryId: FilingEntryCreateNestedOneWithoutFilingItemsIdInput
+  }
+
+  export type FilingTotalBalanceUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    after_weight?: number | null
+    total_product_weight: number
+    total_scrap_weight?: number | null
+    wastage: boolean
+    balance: number
+    filing_entry_id: number
+  }
+
+  export type FilingTotalBalanceUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    balance?: FloatFieldUpdateOperationsInput | number
+    filingEntryId?: FilingEntryUpdateOneRequiredWithoutFilingItemsIdNestedInput
+  }
+
+  export type FilingTotalBalanceUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    balance?: FloatFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FilingTotalBalanceCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    after_weight?: number | null
+    total_product_weight: number
+    total_scrap_weight?: number | null
+    wastage: boolean
+    balance: number
+    filing_entry_id: number
+  }
+
+  export type FilingTotalBalanceUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    balance?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type FilingTotalBalanceUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    balance?: FloatFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
+  }
+
   export type FilingWastageCreateInput = {
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    filingEntryId: FilingEntryCreateNestedOneWithoutFilingWastageInput
     filing_items?: FilingItemsCreateNestedManyWithoutFiling_wastageInput
   }
 
   export type FilingWastageUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    filing_entry_id: number
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFiling_wastageInput
   }
 
   export type FilingWastageUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    filingEntryId?: FilingEntryUpdateOneRequiredWithoutFilingWastageNestedInput
     filing_items?: FilingItemsUpdateManyWithoutFiling_wastageNestedInput
   }
 
   export type FilingWastageUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     filing_items?: FilingItemsUncheckedUpdateManyWithoutFiling_wastageNestedInput
   }
 
   export type FilingWastageCreateManyInput = {
     id?: number
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    filing_entry_id: number
   }
 
   export type FilingWastageUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
   }
 
   export type FilingWastageUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type SettingEntryCreateInput = {
@@ -35428,6 +40794,8 @@ export namespace Prisma {
     setting_person: AddSettingCreateNestedOneWithoutSettingsInput
     castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateInput = {
@@ -35436,6 +40804,8 @@ export namespace Prisma {
     setting_person_id: number
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUpdateInput = {
@@ -35443,6 +40813,8 @@ export namespace Prisma {
     setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateInput = {
@@ -35451,6 +40823,8 @@ export namespace Prisma {
     setting_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryCreateManyInput = {
@@ -35473,11 +40847,6 @@ export namespace Prisma {
 
   export type SettingItemsCreateInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -35493,11 +40862,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     setting_item_id: number
     scrap_weight: number
@@ -35512,11 +40876,6 @@ export namespace Prisma {
 
   export type SettingItemsUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -35532,11 +40891,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -35552,11 +40906,6 @@ export namespace Prisma {
   export type SettingItemsCreateManyInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     setting_item_id: number
     scrap_weight: number
@@ -35567,11 +40916,6 @@ export namespace Prisma {
 
   export type SettingItemsUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -35581,11 +40925,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -35597,34 +40936,34 @@ export namespace Prisma {
   export type LotSettingMapperCreateInput = {
     settingId: AddSettingCreateNestedOneWithoutSettingMapperInput
     lotId: LotInfoCreateNestedOneWithoutSettingMapperInput
-    itemId: FilingItemsCreateNestedOneWithoutLot_setting_mapperInput
+    itemId?: FilingItemsCreateNestedOneWithoutLot_setting_mapperInput
   }
 
   export type LotSettingMapperUncheckedCreateInput = {
     id?: number
     setting_id: number
     lot_id: number
-    filing_item_id: number
+    filing_item_id?: number | null
   }
 
   export type LotSettingMapperUpdateInput = {
     settingId?: AddSettingUpdateOneRequiredWithoutSettingMapperNestedInput
     lotId?: LotInfoUpdateOneRequiredWithoutSettingMapperNestedInput
-    itemId?: FilingItemsUpdateOneRequiredWithoutLot_setting_mapperNestedInput
+    itemId?: FilingItemsUpdateOneWithoutLot_setting_mapperNestedInput
   }
 
   export type LotSettingMapperUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     setting_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type LotSettingMapperCreateManyInput = {
     id?: number
     setting_id: number
     lot_id: number
-    filing_item_id: number
+    filing_item_id?: number | null
   }
 
   export type LotSettingMapperUpdateManyMutationInput = {
@@ -35635,64 +40974,199 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     setting_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingTotalBalanceCreateInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance?: number | null
+    setting_entry: SettingEntryCreateNestedOneWithoutSettingTotalBalanceInput
+  }
+
+  export type SettingTotalBalanceUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance?: number | null
+    setting_entry_id: number
+  }
+
+  export type SettingTotalBalanceUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: NullableFloatFieldUpdateOperationsInput | number | null
+    setting_entry?: SettingEntryUpdateOneRequiredWithoutSettingTotalBalanceNestedInput
+  }
+
+  export type SettingTotalBalanceUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: NullableFloatFieldUpdateOperationsInput | number | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SettingTotalBalanceCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance?: number | null
+    setting_entry_id: number
+  }
+
+  export type SettingTotalBalanceUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingTotalBalanceUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: NullableFloatFieldUpdateOperationsInput | number | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type SettingWastageCreateInput = {
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
     setting_items?: SettingItemsCreateNestedManyWithoutSetting_wastageInput
+    SettingEntryId: SettingEntryCreateNestedOneWithoutSettingWastageInput
   }
 
   export type SettingWastageUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    setting_entry_id: number
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutSetting_wastageInput
   }
 
   export type SettingWastageUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
     setting_items?: SettingItemsUpdateManyWithoutSetting_wastageNestedInput
+    SettingEntryId?: SettingEntryUpdateOneRequiredWithoutSettingWastageNestedInput
   }
 
   export type SettingWastageUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
     setting_items?: SettingItemsUncheckedUpdateManyWithoutSetting_wastageNestedInput
   }
 
   export type SettingWastageCreateManyInput = {
     id?: number
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    setting_entry_id: number
   }
 
   export type SettingWastageUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
   }
 
   export type SettingWastageUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type BuffingEntryCreateInput = {
@@ -35701,6 +41175,8 @@ export namespace Prisma {
     castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
     filing_items?: FilingItemsCreateNestedManyWithoutBuffing_entryInput
     setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingWastage?: BuffingWastageCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryUncheckedCreateInput = {
@@ -35710,6 +41186,8 @@ export namespace Prisma {
     casting_item_id: number
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingWastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryUpdateInput = {
@@ -35718,6 +41196,8 @@ export namespace Prisma {
     castingItem?: CastingItemsUpdateOneRequiredWithoutBuffingEntryNestedInput
     filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
     setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingWastage?: BuffingWastageUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateInput = {
@@ -35727,6 +41207,8 @@ export namespace Prisma {
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
     setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingWastage?: BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingEntryCreateManyInput = {
@@ -35749,9 +41231,6 @@ export namespace Prisma {
 
   export type BuffingItemsCreateInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -35765,9 +41244,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     buffing_item_id: number
     scrap_weight: number
@@ -35780,9 +41256,6 @@ export namespace Prisma {
 
   export type BuffingItemsUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -35796,9 +41269,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -35812,9 +41282,6 @@ export namespace Prisma {
   export type BuffingItemsCreateManyInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     buffing_item_id: number
     scrap_weight: number
@@ -35825,9 +41292,6 @@ export namespace Prisma {
 
   export type BuffingItemsUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -35837,15 +41301,85 @@ export namespace Prisma {
   export type BuffingItemsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BuffingTotalBalanceCreateInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance: number
+    BuffingEntryId: BuffingEntryCreateNestedOneWithoutBuffingTotalBalanceInput
+  }
+
+  export type BuffingTotalBalanceUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance: number
+    buffing_entry_id: number
+  }
+
+  export type BuffingTotalBalanceUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: FloatFieldUpdateOperationsInput | number
+    BuffingEntryId?: BuffingEntryUpdateOneRequiredWithoutBuffingTotalBalanceNestedInput
+  }
+
+  export type BuffingTotalBalanceUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: FloatFieldUpdateOperationsInput | number
+    buffing_entry_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BuffingTotalBalanceCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance: number
+    buffing_entry_id: number
+  }
+
+  export type BuffingTotalBalanceUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type BuffingTotalBalanceUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: FloatFieldUpdateOperationsInput | number
+    buffing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotBuffingMapperCreateInput = {
@@ -35900,59 +41434,107 @@ export namespace Prisma {
 
   export type BuffingWastageCreateInput = {
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    BuffingEntryId: BuffingEntryCreateNestedOneWithoutBuffingWastageInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutBuffing_wastageInput
   }
 
   export type BuffingWastageUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    buffing_entry_id: number
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutBuffing_wastageInput
   }
 
   export type BuffingWastageUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
-    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    given_gold?: NullableFloatFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    BuffingEntryId?: BuffingEntryUpdateOneRequiredWithoutBuffingWastageNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutBuffing_wastageNestedInput
   }
 
   export type BuffingWastageUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
-    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    given_gold?: NullableFloatFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    buffing_entry_id?: IntFieldUpdateOperationsInput | number
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutBuffing_wastageNestedInput
   }
 
   export type BuffingWastageCreateManyInput = {
     id?: number
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    buffing_entry_id: number
   }
 
   export type BuffingWastageUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
-    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    given_gold?: NullableFloatFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
   }
 
   export type BuffingWastageUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
-    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    given_gold?: NullableFloatFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    buffing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type StockCreateInput = {
@@ -35960,7 +41542,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     castingItem?: CastingItemsCreateNestedOneWithoutStockInput
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
@@ -35982,7 +41563,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -35991,7 +41571,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
@@ -36013,7 +41592,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -36029,7 +41607,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -36038,7 +41615,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type StockUncheckedUpdateManyInput = {
@@ -36053,7 +41629,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -36884,6 +42459,16 @@ export namespace Prisma {
     isNot?: AddCastingWhereInput
   }
 
+  export type CastiingTotalBalanceListRelationFilter = {
+    every?: CastiingTotalBalanceWhereInput
+    some?: CastiingTotalBalanceWhereInput
+    none?: CastiingTotalBalanceWhereInput
+  }
+
+  export type CastiingTotalBalanceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type CastingEntryCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
@@ -36992,9 +42577,6 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    after_weight?: SortOrder
-    scrap_weight?: SortOrder
-    scrap_wastage?: SortOrder
     casting_entry_id?: SortOrder
     casting_customer_id?: SortOrder
   }
@@ -37005,9 +42587,6 @@ export namespace Prisma {
     weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
-    after_weight?: SortOrder
-    scrap_weight?: SortOrder
-    scrap_wastage?: SortOrder
     casting_entry_id?: SortOrder
     casting_customer_id?: SortOrder
   }
@@ -37021,9 +42600,6 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    after_weight?: SortOrder
-    scrap_weight?: SortOrder
-    scrap_wastage?: SortOrder
     casting_entry_id?: SortOrder
     casting_customer_id?: SortOrder
   }
@@ -37037,9 +42613,6 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    after_weight?: SortOrder
-    scrap_weight?: SortOrder
-    scrap_wastage?: SortOrder
     casting_entry_id?: SortOrder
     casting_customer_id?: SortOrder
   }
@@ -37050,9 +42623,6 @@ export namespace Prisma {
     weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
-    after_weight?: SortOrder
-    scrap_weight?: SortOrder
-    scrap_wastage?: SortOrder
     casting_entry_id?: SortOrder
     casting_customer_id?: SortOrder
   }
@@ -37065,6 +42635,54 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCASTINGENTRYTYPEFilter<$PrismaModel>
     _max?: NestedEnumCASTINGENTRYTYPEFilter<$PrismaModel>
+  }
+
+  export type CastiingTotalBalanceCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    total_item_weight?: SortOrder
+    current_balance_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    total_wastage?: SortOrder
+    item_entry?: SortOrder
+  }
+
+  export type CastiingTotalBalanceAvgOrderByAggregateInput = {
+    id?: SortOrder
+    total_item_weight?: SortOrder
+    current_balance_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    total_wastage?: SortOrder
+    item_entry?: SortOrder
+  }
+
+  export type CastiingTotalBalanceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    total_item_weight?: SortOrder
+    current_balance_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    total_wastage?: SortOrder
+    item_entry?: SortOrder
+  }
+
+  export type CastiingTotalBalanceMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    total_item_weight?: SortOrder
+    current_balance_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    total_wastage?: SortOrder
+    item_entry?: SortOrder
+  }
+
+  export type CastiingTotalBalanceSumOrderByAggregateInput = {
+    id?: SortOrder
+    total_item_weight?: SortOrder
+    current_balance_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    total_wastage?: SortOrder
+    item_entry?: SortOrder
   }
 
   export type AddFilingNullableScalarRelationFilter = {
@@ -37132,6 +42750,26 @@ export namespace Prisma {
     isNot?: CastingItemsWhereInput
   }
 
+  export type FilingTotalBalanceListRelationFilter = {
+    every?: FilingTotalBalanceWhereInput
+    some?: FilingTotalBalanceWhereInput
+    none?: FilingTotalBalanceWhereInput
+  }
+
+  export type FilingWastageListRelationFilter = {
+    every?: FilingWastageWhereInput
+    some?: FilingWastageWhereInput
+    none?: FilingWastageWhereInput
+  }
+
+  export type FilingTotalBalanceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FilingWastageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type FilingEntryCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
@@ -37165,11 +42803,6 @@ export namespace Prisma {
     casting_item_id?: SortOrder
   }
 
-  export type BoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
   export type EnumSTONEOPTIONNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel> | null
     in?: $Enums.STONEOPTION[] | null
@@ -37182,19 +42815,9 @@ export namespace Prisma {
     isNot?: FilingEntryWhereInput
   }
 
-  export type FilingWastageListRelationFilter = {
-    every?: FilingWastageWhereInput
-    some?: FilingWastageWhereInput
-    none?: FilingWastageWhereInput
-  }
-
   export type LotFilingMapperNullableScalarRelationFilter = {
     is?: LotFilingMapperWhereInput | null
     isNot?: LotFilingMapperWhereInput | null
-  }
-
-  export type FilingWastageOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type FilingItemsOrderByRelevanceInput = {
@@ -37213,11 +42836,7 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    wastage?: SortOrder
     stone_option?: SortOrder
-    after_weight?: SortOrder
-    scrap_weight?: SortOrder
-    scrap_wastage?: SortOrder
     lot_filing_mapper_id?: SortOrder
   }
 
@@ -37228,9 +42847,6 @@ export namespace Prisma {
     weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
-    after_weight?: SortOrder
-    scrap_weight?: SortOrder
-    scrap_wastage?: SortOrder
     lot_filing_mapper_id?: SortOrder
   }
 
@@ -37244,11 +42860,7 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    wastage?: SortOrder
     stone_option?: SortOrder
-    after_weight?: SortOrder
-    scrap_weight?: SortOrder
-    scrap_wastage?: SortOrder
     lot_filing_mapper_id?: SortOrder
   }
 
@@ -37262,11 +42874,7 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    wastage?: SortOrder
     stone_option?: SortOrder
-    after_weight?: SortOrder
-    scrap_weight?: SortOrder
-    scrap_wastage?: SortOrder
     lot_filing_mapper_id?: SortOrder
   }
 
@@ -37277,18 +42885,7 @@ export namespace Prisma {
     weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
-    after_weight?: SortOrder
-    scrap_weight?: SortOrder
-    scrap_wastage?: SortOrder
     lot_filing_mapper_id?: SortOrder
-  }
-
-  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type EnumSTONEOPTIONNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -37341,47 +42938,166 @@ export namespace Prisma {
     item_id?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type FilingTotalBalanceCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    after_weight?: SortOrder
+    total_product_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    wastage?: SortOrder
+    balance?: SortOrder
+    filing_entry_id?: SortOrder
+  }
+
+  export type FilingTotalBalanceAvgOrderByAggregateInput = {
+    id?: SortOrder
+    after_weight?: SortOrder
+    total_product_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    filing_entry_id?: SortOrder
+  }
+
+  export type FilingTotalBalanceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    after_weight?: SortOrder
+    total_product_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    wastage?: SortOrder
+    balance?: SortOrder
+    filing_entry_id?: SortOrder
+  }
+
+  export type FilingTotalBalanceMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    after_weight?: SortOrder
+    total_product_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    wastage?: SortOrder
+    balance?: SortOrder
+    filing_entry_id?: SortOrder
+  }
+
+  export type FilingTotalBalanceSumOrderByAggregateInput = {
+    id?: SortOrder
+    after_weight?: SortOrder
+    total_product_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    filing_entry_id?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type FilingWastageCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    filing_entry_id?: SortOrder
   }
 
   export type FilingWastageAvgOrderByAggregateInput = {
     id?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    filing_entry_id?: SortOrder
   }
 
   export type FilingWastageMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    filing_entry_id?: SortOrder
   }
 
   export type FilingWastageMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    filing_entry_id?: SortOrder
   }
 
   export type FilingWastageSumOrderByAggregateInput = {
     id?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    filing_entry_id?: SortOrder
   }
 
   export type AddSettingScalarRelationFilter = {
     is?: AddSettingWhereInput
     isNot?: AddSettingWhereInput
+  }
+
+  export type SettingTotalBalanceListRelationFilter = {
+    every?: SettingTotalBalanceWhereInput
+    some?: SettingTotalBalanceWhereInput
+    none?: SettingTotalBalanceWhereInput
+  }
+
+  export type SettingWastageListRelationFilter = {
+    every?: SettingWastageWhereInput
+    some?: SettingWastageWhereInput
+    none?: SettingWastageWhereInput
+  }
+
+  export type SettingTotalBalanceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SettingWastageOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type SettingEntryCountOrderByAggregateInput = {
@@ -37417,21 +43133,6 @@ export namespace Prisma {
     casting_item_id?: SortOrder
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type SettingWastageListRelationFilter = {
-    every?: SettingWastageWhereInput
-    some?: SettingWastageWhereInput
-    none?: SettingWastageWhereInput
-  }
-
-  export type SettingWastageOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type SettingItemsOrderByRelevanceInput = {
     fields: SettingItemsOrderByRelevanceFieldEnum | SettingItemsOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -37441,11 +43142,6 @@ export namespace Prisma {
   export type SettingItemsCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    receipt_weight?: SortOrder
-    stone_count?: SortOrder
-    stone_weight?: SortOrder
-    remarks?: SortOrder
-    wastage?: SortOrder
     type?: SortOrder
     setting_item_id?: SortOrder
     scrap_weight?: SortOrder
@@ -37456,9 +43152,6 @@ export namespace Prisma {
 
   export type SettingItemsAvgOrderByAggregateInput = {
     id?: SortOrder
-    receipt_weight?: SortOrder
-    stone_count?: SortOrder
-    stone_weight?: SortOrder
     setting_item_id?: SortOrder
     scrap_weight?: SortOrder
     touch_id?: SortOrder
@@ -37468,11 +43161,6 @@ export namespace Prisma {
   export type SettingItemsMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    receipt_weight?: SortOrder
-    stone_count?: SortOrder
-    stone_weight?: SortOrder
-    remarks?: SortOrder
-    wastage?: SortOrder
     type?: SortOrder
     setting_item_id?: SortOrder
     scrap_weight?: SortOrder
@@ -37484,11 +43172,6 @@ export namespace Prisma {
   export type SettingItemsMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    receipt_weight?: SortOrder
-    stone_count?: SortOrder
-    stone_weight?: SortOrder
-    remarks?: SortOrder
-    wastage?: SortOrder
     type?: SortOrder
     setting_item_id?: SortOrder
     scrap_weight?: SortOrder
@@ -37499,26 +43182,15 @@ export namespace Prisma {
 
   export type SettingItemsSumOrderByAggregateInput = {
     id?: SortOrder
-    receipt_weight?: SortOrder
-    stone_count?: SortOrder
-    stone_weight?: SortOrder
     setting_item_id?: SortOrder
     scrap_weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type FilingItemsScalarRelationFilter = {
-    is?: FilingItemsWhereInput
-    isNot?: FilingItemsWhereInput
+  export type FilingItemsNullableScalarRelationFilter = {
+    is?: FilingItemsWhereInput | null
+    isNot?: FilingItemsWhereInput | null
   }
 
   export type LotSettingMapperCountOrderByAggregateInput = {
@@ -37556,47 +43228,172 @@ export namespace Prisma {
     filing_item_id?: SortOrder
   }
 
+  export type SettingEntryScalarRelationFilter = {
+    is?: SettingEntryWhereInput
+    isNot?: SettingEntryWhereInput
+  }
+
+  export type SettingTotalBalanceOrderByRelevanceInput = {
+    fields: SettingTotalBalanceOrderByRelevanceFieldEnum | SettingTotalBalanceOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type SettingTotalBalanceCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    setting_entry_id?: SortOrder
+  }
+
+  export type SettingTotalBalanceAvgOrderByAggregateInput = {
+    id?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    setting_entry_id?: SortOrder
+  }
+
+  export type SettingTotalBalanceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    setting_entry_id?: SortOrder
+  }
+
+  export type SettingTotalBalanceMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    setting_entry_id?: SortOrder
+  }
+
+  export type SettingTotalBalanceSumOrderByAggregateInput = {
+    id?: SortOrder
+    receipt_weight?: SortOrder
+    stone_count?: SortOrder
+    stone_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    setting_entry_id?: SortOrder
+  }
+
   export type SettingWastageCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type SettingWastageAvgOrderByAggregateInput = {
     id?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type SettingWastageMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type SettingWastageMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type SettingWastageSumOrderByAggregateInput = {
     id?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type AddBuffingScalarRelationFilter = {
     is?: AddBuffingWhereInput
     isNot?: AddBuffingWhereInput
+  }
+
+  export type BuffingTotalBalanceListRelationFilter = {
+    every?: BuffingTotalBalanceWhereInput
+    some?: BuffingTotalBalanceWhereInput
+    none?: BuffingTotalBalanceWhereInput
+  }
+
+  export type BuffingWastageListRelationFilter = {
+    every?: BuffingWastageWhereInput
+    some?: BuffingWastageWhereInput
+    none?: BuffingWastageWhereInput
+  }
+
+  export type BuffingTotalBalanceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BuffingWastageOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type BuffingEntryCountOrderByAggregateInput = {
@@ -37632,16 +43429,6 @@ export namespace Prisma {
     casting_item_id?: SortOrder
   }
 
-  export type BuffingWastageListRelationFilter = {
-    every?: BuffingWastageWhereInput
-    some?: BuffingWastageWhereInput
-    none?: BuffingWastageWhereInput
-  }
-
-  export type BuffingWastageOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type BuffingItemsOrderByRelevanceInput = {
     fields: BuffingItemsOrderByRelevanceFieldEnum | BuffingItemsOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -37651,9 +43438,6 @@ export namespace Prisma {
   export type BuffingItemsCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    receipt_weight?: SortOrder
-    remarks?: SortOrder
-    wastage?: SortOrder
     type?: SortOrder
     buffing_item_id?: SortOrder
     scrap_weight?: SortOrder
@@ -37664,7 +43448,6 @@ export namespace Prisma {
 
   export type BuffingItemsAvgOrderByAggregateInput = {
     id?: SortOrder
-    receipt_weight?: SortOrder
     buffing_item_id?: SortOrder
     scrap_weight?: SortOrder
     touch_id?: SortOrder
@@ -37674,9 +43457,6 @@ export namespace Prisma {
   export type BuffingItemsMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    receipt_weight?: SortOrder
-    remarks?: SortOrder
-    wastage?: SortOrder
     type?: SortOrder
     buffing_item_id?: SortOrder
     scrap_weight?: SortOrder
@@ -37688,9 +43468,6 @@ export namespace Prisma {
   export type BuffingItemsMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    receipt_weight?: SortOrder
-    remarks?: SortOrder
-    wastage?: SortOrder
     type?: SortOrder
     buffing_item_id?: SortOrder
     scrap_weight?: SortOrder
@@ -37701,21 +43478,75 @@ export namespace Prisma {
 
   export type BuffingItemsSumOrderByAggregateInput = {
     id?: SortOrder
-    receipt_weight?: SortOrder
     buffing_item_id?: SortOrder
     scrap_weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
   }
 
+  export type BuffingEntryScalarRelationFilter = {
+    is?: BuffingEntryWhereInput
+    isNot?: BuffingEntryWhereInput
+  }
+
+  export type BuffingTotalBalanceOrderByRelevanceInput = {
+    fields: BuffingTotalBalanceOrderByRelevanceFieldEnum | BuffingTotalBalanceOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type BuffingTotalBalanceCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    buffing_entry_id?: SortOrder
+  }
+
+  export type BuffingTotalBalanceAvgOrderByAggregateInput = {
+    id?: SortOrder
+    receipt_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    buffing_entry_id?: SortOrder
+  }
+
+  export type BuffingTotalBalanceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    buffing_entry_id?: SortOrder
+  }
+
+  export type BuffingTotalBalanceMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    receipt_weight?: SortOrder
+    remarks?: SortOrder
+    wastage?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    buffing_entry_id?: SortOrder
+  }
+
+  export type BuffingTotalBalanceSumOrderByAggregateInput = {
+    id?: SortOrder
+    receipt_weight?: SortOrder
+    total_scrap_weight?: SortOrder
+    balance?: SortOrder
+    buffing_entry_id?: SortOrder
+  }
+
   export type SettingItemsNullableScalarRelationFilter = {
     is?: SettingItemsWhereInput | null
     isNot?: SettingItemsWhereInput | null
-  }
-
-  export type FilingItemsNullableScalarRelationFilter = {
-    is?: FilingItemsWhereInput | null
-    isNot?: FilingItemsWhereInput | null
   }
 
   export type LotBuffingMapperCountOrderByAggregateInput = {
@@ -37761,39 +43592,74 @@ export namespace Prisma {
   export type BuffingWastageCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    buffing_entry_id?: SortOrder
   }
 
   export type BuffingWastageAvgOrderByAggregateInput = {
     id?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    buffing_entry_id?: SortOrder
   }
 
   export type BuffingWastageMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    buffing_entry_id?: SortOrder
   }
 
   export type BuffingWastageMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    buffing_entry_id?: SortOrder
   }
 
   export type BuffingWastageSumOrderByAggregateInput = {
     id?: SortOrder
+    total_receipt?: SortOrder
+    total_wastage?: SortOrder
+    balance?: SortOrder
     wastage_percentage?: SortOrder
     given_gold?: SortOrder
     add_wastage?: SortOrder
+    overall_wastage?: SortOrder
+    closing_balance?: SortOrder
+    opening_balance?: SortOrder
+    buffing_entry_id?: SortOrder
   }
 
   export type CastingItemsNullableScalarRelationFilter = {
@@ -37824,7 +43690,6 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    scrap_wastage?: SortOrder
     casting_customer_id?: SortOrder
   }
 
@@ -37838,7 +43703,6 @@ export namespace Prisma {
     weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
-    scrap_wastage?: SortOrder
     casting_customer_id?: SortOrder
   }
 
@@ -37854,7 +43718,6 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    scrap_wastage?: SortOrder
     casting_customer_id?: SortOrder
   }
 
@@ -37870,7 +43733,6 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrder
-    scrap_wastage?: SortOrder
     casting_customer_id?: SortOrder
   }
 
@@ -37884,7 +43746,6 @@ export namespace Prisma {
     weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
-    scrap_wastage?: SortOrder
     casting_customer_id?: SortOrder
   }
 
@@ -38977,11 +44838,25 @@ export namespace Prisma {
     connect?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
   }
 
+  export type CastiingTotalBalanceCreateNestedManyWithoutItem_entry_idInput = {
+    create?: XOR<CastiingTotalBalanceCreateWithoutItem_entry_idInput, CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput> | CastiingTotalBalanceCreateWithoutItem_entry_idInput[] | CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput[]
+    connectOrCreate?: CastiingTotalBalanceCreateOrConnectWithoutItem_entry_idInput | CastiingTotalBalanceCreateOrConnectWithoutItem_entry_idInput[]
+    createMany?: CastiingTotalBalanceCreateManyItem_entry_idInputEnvelope
+    connect?: CastiingTotalBalanceWhereUniqueInput | CastiingTotalBalanceWhereUniqueInput[]
+  }
+
   export type CastingItemsUncheckedCreateNestedManyWithoutCastingEntryInput = {
     create?: XOR<CastingItemsCreateWithoutCastingEntryInput, CastingItemsUncheckedCreateWithoutCastingEntryInput> | CastingItemsCreateWithoutCastingEntryInput[] | CastingItemsUncheckedCreateWithoutCastingEntryInput[]
     connectOrCreate?: CastingItemsCreateOrConnectWithoutCastingEntryInput | CastingItemsCreateOrConnectWithoutCastingEntryInput[]
     createMany?: CastingItemsCreateManyCastingEntryInputEnvelope
     connect?: CastingItemsWhereUniqueInput | CastingItemsWhereUniqueInput[]
+  }
+
+  export type CastiingTotalBalanceUncheckedCreateNestedManyWithoutItem_entry_idInput = {
+    create?: XOR<CastiingTotalBalanceCreateWithoutItem_entry_idInput, CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput> | CastiingTotalBalanceCreateWithoutItem_entry_idInput[] | CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput[]
+    connectOrCreate?: CastiingTotalBalanceCreateOrConnectWithoutItem_entry_idInput | CastiingTotalBalanceCreateOrConnectWithoutItem_entry_idInput[]
+    createMany?: CastiingTotalBalanceCreateManyItem_entry_idInputEnvelope
+    connect?: CastiingTotalBalanceWhereUniqueInput | CastiingTotalBalanceWhereUniqueInput[]
   }
 
   export type AddTouchUpdateOneRequiredWithoutCasting_entryNestedInput = {
@@ -39014,6 +44889,20 @@ export namespace Prisma {
     deleteMany?: CastingItemsScalarWhereInput | CastingItemsScalarWhereInput[]
   }
 
+  export type CastiingTotalBalanceUpdateManyWithoutItem_entry_idNestedInput = {
+    create?: XOR<CastiingTotalBalanceCreateWithoutItem_entry_idInput, CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput> | CastiingTotalBalanceCreateWithoutItem_entry_idInput[] | CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput[]
+    connectOrCreate?: CastiingTotalBalanceCreateOrConnectWithoutItem_entry_idInput | CastiingTotalBalanceCreateOrConnectWithoutItem_entry_idInput[]
+    upsert?: CastiingTotalBalanceUpsertWithWhereUniqueWithoutItem_entry_idInput | CastiingTotalBalanceUpsertWithWhereUniqueWithoutItem_entry_idInput[]
+    createMany?: CastiingTotalBalanceCreateManyItem_entry_idInputEnvelope
+    set?: CastiingTotalBalanceWhereUniqueInput | CastiingTotalBalanceWhereUniqueInput[]
+    disconnect?: CastiingTotalBalanceWhereUniqueInput | CastiingTotalBalanceWhereUniqueInput[]
+    delete?: CastiingTotalBalanceWhereUniqueInput | CastiingTotalBalanceWhereUniqueInput[]
+    connect?: CastiingTotalBalanceWhereUniqueInput | CastiingTotalBalanceWhereUniqueInput[]
+    update?: CastiingTotalBalanceUpdateWithWhereUniqueWithoutItem_entry_idInput | CastiingTotalBalanceUpdateWithWhereUniqueWithoutItem_entry_idInput[]
+    updateMany?: CastiingTotalBalanceUpdateManyWithWhereWithoutItem_entry_idInput | CastiingTotalBalanceUpdateManyWithWhereWithoutItem_entry_idInput[]
+    deleteMany?: CastiingTotalBalanceScalarWhereInput | CastiingTotalBalanceScalarWhereInput[]
+  }
+
   export type CastingItemsUncheckedUpdateManyWithoutCastingEntryNestedInput = {
     create?: XOR<CastingItemsCreateWithoutCastingEntryInput, CastingItemsUncheckedCreateWithoutCastingEntryInput> | CastingItemsCreateWithoutCastingEntryInput[] | CastingItemsUncheckedCreateWithoutCastingEntryInput[]
     connectOrCreate?: CastingItemsCreateOrConnectWithoutCastingEntryInput | CastingItemsCreateOrConnectWithoutCastingEntryInput[]
@@ -39026,6 +44915,20 @@ export namespace Prisma {
     update?: CastingItemsUpdateWithWhereUniqueWithoutCastingEntryInput | CastingItemsUpdateWithWhereUniqueWithoutCastingEntryInput[]
     updateMany?: CastingItemsUpdateManyWithWhereWithoutCastingEntryInput | CastingItemsUpdateManyWithWhereWithoutCastingEntryInput[]
     deleteMany?: CastingItemsScalarWhereInput | CastingItemsScalarWhereInput[]
+  }
+
+  export type CastiingTotalBalanceUncheckedUpdateManyWithoutItem_entry_idNestedInput = {
+    create?: XOR<CastiingTotalBalanceCreateWithoutItem_entry_idInput, CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput> | CastiingTotalBalanceCreateWithoutItem_entry_idInput[] | CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput[]
+    connectOrCreate?: CastiingTotalBalanceCreateOrConnectWithoutItem_entry_idInput | CastiingTotalBalanceCreateOrConnectWithoutItem_entry_idInput[]
+    upsert?: CastiingTotalBalanceUpsertWithWhereUniqueWithoutItem_entry_idInput | CastiingTotalBalanceUpsertWithWhereUniqueWithoutItem_entry_idInput[]
+    createMany?: CastiingTotalBalanceCreateManyItem_entry_idInputEnvelope
+    set?: CastiingTotalBalanceWhereUniqueInput | CastiingTotalBalanceWhereUniqueInput[]
+    disconnect?: CastiingTotalBalanceWhereUniqueInput | CastiingTotalBalanceWhereUniqueInput[]
+    delete?: CastiingTotalBalanceWhereUniqueInput | CastiingTotalBalanceWhereUniqueInput[]
+    connect?: CastiingTotalBalanceWhereUniqueInput | CastiingTotalBalanceWhereUniqueInput[]
+    update?: CastiingTotalBalanceUpdateWithWhereUniqueWithoutItem_entry_idInput | CastiingTotalBalanceUpdateWithWhereUniqueWithoutItem_entry_idInput[]
+    updateMany?: CastiingTotalBalanceUpdateManyWithWhereWithoutItem_entry_idInput | CastiingTotalBalanceUpdateManyWithWhereWithoutItem_entry_idInput[]
+    deleteMany?: CastiingTotalBalanceScalarWhereInput | CastiingTotalBalanceScalarWhereInput[]
   }
 
   export type AddTouchCreateNestedOneWithoutCasting_itemsInput = {
@@ -39278,6 +45181,20 @@ export namespace Prisma {
     deleteMany?: LotFilingMapperScalarWhereInput | LotFilingMapperScalarWhereInput[]
   }
 
+  export type CastingEntryCreateNestedOneWithoutCastiingTotalBalanceInput = {
+    create?: XOR<CastingEntryCreateWithoutCastiingTotalBalanceInput, CastingEntryUncheckedCreateWithoutCastiingTotalBalanceInput>
+    connectOrCreate?: CastingEntryCreateOrConnectWithoutCastiingTotalBalanceInput
+    connect?: CastingEntryWhereUniqueInput
+  }
+
+  export type CastingEntryUpdateOneRequiredWithoutCastiingTotalBalanceNestedInput = {
+    create?: XOR<CastingEntryCreateWithoutCastiingTotalBalanceInput, CastingEntryUncheckedCreateWithoutCastiingTotalBalanceInput>
+    connectOrCreate?: CastingEntryCreateOrConnectWithoutCastiingTotalBalanceInput
+    upsert?: CastingEntryUpsertWithoutCastiingTotalBalanceInput
+    connect?: CastingEntryWhereUniqueInput
+    update?: XOR<XOR<CastingEntryUpdateToOneWithWhereWithoutCastiingTotalBalanceInput, CastingEntryUpdateWithoutCastiingTotalBalanceInput>, CastingEntryUncheckedUpdateWithoutCastiingTotalBalanceInput>
+  }
+
   export type AddFilingCreateNestedOneWithoutLotInfoInput = {
     create?: XOR<AddFilingCreateWithoutLotInfoInput, AddFilingUncheckedCreateWithoutLotInfoInput>
     connectOrCreate?: AddFilingCreateOrConnectWithoutLotInfoInput
@@ -39471,11 +45388,39 @@ export namespace Prisma {
     connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
   }
 
+  export type FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput = {
+    create?: XOR<FilingTotalBalanceCreateWithoutFilingEntryIdInput, FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput> | FilingTotalBalanceCreateWithoutFilingEntryIdInput[] | FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput[]
+    connectOrCreate?: FilingTotalBalanceCreateOrConnectWithoutFilingEntryIdInput | FilingTotalBalanceCreateOrConnectWithoutFilingEntryIdInput[]
+    createMany?: FilingTotalBalanceCreateManyFilingEntryIdInputEnvelope
+    connect?: FilingTotalBalanceWhereUniqueInput | FilingTotalBalanceWhereUniqueInput[]
+  }
+
+  export type FilingWastageCreateNestedManyWithoutFilingEntryIdInput = {
+    create?: XOR<FilingWastageCreateWithoutFilingEntryIdInput, FilingWastageUncheckedCreateWithoutFilingEntryIdInput> | FilingWastageCreateWithoutFilingEntryIdInput[] | FilingWastageUncheckedCreateWithoutFilingEntryIdInput[]
+    connectOrCreate?: FilingWastageCreateOrConnectWithoutFilingEntryIdInput | FilingWastageCreateOrConnectWithoutFilingEntryIdInput[]
+    createMany?: FilingWastageCreateManyFilingEntryIdInputEnvelope
+    connect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+  }
+
   export type FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput = {
     create?: XOR<FilingItemsCreateWithoutFiling_entryInput, FilingItemsUncheckedCreateWithoutFiling_entryInput> | FilingItemsCreateWithoutFiling_entryInput[] | FilingItemsUncheckedCreateWithoutFiling_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_entryInput | FilingItemsCreateOrConnectWithoutFiling_entryInput[]
     createMany?: FilingItemsCreateManyFiling_entryInputEnvelope
     connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput = {
+    create?: XOR<FilingTotalBalanceCreateWithoutFilingEntryIdInput, FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput> | FilingTotalBalanceCreateWithoutFilingEntryIdInput[] | FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput[]
+    connectOrCreate?: FilingTotalBalanceCreateOrConnectWithoutFilingEntryIdInput | FilingTotalBalanceCreateOrConnectWithoutFilingEntryIdInput[]
+    createMany?: FilingTotalBalanceCreateManyFilingEntryIdInputEnvelope
+    connect?: FilingTotalBalanceWhereUniqueInput | FilingTotalBalanceWhereUniqueInput[]
+  }
+
+  export type FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput = {
+    create?: XOR<FilingWastageCreateWithoutFilingEntryIdInput, FilingWastageUncheckedCreateWithoutFilingEntryIdInput> | FilingWastageCreateWithoutFilingEntryIdInput[] | FilingWastageUncheckedCreateWithoutFilingEntryIdInput[]
+    connectOrCreate?: FilingWastageCreateOrConnectWithoutFilingEntryIdInput | FilingWastageCreateOrConnectWithoutFilingEntryIdInput[]
+    createMany?: FilingWastageCreateManyFilingEntryIdInputEnvelope
+    connect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
   }
 
   export type AddFilingUpdateOneRequiredWithoutFilingsNestedInput = {
@@ -39508,6 +45453,34 @@ export namespace Prisma {
     deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
   }
 
+  export type FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput = {
+    create?: XOR<FilingTotalBalanceCreateWithoutFilingEntryIdInput, FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput> | FilingTotalBalanceCreateWithoutFilingEntryIdInput[] | FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput[]
+    connectOrCreate?: FilingTotalBalanceCreateOrConnectWithoutFilingEntryIdInput | FilingTotalBalanceCreateOrConnectWithoutFilingEntryIdInput[]
+    upsert?: FilingTotalBalanceUpsertWithWhereUniqueWithoutFilingEntryIdInput | FilingTotalBalanceUpsertWithWhereUniqueWithoutFilingEntryIdInput[]
+    createMany?: FilingTotalBalanceCreateManyFilingEntryIdInputEnvelope
+    set?: FilingTotalBalanceWhereUniqueInput | FilingTotalBalanceWhereUniqueInput[]
+    disconnect?: FilingTotalBalanceWhereUniqueInput | FilingTotalBalanceWhereUniqueInput[]
+    delete?: FilingTotalBalanceWhereUniqueInput | FilingTotalBalanceWhereUniqueInput[]
+    connect?: FilingTotalBalanceWhereUniqueInput | FilingTotalBalanceWhereUniqueInput[]
+    update?: FilingTotalBalanceUpdateWithWhereUniqueWithoutFilingEntryIdInput | FilingTotalBalanceUpdateWithWhereUniqueWithoutFilingEntryIdInput[]
+    updateMany?: FilingTotalBalanceUpdateManyWithWhereWithoutFilingEntryIdInput | FilingTotalBalanceUpdateManyWithWhereWithoutFilingEntryIdInput[]
+    deleteMany?: FilingTotalBalanceScalarWhereInput | FilingTotalBalanceScalarWhereInput[]
+  }
+
+  export type FilingWastageUpdateManyWithoutFilingEntryIdNestedInput = {
+    create?: XOR<FilingWastageCreateWithoutFilingEntryIdInput, FilingWastageUncheckedCreateWithoutFilingEntryIdInput> | FilingWastageCreateWithoutFilingEntryIdInput[] | FilingWastageUncheckedCreateWithoutFilingEntryIdInput[]
+    connectOrCreate?: FilingWastageCreateOrConnectWithoutFilingEntryIdInput | FilingWastageCreateOrConnectWithoutFilingEntryIdInput[]
+    upsert?: FilingWastageUpsertWithWhereUniqueWithoutFilingEntryIdInput | FilingWastageUpsertWithWhereUniqueWithoutFilingEntryIdInput[]
+    createMany?: FilingWastageCreateManyFilingEntryIdInputEnvelope
+    set?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    disconnect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    delete?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    connect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    update?: FilingWastageUpdateWithWhereUniqueWithoutFilingEntryIdInput | FilingWastageUpdateWithWhereUniqueWithoutFilingEntryIdInput[]
+    updateMany?: FilingWastageUpdateManyWithWhereWithoutFilingEntryIdInput | FilingWastageUpdateManyWithWhereWithoutFilingEntryIdInput[]
+    deleteMany?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
+  }
+
   export type FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput = {
     create?: XOR<FilingItemsCreateWithoutFiling_entryInput, FilingItemsUncheckedCreateWithoutFiling_entryInput> | FilingItemsCreateWithoutFiling_entryInput[] | FilingItemsUncheckedCreateWithoutFiling_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_entryInput | FilingItemsCreateOrConnectWithoutFiling_entryInput[]
@@ -39520,6 +45493,34 @@ export namespace Prisma {
     update?: FilingItemsUpdateWithWhereUniqueWithoutFiling_entryInput | FilingItemsUpdateWithWhereUniqueWithoutFiling_entryInput[]
     updateMany?: FilingItemsUpdateManyWithWhereWithoutFiling_entryInput | FilingItemsUpdateManyWithWhereWithoutFiling_entryInput[]
     deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput = {
+    create?: XOR<FilingTotalBalanceCreateWithoutFilingEntryIdInput, FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput> | FilingTotalBalanceCreateWithoutFilingEntryIdInput[] | FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput[]
+    connectOrCreate?: FilingTotalBalanceCreateOrConnectWithoutFilingEntryIdInput | FilingTotalBalanceCreateOrConnectWithoutFilingEntryIdInput[]
+    upsert?: FilingTotalBalanceUpsertWithWhereUniqueWithoutFilingEntryIdInput | FilingTotalBalanceUpsertWithWhereUniqueWithoutFilingEntryIdInput[]
+    createMany?: FilingTotalBalanceCreateManyFilingEntryIdInputEnvelope
+    set?: FilingTotalBalanceWhereUniqueInput | FilingTotalBalanceWhereUniqueInput[]
+    disconnect?: FilingTotalBalanceWhereUniqueInput | FilingTotalBalanceWhereUniqueInput[]
+    delete?: FilingTotalBalanceWhereUniqueInput | FilingTotalBalanceWhereUniqueInput[]
+    connect?: FilingTotalBalanceWhereUniqueInput | FilingTotalBalanceWhereUniqueInput[]
+    update?: FilingTotalBalanceUpdateWithWhereUniqueWithoutFilingEntryIdInput | FilingTotalBalanceUpdateWithWhereUniqueWithoutFilingEntryIdInput[]
+    updateMany?: FilingTotalBalanceUpdateManyWithWhereWithoutFilingEntryIdInput | FilingTotalBalanceUpdateManyWithWhereWithoutFilingEntryIdInput[]
+    deleteMany?: FilingTotalBalanceScalarWhereInput | FilingTotalBalanceScalarWhereInput[]
+  }
+
+  export type FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput = {
+    create?: XOR<FilingWastageCreateWithoutFilingEntryIdInput, FilingWastageUncheckedCreateWithoutFilingEntryIdInput> | FilingWastageCreateWithoutFilingEntryIdInput[] | FilingWastageUncheckedCreateWithoutFilingEntryIdInput[]
+    connectOrCreate?: FilingWastageCreateOrConnectWithoutFilingEntryIdInput | FilingWastageCreateOrConnectWithoutFilingEntryIdInput[]
+    upsert?: FilingWastageUpsertWithWhereUniqueWithoutFilingEntryIdInput | FilingWastageUpsertWithWhereUniqueWithoutFilingEntryIdInput[]
+    createMany?: FilingWastageCreateManyFilingEntryIdInputEnvelope
+    set?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    disconnect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    delete?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    connect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+    update?: FilingWastageUpdateWithWhereUniqueWithoutFilingEntryIdInput | FilingWastageUpdateWithWhereUniqueWithoutFilingEntryIdInput[]
+    updateMany?: FilingWastageUpdateManyWithWhereWithoutFilingEntryIdInput | FilingWastageUpdateManyWithWhereWithoutFilingEntryIdInput[]
+    deleteMany?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
   }
 
   export type FilingEntryCreateNestedOneWithoutFilingItemsInput = {
@@ -39622,10 +45623,6 @@ export namespace Prisma {
     connectOrCreate?: LotBuffingMapperCreateOrConnectWithoutFilingItemIdInput | LotBuffingMapperCreateOrConnectWithoutFilingItemIdInput[]
     createMany?: LotBuffingMapperCreateManyFilingItemIdInputEnvelope
     connect?: LotBuffingMapperWhereUniqueInput | LotBuffingMapperWhereUniqueInput[]
-  }
-
-  export type NullableBoolFieldUpdateOperationsInput = {
-    set?: boolean | null
   }
 
   export type NullableEnumSTONEOPTIONFieldUpdateOperationsInput = {
@@ -39912,6 +45909,30 @@ export namespace Prisma {
     deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
   }
 
+  export type FilingEntryCreateNestedOneWithoutFilingItemsIdInput = {
+    create?: XOR<FilingEntryCreateWithoutFilingItemsIdInput, FilingEntryUncheckedCreateWithoutFilingItemsIdInput>
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutFilingItemsIdInput
+    connect?: FilingEntryWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type FilingEntryUpdateOneRequiredWithoutFilingItemsIdNestedInput = {
+    create?: XOR<FilingEntryCreateWithoutFilingItemsIdInput, FilingEntryUncheckedCreateWithoutFilingItemsIdInput>
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutFilingItemsIdInput
+    upsert?: FilingEntryUpsertWithoutFilingItemsIdInput
+    connect?: FilingEntryWhereUniqueInput
+    update?: XOR<XOR<FilingEntryUpdateToOneWithWhereWithoutFilingItemsIdInput, FilingEntryUpdateWithoutFilingItemsIdInput>, FilingEntryUncheckedUpdateWithoutFilingItemsIdInput>
+  }
+
+  export type FilingEntryCreateNestedOneWithoutFilingWastageInput = {
+    create?: XOR<FilingEntryCreateWithoutFilingWastageInput, FilingEntryUncheckedCreateWithoutFilingWastageInput>
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutFilingWastageInput
+    connect?: FilingEntryWhereUniqueInput
+  }
+
   export type FilingItemsCreateNestedManyWithoutFiling_wastageInput = {
     create?: XOR<FilingItemsCreateWithoutFiling_wastageInput, FilingItemsUncheckedCreateWithoutFiling_wastageInput> | FilingItemsCreateWithoutFiling_wastageInput[] | FilingItemsUncheckedCreateWithoutFiling_wastageInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_wastageInput | FilingItemsCreateOrConnectWithoutFiling_wastageInput[]
@@ -39922,6 +45943,14 @@ export namespace Prisma {
     create?: XOR<FilingItemsCreateWithoutFiling_wastageInput, FilingItemsUncheckedCreateWithoutFiling_wastageInput> | FilingItemsCreateWithoutFiling_wastageInput[] | FilingItemsUncheckedCreateWithoutFiling_wastageInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_wastageInput | FilingItemsCreateOrConnectWithoutFiling_wastageInput[]
     connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type FilingEntryUpdateOneRequiredWithoutFilingWastageNestedInput = {
+    create?: XOR<FilingEntryCreateWithoutFilingWastageInput, FilingEntryUncheckedCreateWithoutFilingWastageInput>
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutFilingWastageInput
+    upsert?: FilingEntryUpsertWithoutFilingWastageInput
+    connect?: FilingEntryWhereUniqueInput
+    update?: XOR<XOR<FilingEntryUpdateToOneWithWhereWithoutFilingWastageInput, FilingEntryUpdateWithoutFilingWastageInput>, FilingEntryUncheckedUpdateWithoutFilingWastageInput>
   }
 
   export type FilingItemsUpdateManyWithoutFiling_wastageNestedInput = {
@@ -39968,10 +45997,38 @@ export namespace Prisma {
     connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
   }
 
+  export type SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput = {
+    create?: XOR<SettingTotalBalanceCreateWithoutSetting_entryInput, SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput> | SettingTotalBalanceCreateWithoutSetting_entryInput[] | SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput[]
+    connectOrCreate?: SettingTotalBalanceCreateOrConnectWithoutSetting_entryInput | SettingTotalBalanceCreateOrConnectWithoutSetting_entryInput[]
+    createMany?: SettingTotalBalanceCreateManySetting_entryInputEnvelope
+    connect?: SettingTotalBalanceWhereUniqueInput | SettingTotalBalanceWhereUniqueInput[]
+  }
+
+  export type SettingWastageCreateNestedManyWithoutSettingEntryIdInput = {
+    create?: XOR<SettingWastageCreateWithoutSettingEntryIdInput, SettingWastageUncheckedCreateWithoutSettingEntryIdInput> | SettingWastageCreateWithoutSettingEntryIdInput[] | SettingWastageUncheckedCreateWithoutSettingEntryIdInput[]
+    connectOrCreate?: SettingWastageCreateOrConnectWithoutSettingEntryIdInput | SettingWastageCreateOrConnectWithoutSettingEntryIdInput[]
+    createMany?: SettingWastageCreateManySettingEntryIdInputEnvelope
+    connect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+  }
+
   export type FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput = {
     create?: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput> | FilingItemsCreateWithoutSetting_entryInput[] | FilingItemsUncheckedCreateWithoutSetting_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutSetting_entryInput | FilingItemsCreateOrConnectWithoutSetting_entryInput[]
     connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput = {
+    create?: XOR<SettingTotalBalanceCreateWithoutSetting_entryInput, SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput> | SettingTotalBalanceCreateWithoutSetting_entryInput[] | SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput[]
+    connectOrCreate?: SettingTotalBalanceCreateOrConnectWithoutSetting_entryInput | SettingTotalBalanceCreateOrConnectWithoutSetting_entryInput[]
+    createMany?: SettingTotalBalanceCreateManySetting_entryInputEnvelope
+    connect?: SettingTotalBalanceWhereUniqueInput | SettingTotalBalanceWhereUniqueInput[]
+  }
+
+  export type SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput = {
+    create?: XOR<SettingWastageCreateWithoutSettingEntryIdInput, SettingWastageUncheckedCreateWithoutSettingEntryIdInput> | SettingWastageCreateWithoutSettingEntryIdInput[] | SettingWastageUncheckedCreateWithoutSettingEntryIdInput[]
+    connectOrCreate?: SettingWastageCreateOrConnectWithoutSettingEntryIdInput | SettingWastageCreateOrConnectWithoutSettingEntryIdInput[]
+    createMany?: SettingWastageCreateManySettingEntryIdInputEnvelope
+    connect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
   }
 
   export type AddSettingUpdateOneRequiredWithoutSettingsNestedInput = {
@@ -40003,6 +46060,34 @@ export namespace Prisma {
     deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
   }
 
+  export type SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput = {
+    create?: XOR<SettingTotalBalanceCreateWithoutSetting_entryInput, SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput> | SettingTotalBalanceCreateWithoutSetting_entryInput[] | SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput[]
+    connectOrCreate?: SettingTotalBalanceCreateOrConnectWithoutSetting_entryInput | SettingTotalBalanceCreateOrConnectWithoutSetting_entryInput[]
+    upsert?: SettingTotalBalanceUpsertWithWhereUniqueWithoutSetting_entryInput | SettingTotalBalanceUpsertWithWhereUniqueWithoutSetting_entryInput[]
+    createMany?: SettingTotalBalanceCreateManySetting_entryInputEnvelope
+    set?: SettingTotalBalanceWhereUniqueInput | SettingTotalBalanceWhereUniqueInput[]
+    disconnect?: SettingTotalBalanceWhereUniqueInput | SettingTotalBalanceWhereUniqueInput[]
+    delete?: SettingTotalBalanceWhereUniqueInput | SettingTotalBalanceWhereUniqueInput[]
+    connect?: SettingTotalBalanceWhereUniqueInput | SettingTotalBalanceWhereUniqueInput[]
+    update?: SettingTotalBalanceUpdateWithWhereUniqueWithoutSetting_entryInput | SettingTotalBalanceUpdateWithWhereUniqueWithoutSetting_entryInput[]
+    updateMany?: SettingTotalBalanceUpdateManyWithWhereWithoutSetting_entryInput | SettingTotalBalanceUpdateManyWithWhereWithoutSetting_entryInput[]
+    deleteMany?: SettingTotalBalanceScalarWhereInput | SettingTotalBalanceScalarWhereInput[]
+  }
+
+  export type SettingWastageUpdateManyWithoutSettingEntryIdNestedInput = {
+    create?: XOR<SettingWastageCreateWithoutSettingEntryIdInput, SettingWastageUncheckedCreateWithoutSettingEntryIdInput> | SettingWastageCreateWithoutSettingEntryIdInput[] | SettingWastageUncheckedCreateWithoutSettingEntryIdInput[]
+    connectOrCreate?: SettingWastageCreateOrConnectWithoutSettingEntryIdInput | SettingWastageCreateOrConnectWithoutSettingEntryIdInput[]
+    upsert?: SettingWastageUpsertWithWhereUniqueWithoutSettingEntryIdInput | SettingWastageUpsertWithWhereUniqueWithoutSettingEntryIdInput[]
+    createMany?: SettingWastageCreateManySettingEntryIdInputEnvelope
+    set?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    disconnect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    delete?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    connect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    update?: SettingWastageUpdateWithWhereUniqueWithoutSettingEntryIdInput | SettingWastageUpdateWithWhereUniqueWithoutSettingEntryIdInput[]
+    updateMany?: SettingWastageUpdateManyWithWhereWithoutSettingEntryIdInput | SettingWastageUpdateManyWithWhereWithoutSettingEntryIdInput[]
+    deleteMany?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
+  }
+
   export type FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput = {
     create?: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput> | FilingItemsCreateWithoutSetting_entryInput[] | FilingItemsUncheckedCreateWithoutSetting_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutSetting_entryInput | FilingItemsCreateOrConnectWithoutSetting_entryInput[]
@@ -40014,6 +46099,34 @@ export namespace Prisma {
     update?: FilingItemsUpdateWithWhereUniqueWithoutSetting_entryInput | FilingItemsUpdateWithWhereUniqueWithoutSetting_entryInput[]
     updateMany?: FilingItemsUpdateManyWithWhereWithoutSetting_entryInput | FilingItemsUpdateManyWithWhereWithoutSetting_entryInput[]
     deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput = {
+    create?: XOR<SettingTotalBalanceCreateWithoutSetting_entryInput, SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput> | SettingTotalBalanceCreateWithoutSetting_entryInput[] | SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput[]
+    connectOrCreate?: SettingTotalBalanceCreateOrConnectWithoutSetting_entryInput | SettingTotalBalanceCreateOrConnectWithoutSetting_entryInput[]
+    upsert?: SettingTotalBalanceUpsertWithWhereUniqueWithoutSetting_entryInput | SettingTotalBalanceUpsertWithWhereUniqueWithoutSetting_entryInput[]
+    createMany?: SettingTotalBalanceCreateManySetting_entryInputEnvelope
+    set?: SettingTotalBalanceWhereUniqueInput | SettingTotalBalanceWhereUniqueInput[]
+    disconnect?: SettingTotalBalanceWhereUniqueInput | SettingTotalBalanceWhereUniqueInput[]
+    delete?: SettingTotalBalanceWhereUniqueInput | SettingTotalBalanceWhereUniqueInput[]
+    connect?: SettingTotalBalanceWhereUniqueInput | SettingTotalBalanceWhereUniqueInput[]
+    update?: SettingTotalBalanceUpdateWithWhereUniqueWithoutSetting_entryInput | SettingTotalBalanceUpdateWithWhereUniqueWithoutSetting_entryInput[]
+    updateMany?: SettingTotalBalanceUpdateManyWithWhereWithoutSetting_entryInput | SettingTotalBalanceUpdateManyWithWhereWithoutSetting_entryInput[]
+    deleteMany?: SettingTotalBalanceScalarWhereInput | SettingTotalBalanceScalarWhereInput[]
+  }
+
+  export type SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput = {
+    create?: XOR<SettingWastageCreateWithoutSettingEntryIdInput, SettingWastageUncheckedCreateWithoutSettingEntryIdInput> | SettingWastageCreateWithoutSettingEntryIdInput[] | SettingWastageUncheckedCreateWithoutSettingEntryIdInput[]
+    connectOrCreate?: SettingWastageCreateOrConnectWithoutSettingEntryIdInput | SettingWastageCreateOrConnectWithoutSettingEntryIdInput[]
+    upsert?: SettingWastageUpsertWithWhereUniqueWithoutSettingEntryIdInput | SettingWastageUpsertWithWhereUniqueWithoutSettingEntryIdInput[]
+    createMany?: SettingWastageCreateManySettingEntryIdInputEnvelope
+    set?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    disconnect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    delete?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    connect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+    update?: SettingWastageUpdateWithWhereUniqueWithoutSettingEntryIdInput | SettingWastageUpdateWithWhereUniqueWithoutSettingEntryIdInput[]
+    updateMany?: SettingWastageUpdateManyWithWhereWithoutSettingEntryIdInput | SettingWastageUpdateManyWithWhereWithoutSettingEntryIdInput[]
+    deleteMany?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
   }
 
   export type AddItemCreateNestedOneWithoutSetting_itemsInput = {
@@ -40078,10 +46191,6 @@ export namespace Prisma {
     connectOrCreate?: LotBuffingMapperCreateOrConnectWithoutSettingItemIdInput | LotBuffingMapperCreateOrConnectWithoutSettingItemIdInput[]
     createMany?: LotBuffingMapperCreateManySettingItemIdInputEnvelope
     connect?: LotBuffingMapperWhereUniqueInput | LotBuffingMapperWhereUniqueInput[]
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type AddItemUpdateOneRequiredWithoutSetting_itemsNestedInput = {
@@ -40242,18 +46351,40 @@ export namespace Prisma {
     update?: XOR<XOR<LotInfoUpdateToOneWithWhereWithoutSettingMapperInput, LotInfoUpdateWithoutSettingMapperInput>, LotInfoUncheckedUpdateWithoutSettingMapperInput>
   }
 
-  export type FilingItemsUpdateOneRequiredWithoutLot_setting_mapperNestedInput = {
+  export type FilingItemsUpdateOneWithoutLot_setting_mapperNestedInput = {
     create?: XOR<FilingItemsCreateWithoutLot_setting_mapperInput, FilingItemsUncheckedCreateWithoutLot_setting_mapperInput>
     connectOrCreate?: FilingItemsCreateOrConnectWithoutLot_setting_mapperInput
     upsert?: FilingItemsUpsertWithoutLot_setting_mapperInput
+    disconnect?: FilingItemsWhereInput | boolean
+    delete?: FilingItemsWhereInput | boolean
     connect?: FilingItemsWhereUniqueInput
     update?: XOR<XOR<FilingItemsUpdateToOneWithWhereWithoutLot_setting_mapperInput, FilingItemsUpdateWithoutLot_setting_mapperInput>, FilingItemsUncheckedUpdateWithoutLot_setting_mapperInput>
+  }
+
+  export type SettingEntryCreateNestedOneWithoutSettingTotalBalanceInput = {
+    create?: XOR<SettingEntryCreateWithoutSettingTotalBalanceInput, SettingEntryUncheckedCreateWithoutSettingTotalBalanceInput>
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutSettingTotalBalanceInput
+    connect?: SettingEntryWhereUniqueInput
+  }
+
+  export type SettingEntryUpdateOneRequiredWithoutSettingTotalBalanceNestedInput = {
+    create?: XOR<SettingEntryCreateWithoutSettingTotalBalanceInput, SettingEntryUncheckedCreateWithoutSettingTotalBalanceInput>
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutSettingTotalBalanceInput
+    upsert?: SettingEntryUpsertWithoutSettingTotalBalanceInput
+    connect?: SettingEntryWhereUniqueInput
+    update?: XOR<XOR<SettingEntryUpdateToOneWithWhereWithoutSettingTotalBalanceInput, SettingEntryUpdateWithoutSettingTotalBalanceInput>, SettingEntryUncheckedUpdateWithoutSettingTotalBalanceInput>
   }
 
   export type SettingItemsCreateNestedManyWithoutSetting_wastageInput = {
     create?: XOR<SettingItemsCreateWithoutSetting_wastageInput, SettingItemsUncheckedCreateWithoutSetting_wastageInput> | SettingItemsCreateWithoutSetting_wastageInput[] | SettingItemsUncheckedCreateWithoutSetting_wastageInput[]
     connectOrCreate?: SettingItemsCreateOrConnectWithoutSetting_wastageInput | SettingItemsCreateOrConnectWithoutSetting_wastageInput[]
     connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+  }
+
+  export type SettingEntryCreateNestedOneWithoutSettingWastageInput = {
+    create?: XOR<SettingEntryCreateWithoutSettingWastageInput, SettingEntryUncheckedCreateWithoutSettingWastageInput>
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutSettingWastageInput
+    connect?: SettingEntryWhereUniqueInput
   }
 
   export type SettingItemsUncheckedCreateNestedManyWithoutSetting_wastageInput = {
@@ -40273,6 +46404,14 @@ export namespace Prisma {
     update?: SettingItemsUpdateWithWhereUniqueWithoutSetting_wastageInput | SettingItemsUpdateWithWhereUniqueWithoutSetting_wastageInput[]
     updateMany?: SettingItemsUpdateManyWithWhereWithoutSetting_wastageInput | SettingItemsUpdateManyWithWhereWithoutSetting_wastageInput[]
     deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
+  export type SettingEntryUpdateOneRequiredWithoutSettingWastageNestedInput = {
+    create?: XOR<SettingEntryCreateWithoutSettingWastageInput, SettingEntryUncheckedCreateWithoutSettingWastageInput>
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutSettingWastageInput
+    upsert?: SettingEntryUpsertWithoutSettingWastageInput
+    connect?: SettingEntryWhereUniqueInput
+    update?: XOR<XOR<SettingEntryUpdateToOneWithWhereWithoutSettingWastageInput, SettingEntryUpdateWithoutSettingWastageInput>, SettingEntryUncheckedUpdateWithoutSettingWastageInput>
   }
 
   export type SettingItemsUncheckedUpdateManyWithoutSetting_wastageNestedInput = {
@@ -40312,6 +46451,20 @@ export namespace Prisma {
     connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
   }
 
+  export type BuffingTotalBalanceCreateNestedManyWithoutBuffingEntryIdInput = {
+    create?: XOR<BuffingTotalBalanceCreateWithoutBuffingEntryIdInput, BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput> | BuffingTotalBalanceCreateWithoutBuffingEntryIdInput[] | BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput[]
+    connectOrCreate?: BuffingTotalBalanceCreateOrConnectWithoutBuffingEntryIdInput | BuffingTotalBalanceCreateOrConnectWithoutBuffingEntryIdInput[]
+    createMany?: BuffingTotalBalanceCreateManyBuffingEntryIdInputEnvelope
+    connect?: BuffingTotalBalanceWhereUniqueInput | BuffingTotalBalanceWhereUniqueInput[]
+  }
+
+  export type BuffingWastageCreateNestedManyWithoutBuffingEntryIdInput = {
+    create?: XOR<BuffingWastageCreateWithoutBuffingEntryIdInput, BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput> | BuffingWastageCreateWithoutBuffingEntryIdInput[] | BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput[]
+    connectOrCreate?: BuffingWastageCreateOrConnectWithoutBuffingEntryIdInput | BuffingWastageCreateOrConnectWithoutBuffingEntryIdInput[]
+    createMany?: BuffingWastageCreateManyBuffingEntryIdInputEnvelope
+    connect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+  }
+
   export type FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput = {
     create?: XOR<FilingItemsCreateWithoutBuffing_entryInput, FilingItemsUncheckedCreateWithoutBuffing_entryInput> | FilingItemsCreateWithoutBuffing_entryInput[] | FilingItemsUncheckedCreateWithoutBuffing_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutBuffing_entryInput | FilingItemsCreateOrConnectWithoutBuffing_entryInput[]
@@ -40322,6 +46475,20 @@ export namespace Prisma {
     create?: XOR<SettingItemsCreateWithoutBuffing_entryInput, SettingItemsUncheckedCreateWithoutBuffing_entryInput> | SettingItemsCreateWithoutBuffing_entryInput[] | SettingItemsUncheckedCreateWithoutBuffing_entryInput[]
     connectOrCreate?: SettingItemsCreateOrConnectWithoutBuffing_entryInput | SettingItemsCreateOrConnectWithoutBuffing_entryInput[]
     connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+  }
+
+  export type BuffingTotalBalanceUncheckedCreateNestedManyWithoutBuffingEntryIdInput = {
+    create?: XOR<BuffingTotalBalanceCreateWithoutBuffingEntryIdInput, BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput> | BuffingTotalBalanceCreateWithoutBuffingEntryIdInput[] | BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput[]
+    connectOrCreate?: BuffingTotalBalanceCreateOrConnectWithoutBuffingEntryIdInput | BuffingTotalBalanceCreateOrConnectWithoutBuffingEntryIdInput[]
+    createMany?: BuffingTotalBalanceCreateManyBuffingEntryIdInputEnvelope
+    connect?: BuffingTotalBalanceWhereUniqueInput | BuffingTotalBalanceWhereUniqueInput[]
+  }
+
+  export type BuffingWastageUncheckedCreateNestedManyWithoutBuffingEntryIdInput = {
+    create?: XOR<BuffingWastageCreateWithoutBuffingEntryIdInput, BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput> | BuffingWastageCreateWithoutBuffingEntryIdInput[] | BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput[]
+    connectOrCreate?: BuffingWastageCreateOrConnectWithoutBuffingEntryIdInput | BuffingWastageCreateOrConnectWithoutBuffingEntryIdInput[]
+    createMany?: BuffingWastageCreateManyBuffingEntryIdInputEnvelope
+    connect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
   }
 
   export type AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput = {
@@ -40366,6 +46533,34 @@ export namespace Prisma {
     deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
   }
 
+  export type BuffingTotalBalanceUpdateManyWithoutBuffingEntryIdNestedInput = {
+    create?: XOR<BuffingTotalBalanceCreateWithoutBuffingEntryIdInput, BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput> | BuffingTotalBalanceCreateWithoutBuffingEntryIdInput[] | BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput[]
+    connectOrCreate?: BuffingTotalBalanceCreateOrConnectWithoutBuffingEntryIdInput | BuffingTotalBalanceCreateOrConnectWithoutBuffingEntryIdInput[]
+    upsert?: BuffingTotalBalanceUpsertWithWhereUniqueWithoutBuffingEntryIdInput | BuffingTotalBalanceUpsertWithWhereUniqueWithoutBuffingEntryIdInput[]
+    createMany?: BuffingTotalBalanceCreateManyBuffingEntryIdInputEnvelope
+    set?: BuffingTotalBalanceWhereUniqueInput | BuffingTotalBalanceWhereUniqueInput[]
+    disconnect?: BuffingTotalBalanceWhereUniqueInput | BuffingTotalBalanceWhereUniqueInput[]
+    delete?: BuffingTotalBalanceWhereUniqueInput | BuffingTotalBalanceWhereUniqueInput[]
+    connect?: BuffingTotalBalanceWhereUniqueInput | BuffingTotalBalanceWhereUniqueInput[]
+    update?: BuffingTotalBalanceUpdateWithWhereUniqueWithoutBuffingEntryIdInput | BuffingTotalBalanceUpdateWithWhereUniqueWithoutBuffingEntryIdInput[]
+    updateMany?: BuffingTotalBalanceUpdateManyWithWhereWithoutBuffingEntryIdInput | BuffingTotalBalanceUpdateManyWithWhereWithoutBuffingEntryIdInput[]
+    deleteMany?: BuffingTotalBalanceScalarWhereInput | BuffingTotalBalanceScalarWhereInput[]
+  }
+
+  export type BuffingWastageUpdateManyWithoutBuffingEntryIdNestedInput = {
+    create?: XOR<BuffingWastageCreateWithoutBuffingEntryIdInput, BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput> | BuffingWastageCreateWithoutBuffingEntryIdInput[] | BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput[]
+    connectOrCreate?: BuffingWastageCreateOrConnectWithoutBuffingEntryIdInput | BuffingWastageCreateOrConnectWithoutBuffingEntryIdInput[]
+    upsert?: BuffingWastageUpsertWithWhereUniqueWithoutBuffingEntryIdInput | BuffingWastageUpsertWithWhereUniqueWithoutBuffingEntryIdInput[]
+    createMany?: BuffingWastageCreateManyBuffingEntryIdInputEnvelope
+    set?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    disconnect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    delete?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    connect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    update?: BuffingWastageUpdateWithWhereUniqueWithoutBuffingEntryIdInput | BuffingWastageUpdateWithWhereUniqueWithoutBuffingEntryIdInput[]
+    updateMany?: BuffingWastageUpdateManyWithWhereWithoutBuffingEntryIdInput | BuffingWastageUpdateManyWithWhereWithoutBuffingEntryIdInput[]
+    deleteMany?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
+  }
+
   export type FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput = {
     create?: XOR<FilingItemsCreateWithoutBuffing_entryInput, FilingItemsUncheckedCreateWithoutBuffing_entryInput> | FilingItemsCreateWithoutBuffing_entryInput[] | FilingItemsUncheckedCreateWithoutBuffing_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutBuffing_entryInput | FilingItemsCreateOrConnectWithoutBuffing_entryInput[]
@@ -40390,6 +46585,34 @@ export namespace Prisma {
     update?: SettingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput | SettingItemsUpdateWithWhereUniqueWithoutBuffing_entryInput[]
     updateMany?: SettingItemsUpdateManyWithWhereWithoutBuffing_entryInput | SettingItemsUpdateManyWithWhereWithoutBuffing_entryInput[]
     deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
+  export type BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdNestedInput = {
+    create?: XOR<BuffingTotalBalanceCreateWithoutBuffingEntryIdInput, BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput> | BuffingTotalBalanceCreateWithoutBuffingEntryIdInput[] | BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput[]
+    connectOrCreate?: BuffingTotalBalanceCreateOrConnectWithoutBuffingEntryIdInput | BuffingTotalBalanceCreateOrConnectWithoutBuffingEntryIdInput[]
+    upsert?: BuffingTotalBalanceUpsertWithWhereUniqueWithoutBuffingEntryIdInput | BuffingTotalBalanceUpsertWithWhereUniqueWithoutBuffingEntryIdInput[]
+    createMany?: BuffingTotalBalanceCreateManyBuffingEntryIdInputEnvelope
+    set?: BuffingTotalBalanceWhereUniqueInput | BuffingTotalBalanceWhereUniqueInput[]
+    disconnect?: BuffingTotalBalanceWhereUniqueInput | BuffingTotalBalanceWhereUniqueInput[]
+    delete?: BuffingTotalBalanceWhereUniqueInput | BuffingTotalBalanceWhereUniqueInput[]
+    connect?: BuffingTotalBalanceWhereUniqueInput | BuffingTotalBalanceWhereUniqueInput[]
+    update?: BuffingTotalBalanceUpdateWithWhereUniqueWithoutBuffingEntryIdInput | BuffingTotalBalanceUpdateWithWhereUniqueWithoutBuffingEntryIdInput[]
+    updateMany?: BuffingTotalBalanceUpdateManyWithWhereWithoutBuffingEntryIdInput | BuffingTotalBalanceUpdateManyWithWhereWithoutBuffingEntryIdInput[]
+    deleteMany?: BuffingTotalBalanceScalarWhereInput | BuffingTotalBalanceScalarWhereInput[]
+  }
+
+  export type BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdNestedInput = {
+    create?: XOR<BuffingWastageCreateWithoutBuffingEntryIdInput, BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput> | BuffingWastageCreateWithoutBuffingEntryIdInput[] | BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput[]
+    connectOrCreate?: BuffingWastageCreateOrConnectWithoutBuffingEntryIdInput | BuffingWastageCreateOrConnectWithoutBuffingEntryIdInput[]
+    upsert?: BuffingWastageUpsertWithWhereUniqueWithoutBuffingEntryIdInput | BuffingWastageUpsertWithWhereUniqueWithoutBuffingEntryIdInput[]
+    createMany?: BuffingWastageCreateManyBuffingEntryIdInputEnvelope
+    set?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    disconnect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    delete?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    connect?: BuffingWastageWhereUniqueInput | BuffingWastageWhereUniqueInput[]
+    update?: BuffingWastageUpdateWithWhereUniqueWithoutBuffingEntryIdInput | BuffingWastageUpdateWithWhereUniqueWithoutBuffingEntryIdInput[]
+    updateMany?: BuffingWastageUpdateManyWithWhereWithoutBuffingEntryIdInput | BuffingWastageUpdateManyWithWhereWithoutBuffingEntryIdInput[]
+    deleteMany?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
   }
 
   export type AddItemCreateNestedOneWithoutBuffing_itemsInput = {
@@ -40500,6 +46723,20 @@ export namespace Prisma {
     deleteMany?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
   }
 
+  export type BuffingEntryCreateNestedOneWithoutBuffingTotalBalanceInput = {
+    create?: XOR<BuffingEntryCreateWithoutBuffingTotalBalanceInput, BuffingEntryUncheckedCreateWithoutBuffingTotalBalanceInput>
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutBuffingTotalBalanceInput
+    connect?: BuffingEntryWhereUniqueInput
+  }
+
+  export type BuffingEntryUpdateOneRequiredWithoutBuffingTotalBalanceNestedInput = {
+    create?: XOR<BuffingEntryCreateWithoutBuffingTotalBalanceInput, BuffingEntryUncheckedCreateWithoutBuffingTotalBalanceInput>
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutBuffingTotalBalanceInput
+    upsert?: BuffingEntryUpsertWithoutBuffingTotalBalanceInput
+    connect?: BuffingEntryWhereUniqueInput
+    update?: XOR<XOR<BuffingEntryUpdateToOneWithWhereWithoutBuffingTotalBalanceInput, BuffingEntryUpdateWithoutBuffingTotalBalanceInput>, BuffingEntryUncheckedUpdateWithoutBuffingTotalBalanceInput>
+  }
+
   export type AddBuffingCreateNestedOneWithoutBuffingMapperInput = {
     create?: XOR<AddBuffingCreateWithoutBuffingMapperInput, AddBuffingUncheckedCreateWithoutBuffingMapperInput>
     connectOrCreate?: AddBuffingCreateOrConnectWithoutBuffingMapperInput
@@ -40560,6 +46797,12 @@ export namespace Prisma {
     update?: XOR<XOR<FilingItemsUpdateToOneWithWhereWithoutLotBuffingMapperInput, FilingItemsUpdateWithoutLotBuffingMapperInput>, FilingItemsUncheckedUpdateWithoutLotBuffingMapperInput>
   }
 
+  export type BuffingEntryCreateNestedOneWithoutBuffingWastageInput = {
+    create?: XOR<BuffingEntryCreateWithoutBuffingWastageInput, BuffingEntryUncheckedCreateWithoutBuffingWastageInput>
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutBuffingWastageInput
+    connect?: BuffingEntryWhereUniqueInput
+  }
+
   export type BuffingItemsCreateNestedManyWithoutBuffing_wastageInput = {
     create?: XOR<BuffingItemsCreateWithoutBuffing_wastageInput, BuffingItemsUncheckedCreateWithoutBuffing_wastageInput> | BuffingItemsCreateWithoutBuffing_wastageInput[] | BuffingItemsUncheckedCreateWithoutBuffing_wastageInput[]
     connectOrCreate?: BuffingItemsCreateOrConnectWithoutBuffing_wastageInput | BuffingItemsCreateOrConnectWithoutBuffing_wastageInput[]
@@ -40570,6 +46813,14 @@ export namespace Prisma {
     create?: XOR<BuffingItemsCreateWithoutBuffing_wastageInput, BuffingItemsUncheckedCreateWithoutBuffing_wastageInput> | BuffingItemsCreateWithoutBuffing_wastageInput[] | BuffingItemsUncheckedCreateWithoutBuffing_wastageInput[]
     connectOrCreate?: BuffingItemsCreateOrConnectWithoutBuffing_wastageInput | BuffingItemsCreateOrConnectWithoutBuffing_wastageInput[]
     connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+  }
+
+  export type BuffingEntryUpdateOneRequiredWithoutBuffingWastageNestedInput = {
+    create?: XOR<BuffingEntryCreateWithoutBuffingWastageInput, BuffingEntryUncheckedCreateWithoutBuffingWastageInput>
+    connectOrCreate?: BuffingEntryCreateOrConnectWithoutBuffingWastageInput
+    upsert?: BuffingEntryUpsertWithoutBuffingWastageInput
+    connect?: BuffingEntryWhereUniqueInput
+    update?: XOR<XOR<BuffingEntryUpdateToOneWithWhereWithoutBuffingWastageInput, BuffingEntryUpdateWithoutBuffingWastageInput>, BuffingEntryUncheckedUpdateWithoutBuffingWastageInput>
   }
 
   export type BuffingItemsUpdateManyWithoutBuffing_wastageNestedInput = {
@@ -40937,24 +47188,11 @@ export namespace Prisma {
     _max?: NestedEnumCASTINGENTRYTYPEFilter<$PrismaModel>
   }
 
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
   export type NestedEnumSTONEOPTIONNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel> | null
     in?: $Enums.STONEOPTION[] | null
     notIn?: $Enums.STONEOPTION[] | null
     not?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel> | $Enums.STONEOPTION | null
-  }
-
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumSTONEOPTIONNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -41053,6 +47291,7 @@ export namespace Prisma {
     final_weight: number
     touch: AddTouchCreateNestedOneWithoutCasting_entryInput
     items?: CastingItemsCreateNestedManyWithoutCastingEntryInput
+    CastiingTotalBalance?: CastiingTotalBalanceCreateNestedManyWithoutItem_entry_idInput
   }
 
   export type CastingEntryUncheckedCreateWithoutCasting_customerInput = {
@@ -41067,6 +47306,7 @@ export namespace Prisma {
     copper: number
     final_weight: number
     items?: CastingItemsUncheckedCreateNestedManyWithoutCastingEntryInput
+    CastiingTotalBalance?: CastiingTotalBalanceUncheckedCreateNestedManyWithoutItem_entry_idInput
   }
 
   export type CastingEntryCreateOrConnectWithoutCasting_customerInput = {
@@ -41085,9 +47325,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
     item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
@@ -41107,9 +47344,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
@@ -41133,7 +47367,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     castingItem?: CastingItemsCreateNestedOneWithoutStockInput
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
@@ -41154,7 +47387,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
   }
 
   export type StockCreateOrConnectWithoutCasting_customerInput = {
@@ -41228,9 +47460,6 @@ export namespace Prisma {
     touch_id?: IntFilter<"CastingItems"> | number
     item_purity?: FloatFilter<"CastingItems"> | number
     remarks?: StringNullableFilter<"CastingItems"> | string | null
-    after_weight?: FloatNullableFilter<"CastingItems"> | number | null
-    scrap_weight?: FloatNullableFilter<"CastingItems"> | number | null
-    scrap_wastage?: FloatNullableFilter<"CastingItems"> | number | null
     casting_entry_id?: IntFilter<"CastingItems"> | number
     casting_customer_id?: IntFilter<"CastingItems"> | number
   }
@@ -41266,7 +47495,6 @@ export namespace Prisma {
     touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
-    scrap_wastage?: FloatNullableFilter<"Stock"> | number | null
     casting_customer_id?: IntFilter<"Stock"> | number
   }
 
@@ -41274,6 +47502,8 @@ export namespace Prisma {
     createdAt?: Date | string
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
+    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
   }
 
   export type FilingEntryUncheckedCreateWithoutFiling_personInput = {
@@ -41281,6 +47511,8 @@ export namespace Prisma {
     createdAt?: Date | string
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
+    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
   }
 
   export type FilingEntryCreateOrConnectWithoutFiling_personInput = {
@@ -41428,6 +47660,8 @@ export namespace Prisma {
     createdAt?: Date | string
     castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateWithoutSetting_personInput = {
@@ -41435,6 +47669,8 @@ export namespace Prisma {
     createdAt?: Date | string
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryCreateOrConnectWithoutSetting_personInput = {
@@ -41449,13 +47685,13 @@ export namespace Prisma {
 
   export type LotSettingMapperCreateWithoutSettingIdInput = {
     lotId: LotInfoCreateNestedOneWithoutSettingMapperInput
-    itemId: FilingItemsCreateNestedOneWithoutLot_setting_mapperInput
+    itemId?: FilingItemsCreateNestedOneWithoutLot_setting_mapperInput
   }
 
   export type LotSettingMapperUncheckedCreateWithoutSettingIdInput = {
     id?: number
     lot_id: number
-    filing_item_id: number
+    filing_item_id?: number | null
   }
 
   export type LotSettingMapperCreateOrConnectWithoutSettingIdInput = {
@@ -41546,7 +47782,7 @@ export namespace Prisma {
     id?: IntFilter<"LotSettingMapper"> | number
     setting_id?: IntFilter<"LotSettingMapper"> | number
     lot_id?: IntFilter<"LotSettingMapper"> | number
-    filing_item_id?: IntFilter<"LotSettingMapper"> | number
+    filing_item_id?: IntNullableFilter<"LotSettingMapper"> | number | null
   }
 
   export type LotInfoUpsertWithWhereUniqueWithoutSettingCustomerIdInput = {
@@ -41570,6 +47806,8 @@ export namespace Prisma {
     castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
     filing_items?: FilingItemsCreateNestedManyWithoutBuffing_entryInput
     setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingWastage?: BuffingWastageCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryUncheckedCreateWithoutBuffing_personInput = {
@@ -41578,6 +47816,8 @@ export namespace Prisma {
     casting_item_id: number
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingWastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryCreateOrConnectWithoutBuffing_personInput = {
@@ -41767,9 +48007,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
     filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
@@ -41788,9 +48025,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
@@ -41815,7 +48049,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     castingItem?: CastingItemsCreateNestedOneWithoutStockInput
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
@@ -41835,7 +48068,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -41855,11 +48087,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
     stock?: StockCreateNestedManyWithoutFilingItemInput
@@ -41880,11 +48108,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
     stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
@@ -41906,11 +48130,6 @@ export namespace Prisma {
 
   export type SettingItemsCreateWithoutItemInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -41925,11 +48144,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedCreateWithoutItemInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     touch_id: number
@@ -41953,9 +48167,6 @@ export namespace Prisma {
 
   export type BuffingItemsCreateWithoutItemInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -41968,9 +48179,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedCreateWithoutItemInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     touch_id: number
@@ -42051,11 +48259,7 @@ export namespace Prisma {
     touch_id?: IntFilter<"FilingItems"> | number
     item_purity?: FloatFilter<"FilingItems"> | number
     remarks?: StringNullableFilter<"FilingItems"> | string | null
-    wastage?: BoolNullableFilter<"FilingItems"> | boolean | null
     stone_option?: EnumSTONEOPTIONNullableFilter<"FilingItems"> | $Enums.STONEOPTION | null
-    after_weight?: FloatNullableFilter<"FilingItems"> | number | null
-    scrap_weight?: FloatNullableFilter<"FilingItems"> | number | null
-    scrap_wastage?: FloatNullableFilter<"FilingItems"> | number | null
     lot_filing_mapper_id?: IntNullableFilter<"FilingItems"> | number | null
   }
 
@@ -42081,11 +48285,6 @@ export namespace Prisma {
     NOT?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
     id?: IntFilter<"SettingItems"> | number
     createdAt?: DateTimeFilter<"SettingItems"> | Date | string
-    receipt_weight?: FloatFilter<"SettingItems"> | number
-    stone_count?: FloatFilter<"SettingItems"> | number
-    stone_weight?: FloatFilter<"SettingItems"> | number
-    remarks?: StringNullableFilter<"SettingItems"> | string | null
-    wastage?: BoolFilter<"SettingItems"> | boolean
     type?: EnumCASTINGENTRYTYPEFilter<"SettingItems"> | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFilter<"SettingItems"> | number
     scrap_weight?: FloatFilter<"SettingItems"> | number
@@ -42116,9 +48315,6 @@ export namespace Prisma {
     NOT?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
     id?: IntFilter<"BuffingItems"> | number
     createdAt?: DateTimeFilter<"BuffingItems"> | Date | string
-    receipt_weight?: FloatFilter<"BuffingItems"> | number
-    remarks?: StringFilter<"BuffingItems"> | string
-    wastage?: BoolFilter<"BuffingItems"> | boolean
     type?: EnumCASTINGENTRYTYPEFilter<"BuffingItems"> | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntFilter<"BuffingItems"> | number
     scrap_weight?: FloatFilter<"BuffingItems"> | number
@@ -42138,6 +48334,7 @@ export namespace Prisma {
     final_weight: number
     casting_customer: AddCastingCreateNestedOneWithoutEntriesInput
     items?: CastingItemsCreateNestedManyWithoutCastingEntryInput
+    CastiingTotalBalance?: CastiingTotalBalanceCreateNestedManyWithoutItem_entry_idInput
   }
 
   export type CastingEntryUncheckedCreateWithoutTouchInput = {
@@ -42152,6 +48349,7 @@ export namespace Prisma {
     final_weight: number
     casting_customer_id: number
     items?: CastingItemsUncheckedCreateNestedManyWithoutCastingEntryInput
+    CastiingTotalBalance?: CastiingTotalBalanceUncheckedCreateNestedManyWithoutItem_entry_idInput
   }
 
   export type CastingEntryCreateOrConnectWithoutTouchInput = {
@@ -42170,9 +48368,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
     filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
@@ -42191,9 +48386,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
@@ -42219,11 +48411,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
     stock?: StockCreateNestedManyWithoutFilingItemInput
@@ -42244,11 +48432,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
     stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
@@ -42270,11 +48454,6 @@ export namespace Prisma {
 
   export type SettingItemsCreateWithoutTouchInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -42289,11 +48468,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedCreateWithoutTouchInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     setting_item_id: number
     scrap_weight: number
@@ -42317,9 +48491,6 @@ export namespace Prisma {
 
   export type BuffingItemsCreateWithoutTouchInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -42332,9 +48503,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedCreateWithoutTouchInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     buffing_item_id: number
     scrap_weight: number
@@ -42359,7 +48527,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     castingItem?: CastingItemsCreateNestedOneWithoutStockInput
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
@@ -42379,7 +48546,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -42547,9 +48713,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
     item: AddItemCreateNestedOneWithoutCasting_itemsInput
     filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
@@ -42569,9 +48732,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_customer_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
@@ -42587,6 +48747,33 @@ export namespace Prisma {
 
   export type CastingItemsCreateManyCastingEntryInputEnvelope = {
     data: CastingItemsCreateManyCastingEntryInput | CastingItemsCreateManyCastingEntryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CastiingTotalBalanceCreateWithoutItem_entry_idInput = {
+    createdAt?: Date | string
+    total_item_weight: number
+    current_balance_weight: number
+    total_scrap_weight?: number | null
+    total_wastage: number
+  }
+
+  export type CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput = {
+    id?: number
+    createdAt?: Date | string
+    total_item_weight: number
+    current_balance_weight: number
+    total_scrap_weight?: number | null
+    total_wastage: number
+  }
+
+  export type CastiingTotalBalanceCreateOrConnectWithoutItem_entry_idInput = {
+    where: CastiingTotalBalanceWhereUniqueInput
+    create: XOR<CastiingTotalBalanceCreateWithoutItem_entry_idInput, CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput>
+  }
+
+  export type CastiingTotalBalanceCreateManyItem_entry_idInputEnvelope = {
+    data: CastiingTotalBalanceCreateManyItem_entry_idInput | CastiingTotalBalanceCreateManyItem_entry_idInput[]
     skipDuplicates?: boolean
   }
 
@@ -42670,6 +48857,35 @@ export namespace Prisma {
     data: XOR<CastingItemsUpdateManyMutationInput, CastingItemsUncheckedUpdateManyWithoutCastingEntryInput>
   }
 
+  export type CastiingTotalBalanceUpsertWithWhereUniqueWithoutItem_entry_idInput = {
+    where: CastiingTotalBalanceWhereUniqueInput
+    update: XOR<CastiingTotalBalanceUpdateWithoutItem_entry_idInput, CastiingTotalBalanceUncheckedUpdateWithoutItem_entry_idInput>
+    create: XOR<CastiingTotalBalanceCreateWithoutItem_entry_idInput, CastiingTotalBalanceUncheckedCreateWithoutItem_entry_idInput>
+  }
+
+  export type CastiingTotalBalanceUpdateWithWhereUniqueWithoutItem_entry_idInput = {
+    where: CastiingTotalBalanceWhereUniqueInput
+    data: XOR<CastiingTotalBalanceUpdateWithoutItem_entry_idInput, CastiingTotalBalanceUncheckedUpdateWithoutItem_entry_idInput>
+  }
+
+  export type CastiingTotalBalanceUpdateManyWithWhereWithoutItem_entry_idInput = {
+    where: CastiingTotalBalanceScalarWhereInput
+    data: XOR<CastiingTotalBalanceUpdateManyMutationInput, CastiingTotalBalanceUncheckedUpdateManyWithoutItem_entry_idInput>
+  }
+
+  export type CastiingTotalBalanceScalarWhereInput = {
+    AND?: CastiingTotalBalanceScalarWhereInput | CastiingTotalBalanceScalarWhereInput[]
+    OR?: CastiingTotalBalanceScalarWhereInput[]
+    NOT?: CastiingTotalBalanceScalarWhereInput | CastiingTotalBalanceScalarWhereInput[]
+    id?: IntFilter<"CastiingTotalBalance"> | number
+    createdAt?: DateTimeFilter<"CastiingTotalBalance"> | Date | string
+    total_item_weight?: FloatFilter<"CastiingTotalBalance"> | number
+    current_balance_weight?: FloatFilter<"CastiingTotalBalance"> | number
+    total_scrap_weight?: FloatNullableFilter<"CastiingTotalBalance"> | number | null
+    total_wastage?: FloatFilter<"CastiingTotalBalance"> | number
+    item_entry?: IntFilter<"CastiingTotalBalance"> | number
+  }
+
   export type AddTouchCreateWithoutCasting_itemsInput = {
     createdAt?: Date | string
     touch: number
@@ -42731,6 +48947,7 @@ export namespace Prisma {
     final_weight: number
     touch: AddTouchCreateNestedOneWithoutCasting_entryInput
     casting_customer: AddCastingCreateNestedOneWithoutEntriesInput
+    CastiingTotalBalance?: CastiingTotalBalanceCreateNestedManyWithoutItem_entry_idInput
   }
 
   export type CastingEntryUncheckedCreateWithoutItemsInput = {
@@ -42745,6 +48962,7 @@ export namespace Prisma {
     copper: number
     final_weight: number
     casting_customer_id: number
+    CastiingTotalBalance?: CastiingTotalBalanceUncheckedCreateNestedManyWithoutItem_entry_idInput
   }
 
   export type CastingEntryCreateOrConnectWithoutItemsInput = {
@@ -42756,6 +48974,8 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
+    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
   }
 
   export type FilingEntryUncheckedCreateWithoutCastingItemInput = {
@@ -42763,6 +48983,8 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
+    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
   }
 
   export type FilingEntryCreateOrConnectWithoutCastingItemInput = {
@@ -42779,6 +49001,8 @@ export namespace Prisma {
     createdAt?: Date | string
     setting_person: AddSettingCreateNestedOneWithoutSettingsInput
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateWithoutCastingItemInput = {
@@ -42786,6 +49010,8 @@ export namespace Prisma {
     createdAt?: Date | string
     setting_person_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryCreateOrConnectWithoutCastingItemInput = {
@@ -42798,6 +49024,8 @@ export namespace Prisma {
     buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
     filing_items?: FilingItemsCreateNestedManyWithoutBuffing_entryInput
     setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingWastage?: BuffingWastageCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryUncheckedCreateWithoutCastingItemInput = {
@@ -42806,6 +49034,8 @@ export namespace Prisma {
     buffing_person_id: number
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingWastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryCreateOrConnectWithoutCastingItemInput = {
@@ -42818,7 +49048,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
@@ -42838,7 +49067,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -42985,6 +49213,7 @@ export namespace Prisma {
     final_weight?: FloatFieldUpdateOperationsInput | number
     touch?: AddTouchUpdateOneRequiredWithoutCasting_entryNestedInput
     casting_customer?: AddCastingUpdateOneRequiredWithoutEntriesNestedInput
+    CastiingTotalBalance?: CastiingTotalBalanceUpdateManyWithoutItem_entry_idNestedInput
   }
 
   export type CastingEntryUncheckedUpdateWithoutItemsInput = {
@@ -42999,6 +49228,7 @@ export namespace Prisma {
     copper?: FloatFieldUpdateOperationsInput | number
     final_weight?: FloatFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
+    CastiingTotalBalance?: CastiingTotalBalanceUncheckedUpdateManyWithoutItem_entry_idNestedInput
   }
 
   export type FilingEntryUpsertWithWhereUniqueWithoutCastingItemInput = {
@@ -43032,6 +49262,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutCastingItemInput = {
@@ -43039,6 +49271,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     setting_person_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type BuffingEntryUpsertWithoutCastingItemInput = {
@@ -43057,6 +49291,8 @@ export namespace Prisma {
     buffing_person?: AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput
     filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
     setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingWastage?: BuffingWastageUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateWithoutCastingItemInput = {
@@ -43065,6 +49301,8 @@ export namespace Prisma {
     buffing_person_id?: IntFieldUpdateOperationsInput | number
     filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
     setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingWastage?: BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type StockUpsertWithWhereUniqueWithoutCastingItemInput = {
@@ -43129,6 +49367,80 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     entries?: CastingEntryUncheckedUpdateManyWithoutCasting_customerNestedInput
     stock?: StockUncheckedUpdateManyWithoutCasting_customerNestedInput
+  }
+
+  export type CastingEntryCreateWithoutCastiingTotalBalanceInput = {
+    createdAt?: Date | string
+    date: Date | string
+    given_gold: number
+    purity: number
+    final_touch: number
+    pure_value: number
+    copper: number
+    final_weight: number
+    touch: AddTouchCreateNestedOneWithoutCasting_entryInput
+    casting_customer: AddCastingCreateNestedOneWithoutEntriesInput
+    items?: CastingItemsCreateNestedManyWithoutCastingEntryInput
+  }
+
+  export type CastingEntryUncheckedCreateWithoutCastiingTotalBalanceInput = {
+    id?: number
+    createdAt?: Date | string
+    date: Date | string
+    given_gold: number
+    touch_id: number
+    purity: number
+    final_touch: number
+    pure_value: number
+    copper: number
+    final_weight: number
+    casting_customer_id: number
+    items?: CastingItemsUncheckedCreateNestedManyWithoutCastingEntryInput
+  }
+
+  export type CastingEntryCreateOrConnectWithoutCastiingTotalBalanceInput = {
+    where: CastingEntryWhereUniqueInput
+    create: XOR<CastingEntryCreateWithoutCastiingTotalBalanceInput, CastingEntryUncheckedCreateWithoutCastiingTotalBalanceInput>
+  }
+
+  export type CastingEntryUpsertWithoutCastiingTotalBalanceInput = {
+    update: XOR<CastingEntryUpdateWithoutCastiingTotalBalanceInput, CastingEntryUncheckedUpdateWithoutCastiingTotalBalanceInput>
+    create: XOR<CastingEntryCreateWithoutCastiingTotalBalanceInput, CastingEntryUncheckedCreateWithoutCastiingTotalBalanceInput>
+    where?: CastingEntryWhereInput
+  }
+
+  export type CastingEntryUpdateToOneWithWhereWithoutCastiingTotalBalanceInput = {
+    where?: CastingEntryWhereInput
+    data: XOR<CastingEntryUpdateWithoutCastiingTotalBalanceInput, CastingEntryUncheckedUpdateWithoutCastiingTotalBalanceInput>
+  }
+
+  export type CastingEntryUpdateWithoutCastiingTotalBalanceInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    given_gold?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    final_touch?: FloatFieldUpdateOperationsInput | number
+    pure_value?: FloatFieldUpdateOperationsInput | number
+    copper?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_entryNestedInput
+    casting_customer?: AddCastingUpdateOneRequiredWithoutEntriesNestedInput
+    items?: CastingItemsUpdateManyWithoutCastingEntryNestedInput
+  }
+
+  export type CastingEntryUncheckedUpdateWithoutCastiingTotalBalanceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    given_gold?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    final_touch?: FloatFieldUpdateOperationsInput | number
+    pure_value?: FloatFieldUpdateOperationsInput | number
+    copper?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    items?: CastingItemsUncheckedUpdateManyWithoutCastingEntryNestedInput
   }
 
   export type AddFilingCreateWithoutLotInfoInput = {
@@ -43234,13 +49546,13 @@ export namespace Prisma {
 
   export type LotSettingMapperCreateWithoutLotIdInput = {
     settingId: AddSettingCreateNestedOneWithoutSettingMapperInput
-    itemId: FilingItemsCreateNestedOneWithoutLot_setting_mapperInput
+    itemId?: FilingItemsCreateNestedOneWithoutLot_setting_mapperInput
   }
 
   export type LotSettingMapperUncheckedCreateWithoutLotIdInput = {
     id?: number
     setting_id: number
-    filing_item_id: number
+    filing_item_id?: number | null
   }
 
   export type LotSettingMapperCreateOrConnectWithoutLotIdInput = {
@@ -43452,9 +49764,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
     item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
@@ -43474,9 +49783,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
     settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
@@ -43496,11 +49802,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
     stock?: StockCreateNestedManyWithoutFilingItemInput
@@ -43521,11 +49823,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
     stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
@@ -43542,6 +49840,74 @@ export namespace Prisma {
 
   export type FilingItemsCreateManyFiling_entryInputEnvelope = {
     data: FilingItemsCreateManyFiling_entryInput | FilingItemsCreateManyFiling_entryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FilingTotalBalanceCreateWithoutFilingEntryIdInput = {
+    createdAt?: Date | string
+    after_weight?: number | null
+    total_product_weight: number
+    total_scrap_weight?: number | null
+    wastage: boolean
+    balance: number
+  }
+
+  export type FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    after_weight?: number | null
+    total_product_weight: number
+    total_scrap_weight?: number | null
+    wastage: boolean
+    balance: number
+  }
+
+  export type FilingTotalBalanceCreateOrConnectWithoutFilingEntryIdInput = {
+    where: FilingTotalBalanceWhereUniqueInput
+    create: XOR<FilingTotalBalanceCreateWithoutFilingEntryIdInput, FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput>
+  }
+
+  export type FilingTotalBalanceCreateManyFilingEntryIdInputEnvelope = {
+    data: FilingTotalBalanceCreateManyFilingEntryIdInput | FilingTotalBalanceCreateManyFilingEntryIdInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FilingWastageCreateWithoutFilingEntryIdInput = {
+    createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    filing_items?: FilingItemsCreateNestedManyWithoutFiling_wastageInput
+  }
+
+  export type FilingWastageUncheckedCreateWithoutFilingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFiling_wastageInput
+  }
+
+  export type FilingWastageCreateOrConnectWithoutFilingEntryIdInput = {
+    where: FilingWastageWhereUniqueInput
+    create: XOR<FilingWastageCreateWithoutFilingEntryIdInput, FilingWastageUncheckedCreateWithoutFilingEntryIdInput>
+  }
+
+  export type FilingWastageCreateManyFilingEntryIdInputEnvelope = {
+    data: FilingWastageCreateManyFilingEntryIdInput | FilingWastageCreateManyFilingEntryIdInput[]
     skipDuplicates?: boolean
   }
 
@@ -43594,9 +49960,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
@@ -43616,9 +49979,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
@@ -43643,10 +50003,76 @@ export namespace Prisma {
     data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutFiling_entryInput>
   }
 
+  export type FilingTotalBalanceUpsertWithWhereUniqueWithoutFilingEntryIdInput = {
+    where: FilingTotalBalanceWhereUniqueInput
+    update: XOR<FilingTotalBalanceUpdateWithoutFilingEntryIdInput, FilingTotalBalanceUncheckedUpdateWithoutFilingEntryIdInput>
+    create: XOR<FilingTotalBalanceCreateWithoutFilingEntryIdInput, FilingTotalBalanceUncheckedCreateWithoutFilingEntryIdInput>
+  }
+
+  export type FilingTotalBalanceUpdateWithWhereUniqueWithoutFilingEntryIdInput = {
+    where: FilingTotalBalanceWhereUniqueInput
+    data: XOR<FilingTotalBalanceUpdateWithoutFilingEntryIdInput, FilingTotalBalanceUncheckedUpdateWithoutFilingEntryIdInput>
+  }
+
+  export type FilingTotalBalanceUpdateManyWithWhereWithoutFilingEntryIdInput = {
+    where: FilingTotalBalanceScalarWhereInput
+    data: XOR<FilingTotalBalanceUpdateManyMutationInput, FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdInput>
+  }
+
+  export type FilingTotalBalanceScalarWhereInput = {
+    AND?: FilingTotalBalanceScalarWhereInput | FilingTotalBalanceScalarWhereInput[]
+    OR?: FilingTotalBalanceScalarWhereInput[]
+    NOT?: FilingTotalBalanceScalarWhereInput | FilingTotalBalanceScalarWhereInput[]
+    id?: IntFilter<"FilingTotalBalance"> | number
+    createdAt?: DateTimeFilter<"FilingTotalBalance"> | Date | string
+    after_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
+    total_product_weight?: FloatFilter<"FilingTotalBalance"> | number
+    total_scrap_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
+    wastage?: BoolFilter<"FilingTotalBalance"> | boolean
+    balance?: FloatFilter<"FilingTotalBalance"> | number
+    filing_entry_id?: IntFilter<"FilingTotalBalance"> | number
+  }
+
+  export type FilingWastageUpsertWithWhereUniqueWithoutFilingEntryIdInput = {
+    where: FilingWastageWhereUniqueInput
+    update: XOR<FilingWastageUpdateWithoutFilingEntryIdInput, FilingWastageUncheckedUpdateWithoutFilingEntryIdInput>
+    create: XOR<FilingWastageCreateWithoutFilingEntryIdInput, FilingWastageUncheckedCreateWithoutFilingEntryIdInput>
+  }
+
+  export type FilingWastageUpdateWithWhereUniqueWithoutFilingEntryIdInput = {
+    where: FilingWastageWhereUniqueInput
+    data: XOR<FilingWastageUpdateWithoutFilingEntryIdInput, FilingWastageUncheckedUpdateWithoutFilingEntryIdInput>
+  }
+
+  export type FilingWastageUpdateManyWithWhereWithoutFilingEntryIdInput = {
+    where: FilingWastageScalarWhereInput
+    data: XOR<FilingWastageUpdateManyMutationInput, FilingWastageUncheckedUpdateManyWithoutFilingEntryIdInput>
+  }
+
+  export type FilingWastageScalarWhereInput = {
+    AND?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
+    OR?: FilingWastageScalarWhereInput[]
+    NOT?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
+    id?: IntFilter<"FilingWastage"> | number
+    createdAt?: DateTimeFilter<"FilingWastage"> | Date | string
+    total_receipt?: FloatFilter<"FilingWastage"> | number
+    total_wastage?: FloatFilter<"FilingWastage"> | number
+    balance?: FloatFilter<"FilingWastage"> | number
+    wastage_percentage?: IntFilter<"FilingWastage"> | number
+    given_gold?: IntNullableFilter<"FilingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"FilingWastage"> | number | null
+    overall_wastage?: FloatFilter<"FilingWastage"> | number
+    closing_balance?: FloatFilter<"FilingWastage"> | number
+    opening_balance?: FloatFilter<"FilingWastage"> | number
+    filing_entry_id?: IntFilter<"FilingWastage"> | number
+  }
+
   export type FilingEntryCreateWithoutFilingItemsInput = {
     createdAt?: Date | string
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
+    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
   }
 
   export type FilingEntryUncheckedCreateWithoutFilingItemsInput = {
@@ -43654,6 +50080,8 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person_id: number
     casting_item_id: number
+    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
   }
 
   export type FilingEntryCreateOrConnectWithoutFilingItemsInput = {
@@ -43716,7 +50144,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     castingItem?: CastingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
@@ -43736,7 +50163,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -43754,6 +50180,8 @@ export namespace Prisma {
     createdAt?: Date | string
     setting_person: AddSettingCreateNestedOneWithoutSettingsInput
     castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
+    settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateWithoutFilingItemsInput = {
@@ -43761,6 +50189,8 @@ export namespace Prisma {
     createdAt?: Date | string
     setting_person_id: number
     casting_item_id: number
+    settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryCreateOrConnectWithoutFilingItemsInput = {
@@ -43773,6 +50203,8 @@ export namespace Prisma {
     buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
     castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
     setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingWastage?: BuffingWastageCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryUncheckedCreateWithoutFiling_itemsInput = {
@@ -43781,6 +50213,8 @@ export namespace Prisma {
     buffing_person_id: number
     casting_item_id: number
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingWastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryCreateOrConnectWithoutFiling_itemsInput = {
@@ -43790,17 +50224,31 @@ export namespace Prisma {
 
   export type FilingWastageCreateWithoutFiling_itemsInput = {
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    filingEntryId: FilingEntryCreateNestedOneWithoutFilingWastageInput
   }
 
   export type FilingWastageUncheckedCreateWithoutFiling_itemsInput = {
     id?: number
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    filing_entry_id: number
   }
 
   export type FilingWastageCreateOrConnectWithoutFiling_itemsInput = {
@@ -43885,6 +50333,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
+    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutFilingItemsInput = {
@@ -43892,6 +50342,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
+    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
   }
 
   export type AddItemUpsertWithoutFiling_itemsInput = {
@@ -44020,17 +50472,6 @@ export namespace Prisma {
     data: XOR<FilingWastageUpdateManyMutationInput, FilingWastageUncheckedUpdateManyWithoutFiling_itemsInput>
   }
 
-  export type FilingWastageScalarWhereInput = {
-    AND?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
-    OR?: FilingWastageScalarWhereInput[]
-    NOT?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
-    id?: IntFilter<"FilingWastage"> | number
-    createdAt?: DateTimeFilter<"FilingWastage"> | Date | string
-    wastage_percentage?: IntFilter<"FilingWastage"> | number
-    given_gold?: IntNullableFilter<"FilingWastage"> | number | null
-    add_wastage?: FloatNullableFilter<"FilingWastage"> | number | null
-  }
-
   export type LotSettingMapperUpsertWithWhereUniqueWithoutItemIdInput = {
     where: LotSettingMapperWhereUniqueInput
     update: XOR<LotSettingMapperUpdateWithoutItemIdInput, LotSettingMapperUncheckedUpdateWithoutItemIdInput>
@@ -44143,9 +50584,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
     item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
@@ -44165,9 +50603,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
@@ -44187,11 +50622,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
@@ -44213,11 +50644,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
     buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
@@ -44315,9 +50742,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
@@ -44337,9 +50761,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -44364,17 +50785,85 @@ export namespace Prisma {
     data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdInput>
   }
 
+  export type FilingEntryCreateWithoutFilingItemsIdInput = {
+    createdAt?: Date | string
+    filing_person: AddFilingCreateNestedOneWithoutFilingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
+    FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
+  }
+
+  export type FilingEntryUncheckedCreateWithoutFilingItemsIdInput = {
+    id?: number
+    createdAt?: Date | string
+    filing_person_id: number
+    casting_item_id: number
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
+    FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
+  }
+
+  export type FilingEntryCreateOrConnectWithoutFilingItemsIdInput = {
+    where: FilingEntryWhereUniqueInput
+    create: XOR<FilingEntryCreateWithoutFilingItemsIdInput, FilingEntryUncheckedCreateWithoutFilingItemsIdInput>
+  }
+
+  export type FilingEntryUpsertWithoutFilingItemsIdInput = {
+    update: XOR<FilingEntryUpdateWithoutFilingItemsIdInput, FilingEntryUncheckedUpdateWithoutFilingItemsIdInput>
+    create: XOR<FilingEntryCreateWithoutFilingItemsIdInput, FilingEntryUncheckedCreateWithoutFilingItemsIdInput>
+    where?: FilingEntryWhereInput
+  }
+
+  export type FilingEntryUpdateToOneWithWhereWithoutFilingItemsIdInput = {
+    where?: FilingEntryWhereInput
+    data: XOR<FilingEntryUpdateWithoutFilingItemsIdInput, FilingEntryUncheckedUpdateWithoutFilingItemsIdInput>
+  }
+
+  export type FilingEntryUpdateWithoutFilingItemsIdInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
+    castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
+    FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
+  }
+
+  export type FilingEntryUncheckedUpdateWithoutFilingItemsIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
+    FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+  }
+
+  export type FilingEntryCreateWithoutFilingWastageInput = {
+    createdAt?: Date | string
+    filing_person: AddFilingCreateNestedOneWithoutFilingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
+    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+  }
+
+  export type FilingEntryUncheckedCreateWithoutFilingWastageInput = {
+    id?: number
+    createdAt?: Date | string
+    filing_person_id: number
+    casting_item_id: number
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
+    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+  }
+
+  export type FilingEntryCreateOrConnectWithoutFilingWastageInput = {
+    where: FilingEntryWhereUniqueInput
+    create: XOR<FilingEntryCreateWithoutFilingWastageInput, FilingEntryUncheckedCreateWithoutFilingWastageInput>
+  }
+
   export type FilingItemsCreateWithoutFiling_wastageInput = {
     createdAt?: Date | string
     type: $Enums.CASTINGENTRYTYPE
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
@@ -44396,11 +50885,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
     stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
@@ -44412,6 +50897,34 @@ export namespace Prisma {
   export type FilingItemsCreateOrConnectWithoutFiling_wastageInput = {
     where: FilingItemsWhereUniqueInput
     create: XOR<FilingItemsCreateWithoutFiling_wastageInput, FilingItemsUncheckedCreateWithoutFiling_wastageInput>
+  }
+
+  export type FilingEntryUpsertWithoutFilingWastageInput = {
+    update: XOR<FilingEntryUpdateWithoutFilingWastageInput, FilingEntryUncheckedUpdateWithoutFilingWastageInput>
+    create: XOR<FilingEntryCreateWithoutFilingWastageInput, FilingEntryUncheckedCreateWithoutFilingWastageInput>
+    where?: FilingEntryWhereInput
+  }
+
+  export type FilingEntryUpdateToOneWithWhereWithoutFilingWastageInput = {
+    where?: FilingEntryWhereInput
+    data: XOR<FilingEntryUpdateWithoutFilingWastageInput, FilingEntryUncheckedUpdateWithoutFilingWastageInput>
+  }
+
+  export type FilingEntryUpdateWithoutFilingWastageInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
+    castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
+    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+  }
+
+  export type FilingEntryUncheckedUpdateWithoutFilingWastageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
+    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
   }
 
   export type FilingItemsUpsertWithWhereUniqueWithoutFiling_wastageInput = {
@@ -44462,9 +50975,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
     item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
@@ -44484,9 +50994,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
@@ -44506,11 +51013,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
@@ -44532,11 +51035,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
     stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
     buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
@@ -44548,6 +51047,78 @@ export namespace Prisma {
   export type FilingItemsCreateOrConnectWithoutSetting_entryInput = {
     where: FilingItemsWhereUniqueInput
     create: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput>
+  }
+
+  export type SettingTotalBalanceCreateWithoutSetting_entryInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance?: number | null
+  }
+
+  export type SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance?: number | null
+  }
+
+  export type SettingTotalBalanceCreateOrConnectWithoutSetting_entryInput = {
+    where: SettingTotalBalanceWhereUniqueInput
+    create: XOR<SettingTotalBalanceCreateWithoutSetting_entryInput, SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput>
+  }
+
+  export type SettingTotalBalanceCreateManySetting_entryInputEnvelope = {
+    data: SettingTotalBalanceCreateManySetting_entryInput | SettingTotalBalanceCreateManySetting_entryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SettingWastageCreateWithoutSettingEntryIdInput = {
+    createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    setting_items?: SettingItemsCreateNestedManyWithoutSetting_wastageInput
+  }
+
+  export type SettingWastageUncheckedCreateWithoutSettingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutSetting_wastageInput
+  }
+
+  export type SettingWastageCreateOrConnectWithoutSettingEntryIdInput = {
+    where: SettingWastageWhereUniqueInput
+    create: XOR<SettingWastageCreateWithoutSettingEntryIdInput, SettingWastageUncheckedCreateWithoutSettingEntryIdInput>
+  }
+
+  export type SettingWastageCreateManySettingEntryIdInputEnvelope = {
+    data: SettingWastageCreateManySettingEntryIdInput | SettingWastageCreateManySettingEntryIdInput[]
+    skipDuplicates?: boolean
   }
 
   export type AddSettingUpsertWithoutSettingsInput = {
@@ -44599,9 +51170,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
@@ -44621,9 +51189,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -44646,6 +51211,72 @@ export namespace Prisma {
   export type FilingItemsUpdateManyWithWhereWithoutSetting_entryInput = {
     where: FilingItemsScalarWhereInput
     data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutSetting_entryInput>
+  }
+
+  export type SettingTotalBalanceUpsertWithWhereUniqueWithoutSetting_entryInput = {
+    where: SettingTotalBalanceWhereUniqueInput
+    update: XOR<SettingTotalBalanceUpdateWithoutSetting_entryInput, SettingTotalBalanceUncheckedUpdateWithoutSetting_entryInput>
+    create: XOR<SettingTotalBalanceCreateWithoutSetting_entryInput, SettingTotalBalanceUncheckedCreateWithoutSetting_entryInput>
+  }
+
+  export type SettingTotalBalanceUpdateWithWhereUniqueWithoutSetting_entryInput = {
+    where: SettingTotalBalanceWhereUniqueInput
+    data: XOR<SettingTotalBalanceUpdateWithoutSetting_entryInput, SettingTotalBalanceUncheckedUpdateWithoutSetting_entryInput>
+  }
+
+  export type SettingTotalBalanceUpdateManyWithWhereWithoutSetting_entryInput = {
+    where: SettingTotalBalanceScalarWhereInput
+    data: XOR<SettingTotalBalanceUpdateManyMutationInput, SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryInput>
+  }
+
+  export type SettingTotalBalanceScalarWhereInput = {
+    AND?: SettingTotalBalanceScalarWhereInput | SettingTotalBalanceScalarWhereInput[]
+    OR?: SettingTotalBalanceScalarWhereInput[]
+    NOT?: SettingTotalBalanceScalarWhereInput | SettingTotalBalanceScalarWhereInput[]
+    id?: IntFilter<"SettingTotalBalance"> | number
+    createdAt?: DateTimeFilter<"SettingTotalBalance"> | Date | string
+    receipt_weight?: FloatFilter<"SettingTotalBalance"> | number
+    stone_count?: FloatFilter<"SettingTotalBalance"> | number
+    stone_weight?: FloatFilter<"SettingTotalBalance"> | number
+    remarks?: StringNullableFilter<"SettingTotalBalance"> | string | null
+    wastage?: BoolFilter<"SettingTotalBalance"> | boolean
+    total_scrap_weight?: FloatNullableFilter<"SettingTotalBalance"> | number | null
+    balance?: FloatNullableFilter<"SettingTotalBalance"> | number | null
+    setting_entry_id?: IntFilter<"SettingTotalBalance"> | number
+  }
+
+  export type SettingWastageUpsertWithWhereUniqueWithoutSettingEntryIdInput = {
+    where: SettingWastageWhereUniqueInput
+    update: XOR<SettingWastageUpdateWithoutSettingEntryIdInput, SettingWastageUncheckedUpdateWithoutSettingEntryIdInput>
+    create: XOR<SettingWastageCreateWithoutSettingEntryIdInput, SettingWastageUncheckedCreateWithoutSettingEntryIdInput>
+  }
+
+  export type SettingWastageUpdateWithWhereUniqueWithoutSettingEntryIdInput = {
+    where: SettingWastageWhereUniqueInput
+    data: XOR<SettingWastageUpdateWithoutSettingEntryIdInput, SettingWastageUncheckedUpdateWithoutSettingEntryIdInput>
+  }
+
+  export type SettingWastageUpdateManyWithWhereWithoutSettingEntryIdInput = {
+    where: SettingWastageScalarWhereInput
+    data: XOR<SettingWastageUpdateManyMutationInput, SettingWastageUncheckedUpdateManyWithoutSettingEntryIdInput>
+  }
+
+  export type SettingWastageScalarWhereInput = {
+    AND?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
+    OR?: SettingWastageScalarWhereInput[]
+    NOT?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
+    id?: IntFilter<"SettingWastage"> | number
+    createdAt?: DateTimeFilter<"SettingWastage"> | Date | string
+    total_receipt?: FloatFilter<"SettingWastage"> | number
+    total_wastage?: FloatFilter<"SettingWastage"> | number
+    balance?: FloatFilter<"SettingWastage"> | number
+    wastage_percentage?: IntFilter<"SettingWastage"> | number
+    given_gold?: IntNullableFilter<"SettingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"SettingWastage"> | number | null
+    overall_wastage?: FloatFilter<"SettingWastage"> | number
+    closing_balance?: FloatFilter<"SettingWastage"> | number
+    opening_balance?: FloatFilter<"SettingWastage"> | number
+    setting_entry_id?: IntFilter<"SettingWastage"> | number
   }
 
   export type AddItemCreateWithoutSetting_itemsInput = {
@@ -44700,17 +51331,31 @@ export namespace Prisma {
 
   export type SettingWastageCreateWithoutSetting_itemsInput = {
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    SettingEntryId: SettingEntryCreateNestedOneWithoutSettingWastageInput
   }
 
   export type SettingWastageUncheckedCreateWithoutSetting_itemsInput = {
     id?: number
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    setting_entry_id: number
   }
 
   export type SettingWastageCreateOrConnectWithoutSetting_itemsInput = {
@@ -44723,6 +51368,8 @@ export namespace Prisma {
     buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
     castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
     filing_items?: FilingItemsCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingWastage?: BuffingWastageCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryUncheckedCreateWithoutSetting_itemsInput = {
@@ -44731,6 +51378,8 @@ export namespace Prisma {
     buffing_person_id: number
     casting_item_id: number
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingWastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryCreateOrConnectWithoutSetting_itemsInput = {
@@ -44743,7 +51392,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     castingItem?: CastingItemsCreateNestedOneWithoutStockInput
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
@@ -44763,7 +51411,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -44878,17 +51525,6 @@ export namespace Prisma {
     data: XOR<SettingWastageUpdateManyMutationInput, SettingWastageUncheckedUpdateManyWithoutSetting_itemsInput>
   }
 
-  export type SettingWastageScalarWhereInput = {
-    AND?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
-    OR?: SettingWastageScalarWhereInput[]
-    NOT?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
-    id?: IntFilter<"SettingWastage"> | number
-    createdAt?: DateTimeFilter<"SettingWastage"> | Date | string
-    wastage_percentage?: IntFilter<"SettingWastage"> | number
-    given_gold?: IntNullableFilter<"SettingWastage"> | number | null
-    add_wastage?: FloatNullableFilter<"SettingWastage"> | number | null
-  }
-
   export type BuffingEntryUpsertWithWhereUniqueWithoutSetting_itemsInput = {
     where: BuffingEntryWhereUniqueInput
     update: XOR<BuffingEntryUpdateWithoutSetting_itemsInput, BuffingEntryUncheckedUpdateWithoutSetting_itemsInput>
@@ -44993,11 +51629,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
@@ -45019,11 +51651,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
     stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
@@ -45116,11 +51744,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
@@ -45142,11 +51766,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
     stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
@@ -45155,13 +51775,58 @@ export namespace Prisma {
     LotBuffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutFilingItemIdNestedInput
   }
 
+  export type SettingEntryCreateWithoutSettingTotalBalanceInput = {
+    createdAt?: Date | string
+    setting_person: AddSettingCreateNestedOneWithoutSettingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
+  }
+
+  export type SettingEntryUncheckedCreateWithoutSettingTotalBalanceInput = {
+    id?: number
+    createdAt?: Date | string
+    setting_person_id: number
+    casting_item_id: number
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
+  }
+
+  export type SettingEntryCreateOrConnectWithoutSettingTotalBalanceInput = {
+    where: SettingEntryWhereUniqueInput
+    create: XOR<SettingEntryCreateWithoutSettingTotalBalanceInput, SettingEntryUncheckedCreateWithoutSettingTotalBalanceInput>
+  }
+
+  export type SettingEntryUpsertWithoutSettingTotalBalanceInput = {
+    update: XOR<SettingEntryUpdateWithoutSettingTotalBalanceInput, SettingEntryUncheckedUpdateWithoutSettingTotalBalanceInput>
+    create: XOR<SettingEntryCreateWithoutSettingTotalBalanceInput, SettingEntryUncheckedCreateWithoutSettingTotalBalanceInput>
+    where?: SettingEntryWhereInput
+  }
+
+  export type SettingEntryUpdateToOneWithWhereWithoutSettingTotalBalanceInput = {
+    where?: SettingEntryWhereInput
+    data: XOR<SettingEntryUpdateWithoutSettingTotalBalanceInput, SettingEntryUncheckedUpdateWithoutSettingTotalBalanceInput>
+  }
+
+  export type SettingEntryUpdateWithoutSettingTotalBalanceInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
+    castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
+  }
+
+  export type SettingEntryUncheckedUpdateWithoutSettingTotalBalanceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    setting_person_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
+  }
+
   export type SettingItemsCreateWithoutSetting_wastageInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -45176,11 +51841,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedCreateWithoutSetting_wastageInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     setting_item_id: number
     scrap_weight: number
@@ -45197,6 +51857,28 @@ export namespace Prisma {
     create: XOR<SettingItemsCreateWithoutSetting_wastageInput, SettingItemsUncheckedCreateWithoutSetting_wastageInput>
   }
 
+  export type SettingEntryCreateWithoutSettingWastageInput = {
+    createdAt?: Date | string
+    setting_person: AddSettingCreateNestedOneWithoutSettingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
+  }
+
+  export type SettingEntryUncheckedCreateWithoutSettingWastageInput = {
+    id?: number
+    createdAt?: Date | string
+    setting_person_id: number
+    casting_item_id: number
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
+  }
+
+  export type SettingEntryCreateOrConnectWithoutSettingWastageInput = {
+    where: SettingEntryWhereUniqueInput
+    create: XOR<SettingEntryCreateWithoutSettingWastageInput, SettingEntryUncheckedCreateWithoutSettingWastageInput>
+  }
+
   export type SettingItemsUpsertWithWhereUniqueWithoutSetting_wastageInput = {
     where: SettingItemsWhereUniqueInput
     update: XOR<SettingItemsUpdateWithoutSetting_wastageInput, SettingItemsUncheckedUpdateWithoutSetting_wastageInput>
@@ -45211,6 +51893,34 @@ export namespace Prisma {
   export type SettingItemsUpdateManyWithWhereWithoutSetting_wastageInput = {
     where: SettingItemsScalarWhereInput
     data: XOR<SettingItemsUpdateManyMutationInput, SettingItemsUncheckedUpdateManyWithoutSetting_wastageInput>
+  }
+
+  export type SettingEntryUpsertWithoutSettingWastageInput = {
+    update: XOR<SettingEntryUpdateWithoutSettingWastageInput, SettingEntryUncheckedUpdateWithoutSettingWastageInput>
+    create: XOR<SettingEntryCreateWithoutSettingWastageInput, SettingEntryUncheckedCreateWithoutSettingWastageInput>
+    where?: SettingEntryWhereInput
+  }
+
+  export type SettingEntryUpdateToOneWithWhereWithoutSettingWastageInput = {
+    where?: SettingEntryWhereInput
+    data: XOR<SettingEntryUpdateWithoutSettingWastageInput, SettingEntryUncheckedUpdateWithoutSettingWastageInput>
+  }
+
+  export type SettingEntryUpdateWithoutSettingWastageInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
+    castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
+  }
+
+  export type SettingEntryUncheckedUpdateWithoutSettingWastageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    setting_person_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
   }
 
   export type AddBuffingCreateWithoutBuffingsInput = {
@@ -45245,9 +51955,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
     item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
@@ -45267,9 +51974,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
@@ -45289,11 +51993,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
@@ -45315,11 +52015,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
     stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
@@ -45335,11 +52031,6 @@ export namespace Prisma {
 
   export type SettingItemsCreateWithoutBuffing_entryInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -45354,11 +52045,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedCreateWithoutBuffing_entryInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     setting_item_id: number
     scrap_weight: number
@@ -45373,6 +52059,74 @@ export namespace Prisma {
   export type SettingItemsCreateOrConnectWithoutBuffing_entryInput = {
     where: SettingItemsWhereUniqueInput
     create: XOR<SettingItemsCreateWithoutBuffing_entryInput, SettingItemsUncheckedCreateWithoutBuffing_entryInput>
+  }
+
+  export type BuffingTotalBalanceCreateWithoutBuffingEntryIdInput = {
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance: number
+  }
+
+  export type BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance: number
+  }
+
+  export type BuffingTotalBalanceCreateOrConnectWithoutBuffingEntryIdInput = {
+    where: BuffingTotalBalanceWhereUniqueInput
+    create: XOR<BuffingTotalBalanceCreateWithoutBuffingEntryIdInput, BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput>
+  }
+
+  export type BuffingTotalBalanceCreateManyBuffingEntryIdInputEnvelope = {
+    data: BuffingTotalBalanceCreateManyBuffingEntryIdInput | BuffingTotalBalanceCreateManyBuffingEntryIdInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BuffingWastageCreateWithoutBuffingEntryIdInput = {
+    createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    buffing_items?: BuffingItemsCreateNestedManyWithoutBuffing_wastageInput
+  }
+
+  export type BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutBuffing_wastageInput
+  }
+
+  export type BuffingWastageCreateOrConnectWithoutBuffingEntryIdInput = {
+    where: BuffingWastageWhereUniqueInput
+    create: XOR<BuffingWastageCreateWithoutBuffingEntryIdInput, BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput>
+  }
+
+  export type BuffingWastageCreateManyBuffingEntryIdInputEnvelope = {
+    data: BuffingWastageCreateManyBuffingEntryIdInput | BuffingWastageCreateManyBuffingEntryIdInput[]
+    skipDuplicates?: boolean
   }
 
   export type AddBuffingUpsertWithoutBuffingsInput = {
@@ -45424,9 +52178,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
@@ -45446,9 +52197,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -45487,6 +52235,70 @@ export namespace Prisma {
   export type SettingItemsUpdateManyWithWhereWithoutBuffing_entryInput = {
     where: SettingItemsScalarWhereInput
     data: XOR<SettingItemsUpdateManyMutationInput, SettingItemsUncheckedUpdateManyWithoutBuffing_entryInput>
+  }
+
+  export type BuffingTotalBalanceUpsertWithWhereUniqueWithoutBuffingEntryIdInput = {
+    where: BuffingTotalBalanceWhereUniqueInput
+    update: XOR<BuffingTotalBalanceUpdateWithoutBuffingEntryIdInput, BuffingTotalBalanceUncheckedUpdateWithoutBuffingEntryIdInput>
+    create: XOR<BuffingTotalBalanceCreateWithoutBuffingEntryIdInput, BuffingTotalBalanceUncheckedCreateWithoutBuffingEntryIdInput>
+  }
+
+  export type BuffingTotalBalanceUpdateWithWhereUniqueWithoutBuffingEntryIdInput = {
+    where: BuffingTotalBalanceWhereUniqueInput
+    data: XOR<BuffingTotalBalanceUpdateWithoutBuffingEntryIdInput, BuffingTotalBalanceUncheckedUpdateWithoutBuffingEntryIdInput>
+  }
+
+  export type BuffingTotalBalanceUpdateManyWithWhereWithoutBuffingEntryIdInput = {
+    where: BuffingTotalBalanceScalarWhereInput
+    data: XOR<BuffingTotalBalanceUpdateManyMutationInput, BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdInput>
+  }
+
+  export type BuffingTotalBalanceScalarWhereInput = {
+    AND?: BuffingTotalBalanceScalarWhereInput | BuffingTotalBalanceScalarWhereInput[]
+    OR?: BuffingTotalBalanceScalarWhereInput[]
+    NOT?: BuffingTotalBalanceScalarWhereInput | BuffingTotalBalanceScalarWhereInput[]
+    id?: IntFilter<"BuffingTotalBalance"> | number
+    createdAt?: DateTimeFilter<"BuffingTotalBalance"> | Date | string
+    receipt_weight?: FloatFilter<"BuffingTotalBalance"> | number
+    remarks?: StringFilter<"BuffingTotalBalance"> | string
+    wastage?: BoolFilter<"BuffingTotalBalance"> | boolean
+    total_scrap_weight?: FloatNullableFilter<"BuffingTotalBalance"> | number | null
+    balance?: FloatFilter<"BuffingTotalBalance"> | number
+    buffing_entry_id?: IntFilter<"BuffingTotalBalance"> | number
+  }
+
+  export type BuffingWastageUpsertWithWhereUniqueWithoutBuffingEntryIdInput = {
+    where: BuffingWastageWhereUniqueInput
+    update: XOR<BuffingWastageUpdateWithoutBuffingEntryIdInput, BuffingWastageUncheckedUpdateWithoutBuffingEntryIdInput>
+    create: XOR<BuffingWastageCreateWithoutBuffingEntryIdInput, BuffingWastageUncheckedCreateWithoutBuffingEntryIdInput>
+  }
+
+  export type BuffingWastageUpdateWithWhereUniqueWithoutBuffingEntryIdInput = {
+    where: BuffingWastageWhereUniqueInput
+    data: XOR<BuffingWastageUpdateWithoutBuffingEntryIdInput, BuffingWastageUncheckedUpdateWithoutBuffingEntryIdInput>
+  }
+
+  export type BuffingWastageUpdateManyWithWhereWithoutBuffingEntryIdInput = {
+    where: BuffingWastageScalarWhereInput
+    data: XOR<BuffingWastageUpdateManyMutationInput, BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdInput>
+  }
+
+  export type BuffingWastageScalarWhereInput = {
+    AND?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
+    OR?: BuffingWastageScalarWhereInput[]
+    NOT?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
+    id?: IntFilter<"BuffingWastage"> | number
+    createdAt?: DateTimeFilter<"BuffingWastage"> | Date | string
+    total_receipt?: FloatFilter<"BuffingWastage"> | number
+    total_wastage?: FloatFilter<"BuffingWastage"> | number
+    balance?: FloatFilter<"BuffingWastage"> | number
+    wastage_percentage?: IntFilter<"BuffingWastage"> | number
+    given_gold?: FloatNullableFilter<"BuffingWastage"> | number | null
+    add_wastage?: FloatNullableFilter<"BuffingWastage"> | number | null
+    overall_wastage?: FloatFilter<"BuffingWastage"> | number
+    closing_balance?: FloatFilter<"BuffingWastage"> | number
+    opening_balance?: FloatFilter<"BuffingWastage"> | number
+    buffing_entry_id?: IntFilter<"BuffingWastage"> | number
   }
 
   export type AddItemCreateWithoutBuffing_itemsInput = {
@@ -45544,7 +52356,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     castingItem?: CastingItemsCreateNestedOneWithoutStockInput
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
@@ -45564,7 +52375,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -45580,17 +52390,31 @@ export namespace Prisma {
 
   export type BuffingWastageCreateWithoutBuffing_itemsInput = {
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    BuffingEntryId: BuffingEntryCreateNestedOneWithoutBuffingWastageInput
   }
 
   export type BuffingWastageUncheckedCreateWithoutBuffing_itemsInput = {
     id?: number
     createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
     wastage_percentage: number
     given_gold?: number | null
     add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+    buffing_entry_id: number
   }
 
   export type BuffingWastageCreateOrConnectWithoutBuffing_itemsInput = {
@@ -45692,15 +52516,58 @@ export namespace Prisma {
     data: XOR<BuffingWastageUpdateManyMutationInput, BuffingWastageUncheckedUpdateManyWithoutBuffing_itemsInput>
   }
 
-  export type BuffingWastageScalarWhereInput = {
-    AND?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
-    OR?: BuffingWastageScalarWhereInput[]
-    NOT?: BuffingWastageScalarWhereInput | BuffingWastageScalarWhereInput[]
-    id?: IntFilter<"BuffingWastage"> | number
-    createdAt?: DateTimeFilter<"BuffingWastage"> | Date | string
-    wastage_percentage?: IntFilter<"BuffingWastage"> | number
-    given_gold?: IntNullableFilter<"BuffingWastage"> | number | null
-    add_wastage?: FloatNullableFilter<"BuffingWastage"> | number | null
+  export type BuffingEntryCreateWithoutBuffingTotalBalanceInput = {
+    createdAt?: Date | string
+    buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
+    filing_items?: FilingItemsCreateNestedManyWithoutBuffing_entryInput
+    setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
+    BuffingWastage?: BuffingWastageCreateNestedManyWithoutBuffingEntryIdInput
+  }
+
+  export type BuffingEntryUncheckedCreateWithoutBuffingTotalBalanceInput = {
+    id?: number
+    createdAt?: Date | string
+    buffing_person_id: number
+    casting_item_id: number
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    BuffingWastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffingEntryIdInput
+  }
+
+  export type BuffingEntryCreateOrConnectWithoutBuffingTotalBalanceInput = {
+    where: BuffingEntryWhereUniqueInput
+    create: XOR<BuffingEntryCreateWithoutBuffingTotalBalanceInput, BuffingEntryUncheckedCreateWithoutBuffingTotalBalanceInput>
+  }
+
+  export type BuffingEntryUpsertWithoutBuffingTotalBalanceInput = {
+    update: XOR<BuffingEntryUpdateWithoutBuffingTotalBalanceInput, BuffingEntryUncheckedUpdateWithoutBuffingTotalBalanceInput>
+    create: XOR<BuffingEntryCreateWithoutBuffingTotalBalanceInput, BuffingEntryUncheckedCreateWithoutBuffingTotalBalanceInput>
+    where?: BuffingEntryWhereInput
+  }
+
+  export type BuffingEntryUpdateToOneWithWhereWithoutBuffingTotalBalanceInput = {
+    where?: BuffingEntryWhereInput
+    data: XOR<BuffingEntryUpdateWithoutBuffingTotalBalanceInput, BuffingEntryUncheckedUpdateWithoutBuffingTotalBalanceInput>
+  }
+
+  export type BuffingEntryUpdateWithoutBuffingTotalBalanceInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buffing_person?: AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput
+    castingItem?: CastingItemsUpdateOneRequiredWithoutBuffingEntryNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
+    BuffingWastage?: BuffingWastageUpdateManyWithoutBuffingEntryIdNestedInput
+  }
+
+  export type BuffingEntryUncheckedUpdateWithoutBuffingTotalBalanceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buffing_person_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    BuffingWastage?: BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type AddBuffingCreateWithoutBuffingMapperInput = {
@@ -45755,11 +52622,6 @@ export namespace Prisma {
 
   export type SettingItemsCreateWithoutLotBuffingMapperInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -45774,11 +52636,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedCreateWithoutLotBuffingMapperInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     setting_item_id: number
     scrap_weight: number
@@ -45801,11 +52658,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
@@ -45827,11 +52680,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
     stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
     setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
@@ -45920,11 +52769,6 @@ export namespace Prisma {
 
   export type SettingItemsUpdateWithoutLotBuffingMapperInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -45939,11 +52783,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateWithoutLotBuffingMapperInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -45972,11 +52811,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
@@ -45998,11 +52833,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
     stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
@@ -46011,11 +52842,32 @@ export namespace Prisma {
     lot_setting_mapper?: LotSettingMapperUncheckedUpdateManyWithoutItemIdNestedInput
   }
 
+  export type BuffingEntryCreateWithoutBuffingWastageInput = {
+    createdAt?: Date | string
+    buffing_person: AddBuffingCreateNestedOneWithoutBuffingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutBuffingEntryInput
+    filing_items?: FilingItemsCreateNestedManyWithoutBuffing_entryInput
+    setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceCreateNestedManyWithoutBuffingEntryIdInput
+  }
+
+  export type BuffingEntryUncheckedCreateWithoutBuffingWastageInput = {
+    id?: number
+    createdAt?: Date | string
+    buffing_person_id: number
+    casting_item_id: number
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedCreateNestedManyWithoutBuffingEntryIdInput
+  }
+
+  export type BuffingEntryCreateOrConnectWithoutBuffingWastageInput = {
+    where: BuffingEntryWhereUniqueInput
+    create: XOR<BuffingEntryCreateWithoutBuffingWastageInput, BuffingEntryUncheckedCreateWithoutBuffingWastageInput>
+  }
+
   export type BuffingItemsCreateWithoutBuffing_wastageInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -46028,9 +52880,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedCreateWithoutBuffing_wastageInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     buffing_item_id: number
     scrap_weight: number
@@ -46043,6 +52892,36 @@ export namespace Prisma {
   export type BuffingItemsCreateOrConnectWithoutBuffing_wastageInput = {
     where: BuffingItemsWhereUniqueInput
     create: XOR<BuffingItemsCreateWithoutBuffing_wastageInput, BuffingItemsUncheckedCreateWithoutBuffing_wastageInput>
+  }
+
+  export type BuffingEntryUpsertWithoutBuffingWastageInput = {
+    update: XOR<BuffingEntryUpdateWithoutBuffingWastageInput, BuffingEntryUncheckedUpdateWithoutBuffingWastageInput>
+    create: XOR<BuffingEntryCreateWithoutBuffingWastageInput, BuffingEntryUncheckedCreateWithoutBuffingWastageInput>
+    where?: BuffingEntryWhereInput
+  }
+
+  export type BuffingEntryUpdateToOneWithWhereWithoutBuffingWastageInput = {
+    where?: BuffingEntryWhereInput
+    data: XOR<BuffingEntryUpdateWithoutBuffingWastageInput, BuffingEntryUncheckedUpdateWithoutBuffingWastageInput>
+  }
+
+  export type BuffingEntryUpdateWithoutBuffingWastageInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buffing_person?: AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput
+    castingItem?: CastingItemsUpdateOneRequiredWithoutBuffingEntryNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUpdateManyWithoutBuffingEntryIdNestedInput
+  }
+
+  export type BuffingEntryUncheckedUpdateWithoutBuffingWastageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    buffing_person_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingItemsUpsertWithWhereUniqueWithoutBuffing_wastageInput = {
@@ -46067,9 +52946,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
     item: AddItemCreateNestedOneWithoutCasting_itemsInput
     castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
@@ -46089,9 +52965,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
     filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
@@ -46111,11 +52984,7 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
     filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
     touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
@@ -46137,11 +53006,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
     setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
     buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
@@ -46157,11 +53022,6 @@ export namespace Prisma {
 
   export type SettingItemsCreateWithoutStockInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -46176,11 +53036,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedCreateWithoutStockInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     setting_item_id: number
     scrap_weight: number
@@ -46199,9 +53054,6 @@ export namespace Prisma {
 
   export type BuffingItemsCreateWithoutStockInput = {
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     item_purity: number
@@ -46214,9 +53066,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedCreateWithoutStockInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     buffing_item_id: number
     scrap_weight: number
@@ -46324,9 +53173,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
@@ -46346,9 +53192,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -46374,11 +53217,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
@@ -46400,11 +53239,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
     buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
@@ -46426,11 +53261,6 @@ export namespace Prisma {
 
   export type SettingItemsUpdateWithoutStockInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -46445,11 +53275,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateWithoutStockInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -46474,9 +53299,6 @@ export namespace Prisma {
 
   export type BuffingItemsUpdateWithoutStockInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -46489,9 +53311,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedUpdateWithoutStockInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -46660,9 +53479,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
   }
 
@@ -46678,7 +53494,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
   }
 
   export type CastingEntryUpdateWithoutCasting_customerInput = {
@@ -46692,6 +53507,7 @@ export namespace Prisma {
     final_weight?: FloatFieldUpdateOperationsInput | number
     touch?: AddTouchUpdateOneRequiredWithoutCasting_entryNestedInput
     items?: CastingItemsUpdateManyWithoutCastingEntryNestedInput
+    CastiingTotalBalance?: CastiingTotalBalanceUpdateManyWithoutItem_entry_idNestedInput
   }
 
   export type CastingEntryUncheckedUpdateWithoutCasting_customerInput = {
@@ -46706,6 +53522,7 @@ export namespace Prisma {
     copper?: FloatFieldUpdateOperationsInput | number
     final_weight?: FloatFieldUpdateOperationsInput | number
     items?: CastingItemsUncheckedUpdateManyWithoutCastingEntryNestedInput
+    CastiingTotalBalance?: CastiingTotalBalanceUncheckedUpdateManyWithoutItem_entry_idNestedInput
   }
 
   export type CastingEntryUncheckedUpdateManyWithoutCasting_customerInput = {
@@ -46727,9 +53544,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
@@ -46749,9 +53563,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
@@ -46769,9 +53580,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -46780,7 +53588,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
@@ -46801,7 +53608,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type StockUncheckedUpdateManyWithoutCasting_customerInput = {
@@ -46816,7 +53622,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type FilingEntryCreateManyFiling_personInput = {
@@ -46842,6 +53647,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
+    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutFiling_personInput = {
@@ -46849,6 +53656,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
+    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
   }
 
   export type FilingEntryUncheckedUpdateManyWithoutFiling_personInput = {
@@ -46911,7 +53720,7 @@ export namespace Prisma {
   export type LotSettingMapperCreateManySettingIdInput = {
     id?: number
     lot_id: number
-    filing_item_id: number
+    filing_item_id?: number | null
   }
 
   export type LotInfoCreateManySettingCustomerIdInput = {
@@ -46925,6 +53734,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutSetting_personInput = {
@@ -46932,6 +53743,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateManyWithoutSetting_personInput = {
@@ -46942,19 +53755,19 @@ export namespace Prisma {
 
   export type LotSettingMapperUpdateWithoutSettingIdInput = {
     lotId?: LotInfoUpdateOneRequiredWithoutSettingMapperNestedInput
-    itemId?: FilingItemsUpdateOneRequiredWithoutLot_setting_mapperNestedInput
+    itemId?: FilingItemsUpdateOneWithoutLot_setting_mapperNestedInput
   }
 
   export type LotSettingMapperUncheckedUpdateWithoutSettingIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type LotSettingMapperUncheckedUpdateManyWithoutSettingIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type LotInfoUpdateWithoutSettingCustomerIdInput = {
@@ -47008,6 +53821,8 @@ export namespace Prisma {
     castingItem?: CastingItemsUpdateOneRequiredWithoutBuffingEntryNestedInput
     filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
     setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingWastage?: BuffingWastageUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateWithoutBuffing_personInput = {
@@ -47016,6 +53831,8 @@ export namespace Prisma {
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
     setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingWastage?: BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateManyWithoutBuffing_personInput = {
@@ -47078,9 +53895,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
   }
@@ -47096,7 +53910,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -47109,22 +53922,13 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
   }
 
   export type SettingItemsCreateManyItemInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     touch_id: number
@@ -47135,9 +53939,6 @@ export namespace Prisma {
   export type BuffingItemsCreateManyItemInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     scrap_weight: number
     touch_id: number
@@ -47151,9 +53952,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
     filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
@@ -47172,9 +53970,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -47192,9 +53987,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
@@ -47204,7 +53996,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
@@ -47224,7 +54015,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -47239,7 +54029,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -47249,11 +54038,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
     stock?: StockUpdateManyWithoutFilingItemNestedInput
@@ -47274,11 +54059,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
     stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
@@ -47297,21 +54078,12 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type SettingItemsUpdateWithoutItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -47326,11 +54098,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateWithoutItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
@@ -47345,11 +54112,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateManyWithoutItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
@@ -47359,9 +54121,6 @@ export namespace Prisma {
 
   export type BuffingItemsUpdateWithoutItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -47374,9 +54133,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedUpdateWithoutItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
@@ -47389,9 +54145,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedUpdateManyWithoutItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
@@ -47420,9 +54173,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_entry_id: number
     casting_customer_id: number
   }
@@ -47436,22 +54186,13 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
   }
 
   export type SettingItemsCreateManyTouchInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    stone_count: number
-    stone_weight: number
-    remarks?: string | null
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     setting_item_id: number
     scrap_weight: number
@@ -47462,9 +54203,6 @@ export namespace Prisma {
   export type BuffingItemsCreateManyTouchInput = {
     id?: number
     createdAt?: Date | string
-    receipt_weight: number
-    remarks: string
-    wastage: boolean
     type: $Enums.CASTINGENTRYTYPE
     buffing_item_id: number
     scrap_weight: number
@@ -47483,7 +54221,6 @@ export namespace Prisma {
     weight: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -47498,6 +54235,7 @@ export namespace Prisma {
     final_weight?: FloatFieldUpdateOperationsInput | number
     casting_customer?: AddCastingUpdateOneRequiredWithoutEntriesNestedInput
     items?: CastingItemsUpdateManyWithoutCastingEntryNestedInput
+    CastiingTotalBalance?: CastiingTotalBalanceUpdateManyWithoutItem_entry_idNestedInput
   }
 
   export type CastingEntryUncheckedUpdateWithoutTouchInput = {
@@ -47512,6 +54250,7 @@ export namespace Prisma {
     final_weight?: FloatFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     items?: CastingItemsUncheckedUpdateManyWithoutCastingEntryNestedInput
+    CastiingTotalBalance?: CastiingTotalBalanceUncheckedUpdateManyWithoutItem_entry_idNestedInput
   }
 
   export type CastingEntryUncheckedUpdateManyWithoutTouchInput = {
@@ -47533,9 +54272,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
     filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
@@ -47554,9 +54290,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
@@ -47574,9 +54307,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_entry_id?: IntFieldUpdateOperationsInput | number
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
@@ -47587,11 +54317,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     stock?: StockUpdateManyWithoutFilingItemNestedInput
@@ -47612,11 +54338,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
     stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
@@ -47635,21 +54357,12 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type SettingItemsUpdateWithoutTouchInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -47664,11 +54377,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateWithoutTouchInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -47683,11 +54391,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateManyWithoutTouchInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -47697,9 +54400,6 @@ export namespace Prisma {
 
   export type BuffingItemsUpdateWithoutTouchInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -47712,9 +54412,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedUpdateWithoutTouchInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -47727,9 +54424,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedUpdateManyWithoutTouchInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -47742,7 +54436,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
@@ -47762,7 +54455,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -47777,7 +54469,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -47790,10 +54481,16 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     casting_customer_id: number
+  }
+
+  export type CastiingTotalBalanceCreateManyItem_entry_idInput = {
+    id?: number
+    createdAt?: Date | string
+    total_item_weight: number
+    current_balance_weight: number
+    total_scrap_weight?: number | null
+    total_wastage: number
   }
 
   export type CastingItemsUpdateWithoutCastingEntryInput = {
@@ -47802,9 +54499,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
     item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
     filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
@@ -47824,9 +54518,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
     filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
     settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
@@ -47844,10 +54535,33 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CastiingTotalBalanceUpdateWithoutItem_entry_idInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_item_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type CastiingTotalBalanceUncheckedUpdateWithoutItem_entry_idInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_item_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type CastiingTotalBalanceUncheckedUpdateManyWithoutItem_entry_idInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_item_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_wastage?: FloatFieldUpdateOperationsInput | number
   }
 
   export type FilingEntryCreateManyCastingItemInput = {
@@ -47867,7 +54581,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -47881,6 +54594,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
+    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutCastingItemInput = {
@@ -47888,6 +54603,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
+    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
   }
 
   export type FilingEntryUncheckedUpdateManyWithoutCastingItemInput = {
@@ -47901,7 +54618,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
@@ -47921,7 +54637,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -47936,7 +54651,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -47968,7 +54682,7 @@ export namespace Prisma {
   export type LotSettingMapperCreateManyLotIdInput = {
     id?: number
     setting_id: number
-    filing_item_id: number
+    filing_item_id?: number | null
   }
 
   export type LotBuffingMapperCreateManyLotIdInput = {
@@ -47999,19 +54713,19 @@ export namespace Prisma {
 
   export type LotSettingMapperUpdateWithoutLotIdInput = {
     settingId?: AddSettingUpdateOneRequiredWithoutSettingMapperNestedInput
-    itemId?: FilingItemsUpdateOneRequiredWithoutLot_setting_mapperNestedInput
+    itemId?: FilingItemsUpdateOneWithoutLot_setting_mapperNestedInput
   }
 
   export type LotSettingMapperUncheckedUpdateWithoutLotIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     setting_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type LotSettingMapperUncheckedUpdateManyWithoutLotIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     setting_id?: IntFieldUpdateOperationsInput | number
-    filing_item_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type LotBuffingMapperUpdateWithoutLotIdInput = {
@@ -48043,12 +54757,32 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
     lot_filing_mapper_id?: number | null
+  }
+
+  export type FilingTotalBalanceCreateManyFilingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    after_weight?: number | null
+    total_product_weight: number
+    total_scrap_weight?: number | null
+    wastage: boolean
+    balance: number
+  }
+
+  export type FilingWastageCreateManyFilingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
   }
 
   export type FilingItemsUpdateWithoutFiling_entryInput = {
@@ -48057,11 +54791,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
     stock?: StockUpdateManyWithoutFilingItemNestedInput
@@ -48082,11 +54812,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
     stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
@@ -48105,12 +54831,80 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type FilingTotalBalanceUpdateWithoutFilingEntryIdInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    balance?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type FilingTotalBalanceUncheckedUpdateWithoutFilingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    balance?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    balance?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type FilingWastageUpdateWithoutFilingEntryIdInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    filing_items?: FilingItemsUpdateManyWithoutFiling_wastageNestedInput
+  }
+
+  export type FilingWastageUncheckedUpdateWithoutFilingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutFiling_wastageNestedInput
+  }
+
+  export type FilingWastageUncheckedUpdateManyWithoutFilingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
   }
 
   export type StockCreateManyFilingItemInput = {
@@ -48124,7 +54918,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -48146,7 +54939,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
@@ -48166,7 +54958,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -48181,7 +54972,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -48189,6 +54979,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutFilingItemsInput = {
@@ -48196,6 +54988,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     setting_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
+    settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateManyWithoutFilingItemsInput = {
@@ -48210,6 +55004,8 @@ export namespace Prisma {
     buffing_person?: AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutBuffingEntryNestedInput
     setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingWastage?: BuffingWastageUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateWithoutFiling_itemsInput = {
@@ -48218,6 +55014,8 @@ export namespace Prisma {
     buffing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
     setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingWastage?: BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateManyWithoutFiling_itemsInput = {
@@ -48229,25 +55027,46 @@ export namespace Prisma {
 
   export type FilingWastageUpdateWithoutFiling_itemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    filingEntryId?: FilingEntryUpdateOneRequiredWithoutFilingWastageNestedInput
   }
 
   export type FilingWastageUncheckedUpdateWithoutFiling_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type FilingWastageUncheckedUpdateManyWithoutFiling_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotSettingMapperUpdateWithoutItemIdInput = {
@@ -48297,11 +55116,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    wastage?: boolean | null
     stone_option?: $Enums.STONEOPTION | null
-    after_weight?: number | null
-    scrap_weight?: number | null
-    scrap_wastage?: number | null
   }
 
   export type FilingItemsUpdateWithoutLotFilingMapperIdInput = {
@@ -48310,11 +55125,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
@@ -48336,11 +55147,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
     buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
@@ -48359,11 +55166,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type FilingItemsUpdateWithoutFiling_wastageInput = {
@@ -48372,11 +55175,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
@@ -48398,11 +55197,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
     stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
@@ -48421,12 +55216,34 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingTotalBalanceCreateManySetting_entryInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    stone_count: number
+    stone_weight: number
+    remarks?: string | null
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance?: number | null
+  }
+
+  export type SettingWastageCreateManySettingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
   }
 
   export type FilingItemsUpdateWithoutSetting_entryInput = {
@@ -48435,11 +55252,7 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
@@ -48461,11 +55274,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
     stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
     buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
@@ -48484,12 +55293,86 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingTotalBalanceUpdateWithoutSetting_entryInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingTotalBalanceUncheckedUpdateWithoutSetting_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    stone_count?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingWastageUpdateWithoutSettingEntryIdInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    setting_items?: SettingItemsUpdateManyWithoutSetting_wastageNestedInput
+  }
+
+  export type SettingWastageUncheckedUpdateWithoutSettingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutSetting_wastageNestedInput
+  }
+
+  export type SettingWastageUncheckedUpdateManyWithoutSettingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
   }
 
   export type StockCreateManySettingItemInput = {
@@ -48503,7 +55386,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -48516,25 +55398,46 @@ export namespace Prisma {
 
   export type SettingWastageUpdateWithoutSetting_itemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    SettingEntryId?: SettingEntryUpdateOneRequiredWithoutSettingWastageNestedInput
   }
 
   export type SettingWastageUncheckedUpdateWithoutSetting_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type SettingWastageUncheckedUpdateManyWithoutSetting_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
     given_gold?: NullableIntFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type BuffingEntryUpdateWithoutSetting_itemsInput = {
@@ -48542,6 +55445,8 @@ export namespace Prisma {
     buffing_person?: AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutBuffingEntryNestedInput
     filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingWastage?: BuffingWastageUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateWithoutSetting_itemsInput = {
@@ -48550,6 +55455,8 @@ export namespace Prisma {
     buffing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
+    BuffingTotalBalance?: BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingWastage?: BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateManyWithoutSetting_itemsInput = {
@@ -48564,7 +55471,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
@@ -48584,7 +55490,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -48599,7 +55504,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -48625,11 +55529,6 @@ export namespace Prisma {
 
   export type SettingItemsUpdateWithoutSetting_wastageInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -48644,11 +55543,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateWithoutSetting_wastageInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -48663,11 +55557,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateManyWithoutSetting_wastageInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -48676,17 +55565,37 @@ export namespace Prisma {
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type BuffingTotalBalanceCreateManyBuffingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    receipt_weight: number
+    remarks: string
+    wastage: boolean
+    total_scrap_weight?: number | null
+    balance: number
+  }
+
+  export type BuffingWastageCreateManyBuffingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    total_receipt: number
+    total_wastage: number
+    balance: number
+    wastage_percentage: number
+    given_gold?: number | null
+    add_wastage?: number | null
+    overall_wastage: number
+    closing_balance: number
+    opening_balance: number
+  }
+
   export type FilingItemsUpdateWithoutBuffing_entryInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
     filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
@@ -48708,11 +55617,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
     stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
     setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
@@ -48731,21 +55636,12 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: NullableBoolFieldUpdateOperationsInput | boolean | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type SettingItemsUpdateWithoutBuffing_entryInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -48760,11 +55656,6 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateWithoutBuffing_entryInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -48779,17 +55670,84 @@ export namespace Prisma {
   export type SettingItemsUncheckedUpdateManyWithoutBuffing_entryInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    stone_count?: FloatFieldUpdateOperationsInput | number
-    stone_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     setting_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BuffingTotalBalanceUpdateWithoutBuffingEntryIdInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type BuffingTotalBalanceUncheckedUpdateWithoutBuffingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt_weight?: FloatFieldUpdateOperationsInput | number
+    remarks?: StringFieldUpdateOperationsInput | string
+    wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    balance?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type BuffingWastageUpdateWithoutBuffingEntryIdInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    buffing_items?: BuffingItemsUpdateManyWithoutBuffing_wastageNestedInput
+  }
+
+  export type BuffingWastageUncheckedUpdateWithoutBuffingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutBuffing_wastageNestedInput
+  }
+
+  export type BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    wastage_percentage?: IntFieldUpdateOperationsInput | number
+    given_gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
   }
 
   export type StockCreateManyBuffingItemInput = {
@@ -48803,7 +55761,6 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     remarks?: string | null
-    scrap_wastage?: number | null
     casting_customer_id: number
   }
 
@@ -48812,7 +55769,6 @@ export namespace Prisma {
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
@@ -48832,7 +55788,6 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -48847,38 +55802,55 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    scrap_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
     casting_customer_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type BuffingWastageUpdateWithoutBuffing_itemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
-    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    given_gold?: NullableFloatFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    BuffingEntryId?: BuffingEntryUpdateOneRequiredWithoutBuffingWastageNestedInput
   }
 
   export type BuffingWastageUncheckedUpdateWithoutBuffing_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
-    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    given_gold?: NullableFloatFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    buffing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type BuffingWastageUncheckedUpdateManyWithoutBuffing_itemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_receipt?: FloatFieldUpdateOperationsInput | number
+    total_wastage?: FloatFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
     wastage_percentage?: IntFieldUpdateOperationsInput | number
-    given_gold?: NullableIntFieldUpdateOperationsInput | number | null
+    given_gold?: NullableFloatFieldUpdateOperationsInput | number | null
     add_wastage?: NullableFloatFieldUpdateOperationsInput | number | null
+    overall_wastage?: FloatFieldUpdateOperationsInput | number
+    closing_balance?: FloatFieldUpdateOperationsInput | number
+    opening_balance?: FloatFieldUpdateOperationsInput | number
+    buffing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type BuffingItemsUpdateWithoutBuffing_wastageInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -48891,9 +55863,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedUpdateWithoutBuffing_wastageInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number
@@ -48906,9 +55875,6 @@ export namespace Prisma {
   export type BuffingItemsUncheckedUpdateManyWithoutBuffing_wastageInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receipt_weight?: FloatFieldUpdateOperationsInput | number
-    remarks?: StringFieldUpdateOperationsInput | string
-    wastage?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
     buffing_item_id?: IntFieldUpdateOperationsInput | number
     scrap_weight?: FloatFieldUpdateOperationsInput | number

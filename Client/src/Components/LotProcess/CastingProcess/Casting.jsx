@@ -9,7 +9,8 @@ import axios from "axios";
 import CastingItemForm from "./CastingItemForm";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
- 
+import { Link } from 'react-router-dom';
+
 export default function Casting() {
   const [showPopup, setShowPopup] = useState(false);
   const [form, setForm] = useState({
@@ -272,6 +273,8 @@ export default function Casting() {
   return (
     <>
       <Navbar />
+      <Link to='/castingentry'> 
+      <button> castingentry</button> </Link>
       <ToastContainer />
       <div className={styles.castingContainer}>
         <div  className={styles.dateFields}>
@@ -481,18 +484,15 @@ export default function Casting() {
 
           <td>{castingNames[entry.casting_customer_id - 1] || "-"}</td>
  
-          {/* Add Item Names */}
           <td>
             {addItems.map(item => {
               const found = availableItems.find(i => i.id === item.item_id);
               return found?.name || "Unknown";
             }).join(", ") || "-"}
           </td>
- 
-          {/* Add Items Qty */}
+
           <td>{addItems.length}</td>
- 
-          {/* Scrap Item Names */}
+
           <td>
             {scrapItems.map(item => {
               const found = availableItems.find(i => i.id === item.item_id);
@@ -500,12 +500,10 @@ export default function Casting() {
             }).join(", ") || "-"}
           </td>
  
-          {/* Scrap Items Qty */}
           <td>{scrapItems.length}</td>
- 
           <td>{entry.beforeWeight || entry.final_weight}</td>
  
-          {/* After Weight of Add Items only */}
+    
           <td>
             {addItems.reduce((sum, item) => sum + (item.after_weight || 0), 0).toFixed(3)}
           </td>
