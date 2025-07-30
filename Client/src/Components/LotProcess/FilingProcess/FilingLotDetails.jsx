@@ -579,15 +579,21 @@ const handleBulkAssign = async () => {
     );
 
     // Assign each selected item
-    const responses = await Promise.all(
-      selectedItemIds.map((castingItemId) =>
-        axios.post('http://localhost:5000/api/filingentry', {
-          filing_person_id: parseInt(filingPersonId),
-          casting_item_id: castingItemId,
-          lot_number: lotNumber
-        })
-      )
-    );
+    // const responses = await Promise.all(
+    //   selectedItemIds.map((castingItemId) =>
+    //     axios.post('http://localhost:5000/api/filingentry', {
+    //       filing_person_id: parseInt(filingPersonId),
+    //       casting_item_id: castingItemId,
+    //       lot_number: lotNumber
+    //     })
+    //   )
+    // );
+
+    const response = await axios.post('http://localhost:5000/api/filingentry', {
+  filing_person_id: parseInt(filingPersonId),
+  lot_number: lotNumber,
+  itemIds: selectedItemIds
+});
 
     // Refetch all entries after assigning
     await fetchFilingEntries();

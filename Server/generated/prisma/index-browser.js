@@ -267,6 +267,14 @@ exports.Prisma.FilingEntryScalarFieldEnum = {
   casting_item_id: 'casting_item_id'
 };
 
+exports.Prisma.LotFilingMapperScalarFieldEnum = {
+  id: 'id',
+  filing_id: 'filing_id',
+  lot_id: 'lot_id',
+  item_id: 'item_id',
+  filing_entry_id: 'filing_entry_id'
+};
+
 exports.Prisma.FilingItemsScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
@@ -279,13 +287,6 @@ exports.Prisma.FilingItemsScalarFieldEnum = {
   remarks: 'remarks',
   stone_option: 'stone_option',
   lot_filing_mapper_id: 'lot_filing_mapper_id'
-};
-
-exports.Prisma.LotFilingMapperScalarFieldEnum = {
-  id: 'id',
-  filing_id: 'filing_id',
-  lot_id: 'lot_id',
-  item_id: 'item_id'
 };
 
 exports.Prisma.FilingTotalBalanceScalarFieldEnum = {
@@ -556,8 +557,8 @@ exports.Prisma.ModelName = {
   CastiingTotalBalance: 'CastiingTotalBalance',
   LotInfo: 'LotInfo',
   FilingEntry: 'FilingEntry',
-  FilingItems: 'FilingItems',
   LotFilingMapper: 'LotFilingMapper',
+  FilingItems: 'FilingItems',
   FilingTotalBalance: 'FilingTotalBalance',
   FilingWastage: 'FilingWastage',
   SettingEntry: 'SettingEntry',
