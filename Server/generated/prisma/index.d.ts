@@ -89,15 +89,15 @@ export type LotInfo = $Result.DefaultSelection<Prisma.$LotInfoPayload>
  */
 export type FilingEntry = $Result.DefaultSelection<Prisma.$FilingEntryPayload>
 /**
- * Model FilingItems
- * 
- */
-export type FilingItems = $Result.DefaultSelection<Prisma.$FilingItemsPayload>
-/**
  * Model LotFilingMapper
  * 
  */
 export type LotFilingMapper = $Result.DefaultSelection<Prisma.$LotFilingMapperPayload>
+/**
+ * Model FilingItems
+ * 
+ */
+export type FilingItems = $Result.DefaultSelection<Prisma.$FilingItemsPayload>
 /**
  * Model FilingTotalBalance
  * 
@@ -481,16 +481,6 @@ export class PrismaClient<
   get filingEntry(): Prisma.FilingEntryDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.filingItems`: Exposes CRUD operations for the **FilingItems** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more FilingItems
-    * const filingItems = await prisma.filingItems.findMany()
-    * ```
-    */
-  get filingItems(): Prisma.FilingItemsDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.lotFilingMapper`: Exposes CRUD operations for the **LotFilingMapper** model.
     * Example usage:
     * ```ts
@@ -499,6 +489,16 @@ export class PrismaClient<
     * ```
     */
   get lotFilingMapper(): Prisma.LotFilingMapperDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.filingItems`: Exposes CRUD operations for the **FilingItems** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FilingItems
+    * const filingItems = await prisma.filingItems.findMany()
+    * ```
+    */
+  get filingItems(): Prisma.FilingItemsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.filingTotalBalance`: Exposes CRUD operations for the **FilingTotalBalance** model.
@@ -1084,8 +1084,8 @@ export namespace Prisma {
     CastiingTotalBalance: 'CastiingTotalBalance',
     LotInfo: 'LotInfo',
     FilingEntry: 'FilingEntry',
-    FilingItems: 'FilingItems',
     LotFilingMapper: 'LotFilingMapper',
+    FilingItems: 'FilingItems',
     FilingTotalBalance: 'FilingTotalBalance',
     FilingWastage: 'FilingWastage',
     SettingEntry: 'SettingEntry',
@@ -1117,7 +1117,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addSupplierItem" | "addPurchaseStock" | "customerTransaction" | "addItem" | "addTouch" | "castingEntry" | "castingItems" | "castiingTotalBalance" | "lotInfo" | "filingEntry" | "filingItems" | "lotFilingMapper" | "filingTotalBalance" | "filingWastage" | "settingEntry" | "settingItems" | "lotSettingMapper" | "settingTotalBalance" | "settingWastage" | "buffingEntry" | "buffingItems" | "buffingTotalBalance" | "lotBuffingMapper" | "buffingWastage" | "stock"
+      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addSupplierItem" | "addPurchaseStock" | "customerTransaction" | "addItem" | "addTouch" | "castingEntry" | "castingItems" | "castiingTotalBalance" | "lotInfo" | "filingEntry" | "lotFilingMapper" | "filingItems" | "filingTotalBalance" | "filingWastage" | "settingEntry" | "settingItems" | "lotSettingMapper" | "settingTotalBalance" | "settingWastage" | "buffingEntry" | "buffingItems" | "buffingTotalBalance" | "lotBuffingMapper" | "buffingWastage" | "stock"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2111,72 +2111,6 @@ export namespace Prisma {
           }
         }
       }
-      FilingItems: {
-        payload: Prisma.$FilingItemsPayload<ExtArgs>
-        fields: Prisma.FilingItemsFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.FilingItemsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.FilingItemsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
-          }
-          findFirst: {
-            args: Prisma.FilingItemsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.FilingItemsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
-          }
-          findMany: {
-            args: Prisma.FilingItemsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>[]
-          }
-          create: {
-            args: Prisma.FilingItemsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
-          }
-          createMany: {
-            args: Prisma.FilingItemsCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.FilingItemsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
-          }
-          update: {
-            args: Prisma.FilingItemsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
-          }
-          deleteMany: {
-            args: Prisma.FilingItemsDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.FilingItemsUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.FilingItemsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
-          }
-          aggregate: {
-            args: Prisma.FilingItemsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateFilingItems>
-          }
-          groupBy: {
-            args: Prisma.FilingItemsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<FilingItemsGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.FilingItemsCountArgs<ExtArgs>
-            result: $Utils.Optional<FilingItemsCountAggregateOutputType> | number
-          }
-        }
-      }
       LotFilingMapper: {
         payload: Prisma.$LotFilingMapperPayload<ExtArgs>
         fields: Prisma.LotFilingMapperFieldRefs
@@ -2240,6 +2174,72 @@ export namespace Prisma {
           count: {
             args: Prisma.LotFilingMapperCountArgs<ExtArgs>
             result: $Utils.Optional<LotFilingMapperCountAggregateOutputType> | number
+          }
+        }
+      }
+      FilingItems: {
+        payload: Prisma.$FilingItemsPayload<ExtArgs>
+        fields: Prisma.FilingItemsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FilingItemsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FilingItemsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          findFirst: {
+            args: Prisma.FilingItemsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FilingItemsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          findMany: {
+            args: Prisma.FilingItemsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>[]
+          }
+          create: {
+            args: Prisma.FilingItemsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          createMany: {
+            args: Prisma.FilingItemsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.FilingItemsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          update: {
+            args: Prisma.FilingItemsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          deleteMany: {
+            args: Prisma.FilingItemsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FilingItemsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.FilingItemsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilingItemsPayload>
+          }
+          aggregate: {
+            args: Prisma.FilingItemsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFilingItems>
+          }
+          groupBy: {
+            args: Prisma.FilingItemsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FilingItemsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FilingItemsCountArgs<ExtArgs>
+            result: $Utils.Optional<FilingItemsCountAggregateOutputType> | number
           }
         }
       }
@@ -3200,8 +3200,8 @@ export namespace Prisma {
     castiingTotalBalance?: CastiingTotalBalanceOmit
     lotInfo?: LotInfoOmit
     filingEntry?: FilingEntryOmit
-    filingItems?: FilingItemsOmit
     lotFilingMapper?: LotFilingMapperOmit
+    filingItems?: FilingItemsOmit
     filingTotalBalance?: FilingTotalBalanceOmit
     filingWastage?: FilingWastageOmit
     settingEntry?: SettingEntryOmit
@@ -3820,12 +3820,14 @@ export namespace Prisma {
     filingItems: number
     filingItemsId: number
     FilingWastage: number
+    LotFilingMapper: number
   }
 
   export type FilingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filingItems?: boolean | FilingEntryCountOutputTypeCountFilingItemsArgs
     filingItemsId?: boolean | FilingEntryCountOutputTypeCountFilingItemsIdArgs
     FilingWastage?: boolean | FilingEntryCountOutputTypeCountFilingWastageArgs
+    LotFilingMapper?: boolean | FilingEntryCountOutputTypeCountLotFilingMapperArgs
   }
 
   // Custom InputTypes
@@ -3858,6 +3860,44 @@ export namespace Prisma {
    */
   export type FilingEntryCountOutputTypeCountFilingWastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FilingWastageWhereInput
+  }
+
+  /**
+   * FilingEntryCountOutputType without action
+   */
+  export type FilingEntryCountOutputTypeCountLotFilingMapperArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LotFilingMapperWhereInput
+  }
+
+
+  /**
+   * Count Type LotFilingMapperCountOutputType
+   */
+
+  export type LotFilingMapperCountOutputType = {
+    filing_items: number
+  }
+
+  export type LotFilingMapperCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filing_items?: boolean | LotFilingMapperCountOutputTypeCountFiling_itemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LotFilingMapperCountOutputType without action
+   */
+  export type LotFilingMapperCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapperCountOutputType
+     */
+    select?: LotFilingMapperCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LotFilingMapperCountOutputType without action
+   */
+  export type LotFilingMapperCountOutputTypeCountFiling_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FilingItemsWhereInput
   }
 
 
@@ -3934,37 +3974,6 @@ export namespace Prisma {
    */
   export type FilingItemsCountOutputTypeCountLotBuffingMapperArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LotBuffingMapperWhereInput
-  }
-
-
-  /**
-   * Count Type LotFilingMapperCountOutputType
-   */
-
-  export type LotFilingMapperCountOutputType = {
-    filing_items: number
-  }
-
-  export type LotFilingMapperCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    filing_items?: boolean | LotFilingMapperCountOutputTypeCountFiling_itemsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * LotFilingMapperCountOutputType without action
-   */
-  export type LotFilingMapperCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapperCountOutputType
-     */
-    select?: LotFilingMapperCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * LotFilingMapperCountOutputType without action
-   */
-  export type LotFilingMapperCountOutputTypeCountFiling_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FilingItemsWhereInput
   }
 
 
@@ -19340,6 +19349,7 @@ export namespace Prisma {
     filingItems?: boolean | FilingEntry$filingItemsArgs<ExtArgs>
     filingItemsId?: boolean | FilingEntry$filingItemsIdArgs<ExtArgs>
     FilingWastage?: boolean | FilingEntry$FilingWastageArgs<ExtArgs>
+    LotFilingMapper?: boolean | FilingEntry$LotFilingMapperArgs<ExtArgs>
     _count?: boolean | FilingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["filingEntry"]>
 
@@ -19359,6 +19369,7 @@ export namespace Prisma {
     filingItems?: boolean | FilingEntry$filingItemsArgs<ExtArgs>
     filingItemsId?: boolean | FilingEntry$filingItemsIdArgs<ExtArgs>
     FilingWastage?: boolean | FilingEntry$FilingWastageArgs<ExtArgs>
+    LotFilingMapper?: boolean | FilingEntry$LotFilingMapperArgs<ExtArgs>
     _count?: boolean | FilingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -19370,6 +19381,7 @@ export namespace Prisma {
       filingItems: Prisma.$FilingItemsPayload<ExtArgs>[]
       filingItemsId: Prisma.$FilingTotalBalancePayload<ExtArgs>[]
       FilingWastage: Prisma.$FilingWastagePayload<ExtArgs>[]
+      LotFilingMapper: Prisma.$LotFilingMapperPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -19721,6 +19733,7 @@ export namespace Prisma {
     filingItems<T extends FilingEntry$filingItemsArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$filingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     filingItemsId<T extends FilingEntry$filingItemsIdArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$filingItemsIdArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     FilingWastage<T extends FilingEntry$FilingWastageArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$FilingWastageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    LotFilingMapper<T extends FilingEntry$LotFilingMapperArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$LotFilingMapperArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20169,6 +20182,30 @@ export namespace Prisma {
   }
 
   /**
+   * FilingEntry.LotFilingMapper
+   */
+  export type FilingEntry$LotFilingMapperArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
+    where?: LotFilingMapperWhereInput
+    orderBy?: LotFilingMapperOrderByWithRelationInput | LotFilingMapperOrderByWithRelationInput[]
+    cursor?: LotFilingMapperWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LotFilingMapperScalarFieldEnum | LotFilingMapperScalarFieldEnum[]
+  }
+
+  /**
    * FilingEntry without action
    */
   export type FilingEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20184,6 +20221,1027 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: FilingEntryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LotFilingMapper
+   */
+
+  export type AggregateLotFilingMapper = {
+    _count: LotFilingMapperCountAggregateOutputType | null
+    _avg: LotFilingMapperAvgAggregateOutputType | null
+    _sum: LotFilingMapperSumAggregateOutputType | null
+    _min: LotFilingMapperMinAggregateOutputType | null
+    _max: LotFilingMapperMaxAggregateOutputType | null
+  }
+
+  export type LotFilingMapperAvgAggregateOutputType = {
+    id: number | null
+    filing_id: number | null
+    lot_id: number | null
+    item_id: number | null
+    filing_entry_id: number | null
+  }
+
+  export type LotFilingMapperSumAggregateOutputType = {
+    id: number | null
+    filing_id: number | null
+    lot_id: number | null
+    item_id: number | null
+    filing_entry_id: number | null
+  }
+
+  export type LotFilingMapperMinAggregateOutputType = {
+    id: number | null
+    filing_id: number | null
+    lot_id: number | null
+    item_id: number | null
+    filing_entry_id: number | null
+  }
+
+  export type LotFilingMapperMaxAggregateOutputType = {
+    id: number | null
+    filing_id: number | null
+    lot_id: number | null
+    item_id: number | null
+    filing_entry_id: number | null
+  }
+
+  export type LotFilingMapperCountAggregateOutputType = {
+    id: number
+    filing_id: number
+    lot_id: number
+    item_id: number
+    filing_entry_id: number
+    _all: number
+  }
+
+
+  export type LotFilingMapperAvgAggregateInputType = {
+    id?: true
+    filing_id?: true
+    lot_id?: true
+    item_id?: true
+    filing_entry_id?: true
+  }
+
+  export type LotFilingMapperSumAggregateInputType = {
+    id?: true
+    filing_id?: true
+    lot_id?: true
+    item_id?: true
+    filing_entry_id?: true
+  }
+
+  export type LotFilingMapperMinAggregateInputType = {
+    id?: true
+    filing_id?: true
+    lot_id?: true
+    item_id?: true
+    filing_entry_id?: true
+  }
+
+  export type LotFilingMapperMaxAggregateInputType = {
+    id?: true
+    filing_id?: true
+    lot_id?: true
+    item_id?: true
+    filing_entry_id?: true
+  }
+
+  export type LotFilingMapperCountAggregateInputType = {
+    id?: true
+    filing_id?: true
+    lot_id?: true
+    item_id?: true
+    filing_entry_id?: true
+    _all?: true
+  }
+
+  export type LotFilingMapperAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LotFilingMapper to aggregate.
+     */
+    where?: LotFilingMapperWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LotFilingMappers to fetch.
+     */
+    orderBy?: LotFilingMapperOrderByWithRelationInput | LotFilingMapperOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LotFilingMapperWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LotFilingMappers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LotFilingMappers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LotFilingMappers
+    **/
+    _count?: true | LotFilingMapperCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LotFilingMapperAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LotFilingMapperSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LotFilingMapperMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LotFilingMapperMaxAggregateInputType
+  }
+
+  export type GetLotFilingMapperAggregateType<T extends LotFilingMapperAggregateArgs> = {
+        [P in keyof T & keyof AggregateLotFilingMapper]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLotFilingMapper[P]>
+      : GetScalarType<T[P], AggregateLotFilingMapper[P]>
+  }
+
+
+
+
+  export type LotFilingMapperGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LotFilingMapperWhereInput
+    orderBy?: LotFilingMapperOrderByWithAggregationInput | LotFilingMapperOrderByWithAggregationInput[]
+    by: LotFilingMapperScalarFieldEnum[] | LotFilingMapperScalarFieldEnum
+    having?: LotFilingMapperScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LotFilingMapperCountAggregateInputType | true
+    _avg?: LotFilingMapperAvgAggregateInputType
+    _sum?: LotFilingMapperSumAggregateInputType
+    _min?: LotFilingMapperMinAggregateInputType
+    _max?: LotFilingMapperMaxAggregateInputType
+  }
+
+  export type LotFilingMapperGroupByOutputType = {
+    id: number
+    filing_id: number
+    lot_id: number
+    item_id: number
+    filing_entry_id: number
+    _count: LotFilingMapperCountAggregateOutputType | null
+    _avg: LotFilingMapperAvgAggregateOutputType | null
+    _sum: LotFilingMapperSumAggregateOutputType | null
+    _min: LotFilingMapperMinAggregateOutputType | null
+    _max: LotFilingMapperMaxAggregateOutputType | null
+  }
+
+  type GetLotFilingMapperGroupByPayload<T extends LotFilingMapperGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LotFilingMapperGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LotFilingMapperGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LotFilingMapperGroupByOutputType[P]>
+            : GetScalarType<T[P], LotFilingMapperGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LotFilingMapperSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    filing_id?: boolean
+    lot_id?: boolean
+    item_id?: boolean
+    filing_entry_id?: boolean
+    filingId?: boolean | AddFilingDefaultArgs<ExtArgs>
+    lotId?: boolean | LotInfoDefaultArgs<ExtArgs>
+    itemId?: boolean | CastingItemsDefaultArgs<ExtArgs>
+    filing_items?: boolean | LotFilingMapper$filing_itemsArgs<ExtArgs>
+    filingEntry?: boolean | FilingEntryDefaultArgs<ExtArgs>
+    _count?: boolean | LotFilingMapperCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lotFilingMapper"]>
+
+
+
+  export type LotFilingMapperSelectScalar = {
+    id?: boolean
+    filing_id?: boolean
+    lot_id?: boolean
+    item_id?: boolean
+    filing_entry_id?: boolean
+  }
+
+  export type LotFilingMapperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "filing_id" | "lot_id" | "item_id" | "filing_entry_id", ExtArgs["result"]["lotFilingMapper"]>
+  export type LotFilingMapperInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filingId?: boolean | AddFilingDefaultArgs<ExtArgs>
+    lotId?: boolean | LotInfoDefaultArgs<ExtArgs>
+    itemId?: boolean | CastingItemsDefaultArgs<ExtArgs>
+    filing_items?: boolean | LotFilingMapper$filing_itemsArgs<ExtArgs>
+    filingEntry?: boolean | FilingEntryDefaultArgs<ExtArgs>
+    _count?: boolean | LotFilingMapperCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $LotFilingMapperPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LotFilingMapper"
+    objects: {
+      filingId: Prisma.$AddFilingPayload<ExtArgs>
+      lotId: Prisma.$LotInfoPayload<ExtArgs>
+      itemId: Prisma.$CastingItemsPayload<ExtArgs>
+      filing_items: Prisma.$FilingItemsPayload<ExtArgs>[]
+      filingEntry: Prisma.$FilingEntryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      filing_id: number
+      lot_id: number
+      item_id: number
+      filing_entry_id: number
+    }, ExtArgs["result"]["lotFilingMapper"]>
+    composites: {}
+  }
+
+  type LotFilingMapperGetPayload<S extends boolean | null | undefined | LotFilingMapperDefaultArgs> = $Result.GetResult<Prisma.$LotFilingMapperPayload, S>
+
+  type LotFilingMapperCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LotFilingMapperFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LotFilingMapperCountAggregateInputType | true
+    }
+
+  export interface LotFilingMapperDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LotFilingMapper'], meta: { name: 'LotFilingMapper' } }
+    /**
+     * Find zero or one LotFilingMapper that matches the filter.
+     * @param {LotFilingMapperFindUniqueArgs} args - Arguments to find a LotFilingMapper
+     * @example
+     * // Get one LotFilingMapper
+     * const lotFilingMapper = await prisma.lotFilingMapper.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LotFilingMapperFindUniqueArgs>(args: SelectSubset<T, LotFilingMapperFindUniqueArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LotFilingMapper that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LotFilingMapperFindUniqueOrThrowArgs} args - Arguments to find a LotFilingMapper
+     * @example
+     * // Get one LotFilingMapper
+     * const lotFilingMapper = await prisma.lotFilingMapper.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LotFilingMapperFindUniqueOrThrowArgs>(args: SelectSubset<T, LotFilingMapperFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LotFilingMapper that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LotFilingMapperFindFirstArgs} args - Arguments to find a LotFilingMapper
+     * @example
+     * // Get one LotFilingMapper
+     * const lotFilingMapper = await prisma.lotFilingMapper.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LotFilingMapperFindFirstArgs>(args?: SelectSubset<T, LotFilingMapperFindFirstArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LotFilingMapper that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LotFilingMapperFindFirstOrThrowArgs} args - Arguments to find a LotFilingMapper
+     * @example
+     * // Get one LotFilingMapper
+     * const lotFilingMapper = await prisma.lotFilingMapper.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LotFilingMapperFindFirstOrThrowArgs>(args?: SelectSubset<T, LotFilingMapperFindFirstOrThrowArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LotFilingMappers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LotFilingMapperFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LotFilingMappers
+     * const lotFilingMappers = await prisma.lotFilingMapper.findMany()
+     * 
+     * // Get first 10 LotFilingMappers
+     * const lotFilingMappers = await prisma.lotFilingMapper.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const lotFilingMapperWithIdOnly = await prisma.lotFilingMapper.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LotFilingMapperFindManyArgs>(args?: SelectSubset<T, LotFilingMapperFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LotFilingMapper.
+     * @param {LotFilingMapperCreateArgs} args - Arguments to create a LotFilingMapper.
+     * @example
+     * // Create one LotFilingMapper
+     * const LotFilingMapper = await prisma.lotFilingMapper.create({
+     *   data: {
+     *     // ... data to create a LotFilingMapper
+     *   }
+     * })
+     * 
+     */
+    create<T extends LotFilingMapperCreateArgs>(args: SelectSubset<T, LotFilingMapperCreateArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LotFilingMappers.
+     * @param {LotFilingMapperCreateManyArgs} args - Arguments to create many LotFilingMappers.
+     * @example
+     * // Create many LotFilingMappers
+     * const lotFilingMapper = await prisma.lotFilingMapper.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LotFilingMapperCreateManyArgs>(args?: SelectSubset<T, LotFilingMapperCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a LotFilingMapper.
+     * @param {LotFilingMapperDeleteArgs} args - Arguments to delete one LotFilingMapper.
+     * @example
+     * // Delete one LotFilingMapper
+     * const LotFilingMapper = await prisma.lotFilingMapper.delete({
+     *   where: {
+     *     // ... filter to delete one LotFilingMapper
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LotFilingMapperDeleteArgs>(args: SelectSubset<T, LotFilingMapperDeleteArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LotFilingMapper.
+     * @param {LotFilingMapperUpdateArgs} args - Arguments to update one LotFilingMapper.
+     * @example
+     * // Update one LotFilingMapper
+     * const lotFilingMapper = await prisma.lotFilingMapper.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LotFilingMapperUpdateArgs>(args: SelectSubset<T, LotFilingMapperUpdateArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LotFilingMappers.
+     * @param {LotFilingMapperDeleteManyArgs} args - Arguments to filter LotFilingMappers to delete.
+     * @example
+     * // Delete a few LotFilingMappers
+     * const { count } = await prisma.lotFilingMapper.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LotFilingMapperDeleteManyArgs>(args?: SelectSubset<T, LotFilingMapperDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LotFilingMappers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LotFilingMapperUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LotFilingMappers
+     * const lotFilingMapper = await prisma.lotFilingMapper.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LotFilingMapperUpdateManyArgs>(args: SelectSubset<T, LotFilingMapperUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one LotFilingMapper.
+     * @param {LotFilingMapperUpsertArgs} args - Arguments to update or create a LotFilingMapper.
+     * @example
+     * // Update or create a LotFilingMapper
+     * const lotFilingMapper = await prisma.lotFilingMapper.upsert({
+     *   create: {
+     *     // ... data to create a LotFilingMapper
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LotFilingMapper we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LotFilingMapperUpsertArgs>(args: SelectSubset<T, LotFilingMapperUpsertArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LotFilingMappers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LotFilingMapperCountArgs} args - Arguments to filter LotFilingMappers to count.
+     * @example
+     * // Count the number of LotFilingMappers
+     * const count = await prisma.lotFilingMapper.count({
+     *   where: {
+     *     // ... the filter for the LotFilingMappers we want to count
+     *   }
+     * })
+    **/
+    count<T extends LotFilingMapperCountArgs>(
+      args?: Subset<T, LotFilingMapperCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LotFilingMapperCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LotFilingMapper.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LotFilingMapperAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LotFilingMapperAggregateArgs>(args: Subset<T, LotFilingMapperAggregateArgs>): Prisma.PrismaPromise<GetLotFilingMapperAggregateType<T>>
+
+    /**
+     * Group by LotFilingMapper.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LotFilingMapperGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LotFilingMapperGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LotFilingMapperGroupByArgs['orderBy'] }
+        : { orderBy?: LotFilingMapperGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LotFilingMapperGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLotFilingMapperGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LotFilingMapper model
+   */
+  readonly fields: LotFilingMapperFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LotFilingMapper.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LotFilingMapperClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    filingId<T extends AddFilingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddFilingDefaultArgs<ExtArgs>>): Prisma__AddFilingClient<$Result.GetResult<Prisma.$AddFilingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    lotId<T extends LotInfoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LotInfoDefaultArgs<ExtArgs>>): Prisma__LotInfoClient<$Result.GetResult<Prisma.$LotInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    itemId<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    filing_items<T extends LotFilingMapper$filing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, LotFilingMapper$filing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    filingEntry<T extends FilingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntryDefaultArgs<ExtArgs>>): Prisma__FilingEntryClient<$Result.GetResult<Prisma.$FilingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LotFilingMapper model
+   */
+  interface LotFilingMapperFieldRefs {
+    readonly id: FieldRef<"LotFilingMapper", 'Int'>
+    readonly filing_id: FieldRef<"LotFilingMapper", 'Int'>
+    readonly lot_id: FieldRef<"LotFilingMapper", 'Int'>
+    readonly item_id: FieldRef<"LotFilingMapper", 'Int'>
+    readonly filing_entry_id: FieldRef<"LotFilingMapper", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LotFilingMapper findUnique
+   */
+  export type LotFilingMapperFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
+    /**
+     * Filter, which LotFilingMapper to fetch.
+     */
+    where: LotFilingMapperWhereUniqueInput
+  }
+
+  /**
+   * LotFilingMapper findUniqueOrThrow
+   */
+  export type LotFilingMapperFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
+    /**
+     * Filter, which LotFilingMapper to fetch.
+     */
+    where: LotFilingMapperWhereUniqueInput
+  }
+
+  /**
+   * LotFilingMapper findFirst
+   */
+  export type LotFilingMapperFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
+    /**
+     * Filter, which LotFilingMapper to fetch.
+     */
+    where?: LotFilingMapperWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LotFilingMappers to fetch.
+     */
+    orderBy?: LotFilingMapperOrderByWithRelationInput | LotFilingMapperOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LotFilingMappers.
+     */
+    cursor?: LotFilingMapperWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LotFilingMappers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LotFilingMappers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LotFilingMappers.
+     */
+    distinct?: LotFilingMapperScalarFieldEnum | LotFilingMapperScalarFieldEnum[]
+  }
+
+  /**
+   * LotFilingMapper findFirstOrThrow
+   */
+  export type LotFilingMapperFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
+    /**
+     * Filter, which LotFilingMapper to fetch.
+     */
+    where?: LotFilingMapperWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LotFilingMappers to fetch.
+     */
+    orderBy?: LotFilingMapperOrderByWithRelationInput | LotFilingMapperOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LotFilingMappers.
+     */
+    cursor?: LotFilingMapperWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LotFilingMappers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LotFilingMappers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LotFilingMappers.
+     */
+    distinct?: LotFilingMapperScalarFieldEnum | LotFilingMapperScalarFieldEnum[]
+  }
+
+  /**
+   * LotFilingMapper findMany
+   */
+  export type LotFilingMapperFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
+    /**
+     * Filter, which LotFilingMappers to fetch.
+     */
+    where?: LotFilingMapperWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LotFilingMappers to fetch.
+     */
+    orderBy?: LotFilingMapperOrderByWithRelationInput | LotFilingMapperOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LotFilingMappers.
+     */
+    cursor?: LotFilingMapperWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LotFilingMappers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LotFilingMappers.
+     */
+    skip?: number
+    distinct?: LotFilingMapperScalarFieldEnum | LotFilingMapperScalarFieldEnum[]
+  }
+
+  /**
+   * LotFilingMapper create
+   */
+  export type LotFilingMapperCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LotFilingMapper.
+     */
+    data: XOR<LotFilingMapperCreateInput, LotFilingMapperUncheckedCreateInput>
+  }
+
+  /**
+   * LotFilingMapper createMany
+   */
+  export type LotFilingMapperCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LotFilingMappers.
+     */
+    data: LotFilingMapperCreateManyInput | LotFilingMapperCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LotFilingMapper update
+   */
+  export type LotFilingMapperUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LotFilingMapper.
+     */
+    data: XOR<LotFilingMapperUpdateInput, LotFilingMapperUncheckedUpdateInput>
+    /**
+     * Choose, which LotFilingMapper to update.
+     */
+    where: LotFilingMapperWhereUniqueInput
+  }
+
+  /**
+   * LotFilingMapper updateMany
+   */
+  export type LotFilingMapperUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LotFilingMappers.
+     */
+    data: XOR<LotFilingMapperUpdateManyMutationInput, LotFilingMapperUncheckedUpdateManyInput>
+    /**
+     * Filter which LotFilingMappers to update
+     */
+    where?: LotFilingMapperWhereInput
+    /**
+     * Limit how many LotFilingMappers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LotFilingMapper upsert
+   */
+  export type LotFilingMapperUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LotFilingMapper to update in case it exists.
+     */
+    where: LotFilingMapperWhereUniqueInput
+    /**
+     * In case the LotFilingMapper found by the `where` argument doesn't exist, create a new LotFilingMapper with this data.
+     */
+    create: XOR<LotFilingMapperCreateInput, LotFilingMapperUncheckedCreateInput>
+    /**
+     * In case the LotFilingMapper was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LotFilingMapperUpdateInput, LotFilingMapperUncheckedUpdateInput>
+  }
+
+  /**
+   * LotFilingMapper delete
+   */
+  export type LotFilingMapperDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
+    /**
+     * Filter which LotFilingMapper to delete.
+     */
+    where: LotFilingMapperWhereUniqueInput
+  }
+
+  /**
+   * LotFilingMapper deleteMany
+   */
+  export type LotFilingMapperDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LotFilingMappers to delete
+     */
+    where?: LotFilingMapperWhereInput
+    /**
+     * Limit how many LotFilingMappers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LotFilingMapper.filing_items
+   */
+  export type LotFilingMapper$filing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FilingItems
+     */
+    select?: FilingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FilingItems
+     */
+    omit?: FilingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FilingItemsInclude<ExtArgs> | null
+    where?: FilingItemsWhereInput
+    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
+    cursor?: FilingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
+  }
+
+  /**
+   * LotFilingMapper without action
+   */
+  export type LotFilingMapperDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotFilingMapper
+     */
+    select?: LotFilingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotFilingMapper
+     */
+    omit?: LotFilingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotFilingMapperInclude<ExtArgs> | null
   }
 
 
@@ -21438,1008 +22496,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: FilingItemsInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model LotFilingMapper
-   */
-
-  export type AggregateLotFilingMapper = {
-    _count: LotFilingMapperCountAggregateOutputType | null
-    _avg: LotFilingMapperAvgAggregateOutputType | null
-    _sum: LotFilingMapperSumAggregateOutputType | null
-    _min: LotFilingMapperMinAggregateOutputType | null
-    _max: LotFilingMapperMaxAggregateOutputType | null
-  }
-
-  export type LotFilingMapperAvgAggregateOutputType = {
-    id: number | null
-    filing_id: number | null
-    lot_id: number | null
-    item_id: number | null
-  }
-
-  export type LotFilingMapperSumAggregateOutputType = {
-    id: number | null
-    filing_id: number | null
-    lot_id: number | null
-    item_id: number | null
-  }
-
-  export type LotFilingMapperMinAggregateOutputType = {
-    id: number | null
-    filing_id: number | null
-    lot_id: number | null
-    item_id: number | null
-  }
-
-  export type LotFilingMapperMaxAggregateOutputType = {
-    id: number | null
-    filing_id: number | null
-    lot_id: number | null
-    item_id: number | null
-  }
-
-  export type LotFilingMapperCountAggregateOutputType = {
-    id: number
-    filing_id: number
-    lot_id: number
-    item_id: number
-    _all: number
-  }
-
-
-  export type LotFilingMapperAvgAggregateInputType = {
-    id?: true
-    filing_id?: true
-    lot_id?: true
-    item_id?: true
-  }
-
-  export type LotFilingMapperSumAggregateInputType = {
-    id?: true
-    filing_id?: true
-    lot_id?: true
-    item_id?: true
-  }
-
-  export type LotFilingMapperMinAggregateInputType = {
-    id?: true
-    filing_id?: true
-    lot_id?: true
-    item_id?: true
-  }
-
-  export type LotFilingMapperMaxAggregateInputType = {
-    id?: true
-    filing_id?: true
-    lot_id?: true
-    item_id?: true
-  }
-
-  export type LotFilingMapperCountAggregateInputType = {
-    id?: true
-    filing_id?: true
-    lot_id?: true
-    item_id?: true
-    _all?: true
-  }
-
-  export type LotFilingMapperAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which LotFilingMapper to aggregate.
-     */
-    where?: LotFilingMapperWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LotFilingMappers to fetch.
-     */
-    orderBy?: LotFilingMapperOrderByWithRelationInput | LotFilingMapperOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: LotFilingMapperWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LotFilingMappers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LotFilingMappers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned LotFilingMappers
-    **/
-    _count?: true | LotFilingMapperCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: LotFilingMapperAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: LotFilingMapperSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: LotFilingMapperMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: LotFilingMapperMaxAggregateInputType
-  }
-
-  export type GetLotFilingMapperAggregateType<T extends LotFilingMapperAggregateArgs> = {
-        [P in keyof T & keyof AggregateLotFilingMapper]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateLotFilingMapper[P]>
-      : GetScalarType<T[P], AggregateLotFilingMapper[P]>
-  }
-
-
-
-
-  export type LotFilingMapperGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LotFilingMapperWhereInput
-    orderBy?: LotFilingMapperOrderByWithAggregationInput | LotFilingMapperOrderByWithAggregationInput[]
-    by: LotFilingMapperScalarFieldEnum[] | LotFilingMapperScalarFieldEnum
-    having?: LotFilingMapperScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: LotFilingMapperCountAggregateInputType | true
-    _avg?: LotFilingMapperAvgAggregateInputType
-    _sum?: LotFilingMapperSumAggregateInputType
-    _min?: LotFilingMapperMinAggregateInputType
-    _max?: LotFilingMapperMaxAggregateInputType
-  }
-
-  export type LotFilingMapperGroupByOutputType = {
-    id: number
-    filing_id: number
-    lot_id: number
-    item_id: number
-    _count: LotFilingMapperCountAggregateOutputType | null
-    _avg: LotFilingMapperAvgAggregateOutputType | null
-    _sum: LotFilingMapperSumAggregateOutputType | null
-    _min: LotFilingMapperMinAggregateOutputType | null
-    _max: LotFilingMapperMaxAggregateOutputType | null
-  }
-
-  type GetLotFilingMapperGroupByPayload<T extends LotFilingMapperGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<LotFilingMapperGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof LotFilingMapperGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], LotFilingMapperGroupByOutputType[P]>
-            : GetScalarType<T[P], LotFilingMapperGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type LotFilingMapperSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    filing_id?: boolean
-    lot_id?: boolean
-    item_id?: boolean
-    filingId?: boolean | AddFilingDefaultArgs<ExtArgs>
-    lotId?: boolean | LotInfoDefaultArgs<ExtArgs>
-    itemId?: boolean | CastingItemsDefaultArgs<ExtArgs>
-    filing_items?: boolean | LotFilingMapper$filing_itemsArgs<ExtArgs>
-    _count?: boolean | LotFilingMapperCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["lotFilingMapper"]>
-
-
-
-  export type LotFilingMapperSelectScalar = {
-    id?: boolean
-    filing_id?: boolean
-    lot_id?: boolean
-    item_id?: boolean
-  }
-
-  export type LotFilingMapperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "filing_id" | "lot_id" | "item_id", ExtArgs["result"]["lotFilingMapper"]>
-  export type LotFilingMapperInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    filingId?: boolean | AddFilingDefaultArgs<ExtArgs>
-    lotId?: boolean | LotInfoDefaultArgs<ExtArgs>
-    itemId?: boolean | CastingItemsDefaultArgs<ExtArgs>
-    filing_items?: boolean | LotFilingMapper$filing_itemsArgs<ExtArgs>
-    _count?: boolean | LotFilingMapperCountOutputTypeDefaultArgs<ExtArgs>
-  }
-
-  export type $LotFilingMapperPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "LotFilingMapper"
-    objects: {
-      filingId: Prisma.$AddFilingPayload<ExtArgs>
-      lotId: Prisma.$LotInfoPayload<ExtArgs>
-      itemId: Prisma.$CastingItemsPayload<ExtArgs>
-      filing_items: Prisma.$FilingItemsPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      filing_id: number
-      lot_id: number
-      item_id: number
-    }, ExtArgs["result"]["lotFilingMapper"]>
-    composites: {}
-  }
-
-  type LotFilingMapperGetPayload<S extends boolean | null | undefined | LotFilingMapperDefaultArgs> = $Result.GetResult<Prisma.$LotFilingMapperPayload, S>
-
-  type LotFilingMapperCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<LotFilingMapperFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: LotFilingMapperCountAggregateInputType | true
-    }
-
-  export interface LotFilingMapperDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LotFilingMapper'], meta: { name: 'LotFilingMapper' } }
-    /**
-     * Find zero or one LotFilingMapper that matches the filter.
-     * @param {LotFilingMapperFindUniqueArgs} args - Arguments to find a LotFilingMapper
-     * @example
-     * // Get one LotFilingMapper
-     * const lotFilingMapper = await prisma.lotFilingMapper.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends LotFilingMapperFindUniqueArgs>(args: SelectSubset<T, LotFilingMapperFindUniqueArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one LotFilingMapper that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {LotFilingMapperFindUniqueOrThrowArgs} args - Arguments to find a LotFilingMapper
-     * @example
-     * // Get one LotFilingMapper
-     * const lotFilingMapper = await prisma.lotFilingMapper.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends LotFilingMapperFindUniqueOrThrowArgs>(args: SelectSubset<T, LotFilingMapperFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first LotFilingMapper that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LotFilingMapperFindFirstArgs} args - Arguments to find a LotFilingMapper
-     * @example
-     * // Get one LotFilingMapper
-     * const lotFilingMapper = await prisma.lotFilingMapper.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends LotFilingMapperFindFirstArgs>(args?: SelectSubset<T, LotFilingMapperFindFirstArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first LotFilingMapper that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LotFilingMapperFindFirstOrThrowArgs} args - Arguments to find a LotFilingMapper
-     * @example
-     * // Get one LotFilingMapper
-     * const lotFilingMapper = await prisma.lotFilingMapper.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends LotFilingMapperFindFirstOrThrowArgs>(args?: SelectSubset<T, LotFilingMapperFindFirstOrThrowArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more LotFilingMappers that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LotFilingMapperFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all LotFilingMappers
-     * const lotFilingMappers = await prisma.lotFilingMapper.findMany()
-     * 
-     * // Get first 10 LotFilingMappers
-     * const lotFilingMappers = await prisma.lotFilingMapper.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const lotFilingMapperWithIdOnly = await prisma.lotFilingMapper.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends LotFilingMapperFindManyArgs>(args?: SelectSubset<T, LotFilingMapperFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a LotFilingMapper.
-     * @param {LotFilingMapperCreateArgs} args - Arguments to create a LotFilingMapper.
-     * @example
-     * // Create one LotFilingMapper
-     * const LotFilingMapper = await prisma.lotFilingMapper.create({
-     *   data: {
-     *     // ... data to create a LotFilingMapper
-     *   }
-     * })
-     * 
-     */
-    create<T extends LotFilingMapperCreateArgs>(args: SelectSubset<T, LotFilingMapperCreateArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many LotFilingMappers.
-     * @param {LotFilingMapperCreateManyArgs} args - Arguments to create many LotFilingMappers.
-     * @example
-     * // Create many LotFilingMappers
-     * const lotFilingMapper = await prisma.lotFilingMapper.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends LotFilingMapperCreateManyArgs>(args?: SelectSubset<T, LotFilingMapperCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a LotFilingMapper.
-     * @param {LotFilingMapperDeleteArgs} args - Arguments to delete one LotFilingMapper.
-     * @example
-     * // Delete one LotFilingMapper
-     * const LotFilingMapper = await prisma.lotFilingMapper.delete({
-     *   where: {
-     *     // ... filter to delete one LotFilingMapper
-     *   }
-     * })
-     * 
-     */
-    delete<T extends LotFilingMapperDeleteArgs>(args: SelectSubset<T, LotFilingMapperDeleteArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one LotFilingMapper.
-     * @param {LotFilingMapperUpdateArgs} args - Arguments to update one LotFilingMapper.
-     * @example
-     * // Update one LotFilingMapper
-     * const lotFilingMapper = await prisma.lotFilingMapper.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends LotFilingMapperUpdateArgs>(args: SelectSubset<T, LotFilingMapperUpdateArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more LotFilingMappers.
-     * @param {LotFilingMapperDeleteManyArgs} args - Arguments to filter LotFilingMappers to delete.
-     * @example
-     * // Delete a few LotFilingMappers
-     * const { count } = await prisma.lotFilingMapper.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends LotFilingMapperDeleteManyArgs>(args?: SelectSubset<T, LotFilingMapperDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more LotFilingMappers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LotFilingMapperUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many LotFilingMappers
-     * const lotFilingMapper = await prisma.lotFilingMapper.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends LotFilingMapperUpdateManyArgs>(args: SelectSubset<T, LotFilingMapperUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one LotFilingMapper.
-     * @param {LotFilingMapperUpsertArgs} args - Arguments to update or create a LotFilingMapper.
-     * @example
-     * // Update or create a LotFilingMapper
-     * const lotFilingMapper = await prisma.lotFilingMapper.upsert({
-     *   create: {
-     *     // ... data to create a LotFilingMapper
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the LotFilingMapper we want to update
-     *   }
-     * })
-     */
-    upsert<T extends LotFilingMapperUpsertArgs>(args: SelectSubset<T, LotFilingMapperUpsertArgs<ExtArgs>>): Prisma__LotFilingMapperClient<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of LotFilingMappers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LotFilingMapperCountArgs} args - Arguments to filter LotFilingMappers to count.
-     * @example
-     * // Count the number of LotFilingMappers
-     * const count = await prisma.lotFilingMapper.count({
-     *   where: {
-     *     // ... the filter for the LotFilingMappers we want to count
-     *   }
-     * })
-    **/
-    count<T extends LotFilingMapperCountArgs>(
-      args?: Subset<T, LotFilingMapperCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], LotFilingMapperCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a LotFilingMapper.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LotFilingMapperAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends LotFilingMapperAggregateArgs>(args: Subset<T, LotFilingMapperAggregateArgs>): Prisma.PrismaPromise<GetLotFilingMapperAggregateType<T>>
-
-    /**
-     * Group by LotFilingMapper.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LotFilingMapperGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends LotFilingMapperGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: LotFilingMapperGroupByArgs['orderBy'] }
-        : { orderBy?: LotFilingMapperGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, LotFilingMapperGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLotFilingMapperGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the LotFilingMapper model
-   */
-  readonly fields: LotFilingMapperFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for LotFilingMapper.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__LotFilingMapperClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    filingId<T extends AddFilingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddFilingDefaultArgs<ExtArgs>>): Prisma__AddFilingClient<$Result.GetResult<Prisma.$AddFilingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    lotId<T extends LotInfoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LotInfoDefaultArgs<ExtArgs>>): Prisma__LotInfoClient<$Result.GetResult<Prisma.$LotInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    itemId<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    filing_items<T extends LotFilingMapper$filing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, LotFilingMapper$filing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the LotFilingMapper model
-   */
-  interface LotFilingMapperFieldRefs {
-    readonly id: FieldRef<"LotFilingMapper", 'Int'>
-    readonly filing_id: FieldRef<"LotFilingMapper", 'Int'>
-    readonly lot_id: FieldRef<"LotFilingMapper", 'Int'>
-    readonly item_id: FieldRef<"LotFilingMapper", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * LotFilingMapper findUnique
-   */
-  export type LotFilingMapperFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapper
-     */
-    select?: LotFilingMapperSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LotFilingMapper
-     */
-    omit?: LotFilingMapperOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LotFilingMapperInclude<ExtArgs> | null
-    /**
-     * Filter, which LotFilingMapper to fetch.
-     */
-    where: LotFilingMapperWhereUniqueInput
-  }
-
-  /**
-   * LotFilingMapper findUniqueOrThrow
-   */
-  export type LotFilingMapperFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapper
-     */
-    select?: LotFilingMapperSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LotFilingMapper
-     */
-    omit?: LotFilingMapperOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LotFilingMapperInclude<ExtArgs> | null
-    /**
-     * Filter, which LotFilingMapper to fetch.
-     */
-    where: LotFilingMapperWhereUniqueInput
-  }
-
-  /**
-   * LotFilingMapper findFirst
-   */
-  export type LotFilingMapperFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapper
-     */
-    select?: LotFilingMapperSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LotFilingMapper
-     */
-    omit?: LotFilingMapperOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LotFilingMapperInclude<ExtArgs> | null
-    /**
-     * Filter, which LotFilingMapper to fetch.
-     */
-    where?: LotFilingMapperWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LotFilingMappers to fetch.
-     */
-    orderBy?: LotFilingMapperOrderByWithRelationInput | LotFilingMapperOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for LotFilingMappers.
-     */
-    cursor?: LotFilingMapperWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LotFilingMappers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LotFilingMappers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of LotFilingMappers.
-     */
-    distinct?: LotFilingMapperScalarFieldEnum | LotFilingMapperScalarFieldEnum[]
-  }
-
-  /**
-   * LotFilingMapper findFirstOrThrow
-   */
-  export type LotFilingMapperFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapper
-     */
-    select?: LotFilingMapperSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LotFilingMapper
-     */
-    omit?: LotFilingMapperOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LotFilingMapperInclude<ExtArgs> | null
-    /**
-     * Filter, which LotFilingMapper to fetch.
-     */
-    where?: LotFilingMapperWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LotFilingMappers to fetch.
-     */
-    orderBy?: LotFilingMapperOrderByWithRelationInput | LotFilingMapperOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for LotFilingMappers.
-     */
-    cursor?: LotFilingMapperWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LotFilingMappers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LotFilingMappers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of LotFilingMappers.
-     */
-    distinct?: LotFilingMapperScalarFieldEnum | LotFilingMapperScalarFieldEnum[]
-  }
-
-  /**
-   * LotFilingMapper findMany
-   */
-  export type LotFilingMapperFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapper
-     */
-    select?: LotFilingMapperSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LotFilingMapper
-     */
-    omit?: LotFilingMapperOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LotFilingMapperInclude<ExtArgs> | null
-    /**
-     * Filter, which LotFilingMappers to fetch.
-     */
-    where?: LotFilingMapperWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LotFilingMappers to fetch.
-     */
-    orderBy?: LotFilingMapperOrderByWithRelationInput | LotFilingMapperOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing LotFilingMappers.
-     */
-    cursor?: LotFilingMapperWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LotFilingMappers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LotFilingMappers.
-     */
-    skip?: number
-    distinct?: LotFilingMapperScalarFieldEnum | LotFilingMapperScalarFieldEnum[]
-  }
-
-  /**
-   * LotFilingMapper create
-   */
-  export type LotFilingMapperCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapper
-     */
-    select?: LotFilingMapperSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LotFilingMapper
-     */
-    omit?: LotFilingMapperOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LotFilingMapperInclude<ExtArgs> | null
-    /**
-     * The data needed to create a LotFilingMapper.
-     */
-    data: XOR<LotFilingMapperCreateInput, LotFilingMapperUncheckedCreateInput>
-  }
-
-  /**
-   * LotFilingMapper createMany
-   */
-  export type LotFilingMapperCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many LotFilingMappers.
-     */
-    data: LotFilingMapperCreateManyInput | LotFilingMapperCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * LotFilingMapper update
-   */
-  export type LotFilingMapperUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapper
-     */
-    select?: LotFilingMapperSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LotFilingMapper
-     */
-    omit?: LotFilingMapperOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LotFilingMapperInclude<ExtArgs> | null
-    /**
-     * The data needed to update a LotFilingMapper.
-     */
-    data: XOR<LotFilingMapperUpdateInput, LotFilingMapperUncheckedUpdateInput>
-    /**
-     * Choose, which LotFilingMapper to update.
-     */
-    where: LotFilingMapperWhereUniqueInput
-  }
-
-  /**
-   * LotFilingMapper updateMany
-   */
-  export type LotFilingMapperUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update LotFilingMappers.
-     */
-    data: XOR<LotFilingMapperUpdateManyMutationInput, LotFilingMapperUncheckedUpdateManyInput>
-    /**
-     * Filter which LotFilingMappers to update
-     */
-    where?: LotFilingMapperWhereInput
-    /**
-     * Limit how many LotFilingMappers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * LotFilingMapper upsert
-   */
-  export type LotFilingMapperUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapper
-     */
-    select?: LotFilingMapperSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LotFilingMapper
-     */
-    omit?: LotFilingMapperOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LotFilingMapperInclude<ExtArgs> | null
-    /**
-     * The filter to search for the LotFilingMapper to update in case it exists.
-     */
-    where: LotFilingMapperWhereUniqueInput
-    /**
-     * In case the LotFilingMapper found by the `where` argument doesn't exist, create a new LotFilingMapper with this data.
-     */
-    create: XOR<LotFilingMapperCreateInput, LotFilingMapperUncheckedCreateInput>
-    /**
-     * In case the LotFilingMapper was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<LotFilingMapperUpdateInput, LotFilingMapperUncheckedUpdateInput>
-  }
-
-  /**
-   * LotFilingMapper delete
-   */
-  export type LotFilingMapperDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapper
-     */
-    select?: LotFilingMapperSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LotFilingMapper
-     */
-    omit?: LotFilingMapperOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LotFilingMapperInclude<ExtArgs> | null
-    /**
-     * Filter which LotFilingMapper to delete.
-     */
-    where: LotFilingMapperWhereUniqueInput
-  }
-
-  /**
-   * LotFilingMapper deleteMany
-   */
-  export type LotFilingMapperDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which LotFilingMappers to delete
-     */
-    where?: LotFilingMapperWhereInput
-    /**
-     * Limit how many LotFilingMappers to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * LotFilingMapper.filing_items
-   */
-  export type LotFilingMapper$filing_itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FilingItems
-     */
-    select?: FilingItemsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FilingItems
-     */
-    omit?: FilingItemsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FilingItemsInclude<ExtArgs> | null
-    where?: FilingItemsWhereInput
-    orderBy?: FilingItemsOrderByWithRelationInput | FilingItemsOrderByWithRelationInput[]
-    cursor?: FilingItemsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FilingItemsScalarFieldEnum | FilingItemsScalarFieldEnum[]
-  }
-
-  /**
-   * LotFilingMapper without action
-   */
-  export type LotFilingMapperDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LotFilingMapper
-     */
-    select?: LotFilingMapperSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LotFilingMapper
-     */
-    omit?: LotFilingMapperOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LotFilingMapperInclude<ExtArgs> | null
   }
 
 
@@ -36577,6 +36633,17 @@ export namespace Prisma {
   export type FilingEntryScalarFieldEnum = (typeof FilingEntryScalarFieldEnum)[keyof typeof FilingEntryScalarFieldEnum]
 
 
+  export const LotFilingMapperScalarFieldEnum: {
+    id: 'id',
+    filing_id: 'filing_id',
+    lot_id: 'lot_id',
+    item_id: 'item_id',
+    filing_entry_id: 'filing_entry_id'
+  };
+
+  export type LotFilingMapperScalarFieldEnum = (typeof LotFilingMapperScalarFieldEnum)[keyof typeof LotFilingMapperScalarFieldEnum]
+
+
   export const FilingItemsScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
@@ -36592,16 +36659,6 @@ export namespace Prisma {
   };
 
   export type FilingItemsScalarFieldEnum = (typeof FilingItemsScalarFieldEnum)[keyof typeof FilingItemsScalarFieldEnum]
-
-
-  export const LotFilingMapperScalarFieldEnum: {
-    id: 'id',
-    filing_id: 'filing_id',
-    lot_id: 'lot_id',
-    item_id: 'item_id'
-  };
-
-  export type LotFilingMapperScalarFieldEnum = (typeof LotFilingMapperScalarFieldEnum)[keyof typeof LotFilingMapperScalarFieldEnum]
 
 
   export const FilingTotalBalanceScalarFieldEnum: {
@@ -38053,6 +38110,7 @@ export namespace Prisma {
     filingItems?: FilingItemsListRelationFilter
     filingItemsId?: FilingTotalBalanceListRelationFilter
     FilingWastage?: FilingWastageListRelationFilter
+    LotFilingMapper?: LotFilingMapperListRelationFilter
   }
 
   export type FilingEntryOrderByWithRelationInput = {
@@ -38065,6 +38123,7 @@ export namespace Prisma {
     filingItems?: FilingItemsOrderByRelationAggregateInput
     filingItemsId?: FilingTotalBalanceOrderByRelationAggregateInput
     FilingWastage?: FilingWastageOrderByRelationAggregateInput
+    LotFilingMapper?: LotFilingMapperOrderByRelationAggregateInput
   }
 
   export type FilingEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -38080,6 +38139,7 @@ export namespace Prisma {
     filingItems?: FilingItemsListRelationFilter
     filingItemsId?: FilingTotalBalanceListRelationFilter
     FilingWastage?: FilingWastageListRelationFilter
+    LotFilingMapper?: LotFilingMapperListRelationFilter
   }, "id">
 
   export type FilingEntryOrderByWithAggregationInput = {
@@ -38102,6 +38162,75 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"FilingEntry"> | Date | string
     filing_person_id?: IntWithAggregatesFilter<"FilingEntry"> | number
     casting_item_id?: IntWithAggregatesFilter<"FilingEntry"> | number
+  }
+
+  export type LotFilingMapperWhereInput = {
+    AND?: LotFilingMapperWhereInput | LotFilingMapperWhereInput[]
+    OR?: LotFilingMapperWhereInput[]
+    NOT?: LotFilingMapperWhereInput | LotFilingMapperWhereInput[]
+    id?: IntFilter<"LotFilingMapper"> | number
+    filing_id?: IntFilter<"LotFilingMapper"> | number
+    lot_id?: IntFilter<"LotFilingMapper"> | number
+    item_id?: IntFilter<"LotFilingMapper"> | number
+    filing_entry_id?: IntFilter<"LotFilingMapper"> | number
+    filingId?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
+    lotId?: XOR<LotInfoScalarRelationFilter, LotInfoWhereInput>
+    itemId?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
+    filing_items?: FilingItemsListRelationFilter
+    filingEntry?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
+  }
+
+  export type LotFilingMapperOrderByWithRelationInput = {
+    id?: SortOrder
+    filing_id?: SortOrder
+    lot_id?: SortOrder
+    item_id?: SortOrder
+    filing_entry_id?: SortOrder
+    filingId?: AddFilingOrderByWithRelationInput
+    lotId?: LotInfoOrderByWithRelationInput
+    itemId?: CastingItemsOrderByWithRelationInput
+    filing_items?: FilingItemsOrderByRelationAggregateInput
+    filingEntry?: FilingEntryOrderByWithRelationInput
+  }
+
+  export type LotFilingMapperWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: LotFilingMapperWhereInput | LotFilingMapperWhereInput[]
+    OR?: LotFilingMapperWhereInput[]
+    NOT?: LotFilingMapperWhereInput | LotFilingMapperWhereInput[]
+    filing_id?: IntFilter<"LotFilingMapper"> | number
+    lot_id?: IntFilter<"LotFilingMapper"> | number
+    item_id?: IntFilter<"LotFilingMapper"> | number
+    filing_entry_id?: IntFilter<"LotFilingMapper"> | number
+    filingId?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
+    lotId?: XOR<LotInfoScalarRelationFilter, LotInfoWhereInput>
+    itemId?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
+    filing_items?: FilingItemsListRelationFilter
+    filingEntry?: XOR<FilingEntryScalarRelationFilter, FilingEntryWhereInput>
+  }, "id">
+
+  export type LotFilingMapperOrderByWithAggregationInput = {
+    id?: SortOrder
+    filing_id?: SortOrder
+    lot_id?: SortOrder
+    item_id?: SortOrder
+    filing_entry_id?: SortOrder
+    _count?: LotFilingMapperCountOrderByAggregateInput
+    _avg?: LotFilingMapperAvgOrderByAggregateInput
+    _max?: LotFilingMapperMaxOrderByAggregateInput
+    _min?: LotFilingMapperMinOrderByAggregateInput
+    _sum?: LotFilingMapperSumOrderByAggregateInput
+  }
+
+  export type LotFilingMapperScalarWhereWithAggregatesInput = {
+    AND?: LotFilingMapperScalarWhereWithAggregatesInput | LotFilingMapperScalarWhereWithAggregatesInput[]
+    OR?: LotFilingMapperScalarWhereWithAggregatesInput[]
+    NOT?: LotFilingMapperScalarWhereWithAggregatesInput | LotFilingMapperScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"LotFilingMapper"> | number
+    filing_id?: IntWithAggregatesFilter<"LotFilingMapper"> | number
+    lot_id?: IntWithAggregatesFilter<"LotFilingMapper"> | number
+    item_id?: IntWithAggregatesFilter<"LotFilingMapper"> | number
+    filing_entry_id?: IntWithAggregatesFilter<"LotFilingMapper"> | number
   }
 
   export type FilingItemsWhereInput = {
@@ -38217,67 +38346,6 @@ export namespace Prisma {
     remarks?: StringNullableWithAggregatesFilter<"FilingItems"> | string | null
     stone_option?: EnumSTONEOPTIONNullableWithAggregatesFilter<"FilingItems"> | $Enums.STONEOPTION | null
     lot_filing_mapper_id?: IntNullableWithAggregatesFilter<"FilingItems"> | number | null
-  }
-
-  export type LotFilingMapperWhereInput = {
-    AND?: LotFilingMapperWhereInput | LotFilingMapperWhereInput[]
-    OR?: LotFilingMapperWhereInput[]
-    NOT?: LotFilingMapperWhereInput | LotFilingMapperWhereInput[]
-    id?: IntFilter<"LotFilingMapper"> | number
-    filing_id?: IntFilter<"LotFilingMapper"> | number
-    lot_id?: IntFilter<"LotFilingMapper"> | number
-    item_id?: IntFilter<"LotFilingMapper"> | number
-    filingId?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
-    lotId?: XOR<LotInfoScalarRelationFilter, LotInfoWhereInput>
-    itemId?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
-    filing_items?: FilingItemsListRelationFilter
-  }
-
-  export type LotFilingMapperOrderByWithRelationInput = {
-    id?: SortOrder
-    filing_id?: SortOrder
-    lot_id?: SortOrder
-    item_id?: SortOrder
-    filingId?: AddFilingOrderByWithRelationInput
-    lotId?: LotInfoOrderByWithRelationInput
-    itemId?: CastingItemsOrderByWithRelationInput
-    filing_items?: FilingItemsOrderByRelationAggregateInput
-  }
-
-  export type LotFilingMapperWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: LotFilingMapperWhereInput | LotFilingMapperWhereInput[]
-    OR?: LotFilingMapperWhereInput[]
-    NOT?: LotFilingMapperWhereInput | LotFilingMapperWhereInput[]
-    filing_id?: IntFilter<"LotFilingMapper"> | number
-    lot_id?: IntFilter<"LotFilingMapper"> | number
-    item_id?: IntFilter<"LotFilingMapper"> | number
-    filingId?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
-    lotId?: XOR<LotInfoScalarRelationFilter, LotInfoWhereInput>
-    itemId?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
-    filing_items?: FilingItemsListRelationFilter
-  }, "id">
-
-  export type LotFilingMapperOrderByWithAggregationInput = {
-    id?: SortOrder
-    filing_id?: SortOrder
-    lot_id?: SortOrder
-    item_id?: SortOrder
-    _count?: LotFilingMapperCountOrderByAggregateInput
-    _avg?: LotFilingMapperAvgOrderByAggregateInput
-    _max?: LotFilingMapperMaxOrderByAggregateInput
-    _min?: LotFilingMapperMinOrderByAggregateInput
-    _sum?: LotFilingMapperSumOrderByAggregateInput
-  }
-
-  export type LotFilingMapperScalarWhereWithAggregatesInput = {
-    AND?: LotFilingMapperScalarWhereWithAggregatesInput | LotFilingMapperScalarWhereWithAggregatesInput[]
-    OR?: LotFilingMapperScalarWhereWithAggregatesInput[]
-    NOT?: LotFilingMapperScalarWhereWithAggregatesInput | LotFilingMapperScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"LotFilingMapper"> | number
-    filing_id?: IntWithAggregatesFilter<"LotFilingMapper"> | number
-    lot_id?: IntWithAggregatesFilter<"LotFilingMapper"> | number
-    item_id?: IntWithAggregatesFilter<"LotFilingMapper"> | number
   }
 
   export type FilingTotalBalanceWhereInput = {
@@ -40399,6 +40467,7 @@ export namespace Prisma {
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
     filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUncheckedCreateInput = {
@@ -40409,6 +40478,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
     filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUpdateInput = {
@@ -40418,6 +40488,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
     filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateInput = {
@@ -40428,6 +40499,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
     filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryCreateManyInput = {
@@ -40446,6 +40518,60 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LotFilingMapperCreateInput = {
+    filingId: AddFilingCreateNestedOneWithoutLotFilingMapperInput
+    lotId: LotInfoCreateNestedOneWithoutFilingMapperInput
+    itemId: CastingItemsCreateNestedOneWithoutFilingLotMapperInput
+    filing_items?: FilingItemsCreateNestedManyWithoutLotFilingMapperIdInput
+    filingEntry: FilingEntryCreateNestedOneWithoutLotFilingMapperInput
+  }
+
+  export type LotFilingMapperUncheckedCreateInput = {
+    id?: number
+    filing_id: number
+    lot_id: number
+    item_id: number
+    filing_entry_id: number
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutLotFilingMapperIdInput
+  }
+
+  export type LotFilingMapperUpdateInput = {
+    filingId?: AddFilingUpdateOneRequiredWithoutLotFilingMapperNestedInput
+    lotId?: LotInfoUpdateOneRequiredWithoutFilingMapperNestedInput
+    itemId?: CastingItemsUpdateOneRequiredWithoutFilingLotMapperNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutLotFilingMapperIdNestedInput
+    filingEntry?: FilingEntryUpdateOneRequiredWithoutLotFilingMapperNestedInput
+  }
+
+  export type LotFilingMapperUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    filing_id?: IntFieldUpdateOperationsInput | number
+    lot_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdNestedInput
+  }
+
+  export type LotFilingMapperCreateManyInput = {
+    id?: number
+    filing_id: number
+    lot_id: number
+    item_id: number
+    filing_entry_id: number
+  }
+
+  export type LotFilingMapperUpdateManyMutationInput = {
+
+  }
+
+  export type LotFilingMapperUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    filing_id?: IntFieldUpdateOperationsInput | number
+    lot_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type FilingItemsCreateInput = {
@@ -40561,54 +40687,6 @@ export namespace Prisma {
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
     lot_filing_mapper_id?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type LotFilingMapperCreateInput = {
-    filingId: AddFilingCreateNestedOneWithoutLotFilingMapperInput
-    lotId: LotInfoCreateNestedOneWithoutFilingMapperInput
-    itemId: CastingItemsCreateNestedOneWithoutFilingLotMapperInput
-    filing_items?: FilingItemsCreateNestedManyWithoutLotFilingMapperIdInput
-  }
-
-  export type LotFilingMapperUncheckedCreateInput = {
-    id?: number
-    filing_id: number
-    lot_id: number
-    item_id: number
-    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutLotFilingMapperIdInput
-  }
-
-  export type LotFilingMapperUpdateInput = {
-    filingId?: AddFilingUpdateOneRequiredWithoutLotFilingMapperNestedInput
-    lotId?: LotInfoUpdateOneRequiredWithoutFilingMapperNestedInput
-    itemId?: CastingItemsUpdateOneRequiredWithoutFilingLotMapperNestedInput
-    filing_items?: FilingItemsUpdateManyWithoutLotFilingMapperIdNestedInput
-  }
-
-  export type LotFilingMapperUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    filing_id?: IntFieldUpdateOperationsInput | number
-    lot_id?: IntFieldUpdateOperationsInput | number
-    item_id?: IntFieldUpdateOperationsInput | number
-    filing_items?: FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdNestedInput
-  }
-
-  export type LotFilingMapperCreateManyInput = {
-    id?: number
-    filing_id: number
-    lot_id: number
-    item_id: number
-  }
-
-  export type LotFilingMapperUpdateManyMutationInput = {
-
-  }
-
-  export type LotFilingMapperUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    filing_id?: IntFieldUpdateOperationsInput | number
-    lot_id?: IntFieldUpdateOperationsInput | number
-    item_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type FilingTotalBalanceCreateInput = {
@@ -42803,16 +42881,61 @@ export namespace Prisma {
     casting_item_id?: SortOrder
   }
 
-  export type EnumSTONEOPTIONNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel> | null
-    in?: $Enums.STONEOPTION[] | null
-    notIn?: $Enums.STONEOPTION[] | null
-    not?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel> | $Enums.STONEOPTION | null
+  export type LotInfoScalarRelationFilter = {
+    is?: LotInfoWhereInput
+    isNot?: LotInfoWhereInput
   }
 
   export type FilingEntryScalarRelationFilter = {
     is?: FilingEntryWhereInput
     isNot?: FilingEntryWhereInput
+  }
+
+  export type LotFilingMapperCountOrderByAggregateInput = {
+    id?: SortOrder
+    filing_id?: SortOrder
+    lot_id?: SortOrder
+    item_id?: SortOrder
+    filing_entry_id?: SortOrder
+  }
+
+  export type LotFilingMapperAvgOrderByAggregateInput = {
+    id?: SortOrder
+    filing_id?: SortOrder
+    lot_id?: SortOrder
+    item_id?: SortOrder
+    filing_entry_id?: SortOrder
+  }
+
+  export type LotFilingMapperMaxOrderByAggregateInput = {
+    id?: SortOrder
+    filing_id?: SortOrder
+    lot_id?: SortOrder
+    item_id?: SortOrder
+    filing_entry_id?: SortOrder
+  }
+
+  export type LotFilingMapperMinOrderByAggregateInput = {
+    id?: SortOrder
+    filing_id?: SortOrder
+    lot_id?: SortOrder
+    item_id?: SortOrder
+    filing_entry_id?: SortOrder
+  }
+
+  export type LotFilingMapperSumOrderByAggregateInput = {
+    id?: SortOrder
+    filing_id?: SortOrder
+    lot_id?: SortOrder
+    item_id?: SortOrder
+    filing_entry_id?: SortOrder
+  }
+
+  export type EnumSTONEOPTIONNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.STONEOPTION | EnumSTONEOPTIONFieldRefInput<$PrismaModel> | null
+    in?: $Enums.STONEOPTION[] | null
+    notIn?: $Enums.STONEOPTION[] | null
+    not?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel> | $Enums.STONEOPTION | null
   }
 
   export type LotFilingMapperNullableScalarRelationFilter = {
@@ -42896,46 +43019,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel>
     _max?: NestedEnumSTONEOPTIONNullableFilter<$PrismaModel>
-  }
-
-  export type LotInfoScalarRelationFilter = {
-    is?: LotInfoWhereInput
-    isNot?: LotInfoWhereInput
-  }
-
-  export type LotFilingMapperCountOrderByAggregateInput = {
-    id?: SortOrder
-    filing_id?: SortOrder
-    lot_id?: SortOrder
-    item_id?: SortOrder
-  }
-
-  export type LotFilingMapperAvgOrderByAggregateInput = {
-    id?: SortOrder
-    filing_id?: SortOrder
-    lot_id?: SortOrder
-    item_id?: SortOrder
-  }
-
-  export type LotFilingMapperMaxOrderByAggregateInput = {
-    id?: SortOrder
-    filing_id?: SortOrder
-    lot_id?: SortOrder
-    item_id?: SortOrder
-  }
-
-  export type LotFilingMapperMinOrderByAggregateInput = {
-    id?: SortOrder
-    filing_id?: SortOrder
-    lot_id?: SortOrder
-    item_id?: SortOrder
-  }
-
-  export type LotFilingMapperSumOrderByAggregateInput = {
-    id?: SortOrder
-    filing_id?: SortOrder
-    lot_id?: SortOrder
-    item_id?: SortOrder
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -45402,6 +45485,13 @@ export namespace Prisma {
     connect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
   }
 
+  export type LotFilingMapperCreateNestedManyWithoutFilingEntryInput = {
+    create?: XOR<LotFilingMapperCreateWithoutFilingEntryInput, LotFilingMapperUncheckedCreateWithoutFilingEntryInput> | LotFilingMapperCreateWithoutFilingEntryInput[] | LotFilingMapperUncheckedCreateWithoutFilingEntryInput[]
+    connectOrCreate?: LotFilingMapperCreateOrConnectWithoutFilingEntryInput | LotFilingMapperCreateOrConnectWithoutFilingEntryInput[]
+    createMany?: LotFilingMapperCreateManyFilingEntryInputEnvelope
+    connect?: LotFilingMapperWhereUniqueInput | LotFilingMapperWhereUniqueInput[]
+  }
+
   export type FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput = {
     create?: XOR<FilingItemsCreateWithoutFiling_entryInput, FilingItemsUncheckedCreateWithoutFiling_entryInput> | FilingItemsCreateWithoutFiling_entryInput[] | FilingItemsUncheckedCreateWithoutFiling_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_entryInput | FilingItemsCreateOrConnectWithoutFiling_entryInput[]
@@ -45421,6 +45511,13 @@ export namespace Prisma {
     connectOrCreate?: FilingWastageCreateOrConnectWithoutFilingEntryIdInput | FilingWastageCreateOrConnectWithoutFilingEntryIdInput[]
     createMany?: FilingWastageCreateManyFilingEntryIdInputEnvelope
     connect?: FilingWastageWhereUniqueInput | FilingWastageWhereUniqueInput[]
+  }
+
+  export type LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput = {
+    create?: XOR<LotFilingMapperCreateWithoutFilingEntryInput, LotFilingMapperUncheckedCreateWithoutFilingEntryInput> | LotFilingMapperCreateWithoutFilingEntryInput[] | LotFilingMapperUncheckedCreateWithoutFilingEntryInput[]
+    connectOrCreate?: LotFilingMapperCreateOrConnectWithoutFilingEntryInput | LotFilingMapperCreateOrConnectWithoutFilingEntryInput[]
+    createMany?: LotFilingMapperCreateManyFilingEntryInputEnvelope
+    connect?: LotFilingMapperWhereUniqueInput | LotFilingMapperWhereUniqueInput[]
   }
 
   export type AddFilingUpdateOneRequiredWithoutFilingsNestedInput = {
@@ -45481,6 +45578,20 @@ export namespace Prisma {
     deleteMany?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
   }
 
+  export type LotFilingMapperUpdateManyWithoutFilingEntryNestedInput = {
+    create?: XOR<LotFilingMapperCreateWithoutFilingEntryInput, LotFilingMapperUncheckedCreateWithoutFilingEntryInput> | LotFilingMapperCreateWithoutFilingEntryInput[] | LotFilingMapperUncheckedCreateWithoutFilingEntryInput[]
+    connectOrCreate?: LotFilingMapperCreateOrConnectWithoutFilingEntryInput | LotFilingMapperCreateOrConnectWithoutFilingEntryInput[]
+    upsert?: LotFilingMapperUpsertWithWhereUniqueWithoutFilingEntryInput | LotFilingMapperUpsertWithWhereUniqueWithoutFilingEntryInput[]
+    createMany?: LotFilingMapperCreateManyFilingEntryInputEnvelope
+    set?: LotFilingMapperWhereUniqueInput | LotFilingMapperWhereUniqueInput[]
+    disconnect?: LotFilingMapperWhereUniqueInput | LotFilingMapperWhereUniqueInput[]
+    delete?: LotFilingMapperWhereUniqueInput | LotFilingMapperWhereUniqueInput[]
+    connect?: LotFilingMapperWhereUniqueInput | LotFilingMapperWhereUniqueInput[]
+    update?: LotFilingMapperUpdateWithWhereUniqueWithoutFilingEntryInput | LotFilingMapperUpdateWithWhereUniqueWithoutFilingEntryInput[]
+    updateMany?: LotFilingMapperUpdateManyWithWhereWithoutFilingEntryInput | LotFilingMapperUpdateManyWithWhereWithoutFilingEntryInput[]
+    deleteMany?: LotFilingMapperScalarWhereInput | LotFilingMapperScalarWhereInput[]
+  }
+
   export type FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput = {
     create?: XOR<FilingItemsCreateWithoutFiling_entryInput, FilingItemsUncheckedCreateWithoutFiling_entryInput> | FilingItemsCreateWithoutFiling_entryInput[] | FilingItemsUncheckedCreateWithoutFiling_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutFiling_entryInput | FilingItemsCreateOrConnectWithoutFiling_entryInput[]
@@ -45521,6 +45632,118 @@ export namespace Prisma {
     update?: FilingWastageUpdateWithWhereUniqueWithoutFilingEntryIdInput | FilingWastageUpdateWithWhereUniqueWithoutFilingEntryIdInput[]
     updateMany?: FilingWastageUpdateManyWithWhereWithoutFilingEntryIdInput | FilingWastageUpdateManyWithWhereWithoutFilingEntryIdInput[]
     deleteMany?: FilingWastageScalarWhereInput | FilingWastageScalarWhereInput[]
+  }
+
+  export type LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput = {
+    create?: XOR<LotFilingMapperCreateWithoutFilingEntryInput, LotFilingMapperUncheckedCreateWithoutFilingEntryInput> | LotFilingMapperCreateWithoutFilingEntryInput[] | LotFilingMapperUncheckedCreateWithoutFilingEntryInput[]
+    connectOrCreate?: LotFilingMapperCreateOrConnectWithoutFilingEntryInput | LotFilingMapperCreateOrConnectWithoutFilingEntryInput[]
+    upsert?: LotFilingMapperUpsertWithWhereUniqueWithoutFilingEntryInput | LotFilingMapperUpsertWithWhereUniqueWithoutFilingEntryInput[]
+    createMany?: LotFilingMapperCreateManyFilingEntryInputEnvelope
+    set?: LotFilingMapperWhereUniqueInput | LotFilingMapperWhereUniqueInput[]
+    disconnect?: LotFilingMapperWhereUniqueInput | LotFilingMapperWhereUniqueInput[]
+    delete?: LotFilingMapperWhereUniqueInput | LotFilingMapperWhereUniqueInput[]
+    connect?: LotFilingMapperWhereUniqueInput | LotFilingMapperWhereUniqueInput[]
+    update?: LotFilingMapperUpdateWithWhereUniqueWithoutFilingEntryInput | LotFilingMapperUpdateWithWhereUniqueWithoutFilingEntryInput[]
+    updateMany?: LotFilingMapperUpdateManyWithWhereWithoutFilingEntryInput | LotFilingMapperUpdateManyWithWhereWithoutFilingEntryInput[]
+    deleteMany?: LotFilingMapperScalarWhereInput | LotFilingMapperScalarWhereInput[]
+  }
+
+  export type AddFilingCreateNestedOneWithoutLotFilingMapperInput = {
+    create?: XOR<AddFilingCreateWithoutLotFilingMapperInput, AddFilingUncheckedCreateWithoutLotFilingMapperInput>
+    connectOrCreate?: AddFilingCreateOrConnectWithoutLotFilingMapperInput
+    connect?: AddFilingWhereUniqueInput
+  }
+
+  export type LotInfoCreateNestedOneWithoutFilingMapperInput = {
+    create?: XOR<LotInfoCreateWithoutFilingMapperInput, LotInfoUncheckedCreateWithoutFilingMapperInput>
+    connectOrCreate?: LotInfoCreateOrConnectWithoutFilingMapperInput
+    connect?: LotInfoWhereUniqueInput
+  }
+
+  export type CastingItemsCreateNestedOneWithoutFilingLotMapperInput = {
+    create?: XOR<CastingItemsCreateWithoutFilingLotMapperInput, CastingItemsUncheckedCreateWithoutFilingLotMapperInput>
+    connectOrCreate?: CastingItemsCreateOrConnectWithoutFilingLotMapperInput
+    connect?: CastingItemsWhereUniqueInput
+  }
+
+  export type FilingItemsCreateNestedManyWithoutLotFilingMapperIdInput = {
+    create?: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput> | FilingItemsCreateWithoutLotFilingMapperIdInput[] | FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput | FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput[]
+    createMany?: FilingItemsCreateManyLotFilingMapperIdInputEnvelope
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type FilingEntryCreateNestedOneWithoutLotFilingMapperInput = {
+    create?: XOR<FilingEntryCreateWithoutLotFilingMapperInput, FilingEntryUncheckedCreateWithoutLotFilingMapperInput>
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutLotFilingMapperInput
+    connect?: FilingEntryWhereUniqueInput
+  }
+
+  export type FilingItemsUncheckedCreateNestedManyWithoutLotFilingMapperIdInput = {
+    create?: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput> | FilingItemsCreateWithoutLotFilingMapperIdInput[] | FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput | FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput[]
+    createMany?: FilingItemsCreateManyLotFilingMapperIdInputEnvelope
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+  }
+
+  export type AddFilingUpdateOneRequiredWithoutLotFilingMapperNestedInput = {
+    create?: XOR<AddFilingCreateWithoutLotFilingMapperInput, AddFilingUncheckedCreateWithoutLotFilingMapperInput>
+    connectOrCreate?: AddFilingCreateOrConnectWithoutLotFilingMapperInput
+    upsert?: AddFilingUpsertWithoutLotFilingMapperInput
+    connect?: AddFilingWhereUniqueInput
+    update?: XOR<XOR<AddFilingUpdateToOneWithWhereWithoutLotFilingMapperInput, AddFilingUpdateWithoutLotFilingMapperInput>, AddFilingUncheckedUpdateWithoutLotFilingMapperInput>
+  }
+
+  export type LotInfoUpdateOneRequiredWithoutFilingMapperNestedInput = {
+    create?: XOR<LotInfoCreateWithoutFilingMapperInput, LotInfoUncheckedCreateWithoutFilingMapperInput>
+    connectOrCreate?: LotInfoCreateOrConnectWithoutFilingMapperInput
+    upsert?: LotInfoUpsertWithoutFilingMapperInput
+    connect?: LotInfoWhereUniqueInput
+    update?: XOR<XOR<LotInfoUpdateToOneWithWhereWithoutFilingMapperInput, LotInfoUpdateWithoutFilingMapperInput>, LotInfoUncheckedUpdateWithoutFilingMapperInput>
+  }
+
+  export type CastingItemsUpdateOneRequiredWithoutFilingLotMapperNestedInput = {
+    create?: XOR<CastingItemsCreateWithoutFilingLotMapperInput, CastingItemsUncheckedCreateWithoutFilingLotMapperInput>
+    connectOrCreate?: CastingItemsCreateOrConnectWithoutFilingLotMapperInput
+    upsert?: CastingItemsUpsertWithoutFilingLotMapperInput
+    connect?: CastingItemsWhereUniqueInput
+    update?: XOR<XOR<CastingItemsUpdateToOneWithWhereWithoutFilingLotMapperInput, CastingItemsUpdateWithoutFilingLotMapperInput>, CastingItemsUncheckedUpdateWithoutFilingLotMapperInput>
+  }
+
+  export type FilingItemsUpdateManyWithoutLotFilingMapperIdNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput> | FilingItemsCreateWithoutLotFilingMapperIdInput[] | FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput | FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutLotFilingMapperIdInput | FilingItemsUpsertWithWhereUniqueWithoutLotFilingMapperIdInput[]
+    createMany?: FilingItemsCreateManyLotFilingMapperIdInputEnvelope
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutLotFilingMapperIdInput | FilingItemsUpdateWithWhereUniqueWithoutLotFilingMapperIdInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutLotFilingMapperIdInput | FilingItemsUpdateManyWithWhereWithoutLotFilingMapperIdInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
+  }
+
+  export type FilingEntryUpdateOneRequiredWithoutLotFilingMapperNestedInput = {
+    create?: XOR<FilingEntryCreateWithoutLotFilingMapperInput, FilingEntryUncheckedCreateWithoutLotFilingMapperInput>
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutLotFilingMapperInput
+    upsert?: FilingEntryUpsertWithoutLotFilingMapperInput
+    connect?: FilingEntryWhereUniqueInput
+    update?: XOR<XOR<FilingEntryUpdateToOneWithWhereWithoutLotFilingMapperInput, FilingEntryUpdateWithoutLotFilingMapperInput>, FilingEntryUncheckedUpdateWithoutLotFilingMapperInput>
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdNestedInput = {
+    create?: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput> | FilingItemsCreateWithoutLotFilingMapperIdInput[] | FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput[]
+    connectOrCreate?: FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput | FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput[]
+    upsert?: FilingItemsUpsertWithWhereUniqueWithoutLotFilingMapperIdInput | FilingItemsUpsertWithWhereUniqueWithoutLotFilingMapperIdInput[]
+    createMany?: FilingItemsCreateManyLotFilingMapperIdInputEnvelope
+    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
+    update?: FilingItemsUpdateWithWhereUniqueWithoutLotFilingMapperIdInput | FilingItemsUpdateWithWhereUniqueWithoutLotFilingMapperIdInput[]
+    updateMany?: FilingItemsUpdateManyWithWhereWithoutLotFilingMapperIdInput | FilingItemsUpdateManyWithWhereWithoutLotFilingMapperIdInput[]
+    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
   }
 
   export type FilingEntryCreateNestedOneWithoutFilingItemsInput = {
@@ -45823,90 +46046,6 @@ export namespace Prisma {
     update?: LotBuffingMapperUpdateWithWhereUniqueWithoutFilingItemIdInput | LotBuffingMapperUpdateWithWhereUniqueWithoutFilingItemIdInput[]
     updateMany?: LotBuffingMapperUpdateManyWithWhereWithoutFilingItemIdInput | LotBuffingMapperUpdateManyWithWhereWithoutFilingItemIdInput[]
     deleteMany?: LotBuffingMapperScalarWhereInput | LotBuffingMapperScalarWhereInput[]
-  }
-
-  export type AddFilingCreateNestedOneWithoutLotFilingMapperInput = {
-    create?: XOR<AddFilingCreateWithoutLotFilingMapperInput, AddFilingUncheckedCreateWithoutLotFilingMapperInput>
-    connectOrCreate?: AddFilingCreateOrConnectWithoutLotFilingMapperInput
-    connect?: AddFilingWhereUniqueInput
-  }
-
-  export type LotInfoCreateNestedOneWithoutFilingMapperInput = {
-    create?: XOR<LotInfoCreateWithoutFilingMapperInput, LotInfoUncheckedCreateWithoutFilingMapperInput>
-    connectOrCreate?: LotInfoCreateOrConnectWithoutFilingMapperInput
-    connect?: LotInfoWhereUniqueInput
-  }
-
-  export type CastingItemsCreateNestedOneWithoutFilingLotMapperInput = {
-    create?: XOR<CastingItemsCreateWithoutFilingLotMapperInput, CastingItemsUncheckedCreateWithoutFilingLotMapperInput>
-    connectOrCreate?: CastingItemsCreateOrConnectWithoutFilingLotMapperInput
-    connect?: CastingItemsWhereUniqueInput
-  }
-
-  export type FilingItemsCreateNestedManyWithoutLotFilingMapperIdInput = {
-    create?: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput> | FilingItemsCreateWithoutLotFilingMapperIdInput[] | FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput[]
-    connectOrCreate?: FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput | FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput[]
-    createMany?: FilingItemsCreateManyLotFilingMapperIdInputEnvelope
-    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
-  }
-
-  export type FilingItemsUncheckedCreateNestedManyWithoutLotFilingMapperIdInput = {
-    create?: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput> | FilingItemsCreateWithoutLotFilingMapperIdInput[] | FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput[]
-    connectOrCreate?: FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput | FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput[]
-    createMany?: FilingItemsCreateManyLotFilingMapperIdInputEnvelope
-    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
-  }
-
-  export type AddFilingUpdateOneRequiredWithoutLotFilingMapperNestedInput = {
-    create?: XOR<AddFilingCreateWithoutLotFilingMapperInput, AddFilingUncheckedCreateWithoutLotFilingMapperInput>
-    connectOrCreate?: AddFilingCreateOrConnectWithoutLotFilingMapperInput
-    upsert?: AddFilingUpsertWithoutLotFilingMapperInput
-    connect?: AddFilingWhereUniqueInput
-    update?: XOR<XOR<AddFilingUpdateToOneWithWhereWithoutLotFilingMapperInput, AddFilingUpdateWithoutLotFilingMapperInput>, AddFilingUncheckedUpdateWithoutLotFilingMapperInput>
-  }
-
-  export type LotInfoUpdateOneRequiredWithoutFilingMapperNestedInput = {
-    create?: XOR<LotInfoCreateWithoutFilingMapperInput, LotInfoUncheckedCreateWithoutFilingMapperInput>
-    connectOrCreate?: LotInfoCreateOrConnectWithoutFilingMapperInput
-    upsert?: LotInfoUpsertWithoutFilingMapperInput
-    connect?: LotInfoWhereUniqueInput
-    update?: XOR<XOR<LotInfoUpdateToOneWithWhereWithoutFilingMapperInput, LotInfoUpdateWithoutFilingMapperInput>, LotInfoUncheckedUpdateWithoutFilingMapperInput>
-  }
-
-  export type CastingItemsUpdateOneRequiredWithoutFilingLotMapperNestedInput = {
-    create?: XOR<CastingItemsCreateWithoutFilingLotMapperInput, CastingItemsUncheckedCreateWithoutFilingLotMapperInput>
-    connectOrCreate?: CastingItemsCreateOrConnectWithoutFilingLotMapperInput
-    upsert?: CastingItemsUpsertWithoutFilingLotMapperInput
-    connect?: CastingItemsWhereUniqueInput
-    update?: XOR<XOR<CastingItemsUpdateToOneWithWhereWithoutFilingLotMapperInput, CastingItemsUpdateWithoutFilingLotMapperInput>, CastingItemsUncheckedUpdateWithoutFilingLotMapperInput>
-  }
-
-  export type FilingItemsUpdateManyWithoutLotFilingMapperIdNestedInput = {
-    create?: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput> | FilingItemsCreateWithoutLotFilingMapperIdInput[] | FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput[]
-    connectOrCreate?: FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput | FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput[]
-    upsert?: FilingItemsUpsertWithWhereUniqueWithoutLotFilingMapperIdInput | FilingItemsUpsertWithWhereUniqueWithoutLotFilingMapperIdInput[]
-    createMany?: FilingItemsCreateManyLotFilingMapperIdInputEnvelope
-    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
-    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
-    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
-    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
-    update?: FilingItemsUpdateWithWhereUniqueWithoutLotFilingMapperIdInput | FilingItemsUpdateWithWhereUniqueWithoutLotFilingMapperIdInput[]
-    updateMany?: FilingItemsUpdateManyWithWhereWithoutLotFilingMapperIdInput | FilingItemsUpdateManyWithWhereWithoutLotFilingMapperIdInput[]
-    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
-  }
-
-  export type FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdNestedInput = {
-    create?: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput> | FilingItemsCreateWithoutLotFilingMapperIdInput[] | FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput[]
-    connectOrCreate?: FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput | FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput[]
-    upsert?: FilingItemsUpsertWithWhereUniqueWithoutLotFilingMapperIdInput | FilingItemsUpsertWithWhereUniqueWithoutLotFilingMapperIdInput[]
-    createMany?: FilingItemsCreateManyLotFilingMapperIdInputEnvelope
-    set?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
-    disconnect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
-    delete?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
-    connect?: FilingItemsWhereUniqueInput | FilingItemsWhereUniqueInput[]
-    update?: FilingItemsUpdateWithWhereUniqueWithoutLotFilingMapperIdInput | FilingItemsUpdateWithWhereUniqueWithoutLotFilingMapperIdInput[]
-    updateMany?: FilingItemsUpdateManyWithWhereWithoutLotFilingMapperIdInput | FilingItemsUpdateManyWithWhereWithoutLotFilingMapperIdInput[]
-    deleteMany?: FilingItemsScalarWhereInput | FilingItemsScalarWhereInput[]
   }
 
   export type FilingEntryCreateNestedOneWithoutFilingItemsIdInput = {
@@ -47504,6 +47643,7 @@ export namespace Prisma {
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
     filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUncheckedCreateWithoutFiling_personInput = {
@@ -47513,6 +47653,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
     filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryCreateOrConnectWithoutFiling_personInput = {
@@ -47558,12 +47699,14 @@ export namespace Prisma {
     lotId: LotInfoCreateNestedOneWithoutFilingMapperInput
     itemId: CastingItemsCreateNestedOneWithoutFilingLotMapperInput
     filing_items?: FilingItemsCreateNestedManyWithoutLotFilingMapperIdInput
+    filingEntry: FilingEntryCreateNestedOneWithoutLotFilingMapperInput
   }
 
   export type LotFilingMapperUncheckedCreateWithoutFilingIdInput = {
     id?: number
     lot_id: number
     item_id: number
+    filing_entry_id: number
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutLotFilingMapperIdInput
   }
 
@@ -47654,6 +47797,7 @@ export namespace Prisma {
     filing_id?: IntFilter<"LotFilingMapper"> | number
     lot_id?: IntFilter<"LotFilingMapper"> | number
     item_id?: IntFilter<"LotFilingMapper"> | number
+    filing_entry_id?: IntFilter<"LotFilingMapper"> | number
   }
 
   export type SettingEntryCreateWithoutSetting_personInput = {
@@ -48976,6 +49120,7 @@ export namespace Prisma {
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
     filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUncheckedCreateWithoutCastingItemInput = {
@@ -48985,6 +49130,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
     filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryCreateOrConnectWithoutCastingItemInput = {
@@ -49084,12 +49230,14 @@ export namespace Prisma {
     filingId: AddFilingCreateNestedOneWithoutLotFilingMapperInput
     lotId: LotInfoCreateNestedOneWithoutFilingMapperInput
     filing_items?: FilingItemsCreateNestedManyWithoutLotFilingMapperIdInput
+    filingEntry: FilingEntryCreateNestedOneWithoutLotFilingMapperInput
   }
 
   export type LotFilingMapperUncheckedCreateWithoutItemIdInput = {
     id?: number
     filing_id: number
     lot_id: number
+    filing_entry_id: number
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutLotFilingMapperIdInput
   }
 
@@ -49525,12 +49673,14 @@ export namespace Prisma {
     filingId: AddFilingCreateNestedOneWithoutLotFilingMapperInput
     itemId: CastingItemsCreateNestedOneWithoutFilingLotMapperInput
     filing_items?: FilingItemsCreateNestedManyWithoutLotFilingMapperIdInput
+    filingEntry: FilingEntryCreateNestedOneWithoutLotFilingMapperInput
   }
 
   export type LotFilingMapperUncheckedCreateWithoutLotIdInput = {
     id?: number
     filing_id: number
     item_id: number
+    filing_entry_id: number
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutLotFilingMapperIdInput
   }
 
@@ -49911,6 +50061,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LotFilingMapperCreateWithoutFilingEntryInput = {
+    filingId: AddFilingCreateNestedOneWithoutLotFilingMapperInput
+    lotId: LotInfoCreateNestedOneWithoutFilingMapperInput
+    itemId: CastingItemsCreateNestedOneWithoutFilingLotMapperInput
+    filing_items?: FilingItemsCreateNestedManyWithoutLotFilingMapperIdInput
+  }
+
+  export type LotFilingMapperUncheckedCreateWithoutFilingEntryInput = {
+    id?: number
+    filing_id: number
+    lot_id: number
+    item_id: number
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutLotFilingMapperIdInput
+  }
+
+  export type LotFilingMapperCreateOrConnectWithoutFilingEntryInput = {
+    where: LotFilingMapperWhereUniqueInput
+    create: XOR<LotFilingMapperCreateWithoutFilingEntryInput, LotFilingMapperUncheckedCreateWithoutFilingEntryInput>
+  }
+
+  export type LotFilingMapperCreateManyFilingEntryInputEnvelope = {
+    data: LotFilingMapperCreateManyFilingEntryInput | LotFilingMapperCreateManyFilingEntryInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AddFilingUpsertWithoutFilingsInput = {
     update: XOR<AddFilingUpdateWithoutFilingsInput, AddFilingUncheckedUpdateWithoutFilingsInput>
     create: XOR<AddFilingCreateWithoutFilingsInput, AddFilingUncheckedCreateWithoutFilingsInput>
@@ -50067,12 +50242,340 @@ export namespace Prisma {
     filing_entry_id?: IntFilter<"FilingWastage"> | number
   }
 
+  export type LotFilingMapperUpsertWithWhereUniqueWithoutFilingEntryInput = {
+    where: LotFilingMapperWhereUniqueInput
+    update: XOR<LotFilingMapperUpdateWithoutFilingEntryInput, LotFilingMapperUncheckedUpdateWithoutFilingEntryInput>
+    create: XOR<LotFilingMapperCreateWithoutFilingEntryInput, LotFilingMapperUncheckedCreateWithoutFilingEntryInput>
+  }
+
+  export type LotFilingMapperUpdateWithWhereUniqueWithoutFilingEntryInput = {
+    where: LotFilingMapperWhereUniqueInput
+    data: XOR<LotFilingMapperUpdateWithoutFilingEntryInput, LotFilingMapperUncheckedUpdateWithoutFilingEntryInput>
+  }
+
+  export type LotFilingMapperUpdateManyWithWhereWithoutFilingEntryInput = {
+    where: LotFilingMapperScalarWhereInput
+    data: XOR<LotFilingMapperUpdateManyMutationInput, LotFilingMapperUncheckedUpdateManyWithoutFilingEntryInput>
+  }
+
+  export type AddFilingCreateWithoutLotFilingMapperInput = {
+    createdAt?: Date | string
+    name: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
+    filings?: FilingEntryCreateNestedManyWithoutFiling_personInput
+    lotInfo?: LotInfoCreateNestedManyWithoutFilingCustomerIdInput
+  }
+
+  export type AddFilingUncheckedCreateWithoutLotFilingMapperInput = {
+    id?: number
+    createdAt?: Date | string
+    name: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
+    filings?: FilingEntryUncheckedCreateNestedManyWithoutFiling_personInput
+    lotInfo?: LotInfoUncheckedCreateNestedManyWithoutFilingCustomerIdInput
+  }
+
+  export type AddFilingCreateOrConnectWithoutLotFilingMapperInput = {
+    where: AddFilingWhereUniqueInput
+    create: XOR<AddFilingCreateWithoutLotFilingMapperInput, AddFilingUncheckedCreateWithoutLotFilingMapperInput>
+  }
+
+  export type LotInfoCreateWithoutFilingMapperInput = {
+    lotNumber: number
+    filingCustomerId?: AddFilingCreateNestedOneWithoutLotInfoInput
+    settingCustomerId?: AddSettingCreateNestedOneWithoutLotInfoInput
+    buffingCustomerId?: AddBuffingCreateNestedOneWithoutLotInfoInput
+    settingMapper?: LotSettingMapperCreateNestedManyWithoutLotIdInput
+    buffingMapper?: LotBuffingMapperCreateNestedManyWithoutLotIdInput
+  }
+
+  export type LotInfoUncheckedCreateWithoutFilingMapperInput = {
+    id?: number
+    lotNumber: number
+    filing_customer_id?: number | null
+    setting_customer_id?: number | null
+    buffing_customer_id?: number | null
+    settingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutLotIdInput
+    buffingMapper?: LotBuffingMapperUncheckedCreateNestedManyWithoutLotIdInput
+  }
+
+  export type LotInfoCreateOrConnectWithoutFilingMapperInput = {
+    where: LotInfoWhereUniqueInput
+    create: XOR<LotInfoCreateWithoutFilingMapperInput, LotInfoUncheckedCreateWithoutFilingMapperInput>
+  }
+
+  export type CastingItemsCreateWithoutFilingLotMapperInput = {
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
+    item: AddItemCreateNestedOneWithoutCasting_itemsInput
+    castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
+    filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
+    settingEntry?: SettingEntryCreateNestedOneWithoutCastingItemInput
+    buffingEntry?: BuffingEntryCreateNestedOneWithoutCastingItemInput
+    stock?: StockCreateNestedManyWithoutCastingItemInput
+    casting_customer: AddCastingCreateNestedOneWithoutCastingitemsInput
+  }
+
+  export type CastingItemsUncheckedCreateWithoutFilingLotMapperInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    casting_entry_id: number
+    casting_customer_id: number
+    filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
+    settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
+    stock?: StockUncheckedCreateNestedManyWithoutCastingItemInput
+  }
+
+  export type CastingItemsCreateOrConnectWithoutFilingLotMapperInput = {
+    where: CastingItemsWhereUniqueInput
+    create: XOR<CastingItemsCreateWithoutFilingLotMapperInput, CastingItemsUncheckedCreateWithoutFilingLotMapperInput>
+  }
+
+  export type FilingItemsCreateWithoutLotFilingMapperIdInput = {
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    weight: number
+    item_purity: number
+    remarks?: string | null
+    stone_option?: $Enums.STONEOPTION | null
+    filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
+    filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
+    touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
+    stock?: StockCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageCreateNestedManyWithoutFiling_itemsInput
+    lot_setting_mapper?: LotSettingMapperCreateNestedManyWithoutItemIdInput
+    LotBuffingMapper?: LotBuffingMapperCreateNestedManyWithoutFilingItemIdInput
+  }
+
+  export type FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput = {
+    id?: number
+    createdAt?: Date | string
+    filing_entry_id: number
+    type: $Enums.CASTINGENTRYTYPE
+    filing_item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    stone_option?: $Enums.STONEOPTION | null
+    stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
+    setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
+    filing_wastage?: FilingWastageUncheckedCreateNestedManyWithoutFiling_itemsInput
+    lot_setting_mapper?: LotSettingMapperUncheckedCreateNestedManyWithoutItemIdInput
+    LotBuffingMapper?: LotBuffingMapperUncheckedCreateNestedManyWithoutFilingItemIdInput
+  }
+
+  export type FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput = {
+    where: FilingItemsWhereUniqueInput
+    create: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput>
+  }
+
+  export type FilingItemsCreateManyLotFilingMapperIdInputEnvelope = {
+    data: FilingItemsCreateManyLotFilingMapperIdInput | FilingItemsCreateManyLotFilingMapperIdInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FilingEntryCreateWithoutLotFilingMapperInput = {
+    createdAt?: Date | string
+    filing_person: AddFilingCreateNestedOneWithoutFilingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
+    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
+  }
+
+  export type FilingEntryUncheckedCreateWithoutLotFilingMapperInput = {
+    id?: number
+    createdAt?: Date | string
+    filing_person_id: number
+    casting_item_id: number
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
+    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
+  }
+
+  export type FilingEntryCreateOrConnectWithoutLotFilingMapperInput = {
+    where: FilingEntryWhereUniqueInput
+    create: XOR<FilingEntryCreateWithoutLotFilingMapperInput, FilingEntryUncheckedCreateWithoutLotFilingMapperInput>
+  }
+
+  export type AddFilingUpsertWithoutLotFilingMapperInput = {
+    update: XOR<AddFilingUpdateWithoutLotFilingMapperInput, AddFilingUncheckedUpdateWithoutLotFilingMapperInput>
+    create: XOR<AddFilingCreateWithoutLotFilingMapperInput, AddFilingUncheckedCreateWithoutLotFilingMapperInput>
+    where?: AddFilingWhereInput
+  }
+
+  export type AddFilingUpdateToOneWithWhereWithoutLotFilingMapperInput = {
+    where?: AddFilingWhereInput
+    data: XOR<AddFilingUpdateWithoutLotFilingMapperInput, AddFilingUncheckedUpdateWithoutLotFilingMapperInput>
+  }
+
+  export type AddFilingUpdateWithoutLotFilingMapperInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    filings?: FilingEntryUpdateManyWithoutFiling_personNestedInput
+    lotInfo?: LotInfoUpdateManyWithoutFilingCustomerIdNestedInput
+  }
+
+  export type AddFilingUncheckedUpdateWithoutLotFilingMapperInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    filings?: FilingEntryUncheckedUpdateManyWithoutFiling_personNestedInput
+    lotInfo?: LotInfoUncheckedUpdateManyWithoutFilingCustomerIdNestedInput
+  }
+
+  export type LotInfoUpsertWithoutFilingMapperInput = {
+    update: XOR<LotInfoUpdateWithoutFilingMapperInput, LotInfoUncheckedUpdateWithoutFilingMapperInput>
+    create: XOR<LotInfoCreateWithoutFilingMapperInput, LotInfoUncheckedCreateWithoutFilingMapperInput>
+    where?: LotInfoWhereInput
+  }
+
+  export type LotInfoUpdateToOneWithWhereWithoutFilingMapperInput = {
+    where?: LotInfoWhereInput
+    data: XOR<LotInfoUpdateWithoutFilingMapperInput, LotInfoUncheckedUpdateWithoutFilingMapperInput>
+  }
+
+  export type LotInfoUpdateWithoutFilingMapperInput = {
+    lotNumber?: IntFieldUpdateOperationsInput | number
+    filingCustomerId?: AddFilingUpdateOneWithoutLotInfoNestedInput
+    settingCustomerId?: AddSettingUpdateOneWithoutLotInfoNestedInput
+    buffingCustomerId?: AddBuffingUpdateOneWithoutLotInfoNestedInput
+    settingMapper?: LotSettingMapperUpdateManyWithoutLotIdNestedInput
+    buffingMapper?: LotBuffingMapperUpdateManyWithoutLotIdNestedInput
+  }
+
+  export type LotInfoUncheckedUpdateWithoutFilingMapperInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    lotNumber?: IntFieldUpdateOperationsInput | number
+    filing_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
+    buffing_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
+    settingMapper?: LotSettingMapperUncheckedUpdateManyWithoutLotIdNestedInput
+    buffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutLotIdNestedInput
+  }
+
+  export type CastingItemsUpsertWithoutFilingLotMapperInput = {
+    update: XOR<CastingItemsUpdateWithoutFilingLotMapperInput, CastingItemsUncheckedUpdateWithoutFilingLotMapperInput>
+    create: XOR<CastingItemsCreateWithoutFilingLotMapperInput, CastingItemsUncheckedCreateWithoutFilingLotMapperInput>
+    where?: CastingItemsWhereInput
+  }
+
+  export type CastingItemsUpdateToOneWithWhereWithoutFilingLotMapperInput = {
+    where?: CastingItemsWhereInput
+    data: XOR<CastingItemsUpdateWithoutFilingLotMapperInput, CastingItemsUncheckedUpdateWithoutFilingLotMapperInput>
+  }
+
+  export type CastingItemsUpdateWithoutFilingLotMapperInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
+    item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
+    castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
+    filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
+    settingEntry?: SettingEntryUpdateOneWithoutCastingItemNestedInput
+    buffingEntry?: BuffingEntryUpdateOneWithoutCastingItemNestedInput
+    stock?: StockUpdateManyWithoutCastingItemNestedInput
+    casting_customer?: AddCastingUpdateOneRequiredWithoutCastingitemsNestedInput
+  }
+
+  export type CastingItemsUncheckedUpdateWithoutFilingLotMapperInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    casting_entry_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
+    settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
+    stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
+  }
+
+  export type FilingItemsUpsertWithWhereUniqueWithoutLotFilingMapperIdInput = {
+    where: FilingItemsWhereUniqueInput
+    update: XOR<FilingItemsUpdateWithoutLotFilingMapperIdInput, FilingItemsUncheckedUpdateWithoutLotFilingMapperIdInput>
+    create: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput>
+  }
+
+  export type FilingItemsUpdateWithWhereUniqueWithoutLotFilingMapperIdInput = {
+    where: FilingItemsWhereUniqueInput
+    data: XOR<FilingItemsUpdateWithoutLotFilingMapperIdInput, FilingItemsUncheckedUpdateWithoutLotFilingMapperIdInput>
+  }
+
+  export type FilingItemsUpdateManyWithWhereWithoutLotFilingMapperIdInput = {
+    where: FilingItemsScalarWhereInput
+    data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdInput>
+  }
+
+  export type FilingEntryUpsertWithoutLotFilingMapperInput = {
+    update: XOR<FilingEntryUpdateWithoutLotFilingMapperInput, FilingEntryUncheckedUpdateWithoutLotFilingMapperInput>
+    create: XOR<FilingEntryCreateWithoutLotFilingMapperInput, FilingEntryUncheckedCreateWithoutLotFilingMapperInput>
+    where?: FilingEntryWhereInput
+  }
+
+  export type FilingEntryUpdateToOneWithWhereWithoutLotFilingMapperInput = {
+    where?: FilingEntryWhereInput
+    data: XOR<FilingEntryUpdateWithoutLotFilingMapperInput, FilingEntryUncheckedUpdateWithoutLotFilingMapperInput>
+  }
+
+  export type FilingEntryUpdateWithoutLotFilingMapperInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
+    castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
+    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
+  }
+
+  export type FilingEntryUncheckedUpdateWithoutLotFilingMapperInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_person_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
+    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+  }
+
   export type FilingEntryCreateWithoutFilingItemsInput = {
     createdAt?: Date | string
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
     filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUncheckedCreateWithoutFilingItemsInput = {
@@ -50082,6 +50585,7 @@ export namespace Prisma {
     casting_item_id: number
     filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryCreateOrConnectWithoutFilingItemsInput = {
@@ -50304,6 +50808,7 @@ export namespace Prisma {
     filingId: AddFilingCreateNestedOneWithoutLotFilingMapperInput
     lotId: LotInfoCreateNestedOneWithoutFilingMapperInput
     itemId: CastingItemsCreateNestedOneWithoutFilingLotMapperInput
+    filingEntry: FilingEntryCreateNestedOneWithoutLotFilingMapperInput
   }
 
   export type LotFilingMapperUncheckedCreateWithoutFiling_itemsInput = {
@@ -50311,6 +50816,7 @@ export namespace Prisma {
     filing_id: number
     lot_id: number
     item_id: number
+    filing_entry_id: number
   }
 
   export type LotFilingMapperCreateOrConnectWithoutFiling_itemsInput = {
@@ -50335,6 +50841,7 @@ export namespace Prisma {
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
     filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutFilingItemsInput = {
@@ -50344,6 +50851,7 @@ export namespace Prisma {
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type AddItemUpsertWithoutFiling_itemsInput = {
@@ -50519,6 +51027,7 @@ export namespace Prisma {
     filingId?: AddFilingUpdateOneRequiredWithoutLotFilingMapperNestedInput
     lotId?: LotInfoUpdateOneRequiredWithoutFilingMapperNestedInput
     itemId?: CastingItemsUpdateOneRequiredWithoutFilingLotMapperNestedInput
+    filingEntry?: FilingEntryUpdateOneRequiredWithoutLotFilingMapperNestedInput
   }
 
   export type LotFilingMapperUncheckedUpdateWithoutFiling_itemsInput = {
@@ -50526,263 +51035,7 @@ export namespace Prisma {
     filing_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type AddFilingCreateWithoutLotFilingMapperInput = {
-    createdAt?: Date | string
-    name: string
-    phoneNumber?: string | null
-    address?: string | null
-    email?: string | null
-    filings?: FilingEntryCreateNestedManyWithoutFiling_personInput
-    lotInfo?: LotInfoCreateNestedManyWithoutFilingCustomerIdInput
-  }
-
-  export type AddFilingUncheckedCreateWithoutLotFilingMapperInput = {
-    id?: number
-    createdAt?: Date | string
-    name: string
-    phoneNumber?: string | null
-    address?: string | null
-    email?: string | null
-    filings?: FilingEntryUncheckedCreateNestedManyWithoutFiling_personInput
-    lotInfo?: LotInfoUncheckedCreateNestedManyWithoutFilingCustomerIdInput
-  }
-
-  export type AddFilingCreateOrConnectWithoutLotFilingMapperInput = {
-    where: AddFilingWhereUniqueInput
-    create: XOR<AddFilingCreateWithoutLotFilingMapperInput, AddFilingUncheckedCreateWithoutLotFilingMapperInput>
-  }
-
-  export type LotInfoCreateWithoutFilingMapperInput = {
-    lotNumber: number
-    filingCustomerId?: AddFilingCreateNestedOneWithoutLotInfoInput
-    settingCustomerId?: AddSettingCreateNestedOneWithoutLotInfoInput
-    buffingCustomerId?: AddBuffingCreateNestedOneWithoutLotInfoInput
-    settingMapper?: LotSettingMapperCreateNestedManyWithoutLotIdInput
-    buffingMapper?: LotBuffingMapperCreateNestedManyWithoutLotIdInput
-  }
-
-  export type LotInfoUncheckedCreateWithoutFilingMapperInput = {
-    id?: number
-    lotNumber: number
-    filing_customer_id?: number | null
-    setting_customer_id?: number | null
-    buffing_customer_id?: number | null
-    settingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutLotIdInput
-    buffingMapper?: LotBuffingMapperUncheckedCreateNestedManyWithoutLotIdInput
-  }
-
-  export type LotInfoCreateOrConnectWithoutFilingMapperInput = {
-    where: LotInfoWhereUniqueInput
-    create: XOR<LotInfoCreateWithoutFilingMapperInput, LotInfoUncheckedCreateWithoutFilingMapperInput>
-  }
-
-  export type CastingItemsCreateWithoutFilingLotMapperInput = {
-    createdAt?: Date | string
-    type: $Enums.CASTINGENTRYTYPE
-    weight: number
-    item_purity: number
-    remarks?: string | null
-    touch: AddTouchCreateNestedOneWithoutCasting_itemsInput
-    item: AddItemCreateNestedOneWithoutCasting_itemsInput
-    castingEntry: CastingEntryCreateNestedOneWithoutItemsInput
-    filingEntry?: FilingEntryCreateNestedManyWithoutCastingItemInput
-    settingEntry?: SettingEntryCreateNestedOneWithoutCastingItemInput
-    buffingEntry?: BuffingEntryCreateNestedOneWithoutCastingItemInput
-    stock?: StockCreateNestedManyWithoutCastingItemInput
-    casting_customer: AddCastingCreateNestedOneWithoutCastingitemsInput
-  }
-
-  export type CastingItemsUncheckedCreateWithoutFilingLotMapperInput = {
-    id?: number
-    createdAt?: Date | string
-    type: $Enums.CASTINGENTRYTYPE
-    item_id: number
-    weight: number
-    touch_id: number
-    item_purity: number
-    remarks?: string | null
-    casting_entry_id: number
-    casting_customer_id: number
-    filingEntry?: FilingEntryUncheckedCreateNestedManyWithoutCastingItemInput
-    settingEntry?: SettingEntryUncheckedCreateNestedOneWithoutCastingItemInput
-    buffingEntry?: BuffingEntryUncheckedCreateNestedOneWithoutCastingItemInput
-    stock?: StockUncheckedCreateNestedManyWithoutCastingItemInput
-  }
-
-  export type CastingItemsCreateOrConnectWithoutFilingLotMapperInput = {
-    where: CastingItemsWhereUniqueInput
-    create: XOR<CastingItemsCreateWithoutFilingLotMapperInput, CastingItemsUncheckedCreateWithoutFilingLotMapperInput>
-  }
-
-  export type FilingItemsCreateWithoutLotFilingMapperIdInput = {
-    createdAt?: Date | string
-    type: $Enums.CASTINGENTRYTYPE
-    weight: number
-    item_purity: number
-    remarks?: string | null
-    stone_option?: $Enums.STONEOPTION | null
-    filing_entry: FilingEntryCreateNestedOneWithoutFilingItemsInput
-    filingitem: AddItemCreateNestedOneWithoutFiling_itemsInput
-    touch: AddTouchCreateNestedOneWithoutFiling_itemsInput
-    stock?: StockCreateNestedManyWithoutFilingItemInput
-    setting_entry?: SettingEntryCreateNestedManyWithoutFilingItemsInput
-    buffing_entry?: BuffingEntryCreateNestedManyWithoutFiling_itemsInput
-    filing_wastage?: FilingWastageCreateNestedManyWithoutFiling_itemsInput
-    lot_setting_mapper?: LotSettingMapperCreateNestedManyWithoutItemIdInput
-    LotBuffingMapper?: LotBuffingMapperCreateNestedManyWithoutFilingItemIdInput
-  }
-
-  export type FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput = {
-    id?: number
-    createdAt?: Date | string
-    filing_entry_id: number
-    type: $Enums.CASTINGENTRYTYPE
-    filing_item_id: number
-    weight: number
-    touch_id: number
-    item_purity: number
-    remarks?: string | null
-    stone_option?: $Enums.STONEOPTION | null
-    stock?: StockUncheckedCreateNestedManyWithoutFilingItemInput
-    setting_entry?: SettingEntryUncheckedCreateNestedManyWithoutFilingItemsInput
-    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutFiling_itemsInput
-    filing_wastage?: FilingWastageUncheckedCreateNestedManyWithoutFiling_itemsInput
-    lot_setting_mapper?: LotSettingMapperUncheckedCreateNestedManyWithoutItemIdInput
-    LotBuffingMapper?: LotBuffingMapperUncheckedCreateNestedManyWithoutFilingItemIdInput
-  }
-
-  export type FilingItemsCreateOrConnectWithoutLotFilingMapperIdInput = {
-    where: FilingItemsWhereUniqueInput
-    create: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput>
-  }
-
-  export type FilingItemsCreateManyLotFilingMapperIdInputEnvelope = {
-    data: FilingItemsCreateManyLotFilingMapperIdInput | FilingItemsCreateManyLotFilingMapperIdInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AddFilingUpsertWithoutLotFilingMapperInput = {
-    update: XOR<AddFilingUpdateWithoutLotFilingMapperInput, AddFilingUncheckedUpdateWithoutLotFilingMapperInput>
-    create: XOR<AddFilingCreateWithoutLotFilingMapperInput, AddFilingUncheckedCreateWithoutLotFilingMapperInput>
-    where?: AddFilingWhereInput
-  }
-
-  export type AddFilingUpdateToOneWithWhereWithoutLotFilingMapperInput = {
-    where?: AddFilingWhereInput
-    data: XOR<AddFilingUpdateWithoutLotFilingMapperInput, AddFilingUncheckedUpdateWithoutLotFilingMapperInput>
-  }
-
-  export type AddFilingUpdateWithoutLotFilingMapperInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    filings?: FilingEntryUpdateManyWithoutFiling_personNestedInput
-    lotInfo?: LotInfoUpdateManyWithoutFilingCustomerIdNestedInput
-  }
-
-  export type AddFilingUncheckedUpdateWithoutLotFilingMapperInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    name?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    filings?: FilingEntryUncheckedUpdateManyWithoutFiling_personNestedInput
-    lotInfo?: LotInfoUncheckedUpdateManyWithoutFilingCustomerIdNestedInput
-  }
-
-  export type LotInfoUpsertWithoutFilingMapperInput = {
-    update: XOR<LotInfoUpdateWithoutFilingMapperInput, LotInfoUncheckedUpdateWithoutFilingMapperInput>
-    create: XOR<LotInfoCreateWithoutFilingMapperInput, LotInfoUncheckedCreateWithoutFilingMapperInput>
-    where?: LotInfoWhereInput
-  }
-
-  export type LotInfoUpdateToOneWithWhereWithoutFilingMapperInput = {
-    where?: LotInfoWhereInput
-    data: XOR<LotInfoUpdateWithoutFilingMapperInput, LotInfoUncheckedUpdateWithoutFilingMapperInput>
-  }
-
-  export type LotInfoUpdateWithoutFilingMapperInput = {
-    lotNumber?: IntFieldUpdateOperationsInput | number
-    filingCustomerId?: AddFilingUpdateOneWithoutLotInfoNestedInput
-    settingCustomerId?: AddSettingUpdateOneWithoutLotInfoNestedInput
-    buffingCustomerId?: AddBuffingUpdateOneWithoutLotInfoNestedInput
-    settingMapper?: LotSettingMapperUpdateManyWithoutLotIdNestedInput
-    buffingMapper?: LotBuffingMapperUpdateManyWithoutLotIdNestedInput
-  }
-
-  export type LotInfoUncheckedUpdateWithoutFilingMapperInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    lotNumber?: IntFieldUpdateOperationsInput | number
-    filing_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
-    setting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
-    buffing_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
-    settingMapper?: LotSettingMapperUncheckedUpdateManyWithoutLotIdNestedInput
-    buffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutLotIdNestedInput
-  }
-
-  export type CastingItemsUpsertWithoutFilingLotMapperInput = {
-    update: XOR<CastingItemsUpdateWithoutFilingLotMapperInput, CastingItemsUncheckedUpdateWithoutFilingLotMapperInput>
-    create: XOR<CastingItemsCreateWithoutFilingLotMapperInput, CastingItemsUncheckedCreateWithoutFilingLotMapperInput>
-    where?: CastingItemsWhereInput
-  }
-
-  export type CastingItemsUpdateToOneWithWhereWithoutFilingLotMapperInput = {
-    where?: CastingItemsWhereInput
-    data: XOR<CastingItemsUpdateWithoutFilingLotMapperInput, CastingItemsUncheckedUpdateWithoutFilingLotMapperInput>
-  }
-
-  export type CastingItemsUpdateWithoutFilingLotMapperInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
-    weight?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    touch?: AddTouchUpdateOneRequiredWithoutCasting_itemsNestedInput
-    item?: AddItemUpdateOneRequiredWithoutCasting_itemsNestedInput
-    castingEntry?: CastingEntryUpdateOneRequiredWithoutItemsNestedInput
-    filingEntry?: FilingEntryUpdateManyWithoutCastingItemNestedInput
-    settingEntry?: SettingEntryUpdateOneWithoutCastingItemNestedInput
-    buffingEntry?: BuffingEntryUpdateOneWithoutCastingItemNestedInput
-    stock?: StockUpdateManyWithoutCastingItemNestedInput
-    casting_customer?: AddCastingUpdateOneRequiredWithoutCastingitemsNestedInput
-  }
-
-  export type CastingItemsUncheckedUpdateWithoutFilingLotMapperInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
-    item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch_id?: IntFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_entry_id?: IntFieldUpdateOperationsInput | number
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
-    filingEntry?: FilingEntryUncheckedUpdateManyWithoutCastingItemNestedInput
-    settingEntry?: SettingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
-    buffingEntry?: BuffingEntryUncheckedUpdateOneWithoutCastingItemNestedInput
-    stock?: StockUncheckedUpdateManyWithoutCastingItemNestedInput
-  }
-
-  export type FilingItemsUpsertWithWhereUniqueWithoutLotFilingMapperIdInput = {
-    where: FilingItemsWhereUniqueInput
-    update: XOR<FilingItemsUpdateWithoutLotFilingMapperIdInput, FilingItemsUncheckedUpdateWithoutLotFilingMapperIdInput>
-    create: XOR<FilingItemsCreateWithoutLotFilingMapperIdInput, FilingItemsUncheckedCreateWithoutLotFilingMapperIdInput>
-  }
-
-  export type FilingItemsUpdateWithWhereUniqueWithoutLotFilingMapperIdInput = {
-    where: FilingItemsWhereUniqueInput
-    data: XOR<FilingItemsUpdateWithoutLotFilingMapperIdInput, FilingItemsUncheckedUpdateWithoutLotFilingMapperIdInput>
-  }
-
-  export type FilingItemsUpdateManyWithWhereWithoutLotFilingMapperIdInput = {
-    where: FilingItemsScalarWhereInput
-    data: XOR<FilingItemsUpdateManyMutationInput, FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdInput>
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type FilingEntryCreateWithoutFilingItemsIdInput = {
@@ -50791,6 +51044,7 @@ export namespace Prisma {
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
     FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUncheckedCreateWithoutFilingItemsIdInput = {
@@ -50800,6 +51054,7 @@ export namespace Prisma {
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
     FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryCreateOrConnectWithoutFilingItemsIdInput = {
@@ -50824,6 +51079,7 @@ export namespace Prisma {
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
     FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutFilingItemsIdInput = {
@@ -50833,6 +51089,7 @@ export namespace Prisma {
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
     FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryCreateWithoutFilingWastageInput = {
@@ -50841,6 +51098,7 @@ export namespace Prisma {
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
     filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryUncheckedCreateWithoutFilingWastageInput = {
@@ -50850,6 +51108,7 @@ export namespace Prisma {
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
     filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
   export type FilingEntryCreateOrConnectWithoutFilingWastageInput = {
@@ -50916,6 +51175,7 @@ export namespace Prisma {
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
     filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutFilingWastageInput = {
@@ -50925,6 +51185,7 @@ export namespace Prisma {
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
     filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingItemsUpsertWithWhereUniqueWithoutFiling_wastageInput = {
@@ -53641,6 +53902,7 @@ export namespace Prisma {
     id?: number
     lot_id: number
     item_id: number
+    filing_entry_id: number
   }
 
   export type FilingEntryUpdateWithoutFiling_personInput = {
@@ -53649,6 +53911,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
     filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutFiling_personInput = {
@@ -53658,6 +53921,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
     filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateManyWithoutFiling_personInput = {
@@ -53696,12 +53960,14 @@ export namespace Prisma {
     lotId?: LotInfoUpdateOneRequiredWithoutFilingMapperNestedInput
     itemId?: CastingItemsUpdateOneRequiredWithoutFilingLotMapperNestedInput
     filing_items?: FilingItemsUpdateManyWithoutLotFilingMapperIdNestedInput
+    filingEntry?: FilingEntryUpdateOneRequiredWithoutLotFilingMapperNestedInput
   }
 
   export type LotFilingMapperUncheckedUpdateWithoutFilingIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     filing_items?: FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdNestedInput
   }
 
@@ -53709,6 +53975,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type SettingEntryCreateManySetting_personInput = {
@@ -54588,6 +54855,7 @@ export namespace Prisma {
     id?: number
     filing_id: number
     lot_id: number
+    filing_entry_id: number
   }
 
   export type FilingEntryUpdateWithoutCastingItemInput = {
@@ -54596,6 +54864,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
     filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateWithoutCastingItemInput = {
@@ -54605,6 +54874,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
     filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
 
   export type FilingEntryUncheckedUpdateManyWithoutCastingItemInput = {
@@ -54658,12 +54928,14 @@ export namespace Prisma {
     filingId?: AddFilingUpdateOneRequiredWithoutLotFilingMapperNestedInput
     lotId?: LotInfoUpdateOneRequiredWithoutFilingMapperNestedInput
     filing_items?: FilingItemsUpdateManyWithoutLotFilingMapperIdNestedInput
+    filingEntry?: FilingEntryUpdateOneRequiredWithoutLotFilingMapperNestedInput
   }
 
   export type LotFilingMapperUncheckedUpdateWithoutItemIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     filing_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     filing_items?: FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdNestedInput
   }
 
@@ -54671,12 +54943,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     filing_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotFilingMapperCreateManyLotIdInput = {
     id?: number
     filing_id: number
     item_id: number
+    filing_entry_id: number
   }
 
   export type LotSettingMapperCreateManyLotIdInput = {
@@ -54696,12 +54970,14 @@ export namespace Prisma {
     filingId?: AddFilingUpdateOneRequiredWithoutLotFilingMapperNestedInput
     itemId?: CastingItemsUpdateOneRequiredWithoutFilingLotMapperNestedInput
     filing_items?: FilingItemsUpdateManyWithoutLotFilingMapperIdNestedInput
+    filingEntry?: FilingEntryUpdateOneRequiredWithoutLotFilingMapperNestedInput
   }
 
   export type LotFilingMapperUncheckedUpdateWithoutLotIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     filing_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
     filing_items?: FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdNestedInput
   }
 
@@ -54709,6 +54985,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     filing_id?: IntFieldUpdateOperationsInput | number
     item_id?: IntFieldUpdateOperationsInput | number
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotSettingMapperUpdateWithoutLotIdInput = {
@@ -54783,6 +55060,13 @@ export namespace Prisma {
     overall_wastage: number
     closing_balance: number
     opening_balance: number
+  }
+
+  export type LotFilingMapperCreateManyFilingEntryInput = {
+    id?: number
+    filing_id: number
+    lot_id: number
+    item_id: number
   }
 
   export type FilingItemsUpdateWithoutFiling_entryInput = {
@@ -54905,6 +55189,91 @@ export namespace Prisma {
     overall_wastage?: FloatFieldUpdateOperationsInput | number
     closing_balance?: FloatFieldUpdateOperationsInput | number
     opening_balance?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type LotFilingMapperUpdateWithoutFilingEntryInput = {
+    filingId?: AddFilingUpdateOneRequiredWithoutLotFilingMapperNestedInput
+    lotId?: LotInfoUpdateOneRequiredWithoutFilingMapperNestedInput
+    itemId?: CastingItemsUpdateOneRequiredWithoutFilingLotMapperNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutLotFilingMapperIdNestedInput
+  }
+
+  export type LotFilingMapperUncheckedUpdateWithoutFilingEntryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    filing_id?: IntFieldUpdateOperationsInput | number
+    lot_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdNestedInput
+  }
+
+  export type LotFilingMapperUncheckedUpdateManyWithoutFilingEntryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    filing_id?: IntFieldUpdateOperationsInput | number
+    lot_id?: IntFieldUpdateOperationsInput | number
+    item_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FilingItemsCreateManyLotFilingMapperIdInput = {
+    id?: number
+    createdAt?: Date | string
+    filing_entry_id: number
+    type: $Enums.CASTINGENTRYTYPE
+    filing_item_id: number
+    weight: number
+    touch_id: number
+    item_purity: number
+    remarks?: string | null
+    stone_option?: $Enums.STONEOPTION | null
+  }
+
+  export type FilingItemsUpdateWithoutLotFilingMapperIdInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
+    filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
+    stock?: StockUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUpdateManyWithoutFiling_itemsNestedInput
+    lot_setting_mapper?: LotSettingMapperUpdateManyWithoutItemIdNestedInput
+    LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutFilingItemIdNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateWithoutLotFilingMapperIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
+    stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
+    setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
+    filing_wastage?: FilingWastageUncheckedUpdateManyWithoutFiling_itemsNestedInput
+    lot_setting_mapper?: LotSettingMapperUncheckedUpdateManyWithoutItemIdNestedInput
+    LotBuffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutFilingItemIdNestedInput
+  }
+
+  export type FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filing_entry_id?: IntFieldUpdateOperationsInput | number
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    filing_item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
   }
 
   export type StockCreateManyFilingItemInput = {
@@ -55104,69 +55473,6 @@ export namespace Prisma {
     buffing_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type FilingItemsCreateManyLotFilingMapperIdInput = {
-    id?: number
-    createdAt?: Date | string
-    filing_entry_id: number
-    type: $Enums.CASTINGENTRYTYPE
-    filing_item_id: number
-    weight: number
-    touch_id: number
-    item_purity: number
-    remarks?: string | null
-    stone_option?: $Enums.STONEOPTION | null
-  }
-
-  export type FilingItemsUpdateWithoutLotFilingMapperIdInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
-    weight?: FloatFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    filing_entry?: FilingEntryUpdateOneRequiredWithoutFilingItemsNestedInput
-    filingitem?: AddItemUpdateOneRequiredWithoutFiling_itemsNestedInput
-    touch?: AddTouchUpdateOneRequiredWithoutFiling_itemsNestedInput
-    stock?: StockUpdateManyWithoutFilingItemNestedInput
-    setting_entry?: SettingEntryUpdateManyWithoutFilingItemsNestedInput
-    buffing_entry?: BuffingEntryUpdateManyWithoutFiling_itemsNestedInput
-    filing_wastage?: FilingWastageUpdateManyWithoutFiling_itemsNestedInput
-    lot_setting_mapper?: LotSettingMapperUpdateManyWithoutItemIdNestedInput
-    LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutFilingItemIdNestedInput
-  }
-
-  export type FilingItemsUncheckedUpdateWithoutLotFilingMapperIdInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch_id?: IntFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
-    stock?: StockUncheckedUpdateManyWithoutFilingItemNestedInput
-    setting_entry?: SettingEntryUncheckedUpdateManyWithoutFilingItemsNestedInput
-    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutFiling_itemsNestedInput
-    filing_wastage?: FilingWastageUncheckedUpdateManyWithoutFiling_itemsNestedInput
-    lot_setting_mapper?: LotSettingMapperUncheckedUpdateManyWithoutItemIdNestedInput
-    LotBuffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutFilingItemIdNestedInput
-  }
-
-  export type FilingItemsUncheckedUpdateManyWithoutLotFilingMapperIdInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    filing_entry_id?: IntFieldUpdateOperationsInput | number
-    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
-    filing_item_id?: IntFieldUpdateOperationsInput | number
-    weight?: FloatFieldUpdateOperationsInput | number
-    touch_id?: IntFieldUpdateOperationsInput | number
-    item_purity?: FloatFieldUpdateOperationsInput | number
-    remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    stone_option?: NullableEnumSTONEOPTIONFieldUpdateOperationsInput | $Enums.STONEOPTION | null
   }
 
   export type FilingItemsUpdateWithoutFiling_wastageInput = {

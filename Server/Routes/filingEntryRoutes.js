@@ -5,7 +5,9 @@ import {
   getFilingEntryById,
   updateFilingEntry,
   deleteFilingEntry,
-  getFilingEntriesByPersonId
+  getFilingEntriesByPersonId,
+  getFilingEntryByFilingId
+
 } from "../Controllers/filingEntryController.js"
 
 const router = express.Router();
@@ -16,5 +18,6 @@ router.get("/:id", getFilingEntryById);
 router.put("/:id", updateFilingEntry);
 router.delete("/:id", deleteFilingEntry);
 router.get("/person/:filing_person_id", getFilingEntriesByPersonId);
+router.get("/filing_id/:filing_id", getFilingEntryByFilingId);
 
 export default router;
