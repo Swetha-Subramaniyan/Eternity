@@ -55,4 +55,114 @@
 
 
 
+/* 
+<TableBody>
+  {filingEntries.map((entry, index) => {
+    const {
+      date,
+      castingItem,
+      product_items = [],
+      scrap_items = [],
+      wastage,
+      id,
+      items = []
+    } = entry;
 
+    const totalProduct = product_items.reduce((acc, item) => acc + Number(item.weight || 0), 0);
+    const totalScrap = scrap_items.reduce((acc, item) => acc + Number(item.weight || 0), 0);
+    const receipt = (totalProduct - totalScrap).toFixed(2);
+
+    const balance = (
+      (Number(castingItem?.weight || 0)) -
+      (totalProduct + totalScrap)
+    ).toFixed(2);
+
+    const createdAt = castingItem?.createdAt || "";
+    const createdDate = new Date(createdAt).toLocaleDateString('en-GB');
+    const createdTime = createdAt.split("T")[1]?.substring(0, 8) || "—";
+
+    return items.length > 0 ? (
+      items.map((item, i) => (
+        <TableRow key={`${id}-item-${i}`}>
+          {i === 0 && (
+            <>
+              <TableCell rowSpan={items.length}>{index + 1}</TableCell>
+              <TableCell rowSpan={items.length}>{createdDate}</TableCell>
+              <TableCell rowSpan={items.length}>{createdTime}</TableCell>
+            </>
+          )}
+          <TableCell>{i === 0 ? "Process" : "Issue"}</TableCell>
+          <TableCell>{i === 0 ? item?.item : castingItem?.weight}</TableCell>
+          {i === 0 && (
+            <>
+              <TableCell rowSpan={items.length}>{totalProduct.toFixed(2)}</TableCell>
+              <TableCell rowSpan={items.length}>{balance}</TableCell>
+              <TableCell rowSpan={items.length}>{totalScrap.toFixed(2)}</TableCell>
+              <TableCell rowSpan={items.length}>
+                <span style={{ color: wastage === 'Yes' ? 'green' : 'red' }}>
+                  {wastage || '—'}
+                </span>
+              </TableCell>
+              <TableCell rowSpan={items.length}>
+                <FaEye
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    const itemsArray = Array.isArray(entry.items)
+                      ? entry.items
+                      : [{
+                          item: castingItem?.item?.name || " ",
+                          beforeWeight: castingItem?.weight || '',
+                          touch: castingItem?.touch?.touch || '',
+                          purity: castingItem?.item_purity || '',
+                          remarks: castingItem?.remarks || ''
+                        }];
+
+                    const newEntry = {
+                      ...entry,
+                      items: itemsArray,
+                      productItems: product_items,
+                      scrapItems: scrap_items,
+                      wastage: wastage || '',
+                    };
+                    setViewEntry(newEntry);
+                  }}
+                />
+              </TableCell>
+            </>
+          )}
+        </TableRow>
+      ))
+    ) : (
+      <TableRow key={`${id}-noitem`}>
+        <TableCell>{index + 1}</TableCell>
+        <TableCell>{createdDate}</TableCell>
+        <TableCell>{createdTime}</TableCell>
+        <TableCell>—</TableCell>
+        <TableCell>—</TableCell>
+        <TableCell>{totalProduct.toFixed(2)}</TableCell>
+        <TableCell>{balance}</TableCell>
+        <TableCell>{totalScrap.toFixed(2)}</TableCell>
+        <TableCell>
+          <span style={{ color: wastage === 'Yes' ? 'green' : 'red' }}>
+            {wastage || '—'}
+          </span>
+        </TableCell>
+        <TableCell>
+          <FaEye
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              const newEntry = {
+                ...entry,
+                items: [],
+                productItems: product_items,
+                scrapItems: scrap_items,
+                wastage: wastage || '',
+              };
+              setViewEntry(newEntry);
+            }}
+          />
+        </TableCell>
+      </TableRow>
+    );
+  })}
+</TableBody> */
