@@ -200,30 +200,34 @@ export const deleteCastingItem = async (req, res) => {
   }
 };
 
-
-
 export const getAvailableCastingItems = async (req, res) => {
   try {
     const items = await prisma.castingItems.findMany({
       where: {
         type: "Items",
+        filingEntry: {
+          none: {},  // Not assigned to FilingEntry
+        },
+        filingLotMapper: {
+          none: {},  // Not assigned to LotFilingMapper
+        },
       },
       include: {
         item: true,
         touch: true,
-        filingEntry: true, 
-      }
+      },
     });
 
-    const itemsWithStatus = items.map(item => ({
+    // Append status field to each item
+    const result = items.map((item) => ({
       ...item,
-      status: item.filingEntry.length > 0 ? "Assigned" : "Unassigned",
+      status: "Unassigned",
     }));
 
-    res.json(itemsWithStatus);
+    res.status(200).json(result);
   } catch (err) {
-    console.error("Failed to fetch casting items", err);
-    res.status(500).json({ error: "Failed to fetch casting items" });
+    console.error("Failed to fetch unassigned casting items", err);
+    res.status(500).json({ error: "Failed to fetch unassigned casting items" });
   }
 };
 

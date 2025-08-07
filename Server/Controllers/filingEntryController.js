@@ -3,135 +3,16 @@ const prisma = new PrismaClient();
 
 //  POST - http://localhost:5000/api/filingentry
 
-// export const createFilingEntry = async (req, res) => {
-//   try {
-//     const { filing_person_id, lot_number, itemIds } = req.body;
-
-//     if (!filing_person_id || !lot_number || !Array.isArray(itemIds) || itemIds.length === 0) {
-//       return res.status(400).json({
-//         error: 'filing_person_id, lot_number, and at least one casting_item_id are required',
-//       });
-//     }
-
-//     const lot = await prisma.lotInfo.findFirst({
-//       where: { lotNumber: parseInt(lot_number) },
-//     });
-    
-
-//     if (!lot) {
-//       return res.status(404).json({ error: 'Lot not found with the given lot_number' });
-//     }
-
-//     //  Create the FilingEntry using first casting item ID (schema requires one)
-//     const filingEntry = await prisma.filingEntry.create({
-//       data: {
-//         filing_person: {
-//           connect: { id: filing_person_id },
-//         },
-//         castingItem: {
-//           connect: { id: itemIds[0] },
-//         },
-//       },
-//     });
-
-//     // Create mapping entries for each itemId
-//     const mapperEntries = await Promise.all(
-//       itemIds.map(async (itemId) => {
-//         return await prisma.lotFilingMapper.create({
-//           data: {
-//             filing_id: filing_person_id,
-//             lot_id: lot.id,
-//             item_id: itemId,
-//             filing_entry_id: filingEntry.id,
-//           },
-//         });
-//       })
-//     );
-
-//     return res.status(201).json({
-//       message: 'Filing Entry and Grouped Lot Mappings created successfully',
-//       entry: filingEntry,
-//       mappers: mapperEntries,
-//     });
-//   } catch (error) {
-//     console.error('Error creating grouped filing entry:', error);
-//     return res.status(500).json({
-//       error: 'Internal server error',
-//       details: error?.message || error,
-//     });
-//   }
-// };
-
-
-// export const createFilingEntry = async (req, res) => {
-//   try {
-//     const { filing_person_id, lot_number, itemIds } = req.body;
-
-//     if (!filing_person_id || !lot_number || !Array.isArray(itemIds) || itemIds.length === 0) {
-//       return res.status(400).json({
-//         error: 'filing_person_id, lot_number, and at least one casting_item_id are required',
-//       });
-//     }
-
-//     const lot = await prisma.lotInfo.findFirst({
-//       where: { lotNumber: parseInt(lot_number) },
-//     });
-
-//     if (!lot) {
-//       return res.status(404).json({ error: 'Lot not found with the given lot_number' });
-//     }
-
-//     const createdEntries = [];
-//     const createdMappers = [];
-
-//     for (const itemId of itemIds) {
-//       // Create individual filing entry for each casting item
-//       const filingEntry = await prisma.filingEntry.create({
-//         data: {
-//           filing_person: {
-//             connect: { id: filing_person_id },
-//           },
-//           castingItem: {
-//             connect: { id: itemId },
-//           },
-//         },
-//       });
-
-//       createdEntries.push(filingEntry);
-
-//       // Create mapping for that filing entry
-//       const mapper = await prisma.lotFilingMapper.create({
-//         data: {
-//           filing_id: filing_person_id,
-//           lot_id: lot.id,
-//           item_id: itemId,
-//           filing_entry_id: filingEntry.id,
-//         },
-//       });
-
-//       createdMappers.push(mapper);
-//     }
-
-//     return res.status(201).json({
-//       message: 'Filing Entries and Lot Mappings created successfully',
-//       entries: createdEntries,
-//       mappers: createdMappers,
-//     });
-//   } catch (error) {
-//     console.error('Error creating grouped filing entries:', error);
-//     return res.status(500).json({
-//       error: 'Internal server error',
-//       details: error?.message || error,
-//     });
-//   }
-// };
-
-
 export const createFilingEntry = async (req, res) => {
   try {
     const { filing_person_id, lot_number, itemIds } = req.body;
 
-    if (!filing_person_id || !lot_number || !Array.isArray(itemIds) || itemIds.length === 0) {
+    if (
+      !filing_person_id ||
+      !lot_number ||
+      !Array.isArray(itemIds) ||
+      itemIds.length === 0
+    ) {
       return res.status(400).json({
         error: 'filing_person_id, lot_number, and at least one casting_item_id are required',
       });
@@ -145,46 +26,60 @@ export const createFilingEntry = async (req, res) => {
       return res.status(404).json({ error: 'Lot not found with the given lot_number' });
     }
 
-    // Only one FilingEntry created
+    //  Create a single FilingEntry
     const filingEntry = await prisma.filingEntry.create({
       data: {
-        filing_person: {
-          connect: { id: filing_person_id },
-        },
-        castingItem: {
-          connect: { id: itemIds[0] }, // Just connect first one (for representative)
-        },
+        filing_person: { connect: { id: filing_person_id } },
+        castingItem: { connect: { id: itemIds[0] } }, // just a placeholder
+      },
+      include: {
+        filing_person: true,
+        filingItems: true,
       },
     });
 
-    // Use that one filingEntry.id for all mappings
-    const mapperEntries = await Promise.all(
-      itemIds.map(async (itemId) => {
-        return await prisma.lotFilingMapper.create({
+    //  Map each item to this FilingEntry
+    await Promise.all(
+      itemIds.map((itemId) =>
+        prisma.lotFilingMapper.create({
           data: {
             filing_id: filing_person_id,
             lot_id: lot.id,
             item_id: itemId,
-            filing_entry_id: filingEntry.id, // same for all
+            filing_entry_id: filingEntry.id,
           },
-        });
-      })
+        })
+      )
     );
 
-    return res.status(201).json({
-      message: 'Filing Entry and all LotFilingMapper rows created successfully',
-      entry: filingEntry,
-      mappers: mapperEntries,
+    //  Now fetch full item details for each item in the mapping
+    const fullItems = await prisma.castingItems.findMany({
+      where: {
+        id: { in: itemIds },
+      },
+      include: {
+        item: true,
+        touch: true,
+      },
     });
+
+    //  Respond with FilingEntry + all associated items
+    return res.status(201).json({
+      message: 'Single FilingEntry created for multiple items successfully',
+      entry: {
+        ...filingEntry,
+        castingItems: fullItems, 
+      },
+    });
+
   } catch (error) {
-    console.error('Error creating grouped filing entry:', error);
+    console.error('Error creating single filing entry for multiple items:', error);
     return res.status(500).json({
       error: 'Internal server error',
       details: error?.message || error,
     });
   }
 };
-
 
 
 
@@ -409,8 +304,6 @@ export const getFilingEntryByFilingId = async (req, res) => {
   }
 };
 
-
-
 export const getFilingEntriesByPersonId = async (req, res) => {
   try {
     const filing_person_id = parseInt(req.params.filing_person_id);
@@ -426,20 +319,67 @@ export const getFilingEntriesByPersonId = async (req, res) => {
           },
         },
         filingItems: true,
+        LotFilingMapper: {
+          include: {
+            itemId: {
+              include: {
+                item: true,
+                touch: true,
+              },
+            },
+            lotId: true,
+            filingId: true,
+          },
+        },
       },
-      orderBy: { id: 'desc' },
+      orderBy: { id: 'asc' },
     });
 
     if (!entries || entries.length === 0) {
       return res.status(404).json({ message: 'No entries found for this person' });
     }
 
-    res.status(200).json(entries);
+    // Flatten and enrich the data for frontend usage
+    const result = entries.map(entry => ({
+      id: entry.id,
+      createdAt: entry.createdAt,
+      filing_person_id: entry.filing_person_id,
+      filing_person_name: entry.filing_person?.name || '',
+      casting_item_id: entry.casting_item_id,
+      casting_item_weight: entry.castingItem?.weight || 0,
+      casting_item_type: entry.castingItem?.type || '',
+      casting_item_purity: entry.castingItem?.item_purity || 0,
+      casting_item_remarks: entry.castingItem?.remarks || '',
+      item_name: entry.castingItem?.item?.name || '',
+      filingItems: entry.filingItems || [],
+      
+      castingItems: entry.LotFilingMapper.map(mapper => ({
+        id: mapper.item_id,
+        item_name: mapper.itemId?.item?.name || '',
+        weight: mapper.itemId?.weight || 0,
+        type: mapper.itemId?.type || '',
+        purity: mapper.itemId?.item_purity || 0,
+        remarks: mapper.itemId?.remarks || '',
+        touch: mapper.itemId?.touch?.touch || '',
+      })),
+
+      lotFilingMapper: entry.LotFilingMapper.map(mapper => ({
+        lot_id: mapper.lot_id,
+        lot_name: mapper.lotId?.lot_no || '',
+        item_id: mapper.item_id,
+        item_name: mapper.itemId?.item?.name || '',
+        filing_id: mapper.filing_id,
+        filing_person_name: mapper.filingId?.name || '',
+        filing_entry_id: mapper.filing_entry_id,
+      })),
+    }));
+
+    res.status(200).json(result);
   } catch (error) {
+    console.error("Error in getFilingEntriesByPersonId:", error);
     res.status(500).json({ error: error.message });
   }
 };
-
 
 export const updateFilingEntry = async (req, res) => {
   try {

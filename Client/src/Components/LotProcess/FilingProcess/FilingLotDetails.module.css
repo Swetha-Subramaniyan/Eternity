@@ -1,47 +1,35 @@
-.tablecontainer{
-    display: flex;
-    /* margin-left: 10rem; */
-    margin-top: 0%;
-    margin-left: 3.5rem;
- 
-
+.tableContainer {
+  overflow-x: auto;
+  margin-top: 1rem;
 }
 
-.details b{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.1rem;
+.table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.card{
-    margin-top: 3rem;
-    display:grid;
-    justify-content: center;
-    background-color: aliceblue;
-    padding-top: 1.5rem;
-    padding-bottom: 1rem;
-    width: 60rem;
-    /* margin-left: 10rem;     */
-    margin-left: 5rem;
+.tableHead {
+  background-color: #38383e;
+  color: white;
 }
 
-.details{
-    margin-right: 40rem;
+.tableHeaderCell {
+  padding: 8px;
+  text-align: center;
+  color: white;
 }
 
-.headingg{
-   font-size: 1.4rem;
-   font-weight: bold;
-   display: flex;
-   justify-content: center;
-   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+.tableRow {
+  border-bottom: 1px solid #ccc;
 }
 
-.details span{
-    font-size: 1.1rem;
+.tableCell {
+  padding: 8px;
+  text-align: center;
 }
 
-.datefields{
-    margin-top: 2rem;
+.checkbox {
+  transform: scale(1.2);
 }
 
 
@@ -166,3 +154,288 @@
     );
   })}
 </TableBody> */
+
+
+
+
+
+
+
+
+/* 
+
+import React, { useEffect, useState } from 'react';
+import {
+  Button, Dialog, DialogTitle, DialogContent, DialogActions,
+} from '@mui/material';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
+const FilingLotDetails = () => {
+  const [open, setOpen] = useState(false);
+  const [availableItems, setAvailableItems] = useState([]);
+  const [selectedItemIds, setSelectedItemIds] = useState([]);
+  const [date, setDate] = useState('');
+  const [filingEntries, setFilingEntries] = useState([]);
+  const [viewOpen, setViewOpen] = useState(false);
+const [selectedEntry, setSelectedEntry] = useState(null);
+
+
+
+  const { id: filingPersonId, name, lotNumber } = useParams();
+
+  console.log(filingPersonId,name,lotNumber)
+
+
+  useEffect(() => {
+    fetchAvailableItems();
+    fetchFilingEntries(); 
+  }, []);
+  
+  const fetchFilingEntries = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/filingentry/person/${filingPersonId}`);
+  
+      const entriesWithFormattedData = response.data.map((entry) => ({
+        ...entry,
+        date: new Date(entry.createdAt).toLocaleDateString('en-CA'),
+        time: new Date(entry.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        items: entry.items?.map((item) => ({
+          id: item.id,
+          item_name: item.item?.name || 'Unknown',
+          weight: item.weight || '—',
+        })) || [],
+      }));
+  
+      setFilingEntries(entriesWithFormattedData);
+    } catch (err) {
+      console.error("Failed to fetch filing entries", err);
+    }
+  };
+  
+
+  const fetchAvailableItems = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/castingitems/castingitems/available');
+      const unassigned = res.data.filter(item => item.status === 'Unassigned');
+      setAvailableItems(unassigned);
+    } catch (err) {
+      console.error("Failed to fetch casting items", err);
+    }
+  };
+
+  const handleItemSelect = (itemId) => {
+    setSelectedItemIds(prev =>
+      prev.includes(itemId)
+        ? prev.filter(id => id !== itemId)
+        : [...prev, itemId]
+    );
+  };
+
+  const handleAssign = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/filingentry', {
+        date,
+        itemIds: selectedItemIds,
+        filing_person_id: parseInt(filingPersonId),
+        lot_number: lotNumber
+    
+      });
+
+      const formattedEntry = {
+        ...response.data.entry,
+        date: new Date(response.data.entry.createdAt).toLocaleDateString('en-CA'), 
+        time: new Date(response.data.entry.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), 
+        items: response.data.mappers.map((map) => {
+          const matched = availableItems.find((i) => i.id === map.item_id);
+          return {
+            id: map.item_id,
+            item_name: matched?.item?.name || 'Unknown',
+            weight: matched?.weight || '—',
+          };
+        }),
+      };
+      
+      
+      setFilingEntries(prev => [...prev, formattedEntry]);
+      
+
+      // Reset and close
+      setSelectedItemIds([]);
+      setDate('');
+      setOpen(false);
+
+      // Refresh available items
+      fetchAvailableItems();
+    } catch (err) {
+      console.error('Failed to assign filing items', err);
+    }
+  };
+
+  return (
+    <>
+      
+      <Button
+  variant="contained"
+  onClick={() => {
+    const today = new Date().toISOString().split('T')[0]; 
+    setDate(today);
+    setOpen(true);
+  }}
+>
+  Add
+</Button>
+
+ 
+      <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="md">
+        <DialogTitle>Assign Filing Lot</DialogTitle>
+
+        <DialogContent dividers>
+          <label style={{ display: 'block', marginBottom: '1rem' }}>
+            Date:&nbsp;
+            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          </label>
+
+          <table border="1" cellPadding="10" width="100%">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Select</th>
+                <th>Item</th>
+                <th>Weight</th>
+                <th>Touch</th>
+                <th>Purity</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {availableItems.map((item, index) => (
+                <tr key={item.id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedItemIds.includes(item.id)}
+                      onChange={() => handleItemSelect(item.id)}
+                    />
+                  </td>
+                  <td>{item.item?.name}</td>
+                  <td>{item.weight}</td>
+                  <td>{item.touch?.touch}</td>
+                  <td>{item.item_purity}</td>
+                  <td>{item.status}</td>
+                                  
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={() => setOpen(false)} color="error">Cancel</Button>
+          <Button
+            variant="contained"
+            onClick={handleAssign}
+            disabled={!date || selectedItemIds.length === 0}
+          >
+            Assign
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
+      <table border="1" cellPadding="10" width="100%" style={{ marginTop: '2rem' }}>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Items</th>
+            <th>After Weight</th>
+            <th>Total Product Weight</th>
+            <th>Wastage</th>
+            <th>Total Scrap Weight</th>
+            <th>Balance</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+  {filingEntries.map((entry, index) => (
+    <tr key={entry.id}>
+      <td>{index + 1}</td>
+      <td>{entry.date}</td>
+      <td>{entry.time || '—'}</td>
+      <td>
+        <ol>
+          {Array.isArray(entry.items) ? (
+            entry.items.map((item) => (
+              <li key={item.id}>
+                {item.item_name || item.name || 'Unnamed'} ({item.weight || 0}g)
+              </li>
+            ))
+          ) : (
+            <li>No items</li>
+          )}
+        </ol>
+      </td>
+      <td>{entry.after_weight || '—'}</td>
+      <td>{entry.total_product_weight || '—'}</td>
+      <td>{entry.wastage || '—'}</td>
+      <td>{entry.total_scrap_weight || '—'}</td>
+      <td>{entry.balance || '—'}</td>
+      <td>
+
+        <button onClick={() => {
+  setSelectedEntry(entry);
+  setViewOpen(true);
+}}>View</button>
+
+      </td>
+    </tr>
+  ))}
+</tbody>
+      </table>
+
+      <Dialog open={viewOpen} onClose={() => setViewOpen(false)} fullWidth maxWidth="sm">
+  <DialogTitle>Assigned Items</DialogTitle>
+  <DialogContent dividers>
+    {selectedEntry ? (
+      <table border="1" cellPadding="10" width="100%">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Item Name</th>
+            <th>Weight</th>
+            <th>Touch</th>
+            <th>Purity</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {selectedEntry.items.map((item, index) => (
+            <tr key={item.id}>
+              <td>{index + 1}</td>
+              <td>{item.item_name}</td>
+              <td>{item.weight}</td>
+              <td>{item.touch}</td>
+              <td>{item.purity}</td>
+              <td>{item.remarks} </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ) : (
+      <p>No items to display.</p>
+    )}
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={() => setViewOpen(false)} color="primary">Close</Button>
+  </DialogActions>
+</Dialog>
+
+    </>
+  );
+};
+
+export default FilingLotDetails; */

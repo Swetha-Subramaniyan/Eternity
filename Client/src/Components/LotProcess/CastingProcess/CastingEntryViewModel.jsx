@@ -13,6 +13,8 @@ const CastingEntryViewModal = ({
   handleChange,
   handleSave,
   castingEntryId,
+  handleCastingItemsSaved,
+
 }) => {
   const isView = mode === 'view';
 
@@ -20,6 +22,15 @@ const CastingEntryViewModal = ({
   const [scrapItems, setScrapItems] = useState([]);
   const [itemOptions, setItemOptions] = useState([]);
   console.log("Casting Entry ID from parent:", castingEntryId);
+
+
+  useEffect(() => {
+    if (open && mode === 'add') {
+      setProductItems([]);
+      setScrapItems([]);
+    }
+  }, [open, mode]);
+  
 
   const handleSaveItems = async () => {
     if (!castingEntryId) {
@@ -69,6 +80,15 @@ const CastingEntryViewModal = ({
       });
   
       alert("Items and balance saved successfully!");
+
+handleCastingItemsSaved(castingEntryId, {
+  totalItemWeight: totalProductWeight,
+  currentBalanceWeight,
+  totalScrapWeight,
+  totalWastage,
+  productItems,
+  scrapItems,
+});
       handleClose();
     } catch (error) {
       console.error("Failed to save items:", error);

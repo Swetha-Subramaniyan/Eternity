@@ -4,7 +4,6 @@ import Login from './Components/Login/Login';
 import Navbar from './Components/Navbar/Navbar';
 import Customer from './Components/Customer/Customer';
 import Goldsmith from './Components/Goldsmith/Goldsmith';
-import Casting from './Components/LotProcess/CastingProcess/Casting';
 import Filing from './Components/LotProcess/FilingProcess/Filing';
 import Setting from './Components/LotProcess/SettingProcess/Setting';
 import Buffing from './Components/LotProcess/BuffingProcess/Buffing';
@@ -39,6 +38,7 @@ import SettingLotDetails from './Components/LotProcess/SettingProcess/SettingLot
 import MasterNavbar from './Components/Master/MasterNavbar';
 import CastingEntry from './Components/LotProcess/CastingProcess/CastingEntry';
 
+
 const App = () => {
   return (
     <BrowserRouter> 
@@ -50,8 +50,7 @@ const App = () => {
     <Route path='/master' element={<MasterNavbar/>} />
 
     <Route path='/goldsmith' element={<Goldsmith/>} />
-    <Route path='/casting' element={<Casting/>} />
-    <Route path='/castingentry' element={<CastingEntry/>}/>
+    <Route path='/casting' element={<CastingEntry/>}/>
     <Route path='/filing' element={<Filing/>}/>
     <Route path='/setting' element={<Setting/>}/>
     <Route path='/buffing' element={<Buffing/>}/> 

@@ -14,6 +14,8 @@ import axios from 'axios';
 import { BACKEND_SERVER_URL } from "../../../../Config/config";
 import CastingEntryViewModal from './CastingEntryViewModel';
 import Navbar from '../../Navbar/Navbar';
+import { FaEye } from "react-icons/fa";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 
 const CastingEntry = () => {
   const [open, setOpen] = useState(false);
@@ -40,6 +42,18 @@ const CastingEntry = () => {
   const [toDate, setToDate] = useState('');
   const [allEntries, setAllEntries] = useState([]); 
   const [openModal, setOpenModal] = useState(false); 
+  const [updatedCastingItems, setUpdatedCastingItems] = useState({});
+
+
+  const handleCastingItemsSaved = (entryId, summaryData) => {
+    setUpdatedCastingItems(prev => ({
+      ...prev,
+      [entryId]: summaryData
+    }));
+
+    fetchAllData();
+  };
+  
 
   const resetForm = () => {
     setForm({
@@ -82,6 +96,7 @@ const CastingEntry = () => {
     fetchAllData();
   }, []);
 
+ 
   useEffect(() => {
     const givenGold = parseFloat(form.givenGold) || 0;
     const touch = parseFloat(form.touch) || 0;
@@ -140,6 +155,9 @@ const CastingEntry = () => {
   
       setEntries(prev => [...prev, savedEntry]);
       setAllEntries(prev => [...prev, savedEntry]);
+
+      await fetchAllData();
+
       setMode("view");    
       setOpenModal(true);   
   
@@ -153,6 +171,8 @@ const CastingEntry = () => {
     setMode('add');
     resetForm();
     setOpen(true);
+   
+
   };
 
   const handleView = (entry) => {
@@ -207,12 +227,12 @@ const CastingEntry = () => {
     setToDate('');
     setEntries(allEntries);
   };
-  
+
   return (
     <>
     <Navbar/>
-      <center>Casting Entry</center>
-      <Stack direction="row" spacing={2} alignItems="center" mb={2}>
+      <center style={{marginTop:'1.5rem'}}>Casting Entry</center>
+      <Stack direction="row" spacing={2} alignItems="center" mb={2} ml={6} mt={2}>
         <TextField
           type="date"
           label="From Date"
@@ -232,37 +252,55 @@ const CastingEntry = () => {
         <Button variant="contained" color="success" onClick={handleOpen}>Add Casting / Melting</Button>
       </Stack>
 
-      <Table>
+      <Table sx={{width:'92rem', marginLeft:'2rem'}}>
         <TableHead>
-          <TableRow>
+          <TableRow >
             <TableCell>S.No</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>Time</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Before Weight</TableCell>
-            <TableCell>Actions</TableCell>
+            <TableCell>Before Weight</TableCell> 
+            <TableCell>Product Item(s)</TableCell>
+            <TableCell>Product Qty</TableCell>
+<TableCell>Scrap Item(s)</TableCell>
+<TableCell>Scrap Qty</TableCell>
+<TableCell>Total Item Weight</TableCell>
+<TableCell>Balance Weight</TableCell>
+<TableCell>Scrap Weight</TableCell>
+<TableCell>Wastage</TableCell>
+<TableCell>Actions</TableCell>
 
           </TableRow>
         </TableHead>
         <TableBody>
-          {entries.map((entry, index) => (
-            <TableRow key={entry.id}>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>{entry.date ? new Date(entry.date).toLocaleDateString() : "-"}</TableCell>
-              <TableCell>{entry.createdAt ? new Date(entry.createdAt).toLocaleTimeString() : "-"}</TableCell>
-              <TableCell>{nameOptions.find(obj => obj.id === entry.casting_customer_id)?.name || "-"}</TableCell>
-              <TableCell>{entry.final_weight ?? "-"}</TableCell>
-              <TableCell>
-                <Button variant="outlined" size="small" onClick={() => handleView(entry)}>View</Button>
-                <Button variant="outlined" color="error" size="small" onClick={() => handleDelete(entry.id)} sx={{ ml: 1 }}>
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+  {entries.map((entry, index) => {
+    return (
+      <TableRow key={entry.id}>
+        <TableCell>{index + 1}</TableCell>
+        <TableCell>{entry.date ? new Date(entry.date).toLocaleDateString() : "-"}</TableCell>
+        <TableCell>{entry.createdAt ? new Date(entry.createdAt).toLocaleTimeString() : "-"}</TableCell>
+        <TableCell>{entry.customer?.name || "-"}</TableCell>
+        <TableCell>{entry.final_weight ?? "-"}</TableCell>
+<TableCell>{Array.isArray(entry.productItems) ? entry.productItems.join(", ") : "-"}</TableCell>
+<TableCell>{entry.productQty || "-"}</TableCell>
+<TableCell>{Array.isArray(entry.scrapItems) ? entry.scrapItems.join(", ") : "-"}</TableCell>
+<TableCell>{entry.scrapQty || "-"}</TableCell>
+<TableCell>{entry.totalItemWeight ? entry.totalItemWeight.toFixed(2) : '-'}</TableCell>
+<TableCell>{entry.currentBalanceWeight ? entry.currentBalanceWeight.toFixed(2) : '-'}</TableCell>
+<TableCell>{entry.totalScrapWeight ? entry.totalScrapWeight.toFixed(2) : '-'}</TableCell>
+<TableCell>{entry.totalWastage ? entry.totalWastage.toFixed(2) : '-'}</TableCell>
+
+
+        <TableCell>
+          <FaEye onClick={() => handleView(entry)} />
+          <RiDeleteBin2Fill onClick={() => handleDelete(entry.id)} />      
+        </TableCell>
+      </TableRow>
+
+    );
+  })}
+</TableBody>
       </Table>
-      
       <CastingEntryViewModal
         open={open}
         handleClose={handleClose}
@@ -275,6 +313,7 @@ const CastingEntry = () => {
         castingEntryId={form.id}
         openModal={openModal}             
         setOpenModal={setOpenModal} 
+        handleCastingItemsSaved={handleCastingItemsSaved}
        
       />
     </>

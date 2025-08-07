@@ -146,4 +146,76 @@ const Setting = () => {
 
 export default Setting;
 
+
+
  
+// const [isAddItemOpen, setIsAddItemOpen] = useState(false);
+
+{/* <Button
+sx={{ ml:'37rem'}}
+    variant="outlined"
+    color="primary"
+    onClick={() => setIsAddItemOpen(true)}
+  >
+    + Add
+  </Button>  */}
+
+
+          {/* <Dialog open={isAddItemOpen} onClose={() => setIsAddItemOpen(false)} fullWidth maxWidth="sm">
+  <DialogTitle>Add New Filing Item</DialogTitle>
+  <DialogContent>
+    <TextField
+      fullWidth
+      label="Item Name"
+      value={newItem.item}
+      onChange={(e) => setNewItem({ ...newItem, item: e.target.value })}
+      sx={{ mt: 2 }}
+    />
+    <TextField
+      fullWidth
+      label="Weight"
+      type="number"
+      value={newItem.beforeWeight}
+      onChange={(e) => setNewItem({ ...newItem, beforeWeight: e.target.value })}
+      sx={{ mt: 2 }}
+    />
+    <TextField
+      fullWidth
+      label="Touch"
+      value={newItem.touch}
+      onChange={(e) => setNewItem({ ...newItem, touch: e.target.value })}
+      sx={{ mt: 2 }}
+    />
+    <TextField
+      fullWidth
+      label="Purity"
+      value={newItem.purity}
+      onChange={(e) => setNewItem({ ...newItem, purity: e.target.value })}
+      sx={{ mt: 2 }}
+    />
+    <TextField
+      fullWidth
+      label="Remarks"
+      value={newItem.remarks}
+      onChange={(e) => setNewItem({ ...newItem, remarks: e.target.value })}
+      sx={{ mt: 2 }}
+    />
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={() => setIsAddItemOpen(false)}>Cancel</Button>
+    <Button
+      variant="contained"
+      onClick={() => {
+        if (!newItem.item || !newItem.beforeWeight) {
+          alert("Item name and weight are required");
+          return;
+        }
+        setCustomItems(prev => [...prev, newItem]);
+        setNewItem({ item: '', beforeWeight: '', touch: '', purity: '', remarks: '' });
+        setIsAddItemOpen(false);
+      }}
+    >
+      Save
+    </Button>
+  </DialogActions>
+</Dialog> */}
