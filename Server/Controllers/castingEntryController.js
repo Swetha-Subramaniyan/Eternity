@@ -60,35 +60,85 @@ export const createCastingEntry = async (req, res) => {
 
 
 // GET ALL Casting Entries
+
+
 export const getAllCastingEntry = async (req, res) => {
   try {
     const entries = await prisma.castingEntry.findMany({
       include: {
-        items: true,
+        items: {
+          include: {
+            item: true,
+            touch: true,
+          },
+        },
         casting_customer: true,
-        touch:true,
+        touch: true,
         CastiingTotalBalance: true,
       },
+      
+  orderBy: {
+    createdAt: 'desc',
+  },
     });
-    res.status(200).json(entries);
-    console.log(entries);
+
+    const formattedEntries = entries.map(entry => {
+      const productItems = entry.items.filter(i => i.type === "Items");
+      const scrapItems = entry.items.filter(i => i.type === "ScrapItems");
+
+      const totalItemWeight = productItems.reduce((sum, item) => sum + (item.weight || 0), 0);
+      const totalScrapWeight = scrapItems.reduce((sum, item) => sum + (item.weight || 0), 0);
+
+      return {
+        id: entry.id,
+        date: entry.date,
+        createdAt: entry.createdAt,
+        given_gold: entry.given_gold,
+        final_touch: entry.final_touch,
+        final_weight: entry.final_weight,
+        pure_value: entry.pure_value,
+        purity: entry.purity,
+        copper: entry.copper,
+        customer: entry.casting_customer,
+        touch: entry.touch,
+        casting_customer_id: entry.casting_customer_id, 
+        touch_id: entry.touch_id, 
+        productQty: productItems.length,
+        scrapQty: scrapItems.length,
+        productItems: productItems.map(i => i.item.name),
+        scrapItems: scrapItems.map(i => i.item.name),
+        totalItemWeight: totalItemWeight,
+        totalScrapWeight: totalScrapWeight,
+        currentBalanceWeight: entry.CastiingTotalBalance[0]?.current_balance_weight || 0,
+        totalWastage: entry.CastiingTotalBalance[0]?.total_wastage || 0,
+      };
+    });
+
+    res.status(200).json(formattedEntries);
   } catch (error) {
     console.error("Error fetching entries:", error);
     res.status(500).json({ error: 'Failed to fetch entries' });
   }
 };
 
+
 // READ Casting Entry by ID
+
 export const getCastingEntryById = async (req, res) => {
   try {
     const { id } = req.params;
     const entry = await prisma.castingEntry.findUnique({
       where: { id: parseInt(id) },
       include: {
-        items: true,
+        items: {
+          include: {
+            item: true,
+            touch: true,
+          }
+        },
         casting_customer: true,
-        touch:true,
-        CastiingTotalBalance:true,
+        touch: true,
+        CastiingTotalBalance: true,
       },
     });
 
@@ -102,6 +152,7 @@ export const getCastingEntryById = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch entry' });
   }
 };
+
 
 // UPDATE Casting Entry
 
