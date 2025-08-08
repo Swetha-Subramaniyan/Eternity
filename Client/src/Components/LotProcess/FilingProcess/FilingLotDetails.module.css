@@ -1,11 +1,12 @@
 .tableContainer {
   overflow-x: auto;
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 1rem;
 }
 
 .tableHead {
@@ -32,6 +33,11 @@
   transform: scale(1.2);
 }
 
+.heading{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
 
 
 

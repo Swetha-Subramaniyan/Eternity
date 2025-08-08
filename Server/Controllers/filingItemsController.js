@@ -20,6 +20,8 @@ export const createFilingItem = async (req, res) => {
       scrap_weight,
       scrap_wastage,
       lot_filing_mapper_id, 
+      current_balance_weight,
+      
     } = req.body;
 
     if (!filing_entry_id || !type || !weight || !touch_id || !item_purity) {
@@ -48,6 +50,7 @@ export const createFilingItem = async (req, res) => {
         scrap_weight: scrap_weight ? parseFloat(scrap_weight) : null,
         scrap_wastage: scrap_wastage ? parseFloat(scrap_wastage) : null,
         lot_filing_mapper_id: lot_filing_mapper_id ? parseInt(lot_filing_mapper_id) : null,
+        current_balance_weight 
       },
     });
 
