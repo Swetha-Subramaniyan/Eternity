@@ -3818,14 +3818,14 @@ export namespace Prisma {
 
   export type FilingEntryCountOutputType = {
     filingItems: number
-    filingItemsId: number
+    filingTotalBalance: number
     FilingWastage: number
     LotFilingMapper: number
   }
 
   export type FilingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filingItems?: boolean | FilingEntryCountOutputTypeCountFilingItemsArgs
-    filingItemsId?: boolean | FilingEntryCountOutputTypeCountFilingItemsIdArgs
+    filingTotalBalance?: boolean | FilingEntryCountOutputTypeCountFilingTotalBalanceArgs
     FilingWastage?: boolean | FilingEntryCountOutputTypeCountFilingWastageArgs
     LotFilingMapper?: boolean | FilingEntryCountOutputTypeCountLotFilingMapperArgs
   }
@@ -3851,7 +3851,7 @@ export namespace Prisma {
   /**
    * FilingEntryCountOutputType without action
    */
-  export type FilingEntryCountOutputTypeCountFilingItemsIdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FilingEntryCountOutputTypeCountFilingTotalBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FilingTotalBalanceWhereInput
   }
 
@@ -19347,7 +19347,7 @@ export namespace Prisma {
     filing_person?: boolean | AddFilingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
     filingItems?: boolean | FilingEntry$filingItemsArgs<ExtArgs>
-    filingItemsId?: boolean | FilingEntry$filingItemsIdArgs<ExtArgs>
+    filingTotalBalance?: boolean | FilingEntry$filingTotalBalanceArgs<ExtArgs>
     FilingWastage?: boolean | FilingEntry$FilingWastageArgs<ExtArgs>
     LotFilingMapper?: boolean | FilingEntry$LotFilingMapperArgs<ExtArgs>
     _count?: boolean | FilingEntryCountOutputTypeDefaultArgs<ExtArgs>
@@ -19367,7 +19367,7 @@ export namespace Prisma {
     filing_person?: boolean | AddFilingDefaultArgs<ExtArgs>
     castingItem?: boolean | CastingItemsDefaultArgs<ExtArgs>
     filingItems?: boolean | FilingEntry$filingItemsArgs<ExtArgs>
-    filingItemsId?: boolean | FilingEntry$filingItemsIdArgs<ExtArgs>
+    filingTotalBalance?: boolean | FilingEntry$filingTotalBalanceArgs<ExtArgs>
     FilingWastage?: boolean | FilingEntry$FilingWastageArgs<ExtArgs>
     LotFilingMapper?: boolean | FilingEntry$LotFilingMapperArgs<ExtArgs>
     _count?: boolean | FilingEntryCountOutputTypeDefaultArgs<ExtArgs>
@@ -19379,7 +19379,7 @@ export namespace Prisma {
       filing_person: Prisma.$AddFilingPayload<ExtArgs>
       castingItem: Prisma.$CastingItemsPayload<ExtArgs>
       filingItems: Prisma.$FilingItemsPayload<ExtArgs>[]
-      filingItemsId: Prisma.$FilingTotalBalancePayload<ExtArgs>[]
+      filingTotalBalance: Prisma.$FilingTotalBalancePayload<ExtArgs>[]
       FilingWastage: Prisma.$FilingWastagePayload<ExtArgs>[]
       LotFilingMapper: Prisma.$LotFilingMapperPayload<ExtArgs>[]
     }
@@ -19731,7 +19731,7 @@ export namespace Prisma {
     filing_person<T extends AddFilingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddFilingDefaultArgs<ExtArgs>>): Prisma__AddFilingClient<$Result.GetResult<Prisma.$AddFilingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     castingItem<T extends CastingItemsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CastingItemsDefaultArgs<ExtArgs>>): Prisma__CastingItemsClient<$Result.GetResult<Prisma.$CastingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     filingItems<T extends FilingEntry$filingItemsArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$filingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    filingItemsId<T extends FilingEntry$filingItemsIdArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$filingItemsIdArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    filingTotalBalance<T extends FilingEntry$filingTotalBalanceArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$filingTotalBalanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     FilingWastage<T extends FilingEntry$FilingWastageArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$FilingWastageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     LotFilingMapper<T extends FilingEntry$LotFilingMapperArgs<ExtArgs> = {}>(args?: Subset<T, FilingEntry$LotFilingMapperArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LotFilingMapperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -20134,9 +20134,9 @@ export namespace Prisma {
   }
 
   /**
-   * FilingEntry.filingItemsId
+   * FilingEntry.filingTotalBalance
    */
-  export type FilingEntry$filingItemsIdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FilingEntry$filingTotalBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the FilingTotalBalance
      */
@@ -22515,6 +22515,7 @@ export namespace Prisma {
     id: number | null
     after_weight: number | null
     total_product_weight: number | null
+    current_balance_weight: number | null
     total_scrap_weight: number | null
     balance: number | null
     filing_entry_id: number | null
@@ -22524,6 +22525,7 @@ export namespace Prisma {
     id: number | null
     after_weight: number | null
     total_product_weight: number | null
+    current_balance_weight: number | null
     total_scrap_weight: number | null
     balance: number | null
     filing_entry_id: number | null
@@ -22534,6 +22536,7 @@ export namespace Prisma {
     createdAt: Date | null
     after_weight: number | null
     total_product_weight: number | null
+    current_balance_weight: number | null
     total_scrap_weight: number | null
     wastage: boolean | null
     balance: number | null
@@ -22545,6 +22548,7 @@ export namespace Prisma {
     createdAt: Date | null
     after_weight: number | null
     total_product_weight: number | null
+    current_balance_weight: number | null
     total_scrap_weight: number | null
     wastage: boolean | null
     balance: number | null
@@ -22556,6 +22560,7 @@ export namespace Prisma {
     createdAt: number
     after_weight: number
     total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight: number
     wastage: number
     balance: number
@@ -22568,6 +22573,7 @@ export namespace Prisma {
     id?: true
     after_weight?: true
     total_product_weight?: true
+    current_balance_weight?: true
     total_scrap_weight?: true
     balance?: true
     filing_entry_id?: true
@@ -22577,6 +22583,7 @@ export namespace Prisma {
     id?: true
     after_weight?: true
     total_product_weight?: true
+    current_balance_weight?: true
     total_scrap_weight?: true
     balance?: true
     filing_entry_id?: true
@@ -22587,6 +22594,7 @@ export namespace Prisma {
     createdAt?: true
     after_weight?: true
     total_product_weight?: true
+    current_balance_weight?: true
     total_scrap_weight?: true
     wastage?: true
     balance?: true
@@ -22598,6 +22606,7 @@ export namespace Prisma {
     createdAt?: true
     after_weight?: true
     total_product_weight?: true
+    current_balance_weight?: true
     total_scrap_weight?: true
     wastage?: true
     balance?: true
@@ -22609,6 +22618,7 @@ export namespace Prisma {
     createdAt?: true
     after_weight?: true
     total_product_weight?: true
+    current_balance_weight?: true
     total_scrap_weight?: true
     wastage?: true
     balance?: true
@@ -22707,6 +22717,7 @@ export namespace Prisma {
     createdAt: Date
     after_weight: number | null
     total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight: number | null
     wastage: boolean
     balance: number
@@ -22737,6 +22748,7 @@ export namespace Prisma {
     createdAt?: boolean
     after_weight?: boolean
     total_product_weight?: boolean
+    current_balance_weight?: boolean
     total_scrap_weight?: boolean
     wastage?: boolean
     balance?: boolean
@@ -22751,13 +22763,14 @@ export namespace Prisma {
     createdAt?: boolean
     after_weight?: boolean
     total_product_weight?: boolean
+    current_balance_weight?: boolean
     total_scrap_weight?: boolean
     wastage?: boolean
     balance?: boolean
     filing_entry_id?: boolean
   }
 
-  export type FilingTotalBalanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "after_weight" | "total_product_weight" | "total_scrap_weight" | "wastage" | "balance" | "filing_entry_id", ExtArgs["result"]["filingTotalBalance"]>
+  export type FilingTotalBalanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "after_weight" | "total_product_weight" | "current_balance_weight" | "total_scrap_weight" | "wastage" | "balance" | "filing_entry_id", ExtArgs["result"]["filingTotalBalance"]>
   export type FilingTotalBalanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filingEntryId?: boolean | FilingEntryDefaultArgs<ExtArgs>
   }
@@ -22772,6 +22785,7 @@ export namespace Prisma {
       createdAt: Date
       after_weight: number | null
       total_product_weight: number
+      current_balance_weight: number
       total_scrap_weight: number | null
       wastage: boolean
       balance: number
@@ -23150,6 +23164,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"FilingTotalBalance", 'DateTime'>
     readonly after_weight: FieldRef<"FilingTotalBalance", 'Float'>
     readonly total_product_weight: FieldRef<"FilingTotalBalance", 'Float'>
+    readonly current_balance_weight: FieldRef<"FilingTotalBalance", 'Float'>
     readonly total_scrap_weight: FieldRef<"FilingTotalBalance", 'Float'>
     readonly wastage: FieldRef<"FilingTotalBalance", 'Boolean'>
     readonly balance: FieldRef<"FilingTotalBalance", 'Float'>
@@ -36666,6 +36681,7 @@ export namespace Prisma {
     createdAt: 'createdAt',
     after_weight: 'after_weight',
     total_product_weight: 'total_product_weight',
+    current_balance_weight: 'current_balance_weight',
     total_scrap_weight: 'total_scrap_weight',
     wastage: 'wastage',
     balance: 'balance',
@@ -38108,7 +38124,7 @@ export namespace Prisma {
     filing_person?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
     filingItems?: FilingItemsListRelationFilter
-    filingItemsId?: FilingTotalBalanceListRelationFilter
+    filingTotalBalance?: FilingTotalBalanceListRelationFilter
     FilingWastage?: FilingWastageListRelationFilter
     LotFilingMapper?: LotFilingMapperListRelationFilter
   }
@@ -38121,7 +38137,7 @@ export namespace Prisma {
     filing_person?: AddFilingOrderByWithRelationInput
     castingItem?: CastingItemsOrderByWithRelationInput
     filingItems?: FilingItemsOrderByRelationAggregateInput
-    filingItemsId?: FilingTotalBalanceOrderByRelationAggregateInput
+    filingTotalBalance?: FilingTotalBalanceOrderByRelationAggregateInput
     FilingWastage?: FilingWastageOrderByRelationAggregateInput
     LotFilingMapper?: LotFilingMapperOrderByRelationAggregateInput
   }
@@ -38137,7 +38153,7 @@ export namespace Prisma {
     filing_person?: XOR<AddFilingScalarRelationFilter, AddFilingWhereInput>
     castingItem?: XOR<CastingItemsScalarRelationFilter, CastingItemsWhereInput>
     filingItems?: FilingItemsListRelationFilter
-    filingItemsId?: FilingTotalBalanceListRelationFilter
+    filingTotalBalance?: FilingTotalBalanceListRelationFilter
     FilingWastage?: FilingWastageListRelationFilter
     LotFilingMapper?: LotFilingMapperListRelationFilter
   }, "id">
@@ -38356,6 +38372,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FilingTotalBalance"> | Date | string
     after_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
     total_product_weight?: FloatFilter<"FilingTotalBalance"> | number
+    current_balance_weight?: FloatFilter<"FilingTotalBalance"> | number
     total_scrap_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
     wastage?: BoolFilter<"FilingTotalBalance"> | boolean
     balance?: FloatFilter<"FilingTotalBalance"> | number
@@ -38368,6 +38385,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     after_weight?: SortOrderInput | SortOrder
     total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrderInput | SortOrder
     wastage?: SortOrder
     balance?: SortOrder
@@ -38383,6 +38401,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FilingTotalBalance"> | Date | string
     after_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
     total_product_weight?: FloatFilter<"FilingTotalBalance"> | number
+    current_balance_weight?: FloatFilter<"FilingTotalBalance"> | number
     total_scrap_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
     wastage?: BoolFilter<"FilingTotalBalance"> | boolean
     balance?: FloatFilter<"FilingTotalBalance"> | number
@@ -38395,6 +38414,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     after_weight?: SortOrderInput | SortOrder
     total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrderInput | SortOrder
     wastage?: SortOrder
     balance?: SortOrder
@@ -38414,6 +38434,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"FilingTotalBalance"> | Date | string
     after_weight?: FloatNullableWithAggregatesFilter<"FilingTotalBalance"> | number | null
     total_product_weight?: FloatWithAggregatesFilter<"FilingTotalBalance"> | number
+    current_balance_weight?: FloatWithAggregatesFilter<"FilingTotalBalance"> | number
     total_scrap_weight?: FloatNullableWithAggregatesFilter<"FilingTotalBalance"> | number | null
     wastage?: BoolWithAggregatesFilter<"FilingTotalBalance"> | boolean
     balance?: FloatWithAggregatesFilter<"FilingTotalBalance"> | number
@@ -40465,7 +40486,7 @@ export namespace Prisma {
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
-    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
     LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
@@ -40476,7 +40497,7 @@ export namespace Prisma {
     filing_person_id: number
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
-    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
     LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
@@ -40486,7 +40507,7 @@ export namespace Prisma {
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
-    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
     LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
@@ -40497,7 +40518,7 @@ export namespace Prisma {
     filing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
-    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
@@ -40693,10 +40714,11 @@ export namespace Prisma {
     createdAt?: Date | string
     after_weight?: number | null
     total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     wastage: boolean
     balance: number
-    filingEntryId: FilingEntryCreateNestedOneWithoutFilingItemsIdInput
+    filingEntryId: FilingEntryCreateNestedOneWithoutFilingTotalBalanceInput
   }
 
   export type FilingTotalBalanceUncheckedCreateInput = {
@@ -40704,6 +40726,7 @@ export namespace Prisma {
     createdAt?: Date | string
     after_weight?: number | null
     total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     wastage: boolean
     balance: number
@@ -40714,10 +40737,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
     balance?: FloatFieldUpdateOperationsInput | number
-    filingEntryId?: FilingEntryUpdateOneRequiredWithoutFilingItemsIdNestedInput
+    filingEntryId?: FilingEntryUpdateOneRequiredWithoutFilingTotalBalanceNestedInput
   }
 
   export type FilingTotalBalanceUncheckedUpdateInput = {
@@ -40725,6 +40749,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
     balance?: FloatFieldUpdateOperationsInput | number
@@ -40736,6 +40761,7 @@ export namespace Prisma {
     createdAt?: Date | string
     after_weight?: number | null
     total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     wastage: boolean
     balance: number
@@ -40746,6 +40772,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
     balance?: FloatFieldUpdateOperationsInput | number
@@ -40756,6 +40783,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
     balance?: FloatFieldUpdateOperationsInput | number
@@ -43031,6 +43059,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     after_weight?: SortOrder
     total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrder
     wastage?: SortOrder
     balance?: SortOrder
@@ -43041,6 +43070,7 @@ export namespace Prisma {
     id?: SortOrder
     after_weight?: SortOrder
     total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrder
     balance?: SortOrder
     filing_entry_id?: SortOrder
@@ -43051,6 +43081,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     after_weight?: SortOrder
     total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrder
     wastage?: SortOrder
     balance?: SortOrder
@@ -43062,6 +43093,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     after_weight?: SortOrder
     total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrder
     wastage?: SortOrder
     balance?: SortOrder
@@ -43072,6 +43104,7 @@ export namespace Prisma {
     id?: SortOrder
     after_weight?: SortOrder
     total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrder
     balance?: SortOrder
     filing_entry_id?: SortOrder
@@ -46048,9 +46081,9 @@ export namespace Prisma {
     deleteMany?: LotBuffingMapperScalarWhereInput | LotBuffingMapperScalarWhereInput[]
   }
 
-  export type FilingEntryCreateNestedOneWithoutFilingItemsIdInput = {
-    create?: XOR<FilingEntryCreateWithoutFilingItemsIdInput, FilingEntryUncheckedCreateWithoutFilingItemsIdInput>
-    connectOrCreate?: FilingEntryCreateOrConnectWithoutFilingItemsIdInput
+  export type FilingEntryCreateNestedOneWithoutFilingTotalBalanceInput = {
+    create?: XOR<FilingEntryCreateWithoutFilingTotalBalanceInput, FilingEntryUncheckedCreateWithoutFilingTotalBalanceInput>
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutFilingTotalBalanceInput
     connect?: FilingEntryWhereUniqueInput
   }
 
@@ -46058,12 +46091,12 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type FilingEntryUpdateOneRequiredWithoutFilingItemsIdNestedInput = {
-    create?: XOR<FilingEntryCreateWithoutFilingItemsIdInput, FilingEntryUncheckedCreateWithoutFilingItemsIdInput>
-    connectOrCreate?: FilingEntryCreateOrConnectWithoutFilingItemsIdInput
-    upsert?: FilingEntryUpsertWithoutFilingItemsIdInput
+  export type FilingEntryUpdateOneRequiredWithoutFilingTotalBalanceNestedInput = {
+    create?: XOR<FilingEntryCreateWithoutFilingTotalBalanceInput, FilingEntryUncheckedCreateWithoutFilingTotalBalanceInput>
+    connectOrCreate?: FilingEntryCreateOrConnectWithoutFilingTotalBalanceInput
+    upsert?: FilingEntryUpsertWithoutFilingTotalBalanceInput
     connect?: FilingEntryWhereUniqueInput
-    update?: XOR<XOR<FilingEntryUpdateToOneWithWhereWithoutFilingItemsIdInput, FilingEntryUpdateWithoutFilingItemsIdInput>, FilingEntryUncheckedUpdateWithoutFilingItemsIdInput>
+    update?: XOR<XOR<FilingEntryUpdateToOneWithWhereWithoutFilingTotalBalanceInput, FilingEntryUpdateWithoutFilingTotalBalanceInput>, FilingEntryUncheckedUpdateWithoutFilingTotalBalanceInput>
   }
 
   export type FilingEntryCreateNestedOneWithoutFilingWastageInput = {
@@ -47641,7 +47674,7 @@ export namespace Prisma {
     createdAt?: Date | string
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
-    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
     LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
@@ -47651,7 +47684,7 @@ export namespace Prisma {
     createdAt?: Date | string
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
-    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
     LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
@@ -49118,7 +49151,7 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
-    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
     LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
@@ -49128,7 +49161,7 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
-    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
     LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
@@ -49997,6 +50030,7 @@ export namespace Prisma {
     createdAt?: Date | string
     after_weight?: number | null
     total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     wastage: boolean
     balance: number
@@ -50007,6 +50041,7 @@ export namespace Prisma {
     createdAt?: Date | string
     after_weight?: number | null
     total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     wastage: boolean
     balance: number
@@ -50202,6 +50237,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FilingTotalBalance"> | Date | string
     after_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
     total_product_weight?: FloatFilter<"FilingTotalBalance"> | number
+    current_balance_weight?: FloatFilter<"FilingTotalBalance"> | number
     total_scrap_weight?: FloatNullableFilter<"FilingTotalBalance"> | number | null
     wastage?: BoolFilter<"FilingTotalBalance"> | boolean
     balance?: FloatFilter<"FilingTotalBalance"> | number
@@ -50398,7 +50434,7 @@ export namespace Prisma {
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
-    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
   }
 
@@ -50408,7 +50444,7 @@ export namespace Prisma {
     filing_person_id: number
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
-    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
   }
 
@@ -50555,7 +50591,7 @@ export namespace Prisma {
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
-    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
   }
 
@@ -50565,7 +50601,7 @@ export namespace Prisma {
     filing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
-    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
   }
 
@@ -50573,7 +50609,7 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
-    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageCreateNestedManyWithoutFilingEntryIdInput
     LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
@@ -50583,7 +50619,7 @@ export namespace Prisma {
     createdAt?: Date | string
     filing_person_id: number
     casting_item_id: number
-    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
     FilingWastage?: FilingWastageUncheckedCreateNestedManyWithoutFilingEntryIdInput
     LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
@@ -50839,7 +50875,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
-    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
     LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
@@ -50849,7 +50885,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
-    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
@@ -51038,7 +51074,7 @@ export namespace Prisma {
     filing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type FilingEntryCreateWithoutFilingItemsIdInput = {
+  export type FilingEntryCreateWithoutFilingTotalBalanceInput = {
     createdAt?: Date | string
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
@@ -51047,7 +51083,7 @@ export namespace Prisma {
     LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
 
-  export type FilingEntryUncheckedCreateWithoutFilingItemsIdInput = {
+  export type FilingEntryUncheckedCreateWithoutFilingTotalBalanceInput = {
     id?: number
     createdAt?: Date | string
     filing_person_id: number
@@ -51057,23 +51093,23 @@ export namespace Prisma {
     LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
-  export type FilingEntryCreateOrConnectWithoutFilingItemsIdInput = {
+  export type FilingEntryCreateOrConnectWithoutFilingTotalBalanceInput = {
     where: FilingEntryWhereUniqueInput
-    create: XOR<FilingEntryCreateWithoutFilingItemsIdInput, FilingEntryUncheckedCreateWithoutFilingItemsIdInput>
+    create: XOR<FilingEntryCreateWithoutFilingTotalBalanceInput, FilingEntryUncheckedCreateWithoutFilingTotalBalanceInput>
   }
 
-  export type FilingEntryUpsertWithoutFilingItemsIdInput = {
-    update: XOR<FilingEntryUpdateWithoutFilingItemsIdInput, FilingEntryUncheckedUpdateWithoutFilingItemsIdInput>
-    create: XOR<FilingEntryCreateWithoutFilingItemsIdInput, FilingEntryUncheckedCreateWithoutFilingItemsIdInput>
+  export type FilingEntryUpsertWithoutFilingTotalBalanceInput = {
+    update: XOR<FilingEntryUpdateWithoutFilingTotalBalanceInput, FilingEntryUncheckedUpdateWithoutFilingTotalBalanceInput>
+    create: XOR<FilingEntryCreateWithoutFilingTotalBalanceInput, FilingEntryUncheckedCreateWithoutFilingTotalBalanceInput>
     where?: FilingEntryWhereInput
   }
 
-  export type FilingEntryUpdateToOneWithWhereWithoutFilingItemsIdInput = {
+  export type FilingEntryUpdateToOneWithWhereWithoutFilingTotalBalanceInput = {
     where?: FilingEntryWhereInput
-    data: XOR<FilingEntryUpdateWithoutFilingItemsIdInput, FilingEntryUncheckedUpdateWithoutFilingItemsIdInput>
+    data: XOR<FilingEntryUpdateWithoutFilingTotalBalanceInput, FilingEntryUncheckedUpdateWithoutFilingTotalBalanceInput>
   }
 
-  export type FilingEntryUpdateWithoutFilingItemsIdInput = {
+  export type FilingEntryUpdateWithoutFilingTotalBalanceInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
@@ -51082,7 +51118,7 @@ export namespace Prisma {
     LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
 
-  export type FilingEntryUncheckedUpdateWithoutFilingItemsIdInput = {
+  export type FilingEntryUncheckedUpdateWithoutFilingTotalBalanceInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person_id?: IntFieldUpdateOperationsInput | number
@@ -51097,7 +51133,7 @@ export namespace Prisma {
     filing_person: AddFilingCreateNestedOneWithoutFilingsInput
     castingItem: CastingItemsCreateNestedOneWithoutFilingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutFiling_entryInput
-    filingItemsId?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceCreateNestedManyWithoutFilingEntryIdInput
     LotFilingMapper?: LotFilingMapperCreateNestedManyWithoutFilingEntryInput
   }
 
@@ -51107,7 +51143,7 @@ export namespace Prisma {
     filing_person_id: number
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutFiling_entryInput
-    filingItemsId?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedCreateNestedManyWithoutFilingEntryIdInput
     LotFilingMapper?: LotFilingMapperUncheckedCreateNestedManyWithoutFilingEntryInput
   }
 
@@ -51174,7 +51210,7 @@ export namespace Prisma {
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
-    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
     LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
 
@@ -51184,7 +51220,7 @@ export namespace Prisma {
     filing_person_id?: IntFieldUpdateOperationsInput | number
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
-    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
 
@@ -53909,7 +53945,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     castingItem?: CastingItemsUpdateOneRequiredWithoutFilingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
-    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
     LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
@@ -53919,7 +53955,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
-    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
@@ -54862,7 +54898,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person?: AddFilingUpdateOneRequiredWithoutFilingsNestedInput
     filingItems?: FilingItemsUpdateManyWithoutFiling_entryNestedInput
-    filingItemsId?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUpdateManyWithoutFilingEntryIdNestedInput
     LotFilingMapper?: LotFilingMapperUpdateManyWithoutFilingEntryNestedInput
   }
@@ -54872,7 +54908,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filing_person_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutFiling_entryNestedInput
-    filingItemsId?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
+    filingTotalBalance?: FilingTotalBalanceUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     FilingWastage?: FilingWastageUncheckedUpdateManyWithoutFilingEntryIdNestedInput
     LotFilingMapper?: LotFilingMapperUncheckedUpdateManyWithoutFilingEntryNestedInput
   }
@@ -55043,6 +55079,7 @@ export namespace Prisma {
     createdAt?: Date | string
     after_weight?: number | null
     total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     wastage: boolean
     balance: number
@@ -55123,6 +55160,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
     balance?: FloatFieldUpdateOperationsInput | number
@@ -55133,6 +55171,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
     balance?: FloatFieldUpdateOperationsInput | number
@@ -55143,6 +55182,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     after_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
     balance?: FloatFieldUpdateOperationsInput | number

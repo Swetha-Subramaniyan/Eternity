@@ -1,87 +1,180 @@
 // app.use("/api/filingitems",filingItemsRoutes);
 
-import { PrismaClient } from "../generated/prisma/index.js";
+import { PrismaClient, CASTINGENTRYTYPE } from "../generated/prisma/index.js";
 const prisma =new PrismaClient();
 
-
 export const createFilingItem = async (req, res) => {
+  const {
+    filing_entry_id,
+    items,
+    totalBalance
+  } = req.body;
+
   try {
-    const {
-      filing_entry_id,
-      type,
-      filing_item_id,
-      weight,
-      touch_id,
-      item_purity,
-      remarks,
-      wastage,
-      stone_option,
-      after_weight,
-      scrap_weight,
-      scrap_wastage,
-      lot_filing_mapper_id, 
-    } = req.body;
-
-    if (!filing_entry_id || !type || !weight || !touch_id || !item_purity) {
-      return res.status(400).json({ message: "Missing required fields" });
+    const entry = await prisma.filingEntry.findUnique({
+      where: { id: filing_entry_id },
+      include: {
+        castingItem: {
+          select: {
+            casting_customer_id: true
+          }
+        }
+      }
+    });
+    
+    if (!entry) {
+      return res.status(404).json({ error: 'Filing Entry not found' });
     }
+    const castingCustomerId = entry.castingItem?.casting_customer_id;
 
-    if (type !== "ScrapItems" && !filing_item_id) {
-      return res.status(400).json({ message: "filing_item_id is required for non-scrap items" });
-    }
-
-    const wastageBool = wastage === "Yes" ? true : false;
-
-    //  Create FilingItem with optional lot_filing_mapper_id
-    const filingItem = await prisma.filingItems.create({
-      data: {
-        filing_entry_id: parseInt(filing_entry_id),
-        type,
-        filing_item_id: filing_item_id ? parseInt(filing_item_id) : null,
-        weight: parseFloat(weight),
-        touch_id: parseInt(touch_id),
-        item_purity: parseFloat(item_purity),
-        remarks,
-        wastage: wastageBool,
-        stone_option,
-        after_weight: after_weight ? parseFloat(after_weight) : null,
-        scrap_weight: scrap_weight ? parseFloat(scrap_weight) : null,
-        scrap_wastage: scrap_wastage ? parseFloat(scrap_wastage) : null,
-        lot_filing_mapper_id: lot_filing_mapper_id ? parseInt(lot_filing_mapper_id) : null,
+if (!castingCustomerId) {
+  return res.status(400).json({ error: 'Casting customer ID is missing in filing entry' });
+}
+    const result = await prisma.$transaction(async (tx) => {
+      const processedItems = await Promise.all(
+        items.map(async (item) => {
+          const prismaType = item.type === 'ProductItems' ? 'Items' :
+                             item.type === 'ScrapItems' ? 'ScrapItems' :
+                             null;
+    
+          if (!prismaType) {
+            throw new Error(`Invalid filing item type: ${item.type}`);
+          }
+    
+          let filingItem;
+          if (item.id) {
+            // Update existing
+            filingItem = await tx.filingItems.update({
+              where: { id: item.id },
+              data: {
+                filing_entry_id,
+                type: prismaType,
+                filing_item_id: item.filing_item_id,
+                weight: item.weight,
+                touch_id: item.touch_id,
+                item_purity: item.item_purity,
+                remarks: item.remarks || null,
+                stone_option: item.stone_option || null,
+                lot_filing_mapper_id: item.lot_filing_mapper_id || null,
+              },
+            });
+          } else {
+            // Create new
+            filingItem = await tx.filingItems.create({
+              data: {
+                filing_entry_id,
+                type: prismaType,
+                filing_item_id: item.filing_item_id,
+                weight: item.weight,
+                touch_id: item.touch_id,
+                item_purity: item.item_purity,
+                remarks: item.remarks || null,
+                stone_option: item.stone_option || null,
+                lot_filing_mapper_id: item.lot_filing_mapper_id || null,
+              },
+            });
+          }
+    
+          if (prismaType === 'ScrapItems') {
+            if (item.id) {
+              // Update existing stock linked to this filingItem
+              await tx.stock.updateMany({
+                where: { filing_item_id: item.id },
+                data: {
+                  weight: item.weight,
+                  item_purity: item.item_purity,
+                  remarks: item.remarks || null,
+                  item_id: item.filing_item_id,
+                  touch_id: item.touch_id,
+                  casting_customer_id: castingCustomerId,
+                },
+              });
+            } else {
+              // Create new stock row for new scrap item
+              await tx.stock.create({
+                data: {
+                  weight: item.weight,
+                  item_purity: item.item_purity,
+                  remarks: item.remarks || null,
+                  item: { connect: { id: item.filing_item_id } },
+                  touch: { connect: { id: item.touch_id } },
+                  casting_customer: { connect: { id: castingCustomerId } },
+                  filingItem: { connect: { id: filingItem.id } },
+                },
+              });
+            }
+          }
+          return filingItem;
+        })
+      );
+    
+      // Update or create filingTotalBalance record:
+      // You might want to upsert it instead of just create to avoid duplicates
+      const existingBalance = await tx.filingTotalBalance.findFirst({
+        where: { filing_entry_id }
+      });
+    
+      let balanceRecord;
+      if (existingBalance) {
+        balanceRecord = await tx.filingTotalBalance.update({
+          where: { id: existingBalance.id },
+          data: {
+            after_weight: totalBalance.after_weight || null,
+            total_product_weight: totalBalance.total_product_weight,
+            current_balance_weight: totalBalance.current_balance_weight,
+            total_scrap_weight: totalBalance.total_scrap_weight || null,
+            wastage: totalBalance.wastage ?? false,
+            balance: totalBalance.balance,
+          },
+        });
+      } else {
+        balanceRecord = await tx.filingTotalBalance.create({
+          data: {
+            filing_entry_id,
+            after_weight: totalBalance.after_weight || null,
+            total_product_weight: totalBalance.total_product_weight,
+            current_balance_weight: totalBalance.current_balance_weight,
+            total_scrap_weight: totalBalance.total_scrap_weight || null,
+            wastage: totalBalance.wastage ?? false,
+            balance: totalBalance.balance,
+          },
+        });
+      }
+    
+      return { createdItems: processedItems, balanceRecord };
+    });
+    
+    // Send only selected fields to avoid circular JSON error
+    res.status(201).json({
+      message: 'Filing data saved successfully',
+      items: result.createdItems.map(item => ({
+        id: item.id,
+        filing_entry_id: item.filing_entry_id,
+        type: item.type,
+        filing_item_id: item.filing_item_id,
+        weight: item.weight,
+        touch_id: item.touch_id,
+        item_purity: item.item_purity,
+        remarks: item.remarks,
+        stone_option: item.stone_option,
+        lot_filing_mapper_id: item.lot_filing_mapper_id,
+      })),
+      totalBalance: {
+        id: result.balanceRecord.id,
+        filing_entry_id: result.balanceRecord.filing_entry_id,
+        after_weight: result.balanceRecord.after_weight,
+        total_product_weight: result.balanceRecord.total_product_weight,
+        current_balance_weight: result.balanceRecord.current_balance_weight,
+        total_scrap_weight: result.balanceRecord.total_scrap_weight,
+        wastage: result.balanceRecord.wastage,
+        balance: result.balanceRecord.balance,
+        createdAt: result.balanceRecord.createdAt,
       },
     });
 
-    //  If ScrapItem, also post to stock
-    if (type === "ScrapItems") {
-      const filingEntry = await prisma.filingEntry.findUnique({
-        where: { id: parseInt(filing_entry_id) },
-        include: {
-          castingItem: true,
-        },
-      });
-
-      if (!filingEntry) {
-        return res.status(404).json({ message: "Filing entry not found" });
-      }
-
-      await prisma.stock.create({
-        data: {
-          filing_item_id: filingItem.id,
-          item_id: filing_item_id ? parseInt(filing_item_id) : null,
-          weight: parseFloat(weight),
-          touch_id: parseInt(touch_id),
-          item_purity: parseFloat(item_purity),
-          remarks,
-          scrap_wastage: scrap_wastage ? parseFloat(scrap_wastage) : null,
-          casting_customer_id: filingEntry.castingItem.casting_customer_id,
-        },
-      });
-    }
-
-    res.status(201).json({ message: "Filing item created successfully", filingItem });
   } catch (error) {
-    console.error("Error creating filing item:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error('Error saving filing data:', error);
+    res.status(500).json({ error: 'Failed to save filing data' });
   }
 };
 
@@ -100,9 +193,6 @@ export const createFilingItem = async (req, res) => {
     }
   };
   
-  
-
-
   export const getFilingItemById = async (req, res) => {
     try {
       const { id } = req.params;
@@ -128,57 +218,9 @@ export const createFilingItem = async (req, res) => {
     }
   };
   
-
-
-  export const updateFilingItem = async (req, res) => {
-    const { id } = req.params;
-    const {
-      type,
-      filing_item_id,
-      weight,
-      touch_id,
-      item_purity,
-      remarks,
-      wastage,
-      stone_option,
-      after_weight,
-      scrap_weight,
-      scrap_wastage,
-    } = req.body;
-  
-    try {
-      const existingItem = await prisma.filingItems.findUnique({ where: { id: Number(id) } });
-  
-      if (!existingItem) {
-        return res.status(404).json({ message: "Filing item not found" });
-      }
-  
-      const updatedItem = await prisma.filingItems.update({
-        where: { id: Number(id) },
-        data: {
-          type,
-          filing_item_id,
-          weight,
-          touch_id,
-          item_purity,
-          remarks,
-          wastage: wastage === "Yes" ? true : false,
-          stone_option,
-          after_weight,
-          scrap_weight,
-          scrap_wastage,
-        },
-      });
-  
-      res.status(200).json({ message: "Filing item updated", updatedItem });
-    } catch (error) {
-      console.error("Error updating filing item:", error);
-      res.status(500).json({ message: "Internal server error" });
-    }
-  };
   
 
-  
+
   export const deleteFilingItem = async (req, res) => {
     const { id } = req.params;
   

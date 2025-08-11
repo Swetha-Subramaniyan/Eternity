@@ -211,16 +211,16 @@ model LotInfo {
 }
 
 model FilingEntry {
-  id               Int                  @id @default(autoincrement())
-  createdAt        DateTime             @default(now())
-  filing_person    AddFiling            @relation(fields: [filing_person_id], references: [id])
-  filing_person_id Int
-  castingItem      CastingItems         @relation(fields: [casting_item_id], references: [id])
-  casting_item_id  Int
-  filingItems      FilingItems[]
-  filingItemsId    FilingTotalBalance[]
-  FilingWastage    FilingWastage[]
-  LotFilingMapper  LotFilingMapper[]
+  id                 Int                  @id @default(autoincrement())
+  createdAt          DateTime             @default(now())
+  filing_person      AddFiling            @relation(fields: [filing_person_id], references: [id])
+  filing_person_id   Int
+  castingItem        CastingItems         @relation(fields: [casting_item_id], references: [id])
+  casting_item_id    Int
+  filingItems        FilingItems[]
+  filingTotalBalance FilingTotalBalance[]
+  FilingWastage      FilingWastage[]
+  LotFilingMapper    LotFilingMapper[]
 }
 
 model LotFilingMapper {
@@ -263,15 +263,16 @@ model FilingItems {
 }
 
 model FilingTotalBalance {
-  id                   Int         @id @default(autoincrement())
-  createdAt            DateTime    @default(now())
-  after_weight         Float?
-  total_product_weight Float
-  total_scrap_weight   Float?
-  wastage              Boolean
-  balance              Float
-  filing_entry_id      Int
-  filingEntryId        FilingEntry @relation(fields: [filing_entry_id], references: [id])
+  id                     Int         @id @default(autoincrement())
+  createdAt              DateTime    @default(now())
+  after_weight           Float?
+  total_product_weight   Float
+  current_balance_weight Float
+  total_scrap_weight     Float?
+  wastage                Boolean
+  balance                Float
+  filing_entry_id        Int
+  filingEntryId          FilingEntry @relation(fields: [filing_entry_id], references: [id])
 }
 
 model FilingWastage {

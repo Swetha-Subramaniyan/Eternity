@@ -1,21 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogActions,Box, Button, TextField, Typography, MenuItem, IconButton,} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 import Navbar from '../../Navbar/Navbar';
 import styles from './FilingLotDetails.module.css';
 import { useParams } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
-
-
+import { BACKEND_SERVER_URL } from '../../../../Config/config';
 
 const FilingLotDetails = () => {
   const [isAssignOpen, setIsAssignOpen] = useState(false);
@@ -25,20 +17,57 @@ const FilingLotDetails = () => {
   const [assignedEntries, setAssignedEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [viewDialogOpen, setViewDialogOpen] = useState(false);
-const [viewedItems, setViewedItems] = useState([]);
+  const [viewedItems, setViewedItems] = useState([]);
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
+  const [filteredEntries, setFilteredEntries] = useState([]);
+const [afterWeight, setAfterWeight] = useState('');
+const [productItems, setProductItems] = useState([]);
+const [scrapItems, setScrapItems] = useState([]);
+const [itemsList, setItemsList] = useState([]);
+const [touchList, setTouchList] = useState([]);
+const [showProductTable, setShowProductTable] = useState(false);
+const [showScrapTable, setShowScrapTable] = useState(false);
+const [wastageOption, setWastageOption] = useState('No');
+const [currentFilingEntryId, setCurrentFilingEntryId] = useState(null);
 
 
   const { id: filingPersonId, name, lotNumber } = useParams();
-
   const fetchAssignedEntries = async () => {
     try {
       const res = await axios.get(`http://localhost:5000/api/filingentry/person/${filingPersonId}`);
       setAssignedEntries(res.data);
+      setFilteredEntries(res.data); 
     } catch (error) {
       console.error('Error fetching assigned entries:', error);
     }
   };
 
+  const applyDateFilter = () => {
+    if (!fromDate || !toDate) {
+      setFilteredEntries(assignedEntries); 
+      return;
+    }
+    const from = new Date(fromDate);
+    const to = new Date(toDate);
+    to.setHours(23, 59, 59, 999); 
+    const filtered = assignedEntries.filter(entry => {
+      const createdAt = new Date(entry.createdAt);
+      return createdAt >= from && createdAt <= to;
+    });
+  
+    setFilteredEntries(filtered);
+  };
+
+  const fetchDropdownOptions = async () => {
+      const touchRes = await axios.get(`${BACKEND_SERVER_URL}/api/addtouch`);
+      const itemRes = await axios. get (`${BACKEND_SERVER_URL}/api/additem`);
+    setItemsList(itemRes.data);
+    setTouchList(touchRes.data);
+    console.log('Available Touch', touchRes.data)
+    console.log('Available Items', itemRes.data)
+  };
+  
   const fetchAvailableItems = async () => {
     try {
       const res = await axios.get('http://localhost:5000/api/castingitems/castingitems/available');
@@ -52,6 +81,7 @@ const [viewedItems, setViewedItems] = useState([]);
   useEffect(() => {
     fetchAssignedEntries();
     fetchAvailableItems();
+    fetchDropdownOptions();
   }, []);
 
   const handleBulkAssign = async () => {
@@ -62,12 +92,10 @@ const [viewedItems, setViewedItems] = useState([]);
         filing_person_id: parseInt(filingPersonId),
         lot_number: parseInt(lotNumber),
         itemIds: selectedItemIds,
-      });
-  
+      })
       // Refresh both lists
       await fetchAvailableItems();
       await fetchAssignedEntries();
-  
       // Reset
       setSelectedItemIds([]);
       setIsAssignOpen(false);
@@ -77,18 +105,160 @@ const [viewedItems, setViewedItems] = useState([]);
       setIsLoading(false); 
     }
   };
+
+const calculatePurity = (weight, touch) => {
+  return weight && touch ? ((weight * touch) / 100).toFixed(2) : '';
+};
+
+const handleAddProductRow = () => {
+  setProductItems([...productItems, { item: '', weight: '', touch: '', purity: '', remarks: '', hasStone: 'No', process: 'Buffing' }]);
+  setShowProductTable(true);
+};
+
+const handleAddScrapRow = () => {
+  setScrapItems([...scrapItems, { item: '', weight: '', touch: '', purity: '', remarks: '' }]);
+  setShowScrapTable(true);
+};
+
+const totalProductWeight = productItems.reduce((acc, curr) => acc + (parseFloat(curr.weight) || 0), 0);
+const totalScrapWeight = scrapItems.reduce((acc, curr) => acc + (parseFloat(curr.weight) || 0), 0);
+const currentBalanceWeight = parseFloat(afterWeight || 0) - totalProductWeight;
+const finalBalance = currentBalanceWeight - totalScrapWeight;
+
+const handleSaveFilingData = async () => {
+  if (!currentFilingEntryId) {
+    alert('No Filing Entry selected!');
+    return;
+  }
+
+  // Map product items with correct backend keys
+  const formattedProductItems = productItems
+    .map(item => ({
+      id: item.id,  // pass id for update identification
+      type: 'ProductItems',
+      filing_item_id: itemsList.find(i => i.name === item.item)?.id || null,
+      weight: parseFloat(item.weight) || 0,
+      touch_id: touchList.find(t => t.touch === item.touch)?.id || null,
+      item_purity: parseFloat(item.purity) || 0,
+      remarks: item.remarks || null,
+      stone_option: item.hasStone === 'Yes' ? 'WithStone' : 'WithoutStone',
+      lot_filing_mapper_id: null, 
+      process: item.process || null,
+    }))
+    .filter(item => item.filing_item_id !== null && item.touch_id !== null);
+
+  // Map scrap items with correct backend keys
+  const formattedScrapItems = scrapItems
+    .map(item => ({
+      id: item.id,  
+      type: 'ScrapItems',
+      filing_item_id: itemsList.find(i => i.name === item.item)?.id || null,
+      weight: parseFloat(item.weight) || 0,
+      touch_id: touchList.find(t => t.touch === item.touch)?.id || null,
+      item_purity: parseFloat(item.purity) || 0,
+      remarks: item.remarks || null,
+      stone_option: null,
+      lot_filing_mapper_id: null,
+      process: null,
+    }))
+    .filter(item => item.filing_item_id !== null && item.touch_id !== null);
+
+  // Calculate weights and balances
+  const totalProductWeight = formattedProductItems.reduce((acc, curr) => acc + curr.weight, 0);
+  const totalScrapWeight = formattedScrapItems.reduce((acc, curr) => acc + curr.weight, 0);
+  const currentBalanceWeight = parseFloat(afterWeight || 0) - totalProductWeight;
+  const finalBalance = currentBalanceWeight - totalScrapWeight;
+
+  const totalBalance = {
+    after_weight: Number(afterWeight) || 0,
+    balance: Number(finalBalance) || 0, 
+    current_balance_weight: Number(currentBalanceWeight) || 0, 
+    total_product_weight: totalProductWeight,
+    total_scrap_weight: totalScrapWeight,
+    wastage: wastageOption === 'Yes',
+  };
   
+  // Add these logs before the API call
+  console.log('Formatted Product Items:', formattedProductItems);
+  console.log('Formatted Scrap Items:', formattedScrapItems);
+  console.log('Total Balance Object:', totalBalance);
+
+  try {
+    await axios.post(`${BACKEND_SERVER_URL}/api/filingitems`, {
+      filing_entry_id: currentFilingEntryId,
+      items: [...formattedProductItems, ...formattedScrapItems],
+      totalBalance,
+    });
+
+    alert('Data saved successfully!');
+    fetchAssignedEntries();
+    setViewDialogOpen(false);
+    setProductItems([]);
+    setScrapItems([]);
+    setAfterWeight('');
+  } catch (error) {
+    console.error('Failed to save filing data:', error);
+    alert('Error saving data. Check console.');
+  }
+};
+
+const handleDeleteItem = async (id, type) => {
+  const confirmDelete = window.confirm("Are you sure you want to delete this item?");
+  if (!confirmDelete) return;
+  console.log('Delete id:',id)
+
+  try {
+    await axios.delete(`http://localhost:5000/api/filingitems/${id}`);
+    alert("Item deleted successfully");
+
+    if (type === "product") {
+      setProductItems((prev) => prev.filter((item) => item.id !== id));
+    } else if (type === "scrap") {
+      setScrapItems((prev) => prev.filter((item) => item.id !== id));
+    }
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    alert("Failed to delete item");
+  }
+};
 
   return (
     <>
       <Navbar />
-      <center>Filing Lot Details</center>
+      <h5 className={styles.heading}>Filing Lot Details</h5>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <Button variant="contained" onClick={() => setIsAssignOpen(true)}>
-            Add
-          </Button>
-        </div>
+<div className={styles.header} style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+  <TextField
+    label="From Date"
+    type="date"
+    size="small"
+    value={fromDate}
+    onChange={(e) => setFromDate(e.target.value)}
+    InputLabelProps={{ shrink: true }}
+    sx={{ml:'2rem'}}
+  />
+  <TextField
+    label="To Date"
+    type="date"
+    size="small"
+    value={toDate}
+    onChange={(e) => setToDate(e.target.value)}
+    InputLabelProps={{ shrink: true }}
+  />
+  <Button variant="outlined" onClick={applyDateFilter}> Filter </Button>
+  <Button
+    variant="text"
+    onClick={() => {
+      setFromDate('');
+      setToDate('');
+      fetchAssignedEntries(); 
+    }} >
+    Reset
+  </Button> 
+  <Button variant="contained" onClick={() => setIsAssignOpen(true)}
+  sx={{ml:'50rem'}}
+  > Add Filing </Button>
+</div>
         <table className={styles.table}>
           <thead>
             <tr>
@@ -101,11 +271,17 @@ const [viewedItems, setViewedItems] = useState([]);
               <th>Purity</th>
               <th>Remarks</th>
               <th>Status</th>
-              <th>Actions</th>
+              <th> After Weight</th>
+              <th> Total Product Weight </th>
+              <th> Current Balance Weight </th>
+              <th> Wastage </th>
+              <th> Total Scrap Weight </th>
+              <th> Balance </th>
+              <th> Actions</th>
             </tr>
           </thead>
 <tbody>
-  {assignedEntries.map((entry, index) => (
+    {filteredEntries.map((entry, index) => (
     <React.Fragment key={entry.id}>
       <tr className={styles.groupHeader}>
         <td rowSpan={entry.castingItems.length}>{index + 1}</td>
@@ -121,19 +297,81 @@ const [viewedItems, setViewedItems] = useState([]);
         <td>{entry.castingItems[0]?.purity || '-'}</td>
         <td>{entry.castingItems[0]?.remarks || '-'}</td>
         <td>Assigned</td>
-        <td rowSpan={entry.castingItems.length}>
-          <Button
-            size="small"
-            onClick={() => {
-              setViewedItems(entry.castingItems);
-              setViewDialogOpen(true);
-            }}
-          >
-            View
-          </Button>
-        </td>
-      </tr>
+        {(() => {
+    const balance = entry.filingTotalBalance && entry.filingTotalBalance.length > 0
+      ? entry.filingTotalBalance[0]
+      : null;
 
+    return (
+      <>
+        <td rowSpan={entry.castingItems.length}>
+          {balance?.after_weight !== null && balance?.after_weight !== undefined ? balance.after_weight : '-'}
+        </td>
+        <td rowSpan={entry.castingItems.length}>
+  {(balance?.total_product_weight ?? 0).toFixed(2)}
+</td>
+<td rowSpan={entry.castingItems.length}>
+  {(balance?.current_balance_weight ?? 0).toFixed(2)}
+</td>
+        <td rowSpan={entry.castingItems.length}>
+          {balance?.wastage ? 'Yes' : 'No'}
+        </td>
+        <td rowSpan={entry.castingItems.length}>
+  {(balance?.total_scrap_weight ?? 0).toFixed(2)}
+</td>
+<td rowSpan={entry.castingItems.length}>
+  {(balance?.balance ?? 0).toFixed(2)}
+</td>
+        <td rowSpan={entry.castingItems.length}>
+
+<Button
+  size="small"
+  onClick={() => {
+    setViewedItems(entry.castingItems);
+    setCurrentFilingEntryId(entry.id);
+
+    const balance = entry.filingTotalBalance?.[0]; 
+    setAfterWeight(balance?.after_weight || '');
+    setWastageOption(balance?.wastage ? 'Yes' : 'No');
+
+    const products = entry.filingItems.filter(i => i.type === 'ProductItems' || i.type === 'Items');
+    const scraps = entry.filingItems.filter(i => i.type === 'ScrapItems');
+
+    setProductItems(products.map(p => ({
+      item: itemsList.find(i => i.id === p.filing_item_id)?.name || '',
+      weight: p.weight,
+      touch: touchList.find(t => t.id === p.touch_id)?.touch || '',
+      purity: p.item_purity,
+      remarks: p.remarks || '',
+      hasStone: p.stone_option === 'WithStone' ? 'Yes' : 'No',
+      process: p.process || 'Buffing',
+      id:p.id,
+    })));
+
+    setScrapItems(scraps.map(s => ({
+      item: itemsList.find(i => i.id === s.filing_item_id)?.name || '',
+      weight: s.weight,
+      touch: touchList.find(t => t.id === s.touch_id)?.touch || '',
+      purity: s.item_purity,
+      remarks: s.remarks || '',
+      id:s.id,
+    })));
+
+    // Set visibility based on whether these arrays have items
+    setShowProductTable(products.length > 0);
+    setShowScrapTable(scraps.length > 0);
+
+    setViewDialogOpen(true);
+  }}
+>
+  View
+</Button>
+
+        </td>
+      </>
+    );
+  })()}
+      </tr>
       {entry.castingItems.slice(1).map((item, idx) => (
         <tr key={item.id || idx}>
           <td>{item.item_name}</td>
@@ -141,7 +379,7 @@ const [viewedItems, setViewedItems] = useState([]);
           <td>{item.touch || '-'}</td>
           <td>{item.purity || '-'}</td>
           <td>{item.remarks || '-'}</td>
-          <td>Assigned</td>
+          <td>Assigned</td>         
         </tr>
       ))}
     </React.Fragment>
@@ -149,13 +387,11 @@ const [viewedItems, setViewedItems] = useState([]);
 </tbody>
         </table>
       </div>
-
       <Dialog
         open={isAssignOpen}
         onClose={() => setIsAssignOpen(false)}
         fullWidth
-        maxWidth="lg"
-      >
+        maxWidth="md" >
         <DialogTitle>Assign Filing Items</DialogTitle>
         <DialogContent>
           <TextField
@@ -167,11 +403,9 @@ const [viewedItems, setViewedItems] = useState([]);
             InputLabelProps={{ shrink: true }}
             sx={{ mb: 2, mt: 2 }}
           />
-
           <Typography variant="h6" gutterBottom>
             Available Filing Items
           </Typography>
-
           <div className={styles.tableContainer}>
             <table className={styles.table}>
               <thead>
@@ -223,8 +457,7 @@ const [viewedItems, setViewedItems] = useState([]);
     setIsLoading(true);
     await handleBulkAssign();  
     setIsLoading(false);
-  }}
->
+  }} >
   {isLoading ? "Assigning..." : "Assign"}
 </Button>
         </DialogActions>
@@ -247,23 +480,223 @@ const [viewedItems, setViewedItems] = useState([]);
         {Array.isArray(viewedItems) && viewedItems.map((item, index) => (
           <tr key={item?.id || index}>
             <td>{index + 1}</td>
-            <td>{item?.item_name || '-'}</td>
-            <td>{item?.weight || '-'}</td>
-            <td>{item?.touch || '-'}</td>
-            <td>{item?.purity || '-'}</td>
+            <td>{item?.item_name || '-'}</td>      
+            <td>{item?.weight != null ? Number(item.weight).toFixed(2) : '-'}</td>
+            <td>{item?.touch || '-'}</td>      
+            <td>{item?.purity != null ? Number(item.purity).toFixed(2) : '-'}</td>
             <td>{item?.remarks || '-'}</td>
           </tr>
         ))}
       </tbody>
+      <tfoot>
+    <tr>
+      <td colSpan={2}><strong>Total</strong></td>
+      <td> <strong>
+        {Number(
+          viewedItems.reduce((acc, item) => acc + (parseFloat(item?.weight) || 0), 0)
+        ).toFixed(2)}
+      </strong>
+      </td>
+      <td colSpan={3}></td>
+    </tr>
+  </tfoot>
     </table>
+    <TextField
+            label="After Weight"
+            value={afterWeight}
+            onChange={(e) => setAfterWeight(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <Button variant="contained" onClick={handleAddProductRow}>Add Product Items</Button>
+          {showProductTable && (
+            <>
+                <div className={styles.tableContainer}> 
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Item</th>
+                    <th>Weight</th>
+                    <th>Touch</th>
+                    <th>Purity</th>
+                    <th>Remarks</th>
+                    <th>Has Stone</th>
+                    <th>Process</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+            
+                <tbody>
+                  {productItems.map((row, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <TextField select value={row.item} onChange={(e) => {
+                          const updated = [...productItems];
+                          updated[index].item = e.target.value;
+                          setProductItems(updated);
+                        }}>
+                          {itemsList.map((i) => <MenuItem key={i.id} value={i.name}>{i.name}</MenuItem>)}
+                        </TextField>
+                      </td>
+                      <td>
+                        <TextField type="number" value={row.weight} onChange={(e) => {
+                          const updated = [...productItems];
+                          updated[index].weight = parseFloat(e.target.value);
+                          updated[index].purity = calculatePurity(updated[index].weight, updated[index].touch);
+                          setProductItems(updated);
+                        }} />
+                      </td>
+                      <td>
+                        <TextField select value={row.touch} onChange={(e) => {
+                          const updated = [...productItems];
+                          updated[index].touch = parseFloat(e.target.value);
+                          updated[index].purity = calculatePurity(updated[index].weight, updated[index].touch);
+                          setProductItems(updated);
+                        }}>
+                          {touchList.map((t) => <MenuItem key={t.id} value={t.touch}>{t.touch}</MenuItem>)}
+                        </TextField>
+                      </td>
+                      <td>{row.purity}</td>
+                      <td><TextField value={row.remarks} onChange={(e) => {
+                        const updated = [...productItems];
+                        updated[index].remarks = e.target.value;
+                        setProductItems(updated);
+                      }} /></td>
+                      <td>
+                        <TextField select value={row.hasStone} onChange={(e) => {
+                          const updated = [...productItems];
+                          updated[index].hasStone = e.target.value;
+                          updated[index].process = e.target.value === 'Yes' ? 'Setting' : 'Buffing';
+                          setProductItems(updated);
+                        }}>
+                          <MenuItem value="Yes">Yes</MenuItem>
+                          <MenuItem value="No">No</MenuItem>
+                        </TextField>
+                      </td>
+                      <td>{row.process}</td>
+                      <td>
+  <IconButton onClick={() => handleDeleteItem(row.id, "product")}>
+    <DeleteIcon />
+  </IconButton>
+</td>             
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              </div>
+             
+
+
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2 }}>
+  {/* Left side: weights */}
+  <Box sx={{ display: 'flex', gap: 5 }}>
+    <Typography variant="body1">
+      Total Product Weight: {(totalProductWeight ?? 0).toFixed(2)}
+    </Typography>
+    <Typography variant="body1">
+      Current Balance Weight: {(currentBalanceWeight ?? 0).toFixed(2)}
+    </Typography>
+  </Box>
+
+  {/* Right side: wastage select */}
+  <TextField
+    select
+    label="Wastage"
+    value={wastageOption}
+    onChange={(e) => setWastageOption(e.target.value)}
+    sx={{ width: '7rem', height:'1rem' }}
+  >
+    <MenuItem value="Yes">Yes</MenuItem>
+    <MenuItem value="No">No</MenuItem>
+  </TextField>
+</Box>
+  
+              </>
+          )}
+          <br/>
+          <Button variant="contained" onClick={handleAddScrapRow} sx={{ mt: 1, ml:0 }}>Add Scrap Items</Button>
+          {showScrapTable && (
+            <>
+                <div className={styles.tableContainer}> 
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Item</th>
+                    <th>Weight</th>
+                    <th>Touch</th>
+                    <th>Purity</th>
+                    <th>Remarks</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {scrapItems.map((row, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <TextField select value={row.item} onChange={(e) => {
+                          const updated = [...scrapItems];
+                          updated[index].item = e.target.value;
+                          setScrapItems(updated);
+                        }}>
+                          {itemsList.map((i) => <MenuItem key={i.id} value={i.name}>{i.name}</MenuItem>)}
+                        </TextField>
+                      </td>
+                      <td><TextField type="number" value={row.weight} onChange={(e) => {
+                        const updated = [...scrapItems];
+                        updated[index].weight = parseFloat(e.target.value);
+                        updated[index].purity = calculatePurity(updated[index].weight, updated[index].touch);
+                        setScrapItems(updated);
+                      }} /></td>
+                      <td>
+                        <TextField select value={row.touch} onChange={(e) => {
+                          const updated = [...scrapItems];
+                          updated[index].touch = parseFloat(e.target.value);
+                          updated[index].purity = calculatePurity(updated[index].weight, updated[index].touch);
+                          setScrapItems(updated);
+                        }}>
+                          {touchList.map((t) => <MenuItem key={t.id} value={t.touch}>{t.touch}</MenuItem>)}
+                        </TextField>
+                      </td>
+                      <td>{row.purity}</td>
+                      <td><TextField value={row.remarks} onChange={(e) => {
+                        const updated = [...scrapItems];
+                        updated[index].remarks = e.target.value;
+                        setScrapItems(updated);
+                      }} /></td>
+<td>
+  <IconButton onClick={() => handleDeleteItem(row.id, "scrap")}>
+    <DeleteIcon />
+  </IconButton>
+</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              </div>
+
+<Box display="flex" alignItems="center" gap={8}>
+  <Typography variant="body1">
+    Total Scrap Weight: {(totalScrapWeight ?? 0).toFixed(2)}
+  </Typography>
+  <Typography variant="body1">
+    Balance: {(finalBalance ?? 0).toFixed(2)}
+  </Typography>
+</Box>
+
+            </>
+          )}           
   </DialogContent>
   <DialogActions>
+  <Button variant="contained" color="primary" onClick={handleSaveFilingData} sx={{ml:30, mt:0}}> Save </Button>
     <Button onClick={() => setViewDialogOpen(false)}>Close</Button>
   </DialogActions>
-</Dialog>   
+ </Dialog>   
     </>
   );
 };
 
 export default FilingLotDetails;
-

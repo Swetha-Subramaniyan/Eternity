@@ -227,7 +227,7 @@ model FilingEntry {
   castingItem      CastingItems   @relation(fields: [casting_item_id], references: [id])
   casting_item_id  Int  
   filingItems FilingItems[]  
-  filingItemsId FilingTotalBalance[]      
+  filingTotalBalance FilingTotalBalance[]      
   FilingWastage FilingWastage[]
   LotFilingMapper LotFilingMapper[]
 }
@@ -281,6 +281,7 @@ model FilingTotalBalance {
   createdAt  DateTime @default(now())
   after_weight Float?
   total_product_weight Float
+  current_balance_weight Float
   total_scrap_weight Float?
   wastage Boolean
   balance Float
