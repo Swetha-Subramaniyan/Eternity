@@ -307,11 +307,11 @@ export const getFilingEntryByFilingId = async (req, res) => {
 export const getFilingEntriesByPersonId = async (req, res) => {
   try {
     const filing_person_id = parseInt(req.params.filing_person_id);
-
     const entries = await prisma.filingEntry.findMany({
       where: { filing_person_id },
       include: {
         filing_person: true,
+        filingTotalBalance:true,
         castingItem: {
           include: {
             item: true,
@@ -372,6 +372,17 @@ export const getFilingEntriesByPersonId = async (req, res) => {
         filing_person_name: mapper.filingId?.name || '',
         filing_entry_id: mapper.filing_entry_id,
       })),
+    
+  filingTotalBalance: entry.filingTotalBalance.map(balance => ({
+    after_weight: balance.after_weight ?? null,
+    total_product_weight: balance.total_product_weight ?? null,
+    current_balance_weight: balance.current_balance_weight ?? null,
+    total_scrap_weight: balance.total_scrap_weight ?? null,
+    wastage: balance.wastage ?? null,
+    balance: balance.balance ?? null,
+  })),
+
+
     }));
 
     res.status(200).json(result);

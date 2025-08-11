@@ -294,6 +294,7 @@ exports.Prisma.FilingTotalBalanceScalarFieldEnum = {
   createdAt: 'createdAt',
   after_weight: 'after_weight',
   total_product_weight: 'total_product_weight',
+  current_balance_weight: 'current_balance_weight',
   total_scrap_weight: 'total_scrap_weight',
   wastage: 'wastage',
   balance: 'balance',

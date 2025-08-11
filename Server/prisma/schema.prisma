@@ -227,7 +227,7 @@ model FilingEntry {
   castingItem      CastingItems   @relation(fields: [casting_item_id], references: [id])
   casting_item_id  Int  
   filingItems FilingItems[]  
-  filingItemsId FilingTotalBalance[]      
+  filingTotalBalance FilingTotalBalance[]      
   FilingWastage FilingWastage[]
   LotFilingMapper LotFilingMapper[]
 }
