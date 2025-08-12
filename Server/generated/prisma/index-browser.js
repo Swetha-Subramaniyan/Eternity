@@ -338,7 +338,8 @@ exports.Prisma.LotSettingMapperScalarFieldEnum = {
   id: 'id',
   setting_id: 'setting_id',
   lot_id: 'lot_id',
-  filing_item_id: 'filing_item_id'
+  filing_item_id: 'filing_item_id',
+  setting_entry_id: 'setting_entry_id'
 };
 
 exports.Prisma.SettingTotalBalanceScalarFieldEnum = {
@@ -349,6 +350,8 @@ exports.Prisma.SettingTotalBalanceScalarFieldEnum = {
   stone_weight: 'stone_weight',
   remarks: 'remarks',
   wastage: 'wastage',
+  total_product_weight: 'total_product_weight',
+  current_balance_weight: 'current_balance_weight',
   total_scrap_weight: 'total_scrap_weight',
   balance: 'balance',
   setting_entry_id: 'setting_entry_id'

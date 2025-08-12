@@ -16,6 +16,7 @@ import castingStockRoutes from "./Routes/castingStockRoutes.js";
 import filingEntryRoutes from "./Routes/filingEntryRoutes.js";
 import addTouchRoutes from "./Routes/addTouchRoutes.js";
 import filingItemsRoutes from "./Routes/filingItemsRoutes.js";
+import settingEntryRoutes from './Routes/settingEntryRoutes.js'
 
 const app = express();
 const PORT = process.env.PORT ||  5000;
@@ -43,6 +44,7 @@ app.use("/api/castingitems",castingItemsRoutes);
 app.use("/api/stock",castingStockRoutes);
 app.use("/api/filingentry",filingEntryRoutes );
 app.use("/api/filingitems",filingItemsRoutes);
+app.use("/api/settingentry", settingEntryRoutes )
 
 
 app.get("/", (req, res) => {

@@ -240,7 +240,35 @@ if (!castingCustomerId) {
     }
   };
   
+  // GET - http://localhost:5000/api/filingitems/filingitems/available
 
+  export const getAvailableFilingItems = async (req, res) => {
+    try {
+      const items = await prisma.filingItems.findMany({
+        where: {
+          type: "Items",
+          lot_filing_mapper_id: null,  // unassigned
+        },
+        include: {
+          touch: true,
+          filing_entry: true,
+          filingitem: true,
+        },
+      });
+  
+      // Append status field to each item
+      const result = items.map((item) => ({
+        ...item,
+        status: "Unassigned",
+      }));
+  
+      res.status(200).json(result);
+    } catch (err) {
+      console.error("Failed to fetch unassigned filing items", err);
+      res.status(500).json({ error: "Failed to fetch unassigned filing items" });
+    }
+  };
+  
 
 
 

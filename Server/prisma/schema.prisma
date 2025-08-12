@@ -246,6 +246,8 @@ model LotFilingMapper {
 }
 
 
+
+
 model FilingItems {
   id  Int  @id @default(autoincrement())
   createdAt  DateTime @default(now())
@@ -318,6 +320,7 @@ model SettingEntry {
   filingItems      FilingItems[]
   settingTotalBalance SettingTotalBalance[]
   settingWastage SettingWastage[]
+  LotSettingMapper LotSettingMapper[]
 }
 
 model SettingItems { 
@@ -347,6 +350,9 @@ model LotSettingMapper {
   lotId LotInfo @relation(fields: [lot_id], references: [id], onDelete: Cascade)
   filing_item_id Int?
   itemId FilingItems? @relation(fields: [filing_item_id],references: [id],onDelete: Cascade)
+  setting_entry_id Int 
+  settingEntry   SettingEntry @relation(fields: [setting_entry_id], references: [id], onDelete: Cascade)
+ 
 
 }
 
@@ -359,6 +365,8 @@ model SettingTotalBalance {
   stone_weight Float
   remarks String? 
   wastage Boolean
+  total_product_weight Float
+  current_balance_weight Float
   total_scrap_weight Float?
   balance Float?
   setting_entry_id Int
