@@ -4016,12 +4016,14 @@ export namespace Prisma {
     filingItems: number
     settingTotalBalance: number
     settingWastage: number
+    LotSettingMapper: number
   }
 
   export type SettingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filingItems?: boolean | SettingEntryCountOutputTypeCountFilingItemsArgs
     settingTotalBalance?: boolean | SettingEntryCountOutputTypeCountSettingTotalBalanceArgs
     settingWastage?: boolean | SettingEntryCountOutputTypeCountSettingWastageArgs
+    LotSettingMapper?: boolean | SettingEntryCountOutputTypeCountLotSettingMapperArgs
   }
 
   // Custom InputTypes
@@ -4054,6 +4056,13 @@ export namespace Prisma {
    */
   export type SettingEntryCountOutputTypeCountSettingWastageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SettingWastageWhereInput
+  }
+
+  /**
+   * SettingEntryCountOutputType without action
+   */
+  export type SettingEntryCountOutputTypeCountLotSettingMapperArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LotSettingMapperWhereInput
   }
 
 
@@ -24843,6 +24852,7 @@ export namespace Prisma {
     filingItems?: boolean | SettingEntry$filingItemsArgs<ExtArgs>
     settingTotalBalance?: boolean | SettingEntry$settingTotalBalanceArgs<ExtArgs>
     settingWastage?: boolean | SettingEntry$settingWastageArgs<ExtArgs>
+    LotSettingMapper?: boolean | SettingEntry$LotSettingMapperArgs<ExtArgs>
     _count?: boolean | SettingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["settingEntry"]>
 
@@ -24862,6 +24872,7 @@ export namespace Prisma {
     filingItems?: boolean | SettingEntry$filingItemsArgs<ExtArgs>
     settingTotalBalance?: boolean | SettingEntry$settingTotalBalanceArgs<ExtArgs>
     settingWastage?: boolean | SettingEntry$settingWastageArgs<ExtArgs>
+    LotSettingMapper?: boolean | SettingEntry$LotSettingMapperArgs<ExtArgs>
     _count?: boolean | SettingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -24873,6 +24884,7 @@ export namespace Prisma {
       filingItems: Prisma.$FilingItemsPayload<ExtArgs>[]
       settingTotalBalance: Prisma.$SettingTotalBalancePayload<ExtArgs>[]
       settingWastage: Prisma.$SettingWastagePayload<ExtArgs>[]
+      LotSettingMapper: Prisma.$LotSettingMapperPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -25224,6 +25236,7 @@ export namespace Prisma {
     filingItems<T extends SettingEntry$filingItemsArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$filingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     settingTotalBalance<T extends SettingEntry$settingTotalBalanceArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$settingTotalBalanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     settingWastage<T extends SettingEntry$settingWastageArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$settingWastageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    LotSettingMapper<T extends SettingEntry$LotSettingMapperArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$LotSettingMapperArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LotSettingMapperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -25669,6 +25682,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SettingWastageScalarFieldEnum | SettingWastageScalarFieldEnum[]
+  }
+
+  /**
+   * SettingEntry.LotSettingMapper
+   */
+  export type SettingEntry$LotSettingMapperArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LotSettingMapper
+     */
+    select?: LotSettingMapperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LotSettingMapper
+     */
+    omit?: LotSettingMapperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LotSettingMapperInclude<ExtArgs> | null
+    where?: LotSettingMapperWhereInput
+    orderBy?: LotSettingMapperOrderByWithRelationInput | LotSettingMapperOrderByWithRelationInput[]
+    cursor?: LotSettingMapperWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LotSettingMapperScalarFieldEnum | LotSettingMapperScalarFieldEnum[]
   }
 
   /**
@@ -26837,6 +26874,7 @@ export namespace Prisma {
     setting_id: number | null
     lot_id: number | null
     filing_item_id: number | null
+    setting_entry_id: number | null
   }
 
   export type LotSettingMapperSumAggregateOutputType = {
@@ -26844,6 +26882,7 @@ export namespace Prisma {
     setting_id: number | null
     lot_id: number | null
     filing_item_id: number | null
+    setting_entry_id: number | null
   }
 
   export type LotSettingMapperMinAggregateOutputType = {
@@ -26851,6 +26890,7 @@ export namespace Prisma {
     setting_id: number | null
     lot_id: number | null
     filing_item_id: number | null
+    setting_entry_id: number | null
   }
 
   export type LotSettingMapperMaxAggregateOutputType = {
@@ -26858,6 +26898,7 @@ export namespace Prisma {
     setting_id: number | null
     lot_id: number | null
     filing_item_id: number | null
+    setting_entry_id: number | null
   }
 
   export type LotSettingMapperCountAggregateOutputType = {
@@ -26865,6 +26906,7 @@ export namespace Prisma {
     setting_id: number
     lot_id: number
     filing_item_id: number
+    setting_entry_id: number
     _all: number
   }
 
@@ -26874,6 +26916,7 @@ export namespace Prisma {
     setting_id?: true
     lot_id?: true
     filing_item_id?: true
+    setting_entry_id?: true
   }
 
   export type LotSettingMapperSumAggregateInputType = {
@@ -26881,6 +26924,7 @@ export namespace Prisma {
     setting_id?: true
     lot_id?: true
     filing_item_id?: true
+    setting_entry_id?: true
   }
 
   export type LotSettingMapperMinAggregateInputType = {
@@ -26888,6 +26932,7 @@ export namespace Prisma {
     setting_id?: true
     lot_id?: true
     filing_item_id?: true
+    setting_entry_id?: true
   }
 
   export type LotSettingMapperMaxAggregateInputType = {
@@ -26895,6 +26940,7 @@ export namespace Prisma {
     setting_id?: true
     lot_id?: true
     filing_item_id?: true
+    setting_entry_id?: true
   }
 
   export type LotSettingMapperCountAggregateInputType = {
@@ -26902,6 +26948,7 @@ export namespace Prisma {
     setting_id?: true
     lot_id?: true
     filing_item_id?: true
+    setting_entry_id?: true
     _all?: true
   }
 
@@ -26996,6 +27043,7 @@ export namespace Prisma {
     setting_id: number
     lot_id: number
     filing_item_id: number | null
+    setting_entry_id: number
     _count: LotSettingMapperCountAggregateOutputType | null
     _avg: LotSettingMapperAvgAggregateOutputType | null
     _sum: LotSettingMapperSumAggregateOutputType | null
@@ -27022,9 +27070,11 @@ export namespace Prisma {
     setting_id?: boolean
     lot_id?: boolean
     filing_item_id?: boolean
+    setting_entry_id?: boolean
     settingId?: boolean | AddSettingDefaultArgs<ExtArgs>
     lotId?: boolean | LotInfoDefaultArgs<ExtArgs>
     itemId?: boolean | LotSettingMapper$itemIdArgs<ExtArgs>
+    settingEntry?: boolean | SettingEntryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["lotSettingMapper"]>
 
 
@@ -27034,13 +27084,15 @@ export namespace Prisma {
     setting_id?: boolean
     lot_id?: boolean
     filing_item_id?: boolean
+    setting_entry_id?: boolean
   }
 
-  export type LotSettingMapperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "setting_id" | "lot_id" | "filing_item_id", ExtArgs["result"]["lotSettingMapper"]>
+  export type LotSettingMapperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "setting_id" | "lot_id" | "filing_item_id" | "setting_entry_id", ExtArgs["result"]["lotSettingMapper"]>
   export type LotSettingMapperInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     settingId?: boolean | AddSettingDefaultArgs<ExtArgs>
     lotId?: boolean | LotInfoDefaultArgs<ExtArgs>
     itemId?: boolean | LotSettingMapper$itemIdArgs<ExtArgs>
+    settingEntry?: boolean | SettingEntryDefaultArgs<ExtArgs>
   }
 
   export type $LotSettingMapperPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -27049,12 +27101,14 @@ export namespace Prisma {
       settingId: Prisma.$AddSettingPayload<ExtArgs>
       lotId: Prisma.$LotInfoPayload<ExtArgs>
       itemId: Prisma.$FilingItemsPayload<ExtArgs> | null
+      settingEntry: Prisma.$SettingEntryPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       setting_id: number
       lot_id: number
       filing_item_id: number | null
+      setting_entry_id: number
     }, ExtArgs["result"]["lotSettingMapper"]>
     composites: {}
   }
@@ -27398,6 +27452,7 @@ export namespace Prisma {
     settingId<T extends AddSettingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddSettingDefaultArgs<ExtArgs>>): Prisma__AddSettingClient<$Result.GetResult<Prisma.$AddSettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     lotId<T extends LotInfoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LotInfoDefaultArgs<ExtArgs>>): Prisma__LotInfoClient<$Result.GetResult<Prisma.$LotInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     itemId<T extends LotSettingMapper$itemIdArgs<ExtArgs> = {}>(args?: Subset<T, LotSettingMapper$itemIdArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    settingEntry<T extends SettingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntryDefaultArgs<ExtArgs>>): Prisma__SettingEntryClient<$Result.GetResult<Prisma.$SettingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -27431,6 +27486,7 @@ export namespace Prisma {
     readonly setting_id: FieldRef<"LotSettingMapper", 'Int'>
     readonly lot_id: FieldRef<"LotSettingMapper", 'Int'>
     readonly filing_item_id: FieldRef<"LotSettingMapper", 'Int'>
+    readonly setting_entry_id: FieldRef<"LotSettingMapper", 'Int'>
   }
     
 
@@ -27828,6 +27884,8 @@ export namespace Prisma {
     receipt_weight: number | null
     stone_count: number | null
     stone_weight: number | null
+    total_product_weight: number | null
+    current_balance_weight: number | null
     total_scrap_weight: number | null
     balance: number | null
     setting_entry_id: number | null
@@ -27838,6 +27896,8 @@ export namespace Prisma {
     receipt_weight: number | null
     stone_count: number | null
     stone_weight: number | null
+    total_product_weight: number | null
+    current_balance_weight: number | null
     total_scrap_weight: number | null
     balance: number | null
     setting_entry_id: number | null
@@ -27851,6 +27911,8 @@ export namespace Prisma {
     stone_weight: number | null
     remarks: string | null
     wastage: boolean | null
+    total_product_weight: number | null
+    current_balance_weight: number | null
     total_scrap_weight: number | null
     balance: number | null
     setting_entry_id: number | null
@@ -27864,6 +27926,8 @@ export namespace Prisma {
     stone_weight: number | null
     remarks: string | null
     wastage: boolean | null
+    total_product_weight: number | null
+    current_balance_weight: number | null
     total_scrap_weight: number | null
     balance: number | null
     setting_entry_id: number | null
@@ -27877,6 +27941,8 @@ export namespace Prisma {
     stone_weight: number
     remarks: number
     wastage: number
+    total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight: number
     balance: number
     setting_entry_id: number
@@ -27889,6 +27955,8 @@ export namespace Prisma {
     receipt_weight?: true
     stone_count?: true
     stone_weight?: true
+    total_product_weight?: true
+    current_balance_weight?: true
     total_scrap_weight?: true
     balance?: true
     setting_entry_id?: true
@@ -27899,6 +27967,8 @@ export namespace Prisma {
     receipt_weight?: true
     stone_count?: true
     stone_weight?: true
+    total_product_weight?: true
+    current_balance_weight?: true
     total_scrap_weight?: true
     balance?: true
     setting_entry_id?: true
@@ -27912,6 +27982,8 @@ export namespace Prisma {
     stone_weight?: true
     remarks?: true
     wastage?: true
+    total_product_weight?: true
+    current_balance_weight?: true
     total_scrap_weight?: true
     balance?: true
     setting_entry_id?: true
@@ -27925,6 +27997,8 @@ export namespace Prisma {
     stone_weight?: true
     remarks?: true
     wastage?: true
+    total_product_weight?: true
+    current_balance_weight?: true
     total_scrap_weight?: true
     balance?: true
     setting_entry_id?: true
@@ -27938,6 +28012,8 @@ export namespace Prisma {
     stone_weight?: true
     remarks?: true
     wastage?: true
+    total_product_weight?: true
+    current_balance_weight?: true
     total_scrap_weight?: true
     balance?: true
     setting_entry_id?: true
@@ -28038,6 +28114,8 @@ export namespace Prisma {
     stone_weight: number
     remarks: string | null
     wastage: boolean
+    total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight: number | null
     balance: number | null
     setting_entry_id: number
@@ -28070,6 +28148,8 @@ export namespace Prisma {
     stone_weight?: boolean
     remarks?: boolean
     wastage?: boolean
+    total_product_weight?: boolean
+    current_balance_weight?: boolean
     total_scrap_weight?: boolean
     balance?: boolean
     setting_entry_id?: boolean
@@ -28086,12 +28166,14 @@ export namespace Prisma {
     stone_weight?: boolean
     remarks?: boolean
     wastage?: boolean
+    total_product_weight?: boolean
+    current_balance_weight?: boolean
     total_scrap_weight?: boolean
     balance?: boolean
     setting_entry_id?: boolean
   }
 
-  export type SettingTotalBalanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "receipt_weight" | "stone_count" | "stone_weight" | "remarks" | "wastage" | "total_scrap_weight" | "balance" | "setting_entry_id", ExtArgs["result"]["settingTotalBalance"]>
+  export type SettingTotalBalanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "receipt_weight" | "stone_count" | "stone_weight" | "remarks" | "wastage" | "total_product_weight" | "current_balance_weight" | "total_scrap_weight" | "balance" | "setting_entry_id", ExtArgs["result"]["settingTotalBalance"]>
   export type SettingTotalBalanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     setting_entry?: boolean | SettingEntryDefaultArgs<ExtArgs>
   }
@@ -28109,6 +28191,8 @@ export namespace Prisma {
       stone_weight: number
       remarks: string | null
       wastage: boolean
+      total_product_weight: number
+      current_balance_weight: number
       total_scrap_weight: number | null
       balance: number | null
       setting_entry_id: number
@@ -28489,6 +28573,8 @@ export namespace Prisma {
     readonly stone_weight: FieldRef<"SettingTotalBalance", 'Float'>
     readonly remarks: FieldRef<"SettingTotalBalance", 'String'>
     readonly wastage: FieldRef<"SettingTotalBalance", 'Boolean'>
+    readonly total_product_weight: FieldRef<"SettingTotalBalance", 'Float'>
+    readonly current_balance_weight: FieldRef<"SettingTotalBalance", 'Float'>
     readonly total_scrap_weight: FieldRef<"SettingTotalBalance", 'Float'>
     readonly balance: FieldRef<"SettingTotalBalance", 'Float'>
     readonly setting_entry_id: FieldRef<"SettingTotalBalance", 'Int'>
@@ -36737,7 +36823,8 @@ export namespace Prisma {
     id: 'id',
     setting_id: 'setting_id',
     lot_id: 'lot_id',
-    filing_item_id: 'filing_item_id'
+    filing_item_id: 'filing_item_id',
+    setting_entry_id: 'setting_entry_id'
   };
 
   export type LotSettingMapperScalarFieldEnum = (typeof LotSettingMapperScalarFieldEnum)[keyof typeof LotSettingMapperScalarFieldEnum]
@@ -36751,6 +36838,8 @@ export namespace Prisma {
     stone_weight: 'stone_weight',
     remarks: 'remarks',
     wastage: 'wastage',
+    total_product_weight: 'total_product_weight',
+    current_balance_weight: 'current_balance_weight',
     total_scrap_weight: 'total_scrap_weight',
     balance: 'balance',
     setting_entry_id: 'setting_entry_id'
@@ -38549,6 +38638,7 @@ export namespace Prisma {
     filingItems?: FilingItemsListRelationFilter
     settingTotalBalance?: SettingTotalBalanceListRelationFilter
     settingWastage?: SettingWastageListRelationFilter
+    LotSettingMapper?: LotSettingMapperListRelationFilter
   }
 
   export type SettingEntryOrderByWithRelationInput = {
@@ -38561,6 +38651,7 @@ export namespace Prisma {
     filingItems?: FilingItemsOrderByRelationAggregateInput
     settingTotalBalance?: SettingTotalBalanceOrderByRelationAggregateInput
     settingWastage?: SettingWastageOrderByRelationAggregateInput
+    LotSettingMapper?: LotSettingMapperOrderByRelationAggregateInput
   }
 
   export type SettingEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -38576,6 +38667,7 @@ export namespace Prisma {
     filingItems?: FilingItemsListRelationFilter
     settingTotalBalance?: SettingTotalBalanceListRelationFilter
     settingWastage?: SettingWastageListRelationFilter
+    LotSettingMapper?: LotSettingMapperListRelationFilter
   }, "id" | "casting_item_id">
 
   export type SettingEntryOrderByWithAggregationInput = {
@@ -38696,9 +38788,11 @@ export namespace Prisma {
     setting_id?: IntFilter<"LotSettingMapper"> | number
     lot_id?: IntFilter<"LotSettingMapper"> | number
     filing_item_id?: IntNullableFilter<"LotSettingMapper"> | number | null
+    setting_entry_id?: IntFilter<"LotSettingMapper"> | number
     settingId?: XOR<AddSettingScalarRelationFilter, AddSettingWhereInput>
     lotId?: XOR<LotInfoScalarRelationFilter, LotInfoWhereInput>
     itemId?: XOR<FilingItemsNullableScalarRelationFilter, FilingItemsWhereInput> | null
+    settingEntry?: XOR<SettingEntryScalarRelationFilter, SettingEntryWhereInput>
   }
 
   export type LotSettingMapperOrderByWithRelationInput = {
@@ -38706,9 +38800,11 @@ export namespace Prisma {
     setting_id?: SortOrder
     lot_id?: SortOrder
     filing_item_id?: SortOrderInput | SortOrder
+    setting_entry_id?: SortOrder
     settingId?: AddSettingOrderByWithRelationInput
     lotId?: LotInfoOrderByWithRelationInput
     itemId?: FilingItemsOrderByWithRelationInput
+    settingEntry?: SettingEntryOrderByWithRelationInput
   }
 
   export type LotSettingMapperWhereUniqueInput = Prisma.AtLeast<{
@@ -38719,9 +38815,11 @@ export namespace Prisma {
     setting_id?: IntFilter<"LotSettingMapper"> | number
     lot_id?: IntFilter<"LotSettingMapper"> | number
     filing_item_id?: IntNullableFilter<"LotSettingMapper"> | number | null
+    setting_entry_id?: IntFilter<"LotSettingMapper"> | number
     settingId?: XOR<AddSettingScalarRelationFilter, AddSettingWhereInput>
     lotId?: XOR<LotInfoScalarRelationFilter, LotInfoWhereInput>
     itemId?: XOR<FilingItemsNullableScalarRelationFilter, FilingItemsWhereInput> | null
+    settingEntry?: XOR<SettingEntryScalarRelationFilter, SettingEntryWhereInput>
   }, "id">
 
   export type LotSettingMapperOrderByWithAggregationInput = {
@@ -38729,6 +38827,7 @@ export namespace Prisma {
     setting_id?: SortOrder
     lot_id?: SortOrder
     filing_item_id?: SortOrderInput | SortOrder
+    setting_entry_id?: SortOrder
     _count?: LotSettingMapperCountOrderByAggregateInput
     _avg?: LotSettingMapperAvgOrderByAggregateInput
     _max?: LotSettingMapperMaxOrderByAggregateInput
@@ -38744,6 +38843,7 @@ export namespace Prisma {
     setting_id?: IntWithAggregatesFilter<"LotSettingMapper"> | number
     lot_id?: IntWithAggregatesFilter<"LotSettingMapper"> | number
     filing_item_id?: IntNullableWithAggregatesFilter<"LotSettingMapper"> | number | null
+    setting_entry_id?: IntWithAggregatesFilter<"LotSettingMapper"> | number
   }
 
   export type SettingTotalBalanceWhereInput = {
@@ -38757,6 +38857,8 @@ export namespace Prisma {
     stone_weight?: FloatFilter<"SettingTotalBalance"> | number
     remarks?: StringNullableFilter<"SettingTotalBalance"> | string | null
     wastage?: BoolFilter<"SettingTotalBalance"> | boolean
+    total_product_weight?: FloatFilter<"SettingTotalBalance"> | number
+    current_balance_weight?: FloatFilter<"SettingTotalBalance"> | number
     total_scrap_weight?: FloatNullableFilter<"SettingTotalBalance"> | number | null
     balance?: FloatNullableFilter<"SettingTotalBalance"> | number | null
     setting_entry_id?: IntFilter<"SettingTotalBalance"> | number
@@ -38771,6 +38873,8 @@ export namespace Prisma {
     stone_weight?: SortOrder
     remarks?: SortOrderInput | SortOrder
     wastage?: SortOrder
+    total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrderInput | SortOrder
     balance?: SortOrderInput | SortOrder
     setting_entry_id?: SortOrder
@@ -38789,6 +38893,8 @@ export namespace Prisma {
     stone_weight?: FloatFilter<"SettingTotalBalance"> | number
     remarks?: StringNullableFilter<"SettingTotalBalance"> | string | null
     wastage?: BoolFilter<"SettingTotalBalance"> | boolean
+    total_product_weight?: FloatFilter<"SettingTotalBalance"> | number
+    current_balance_weight?: FloatFilter<"SettingTotalBalance"> | number
     total_scrap_weight?: FloatNullableFilter<"SettingTotalBalance"> | number | null
     balance?: FloatNullableFilter<"SettingTotalBalance"> | number | null
     setting_entry_id?: IntFilter<"SettingTotalBalance"> | number
@@ -38803,6 +38909,8 @@ export namespace Prisma {
     stone_weight?: SortOrder
     remarks?: SortOrderInput | SortOrder
     wastage?: SortOrder
+    total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrderInput | SortOrder
     balance?: SortOrderInput | SortOrder
     setting_entry_id?: SortOrder
@@ -38824,6 +38932,8 @@ export namespace Prisma {
     stone_weight?: FloatWithAggregatesFilter<"SettingTotalBalance"> | number
     remarks?: StringNullableWithAggregatesFilter<"SettingTotalBalance"> | string | null
     wastage?: BoolWithAggregatesFilter<"SettingTotalBalance"> | boolean
+    total_product_weight?: FloatWithAggregatesFilter<"SettingTotalBalance"> | number
+    current_balance_weight?: FloatWithAggregatesFilter<"SettingTotalBalance"> | number
     total_scrap_weight?: FloatNullableWithAggregatesFilter<"SettingTotalBalance"> | number | null
     balance?: FloatNullableWithAggregatesFilter<"SettingTotalBalance"> | number | null
     setting_entry_id?: IntWithAggregatesFilter<"SettingTotalBalance"> | number
@@ -40902,6 +41012,7 @@ export namespace Prisma {
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryUncheckedCreateInput = {
@@ -40912,6 +41023,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryUpdateInput = {
@@ -40921,6 +41033,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateInput = {
@@ -40931,6 +41044,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type SettingEntryCreateManyInput = {
@@ -41043,6 +41157,7 @@ export namespace Prisma {
     settingId: AddSettingCreateNestedOneWithoutSettingMapperInput
     lotId: LotInfoCreateNestedOneWithoutSettingMapperInput
     itemId?: FilingItemsCreateNestedOneWithoutLot_setting_mapperInput
+    settingEntry: SettingEntryCreateNestedOneWithoutLotSettingMapperInput
   }
 
   export type LotSettingMapperUncheckedCreateInput = {
@@ -41050,12 +41165,14 @@ export namespace Prisma {
     setting_id: number
     lot_id: number
     filing_item_id?: number | null
+    setting_entry_id: number
   }
 
   export type LotSettingMapperUpdateInput = {
     settingId?: AddSettingUpdateOneRequiredWithoutSettingMapperNestedInput
     lotId?: LotInfoUpdateOneRequiredWithoutSettingMapperNestedInput
     itemId?: FilingItemsUpdateOneWithoutLot_setting_mapperNestedInput
+    settingEntry?: SettingEntryUpdateOneRequiredWithoutLotSettingMapperNestedInput
   }
 
   export type LotSettingMapperUncheckedUpdateInput = {
@@ -41063,6 +41180,7 @@ export namespace Prisma {
     setting_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotSettingMapperCreateManyInput = {
@@ -41070,6 +41188,7 @@ export namespace Prisma {
     setting_id: number
     lot_id: number
     filing_item_id?: number | null
+    setting_entry_id: number
   }
 
   export type LotSettingMapperUpdateManyMutationInput = {
@@ -41081,6 +41200,7 @@ export namespace Prisma {
     setting_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type SettingTotalBalanceCreateInput = {
@@ -41090,6 +41210,8 @@ export namespace Prisma {
     stone_weight: number
     remarks?: string | null
     wastage: boolean
+    total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     balance?: number | null
     setting_entry: SettingEntryCreateNestedOneWithoutSettingTotalBalanceInput
@@ -41103,6 +41225,8 @@ export namespace Prisma {
     stone_weight: number
     remarks?: string | null
     wastage: boolean
+    total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     balance?: number | null
     setting_entry_id: number
@@ -41115,6 +41239,8 @@ export namespace Prisma {
     stone_weight?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     balance?: NullableFloatFieldUpdateOperationsInput | number | null
     setting_entry?: SettingEntryUpdateOneRequiredWithoutSettingTotalBalanceNestedInput
@@ -41128,6 +41254,8 @@ export namespace Prisma {
     stone_weight?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     balance?: NullableFloatFieldUpdateOperationsInput | number | null
     setting_entry_id?: IntFieldUpdateOperationsInput | number
@@ -41141,6 +41269,8 @@ export namespace Prisma {
     stone_weight: number
     remarks?: string | null
     wastage: boolean
+    total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     balance?: number | null
     setting_entry_id: number
@@ -41153,6 +41283,8 @@ export namespace Prisma {
     stone_weight?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     balance?: NullableFloatFieldUpdateOperationsInput | number | null
   }
@@ -41165,6 +41297,8 @@ export namespace Prisma {
     stone_weight?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     balance?: NullableFloatFieldUpdateOperationsInput | number | null
     setting_entry_id?: IntFieldUpdateOperationsInput | number
@@ -43309,11 +43443,17 @@ export namespace Prisma {
     isNot?: FilingItemsWhereInput | null
   }
 
+  export type SettingEntryScalarRelationFilter = {
+    is?: SettingEntryWhereInput
+    isNot?: SettingEntryWhereInput
+  }
+
   export type LotSettingMapperCountOrderByAggregateInput = {
     id?: SortOrder
     setting_id?: SortOrder
     lot_id?: SortOrder
     filing_item_id?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type LotSettingMapperAvgOrderByAggregateInput = {
@@ -43321,6 +43461,7 @@ export namespace Prisma {
     setting_id?: SortOrder
     lot_id?: SortOrder
     filing_item_id?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type LotSettingMapperMaxOrderByAggregateInput = {
@@ -43328,6 +43469,7 @@ export namespace Prisma {
     setting_id?: SortOrder
     lot_id?: SortOrder
     filing_item_id?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type LotSettingMapperMinOrderByAggregateInput = {
@@ -43335,6 +43477,7 @@ export namespace Prisma {
     setting_id?: SortOrder
     lot_id?: SortOrder
     filing_item_id?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type LotSettingMapperSumOrderByAggregateInput = {
@@ -43342,11 +43485,7 @@ export namespace Prisma {
     setting_id?: SortOrder
     lot_id?: SortOrder
     filing_item_id?: SortOrder
-  }
-
-  export type SettingEntryScalarRelationFilter = {
-    is?: SettingEntryWhereInput
-    isNot?: SettingEntryWhereInput
+    setting_entry_id?: SortOrder
   }
 
   export type SettingTotalBalanceOrderByRelevanceInput = {
@@ -43363,6 +43502,8 @@ export namespace Prisma {
     stone_weight?: SortOrder
     remarks?: SortOrder
     wastage?: SortOrder
+    total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrder
     balance?: SortOrder
     setting_entry_id?: SortOrder
@@ -43373,6 +43514,8 @@ export namespace Prisma {
     receipt_weight?: SortOrder
     stone_count?: SortOrder
     stone_weight?: SortOrder
+    total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrder
     balance?: SortOrder
     setting_entry_id?: SortOrder
@@ -43386,6 +43529,8 @@ export namespace Prisma {
     stone_weight?: SortOrder
     remarks?: SortOrder
     wastage?: SortOrder
+    total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrder
     balance?: SortOrder
     setting_entry_id?: SortOrder
@@ -43399,6 +43544,8 @@ export namespace Prisma {
     stone_weight?: SortOrder
     remarks?: SortOrder
     wastage?: SortOrder
+    total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrder
     balance?: SortOrder
     setting_entry_id?: SortOrder
@@ -43409,6 +43556,8 @@ export namespace Prisma {
     receipt_weight?: SortOrder
     stone_count?: SortOrder
     stone_weight?: SortOrder
+    total_product_weight?: SortOrder
+    current_balance_weight?: SortOrder
     total_scrap_weight?: SortOrder
     balance?: SortOrder
     setting_entry_id?: SortOrder
@@ -46183,6 +46332,13 @@ export namespace Prisma {
     connect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
   }
 
+  export type LotSettingMapperCreateNestedManyWithoutSettingEntryInput = {
+    create?: XOR<LotSettingMapperCreateWithoutSettingEntryInput, LotSettingMapperUncheckedCreateWithoutSettingEntryInput> | LotSettingMapperCreateWithoutSettingEntryInput[] | LotSettingMapperUncheckedCreateWithoutSettingEntryInput[]
+    connectOrCreate?: LotSettingMapperCreateOrConnectWithoutSettingEntryInput | LotSettingMapperCreateOrConnectWithoutSettingEntryInput[]
+    createMany?: LotSettingMapperCreateManySettingEntryInputEnvelope
+    connect?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
+  }
+
   export type FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput = {
     create?: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput> | FilingItemsCreateWithoutSetting_entryInput[] | FilingItemsUncheckedCreateWithoutSetting_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutSetting_entryInput | FilingItemsCreateOrConnectWithoutSetting_entryInput[]
@@ -46201,6 +46357,13 @@ export namespace Prisma {
     connectOrCreate?: SettingWastageCreateOrConnectWithoutSettingEntryIdInput | SettingWastageCreateOrConnectWithoutSettingEntryIdInput[]
     createMany?: SettingWastageCreateManySettingEntryIdInputEnvelope
     connect?: SettingWastageWhereUniqueInput | SettingWastageWhereUniqueInput[]
+  }
+
+  export type LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput = {
+    create?: XOR<LotSettingMapperCreateWithoutSettingEntryInput, LotSettingMapperUncheckedCreateWithoutSettingEntryInput> | LotSettingMapperCreateWithoutSettingEntryInput[] | LotSettingMapperUncheckedCreateWithoutSettingEntryInput[]
+    connectOrCreate?: LotSettingMapperCreateOrConnectWithoutSettingEntryInput | LotSettingMapperCreateOrConnectWithoutSettingEntryInput[]
+    createMany?: LotSettingMapperCreateManySettingEntryInputEnvelope
+    connect?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
   }
 
   export type AddSettingUpdateOneRequiredWithoutSettingsNestedInput = {
@@ -46260,6 +46423,20 @@ export namespace Prisma {
     deleteMany?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
   }
 
+  export type LotSettingMapperUpdateManyWithoutSettingEntryNestedInput = {
+    create?: XOR<LotSettingMapperCreateWithoutSettingEntryInput, LotSettingMapperUncheckedCreateWithoutSettingEntryInput> | LotSettingMapperCreateWithoutSettingEntryInput[] | LotSettingMapperUncheckedCreateWithoutSettingEntryInput[]
+    connectOrCreate?: LotSettingMapperCreateOrConnectWithoutSettingEntryInput | LotSettingMapperCreateOrConnectWithoutSettingEntryInput[]
+    upsert?: LotSettingMapperUpsertWithWhereUniqueWithoutSettingEntryInput | LotSettingMapperUpsertWithWhereUniqueWithoutSettingEntryInput[]
+    createMany?: LotSettingMapperCreateManySettingEntryInputEnvelope
+    set?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
+    disconnect?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
+    delete?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
+    connect?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
+    update?: LotSettingMapperUpdateWithWhereUniqueWithoutSettingEntryInput | LotSettingMapperUpdateWithWhereUniqueWithoutSettingEntryInput[]
+    updateMany?: LotSettingMapperUpdateManyWithWhereWithoutSettingEntryInput | LotSettingMapperUpdateManyWithWhereWithoutSettingEntryInput[]
+    deleteMany?: LotSettingMapperScalarWhereInput | LotSettingMapperScalarWhereInput[]
+  }
+
   export type FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput = {
     create?: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput> | FilingItemsCreateWithoutSetting_entryInput[] | FilingItemsUncheckedCreateWithoutSetting_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutSetting_entryInput | FilingItemsCreateOrConnectWithoutSetting_entryInput[]
@@ -46299,6 +46476,20 @@ export namespace Prisma {
     update?: SettingWastageUpdateWithWhereUniqueWithoutSettingEntryIdInput | SettingWastageUpdateWithWhereUniqueWithoutSettingEntryIdInput[]
     updateMany?: SettingWastageUpdateManyWithWhereWithoutSettingEntryIdInput | SettingWastageUpdateManyWithWhereWithoutSettingEntryIdInput[]
     deleteMany?: SettingWastageScalarWhereInput | SettingWastageScalarWhereInput[]
+  }
+
+  export type LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput = {
+    create?: XOR<LotSettingMapperCreateWithoutSettingEntryInput, LotSettingMapperUncheckedCreateWithoutSettingEntryInput> | LotSettingMapperCreateWithoutSettingEntryInput[] | LotSettingMapperUncheckedCreateWithoutSettingEntryInput[]
+    connectOrCreate?: LotSettingMapperCreateOrConnectWithoutSettingEntryInput | LotSettingMapperCreateOrConnectWithoutSettingEntryInput[]
+    upsert?: LotSettingMapperUpsertWithWhereUniqueWithoutSettingEntryInput | LotSettingMapperUpsertWithWhereUniqueWithoutSettingEntryInput[]
+    createMany?: LotSettingMapperCreateManySettingEntryInputEnvelope
+    set?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
+    disconnect?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
+    delete?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
+    connect?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
+    update?: LotSettingMapperUpdateWithWhereUniqueWithoutSettingEntryInput | LotSettingMapperUpdateWithWhereUniqueWithoutSettingEntryInput[]
+    updateMany?: LotSettingMapperUpdateManyWithWhereWithoutSettingEntryInput | LotSettingMapperUpdateManyWithWhereWithoutSettingEntryInput[]
+    deleteMany?: LotSettingMapperScalarWhereInput | LotSettingMapperScalarWhereInput[]
   }
 
   export type AddItemCreateNestedOneWithoutSetting_itemsInput = {
@@ -46507,6 +46698,12 @@ export namespace Prisma {
     connect?: FilingItemsWhereUniqueInput
   }
 
+  export type SettingEntryCreateNestedOneWithoutLotSettingMapperInput = {
+    create?: XOR<SettingEntryCreateWithoutLotSettingMapperInput, SettingEntryUncheckedCreateWithoutLotSettingMapperInput>
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutLotSettingMapperInput
+    connect?: SettingEntryWhereUniqueInput
+  }
+
   export type AddSettingUpdateOneRequiredWithoutSettingMapperNestedInput = {
     create?: XOR<AddSettingCreateWithoutSettingMapperInput, AddSettingUncheckedCreateWithoutSettingMapperInput>
     connectOrCreate?: AddSettingCreateOrConnectWithoutSettingMapperInput
@@ -46531,6 +46728,14 @@ export namespace Prisma {
     delete?: FilingItemsWhereInput | boolean
     connect?: FilingItemsWhereUniqueInput
     update?: XOR<XOR<FilingItemsUpdateToOneWithWhereWithoutLot_setting_mapperInput, FilingItemsUpdateWithoutLot_setting_mapperInput>, FilingItemsUncheckedUpdateWithoutLot_setting_mapperInput>
+  }
+
+  export type SettingEntryUpdateOneRequiredWithoutLotSettingMapperNestedInput = {
+    create?: XOR<SettingEntryCreateWithoutLotSettingMapperInput, SettingEntryUncheckedCreateWithoutLotSettingMapperInput>
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutLotSettingMapperInput
+    upsert?: SettingEntryUpsertWithoutLotSettingMapperInput
+    connect?: SettingEntryWhereUniqueInput
+    update?: XOR<XOR<SettingEntryUpdateToOneWithWhereWithoutLotSettingMapperInput, SettingEntryUpdateWithoutLotSettingMapperInput>, SettingEntryUncheckedUpdateWithoutLotSettingMapperInput>
   }
 
   export type SettingEntryCreateNestedOneWithoutSettingTotalBalanceInput = {
@@ -47839,6 +48044,7 @@ export namespace Prisma {
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryUncheckedCreateWithoutSetting_personInput = {
@@ -47848,6 +48054,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryCreateOrConnectWithoutSetting_personInput = {
@@ -47863,12 +48070,14 @@ export namespace Prisma {
   export type LotSettingMapperCreateWithoutSettingIdInput = {
     lotId: LotInfoCreateNestedOneWithoutSettingMapperInput
     itemId?: FilingItemsCreateNestedOneWithoutLot_setting_mapperInput
+    settingEntry: SettingEntryCreateNestedOneWithoutLotSettingMapperInput
   }
 
   export type LotSettingMapperUncheckedCreateWithoutSettingIdInput = {
     id?: number
     lot_id: number
     filing_item_id?: number | null
+    setting_entry_id: number
   }
 
   export type LotSettingMapperCreateOrConnectWithoutSettingIdInput = {
@@ -47960,6 +48169,7 @@ export namespace Prisma {
     setting_id?: IntFilter<"LotSettingMapper"> | number
     lot_id?: IntFilter<"LotSettingMapper"> | number
     filing_item_id?: IntNullableFilter<"LotSettingMapper"> | number | null
+    setting_entry_id?: IntFilter<"LotSettingMapper"> | number
   }
 
   export type LotInfoUpsertWithWhereUniqueWithoutSettingCustomerIdInput = {
@@ -49182,6 +49392,7 @@ export namespace Prisma {
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryUncheckedCreateWithoutCastingItemInput = {
@@ -49191,6 +49402,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryCreateOrConnectWithoutCastingItemInput = {
@@ -49445,6 +49657,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutCastingItemInput = {
@@ -49454,6 +49667,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type BuffingEntryUpsertWithoutCastingItemInput = {
@@ -49730,12 +49944,14 @@ export namespace Prisma {
   export type LotSettingMapperCreateWithoutLotIdInput = {
     settingId: AddSettingCreateNestedOneWithoutSettingMapperInput
     itemId?: FilingItemsCreateNestedOneWithoutLot_setting_mapperInput
+    settingEntry: SettingEntryCreateNestedOneWithoutLotSettingMapperInput
   }
 
   export type LotSettingMapperUncheckedCreateWithoutLotIdInput = {
     id?: number
     setting_id: number
     filing_item_id?: number | null
+    setting_entry_id: number
   }
 
   export type LotSettingMapperCreateOrConnectWithoutLotIdInput = {
@@ -50722,6 +50938,7 @@ export namespace Prisma {
     castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryUncheckedCreateWithoutFilingItemsInput = {
@@ -50731,6 +50948,7 @@ export namespace Prisma {
     casting_item_id: number
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryCreateOrConnectWithoutFilingItemsInput = {
@@ -50799,12 +51017,14 @@ export namespace Prisma {
   export type LotSettingMapperCreateWithoutItemIdInput = {
     settingId: AddSettingCreateNestedOneWithoutSettingMapperInput
     lotId: LotInfoCreateNestedOneWithoutSettingMapperInput
+    settingEntry: SettingEntryCreateNestedOneWithoutLotSettingMapperInput
   }
 
   export type LotSettingMapperUncheckedCreateWithoutItemIdInput = {
     id?: number
     setting_id: number
     lot_id: number
+    setting_entry_id: number
   }
 
   export type LotSettingMapperCreateOrConnectWithoutItemIdInput = {
@@ -51353,6 +51573,8 @@ export namespace Prisma {
     stone_weight: number
     remarks?: string | null
     wastage: boolean
+    total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     balance?: number | null
   }
@@ -51365,6 +51587,8 @@ export namespace Prisma {
     stone_weight: number
     remarks?: string | null
     wastage: boolean
+    total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     balance?: number | null
   }
@@ -51415,6 +51639,29 @@ export namespace Prisma {
 
   export type SettingWastageCreateManySettingEntryIdInputEnvelope = {
     data: SettingWastageCreateManySettingEntryIdInput | SettingWastageCreateManySettingEntryIdInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LotSettingMapperCreateWithoutSettingEntryInput = {
+    settingId: AddSettingCreateNestedOneWithoutSettingMapperInput
+    lotId: LotInfoCreateNestedOneWithoutSettingMapperInput
+    itemId?: FilingItemsCreateNestedOneWithoutLot_setting_mapperInput
+  }
+
+  export type LotSettingMapperUncheckedCreateWithoutSettingEntryInput = {
+    id?: number
+    setting_id: number
+    lot_id: number
+    filing_item_id?: number | null
+  }
+
+  export type LotSettingMapperCreateOrConnectWithoutSettingEntryInput = {
+    where: LotSettingMapperWhereUniqueInput
+    create: XOR<LotSettingMapperCreateWithoutSettingEntryInput, LotSettingMapperUncheckedCreateWithoutSettingEntryInput>
+  }
+
+  export type LotSettingMapperCreateManySettingEntryInputEnvelope = {
+    data: LotSettingMapperCreateManySettingEntryInput | LotSettingMapperCreateManySettingEntryInput[]
     skipDuplicates?: boolean
   }
 
@@ -51537,6 +51784,8 @@ export namespace Prisma {
     stone_weight?: FloatFilter<"SettingTotalBalance"> | number
     remarks?: StringNullableFilter<"SettingTotalBalance"> | string | null
     wastage?: BoolFilter<"SettingTotalBalance"> | boolean
+    total_product_weight?: FloatFilter<"SettingTotalBalance"> | number
+    current_balance_weight?: FloatFilter<"SettingTotalBalance"> | number
     total_scrap_weight?: FloatNullableFilter<"SettingTotalBalance"> | number | null
     balance?: FloatNullableFilter<"SettingTotalBalance"> | number | null
     setting_entry_id?: IntFilter<"SettingTotalBalance"> | number
@@ -51574,6 +51823,22 @@ export namespace Prisma {
     closing_balance?: FloatFilter<"SettingWastage"> | number
     opening_balance?: FloatFilter<"SettingWastage"> | number
     setting_entry_id?: IntFilter<"SettingWastage"> | number
+  }
+
+  export type LotSettingMapperUpsertWithWhereUniqueWithoutSettingEntryInput = {
+    where: LotSettingMapperWhereUniqueInput
+    update: XOR<LotSettingMapperUpdateWithoutSettingEntryInput, LotSettingMapperUncheckedUpdateWithoutSettingEntryInput>
+    create: XOR<LotSettingMapperCreateWithoutSettingEntryInput, LotSettingMapperUncheckedCreateWithoutSettingEntryInput>
+  }
+
+  export type LotSettingMapperUpdateWithWhereUniqueWithoutSettingEntryInput = {
+    where: LotSettingMapperWhereUniqueInput
+    data: XOR<LotSettingMapperUpdateWithoutSettingEntryInput, LotSettingMapperUncheckedUpdateWithoutSettingEntryInput>
+  }
+
+  export type LotSettingMapperUpdateManyWithWhereWithoutSettingEntryInput = {
+    where: LotSettingMapperScalarWhereInput
+    data: XOR<LotSettingMapperUpdateManyMutationInput, LotSettingMapperUncheckedUpdateManyWithoutSettingEntryInput>
   }
 
   export type AddItemCreateWithoutSetting_itemsInput = {
@@ -51962,6 +52227,30 @@ export namespace Prisma {
     create: XOR<FilingItemsCreateWithoutLot_setting_mapperInput, FilingItemsUncheckedCreateWithoutLot_setting_mapperInput>
   }
 
+  export type SettingEntryCreateWithoutLotSettingMapperInput = {
+    createdAt?: Date | string
+    setting_person: AddSettingCreateNestedOneWithoutSettingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
+  }
+
+  export type SettingEntryUncheckedCreateWithoutLotSettingMapperInput = {
+    id?: number
+    createdAt?: Date | string
+    setting_person_id: number
+    casting_item_id: number
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
+  }
+
+  export type SettingEntryCreateOrConnectWithoutLotSettingMapperInput = {
+    where: SettingEntryWhereUniqueInput
+    create: XOR<SettingEntryCreateWithoutLotSettingMapperInput, SettingEntryUncheckedCreateWithoutLotSettingMapperInput>
+  }
+
   export type AddSettingUpsertWithoutSettingMapperInput = {
     update: XOR<AddSettingUpdateWithoutSettingMapperInput, AddSettingUncheckedUpdateWithoutSettingMapperInput>
     create: XOR<AddSettingCreateWithoutSettingMapperInput, AddSettingUncheckedCreateWithoutSettingMapperInput>
@@ -52072,12 +52361,43 @@ export namespace Prisma {
     LotBuffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutFilingItemIdNestedInput
   }
 
+  export type SettingEntryUpsertWithoutLotSettingMapperInput = {
+    update: XOR<SettingEntryUpdateWithoutLotSettingMapperInput, SettingEntryUncheckedUpdateWithoutLotSettingMapperInput>
+    create: XOR<SettingEntryCreateWithoutLotSettingMapperInput, SettingEntryUncheckedCreateWithoutLotSettingMapperInput>
+    where?: SettingEntryWhereInput
+  }
+
+  export type SettingEntryUpdateToOneWithWhereWithoutLotSettingMapperInput = {
+    where?: SettingEntryWhereInput
+    data: XOR<SettingEntryUpdateWithoutLotSettingMapperInput, SettingEntryUncheckedUpdateWithoutLotSettingMapperInput>
+  }
+
+  export type SettingEntryUpdateWithoutLotSettingMapperInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
+    castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
+  }
+
+  export type SettingEntryUncheckedUpdateWithoutLotSettingMapperInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    setting_person_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
+  }
+
   export type SettingEntryCreateWithoutSettingTotalBalanceInput = {
     createdAt?: Date | string
     setting_person: AddSettingCreateNestedOneWithoutSettingsInput
     castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryUncheckedCreateWithoutSettingTotalBalanceInput = {
@@ -52087,6 +52407,7 @@ export namespace Prisma {
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryCreateOrConnectWithoutSettingTotalBalanceInput = {
@@ -52111,6 +52432,7 @@ export namespace Prisma {
     castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutSettingTotalBalanceInput = {
@@ -52120,6 +52442,7 @@ export namespace Prisma {
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type SettingItemsCreateWithoutSetting_wastageInput = {
@@ -52160,6 +52483,7 @@ export namespace Prisma {
     castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
+    LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryUncheckedCreateWithoutSettingWastageInput = {
@@ -52169,6 +52493,7 @@ export namespace Prisma {
     casting_item_id: number
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
+    LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
   }
 
   export type SettingEntryCreateOrConnectWithoutSettingWastageInput = {
@@ -52209,6 +52534,7 @@ export namespace Prisma {
     castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
+    LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutSettingWastageInput = {
@@ -52218,6 +52544,7 @@ export namespace Prisma {
     casting_item_id?: IntFieldUpdateOperationsInput | number
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
+    LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type AddBuffingCreateWithoutBuffingsInput = {
@@ -54024,6 +54351,7 @@ export namespace Prisma {
     id?: number
     lot_id: number
     filing_item_id?: number | null
+    setting_entry_id: number
   }
 
   export type LotInfoCreateManySettingCustomerIdInput = {
@@ -54039,6 +54367,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutSetting_personInput = {
@@ -54048,6 +54377,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateManyWithoutSetting_personInput = {
@@ -54059,18 +54389,21 @@ export namespace Prisma {
   export type LotSettingMapperUpdateWithoutSettingIdInput = {
     lotId?: LotInfoUpdateOneRequiredWithoutSettingMapperNestedInput
     itemId?: FilingItemsUpdateOneWithoutLot_setting_mapperNestedInput
+    settingEntry?: SettingEntryUpdateOneRequiredWithoutLotSettingMapperNestedInput
   }
 
   export type LotSettingMapperUncheckedUpdateWithoutSettingIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotSettingMapperUncheckedUpdateManyWithoutSettingIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotInfoUpdateWithoutSettingCustomerIdInput = {
@@ -54993,6 +55326,7 @@ export namespace Prisma {
     id?: number
     setting_id: number
     filing_item_id?: number | null
+    setting_entry_id: number
   }
 
   export type LotBuffingMapperCreateManyLotIdInput = {
@@ -55027,18 +55361,21 @@ export namespace Prisma {
   export type LotSettingMapperUpdateWithoutLotIdInput = {
     settingId?: AddSettingUpdateOneRequiredWithoutSettingMapperNestedInput
     itemId?: FilingItemsUpdateOneWithoutLot_setting_mapperNestedInput
+    settingEntry?: SettingEntryUpdateOneRequiredWithoutLotSettingMapperNestedInput
   }
 
   export type LotSettingMapperUncheckedUpdateWithoutLotIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     setting_id?: IntFieldUpdateOperationsInput | number
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotSettingMapperUncheckedUpdateManyWithoutLotIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     setting_id?: IntFieldUpdateOperationsInput | number
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotBuffingMapperUpdateWithoutLotIdInput = {
@@ -55334,6 +55671,7 @@ export namespace Prisma {
     id?: number
     setting_id: number
     lot_id: number
+    setting_entry_id: number
   }
 
   export type LotBuffingMapperCreateManyFilingItemIdInput = {
@@ -55390,6 +55728,7 @@ export namespace Prisma {
     castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutFilingItemsInput = {
@@ -55399,6 +55738,7 @@ export namespace Prisma {
     casting_item_id?: IntFieldUpdateOperationsInput | number
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
   }
 
   export type SettingEntryUncheckedUpdateManyWithoutFilingItemsInput = {
@@ -55481,18 +55821,21 @@ export namespace Prisma {
   export type LotSettingMapperUpdateWithoutItemIdInput = {
     settingId?: AddSettingUpdateOneRequiredWithoutSettingMapperNestedInput
     lotId?: LotInfoUpdateOneRequiredWithoutSettingMapperNestedInput
+    settingEntry?: SettingEntryUpdateOneRequiredWithoutLotSettingMapperNestedInput
   }
 
   export type LotSettingMapperUncheckedUpdateWithoutItemIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     setting_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotSettingMapperUncheckedUpdateManyWithoutItemIdInput = {
     id?: IntFieldUpdateOperationsInput | number
     setting_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotBuffingMapperUpdateWithoutFilingItemIdInput = {
@@ -55574,6 +55917,8 @@ export namespace Prisma {
     stone_weight: number
     remarks?: string | null
     wastage: boolean
+    total_product_weight: number
+    current_balance_weight: number
     total_scrap_weight?: number | null
     balance?: number | null
   }
@@ -55590,6 +55935,13 @@ export namespace Prisma {
     overall_wastage: number
     closing_balance: number
     opening_balance: number
+  }
+
+  export type LotSettingMapperCreateManySettingEntryInput = {
+    id?: number
+    setting_id: number
+    lot_id: number
+    filing_item_id?: number | null
   }
 
   export type FilingItemsUpdateWithoutSetting_entryInput = {
@@ -55650,6 +56002,8 @@ export namespace Prisma {
     stone_weight?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     balance?: NullableFloatFieldUpdateOperationsInput | number | null
   }
@@ -55662,6 +56016,8 @@ export namespace Prisma {
     stone_weight?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     balance?: NullableFloatFieldUpdateOperationsInput | number | null
   }
@@ -55674,6 +56030,8 @@ export namespace Prisma {
     stone_weight?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     wastage?: BoolFieldUpdateOperationsInput | boolean
+    total_product_weight?: FloatFieldUpdateOperationsInput | number
+    current_balance_weight?: FloatFieldUpdateOperationsInput | number
     total_scrap_weight?: NullableFloatFieldUpdateOperationsInput | number | null
     balance?: NullableFloatFieldUpdateOperationsInput | number | null
   }
@@ -55719,6 +56077,26 @@ export namespace Prisma {
     overall_wastage?: FloatFieldUpdateOperationsInput | number
     closing_balance?: FloatFieldUpdateOperationsInput | number
     opening_balance?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type LotSettingMapperUpdateWithoutSettingEntryInput = {
+    settingId?: AddSettingUpdateOneRequiredWithoutSettingMapperNestedInput
+    lotId?: LotInfoUpdateOneRequiredWithoutSettingMapperNestedInput
+    itemId?: FilingItemsUpdateOneWithoutLot_setting_mapperNestedInput
+  }
+
+  export type LotSettingMapperUncheckedUpdateWithoutSettingEntryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    setting_id?: IntFieldUpdateOperationsInput | number
+    lot_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type LotSettingMapperUncheckedUpdateManyWithoutSettingEntryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    setting_id?: IntFieldUpdateOperationsInput | number
+    lot_id?: IntFieldUpdateOperationsInput | number
+    filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type StockCreateManySettingItemInput = {

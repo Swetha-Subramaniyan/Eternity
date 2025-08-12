@@ -31,7 +31,6 @@ const [showScrapTable, setShowScrapTable] = useState(false);
 const [wastageOption, setWastageOption] = useState('No');
 const [currentFilingEntryId, setCurrentFilingEntryId] = useState(null);
 
-
   const { id: filingPersonId, name, lotNumber } = useParams();
   const fetchAssignedEntries = async () => {
     try {
@@ -122,7 +121,11 @@ const handleAddScrapRow = () => {
 
 const totalProductWeight = productItems.reduce((acc, curr) => acc + (parseFloat(curr.weight) || 0), 0);
 const totalScrapWeight = scrapItems.reduce((acc, curr) => acc + (parseFloat(curr.weight) || 0), 0);
-const currentBalanceWeight = parseFloat(afterWeight || 0) - totalProductWeight;
+const totalAssignedWeight = viewedItems.reduce(
+  (acc, item) => acc + (parseFloat(item?.weight) || 0),
+  0
+);
+const currentBalanceWeight = totalAssignedWeight - totalProductWeight;
 const finalBalance = currentBalanceWeight - totalScrapWeight;
 
 const handleSaveFilingData = async () => {
@@ -134,7 +137,7 @@ const handleSaveFilingData = async () => {
   // Map product items with correct backend keys
   const formattedProductItems = productItems
     .map(item => ({
-      id: item.id,  // pass id for update identification
+      id: item.id,  
       type: 'ProductItems',
       filing_item_id: itemsList.find(i => i.name === item.item)?.id || null,
       weight: parseFloat(item.weight) || 0,
@@ -166,7 +169,11 @@ const handleSaveFilingData = async () => {
   // Calculate weights and balances
   const totalProductWeight = formattedProductItems.reduce((acc, curr) => acc + curr.weight, 0);
   const totalScrapWeight = formattedScrapItems.reduce((acc, curr) => acc + curr.weight, 0);
-  const currentBalanceWeight = parseFloat(afterWeight || 0) - totalProductWeight;
+  const totalAssignedWeight = viewedItems.reduce(
+    (acc, item) => acc + (parseFloat(item?.weight) || 0),
+    0
+  );
+  const currentBalanceWeight = totalAssignedWeight - totalProductWeight;
   const finalBalance = currentBalanceWeight - totalScrapWeight;
 
   const totalBalance = {
@@ -191,7 +198,8 @@ const handleSaveFilingData = async () => {
     });
 
     alert('Data saved successfully!');
-    fetchAssignedEntries();
+    // fetchAssignedEntries();
+    await fetchAssignedEntries();
     setViewDialogOpen(false);
     setProductItems([]);
     setScrapItems([]);
@@ -227,6 +235,7 @@ const handleDeleteItem = async (id, type) => {
       <Navbar />
       <h5 className={styles.heading}>Filing Lot Details</h5>
       <div className={styles.container}>
+
 <div className={styles.header} style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
   <TextField
     label="From Date"
@@ -270,7 +279,7 @@ const handleDeleteItem = async (id, type) => {
               <th>Touch</th>
               <th>Purity</th>
               <th>Remarks</th>
-              <th>Status</th>
+              {/* <th>Status</th> */}
               <th> After Weight</th>
               <th> Total Product Weight </th>
               <th> Current Balance Weight </th>
@@ -296,7 +305,7 @@ const handleDeleteItem = async (id, type) => {
         <td>{entry.castingItems[0]?.touch || '-'}</td>
         <td>{entry.castingItems[0]?.purity || '-'}</td>
         <td>{entry.castingItems[0]?.remarks || '-'}</td>
-        <td>Assigned</td>
+        {/* <td>Assigned</td> */}
         {(() => {
     const balance = entry.filingTotalBalance && entry.filingTotalBalance.length > 0
       ? entry.filingTotalBalance[0]
@@ -313,6 +322,7 @@ const handleDeleteItem = async (id, type) => {
 <td rowSpan={entry.castingItems.length}>
   {(balance?.current_balance_weight ?? 0).toFixed(2)}
 </td>
+
         <td rowSpan={entry.castingItems.length}>
           {balance?.wastage ? 'Yes' : 'No'}
         </td>
@@ -344,7 +354,8 @@ const handleDeleteItem = async (id, type) => {
       purity: p.item_purity,
       remarks: p.remarks || '',
       hasStone: p.stone_option === 'WithStone' ? 'Yes' : 'No',
-      process: p.process || 'Buffing',
+      // process: p.process || 'Buffing',
+      process: p.process || (p.stone_option === 'WithStone' ? 'Setting' : 'Buffing'),
       id:p.id,
     })));
 
@@ -379,7 +390,7 @@ const handleDeleteItem = async (id, type) => {
           <td>{item.touch || '-'}</td>
           <td>{item.purity || '-'}</td>
           <td>{item.remarks || '-'}</td>
-          <td>Assigned</td>         
+          {/* <td>Assigned</td>          */}
         </tr>
       ))}
     </React.Fragment>
@@ -508,7 +519,7 @@ const handleDeleteItem = async (id, type) => {
             fullWidth
             margin="normal"
           />
-          <Button variant="contained" onClick={handleAddProductRow}>Add Product Items</Button>
+          <Button variant="contained"  sx={{mt:3}} onClick={handleAddProductRow}>Add Product Items</Button>
           {showProductTable && (
             <>
                 <div className={styles.tableContainer}> 
@@ -525,8 +536,7 @@ const handleDeleteItem = async (id, type) => {
                     <th>Process</th>
                     <th>Actions</th>
                   </tr>
-                </thead>
-            
+                </thead>          
                 <tbody>
                   {productItems.map((row, index) => (
                     <tr key={index}>
@@ -576,6 +586,7 @@ const handleDeleteItem = async (id, type) => {
                         </TextField>
                       </td>
                       <td>{row.process}</td>
+
                       <td>
   <IconButton onClick={() => handleDeleteItem(row.id, "product")}>
     <DeleteIcon />
@@ -586,9 +597,6 @@ const handleDeleteItem = async (id, type) => {
                 </tbody>
               </table>
               </div>
-             
-
-
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2 }}>
   {/* Left side: weights */}
   <Box sx={{ display: 'flex', gap: 5 }}>
@@ -600,23 +608,30 @@ const handleDeleteItem = async (id, type) => {
     </Typography>
   </Box>
 
-  {/* Right side: wastage select */}
-  <TextField
-    select
-    label="Wastage"
-    value={wastageOption}
-    onChange={(e) => setWastageOption(e.target.value)}
-    sx={{ width: '7rem', height:'1rem' }}
-  >
-    <MenuItem value="Yes">Yes</MenuItem>
-    <MenuItem value="No">No</MenuItem>
-  </TextField>
+<Box sx={{ display: 'flex', gap: 0.2 }}>
+<Typography variant="subtitle1" sx={{ mb: 1 }}><b>Wastage:</b></Typography>
+<Button
+  variant={wastageOption === 'Yes' ? 'contained' : 'outlined'}
+  color="success"
+  onClick={() => setWastageOption('Yes')}
+  sx={{ ml: 1, minWidth: '4rem' }}
+>
+  Yes
+</Button>
+<Button
+  variant={wastageOption === 'No' ? 'contained' : 'outlined'}
+  color="error"
+  onClick={() => setWastageOption('No')}
+  sx={{ minWidth: '4rem',ml: 1, }}
+>
+  No
+</Button>
 </Box>
-  
+</Box>
               </>
           )}
           <br/>
-          <Button variant="contained" onClick={handleAddScrapRow} sx={{ mt: 1, ml:0 }}>Add Scrap Items</Button>
+          <Button variant="contained" onClick={handleAddScrapRow} sx={{ mt: 1, ml:0, pl:3, pr:3.6 }}>Add Scrap Items</Button>
           {showScrapTable && (
             <>
                 <div className={styles.tableContainer}> 
@@ -686,7 +701,6 @@ const handleDeleteItem = async (id, type) => {
     Balance: {(finalBalance ?? 0).toFixed(2)}
   </Typography>
 </Box>
-
             </>
           )}           
   </DialogContent>
