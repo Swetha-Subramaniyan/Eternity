@@ -59,31 +59,6 @@ export const getSetting = async (req, res) => {
   };
 
 
-  // export const getSettingById = async (req, res) => {
-  //   const { id } = req.params;
-  
-  //   try {
-  //     const setting = await prisma.addSetting.findUnique({
-  //       where: { id: Number(id) },
-  //       include: {
-  //         lotInfo: true,
-  //         lotSettingMapper: true,
-  //       }
-  //     });
-  
-  //     if (!setting) {
-  //       return res.status(404).json({ message: "Setting member not found" });
-  //     }
-  
-  //     res.status(200).json(setting);
-  //   } catch (error) {
-  //     console.error(" Error in getSettingById:", error); 
-  //     res.status(500).json({ error: "Internal server error" });
-  //   }
-  // };
-  
-
-
   export const getSettingById = async (req, res) => {
     const { id } = req.params;
   
