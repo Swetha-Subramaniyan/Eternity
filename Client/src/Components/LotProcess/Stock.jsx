@@ -218,17 +218,18 @@ const Stock = () => {
               {filteredItems.map((item, index) => (
                 <tr key={item.id}>
                   <td>{index + 1}</td>       
-                  <td>
+                  {/* <td>
   {item.castingItem?.castingEntry?.date
     ? new Date(item.castingItem.castingEntry.date).toLocaleDateString()
     : "-"}
-</td>
-<td>{item.castingItem?.castingEntry?.casting_customer?.name || "-"}</td>
+</td> */}
+{/* <td>{item.castingItem?.castingEntry?.casting_customer?.name || "-"}</td> */}
+<td> {item.createdAt}</td>
+<td>{item.casting_customer_id} </td>
 
                   <td>{item.item?.name || "-"}</td>
                   <td>{item.weight ?? "-"}</td>
                   <td>{item.touch?.touch ?? item.touch_id ?? "-"}</td>
-
                   <td>{item.item_purity ?? "-"}</td>
                   <td>{item.remarks || "-"}</td>
                 </tr>

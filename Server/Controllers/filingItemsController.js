@@ -247,15 +247,17 @@ if (!castingCustomerId) {
       const items = await prisma.filingItems.findMany({
         where: {
           type: "Items",
-          lot_filing_mapper_id: null,  // unassigned
+          lot_setting_mapper: {
+            none: {},
+          },
+      
         },
         include: {
-          touch: true,
-          filing_entry: true,
           filingitem: true,
+          touch: true,
         },
       });
-  
+      
       // Append status field to each item
       const result = items.map((item) => ({
         ...item,
@@ -268,7 +270,7 @@ if (!castingCustomerId) {
       res.status(500).json({ error: "Failed to fetch unassigned filing items" });
     }
   };
-  
+
 
 
 
