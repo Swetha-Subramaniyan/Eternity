@@ -1,3 +1,360 @@
+
+
+import React, { useState, useEffect } from 'react';
+import Navbar from '../../Navbar/Navbar';
+import { useParams } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Checkbox from '@mui/material/Checkbox';
+import axios from 'axios';
+
+const SettingLotDetails = () => {
+  const getTodayDateString = () => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
+  const { id: settingPersonId, name, lotNumber } = useParams();
+  const [fromDate, setFromDate] = useState(getTodayDateString());
+
+  const [open, setOpen] = useState(false);
+  const [items, setItems] = useState([]); // available unassigned items
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [assignedItems, setAssignedItems] = useState([]); // already assigned
+
+  const [viewOpen, setViewOpen] = useState(false);
+  const [viewData, setViewData] = useState(null);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  //  Fetch already assigned items when component mounts or after save
+  const fetchAssignedItems = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/settingentry/person/${settingPersonId}`
+      );
+      setAssignedItems(res.data || []);
+      console.log("Assigned items:", res.data);
+    } catch (err) {
+      console.error('Error fetching assigned items:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchAssignedItems();
+  }, [settingPersonId]);
+
+  //  Fetch unassigned items when dialog opens
+  useEffect(() => {
+    if (open) {
+      axios
+        .get('http://localhost:5000/api/filingitems/filingitems/available')
+        .then((res) => {
+          const filtered = res.data.filter(
+            (item) => item.type === 'Items' && item.status === 'Unassigned'
+          );
+          setItems(filtered);
+          console.log('Available Setting Items:', filtered);
+        })
+        .catch((err) => {
+          console.error('Error fetching available items:', err);
+        });
+    }
+  }, [open]);
+
+  const handleCheckboxChange = (id) => {
+    setSelectedItems((prev) =>
+      prev.includes(id)
+        ? prev.filter((itemId) => itemId !== id)
+        : [...prev, id]
+    );
+  };
+  // const handleSave = async () => {
+  //   try {
+  //     const payload = {
+  //       setting_person_id: Number(settingPersonId),
+  //       lot_number: String(lotNumber),
+  //       date: fromDate,
+  //       filingItemIds: selectedItems, // just array of ids
+  //     };
+  
+  //     console.log('Posting payload:', payload);
+  
+  //     await axios.post('http://localhost:5000/api/settingentry', payload);
+  
+  //     setSelectedItems([]);
+  //     handleClose();
+  //     fetchAssignedItems();
+  //   } catch (err) {
+  //     console.error('Error saving setting entry:', err);
+  //   }
+  // };
+  
+  const handleSave = async () => {
+    try {
+      const payload = {
+        setting_person_id: Number(settingPersonId),
+        lot_number: String(lotNumber),
+        date: fromDate,
+        items: selectedItems.map((id) => ({ filing_item_id: id })),
+      };
+
+      console.log('Posting payload:', payload);
+
+      await axios.post('http://localhost:5000/api/settingentry', payload);
+
+      setSelectedItems([]);
+      handleClose();
+      fetchAssignedItems(); //  refresh assigned list
+    } catch (err) {
+      console.error('Error saving setting entry:', err);
+    }
+  };
+
+  const handleView = (entry) => {
+    setViewData(entry);
+    setViewOpen(true);
+  };
+
+  return (
+    <>
+      <Navbar />
+
+      <Button variant="contained" onClick={handleOpen} sx={{ mt: 2 }}>
+        Add Setting
+      </Button>
+
+      {/* Main Assigned Table */}
+      {/* <table border="1" style={{ width: '100%', marginTop: '1rem' }}>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Date</th>
+            <th>Item</th>
+            <th>Weight</th>
+            <th>Touch</th>
+            <th>Purity</th>
+            <th>Remarks</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {assignedItems.length > 0 ? (
+            assignedItems.map((entry, index) =>
+              entry.filingItems.map((fi, i) => (
+                <tr key={fi.id}>
+                  <td>{index + 1}</td>
+                  <td>{new Date(entry.createdAt).toLocaleDateString()}</td>
+                  <td>{fi.item_name }</td>
+                  <td>{fi.weight}</td>
+                  <td>{fi.touch }</td>
+                  <td>{fi.purity }</td>
+                  <td>{fi.remarks}</td>
+                  <td>Assigned</td>
+                  <td>
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      onClick={() => handleView(entry)}
+                    >
+                      View
+                    </Button>
+                  </td>
+                </tr>
+              ))
+            )
+          ) : (
+            <tr>
+              <td colSpan="9" style={{ textAlign: 'center' }}>
+                No assigned items yet
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table> */}
+
+<table border="1" style={{ width: '100%', marginTop: '1rem' }}>
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Date</th>
+      <th>Item</th>
+      <th>Weight</th>
+      <th>Touch</th>
+      <th>Purity</th>
+      <th>Remarks</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {assignedItems.length > 0 ? (
+      assignedItems.map((entry, index) => {
+        return (
+          <>
+            {entry.filingItems.map((fi, i) => (
+              <tr key={fi.id}>
+                {/* Show S.No, Date, Status, Actions only for first item in this entry */}
+                {i === 0 && (
+                  <>
+                    <td rowSpan={entry.filingItems.length}>{index + 1}</td>
+                    <td rowSpan={entry.filingItems.length}>
+                      {new Date(entry.createdAt).toLocaleDateString()}
+                    </td>
+                  </>
+                )}
+
+                {/* Always show item-specific fields */}
+                <td>{fi.item_name}</td>
+                <td>{fi.weight}</td>
+                <td>{fi.touch}</td>
+                <td>{fi.purity}</td>
+                <td>{fi.remarks}</td>
+
+                {i === 0 && (
+                  <>
+                    <td rowSpan={entry.filingItems.length}>Assigned</td>
+                    <td rowSpan={entry.filingItems.length}>
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        onClick={() => handleView(entry)}
+                      >
+                        View
+                      </Button>
+                    </td>
+                  </>
+                )}
+              </tr>
+            ))}
+          </>
+        );
+      })
+    ) : (
+      <tr>
+        <td colSpan="9" style={{ textAlign: 'center' }}>
+          No assigned items yet
+        </td>
+      </tr>
+    )}
+  </tbody>
+</table>
+
+
+      {/* Add Setting Dialog */}
+      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+        <DialogTitle>Add Setting Details</DialogTitle>
+        <DialogContent>
+          <TextField
+            label="Date"
+            type="date"
+            size="small"
+            value={fromDate}
+            onChange={(e) => setFromDate(e.target.value)}
+            InputLabelProps={{ shrink: true }}
+            sx={{ ml: 0, mt: 3, mb: 2, width: '200px' }}
+          />
+
+          <table style={{ width: '100%', marginTop: '1rem' }}>
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>Item</th>
+                <th>Weight</th>
+                <th>Touch</th>
+                <th>Purity</th>
+                <th>Remarks</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.length > 0 ? (
+                items.map((item) => (
+                  <tr key={item.id}>
+                    <td style={{ textAlign: 'center' }}>
+                      <Checkbox
+                        checked={selectedItems.includes(item.id)}
+                        onChange={() => handleCheckboxChange(item.id)}
+                      />
+                    </td>
+                    <td>{item.filingitem?.name || '-'}</td>
+                    <td>{item.weight ?? '-'}</td>
+                    <td>{item.touch?.touch ?? '-'}</td>
+                    <td>{item.item_purity ?? '-'}</td>
+                    <td>{item.remarks || '-'}</td>
+                    <td>{item.status || '-'}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={7} style={{ textAlign: 'center' }}>
+                    No items available
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button variant="contained" onClick={handleSave}>
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* View Dialog */}
+      <Dialog open={viewOpen} onClose={() => setViewOpen(false)} maxWidth="md" fullWidth>
+        <DialogTitle>Assigned Items</DialogTitle>
+        <DialogContent>
+          {viewData ? (
+            <table style={{ width: '100%' }}>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Weight</th>
+                  <th>Touch</th>
+                  <th>Purity</th>
+                  <th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {viewData.filingItems.map((fi) => (
+                  <tr key={fi.id}>
+                    <td>{fi.item_name}</td>
+                    <td>{fi.weight}</td>
+                    <td>{fi.touch}</td>
+                    <td>{fi.purity}</td>
+                    <td>{fi.remarks}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No data available</p>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setViewOpen(false)}>Close</Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+};
+
+export default SettingLotDetails;
+
+
+
 // import React, { useState, useEffect } from 'react';
 // import Navbar from '../../Navbar/Navbar';
 // import { useParams } from 'react-router-dom';
@@ -65,36 +422,15 @@
   
 //       console.log('Posting payload:', payload);
   
-//       await axios.post('http://localhost:5000/api/settingentry', payload);
+//       const res = await axios.post('http://localhost:5000/api/settingentry', payload);
+//       console.log('save response:',res.data)
   
 //       handleClose();
 //     } catch (err) {
 //       console.error('Error saving setting entry:', err);
 //     }
 //   };
-  
 
-
-//   // const handleSave = async () => {
-//   //   try {
-//   //     const payload = {
-//   //       setting_person_id: Number(settingPersonId), // from URL params
-//   //       lot_number: lotNumber, // or lot_id if that's what backend expects
-//   //       date: fromDate,
-//   //       items: selectedItems, // array of IDs
-//   //     };
-  
-//   //     console.log('Posting payload:', payload);
-  
-//   //     const res = await axios.post('http://localhost:5000/api/settingentry', payload);
-//   //     console.log('Save response:', res.data);
-  
-//   //     // Optionally close popup and refresh data
-//   //     handleClose();
-//   //   } catch (err) {
-//   //     console.error('Error saving setting entry:', err);
-//   //   }
-//   // };
   
 
 //   return (
@@ -216,705 +552,738 @@
 
 
 
-import React, { useState } from 'react';
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, Paper, TableFooter } from "@mui/material";
-import { FaEye } from "react-icons/fa";
-import { Delete } from '@mui/icons-material';
-import styles from './SettingLotDetails.module.css';
-import Navbar from '../../Navbar/Navbar';
-
-const getTodayDate = () => {
-  const today = new Date();
-  return today.toISOString().split('T')[0];
-};
-
-const SettingLotDetails = () => {
-  const [isAssignOpen, setIsAssignOpen] = useState(false);
-  const [viewEntry, setViewEntry] = useState(null);
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [entries, setEntries] = useState([]);
-  const [date, setDate] = useState(getTodayDate());
-  const [fromDate, setFromDate] = useState('');
-const [toDate, setToDate] = useState('');
-const [statusFilter, setStatusFilter] = useState("All");
-const [wastagePercent, setWastagePercent] = useState('');
-const [givenGold, setGivenGold] = useState('');
 
 
-const filteredEntries = entries.filter(entry => {
-  const entryDate = new Date(entry.date);
-  const from = fromDate ? new Date(fromDate) : null;
-  const to = toDate ? new Date(toDate) : null;
-  const isCompleted = !!entry.receiptWeight;
-  const statusMatch =
-    statusFilter === "All" ||
-    (statusFilter === "Completed" && isCompleted) ||
-    (statusFilter === "Pending" && !isCompleted);
-  return (
-    (!from || entryDate >= from) &&
-    (!to || entryDate <= to) &&
-    statusMatch
-  );
-});
 
-  const items = [
-    { item: "Ring", beforeWeight: "50", touch: "92", purity: "22K", remarks: 'aaaa' },
-    { item: "Chain", beforeWeight: "48", touch: "91", purity: "22K", remarks: 'bbbb' },
-    { item: "Stud", beforeWeight: "55", touch: "90", purity: "22K", remarks: 'cccc' }
-  ];
 
-  const handleToggle = (item) => {
-    if (isAlreadyAssigned(item)) return;
-    setSelectedItems(prev =>
-      prev.find(i => i.item === item.item)
-        ? prev.filter(i => i.item !== item.item)
-        : [...prev, item]
-    );
-  };
 
-  const handleAssign = () => {
-    if (!date) {
-      alert("Please Select the Date to Assign the Item");
-      return;
-    }
-    if (!selectedItems.length) {
-      alert("Select at least one item.");
-      return;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, Paper, TableFooter } from "@mui/material";
+// import { FaEye } from "react-icons/fa";
+// import { Delete } from '@mui/icons-material';
+// import styles from './SettingLotDetails.module.css';
+// import Navbar from '../../Navbar/Navbar';
+
+// const getTodayDate = () => {
+//   const today = new Date();
+//   return today.toISOString().split('T')[0];
+// };
+
+// const SettingLotDetails = () => {
+//   const [isAssignOpen, setIsAssignOpen] = useState(false);
+//   const [viewEntry, setViewEntry] = useState(null);
+//   const [selectedItems, setSelectedItems] = useState([]);
+//   const [entries, setEntries] = useState([]);
+//   const [date, setDate] = useState(getTodayDate());
+//   const [fromDate, setFromDate] = useState('');
+// const [toDate, setToDate] = useState('');
+// const [statusFilter, setStatusFilter] = useState("All");
+// const [wastagePercent, setWastagePercent] = useState('');
+// const [givenGold, setGivenGold] = useState('');
+
+
+// const filteredEntries = entries.filter(entry => {
+//   const entryDate = new Date(entry.date);
+//   const from = fromDate ? new Date(fromDate) : null;
+//   const to = toDate ? new Date(toDate) : null;
+//   const isCompleted = !!entry.receiptWeight;
+//   const statusMatch =
+//     statusFilter === "All" ||
+//     (statusFilter === "Completed" && isCompleted) ||
+//     (statusFilter === "Pending" && !isCompleted);
+//   return (
+//     (!from || entryDate >= from) &&
+//     (!to || entryDate <= to) &&
+//     statusMatch
+//   );
+// });
+
+//   const items = [
+//     { item: "Ring", beforeWeight: "50", touch: "92", purity: "22K", remarks: 'aaaa' },
+//     { item: "Chain", beforeWeight: "48", touch: "91", purity: "22K", remarks: 'bbbb' },
+//     { item: "Stud", beforeWeight: "55", touch: "90", purity: "22K", remarks: 'cccc' }
+//   ];
+
+//   const handleToggle = (item) => {
+//     if (isAlreadyAssigned(item)) return;
+//     setSelectedItems(prev =>
+//       prev.find(i => i.item === item.item)
+//         ? prev.filter(i => i.item !== item.item)
+//         : [...prev, item]
+//     );
+//   };
+
+//   const handleAssign = () => {
+//     if (!date) {
+//       alert("Please Select the Date to Assign the Item");
+//       return;
+//     }
+//     if (!selectedItems.length) {
+//       alert("Select at least one item.");
+//       return;
+//     }
   
-    const newEntry = {
-      id: Date.now(),
-      date,
-      items: selectedItems.map(it => ({
-        ...it
-      })),
-      afterWeight: '',
-      stoneCount: '',
-      stoneWeight: '',
-      extraRemarks: '',
-      scrapItems: [],
-      totalIssueWeight: totalIssueWeight.toFixed(2),
-    };
+//     const newEntry = {
+//       id: Date.now(),
+//       date,
+//       items: selectedItems.map(it => ({
+//         ...it
+//       })),
+//       afterWeight: '',
+//       stoneCount: '',
+//       stoneWeight: '',
+//       extraRemarks: '',
+//       scrapItems: [],
+//       totalIssueWeight: totalIssueWeight.toFixed(2),
+//     };
   
-    setEntries(prev => [...prev, newEntry]);
-    setSelectedItems([]);
-    setDate(getTodayDate());
-    setIsAssignOpen(false);
-  };
+//     setEntries(prev => [...prev, newEntry]);
+//     setSelectedItems([]);
+//     setDate(getTodayDate());
+//     setIsAssignOpen(false);
+//   };
   
 
-  const isAlreadyAssigned = (item) => {
-    return entries.some(entry => entry.items.some(i => i.item === item.item));
-  };
+//   const isAlreadyAssigned = (item) => {
+//     return entries.some(entry => entry.items.some(i => i.item === item.item));
+//   };
 
-  const getTotalScrapWeight = (scrapItems) => {
-    return scrapItems?.reduce((sum, item) => sum + parseFloat(item.weight || 0), 0).toFixed(2);
-  };
-
-
-  const getOverallBalance = () => {
-    return filteredEntries.reduce((total, group) => {
-      if (!group.afterWeight) return total;
-  
-      const issueSum = group.items.reduce(
-        (sum, item) => sum + parseFloat(item.beforeWeight || 0),
-        0
-      );
-  
-      const afterWeight = parseFloat(group.afterWeight || 0);
-      const stoneWeight = parseFloat(group.stoneWeight || 0);
-      const scrapWeight = parseFloat(getTotalScrapWeight(group.scrapItems || []));
-  
-      const balance =
-        issueSum - (afterWeight - stoneWeight) - scrapWeight;
-  
-      return total + (isNaN(balance) ? 0 : balance);
-    }, 0).toFixed(2);
-  };
-  
-  
-  const getTotalStoneCount = () => {
-    return filteredEntries.reduce((total, group) => {
-      const count = parseFloat(group.stoneCount || 0);
-      return total + (isNaN(count) ? 0 : count);
-    }, 0).toFixed(2);
-  };
-  
-  
-  const totalStoneCount = getTotalStoneCount(); 
+//   const getTotalScrapWeight = (scrapItems) => {
+//     return scrapItems?.reduce((sum, item) => sum + parseFloat(item.weight || 0), 0).toFixed(2);
+//   };
 
 
-  const totalIssueWeight = selectedItems.reduce(
-    (sum, item) => sum + parseFloat(item.beforeWeight || 0),
-    0
-  );
+//   const getOverallBalance = () => {
+//     return filteredEntries.reduce((total, group) => {
+//       if (!group.afterWeight) return total;
+  
+//       const issueSum = group.items.reduce(
+//         (sum, item) => sum + parseFloat(item.beforeWeight || 0),
+//         0
+//       );
+  
+//       const afterWeight = parseFloat(group.afterWeight || 0);
+//       const stoneWeight = parseFloat(group.stoneWeight || 0);
+//       const scrapWeight = parseFloat(getTotalScrapWeight(group.scrapItems || []));
+  
+//       const balance =
+//         issueSum - (afterWeight - stoneWeight) - scrapWeight;
+  
+//       return total + (isNaN(balance) ? 0 : balance);
+//     }, 0).toFixed(2);
+//   };
+  
+  
+//   const getTotalStoneCount = () => {
+//     return filteredEntries.reduce((total, group) => {
+//       const count = parseFloat(group.stoneCount || 0);
+//       return total + (isNaN(count) ? 0 : count);
+//     }, 0).toFixed(2);
+//   };
+  
+  
+//   const totalStoneCount = getTotalStoneCount(); 
 
-  const totalWastage = (Number(totalStoneCount) * Number(wastagePercent || 0)) / 100;
-  const closingBalance = parseFloat(getOverallBalance()) - parseFloat(totalWastage);
-  const finalClosingBalance = closingBalance + Number(givenGold || 0);
 
-  return (
-    <>
-      <Navbar />
-      <div className="date-fields">
-        <TextField
-            id="from-date"
-            label="From Date"
-            type="date"
-            InputLabelProps={{ shrink: true }}
-            value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
-            sx={{ marginLeft: "3.5rem" , mt:'1.5rem'}}
-          />
-          <TextField
-            id="to-date"
-            label="To Date"
-            type="date"
-            InputLabelProps={{ shrink: true }}
-            value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
-            sx={{ marginLeft: "1.5rem", mt:'1.5rem' }}
-          />
-<TextField
-  select
-  label="Status"
-  SelectProps={{ native: true }}
-  value={statusFilter}
-  onChange={(e) => setStatusFilter(e.target.value)}
-  sx={{ marginLeft: "1.5rem", minWidth: 120 , mt:'1.5rem' }}
->
-  <option value="All">All</option>
-  <option value="Completed">Completed</option>
-  <option value="Pending">Pending</option>
-</TextField>
+//   const totalIssueWeight = selectedItems.reduce(
+//     (sum, item) => sum + parseFloat(item.beforeWeight || 0),
+//     0
+//   );
 
-          <Button
-             onClick={() => setIsAssignOpen(true)}
-            sx={{
-              m: 3,
-              marginLeft: 85,
-              backgroundColor: "#5f4917",
-              color: "white",
-              paddingLeft:2,
-              paddingRight:2
-            }}
-          >
-           Add Setting Items
-          </Button>
-        </div> 
+//   const totalWastage = (Number(totalStoneCount) * Number(wastagePercent || 0)) / 100;
+//   const closingBalance = parseFloat(getOverallBalance()) - parseFloat(totalWastage);
+//   const finalClosingBalance = closingBalance + Number(givenGold || 0);
+
+//   return (
+//     <>
+//       <Navbar />
+//       <div className="date-fields">
+//         <TextField
+//             id="from-date"
+//             label="From Date"
+//             type="date"
+//             InputLabelProps={{ shrink: true }}
+//             value={fromDate}
+//             onChange={(e) => setFromDate(e.target.value)}
+//             sx={{ marginLeft: "3.5rem" , mt:'1.5rem'}}
+//           />
+//           <TextField
+//             id="to-date"
+//             label="To Date"
+//             type="date"
+//             InputLabelProps={{ shrink: true }}
+//             value={toDate}
+//             onChange={(e) => setToDate(e.target.value)}
+//             sx={{ marginLeft: "1.5rem", mt:'1.5rem' }}
+//           />
+// <TextField
+//   select
+//   label="Status"
+//   SelectProps={{ native: true }}
+//   value={statusFilter}
+//   onChange={(e) => setStatusFilter(e.target.value)}
+//   sx={{ marginLeft: "1.5rem", minWidth: 120 , mt:'1.5rem' }}
+// >
+//   <option value="All">All</option>
+//   <option value="Completed">Completed</option>
+//   <option value="Pending">Pending</option>
+// </TextField>
+
+//           <Button
+//              onClick={() => setIsAssignOpen(true)}
+//             sx={{
+//               m: 3,
+//               marginLeft: 85,
+//               backgroundColor: "#5f4917",
+//               color: "white",
+//               paddingLeft:2,
+//               paddingRight:2
+//             }}
+//           >
+//            Add Setting Items
+//           </Button>
+//         </div> 
 
     
-      <Box sx={{ display: 'flex', gap: 3, mt: 3 }}>
-      <Box> 
-      <div className={styles.tablecontainer}>
-        <TableContainer component={Paper} >
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>S.No</b></TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Date</b></TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Process</b></TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Issue</b></TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Receipt</b></TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Stone Count</b></TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Stone Weight</b></TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Scrap Weight</b></TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Balance</b></TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Wastage</b></TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Actions</b></TableCell>               
-              </TableRow>
-            </TableHead>
+//       <Box sx={{ display: 'flex', gap: 3, mt: 3 }}>
+//       <Box> 
+//       <div className={styles.tablecontainer}>
+//         <TableContainer component={Paper} >
+//           <Table>
+//             <TableHead>
+//               <TableRow>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>S.No</b></TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Date</b></TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Process</b></TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Issue</b></TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Receipt</b></TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Stone Count</b></TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Stone Weight</b></TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Scrap Weight</b></TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Balance</b></TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Wastage</b></TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}><b>Actions</b></TableCell>               
+//               </TableRow>
+//             </TableHead>
 
-            <TableBody>
-  {filteredEntries.length === 0 ? (
-    <TableRow>
-      <TableCell colSpan={10} align="center">
-        No Product Found
-      </TableCell>
-    </TableRow>
-  ) : (
-    filteredEntries.map((group, i) => (
-      <React.Fragment key={group.id}>
-        <TableRow>
-          <TableCell align="center" rowSpan={group.items.length}>{i + 1}</TableCell>
-          <TableCell align="center" rowSpan={group.items.length}>{group.date}</TableCell>
-          <TableCell align="center">{group.items[0].item}</TableCell>
-          <TableCell align="center">{group.items[0].beforeWeight}</TableCell>
-           <TableCell align="center" rowSpan={group.items.length}>{group.afterWeight || '—'}</TableCell>
-           <TableCell align="center" rowSpan={group.items.length}>{group.stoneCount || '—'}</TableCell>
-           <TableCell align="center" rowSpan={group.items.length}>{group.stoneWeight || '—'}</TableCell>
-           <TableCell align="center" rowSpan={group.items.length}> {getTotalScrapWeight(group.scrapItems)} g </TableCell>
-          <TableCell align="center" rowSpan={group.items.length}>
-  {group.afterWeight
-    ? (
-        group.items.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0) -
-        (parseFloat(group.afterWeight || 0) - parseFloat(group.stoneWeight || 0)) -
-        parseFloat(getTotalScrapWeight(group.scrapItems || []))
-      ).toFixed(2)
-    : '—'} g
-</TableCell>
+//             <TableBody>
+//   {filteredEntries.length === 0 ? (
+//     <TableRow>
+//       <TableCell colSpan={10} align="center">
+//         No Product Found
+//       </TableCell>
+//     </TableRow>
+//   ) : (
+//     filteredEntries.map((group, i) => (
+//       <React.Fragment key={group.id}>
+//         <TableRow>
+//           <TableCell align="center" rowSpan={group.items.length}>{i + 1}</TableCell>
+//           <TableCell align="center" rowSpan={group.items.length}>{group.date}</TableCell>
+//           <TableCell align="center">{group.items[0].item}</TableCell>
+//           <TableCell align="center">{group.items[0].beforeWeight}</TableCell>
+//            <TableCell align="center" rowSpan={group.items.length}>{group.afterWeight || '—'}</TableCell>
+//            <TableCell align="center" rowSpan={group.items.length}>{group.stoneCount || '—'}</TableCell>
+//            <TableCell align="center" rowSpan={group.items.length}>{group.stoneWeight || '—'}</TableCell>
+//            <TableCell align="center" rowSpan={group.items.length}> {getTotalScrapWeight(group.scrapItems)} g </TableCell>
+//           <TableCell align="center" rowSpan={group.items.length}>
+//   {group.afterWeight
+//     ? (
+//         group.items.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0) -
+//         (parseFloat(group.afterWeight || 0) - parseFloat(group.stoneWeight || 0)) -
+//         parseFloat(getTotalScrapWeight(group.scrapItems || []))
+//       ).toFixed(2)
+//     : '—'} g
+// </TableCell>
 
-<TableCell align="center" rowSpan={group.items.length}>
-  {group.wastage || '—'}
-</TableCell>
+// <TableCell align="center" rowSpan={group.items.length}>
+//   {group.wastage || '—'}
+// </TableCell>
 
 
-<TableCell align="center" rowSpan={group.items.length}>
-  <FaEye style={{ cursor: 'pointer' }} onClick={() => setViewEntry(group)} />
-</TableCell>
+// <TableCell align="center" rowSpan={group.items.length}>
+//   <FaEye style={{ cursor: 'pointer' }} onClick={() => setViewEntry(group)} />
+// </TableCell>
      
-        </TableRow>
-        {group.items.slice(1).map((item, idx) => (
-          <TableRow key={`${group.id}-${idx}`}>
-            <TableCell>{item.item}</TableCell>
-            <TableCell>{item.beforeWeight}</TableCell>
-          </TableRow>
-        ))}
-      </React.Fragment>
-    ))
-  )}
-</TableBody>
-          </Table>
+//         </TableRow>
+//         {group.items.slice(1).map((item, idx) => (
+//           <TableRow key={`${group.id}-${idx}`}>
+//             <TableCell>{item.item}</TableCell>
+//             <TableCell>{item.beforeWeight}</TableCell>
+//           </TableRow>
+//         ))}
+//       </React.Fragment>
+//     ))
+//   )}
+// </TableBody>
+//           </Table>
           
-        </TableContainer>     
-      </div>
-      </Box>
+//         </TableContainer>     
+//       </div>
+//       </Box>
 
-      <Box
-    sx={{
-      width: '18rem',
-      p: 2,
-      border: '1px solid #ccc',
-      borderRadius: '8px',
-      backgroundColor: '#fafafa',
-      height: 'fit-content'
-    }}
-  >
-    <Typography sx={{marginLeft:'5rem', color:'darkblue'}}><b> Opening Balance: 0 </b>  </Typography> <hr/>
-    <Typography  sx={{ color: 'red', fontWeight:'bold', fontSize:'1.1rem' }}>
-      Monthly Wastage
-    </Typography>
+//       <Box
+//     sx={{
+//       width: '18rem',
+//       p: 2,
+//       border: '1px solid #ccc',
+//       borderRadius: '8px',
+//       backgroundColor: '#fafafa',
+//       height: 'fit-content'
+//     }}
+//   >
+//     <Typography sx={{marginLeft:'5rem', color:'darkblue'}}><b> Opening Balance: 0 </b>  </Typography> <hr/>
+//     <Typography  sx={{ color: 'red', fontWeight:'bold', fontSize:'1.1rem' }}>
+//       Monthly Wastage
+//     </Typography>
 
-    <Typography sx={{mt:2}}>
-  <strong>Total Stone Count:</strong> {getTotalStoneCount()} g
-</Typography>
+//     <Typography sx={{mt:2}}>
+//   <strong>Total Stone Count:</strong> {getTotalStoneCount()} g
+// </Typography>
 
-<TextField
-  label="Wastage (%)"
-  type="number"
-  fullWidth
-  size="small"
-  value={wastagePercent}
-  onChange={(e) => setWastagePercent(e.target.value)}
-  sx={{ mt: 2 }}
-/>
+// <TextField
+//   label="Wastage (%)"
+//   type="number"
+//   fullWidth
+//   size="small"
+//   value={wastagePercent}
+//   onChange={(e) => setWastagePercent(e.target.value)}
+//   sx={{ mt: 2 }}
+// />
 
-<Typography sx={{ mt: 2 }}>
-  <strong>Total Wastage:</strong>{' '}
-  {Number(totalStoneCount).toFixed(2)} × {Number(wastagePercent) || 0} / 100 ={' '}
-  <strong>{!isNaN(totalWastage) ? Number(totalWastage).toFixed(2) : '0.00'} g</strong>
-</Typography>
+// <Typography sx={{ mt: 2 }}>
+//   <strong>Total Wastage:</strong>{' '}
+//   {Number(totalStoneCount).toFixed(2)} × {Number(wastagePercent) || 0} / 100 ={' '}
+//   <strong>{!isNaN(totalWastage) ? Number(totalWastage).toFixed(2) : '0.00'} g</strong>
+// </Typography>
 
-    <Typography sx={{ mt: 2 }}><strong>Overall Balance:</strong> 
-    {getOverallBalance()}g
-    </Typography>
+//     <Typography sx={{ mt: 2 }}><strong>Overall Balance:</strong> 
+//     {getOverallBalance()}g
+//     </Typography>
 
-<Typography sx={{ mt: 1 , color:'red'}}>
-  <strong>Closing Balance:</strong> {closingBalance.toFixed(2)}g
-</Typography>
+// <Typography sx={{ mt: 1 , color:'red'}}>
+//   <strong>Closing Balance:</strong> {closingBalance.toFixed(2)}g
+// </Typography>
 
-{closingBalance < 0 && (
-  <TextField
-    label="Given Gold from owner (g)"
-    type="number"
-    fullWidth
-    size="small"
-    value={givenGold}
-    onChange={(e) => setGivenGold(e.target.value)}
-    sx={{ mt: 2 }}
-  />
-)}
+// {closingBalance < 0 && (
+//   <TextField
+//     label="Given Gold from owner (g)"
+//     type="number"
+//     fullWidth
+//     size="small"
+//     value={givenGold}
+//     onChange={(e) => setGivenGold(e.target.value)}
+//     sx={{ mt: 2 }}
+//   />
+// )}
 
-<Typography
-  sx={{
-    mt: 2,
-    fontWeight: 'bold',
-    color:
-      finalClosingBalance > 0
-        ? 'green'
-        : finalClosingBalance < 0
-        ? 'red'
-        : 'black',
-  }}
->
-  {finalClosingBalance > 0
-    ? `Worker should give ${Math.abs(finalClosingBalance).toFixed(2)}g to Owner`
-    : finalClosingBalance < 0
-    ? `Owner should give ${Math.abs(finalClosingBalance).toFixed(2)}g to Worker`
-    : 'No balance due'}
-</Typography>
+// <Typography
+//   sx={{
+//     mt: 2,
+//     fontWeight: 'bold',
+//     color:
+//       finalClosingBalance > 0
+//         ? 'green'
+//         : finalClosingBalance < 0
+//         ? 'red'
+//         : 'black',
+//   }}
+// >
+//   {finalClosingBalance > 0
+//     ? `Worker should give ${Math.abs(finalClosingBalance).toFixed(2)}g to Owner`
+//     : finalClosingBalance < 0
+//     ? `Owner should give ${Math.abs(finalClosingBalance).toFixed(2)}g to Worker`
+//     : 'No balance due'}
+// </Typography>
 
-    <Button
-      variant="contained"
-      color="primary"
-      fullWidth
-      sx={{ mt: 3, backgroundColor: '#1a1a1f', color: 'white' }}
-    >
-      Save Summary
-    </Button>
+//     <Button
+//       variant="contained"
+//       color="primary"
+//       fullWidth
+//       sx={{ mt: 3, backgroundColor: '#1a1a1f', color: 'white' }}
+//     >
+//       Save Summary
+//     </Button>
 
-<Button
-  variant="outlined"
-  color="error"
-  sx={{ mt: 2, width: '100%' }}
-  onClick={() => {
-    const confirmed = window.confirm("Are you sure you want to close this jobcard?");
-    if (confirmed) {
-      const existingLots = JSON.parse(localStorage.getItem("settingLots")) || [];
-      const newLot = {
-        id: existingLots.length + 1,
-        entries,
-        summary: {
-          totalStoneCount,
-          wastagePercent,
-          totalWastage: totalWastage.toFixed(2),
-          overallBalance: getOverallBalance(),
-          closingBalance: closingBalance.toFixed(2),
-          givenGold,
-          finalClosingBalance: finalClosingBalance.toFixed(2)
-        }
-      };
-      localStorage.setItem("settingLots", JSON.stringify([...existingLots, newLot]));
-      alert("Jobcard closed successfully!");
-      window.location.href = "/settinglot"; 
-    }
-  }}
->
-  Close Jobcard
-</Button>
-  </Box>
-      </Box>
+// <Button
+//   variant="outlined"
+//   color="error"
+//   sx={{ mt: 2, width: '100%' }}
+//   onClick={() => {
+//     const confirmed = window.confirm("Are you sure you want to close this jobcard?");
+//     if (confirmed) {
+//       const existingLots = JSON.parse(localStorage.getItem("settingLots")) || [];
+//       const newLot = {
+//         id: existingLots.length + 1,
+//         entries,
+//         summary: {
+//           totalStoneCount,
+//           wastagePercent,
+//           totalWastage: totalWastage.toFixed(2),
+//           overallBalance: getOverallBalance(),
+//           closingBalance: closingBalance.toFixed(2),
+//           givenGold,
+//           finalClosingBalance: finalClosingBalance.toFixed(2)
+//         }
+//       };
+//       localStorage.setItem("settingLots", JSON.stringify([...existingLots, newLot]));
+//       alert("Jobcard closed successfully!");
+//       window.location.href = "/settinglot"; 
+//     }
+//   }}
+// >
+//   Close Jobcard
+// </Button>
+//   </Box>
+//       </Box>
    
-      <Dialog open={isAssignOpen} onClose={() => setIsAssignOpen(false)} fullWidth maxWidth={false} PaperProps={{ sx: { width: '50rem !important' } }}>
-        <DialogTitle>Assign Setting Items</DialogTitle>
-        <DialogContent>
-          <Box sx={{ mb: 2 }}>
-            <TextField
-              sx={{ mt: '1rem' }}
-              label="Date"
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              InputLabelProps={{ shrink: true }}
-              fullWidth
-            />
-          </Box>
-          <Typography variant="h6">Available Setting Items</Typography>
-          <Table size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Select</TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Item</TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Issue</TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Touch</TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Purity</TableCell>
-                <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Remarks</TableCell>
-              </TableRow>
-            </TableHead>
+//       <Dialog open={isAssignOpen} onClose={() => setIsAssignOpen(false)} fullWidth maxWidth={false} PaperProps={{ sx: { width: '50rem !important' } }}>
+//         <DialogTitle>Assign Setting Items</DialogTitle>
+//         <DialogContent>
+//           <Box sx={{ mb: 2 }}>
+//             <TextField
+//               sx={{ mt: '1rem' }}
+//               label="Date"
+//               type="date"
+//               value={date}
+//               onChange={(e) => setDate(e.target.value)}
+//               InputLabelProps={{ shrink: true }}
+//               fullWidth
+//             />
+//           </Box>
+//           <Typography variant="h6">Available Setting Items</Typography>
+//           <Table size="small">
+//             <TableHead>
+//               <TableRow>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Select</TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Item</TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Issue</TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Touch</TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Purity</TableCell>
+//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Remarks</TableCell>
+//               </TableRow>
+//             </TableHead>
 
-            <TableBody>
-              {items.map((item, index) => (
+//             <TableBody>
+//               {items.map((item, index) => (
        
-                <TableRow
-  key={index} hover style={{ backgroundColor: isAlreadyAssigned(item) ? "#d4edda" : "transparent" }} >
-  <TableCell>
-    <Checkbox
-      checked={!!selectedItems.find(i => i.item === item.item)}
-      onChange={() => handleToggle(item)}
-      disabled={isAlreadyAssigned(item)}
-    />
-  </TableCell>
-  <TableCell>{item.item}</TableCell>
-  <TableCell>{item.beforeWeight}</TableCell>
-  <TableCell>{item.touch}</TableCell>
-  <TableCell>{item.purity}</TableCell>
-  <TableCell>{item.remarks}</TableCell>
-</TableRow>
+//                 <TableRow
+//   key={index} hover style={{ backgroundColor: isAlreadyAssigned(item) ? "#d4edda" : "transparent" }} >
+//   <TableCell>
+//     <Checkbox
+//       checked={!!selectedItems.find(i => i.item === item.item)}
+//       onChange={() => handleToggle(item)}
+//       disabled={isAlreadyAssigned(item)}
+//     />
+//   </TableCell>
+//   <TableCell>{item.item}</TableCell>
+//   <TableCell>{item.beforeWeight}</TableCell>
+//   <TableCell>{item.touch}</TableCell>
+//   <TableCell>{item.purity}</TableCell>
+//   <TableCell>{item.remarks}</TableCell>
+// </TableRow>
 
-              ))}
-            </TableBody>
-          </Table>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setIsAssignOpen(false)}>Cancel</Button>
-          <Button variant="contained" onClick={handleAssign}>Assign</Button>
-        </DialogActions>
-      </Dialog>
-
-
-      <Dialog open={!!viewEntry} onClose={() => setViewEntry(null)} fullWidth maxWidth={false} PaperProps={{ sx: { width: '60rem !important' } }}>
-        <DialogTitle>Assigned Item Details</DialogTitle>
-        <DialogContent>
-          {viewEntry && (
-            <>
-              <Table size="small" sx={{ mt: 1 }}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Date</TableCell>
-                    <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Item</TableCell>
-                    <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Issue</TableCell>
-                    <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Touch</TableCell>
-                    <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Purity</TableCell>
-                    <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Remarks</TableCell>
-                  </TableRow>
-                </TableHead>
-
-<TableBody>
-  {viewEntry.items.map((item, idx) => (
-    <TableRow key={idx}>
-      <TableCell>{viewEntry.date}</TableCell>
-      <TableCell>{item.item}</TableCell>
-      <TableCell>{item.beforeWeight}g</TableCell>
-      <TableCell>{item.touch}</TableCell>
-      <TableCell>{item.purity}</TableCell>
-      <TableCell>{item.remarks}</TableCell>
-    </TableRow>
-  ))}
-</TableBody> 
-<TableFooter>
-    <TableRow>
-      <TableCell colSpan={2} sx={{ fontWeight: 'bold' }}>Total</TableCell>
-      <TableCell sx={{ fontWeight: 'bold' }}>
-        {viewEntry.items.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0).toFixed(2)} g
-      </TableCell>
-      <TableCell />
-      <TableCell sx={{ fontWeight: 'bold' }}>
-        {viewEntry.items.reduce((sum, item) => sum + parseFloat(item.purity || 0), 0).toFixed(2)}
-      </TableCell>
-      <TableCell />
-    </TableRow>
-  </TableFooter>
-              </Table>
+//               ))}
+//             </TableBody>
+//           </Table>
+//         </DialogContent>
+//         <DialogActions>
+//           <Button onClick={() => setIsAssignOpen(false)}>Cancel</Button>
+//           <Button variant="contained" onClick={handleAssign}>Assign</Button>
+//         </DialogActions>
+//       </Dialog>
 
 
-              <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
-                <TextField label="Receipt Weight" type="number" fullWidth required value={viewEntry.afterWeight || ''} onChange={(e) => setViewEntry({ ...viewEntry, afterWeight: e.target.value })} />
-                <TextField label="Stone Count" type="number" fullWidth value={viewEntry.stoneCount || ''} onChange={(e) => setViewEntry({ ...viewEntry, stoneCount: e.target.value })} />
-                <TextField label="Stone Weight" type="number" fullWidth value={viewEntry.stoneWeight || ''} onChange={(e) => setViewEntry({ ...viewEntry, stoneWeight: e.target.value })} />
-                <TextField label="Remarks" fullWidth value={viewEntry.extraRemarks || ''} onChange={(e) => setViewEntry({ ...viewEntry, extraRemarks: e.target.value })} />
-              </Box>
+//       <Dialog open={!!viewEntry} onClose={() => setViewEntry(null)} fullWidth maxWidth={false} PaperProps={{ sx: { width: '60rem !important' } }}>
+//         <DialogTitle>Assigned Item Details</DialogTitle>
+//         <DialogContent>
+//           {viewEntry && (
+//             <>
+//               <Table size="small" sx={{ mt: 1 }}>
+//                 <TableHead>
+//                   <TableRow>
+//                     <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Date</TableCell>
+//                     <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Item</TableCell>
+//                     <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Issue</TableCell>
+//                     <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Touch</TableCell>
+//                     <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Purity</TableCell>
+//                     <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}>Remarks</TableCell>
+//                   </TableRow>
+//                 </TableHead>
 
-{viewEntry && (() => {
-  const afterWeight = parseFloat(viewEntry.afterWeight || 0);
-  const stoneWeight = parseFloat(viewEntry.stoneWeight || 0);
-  const totalIssuedWeight = viewEntry.items.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0);
-  const totalScrapWeight = parseFloat(getTotalScrapWeight(viewEntry.scrapItems));
+// <TableBody>
+//   {viewEntry.items.map((item, idx) => (
+//     <TableRow key={idx}>
+//       <TableCell>{viewEntry.date}</TableCell>
+//       <TableCell>{item.item}</TableCell>
+//       <TableCell>{item.beforeWeight}g</TableCell>
+//       <TableCell>{item.touch}</TableCell>
+//       <TableCell>{item.purity}</TableCell>
+//       <TableCell>{item.remarks}</TableCell>
+//     </TableRow>
+//   ))}
+// </TableBody> 
+// <TableFooter>
+//     <TableRow>
+//       <TableCell colSpan={2} sx={{ fontWeight: 'bold' }}>Total</TableCell>
+//       <TableCell sx={{ fontWeight: 'bold' }}>
+//         {viewEntry.items.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0).toFixed(2)} g
+//       </TableCell>
+//       <TableCell />
+//       <TableCell sx={{ fontWeight: 'bold' }}>
+//         {viewEntry.items.reduce((sum, item) => sum + parseFloat(item.purity || 0), 0).toFixed(2)}
+//       </TableCell>
+//       <TableCell />
+//     </TableRow>
+//   </TableFooter>
+//               </Table>
 
-  const total = afterWeight - stoneWeight;
-  const totalBalance =  totalIssuedWeight - total;
-  const finalBalance = totalBalance - totalScrapWeight;
 
-  return (
-    <Box sx={{ mt: 3, display:'flex', gap:'4.5rem' }}>
-      <Typography><strong>Total:</strong> {total.toFixed(2)}g </Typography>
-      <Typography><strong>Total Balance:</strong> {totalBalance.toFixed(2)}g </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, marginLeft:'17rem' }}>
-    <Typography variant="subtitle1"><b>Wastage:</b></Typography>
-    <Button
-      variant={viewEntry?.wastage === 'Yes' ? 'contained' : 'outlined'}
-      color="success"
-      onClick={() => setViewEntry({ ...viewEntry, wastage: 'Yes' })}
-    >
-      Yes
-    </Button>
-    <Button
-      variant={viewEntry?.wastage === 'No' ? 'contained' : 'outlined'}
-      color="error"
-      onClick={() => setViewEntry({ ...viewEntry, wastage: 'No' })}
-    >
-      No
-    </Button>
-  </Box>
-    </Box>
-  );
-})()}
+//               <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
+//                 <TextField label="Receipt Weight" type="number" fullWidth required value={viewEntry.afterWeight || ''} onChange={(e) => setViewEntry({ ...viewEntry, afterWeight: e.target.value })} />
+//                 <TextField label="Stone Count" type="number" fullWidth value={viewEntry.stoneCount || ''} onChange={(e) => setViewEntry({ ...viewEntry, stoneCount: e.target.value })} />
+//                 <TextField label="Stone Weight" type="number" fullWidth value={viewEntry.stoneWeight || ''} onChange={(e) => setViewEntry({ ...viewEntry, stoneWeight: e.target.value })} />
+//                 <TextField label="Remarks" fullWidth value={viewEntry.extraRemarks || ''} onChange={(e) => setViewEntry({ ...viewEntry, extraRemarks: e.target.value })} />
+//               </Box>
 
-<Box sx={{ mt: 2 }}>
-  <Button 
-   sx={{
-    paddingLeft:2,
-    paddingRight:2
-  }}
-    variant="outlined"
-    onClick={() =>
-      setViewEntry({
-        ...viewEntry,
-        scrapItems: [
-          ...(viewEntry.scrapItems || []),
-          { itemName: '', weight: '', hasStone: 'No', touch: '', purity: '', remarks: '' },
-        ],
-      })
-    }
-  >
-    Add Scrap Items
-  </Button>
+// {viewEntry && (() => {
+//   const afterWeight = parseFloat(viewEntry.afterWeight || 0);
+//   const stoneWeight = parseFloat(viewEntry.stoneWeight || 0);
+//   const totalIssuedWeight = viewEntry.items.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0);
+//   const totalScrapWeight = parseFloat(getTotalScrapWeight(viewEntry.scrapItems));
 
-  <Box
-    sx={{
-      maxHeight: '12rem', 
-      overflowY: (viewEntry.scrapItems?.length || 0) > 3 ? 'auto' : 'visible',
-      mt: 1,
-    }}
-  >
-    <Table size="small" stickyHeader >
-      <TableHead>
-        <TableRow >
-          <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >S.No</TableCell>
-          <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >Item Name</TableCell>
-          <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >Weight</TableCell>
-          <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >Touch</TableCell>
-          <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >Purity</TableCell>
-          <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >Remarks</TableCell>
-          <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}> Actions </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {(viewEntry.scrapItems || []).map((item, index) => (
-          <TableRow key={index}>
-            <TableCell>{index + 1}</TableCell>
-            <TableCell>
-              <TextField
-                size="small"
-                value={item.itemName}
-                onChange={(e) => {
-                  const updated = [...viewEntry.scrapItems];
-                  updated[index].itemName = e.target.value;
-                  setViewEntry({ ...viewEntry, scrapItems: updated });
-                }}
-              />
-            </TableCell>
-            <TableCell>
-              <TextField
-                size="small"
-                type="number"
-                value={item.weight}
-                onChange={(e) => {
-                  const updated = [...viewEntry.scrapItems];
-                  updated[index].weight = e.target.value;
-                  const weight = parseFloat(e.target.value) || 0;
-                  const touch = parseFloat(updated[index].touch) || 0;
-                  updated[index].purity = ((weight * touch) / 100).toFixed(2);
-                  setViewEntry({ ...viewEntry, scrapItems: updated });
-                }}
-              />
-            </TableCell>
-            <TableCell>
-              <TextField
-                size="small"
-                value={item.touch}
-                onChange={(e) => {
-                  const updated = [...viewEntry.scrapItems];
-                  updated[index].touch = e.target.value;
-                  const weight = parseFloat(updated[index].weight) || 0;
-                  const touch = parseFloat(e.target.value) || 0;
-                  updated[index].purity = ((weight * touch) / 100).toFixed(2);
-                  setViewEntry({ ...viewEntry, scrapItems: updated });
-                }}
-              />
-            </TableCell>
-            <TableCell>
-              <TextField
-                size="small"
-                value={item.purity}
-                onChange={(e) => {
-                  const updated = [...viewEntry.scrapItems];
-                  updated[index].purity = e.target.value;
-                  setViewEntry({ ...viewEntry, scrapItems: updated });
-                }}
-              />
-            </TableCell>
-            <TableCell>
-              <TextField
-                size="small"
-                value={item.remarks}
-                onChange={(e) => {
-                  const updated = [...viewEntry.scrapItems];
-                  updated[index].remarks = e.target.value;
-                  setViewEntry({ ...viewEntry, scrapItems: updated });
-                }}
-              />
-            </TableCell>
-            <TableCell>
-              <Button
-                color="error"
-                size="small"
-                onClick={() => {
-                  const updated = [...viewEntry.scrapItems];
-                  updated.splice(index, 1);
-                  setViewEntry({ ...viewEntry, scrapItems: updated });
-                }}
-              >
-                <Delete />
-              </Button>
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </Box>
-</Box>
+//   const total = afterWeight - stoneWeight;
+//   const totalBalance =  totalIssuedWeight - total;
+//   const finalBalance = totalBalance - totalScrapWeight;
 
-<Box sx={{ mt: 2 }}>
+//   return (
+//     <Box sx={{ mt: 3, display:'flex', gap:'4.5rem' }}>
+//       <Typography><strong>Total:</strong> {total.toFixed(2)}g </Typography>
+//       <Typography><strong>Total Balance:</strong> {totalBalance.toFixed(2)}g </Typography>
+//       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, marginLeft:'17rem' }}>
+//     <Typography variant="subtitle1"><b>Wastage:</b></Typography>
+//     <Button
+//       variant={viewEntry?.wastage === 'Yes' ? 'contained' : 'outlined'}
+//       color="success"
+//       onClick={() => setViewEntry({ ...viewEntry, wastage: 'Yes' })}
+//     >
+//       Yes
+//     </Button>
+//     <Button
+//       variant={viewEntry?.wastage === 'No' ? 'contained' : 'outlined'}
+//       color="error"
+//       onClick={() => setViewEntry({ ...viewEntry, wastage: 'No' })}
+//     >
+//       No
+//     </Button>
+//   </Box>
+//     </Box>
+//   );
+// })()}
 
-<Typography variant="subtitle1">
-      <strong>Total Scrap Weight:</strong> {getTotalScrapWeight(viewEntry.scrapItems)} g
-    </Typography>
-  <Typography variant="subtitle1">
-    <strong>Balance:</strong> {
-      viewEntry.afterWeight && viewEntry.stoneWeight
-        ? (
-            viewEntry.items.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0)
-            - (parseFloat(viewEntry.afterWeight || 0) - parseFloat(viewEntry.stoneWeight || 0))
-            - parseFloat(getTotalScrapWeight(viewEntry.scrapItems))
-          ).toFixed(2)
-        : '—'
-    } g
-  </Typography>
-</Box>
-           </>
-          )}
-        </DialogContent>
-        <DialogActions>
-        <Button
-  variant="contained"
-  color="primary"
-  disabled={viewEntry?.wastage !== 'Yes' && viewEntry?.wastage !== 'No'}
-  onClick={() => {
-    if (!viewEntry.afterWeight) {
-      alert("Please enter After Weight");
-      return;
-    }
+// <Box sx={{ mt: 2 }}>
+//   <Button 
+//    sx={{
+//     paddingLeft:2,
+//     paddingRight:2
+//   }}
+//     variant="outlined"
+//     onClick={() =>
+//       setViewEntry({
+//         ...viewEntry,
+//         scrapItems: [
+//           ...(viewEntry.scrapItems || []),
+//           { itemName: '', weight: '', hasStone: 'No', touch: '', purity: '', remarks: '' },
+//         ],
+//       })
+//     }
+//   >
+//     Add Scrap Items
+//   </Button>
 
-            const updated = entries.map(entry =>
-              entry.id === viewEntry.id ? {
-                ...entry,
-                ...viewEntry,
-                receiptWeight: viewEntry.afterWeight,
-              } : entry
-            );
+//   <Box
+//     sx={{
+//       maxHeight: '12rem', 
+//       overflowY: (viewEntry.scrapItems?.length || 0) > 3 ? 'auto' : 'visible',
+//       mt: 1,
+//     }}
+//   >
+//     <Table size="small" stickyHeader >
+//       <TableHead>
+//         <TableRow >
+//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >S.No</TableCell>
+//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >Item Name</TableCell>
+//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >Weight</TableCell>
+//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >Touch</TableCell>
+//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >Purity</TableCell>
+//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }} >Remarks</TableCell>
+//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center' , fontWeight:'bold' }}> Actions </TableCell>
+//         </TableRow>
+//       </TableHead>
+//       <TableBody>
+//         {(viewEntry.scrapItems || []).map((item, index) => (
+//           <TableRow key={index}>
+//             <TableCell>{index + 1}</TableCell>
+//             <TableCell>
+//               <TextField
+//                 size="small"
+//                 value={item.itemName}
+//                 onChange={(e) => {
+//                   const updated = [...viewEntry.scrapItems];
+//                   updated[index].itemName = e.target.value;
+//                   setViewEntry({ ...viewEntry, scrapItems: updated });
+//                 }}
+//               />
+//             </TableCell>
+//             <TableCell>
+//               <TextField
+//                 size="small"
+//                 type="number"
+//                 value={item.weight}
+//                 onChange={(e) => {
+//                   const updated = [...viewEntry.scrapItems];
+//                   updated[index].weight = e.target.value;
+//                   const weight = parseFloat(e.target.value) || 0;
+//                   const touch = parseFloat(updated[index].touch) || 0;
+//                   updated[index].purity = ((weight * touch) / 100).toFixed(2);
+//                   setViewEntry({ ...viewEntry, scrapItems: updated });
+//                 }}
+//               />
+//             </TableCell>
+//             <TableCell>
+//               <TextField
+//                 size="small"
+//                 value={item.touch}
+//                 onChange={(e) => {
+//                   const updated = [...viewEntry.scrapItems];
+//                   updated[index].touch = e.target.value;
+//                   const weight = parseFloat(updated[index].weight) || 0;
+//                   const touch = parseFloat(e.target.value) || 0;
+//                   updated[index].purity = ((weight * touch) / 100).toFixed(2);
+//                   setViewEntry({ ...viewEntry, scrapItems: updated });
+//                 }}
+//               />
+//             </TableCell>
+//             <TableCell>
+//               <TextField
+//                 size="small"
+//                 value={item.purity}
+//                 onChange={(e) => {
+//                   const updated = [...viewEntry.scrapItems];
+//                   updated[index].purity = e.target.value;
+//                   setViewEntry({ ...viewEntry, scrapItems: updated });
+//                 }}
+//               />
+//             </TableCell>
+//             <TableCell>
+//               <TextField
+//                 size="small"
+//                 value={item.remarks}
+//                 onChange={(e) => {
+//                   const updated = [...viewEntry.scrapItems];
+//                   updated[index].remarks = e.target.value;
+//                   setViewEntry({ ...viewEntry, scrapItems: updated });
+//                 }}
+//               />
+//             </TableCell>
+//             <TableCell>
+//               <Button
+//                 color="error"
+//                 size="small"
+//                 onClick={() => {
+//                   const updated = [...viewEntry.scrapItems];
+//                   updated.splice(index, 1);
+//                   setViewEntry({ ...viewEntry, scrapItems: updated });
+//                 }}
+//               >
+//                 <Delete />
+//               </Button>
+//             </TableCell>
+//           </TableRow>
+//         ))}
+//       </TableBody>
+//     </Table>
+//   </Box>
+// </Box>
+
+// <Box sx={{ mt: 2 }}>
+
+// <Typography variant="subtitle1">
+//       <strong>Total Scrap Weight:</strong> {getTotalScrapWeight(viewEntry.scrapItems)} g
+//     </Typography>
+//   <Typography variant="subtitle1">
+//     <strong>Balance:</strong> {
+//       viewEntry.afterWeight && viewEntry.stoneWeight
+//         ? (
+//             viewEntry.items.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0)
+//             - (parseFloat(viewEntry.afterWeight || 0) - parseFloat(viewEntry.stoneWeight || 0))
+//             - parseFloat(getTotalScrapWeight(viewEntry.scrapItems))
+//           ).toFixed(2)
+//         : '—'
+//     } g
+//   </Typography>
+// </Box>
+//            </>
+//           )}
+//         </DialogContent>
+//         <DialogActions>
+//         <Button
+//   variant="contained"
+//   color="primary"
+//   disabled={viewEntry?.wastage !== 'Yes' && viewEntry?.wastage !== 'No'}
+//   onClick={() => {
+//     if (!viewEntry.afterWeight) {
+//       alert("Please enter After Weight");
+//       return;
+//     }
+
+//             const updated = entries.map(entry =>
+//               entry.id === viewEntry.id ? {
+//                 ...entry,
+//                 ...viewEntry,
+//                 receiptWeight: viewEntry.afterWeight,
+//               } : entry
+//             );
             
-            setEntries(updated);
-            setViewEntry(null);
-          }}
+//             setEntries(updated);
+//             setViewEntry(null);
+//           }}
           
-          >
-            Save
-          </Button>
-          <Button onClick={() => setViewEntry(null)}>Close</Button>
-        </DialogActions>
-      </Dialog>
-    </>
-  );
-};
+//           >
+//             Save
+//           </Button>
+//           <Button onClick={() => setViewEntry(null)}>Close</Button>
+//         </DialogActions>
+//       </Dialog>
+//     </>
+//   );
+// };
 
-export default SettingLotDetails; 
+// export default SettingLotDetails; 

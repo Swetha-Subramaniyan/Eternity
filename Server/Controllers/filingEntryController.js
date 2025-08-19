@@ -381,8 +381,6 @@ export const getFilingEntriesByPersonId = async (req, res) => {
     wastage: balance.wastage ?? null,
     balance: balance.balance ?? null,
   })),
-
-
     }));
 
     res.status(200).json(result);
