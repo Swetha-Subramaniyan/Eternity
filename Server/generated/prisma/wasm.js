@@ -331,7 +331,8 @@ exports.Prisma.SettingItemsScalarFieldEnum = {
   scrap_weight: 'scrap_weight',
   touch_id: 'touch_id',
   item_purity: 'item_purity',
-  scrap_remarks: 'scrap_remarks'
+  scrap_remarks: 'scrap_remarks',
+  setting_entry_id: 'setting_entry_id'
 };
 
 exports.Prisma.LotSettingMapperScalarFieldEnum = {
