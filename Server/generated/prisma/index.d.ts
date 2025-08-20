@@ -4017,6 +4017,7 @@ export namespace Prisma {
     settingTotalBalance: number
     settingWastage: number
     LotSettingMapper: number
+    SettingItems: number
   }
 
   export type SettingEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4024,6 +4025,7 @@ export namespace Prisma {
     settingTotalBalance?: boolean | SettingEntryCountOutputTypeCountSettingTotalBalanceArgs
     settingWastage?: boolean | SettingEntryCountOutputTypeCountSettingWastageArgs
     LotSettingMapper?: boolean | SettingEntryCountOutputTypeCountLotSettingMapperArgs
+    SettingItems?: boolean | SettingEntryCountOutputTypeCountSettingItemsArgs
   }
 
   // Custom InputTypes
@@ -4063,6 +4065,13 @@ export namespace Prisma {
    */
   export type SettingEntryCountOutputTypeCountLotSettingMapperArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LotSettingMapperWhereInput
+  }
+
+  /**
+   * SettingEntryCountOutputType without action
+   */
+  export type SettingEntryCountOutputTypeCountSettingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SettingItemsWhereInput
   }
 
 
@@ -24853,6 +24862,7 @@ export namespace Prisma {
     settingTotalBalance?: boolean | SettingEntry$settingTotalBalanceArgs<ExtArgs>
     settingWastage?: boolean | SettingEntry$settingWastageArgs<ExtArgs>
     LotSettingMapper?: boolean | SettingEntry$LotSettingMapperArgs<ExtArgs>
+    SettingItems?: boolean | SettingEntry$SettingItemsArgs<ExtArgs>
     _count?: boolean | SettingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["settingEntry"]>
 
@@ -24873,6 +24883,7 @@ export namespace Prisma {
     settingTotalBalance?: boolean | SettingEntry$settingTotalBalanceArgs<ExtArgs>
     settingWastage?: boolean | SettingEntry$settingWastageArgs<ExtArgs>
     LotSettingMapper?: boolean | SettingEntry$LotSettingMapperArgs<ExtArgs>
+    SettingItems?: boolean | SettingEntry$SettingItemsArgs<ExtArgs>
     _count?: boolean | SettingEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -24885,6 +24896,7 @@ export namespace Prisma {
       settingTotalBalance: Prisma.$SettingTotalBalancePayload<ExtArgs>[]
       settingWastage: Prisma.$SettingWastagePayload<ExtArgs>[]
       LotSettingMapper: Prisma.$LotSettingMapperPayload<ExtArgs>[]
+      SettingItems: Prisma.$SettingItemsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -25237,6 +25249,7 @@ export namespace Prisma {
     settingTotalBalance<T extends SettingEntry$settingTotalBalanceArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$settingTotalBalanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingTotalBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     settingWastage<T extends SettingEntry$settingWastageArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$settingWastageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingWastagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     LotSettingMapper<T extends SettingEntry$LotSettingMapperArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$LotSettingMapperArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LotSettingMapperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    SettingItems<T extends SettingEntry$SettingItemsArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntry$SettingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -25709,6 +25722,30 @@ export namespace Prisma {
   }
 
   /**
+   * SettingEntry.SettingItems
+   */
+  export type SettingEntry$SettingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SettingItems
+     */
+    select?: SettingItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SettingItems
+     */
+    omit?: SettingItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SettingItemsInclude<ExtArgs> | null
+    where?: SettingItemsWhereInput
+    orderBy?: SettingItemsOrderByWithRelationInput | SettingItemsOrderByWithRelationInput[]
+    cursor?: SettingItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SettingItemsScalarFieldEnum | SettingItemsScalarFieldEnum[]
+  }
+
+  /**
    * SettingEntry without action
    */
   export type SettingEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25745,6 +25782,7 @@ export namespace Prisma {
     scrap_weight: number | null
     touch_id: number | null
     item_purity: number | null
+    setting_entry_id: number | null
   }
 
   export type SettingItemsSumAggregateOutputType = {
@@ -25753,6 +25791,7 @@ export namespace Prisma {
     scrap_weight: number | null
     touch_id: number | null
     item_purity: number | null
+    setting_entry_id: number | null
   }
 
   export type SettingItemsMinAggregateOutputType = {
@@ -25764,6 +25803,7 @@ export namespace Prisma {
     touch_id: number | null
     item_purity: number | null
     scrap_remarks: string | null
+    setting_entry_id: number | null
   }
 
   export type SettingItemsMaxAggregateOutputType = {
@@ -25775,6 +25815,7 @@ export namespace Prisma {
     touch_id: number | null
     item_purity: number | null
     scrap_remarks: string | null
+    setting_entry_id: number | null
   }
 
   export type SettingItemsCountAggregateOutputType = {
@@ -25786,6 +25827,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     scrap_remarks: number
+    setting_entry_id: number
     _all: number
   }
 
@@ -25796,6 +25838,7 @@ export namespace Prisma {
     scrap_weight?: true
     touch_id?: true
     item_purity?: true
+    setting_entry_id?: true
   }
 
   export type SettingItemsSumAggregateInputType = {
@@ -25804,6 +25847,7 @@ export namespace Prisma {
     scrap_weight?: true
     touch_id?: true
     item_purity?: true
+    setting_entry_id?: true
   }
 
   export type SettingItemsMinAggregateInputType = {
@@ -25815,6 +25859,7 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     scrap_remarks?: true
+    setting_entry_id?: true
   }
 
   export type SettingItemsMaxAggregateInputType = {
@@ -25826,6 +25871,7 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     scrap_remarks?: true
+    setting_entry_id?: true
   }
 
   export type SettingItemsCountAggregateInputType = {
@@ -25837,6 +25883,7 @@ export namespace Prisma {
     touch_id?: true
     item_purity?: true
     scrap_remarks?: true
+    setting_entry_id?: true
     _all?: true
   }
 
@@ -25935,6 +25982,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     scrap_remarks: string | null
+    setting_entry_id: number
     _count: SettingItemsCountAggregateOutputType | null
     _avg: SettingItemsAvgAggregateOutputType | null
     _sum: SettingItemsSumAggregateOutputType | null
@@ -25965,12 +26013,14 @@ export namespace Prisma {
     touch_id?: boolean
     item_purity?: boolean
     scrap_remarks?: boolean
+    setting_entry_id?: boolean
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
     setting_wastage?: boolean | SettingItems$setting_wastageArgs<ExtArgs>
     buffing_entry?: boolean | SettingItems$buffing_entryArgs<ExtArgs>
     stock?: boolean | SettingItems$stockArgs<ExtArgs>
     LotBuffingMapper?: boolean | SettingItems$LotBuffingMapperArgs<ExtArgs>
+    settingEntryId?: boolean | SettingEntryDefaultArgs<ExtArgs>
     _count?: boolean | SettingItemsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["settingItems"]>
 
@@ -25985,9 +26035,10 @@ export namespace Prisma {
     touch_id?: boolean
     item_purity?: boolean
     scrap_remarks?: boolean
+    setting_entry_id?: boolean
   }
 
-  export type SettingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "setting_item_id" | "scrap_weight" | "touch_id" | "item_purity" | "scrap_remarks", ExtArgs["result"]["settingItems"]>
+  export type SettingItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "type" | "setting_item_id" | "scrap_weight" | "touch_id" | "item_purity" | "scrap_remarks" | "setting_entry_id", ExtArgs["result"]["settingItems"]>
   export type SettingItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     item?: boolean | AddItemDefaultArgs<ExtArgs>
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
@@ -25995,6 +26046,7 @@ export namespace Prisma {
     buffing_entry?: boolean | SettingItems$buffing_entryArgs<ExtArgs>
     stock?: boolean | SettingItems$stockArgs<ExtArgs>
     LotBuffingMapper?: boolean | SettingItems$LotBuffingMapperArgs<ExtArgs>
+    settingEntryId?: boolean | SettingEntryDefaultArgs<ExtArgs>
     _count?: boolean | SettingItemsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -26007,6 +26059,7 @@ export namespace Prisma {
       buffing_entry: Prisma.$BuffingEntryPayload<ExtArgs>[]
       stock: Prisma.$StockPayload<ExtArgs>[]
       LotBuffingMapper: Prisma.$LotBuffingMapperPayload<ExtArgs>[]
+      settingEntryId: Prisma.$SettingEntryPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -26017,6 +26070,7 @@ export namespace Prisma {
       touch_id: number
       item_purity: number
       scrap_remarks: string | null
+      setting_entry_id: number
     }, ExtArgs["result"]["settingItems"]>
     composites: {}
   }
@@ -26363,6 +26417,7 @@ export namespace Prisma {
     buffing_entry<T extends SettingItems$buffing_entryArgs<ExtArgs> = {}>(args?: Subset<T, SettingItems$buffing_entryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     stock<T extends SettingItems$stockArgs<ExtArgs> = {}>(args?: Subset<T, SettingItems$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     LotBuffingMapper<T extends SettingItems$LotBuffingMapperArgs<ExtArgs> = {}>(args?: Subset<T, SettingItems$LotBuffingMapperArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LotBuffingMapperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    settingEntryId<T extends SettingEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SettingEntryDefaultArgs<ExtArgs>>): Prisma__SettingEntryClient<$Result.GetResult<Prisma.$SettingEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -26400,6 +26455,7 @@ export namespace Prisma {
     readonly touch_id: FieldRef<"SettingItems", 'Int'>
     readonly item_purity: FieldRef<"SettingItems", 'Float'>
     readonly scrap_remarks: FieldRef<"SettingItems", 'String'>
+    readonly setting_entry_id: FieldRef<"SettingItems", 'Int'>
   }
     
 
@@ -36813,7 +36869,8 @@ export namespace Prisma {
     scrap_weight: 'scrap_weight',
     touch_id: 'touch_id',
     item_purity: 'item_purity',
-    scrap_remarks: 'scrap_remarks'
+    scrap_remarks: 'scrap_remarks',
+    setting_entry_id: 'setting_entry_id'
   };
 
   export type SettingItemsScalarFieldEnum = (typeof SettingItemsScalarFieldEnum)[keyof typeof SettingItemsScalarFieldEnum]
@@ -38639,6 +38696,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceListRelationFilter
     settingWastage?: SettingWastageListRelationFilter
     LotSettingMapper?: LotSettingMapperListRelationFilter
+    SettingItems?: SettingItemsListRelationFilter
   }
 
   export type SettingEntryOrderByWithRelationInput = {
@@ -38652,6 +38710,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceOrderByRelationAggregateInput
     settingWastage?: SettingWastageOrderByRelationAggregateInput
     LotSettingMapper?: LotSettingMapperOrderByRelationAggregateInput
+    SettingItems?: SettingItemsOrderByRelationAggregateInput
   }
 
   export type SettingEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -38668,6 +38727,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceListRelationFilter
     settingWastage?: SettingWastageListRelationFilter
     LotSettingMapper?: LotSettingMapperListRelationFilter
+    SettingItems?: SettingItemsListRelationFilter
   }, "id" | "casting_item_id">
 
   export type SettingEntryOrderByWithAggregationInput = {
@@ -38704,12 +38764,14 @@ export namespace Prisma {
     touch_id?: IntFilter<"SettingItems"> | number
     item_purity?: FloatFilter<"SettingItems"> | number
     scrap_remarks?: StringNullableFilter<"SettingItems"> | string | null
+    setting_entry_id?: IntFilter<"SettingItems"> | number
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     setting_wastage?: SettingWastageListRelationFilter
     buffing_entry?: BuffingEntryListRelationFilter
     stock?: StockListRelationFilter
     LotBuffingMapper?: LotBuffingMapperListRelationFilter
+    settingEntryId?: XOR<SettingEntryScalarRelationFilter, SettingEntryWhereInput>
   }
 
   export type SettingItemsOrderByWithRelationInput = {
@@ -38721,12 +38783,14 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     scrap_remarks?: SortOrderInput | SortOrder
+    setting_entry_id?: SortOrder
     item?: AddItemOrderByWithRelationInput
     touch?: AddTouchOrderByWithRelationInput
     setting_wastage?: SettingWastageOrderByRelationAggregateInput
     buffing_entry?: BuffingEntryOrderByRelationAggregateInput
     stock?: StockOrderByRelationAggregateInput
     LotBuffingMapper?: LotBuffingMapperOrderByRelationAggregateInput
+    settingEntryId?: SettingEntryOrderByWithRelationInput
     _relevance?: SettingItemsOrderByRelevanceInput
   }
 
@@ -38742,12 +38806,14 @@ export namespace Prisma {
     touch_id?: IntFilter<"SettingItems"> | number
     item_purity?: FloatFilter<"SettingItems"> | number
     scrap_remarks?: StringNullableFilter<"SettingItems"> | string | null
+    setting_entry_id?: IntFilter<"SettingItems"> | number
     item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
     setting_wastage?: SettingWastageListRelationFilter
     buffing_entry?: BuffingEntryListRelationFilter
     stock?: StockListRelationFilter
     LotBuffingMapper?: LotBuffingMapperListRelationFilter
+    settingEntryId?: XOR<SettingEntryScalarRelationFilter, SettingEntryWhereInput>
   }, "id">
 
   export type SettingItemsOrderByWithAggregationInput = {
@@ -38759,6 +38825,7 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     scrap_remarks?: SortOrderInput | SortOrder
+    setting_entry_id?: SortOrder
     _count?: SettingItemsCountOrderByAggregateInput
     _avg?: SettingItemsAvgOrderByAggregateInput
     _max?: SettingItemsMaxOrderByAggregateInput
@@ -38778,6 +38845,7 @@ export namespace Prisma {
     touch_id?: IntWithAggregatesFilter<"SettingItems"> | number
     item_purity?: FloatWithAggregatesFilter<"SettingItems"> | number
     scrap_remarks?: StringNullableWithAggregatesFilter<"SettingItems"> | string | null
+    setting_entry_id?: IntWithAggregatesFilter<"SettingItems"> | number
   }
 
   export type LotSettingMapperWhereInput = {
@@ -41013,6 +41081,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
     LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateInput = {
@@ -41024,6 +41093,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
     LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUpdateInput = {
@@ -41034,6 +41104,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
     LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateInput = {
@@ -41045,6 +41116,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
     LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryCreateManyInput = {
@@ -41077,6 +41149,7 @@ export namespace Prisma {
     buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
     stock?: StockCreateNestedManyWithoutSettingItemInput
     LotBuffingMapper?: LotBuffingMapperCreateNestedManyWithoutSettingItemIdInput
+    settingEntryId: SettingEntryCreateNestedOneWithoutSettingItemsInput
   }
 
   export type SettingItemsUncheckedCreateInput = {
@@ -41088,6 +41161,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     scrap_remarks?: string | null
+    setting_entry_id: number
     setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
     buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
     stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
@@ -41106,6 +41180,7 @@ export namespace Prisma {
     buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUpdateManyWithoutSettingItemNestedInput
     LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutSettingItemIdNestedInput
+    settingEntryId?: SettingEntryUpdateOneRequiredWithoutSettingItemsNestedInput
   }
 
   export type SettingItemsUncheckedUpdateInput = {
@@ -41117,6 +41192,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
     setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
     buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
@@ -41132,6 +41208,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     scrap_remarks?: string | null
+    setting_entry_id: number
   }
 
   export type SettingItemsUpdateManyMutationInput = {
@@ -41151,6 +41228,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type LotSettingMapperCreateInput = {
@@ -43383,6 +43461,11 @@ export namespace Prisma {
     casting_item_id?: SortOrder
   }
 
+  export type SettingEntryScalarRelationFilter = {
+    is?: SettingEntryWhereInput
+    isNot?: SettingEntryWhereInput
+  }
+
   export type SettingItemsOrderByRelevanceInput = {
     fields: SettingItemsOrderByRelevanceFieldEnum | SettingItemsOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -43398,6 +43481,7 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     scrap_remarks?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type SettingItemsAvgOrderByAggregateInput = {
@@ -43406,6 +43490,7 @@ export namespace Prisma {
     scrap_weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type SettingItemsMaxOrderByAggregateInput = {
@@ -43417,6 +43502,7 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     scrap_remarks?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type SettingItemsMinOrderByAggregateInput = {
@@ -43428,6 +43514,7 @@ export namespace Prisma {
     touch_id?: SortOrder
     item_purity?: SortOrder
     scrap_remarks?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type SettingItemsSumOrderByAggregateInput = {
@@ -43436,16 +43523,12 @@ export namespace Prisma {
     scrap_weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
+    setting_entry_id?: SortOrder
   }
 
   export type FilingItemsNullableScalarRelationFilter = {
     is?: FilingItemsWhereInput | null
     isNot?: FilingItemsWhereInput | null
-  }
-
-  export type SettingEntryScalarRelationFilter = {
-    is?: SettingEntryWhereInput
-    isNot?: SettingEntryWhereInput
   }
 
   export type LotSettingMapperCountOrderByAggregateInput = {
@@ -46339,6 +46422,13 @@ export namespace Prisma {
     connect?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
   }
 
+  export type SettingItemsCreateNestedManyWithoutSettingEntryIdInput = {
+    create?: XOR<SettingItemsCreateWithoutSettingEntryIdInput, SettingItemsUncheckedCreateWithoutSettingEntryIdInput> | SettingItemsCreateWithoutSettingEntryIdInput[] | SettingItemsUncheckedCreateWithoutSettingEntryIdInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutSettingEntryIdInput | SettingItemsCreateOrConnectWithoutSettingEntryIdInput[]
+    createMany?: SettingItemsCreateManySettingEntryIdInputEnvelope
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+  }
+
   export type FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput = {
     create?: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput> | FilingItemsCreateWithoutSetting_entryInput[] | FilingItemsUncheckedCreateWithoutSetting_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutSetting_entryInput | FilingItemsCreateOrConnectWithoutSetting_entryInput[]
@@ -46364,6 +46454,13 @@ export namespace Prisma {
     connectOrCreate?: LotSettingMapperCreateOrConnectWithoutSettingEntryInput | LotSettingMapperCreateOrConnectWithoutSettingEntryInput[]
     createMany?: LotSettingMapperCreateManySettingEntryInputEnvelope
     connect?: LotSettingMapperWhereUniqueInput | LotSettingMapperWhereUniqueInput[]
+  }
+
+  export type SettingItemsUncheckedCreateNestedManyWithoutSettingEntryIdInput = {
+    create?: XOR<SettingItemsCreateWithoutSettingEntryIdInput, SettingItemsUncheckedCreateWithoutSettingEntryIdInput> | SettingItemsCreateWithoutSettingEntryIdInput[] | SettingItemsUncheckedCreateWithoutSettingEntryIdInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutSettingEntryIdInput | SettingItemsCreateOrConnectWithoutSettingEntryIdInput[]
+    createMany?: SettingItemsCreateManySettingEntryIdInputEnvelope
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
   }
 
   export type AddSettingUpdateOneRequiredWithoutSettingsNestedInput = {
@@ -46437,6 +46534,20 @@ export namespace Prisma {
     deleteMany?: LotSettingMapperScalarWhereInput | LotSettingMapperScalarWhereInput[]
   }
 
+  export type SettingItemsUpdateManyWithoutSettingEntryIdNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutSettingEntryIdInput, SettingItemsUncheckedCreateWithoutSettingEntryIdInput> | SettingItemsCreateWithoutSettingEntryIdInput[] | SettingItemsUncheckedCreateWithoutSettingEntryIdInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutSettingEntryIdInput | SettingItemsCreateOrConnectWithoutSettingEntryIdInput[]
+    upsert?: SettingItemsUpsertWithWhereUniqueWithoutSettingEntryIdInput | SettingItemsUpsertWithWhereUniqueWithoutSettingEntryIdInput[]
+    createMany?: SettingItemsCreateManySettingEntryIdInputEnvelope
+    set?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    disconnect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    delete?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    update?: SettingItemsUpdateWithWhereUniqueWithoutSettingEntryIdInput | SettingItemsUpdateWithWhereUniqueWithoutSettingEntryIdInput[]
+    updateMany?: SettingItemsUpdateManyWithWhereWithoutSettingEntryIdInput | SettingItemsUpdateManyWithWhereWithoutSettingEntryIdInput[]
+    deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
   export type FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput = {
     create?: XOR<FilingItemsCreateWithoutSetting_entryInput, FilingItemsUncheckedCreateWithoutSetting_entryInput> | FilingItemsCreateWithoutSetting_entryInput[] | FilingItemsUncheckedCreateWithoutSetting_entryInput[]
     connectOrCreate?: FilingItemsCreateOrConnectWithoutSetting_entryInput | FilingItemsCreateOrConnectWithoutSetting_entryInput[]
@@ -46492,6 +46603,20 @@ export namespace Prisma {
     deleteMany?: LotSettingMapperScalarWhereInput | LotSettingMapperScalarWhereInput[]
   }
 
+  export type SettingItemsUncheckedUpdateManyWithoutSettingEntryIdNestedInput = {
+    create?: XOR<SettingItemsCreateWithoutSettingEntryIdInput, SettingItemsUncheckedCreateWithoutSettingEntryIdInput> | SettingItemsCreateWithoutSettingEntryIdInput[] | SettingItemsUncheckedCreateWithoutSettingEntryIdInput[]
+    connectOrCreate?: SettingItemsCreateOrConnectWithoutSettingEntryIdInput | SettingItemsCreateOrConnectWithoutSettingEntryIdInput[]
+    upsert?: SettingItemsUpsertWithWhereUniqueWithoutSettingEntryIdInput | SettingItemsUpsertWithWhereUniqueWithoutSettingEntryIdInput[]
+    createMany?: SettingItemsCreateManySettingEntryIdInputEnvelope
+    set?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    disconnect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    delete?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    connect?: SettingItemsWhereUniqueInput | SettingItemsWhereUniqueInput[]
+    update?: SettingItemsUpdateWithWhereUniqueWithoutSettingEntryIdInput | SettingItemsUpdateWithWhereUniqueWithoutSettingEntryIdInput[]
+    updateMany?: SettingItemsUpdateManyWithWhereWithoutSettingEntryIdInput | SettingItemsUpdateManyWithWhereWithoutSettingEntryIdInput[]
+    deleteMany?: SettingItemsScalarWhereInput | SettingItemsScalarWhereInput[]
+  }
+
   export type AddItemCreateNestedOneWithoutSetting_itemsInput = {
     create?: XOR<AddItemCreateWithoutSetting_itemsInput, AddItemUncheckedCreateWithoutSetting_itemsInput>
     connectOrCreate?: AddItemCreateOrConnectWithoutSetting_itemsInput
@@ -46528,6 +46653,12 @@ export namespace Prisma {
     connectOrCreate?: LotBuffingMapperCreateOrConnectWithoutSettingItemIdInput | LotBuffingMapperCreateOrConnectWithoutSettingItemIdInput[]
     createMany?: LotBuffingMapperCreateManySettingItemIdInputEnvelope
     connect?: LotBuffingMapperWhereUniqueInput | LotBuffingMapperWhereUniqueInput[]
+  }
+
+  export type SettingEntryCreateNestedOneWithoutSettingItemsInput = {
+    create?: XOR<SettingEntryCreateWithoutSettingItemsInput, SettingEntryUncheckedCreateWithoutSettingItemsInput>
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutSettingItemsInput
+    connect?: SettingEntryWhereUniqueInput
   }
 
   export type SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput = {
@@ -46624,6 +46755,14 @@ export namespace Prisma {
     update?: LotBuffingMapperUpdateWithWhereUniqueWithoutSettingItemIdInput | LotBuffingMapperUpdateWithWhereUniqueWithoutSettingItemIdInput[]
     updateMany?: LotBuffingMapperUpdateManyWithWhereWithoutSettingItemIdInput | LotBuffingMapperUpdateManyWithWhereWithoutSettingItemIdInput[]
     deleteMany?: LotBuffingMapperScalarWhereInput | LotBuffingMapperScalarWhereInput[]
+  }
+
+  export type SettingEntryUpdateOneRequiredWithoutSettingItemsNestedInput = {
+    create?: XOR<SettingEntryCreateWithoutSettingItemsInput, SettingEntryUncheckedCreateWithoutSettingItemsInput>
+    connectOrCreate?: SettingEntryCreateOrConnectWithoutSettingItemsInput
+    upsert?: SettingEntryUpsertWithoutSettingItemsInput
+    connect?: SettingEntryWhereUniqueInput
+    update?: XOR<XOR<SettingEntryUpdateToOneWithWhereWithoutSettingItemsInput, SettingEntryUpdateWithoutSettingItemsInput>, SettingEntryUncheckedUpdateWithoutSettingItemsInput>
   }
 
   export type SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput = {
@@ -48045,6 +48184,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
     LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateWithoutSetting_personInput = {
@@ -48055,6 +48195,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
     LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryCreateOrConnectWithoutSetting_personInput = {
@@ -48526,6 +48667,7 @@ export namespace Prisma {
     buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
     stock?: StockCreateNestedManyWithoutSettingItemInput
     LotBuffingMapper?: LotBuffingMapperCreateNestedManyWithoutSettingItemIdInput
+    settingEntryId: SettingEntryCreateNestedOneWithoutSettingItemsInput
   }
 
   export type SettingItemsUncheckedCreateWithoutItemInput = {
@@ -48536,6 +48678,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     scrap_remarks?: string | null
+    setting_entry_id: number
     setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
     buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
     stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
@@ -48678,6 +48821,7 @@ export namespace Prisma {
     touch_id?: IntFilter<"SettingItems"> | number
     item_purity?: FloatFilter<"SettingItems"> | number
     scrap_remarks?: StringNullableFilter<"SettingItems"> | string | null
+    setting_entry_id?: IntFilter<"SettingItems"> | number
   }
 
   export type BuffingItemsUpsertWithWhereUniqueWithoutItemInput = {
@@ -48850,6 +48994,7 @@ export namespace Prisma {
     buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
     stock?: StockCreateNestedManyWithoutSettingItemInput
     LotBuffingMapper?: LotBuffingMapperCreateNestedManyWithoutSettingItemIdInput
+    settingEntryId: SettingEntryCreateNestedOneWithoutSettingItemsInput
   }
 
   export type SettingItemsUncheckedCreateWithoutTouchInput = {
@@ -48860,6 +49005,7 @@ export namespace Prisma {
     scrap_weight: number
     item_purity: number
     scrap_remarks?: string | null
+    setting_entry_id: number
     setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
     buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
     stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
@@ -49393,6 +49539,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
     LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateWithoutCastingItemInput = {
@@ -49403,6 +49550,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
     LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryCreateOrConnectWithoutCastingItemInput = {
@@ -49658,6 +49806,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
     LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutCastingItemInput = {
@@ -49668,6 +49817,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
     LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type BuffingEntryUpsertWithoutCastingItemInput = {
@@ -50939,6 +51089,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
     LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateWithoutFilingItemsInput = {
@@ -50949,6 +51100,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
     LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryCreateOrConnectWithoutFilingItemsInput = {
@@ -51665,6 +51817,45 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SettingItemsCreateWithoutSettingEntryIdInput = {
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    scrap_weight: number
+    item_purity: number
+    scrap_remarks?: string | null
+    item: AddItemCreateNestedOneWithoutSetting_itemsInput
+    touch: AddTouchCreateNestedOneWithoutSetting_itemsInput
+    setting_wastage?: SettingWastageCreateNestedManyWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockCreateNestedManyWithoutSettingItemInput
+    LotBuffingMapper?: LotBuffingMapperCreateNestedManyWithoutSettingItemIdInput
+  }
+
+  export type SettingItemsUncheckedCreateWithoutSettingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    setting_item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks?: string | null
+    setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
+    buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
+    stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
+    LotBuffingMapper?: LotBuffingMapperUncheckedCreateNestedManyWithoutSettingItemIdInput
+  }
+
+  export type SettingItemsCreateOrConnectWithoutSettingEntryIdInput = {
+    where: SettingItemsWhereUniqueInput
+    create: XOR<SettingItemsCreateWithoutSettingEntryIdInput, SettingItemsUncheckedCreateWithoutSettingEntryIdInput>
+  }
+
+  export type SettingItemsCreateManySettingEntryIdInputEnvelope = {
+    data: SettingItemsCreateManySettingEntryIdInput | SettingItemsCreateManySettingEntryIdInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AddSettingUpsertWithoutSettingsInput = {
     update: XOR<AddSettingUpdateWithoutSettingsInput, AddSettingUncheckedUpdateWithoutSettingsInput>
     create: XOR<AddSettingCreateWithoutSettingsInput, AddSettingUncheckedCreateWithoutSettingsInput>
@@ -51841,6 +52032,22 @@ export namespace Prisma {
     data: XOR<LotSettingMapperUpdateManyMutationInput, LotSettingMapperUncheckedUpdateManyWithoutSettingEntryInput>
   }
 
+  export type SettingItemsUpsertWithWhereUniqueWithoutSettingEntryIdInput = {
+    where: SettingItemsWhereUniqueInput
+    update: XOR<SettingItemsUpdateWithoutSettingEntryIdInput, SettingItemsUncheckedUpdateWithoutSettingEntryIdInput>
+    create: XOR<SettingItemsCreateWithoutSettingEntryIdInput, SettingItemsUncheckedCreateWithoutSettingEntryIdInput>
+  }
+
+  export type SettingItemsUpdateWithWhereUniqueWithoutSettingEntryIdInput = {
+    where: SettingItemsWhereUniqueInput
+    data: XOR<SettingItemsUpdateWithoutSettingEntryIdInput, SettingItemsUncheckedUpdateWithoutSettingEntryIdInput>
+  }
+
+  export type SettingItemsUpdateManyWithWhereWithoutSettingEntryIdInput = {
+    where: SettingItemsScalarWhereInput
+    data: XOR<SettingItemsUpdateManyMutationInput, SettingItemsUncheckedUpdateManyWithoutSettingEntryIdInput>
+  }
+
   export type AddItemCreateWithoutSetting_itemsInput = {
     createdAt?: Date | string
     name: string
@@ -52009,6 +52216,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SettingEntryCreateWithoutSettingItemsInput = {
+    createdAt?: Date | string
+    setting_person: AddSettingCreateNestedOneWithoutSettingsInput
+    castingItem: CastingItemsCreateNestedOneWithoutSettingEntryInput
+    filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
+  }
+
+  export type SettingEntryUncheckedCreateWithoutSettingItemsInput = {
+    id?: number
+    createdAt?: Date | string
+    setting_person_id: number
+    casting_item_id: number
+    filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
+    settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
+    LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
+  }
+
+  export type SettingEntryCreateOrConnectWithoutSettingItemsInput = {
+    where: SettingEntryWhereUniqueInput
+    create: XOR<SettingEntryCreateWithoutSettingItemsInput, SettingEntryUncheckedCreateWithoutSettingItemsInput>
+  }
+
   export type AddItemUpsertWithoutSetting_itemsInput = {
     update: XOR<AddItemUpdateWithoutSetting_itemsInput, AddItemUncheckedUpdateWithoutSetting_itemsInput>
     create: XOR<AddItemCreateWithoutSetting_itemsInput, AddItemUncheckedCreateWithoutSetting_itemsInput>
@@ -52135,6 +52368,38 @@ export namespace Prisma {
     data: XOR<LotBuffingMapperUpdateManyMutationInput, LotBuffingMapperUncheckedUpdateManyWithoutSettingItemIdInput>
   }
 
+  export type SettingEntryUpsertWithoutSettingItemsInput = {
+    update: XOR<SettingEntryUpdateWithoutSettingItemsInput, SettingEntryUncheckedUpdateWithoutSettingItemsInput>
+    create: XOR<SettingEntryCreateWithoutSettingItemsInput, SettingEntryUncheckedCreateWithoutSettingItemsInput>
+    where?: SettingEntryWhereInput
+  }
+
+  export type SettingEntryUpdateToOneWithWhereWithoutSettingItemsInput = {
+    where?: SettingEntryWhereInput
+    data: XOR<SettingEntryUpdateWithoutSettingItemsInput, SettingEntryUncheckedUpdateWithoutSettingItemsInput>
+  }
+
+  export type SettingEntryUpdateWithoutSettingItemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    setting_person?: AddSettingUpdateOneRequiredWithoutSettingsNestedInput
+    castingItem?: CastingItemsUpdateOneRequiredWithoutSettingEntryNestedInput
+    filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
+  }
+
+  export type SettingEntryUncheckedUpdateWithoutSettingItemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    setting_person_id?: IntFieldUpdateOperationsInput | number
+    casting_item_id?: IntFieldUpdateOperationsInput | number
+    filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
+    settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
+    LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
+  }
+
   export type AddSettingCreateWithoutSettingMapperInput = {
     createdAt?: Date | string
     name: string
@@ -52234,6 +52499,7 @@ export namespace Prisma {
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
+    SettingItems?: SettingItemsCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateWithoutLotSettingMapperInput = {
@@ -52244,6 +52510,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
+    SettingItems?: SettingItemsUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryCreateOrConnectWithoutLotSettingMapperInput = {
@@ -52379,6 +52646,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
+    SettingItems?: SettingItemsUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutLotSettingMapperInput = {
@@ -52389,6 +52657,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
+    SettingItems?: SettingItemsUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryCreateWithoutSettingTotalBalanceInput = {
@@ -52398,6 +52667,7 @@ export namespace Prisma {
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageCreateNestedManyWithoutSettingEntryIdInput
     LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateWithoutSettingTotalBalanceInput = {
@@ -52408,6 +52678,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
     settingWastage?: SettingWastageUncheckedCreateNestedManyWithoutSettingEntryIdInput
     LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryCreateOrConnectWithoutSettingTotalBalanceInput = {
@@ -52433,6 +52704,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
     LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutSettingTotalBalanceInput = {
@@ -52443,6 +52715,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
     LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingItemsCreateWithoutSetting_wastageInput = {
@@ -52456,6 +52729,7 @@ export namespace Prisma {
     buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
     stock?: StockCreateNestedManyWithoutSettingItemInput
     LotBuffingMapper?: LotBuffingMapperCreateNestedManyWithoutSettingItemIdInput
+    settingEntryId: SettingEntryCreateNestedOneWithoutSettingItemsInput
   }
 
   export type SettingItemsUncheckedCreateWithoutSetting_wastageInput = {
@@ -52467,6 +52741,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     scrap_remarks?: string | null
+    setting_entry_id: number
     buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
     stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
     LotBuffingMapper?: LotBuffingMapperUncheckedCreateNestedManyWithoutSettingItemIdInput
@@ -52484,6 +52759,7 @@ export namespace Prisma {
     filingItems?: FilingItemsCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceCreateNestedManyWithoutSetting_entryInput
     LotSettingMapper?: LotSettingMapperCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryUncheckedCreateWithoutSettingWastageInput = {
@@ -52494,6 +52770,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedCreateNestedManyWithoutSetting_entryInput
     settingTotalBalance?: SettingTotalBalanceUncheckedCreateNestedManyWithoutSetting_entryInput
     LotSettingMapper?: LotSettingMapperUncheckedCreateNestedManyWithoutSettingEntryInput
+    SettingItems?: SettingItemsUncheckedCreateNestedManyWithoutSettingEntryIdInput
   }
 
   export type SettingEntryCreateOrConnectWithoutSettingWastageInput = {
@@ -52535,6 +52812,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
     LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutSettingWastageInput = {
@@ -52545,6 +52823,7 @@ export namespace Prisma {
     filingItems?: FilingItemsUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
     LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type AddBuffingCreateWithoutBuffingsInput = {
@@ -52664,6 +52943,7 @@ export namespace Prisma {
     setting_wastage?: SettingWastageCreateNestedManyWithoutSetting_itemsInput
     stock?: StockCreateNestedManyWithoutSettingItemInput
     LotBuffingMapper?: LotBuffingMapperCreateNestedManyWithoutSettingItemIdInput
+    settingEntryId: SettingEntryCreateNestedOneWithoutSettingItemsInput
   }
 
   export type SettingItemsUncheckedCreateWithoutBuffing_entryInput = {
@@ -52675,6 +52955,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     scrap_remarks?: string | null
+    setting_entry_id: number
     setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
     stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
     LotBuffingMapper?: LotBuffingMapperUncheckedCreateNestedManyWithoutSettingItemIdInput
@@ -53255,6 +53536,7 @@ export namespace Prisma {
     setting_wastage?: SettingWastageCreateNestedManyWithoutSetting_itemsInput
     buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
     stock?: StockCreateNestedManyWithoutSettingItemInput
+    settingEntryId: SettingEntryCreateNestedOneWithoutSettingItemsInput
   }
 
   export type SettingItemsUncheckedCreateWithoutLotBuffingMapperInput = {
@@ -53266,6 +53548,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     scrap_remarks?: string | null
+    setting_entry_id: number
     setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
     buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
     stock?: StockUncheckedCreateNestedManyWithoutSettingItemInput
@@ -53402,6 +53685,7 @@ export namespace Prisma {
     setting_wastage?: SettingWastageUpdateManyWithoutSetting_itemsNestedInput
     buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUpdateManyWithoutSettingItemNestedInput
+    settingEntryId?: SettingEntryUpdateOneRequiredWithoutSettingItemsNestedInput
   }
 
   export type SettingItemsUncheckedUpdateWithoutLotBuffingMapperInput = {
@@ -53413,6 +53697,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
     setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
     buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
@@ -53655,6 +53940,7 @@ export namespace Prisma {
     setting_wastage?: SettingWastageCreateNestedManyWithoutSetting_itemsInput
     buffing_entry?: BuffingEntryCreateNestedManyWithoutSetting_itemsInput
     LotBuffingMapper?: LotBuffingMapperCreateNestedManyWithoutSettingItemIdInput
+    settingEntryId: SettingEntryCreateNestedOneWithoutSettingItemsInput
   }
 
   export type SettingItemsUncheckedCreateWithoutStockInput = {
@@ -53666,6 +53952,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     scrap_remarks?: string | null
+    setting_entry_id: number
     setting_wastage?: SettingWastageUncheckedCreateNestedManyWithoutSetting_itemsInput
     buffing_entry?: BuffingEntryUncheckedCreateNestedManyWithoutSetting_itemsInput
     LotBuffingMapper?: LotBuffingMapperUncheckedCreateNestedManyWithoutSettingItemIdInput
@@ -53894,6 +54181,7 @@ export namespace Prisma {
     setting_wastage?: SettingWastageUpdateManyWithoutSetting_itemsNestedInput
     buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
     LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutSettingItemIdNestedInput
+    settingEntryId?: SettingEntryUpdateOneRequiredWithoutSettingItemsNestedInput
   }
 
   export type SettingItemsUncheckedUpdateWithoutStockInput = {
@@ -53905,6 +54193,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
     setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
     buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
     LotBuffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutSettingItemIdNestedInput
@@ -54368,6 +54657,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
     LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutSetting_personInput = {
@@ -54378,6 +54668,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
     LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateManyWithoutSetting_personInput = {
@@ -54570,6 +54861,7 @@ export namespace Prisma {
     touch_id: number
     item_purity: number
     scrap_remarks?: string | null
+    setting_entry_id: number
   }
 
   export type BuffingItemsCreateManyItemInput = {
@@ -54729,6 +55021,7 @@ export namespace Prisma {
     buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUpdateManyWithoutSettingItemNestedInput
     LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutSettingItemIdNestedInput
+    settingEntryId?: SettingEntryUpdateOneRequiredWithoutSettingItemsNestedInput
   }
 
   export type SettingItemsUncheckedUpdateWithoutItemInput = {
@@ -54739,6 +55032,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
     setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
     buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
@@ -54753,6 +55047,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type BuffingItemsUpdateWithoutItemInput = {
@@ -54834,6 +55129,7 @@ export namespace Prisma {
     scrap_weight: number
     item_purity: number
     scrap_remarks?: string | null
+    setting_entry_id: number
   }
 
   export type BuffingItemsCreateManyTouchInput = {
@@ -55008,6 +55304,7 @@ export namespace Prisma {
     buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUpdateManyWithoutSettingItemNestedInput
     LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutSettingItemIdNestedInput
+    settingEntryId?: SettingEntryUpdateOneRequiredWithoutSettingItemsNestedInput
   }
 
   export type SettingItemsUncheckedUpdateWithoutTouchInput = {
@@ -55018,6 +55315,7 @@ export namespace Prisma {
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
     setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
     buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
@@ -55032,6 +55330,7 @@ export namespace Prisma {
     scrap_weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type BuffingItemsUpdateWithoutTouchInput = {
@@ -55729,6 +56028,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUpdateManyWithoutSettingEntryIdNestedInput
     LotSettingMapper?: LotSettingMapperUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateWithoutFilingItemsInput = {
@@ -55739,6 +56039,7 @@ export namespace Prisma {
     settingTotalBalance?: SettingTotalBalanceUncheckedUpdateManyWithoutSetting_entryNestedInput
     settingWastage?: SettingWastageUncheckedUpdateManyWithoutSettingEntryIdNestedInput
     LotSettingMapper?: LotSettingMapperUncheckedUpdateManyWithoutSettingEntryNestedInput
+    SettingItems?: SettingItemsUncheckedUpdateManyWithoutSettingEntryIdNestedInput
   }
 
   export type SettingEntryUncheckedUpdateManyWithoutFilingItemsInput = {
@@ -55944,6 +56245,17 @@ export namespace Prisma {
     filing_item_id?: number | null
   }
 
+  export type SettingItemsCreateManySettingEntryIdInput = {
+    id?: number
+    createdAt?: Date | string
+    type: $Enums.CASTINGENTRYTYPE
+    setting_item_id: number
+    scrap_weight: number
+    touch_id: number
+    item_purity: number
+    scrap_remarks?: string | null
+  }
+
   export type FilingItemsUpdateWithoutSetting_entryInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
@@ -56097,6 +56409,46 @@ export namespace Prisma {
     setting_id?: IntFieldUpdateOperationsInput | number
     lot_id?: IntFieldUpdateOperationsInput | number
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type SettingItemsUpdateWithoutSettingEntryIdInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    item?: AddItemUpdateOneRequiredWithoutSetting_itemsNestedInput
+    touch?: AddTouchUpdateOneRequiredWithoutSetting_itemsNestedInput
+    setting_wastage?: SettingWastageUpdateManyWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUpdateManyWithoutSettingItemNestedInput
+    LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutSettingItemIdNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateWithoutSettingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
+    stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
+    LotBuffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutSettingItemIdNestedInput
+  }
+
+  export type SettingItemsUncheckedUpdateManyWithoutSettingEntryIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
+    setting_item_id?: IntFieldUpdateOperationsInput | number
+    scrap_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    item_purity?: FloatFieldUpdateOperationsInput | number
+    scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StockCreateManySettingItemInput = {
@@ -56262,6 +56614,7 @@ export namespace Prisma {
     buffing_entry?: BuffingEntryUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUpdateManyWithoutSettingItemNestedInput
     LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutSettingItemIdNestedInput
+    settingEntryId?: SettingEntryUpdateOneRequiredWithoutSettingItemsNestedInput
   }
 
   export type SettingItemsUncheckedUpdateWithoutSetting_wastageInput = {
@@ -56273,6 +56626,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
     buffing_entry?: BuffingEntryUncheckedUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
     LotBuffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutSettingItemIdNestedInput
@@ -56287,6 +56641,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type BuffingTotalBalanceCreateManyBuffingEntryIdInput = {
@@ -56375,6 +56730,7 @@ export namespace Prisma {
     setting_wastage?: SettingWastageUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUpdateManyWithoutSettingItemNestedInput
     LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutSettingItemIdNestedInput
+    settingEntryId?: SettingEntryUpdateOneRequiredWithoutSettingItemsNestedInput
   }
 
   export type SettingItemsUncheckedUpdateWithoutBuffing_entryInput = {
@@ -56386,6 +56742,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
     setting_wastage?: SettingWastageUncheckedUpdateManyWithoutSetting_itemsNestedInput
     stock?: StockUncheckedUpdateManyWithoutSettingItemNestedInput
     LotBuffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutSettingItemIdNestedInput
@@ -56400,6 +56757,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    setting_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type BuffingTotalBalanceUpdateWithoutBuffingEntryIdInput = {

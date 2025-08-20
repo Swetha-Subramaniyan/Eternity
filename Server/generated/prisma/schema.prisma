@@ -303,6 +303,8 @@ model SettingEntry {
   settingTotalBalance SettingTotalBalance[]
   settingWastage      SettingWastage[]
   LotSettingMapper    LotSettingMapper[]
+
+  SettingItems SettingItems[]
 }
 
 model SettingItems {
@@ -321,6 +323,8 @@ model SettingItems {
   buffing_entry    BuffingEntry[]
   stock            Stock[]
   LotBuffingMapper LotBuffingMapper[]
+  setting_entry_id Int
+  settingEntryId   SettingEntry       @relation(fields: [setting_entry_id], references: [id], onDelete: Cascade)
 }
 
 model LotSettingMapper {
