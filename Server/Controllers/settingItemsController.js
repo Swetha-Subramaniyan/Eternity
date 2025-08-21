@@ -1,7 +1,6 @@
 import { PrismaClient, CASTINGENTRYTYPE } from "../generated/prisma/index.js";
 const prisma =new PrismaClient();
 
-
 export const createSettingItem = async (req, res) => {
   try {
     let {
@@ -19,6 +18,7 @@ export const createSettingItem = async (req, res) => {
     } = req.body;
 
     const finalItems = items || scrapItems || [];
+
     if (!settingEntryId || finalItems.length === 0) {
       return res.status(400).json({
         error: "settingEntryId and at least one item (Scrap or Product) are required",
@@ -27,7 +27,28 @@ export const createSettingItem = async (req, res) => {
 
     const normalizedWastage = wastage === "Yes" || wastage === true;
 
-    // 1. Upsert settingItems (update if exists, insert if not)
+    //  STEP 1: Fetch casting_customer_id from related settingEntry -> castingItem
+    const settingEntry = await prisma.settingEntry.findUnique({
+      where: { id: settingEntryId },
+      include: {
+        castingItem: {
+          select: { 
+            casting_customer_id: true ,
+            casting_entry_id: true,
+          }
+        }
+      }
+    });
+
+    const castingCustomerId = settingEntry?.castingItem?.casting_customer_id;
+
+    if (!castingCustomerId) {
+      return res.status(400).json({
+        error: "Missing casting_customer_id from related SettingEntry or CastingItem"
+      });
+    }
+
+    //  Process each item
     for (const item of finalItems) {
       const existingItem = await prisma.settingItems.findFirst({
         where: {
@@ -35,9 +56,11 @@ export const createSettingItem = async (req, res) => {
           setting_item_id: item.setting_item_id,
         },
       });
-    
+
+      let settingItem;
+
       if (existingItem) {
-        await prisma.settingItems.update({
+        settingItem = await prisma.settingItems.update({
           where: { id: existingItem.id },
           data: {
             type: item.type || "ScrapItems",
@@ -48,7 +71,7 @@ export const createSettingItem = async (req, res) => {
           },
         });
       } else {
-        await prisma.settingItems.create({
+        settingItem = await prisma.settingItems.create({
           data: {
             setting_entry_id: settingEntryId,
             setting_item_id: item.setting_item_id,
@@ -60,10 +83,48 @@ export const createSettingItem = async (req, res) => {
           },
         });
       }
-    }
-    
 
-    // 2. Upsert settingTotalBalance (update if exists, create if not)
+      //  STEP 2: Create stock record if ScrapItems
+      if ((item.type || "ScrapItems") === "ScrapItems") {
+
+        // Check if stock exists for this settingItem
+const existingStock = await prisma.stock.findFirst({
+  where: {
+    setting_item_id: settingItem.id,
+  },
+});
+
+if (existingStock) {
+  //  Update existing stock record
+  await prisma.stock.update({
+    where: { id: existingStock.id },
+    data: {
+      item: { connect: { id: item.setting_item_id } },
+      weight: item.weight,
+      touch: item.touch_id ? { connect: { id: item.touch_id } } : undefined,
+      item_purity: item.purity || 0,
+      remarks: item.remarks || null,
+      casting_customer: { connect: { id: castingCustomerId } },
+    },
+  });
+} else {
+  //  Create new stock record
+  await prisma.stock.create({
+    data: {
+      settingItem: { connect: { id: settingItem.id } },
+      item: { connect: { id: item.setting_item_id } },
+      weight: item.weight,
+      touch: item.touch_id ? { connect: { id: item.touch_id } } : undefined,
+      item_purity: item.purity || 0,
+      remarks: item.remarks || null,
+      casting_customer: { connect: { id: castingCustomerId } },
+    },
+  });
+}
+      }
+    }
+
+    //  STEP 3: Upsert settingTotalBalance
     const existingBalance = await prisma.settingTotalBalance.findFirst({
       where: { setting_entry_id: settingEntryId },
     });
@@ -99,15 +160,14 @@ export const createSettingItem = async (req, res) => {
     }
 
     return res.status(200).json({
-      message: "Setting items and balance upserted successfully",
+      message: "Setting items, stock, and balance upserted successfully",
     });
+
   } catch (error) {
-    console.error("Error in createOrUpdateSettingItem:", error);
+    console.error("Error in createSettingItem:", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
-
 
 export const getAllSettingItems = async (req, res) => {
   try {
@@ -123,8 +183,6 @@ export const getAllSettingItems = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch setting items" });
   }
 };
-
-
 
 export const getSettingItemById = async (req, res) => {
   try {

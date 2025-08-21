@@ -23,9 +23,9 @@ const SettingLotDetails = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [assignedItems, setAssignedItems] = useState([]); 
   const [viewOpen, setViewOpen] = useState(false);
-const [itemsList, setItemsList] = useState([]);
-const [touchList, setTouchList] = useState([]);
-const [viewData, setViewData] = useState({
+  const [itemsList, setItemsList] = useState([]);
+  const [touchList, setTouchList] = useState([]);
+  const [viewData, setViewData] = useState({
   filingItems: [],
   receiptWeight: 0,
   stoneCount: 0,
@@ -34,6 +34,25 @@ const [viewData, setViewData] = useState({
   wastage: null,
   scrapItems: [],
 });
+const [fromDatee, setFromDatee] = useState('');
+const [toDate, setToDate] = useState('');
+const [filteredEntries, setFilteredEntries] = useState([]);
+
+const applyDateFilter = () => {
+  if (!fromDatee || !toDate) {
+    setFilteredEntries(assignedItems); 
+    return;
+  }
+  const from = new Date(fromDatee);
+  const to = new Date(toDate);
+  to.setHours(23, 59, 59, 999); 
+  const filtered = assignedItems.filter(entry => {
+    const createdAt = new Date(entry.createdAt);
+    return createdAt >= from && createdAt <= to;
+  });
+
+  setFilteredEntries(filtered);
+};
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -172,7 +191,8 @@ const [viewData, setViewData] = useState({
         setViewData({ ...viewData, scrapItems: updated });
         return;
       }
-      await axios.delete(`http://localhost:5000/api/settingitems/${item.id}`);
+      // await axios.delete(`http://localhost:5000/api/settingitems/${item.id}`);
+      await axios. delete(`${BACKEND_SERVER_URL}/api/settingitems/${item.id}`)
       const updated = viewData.scrapItems.filter((_, i) => i !== idx);
       setViewData({ ...viewData, scrapItems: updated });
     } catch (error) {
@@ -180,12 +200,46 @@ const [viewData, setViewData] = useState({
       alert('Failed to delete scrap item.');
     }
   };
+
+  const resetFilter = () => {
+    setFromDatee('');
+    setToDate('');
+    setFilteredEntries(assignedItems);
+  };
+
+  useEffect(() => {
+    setFilteredEntries(assignedItems);
+  }, [assignedItems]);
   
   return (
     <>
       <Navbar />
 
-      <Button variant="contained" onClick={handleOpen} sx={{ mt: 2 }}> Add Setting  </Button>
+<div  style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginTop:'2rem' }}>
+  <TextField
+    label="From Datee"
+    type="date"
+    size="small"
+    value={fromDatee}
+    onChange={(e) => setFromDatee(e.target.value)}
+    InputLabelProps={{ shrink: true }}
+    sx={{ml:'2rem'}}
+  />
+  <TextField
+    label="To Date"
+    type="date"
+    size="small"
+    value={toDate}
+    onChange={(e) => setToDate(e.target.value)}
+    InputLabelProps={{ shrink: true }}
+  />
+  <Button variant="outlined" onClick={applyDateFilter}> Filter </Button>
+  <Button variant="outlined" onClick={resetFilter}>Reset</Button>
+
+   <Button variant="contained" onClick={handleOpen} sx={{ml:99}}>Add Setting</Button>
+</div>
+
+      {/* <Button variant="contained" onClick={handleOpen} sx={{ mt: 2 }}> Add Setting  </Button> */}
       {/* Main Table */}
       <table border="1" style={{ width: '100%', marginTop: '1rem' }}>
   <thead>
@@ -211,9 +265,13 @@ const [viewData, setViewData] = useState({
       <th>Actions</th>
     </tr>
   </thead>
-  <tbody>
-    {assignedItems.length > 0 ? (
-      assignedItems.map((entry, index) => (
+
+ <tbody>
+    {/* {assignedItems.length > 0 ? (
+      assignedItems.map((entry, index) => ( */}
+
+{filteredEntries.length > 0 ? (
+  filteredEntries.map((entry, index) => (
         <>
 {entry.filingItems.map((fi, i) => (
   <tr key={fi.id}>
@@ -240,7 +298,6 @@ const [viewData, setViewData] = useState({
 
     {i === 0 && (
       <>
-
         <td rowSpan={entry.filingItems.length}>{entry.stoneWeight}</td>
         <td rowSpan={entry.filingItems.length}>{entry.stoneCount}</td>
         <td rowSpan={entry.filingItems.length}>{entry.receiptWeight}</td>
@@ -270,17 +327,16 @@ const [viewData, setViewData] = useState({
     )}
   </tr>
 ))}
-
         </>
       ))
     ) : (
       <tr>
-        <td colSpan="10" style={{ textAlign: 'center' }}>
+        <td colSpan="19" style={{ textAlign: 'center' }}>
           No assigned items yet
         </td>
       </tr>
     )}
-  </tbody>
+  </tbody> 
 </table>
 
       {/* Add Setting Dialog */}
@@ -345,7 +401,6 @@ const [viewData, setViewData] = useState({
         </DialogActions>
       </Dialog>
 
-    
       {/* View Dialog */}
 <Dialog open={viewOpen} onClose={() => setViewOpen(false)} maxWidth="md" fullWidth>
   <DialogTitle>Assigned Items</DialogTitle>
@@ -415,14 +470,13 @@ const [viewData, setViewData] = useState({
             value={viewData.stoneWeight || ''}
             onChange={(e) => setViewData({ ...viewData, stoneWeight: Number(e.target.value) })}
           />
-            <TextField
+            {/* <TextField
             label="Remarks"
             type="text"
             fullWidth required
             value={viewData.remarks || ''}
             onChange={(e) => setViewData({ ...viewData, remarks: e.target.value })}
-          />
-      
+          />      */}
         </Box>
 
         {/* Totals & Wastage */}
@@ -612,3 +666,4 @@ const [viewData, setViewData] = useState({
 };
 
 export default SettingLotDetails;
+ 
