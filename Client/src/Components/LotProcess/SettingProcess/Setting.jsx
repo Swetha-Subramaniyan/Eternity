@@ -46,7 +46,7 @@ const Setting = () => {
     <>
       <Navbar />
       <Container maxWidth="lg">
-        <Paper className="customer-table-container" elevation={3} sx={{ p: 3 }}>
+        <Paper elevation={3} sx={{ p: 3, mt:4 }}>
           <Typography variant="h5" align="center" gutterBottom>
             Setting Details
           </Typography>
