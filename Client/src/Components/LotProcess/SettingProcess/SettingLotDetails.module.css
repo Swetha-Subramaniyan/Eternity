@@ -2,8 +2,7 @@
     display: flex;
     margin-left: 5rem;
     width: 65rem;
-    margin-top: 0rem;
-    
+    margin-top: 0rem;   
 }
 
 .details b{
@@ -70,11 +69,6 @@
     padding: 8px;
   }
   
-
-
-
-
-
   .table {
     width: 100%;
     border-collapse: collapse;
@@ -110,8 +104,9 @@
 
 
 
-  
-/* 
+
+
+/*   
 import React, { useState } from 'react';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, Paper, TableFooter } from "@mui/material";
 import { FaEye } from "react-icons/fa";

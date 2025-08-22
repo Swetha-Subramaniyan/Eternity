@@ -17,7 +17,7 @@ import filingEntryRoutes from "./Routes/filingEntryRoutes.js";
 import addTouchRoutes from "./Routes/addTouchRoutes.js";
 import filingItemsRoutes from "./Routes/filingItemsRoutes.js";
 import settingEntryRoutes from './Routes/settingEntryRoutes.js';
-import settingItemsRoutes from './Routes/settingItemsRoutes.js'
+import settingItemsRoutes from './Routes/settingItemsRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT ||  5000;
@@ -46,7 +46,7 @@ app.use("/api/stock",castingStockRoutes);
 app.use("/api/filingentry",filingEntryRoutes );
 app.use("/api/filingitems",filingItemsRoutes);
 app.use("/api/settingentry", settingEntryRoutes )
-app.use("/api/settingitems", settingItemsRoutes)
+app.use("/api/settingitems", settingItemsRoutes);
 
 
 app.get("/", (req, res) => {

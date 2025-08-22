@@ -2,62 +2,7 @@ import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
 
-export const getAllStockItems = async (req, res) => {
-  try {
-    const stocks = await prisma.stock.findMany({
-      select: {
-        id: true,
-        createdAt: true,
-        weight: true,
-        item_purity: true,
-        remarks: true,
-        scrap_wastage: true,
-        touch_id: true,
-        casting_item_id: true,
-        filing_item_id: true,
-        setting_item_id: true,
-        buffing_item_id: true,
-        item_id: true,
-        casting_customer_id: true,
 
-        // Get touch with value
-        touch: {
-          select: {
-            id: true,
-            touch: true,
-          }
-        },
-
-        // Include other necessary relations
-        item: true,
-        casting_customer: true,
-
-        castingItem: {
-          include: {
-            castingEntry: {
-              include: {
-                casting_customer: true,
-              }
-            }
-          }
-        }
-      },
-      orderBy: {
-        id: 'desc',
-      },
-    });
-
-    res.status(200).json(stocks);
-  } catch (error) {
-    console.error("Error fetching stock items:", error);
-    res.status(500).json({ error: "Failed to fetch stock items" });
-  }
-};
-
-
-
-
-// CREATE with full scrap item data
 export const addToStock = async (req, res) => {
   try {
     const { casting_item_id } = req.body;
@@ -119,6 +64,24 @@ export const getAllStock = async (req, res) => {
             },
           },
         },
+        filingItem:{
+          include:{
+            filing_entry:{
+              include:{
+                filing_person:true
+              }
+            }
+          }
+        },
+        settingItem:{
+          include:{
+            settingEntryId:{
+              include:{
+                setting_person:true
+              }
+            }
+          }
+        }
       },
     });
 
