@@ -142,7 +142,6 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
     if (!buffing_person_id) {
       return res.status(400).json({ error: "buffing_person_id is required" });
     }
-
     const entries = await prisma.buffingEntry.findMany({
       where: { buffing_person_id },
       include: {
