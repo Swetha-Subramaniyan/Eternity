@@ -407,7 +407,8 @@ exports.Prisma.LotBuffingMapperScalarFieldEnum = {
   buffing_id: 'buffing_id',
   lot_id: 'lot_id',
   setting_item_id: 'setting_item_id',
-  filing_item_id: 'filing_item_id'
+  filing_item_id: 'filing_item_id',
+  buffing_entry_id: 'buffing_entry_id'
 };
 
 exports.Prisma.BuffingWastageScalarFieldEnum = {

@@ -4,42 +4,42 @@ const prisma = new PrismaClient();
 
 export const createSetting = async (req, res) => {
   try {
-    const { name, email, address, phoneNumber } = req.body;
+    const { name, email, address, phoneNumber, casting_item_id } = req.body;
 
     const newSetting = await prisma.addSetting.create({
-      data: {
-        name,
-        email,
-        address,
-        phoneNumber,
-      },
+      data: { name, email, address, phoneNumber },
     });
 
     const newLot = await prisma.lotInfo.create({
       data: {
-        lotNumber: 1, 
+        lotNumber: 1,
         setting_customer_id: newSetting.id,
       },
     });
 
-    const newMapper = await prisma.lotSettingMapper.create({
-      data: {
-        setting_id: newSetting.id,
-        lot_id: newLot.id,
-      },
-    });
+    let newLotMapper = null;
+    if (casting_item_id) {
+      newLotMapper = await prisma.lotSettingMapper.create({
+        data: {
+          setting_id: newSetting.id,
+          lot_id: newLot.id,
+          item_id: casting_item_id,
+        },
+      });
+    }
 
     res.status(201).json({
-      message: 'Setting, LotInfo, and LotSettingMapper created',
+      message: 'Setting, Lot, and Mapper created',
       setting: newSetting,
       lot: newLot,
-      mapper: newMapper,
+      mapper: newLotMapper,
     });
 
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 export const getSetting = async (req, res) => {
     try {
