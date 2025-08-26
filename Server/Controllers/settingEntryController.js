@@ -2,14 +2,12 @@ import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
 
-
 export const createSettingEntry = async (req, res) => {
   try {
     const { setting_person_id, lot_number, items } = req.body;
 
-    // Convert items array into plain array of filing item IDs
     const filingItemIds = items?.map(i => i.filing_item_id) || [];
-    
+
     // Validate
     if (
       !setting_person_id ||
@@ -48,31 +46,41 @@ export const createSettingEntry = async (req, res) => {
 
     const castingItemId = firstFilingItem.filing_entry.casting_item_id;
 
-
-    const existingSettingEntry = await prisma.settingEntry.findFirst({
-      where: { casting_item_id: castingItemId }
-    });
-    if (existingSettingEntry) {
-      return res.status(400).json({
-        error: 'This casting item already has a setting entry'
-      });
-    }
-    
-
-    // Create SettingEntry (linking to the casting item)
-    const settingEntry = await prisma.settingEntry.create({
-      data: {
-        setting_person: { connect: { id: setting_person_id } },
-        castingItem: { connect: { id: castingItemId } },
-      },
+    // Find or create SettingEntry for this casting item
+    let settingEntry = await prisma.settingEntry.findFirst({
+      where: { casting_item_id: castingItemId },
       include: {
         setting_person: true,
         filingItems: true,
       },
     });
 
+    if (!settingEntry) {
+      settingEntry = await prisma.settingEntry.create({
+        data: {
+          setting_person: { connect: { id: setting_person_id } },
+          castingItem: { connect: { id: castingItemId } },
+        },
+        include: {
+          setting_person: true,
+          filingItems: true,
+        },
+      });
+    }
 
-    // Map all filing items to this SettingEntry in LotSettingMapper
+    // Check if any filing items are already assigned
+    const alreadyAssigned = await prisma.lotSettingMapper.findMany({
+      where: { filing_item_id: { in: filingItemIds } },
+    });
+
+    if (alreadyAssigned.length > 0) {
+      const ids = alreadyAssigned.map(a => a.filing_item_id);
+      return res.status(400).json({
+        error: `These filing items are already assigned: ${ids.join(', ')}`,
+      });
+    }
+
+    // Map new filing items to this SettingEntry in LotSettingMapper
     await Promise.all(
       filingItemIds.map((filingItemId) =>
         prisma.lotSettingMapper.create({
@@ -93,24 +101,21 @@ export const createSettingEntry = async (req, res) => {
     });
 
     return res.status(201).json({
-      message:
-        'Single SettingEntry created for multiple filing items successfully',
+      message: 'Filing items assigned to SettingEntry successfully',
       entry: {
         ...settingEntry,
-        filingItems: fullItems,
+        filingItems: [...(settingEntry.filingItems || []), ...fullItems],
       },
     });
   } catch (error) {
-    console.error(
-      'Error creating single setting entry for multiple items:',
-      error
-    );
+    console.error('Error creating setting entry:', error);
     return res.status(500).json({
       error: 'Internal server error',
       details: error?.message || error,
     });
   }
 };
+
 
 
 

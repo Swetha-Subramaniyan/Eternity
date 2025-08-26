@@ -180,15 +180,13 @@ model CastingItems {
   castingEntry   CastingEntry   @relation(fields: [casting_entry_id], references: [id], onDelete: Cascade)
   casting_entry_id Int
   filingEntry    FilingEntry[]
-  settingEntry   SettingEntry?
-  buffingEntry   BuffingEntry?
+  settingEntry   SettingEntry[]
+  buffingEntry   BuffingEntry[]
   stock          Stock[]
   filingLotMapper LotFilingMapper[]
-
   casting_customer_id Int
   casting_customer     AddCasting   @relation(fields: [casting_customer_id], references: [id])
 }
-
 
 model CastiingTotalBalance{
 
@@ -313,10 +311,10 @@ filing_items FilingItems[]
 model SettingEntry {
   id               Int           @id @default(autoincrement())
   createdAt        DateTime  @default(now())
-  setting_person   AddSetting    @relation(fields: [setting_person_id], references: [id])
   setting_person_id Int
-  castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])
-  casting_item_id  Int           @unique
+  setting_person   AddSetting    @relation(fields: [setting_person_id], references: [id])
+  casting_item_id  Int 
+  castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])   
   filingItems      FilingItems[]
   settingTotalBalance SettingTotalBalance[]
   settingWastage SettingWastage[]
@@ -401,15 +399,14 @@ SettingEntryId SettingEntry @relation(fields: [setting_entry_id], references: [i
 model BuffingEntry {
   id               Int           @id @default(autoincrement())
   createdAt        DateTime @default(now())
-  buffing_person   AddBuffing    @relation(fields: [buffing_person_id], references: [id])
   buffing_person_id Int
-  castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])
-  casting_item_id  Int           @unique
+  buffing_person   AddBuffing    @relation(fields: [buffing_person_id], references: [id])
+  casting_item_id  Int 
+  castingItem      CastingItems  @relation(fields: [casting_item_id], references: [id])        
   filing_items     FilingItems[]
   setting_items  SettingItems[]
   BuffingTotalBalance BuffingTotalBalance[]
   BuffingWastage BuffingWastage[]
-
   LotBuffingMapper LotBuffingMapper[]
 }
 
