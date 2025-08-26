@@ -4,30 +4,29 @@ const prisma = new PrismaClient();
 
 export const createBuffing = async (req, res) => {
   try {
-    const { name, email, address, phoneNumber } = req.body;
+    const { name, email, address, phoneNumber, casting_item_id } = req.body;
 
     const newBuffing = await prisma.addBuffing.create({
-      data: {
-        name,
-        email,
-        address,
-        phoneNumber,
-      },
+      data: { name, email, address, phoneNumber },
     });
 
     const newLot = await prisma.lotInfo.create({
       data: {
-        lotNumber: 1, 
+        lotNumber: 1,
         buffing_customer_id: newBuffing.id,
       },
     });
 
-    const newLotMapper = await prisma.lotBuffingMapper.create({
-      data: {
-        buffing_id: newBuffing.id,
-        lot_id: newLot.id,
-      },
-    });
+    let newLotMapper = null;
+    if (casting_item_id) {
+      newLotMapper = await prisma.lotBuffingMapper.create({
+        data: {
+          buffing_id: newBuffing.id,
+          lot_id: newLot.id,
+          item_id: casting_item_id,
+        },
+      });
+    }
 
     res.status(201).json({
       message: 'Buffing, Lot, and Mapper created',

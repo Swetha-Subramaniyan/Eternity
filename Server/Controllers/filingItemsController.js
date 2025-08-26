@@ -181,7 +181,8 @@ if (!castingCustomerId) {
   export const getAllFilingItems = async (req, res) => {
     try {
       const items = await prisma.filingItems.findMany({
-        include: {      
+        include: {   
+          filingitem:true,   
           touch: true,        
           filing_entry: true, 
         },

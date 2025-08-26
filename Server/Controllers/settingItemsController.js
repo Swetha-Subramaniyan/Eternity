@@ -174,7 +174,15 @@ export const getAllSettingItems = async (req, res) => {
     const items = await prisma.settingItems.findMany({
       include: {      
         touch: true,   
-        settingEntryId: true,     
+        settingEntryId: true,  
+        // settingEntryId: {   // <-- relation name from schema
+        //   include: {
+        //     castingItem: true,       // get CastingItems details
+        //     filingItems: true,       // get FilingItems details
+        //     settingWastage: true,    // wastage details
+        //     settingTotalBalance: true, // balance details
+        //   }
+        // }   
       },
     });
     res.status(200).json(items);
