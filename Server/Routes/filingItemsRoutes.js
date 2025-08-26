@@ -4,8 +4,10 @@ import {
   getAllFilingItems,
   getFilingItemById,
   deleteFilingItem,
-  getAvailableFilingItems
-} from "../Controllers/filingItemsController.js"
+  getAvailableFilingItems,
+  createFilingWastage,
+  getFilingWastageByEntryId,
+} from "../Controllers/filingItemsController.js";
 
 const router = express.Router();
 
@@ -14,6 +16,9 @@ router.get("/", getAllFilingItems);
 router.get("/:id", getFilingItemById);
 router.delete("/:id", deleteFilingItem);
 
-router.get('/filingitems/available', getAvailableFilingItems);
+router.get("/filingitems/available", getAvailableFilingItems);
+
+router.post("/wastage", createFilingWastage);
+router.get("/entry/:filing_entry_id", getFilingWastageByEntryId);
 
 export default router;

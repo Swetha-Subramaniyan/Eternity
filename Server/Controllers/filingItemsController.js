@@ -272,6 +272,66 @@ if (!castingCustomerId) {
   };
 
 
+export const createFilingWastage = async (req, res) => {
+  try {
+    const {
+      total_receipt,
+      total_wastage,
+      balance,
+      wastage_percentage,
+      given_gold,
+      add_wastage,
+      overall_wastage,
+      closing_balance,
+      opening_balance,
+      filing_entry_id
+    } = req.body;
 
+    // Validate required fields
+    if (!filing_entry_id) {
+      return res.status(400).json({ message: "Filing entry ID is required" });
+    }
+
+    const filingWastage = await prisma.filingWastage.create({
+      data: {
+        total_receipt: parseFloat(total_receipt) || 0,
+        total_wastage: parseFloat(total_wastage) || 0,
+        balance: parseFloat(balance) || 0,
+        wastage_percentage: parseInt(wastage_percentage) || 0,
+        given_gold: given_gold ? parseInt(given_gold) : null,
+        add_wastage: add_wastage ? parseFloat(add_wastage) : null,
+        overall_wastage: parseFloat(overall_wastage) || 0,
+        closing_balance: parseFloat(closing_balance) || 0,
+        opening_balance: parseFloat(opening_balance) || 0,
+        filing_entry_id: parseInt(filing_entry_id)
+      }
+    });
+
+    res.status(201).json(filingWastage);
+  } catch (error) {
+    console.error("Error creating filing wastage:", error);
+    res.status(500).json({ message: "Failed to create filing wastage record" });
+  }
+};
+
+export const getFilingWastageByEntryId = async (req, res) => {
+  try {
+    const { filing_entry_id } = req.params;
+    
+    const wastageRecords = await prisma.filingWastage.findMany({
+      where: {
+        filing_entry_id: parseInt(filing_entry_id)
+      },
+      include: {
+        filing_entry: true
+      }
+    });
+    
+    res.status(200).json(wastageRecords);
+  } catch (error) {
+    console.error("Error fetching filing wastage:", error);
+    res.status(500).json({ message: "Failed to fetch filing wastage records" });
+  }
+};
 
   
