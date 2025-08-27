@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./MasterSetting.css";
+import styles from './MasterSetting.module.css';
 import axios from "axios";
 import {
   Button,
@@ -124,8 +124,8 @@ function MasterSetting() {
   return (
     <>
       <Master />
-      <div className="customer-container">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", marginTop: "2rem" }}>
+      <div className={styles.customerContainer}>
+        <div className={styles.headerRow}>
           <Button
             style={{
               backgroundColor: "#F5F5F5",
@@ -143,6 +143,7 @@ function MasterSetting() {
             placeholder="Search by Name"
             variant="outlined"
             size="small"
+            sx={{ marginLeft: "47rem" }}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
@@ -153,6 +154,19 @@ function MasterSetting() {
               ),
             }}
           />
+          <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft: "1.2rem",
+            }}
+            onClick={() => setSearchTerm("")}
+          >
+            Reset
+          </Button>
         </div>
 
         <Dialog open={isModalOpen} onClose={closeModal}>
@@ -165,6 +179,7 @@ function MasterSetting() {
               margin="dense"
               label="Customer Name"
               type="text"
+              sx={{marginTop:'2rem'}}
               fullWidth
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
@@ -201,16 +216,16 @@ function MasterSetting() {
             <Button onClick={handleSave} color="primary">Save</Button>
           </DialogActions>
         </Dialog>
-<div className="item-listt"> 
-<table>
+        <div className={styles.itemList}> 
+<table className={styles.customerTable} >
   <thead>
     <tr>
-      <th><strong>S.No</strong></th>
-      <th><strong>Name</strong></th>
-      <th><strong>Phone</strong></th>
-      <th><strong>Email</strong></th>
-      <th><strong>Address</strong></th>
-      <th><strong>Actions</strong></th>
+    <th>S.No</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -223,7 +238,7 @@ function MasterSetting() {
           <td>{customer.email}</td>
           <td>{customer.address}</td>
 
-          <td style={{width:"7rem"}}>
+          {/* <td style={{width:"7rem"}}>
             <b onClick={() => handleEdit(index)} style={{ marginRight: "8px" }}>
            <Edit />
             </b>
@@ -231,6 +246,11 @@ function MasterSetting() {
   <Delete />
 </b>
 
+          </td> */}
+             <td style={{width:"7rem"}}>
+          
+          <Edit onClick={() => handleEdit(index)} className={styles.actionIcon} />
+          <Delete onClick={() => handleDelete(customer.id)} className={styles.deleteIcon} />
           </td>
         </tr>
       ))

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./MasterFiling.css";
 import axios from "axios";
 import {
   Button,
@@ -8,19 +7,12 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  IconButton,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableContainer,
-  Paper,
   InputAdornment,
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
 import Master from "./MasterNavbar";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
+import styles from './MasterFiling.module.css';
 
 function MasterFiling() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -128,8 +120,9 @@ function MasterFiling() {
   return (
     <>
       <Master />
-      <div className="customer-container">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", marginTop: "2rem" }}>
+        <div className={styles.customerContainer}>
+        <div className={styles.headerRow}>
+          
           <Button
             style={{
               backgroundColor: "#F5F5F5",
@@ -148,6 +141,7 @@ function MasterFiling() {
             variant="outlined"
             size="small"
             value={searchTerm}
+            sx={{ marginLeft: "52.6rem" }}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
               startAdornment: (
@@ -157,6 +151,20 @@ function MasterFiling() {
               ),
             }}
           />
+
+<Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft: "1.2rem",
+            }}
+            onClick={() => setSearchTerm("")}
+          >
+            Reset
+          </Button>
         </div>
 
         <Dialog open={isModalOpen} onClose={closeModal}>
@@ -170,7 +178,7 @@ function MasterFiling() {
               label="Customer Name"
               type="text"
               fullWidth
-              sx={{mt:5}}
+              sx={{mt:3}}
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
             />
@@ -208,16 +216,16 @@ function MasterFiling() {
         </Dialog>
 
 
-<div className="item-listt"> 
-<table >
+<div className={styles.itemList}> 
+<table className={styles.customerTable} >
   <thead>
     <tr>
-      <th><strong>S.No</strong></th>
-      <th><strong>Name</strong></th>
-      <th><strong>Phone</strong></th>
-      <th><strong>Email</strong></th>
-      <th><strong>Address</strong></th>
-      <th><strong>Actions</strong></th>
+      <th>S.No</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -230,14 +238,15 @@ function MasterFiling() {
           <td>{customer.email}</td>
           <td>{customer.address}</td>          
           <td style={{width:"7rem"}}>
-           <Edit onClick={() => handleEdit(index)} style={{ marginRight: "8px" }} />
-          <Delete  onClick={() => handleDelete(index)} style={{ color: "red", marginLeft:'0.5rem' }} />  
+          
+          <Edit onClick={() => handleEdit(index)} className={styles.actionIcon} />
+          <Delete onClick={() => handleDelete(index)} className={styles.deleteIcon} />
           </td>
         </tr>
       ))
     ) : (
       <tr>
-        <td colSpan="6" style={{ textAlign: "center" }}>
+        <td colSpan="6" className={styles.centerText}>
           Name not found
         </td>
       </tr>
@@ -245,8 +254,6 @@ function MasterFiling() {
   </tbody>
 </table>
 </div>
-
-
       </div>
     </>
   );

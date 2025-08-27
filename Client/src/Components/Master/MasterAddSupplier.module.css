@@ -5,12 +5,10 @@
   }
   
   .customerTable {
-    margin-top: 1rem;
+    margin-top: 40px;
     color: white;
     border-collapse: collapse;
-    width: 95%;
-    margin-left: 2rem;
-  
+    width: 100%;
   }
   
   .customerTable td {
@@ -72,10 +70,4 @@
   
   .addButton{
     background-color: #fffbe2 !important;
-  }
-
-  .heading{
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
   }

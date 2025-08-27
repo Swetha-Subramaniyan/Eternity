@@ -1,11 +1,11 @@
-.master-container {
+.mastercontainer {
   display: flex;
   align-items: flex-start;
   padding: 70px;
   gap: 60px;
 }
 
-.add-item-form {
+.additemform {
   width: 25%;  
   padding: 20px;
   border: 1px solid #ccc;
@@ -13,17 +13,17 @@
   background: #f9f9f9;
 }
 
-.add-item-form h2 {
-  margin-bottom: 10px;
+.additemform h4 {
+  margin-bottom: 15px;
 }
 
-.add-item-form label {
+.additemform label {
   display: block;
   margin: 10px 0 5px;
   font-weight: bold;
 }
 
-.add-item-form input {
+.additemform input {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
@@ -31,22 +31,23 @@
   border-radius: 4px;
 }
 
-.add-item-form button {
+.additemform button {
   width: 100%;
   padding: 10px;
-  background-color: #1DA3A3;
+  background-color:#38383e;
   color: white;
+  font-weight: 500;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.add-item-form button:hover {
-  background-color: #1DA3A3;
+.additemform button:hover {
+  background-color:#232327;
 }
 
 
-.item-list {
+.itemlist {
   width: 30%;  
   padding: 20px;
   border: 1px solid #ccc;
@@ -54,22 +55,24 @@
   background: #fff;
 }
 
-.item-list h2 {
-  margin-bottom: 10px;
+.itemlist h4 {
+  margin-bottom: 15px;
 }
 
-.item-list table {
+.itemlist table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.item-list th, .item-list td {
+.itemlist th, .itemlist td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: left;
 }
 
-.item-list th {
-  background: #1DA3A3;
+.itemlist th {
+
+  background-color:#38383e;
   color: white;
+  font-weight: 500;
 }
