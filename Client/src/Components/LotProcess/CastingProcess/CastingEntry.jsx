@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Button,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  MenuItem,
-  TextField,
-  Stack
-} from '@mui/material';
+import {Button, TextField, Stack } from '@mui/material';
 import axios from 'axios';
 import { BACKEND_SERVER_URL } from "../../../../Config/config";
 import CastingEntryViewModal from './CastingEntryViewModel';
 import Navbar from '../../Navbar/Navbar';
 import { FaEye } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
+import styles from './CastingEntry.module.css'
 
 const CastingEntry = () => {
   const [open, setOpen] = useState(false);
@@ -231,8 +222,9 @@ const CastingEntry = () => {
   return (
     <>
     <Navbar/>
-      <center style={{marginTop:'1.5rem'}}>Casting Entry</center>
-      <Stack direction="row" spacing={2} alignItems="center" mb={2} ml={6} mt={2}>
+   
+    <h5 className={styles.heading}>Casting/Melting Process</h5>
+      <Stack direction="row" spacing={2} alignItems="center" mb={2} ml={6} mt={1}>
         <TextField
           type="date"
           label="From Date"
@@ -247,60 +239,72 @@ const CastingEntry = () => {
           onChange={(e) => setToDate(e.target.value)}
           InputLabelProps={{ shrink: true }}
         />
-        <Button variant="contained" onClick={handleDateFilter}>Filter</Button>
+        <Button variant="outlined" onClick={handleDateFilter}>Filter</Button>
         <Button variant="outlined" onClick={handleReset}>Reset</Button>
-        <Button variant="contained" color="success" onClick={handleOpen}>Add Casting / Melting</Button>
+     
+       
+        <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft:"42rem"
+            }}
+            variant="contained"
+            onClick={handleOpen}
+          >
+            Add Casting / Melting
+          </Button>
       </Stack>
 
-      <Table sx={{width:'92rem', marginLeft:'2rem'}}>
-        <TableHead>
-          <TableRow >
-            <TableCell>S.No</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Time</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Before Weight</TableCell> 
-            <TableCell>Product Item(s)</TableCell>
-            <TableCell>Product Qty</TableCell>
-<TableCell>Scrap Item(s)</TableCell>
-<TableCell>Scrap Qty</TableCell>
-<TableCell>Total Item Weight</TableCell>
-<TableCell>Balance Weight</TableCell>
-<TableCell>Scrap Weight</TableCell>
-<TableCell>Wastage</TableCell>
-<TableCell>Actions</TableCell>
+        <div className={styles.itemList}> 
+<table className={styles.customerTable} >
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Name</th>
+      <th>Before Wt</th>
+      <th>Product Item(s)</th>
+      <th>Product Qty</th>
+      <th>Scrap Item(s)</th>
+      <th>Scrap Qty</th>
+      <th style={{width:'8rem'}}>Total Item Wt</th>
+      <th>Balance Wt</th>
+      <th>Scrap Wt</th>
+      <th>Wastage</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {entries.map((entry, index) => (
+      <tr key={entry.id}>
+        <td>{index + 1}</td>
+        <td>{entry.date ? new Date(entry.date).toLocaleDateString() : "-"}</td>
+        <td>{entry.createdAt ? new Date(entry.createdAt).toLocaleTimeString() : "-"}</td>
+        <td>{entry.customer?.name || "-"}</td>
+        <td>{entry.final_weight ?? "-"}</td>
+        <td>{Array.isArray(entry.productItems) ? entry.productItems.join(", ") : "-"}</td>
+        <td>{entry.productQty || "-"}</td>
+        <td>{Array.isArray(entry.scrapItems) ? entry.scrapItems.join(", ") : "-"}</td>
+        <td>{entry.scrapQty || "-"}</td>
+        <td>{entry.totalItemWeight ? entry.totalItemWeight.toFixed(2) : '-'}</td>
+        <td>{entry.currentBalanceWeight ? entry.currentBalanceWeight.toFixed(2) : '-'}</td>
+        <td>{entry.totalScrapWeight ? entry.totalScrapWeight.toFixed(2) : '-'}</td>
+        <td>{entry.totalWastage ? entry.totalWastage.toFixed(2) : '-'}</td>
+        <td>
+          <FaEye onClick={() => handleView(entry)} style={{ cursor: "pointer", marginRight: "0.5rem" }} />
+          <RiDeleteBin2Fill onClick={() => handleDelete(entry.id)} style={{ cursor: "pointer" }} />
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+</div>
 
-          </TableRow>
-        </TableHead>
-        <TableBody>
-  {entries.map((entry, index) => {
-    return (
-      <TableRow key={entry.id}>
-        <TableCell>{index + 1}</TableCell>
-        <TableCell>{entry.date ? new Date(entry.date).toLocaleDateString() : "-"}</TableCell>
-        <TableCell>{entry.createdAt ? new Date(entry.createdAt).toLocaleTimeString() : "-"}</TableCell>
-        <TableCell>{entry.customer?.name || "-"}</TableCell>
-        <TableCell>{entry.final_weight ?? "-"}</TableCell>
-<TableCell>{Array.isArray(entry.productItems) ? entry.productItems.join(", ") : "-"}</TableCell>
-<TableCell>{entry.productQty || "-"}</TableCell>
-<TableCell>{Array.isArray(entry.scrapItems) ? entry.scrapItems.join(", ") : "-"}</TableCell>
-<TableCell>{entry.scrapQty || "-"}</TableCell>
-<TableCell>{entry.totalItemWeight ? entry.totalItemWeight.toFixed(2) : '-'}</TableCell>
-<TableCell>{entry.currentBalanceWeight ? entry.currentBalanceWeight.toFixed(2) : '-'}</TableCell>
-<TableCell>{entry.totalScrapWeight ? entry.totalScrapWeight.toFixed(2) : '-'}</TableCell>
-<TableCell>{entry.totalWastage ? entry.totalWastage.toFixed(2) : '-'}</TableCell>
-
-
-        <TableCell>
-          <FaEye onClick={() => handleView(entry)} />
-          <RiDeleteBin2Fill onClick={() => handleDelete(entry.id)} />      
-        </TableCell>
-      </TableRow>
-
-    );
-  })}
-</TableBody>
-      </Table>
       <CastingEntryViewModal
         open={open}
         handleClose={handleClose}

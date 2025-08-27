@@ -9,7 +9,6 @@ import {
   DialogActions,
   TextField,
   InputAdornment,
-  TextareaAutosize,
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
 import Master from "./MasterNavbar";
@@ -175,6 +174,7 @@ function MasterCasting() {
               margin="dense"
               label="Casting Name"
               type="text"
+              sx={{mt:3}}
               fullWidth
               value={customerName}              
               onChange={(e) => setCustomerName(e.target.value)}             
