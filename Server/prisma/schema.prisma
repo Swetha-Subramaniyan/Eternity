@@ -409,6 +409,8 @@ model BuffingEntry {
   setting_items  SettingItems[]
   BuffingTotalBalance BuffingTotalBalance[]
   BuffingWastage BuffingWastage[]
+
+  LotBuffingMapper LotBuffingMapper[]
 }
 
 model BuffingItems {
@@ -450,6 +452,8 @@ model LotBuffingMapper{
   settingItemId SettingItems? @relation(fields: [setting_item_id], references: [id], onDelete: Cascade)
   filing_item_id Int?
   filingItemId FilingItems ? @relation(fields: [filing_item_id], references: [id], onDelete: Cascade)
+  buffing_entry_id Int
+  buffingEntry BuffingEntry @relation(fields: [buffing_entry_id], references: [id], onDelete: Cascade)
 }
 
 model BuffingWastage {

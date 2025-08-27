@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./MasterBuffing.css";
+import styles from './MasterBuffing.module.css';
 import axios from "axios";
 import {
   Button,
@@ -122,8 +122,8 @@ function MasterBuffing() {
   return (
     <>
       <Master />
-      <div className="customer-container">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", marginTop: "2rem" }}>
+      <div className={styles.customerContainer}>
+        <div className={styles.headerRow}>
           <Button
             style={{
               backgroundColor: "#F5F5F5",
@@ -141,6 +141,7 @@ function MasterBuffing() {
             placeholder="Search by Name"
             variant="outlined"
             size="small"
+            sx={{ marginLeft: "47rem" }}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
@@ -151,6 +152,20 @@ function MasterBuffing() {
               ),
             }}
           />
+
+<Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft: "1.2rem",
+            }}
+            onClick={() => setSearchTerm("")}
+          >
+            Reset
+          </Button>
         </div>
 
         <Dialog open={isModalOpen} onClose={closeModal}>
@@ -163,6 +178,7 @@ function MasterBuffing() {
               margin="dense"
               label="Customer Name"
               type="text"
+              sx={{marginTop:'2rem'}}
               fullWidth
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
@@ -199,16 +215,16 @@ function MasterBuffing() {
             <Button onClick={handleSave} color="primary">Save</Button>
           </DialogActions>
         </Dialog>
-<div className="item-listt"> 
-<table border="1" style={{ width: "100%", borderCollapse: "collapse" }}>
+        <div className={styles.itemList}> 
+<table className={styles.customerTable} >
   <thead>
     <tr>
-      <th><strong>S.No</strong></th>
-      <th><strong>Name</strong></th>
-      <th><strong>Phone</strong></th>
-      <th><strong>Email</strong></th>
-      <th><strong>Address</strong></th>
-      <th><strong>Actions</strong></th>
+    <th>S.No</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -221,12 +237,8 @@ function MasterBuffing() {
           <td>{customer.email}</td>
           <td>{customer.address}</td>
           <td style={{width:"7rem"}}>
-            <b onClick={() => handleEdit(index)} style={{ marginRight: "8px" }}>
-           <Edit />
-            </b>
-            <b onClick={() => handleDelete(index)} style={{ color: "red", marginLeft:'0.5rem' }}>
-                <Delete />
-            </b>
+             <Edit onClick={() => handleEdit(index)} className={styles.actionIcon} />
+             <Delete onClick={() => handleDelete(index)} className={styles.deleteIcon} />
           </td>
         </tr>
       ))

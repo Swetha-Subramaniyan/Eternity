@@ -18,6 +18,7 @@ import styles from "./FilingLotDetails.module.css";
 import { useParams } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import { BACKEND_SERVER_URL } from "../../../../Config/config";
+import AddIcon from "@mui/icons-material/Add";
 
 const FilingLotDetails = () => {
   const [isAssignOpen, setIsAssignOpen] = useState(false);
@@ -44,6 +45,7 @@ const FilingLotDetails = () => {
   const [currentFilingEntryId, setCurrentFilingEntryId] = useState(null);
 
   // Monthly wastage state variables
+  const [wastageInputs, setWastageInputs] = useState([{ value: "" }]);
   const [wastagePercentage, setWastagePercentage] = useState("");
   const [givenGold, setGivenGold] = useState("");
   const [closingSummary, setClosingSummary] = useState(null);
@@ -176,25 +178,62 @@ const FilingLotDetails = () => {
   const currentBalanceWeight = totalAssignedWeight - totalProductWeight;
   const finalBalance = currentBalanceWeight - totalScrapWeight;
 
+  const addWastageInput = () => {
+    setWastageInputs([...wastageInputs, { value: "" }]);
+  };
+
+  // Function to remove a wastage input field
+  const removeWastageInput = (index) => {
+    const newInputs = [...wastageInputs];
+    newInputs.splice(index, 1);
+    setWastageInputs(newInputs);
+  };
+
+  console.log("Wastage Inputs:", wastageInputs);
+
+  // Function to update a wastage input value
+  const handleWastageInputChange = (index, value) => {
+    const newInputs = [...wastageInputs];
+    newInputs[index].value = value;
+    setWastageInputs(newInputs);
+  };
+
   // Monthly wastage calculations
-
   const totalReceipt = filteredEntries.reduce((sum, entry) => {
-  const balance =
-    entry.filingTotalBalance && entry.filingTotalBalance.length > 0
-      ? entry.filingTotalBalance[0]
-      : null;
+    const balance =
+      entry.filingTotalBalance && entry.filingTotalBalance.length > 0
+        ? entry.filingTotalBalance[0]
+        : null;
 
-  return sum + (balance?.total_product_weight ?? 0);
-}, 0);
+    return sum + (balance?.total_product_weight ?? 0);
+  }, 0);
 
   const totalBalance = filteredEntries.reduce(
     (sum, entry) => sum + (parseFloat(entry.balance) || 0),
     0
   );
 
-  const totalWastage =
+  const manualWastageSum = wastageInputs.reduce(
+    (sum, w) => sum + (parseFloat(w.value) || 0),
+    0
+  );
+
+  // % wastage calculation
+  const totalWastageFromPercentage =
     (totalReceipt * (parseFloat(wastagePercentage) || 0)) / 100;
-  const overallWastage = totalBalance - totalWastage;
+
+  // Final total wastage = percentage wastage + manual wastage inputs
+  const totalWastage = totalWastageFromPercentage + manualWastageSum;
+
+  const totalBalanceSum = filteredEntries.reduce((sum, entry) => {
+    const balance =
+      entry.filingTotalBalance && entry.filingTotalBalance.length > 0
+        ? entry.filingTotalBalance[0]
+        : null;
+
+    return sum + (parseFloat(balance?.balance) || 0);
+  }, 0);
+  const overallWastage = totalBalanceSum - totalWastage;
 
   const additionalGold = parseFloat(givenGold) || 0;
   const closingBalance =
@@ -205,7 +244,7 @@ const FilingLotDetails = () => {
       ? "Owner must give to worker"
       : "Worker must give to owner";
 
-  const handleSaveSummary = () => {
+  /* const handleSaveSummary = () => {
     const data = {
       totalReceipt,
       totalBalance,
@@ -219,8 +258,38 @@ const FilingLotDetails = () => {
     localStorage.setItem("filingSummary", JSON.stringify(data));
     setClosingSummary(data);
     alert("Summary saved successfully.");
-  };
+  }; */
 
+  const handleSaveSummary = async () => {
+    try {
+      const data = {
+        total_receipt: totalReceipt,
+        total_wastage: totalWastage,
+        balance: totalBalanceSum,
+        wastage_percentage: parseFloat(wastagePercentage) || 0,
+        given_gold: additionalGold,
+        add_wastage: wastageInputs[0].value, // Sum of all manual wastage inputs
+        overall_wastage: overallWastage,
+        closing_balance: closingBalance,
+        opening_balance: 0, // As specified, opening balance is 0
+        filing_entry_id: 1, // You'll need to track the current filing entry ID
+      };
+
+      const response = await axios.post(
+        `${BACKEND_SERVER_URL}/api/filingitems/wastage`,
+        data
+      );
+
+      // Also save to localStorage as before
+      localStorage.setItem("filingSummary", JSON.stringify(data));
+      setClosingSummary(data);
+
+      alert("Summary saved successfully to database!");
+    } catch (error) {
+      console.error("Error saving summary:", error);
+      alert("Failed to save summary. Check console for details.");
+    }
+  };
   const handleCloseJobcard = () => {
     const savedLots = JSON.parse(localStorage.getItem("filingLots")) || [];
     const nextId = savedLots.length + 1;
@@ -596,12 +665,52 @@ const FilingLotDetails = () => {
           sx={{ mt: 2 }}
         />
 
+        <Box sx={{ mt: 2 }}>
+          <Typography variant="subtitle2" gutterBottom>
+            Wastage Values (g):
+          </Typography>
+          {wastageInputs.map((input, index) => (
+            <Box
+              key={index}
+              sx={{ display: "flex", alignItems: "center", mb: 1 }}
+            >
+              <TextField
+                label={`Wastage ${index + 1}`}
+                type="number"
+                value={input.value}
+                onChange={(e) =>
+                  handleWastageInputChange(index, e.target.value)
+                }
+                size="small"
+                sx={{ flexGrow: 1, mr: 1 }}
+              />
+              {wastageInputs.length > 1 && (
+                <IconButton
+                  onClick={() => removeWastageInput(index)}
+                  size="small"
+                >
+                  <DeleteIcon />
+                </IconButton>
+              )}
+            </Box>
+          ))}
+          <Button
+            variant="outlined"
+            startIcon={<AddIcon />}
+            onClick={addWastageInput}
+            size="small"
+            sx={{ mt: 1 }}
+          >
+            Add Wastage
+          </Button>
+        </Box>
+
         <Typography sx={{ mt: 2 }}>
           <strong>Total Wastage:</strong> {totalWastage.toFixed(2)} g
         </Typography>
 
         <Typography sx={{ mt: 2 }}>
-          <strong>Balance:</strong> {totalBalance.toFixed(2)} g
+          <strong>Balance:</strong> {totalBalanceSum.toFixed(2)} g
         </Typography>
 
         <Typography sx={{ mt: 2 }}>
