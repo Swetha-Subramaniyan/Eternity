@@ -239,7 +239,6 @@ const applyDateFilter = () => {
    <Button variant="contained" onClick={handleOpen} sx={{ml:99}}>Add Setting</Button>
 </div>
 
-      {/* <Button variant="contained" onClick={handleOpen} sx={{ mt: 2 }}> Add Setting  </Button> */}
       {/* Main Table */}
       <table border="1" style={{ width: '100%', marginTop: '1rem' }}>
   <thead>
@@ -265,11 +264,7 @@ const applyDateFilter = () => {
       <th>Actions</th>
     </tr>
   </thead>
-
  <tbody>
-    {/* {assignedItems.length > 0 ? (
-      assignedItems.map((entry, index) => ( */}
-
 {filteredEntries.length > 0 ? (
   filteredEntries.map((entry, index) => (
         <>

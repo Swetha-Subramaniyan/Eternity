@@ -2,7 +2,6 @@ import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
 
-
 export const addToStock = async (req, res) => {
   try {
     const { casting_item_id } = req.body;
@@ -81,6 +80,16 @@ export const getAllStock = async (req, res) => {
               }
             }
           }
+        },
+        buffingItem:{
+          include:{
+            buffingEntryId:{
+              include:{
+                buffing_person:true
+              }
+            }
+          }
+
         }
       },
     });
