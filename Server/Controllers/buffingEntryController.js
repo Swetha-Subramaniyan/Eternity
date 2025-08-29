@@ -58,15 +58,6 @@ export const createBuffingEntry = async (req, res) => {
       castingItemId = firstSettingItem.settingEntryId.casting_item_id;
     }
 
-    // Ensure castingItem exists only once
-    const existingBuffingEntry = await prisma.buffingEntry.findFirst({
-      where: { casting_item_id: castingItemId },
-    });
-    if (existingBuffingEntry) {
-      return res.status(400).json({
-        error: "This casting item already has a buffing entry",
-      });
-    }
 
     // Create BuffingEntry
     const buffingEntry = await prisma.buffingEntry.create({
@@ -196,6 +187,14 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
         },
         BuffingTotalBalance: true,
         BuffingWastage: true,
+        BuffingItems:{
+          include:{
+            item: true,
+            touch:true,
+            stock:true,
+          }
+          
+        }
       },
       orderBy: { id: "asc" },
     });
@@ -266,6 +265,16 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
             filing_item_remarks: mapper.filingItemId?.remarks || "",
             setting_item_name: mapper.settingItemId?.item?.name || "",
             buffing_entry_id: mapper.buffing_entry_id,
+          })),
+
+          buffingItems: entry.BuffingItems.map((b) => ({
+            id: b.id,
+            createdAt: b.createdAt,
+            item_name: b.item?.name || "",
+            scrap_weight: b.scrap_weight || 0,
+            touch: b.touch?.touch || "",
+            item_purity: b.item_purity || 0,
+            scrap_remarks: b.scrap_remarks || "",
           })),
           
 

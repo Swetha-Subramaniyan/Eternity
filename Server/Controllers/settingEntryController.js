@@ -48,43 +48,31 @@ export const createSettingEntry = async (req, res) => {
 
     const castingItemId = firstFilingItem.filing_entry.casting_item_id;
 
+// Always create a new SettingEntry
+const settingEntry = await prisma.settingEntry.create({
+  data: {
+    setting_person: { connect: { id: setting_person_id } },
+    castingItem: { connect: { id: castingItemId } },
+  },
+  include: {
+    setting_person: true,
+    filingItems: true,
+  },
+});
 
-    const existingSettingEntry = await prisma.settingEntry.findFirst({
-      where: { casting_item_id: castingItemId }
-    });
-    if (existingSettingEntry) {
-      return res.status(400).json({
-        error: 'This casting item already has a setting entry'
-      });
-    }
-    
-
-    // Create SettingEntry (linking to the casting item)
-    const settingEntry = await prisma.settingEntry.create({
+//  Now create LotSettingMapper for all filing items
+await Promise.all(
+  filingItemIds.map((filingItemId) =>
+    prisma.lotSettingMapper.create({
       data: {
-        setting_person: { connect: { id: setting_person_id } },
-        castingItem: { connect: { id: castingItemId } },
+        setting_id: setting_person_id,
+        lot_id: lot.id,
+        filing_item_id: filingItemId,
+        setting_entry_id: settingEntry.id,
       },
-      include: {
-        setting_person: true,
-        filingItems: true,
-      },
-    });
-
-
-    // Map all filing items to this SettingEntry in LotSettingMapper
-    await Promise.all(
-      filingItemIds.map((filingItemId) =>
-        prisma.lotSettingMapper.create({
-          data: {
-            setting_id: setting_person_id,
-            lot_id: lot.id,
-            filing_item_id: filingItemId,
-            setting_entry_id: settingEntry.id,
-          },
-        })
-      )
-    );
+    })
+  )
+);
 
     // Fetch full filing items with details
     const fullItems = await prisma.filingItems.findMany({
@@ -111,7 +99,6 @@ export const createSettingEntry = async (req, res) => {
     });
   }
 };
-
 
 
 // GET - http://localhost:5000/api/settingentry/person/:id

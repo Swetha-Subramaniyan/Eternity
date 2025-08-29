@@ -243,35 +243,68 @@ if (!castingCustomerId) {
   
   // GET - http://localhost:5000/api/filingitems/filingitems/available
 
+  // export const getAvailableFilingItems = async (req, res) => {
+  //   try {
+  //     const items = await prisma.filingItems.findMany({
+  //       where: {
+  //         type: "Items",
+  //         lot_setting_mapper: {
+  //           none: {},
+  //         },
+      
+  //       },
+  //       include: {
+  //         filingitem: true,
+  //         touch: true,
+  //       },
+  //     });
+      
+  //     // Append status field to each item
+  //     const result = items.map((item) => ({
+  //       ...item,
+  //       status: "Unassigned",
+  //     }));
+  
+  //     res.status(200).json(result);
+  //   } catch (err) {
+  //     console.error("Failed to fetch unassigned filing items", err);
+  //     res.status(500).json({ error: "Failed to fetch unassigned filing items" });
+  //   }
+  // };
+
   export const getAvailableFilingItems = async (req, res) => {
     try {
       const items = await prisma.filingItems.findMany({
         where: {
           type: "Items",
-          lot_setting_mapper: {
-            none: {},
-          },
-      
         },
         include: {
           filingitem: true,
           touch: true,
+          lot_setting_mapper: true, // mappings for setting assignments
+          LotBuffingMapper: true,   // mappings for buffing assignments
         },
       });
-      
-      // Append status field to each item
-      const result = items.map((item) => ({
-        ...item,
-        status: "Unassigned",
-      }));
+  
+      const result = items.map((item) => {
+        // Assigned if either mapping exists
+        const isAssigned =
+          (item.lot_setting_mapper && item.lot_setting_mapper.length > 0) ||
+          (item.LotBuffingMapper && item.LotBuffingMapper.length > 0);
+  
+        return {
+          ...item,
+          status: isAssigned ? "Assigned" : "Unassigned",
+        };
+      });
   
       res.status(200).json(result);
     } catch (err) {
-      console.error("Failed to fetch unassigned filing items", err);
-      res.status(500).json({ error: "Failed to fetch unassigned filing items" });
+      console.error("Failed to fetch filing items", err);
+      res.status(500).json({ error: "Failed to fetch filing items" });
     }
   };
-
+  
 
 export const createFilingWastage = async (req, res) => {
   try {
