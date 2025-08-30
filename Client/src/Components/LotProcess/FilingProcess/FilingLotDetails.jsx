@@ -44,6 +44,7 @@ const FilingLotDetails = () => {
   const [wastageOption, setWastageOption] = useState("No");
   const [currentFilingEntryId, setCurrentFilingEntryId] = useState(null);
   const [existingWastageId, setExistingWastageId] = useState(null);
+  const [openingBalance, setOpeningBalance] = useState(0);
 
   // Monthly wastage state variables
   const [wastageInputs, setWastageInputs] = useState([{ value: "" }]);
@@ -71,11 +72,14 @@ const FilingLotDetails = () => {
         `${BACKEND_SERVER_URL}/api/filingitems/entry/${filingPersonId}/${lotNumber}`
       );
 
+      console.log("Sssssssss", response)
+
       if (response.data.length > 0) {
         const wastageData = response.data[0];
         setExistingWastageId(wastageData.id);
         setWastagePercentage(wastageData.wastage_percentage.toString());
         setGivenGold(wastageData.given_gold?.toString() || "");
+        setOpeningBalance(wastageData.opening_balance || 0);
 
         // If you have multiple wastage inputs, you might need to handle this differently
         if (wastageData.add_wastage) {
@@ -322,7 +326,7 @@ const FilingLotDetails = () => {
         add_wastage: manualWastageSum,
         overall_wastage: overallWastage,
         closing_balance: closingBalance,
-        opening_balance: 0,
+        opening_balance: openingBalance,
         filing_person_id: filingPersonId,
         lotId: lotNumber,
       };
@@ -723,7 +727,7 @@ const FilingLotDetails = () => {
         }}
       >
         <Typography sx={{ marginLeft: "3rem", color: "darkblue" }}>
-          <b>Opening Balance:</b> 0
+          <b>Opening Balance:</b> {openingBalance.toFixed(2)}
         </Typography>
         <hr />
 

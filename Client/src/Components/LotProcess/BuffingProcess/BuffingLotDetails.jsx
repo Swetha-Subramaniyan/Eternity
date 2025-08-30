@@ -414,14 +414,8 @@ const BuffingLotDetails = () => {
 
   // Monthly wastage calculations
   const totalReceipt = filteredData.reduce((sum, entry) => {
-    return (
-      sum +
-      entry.items.reduce(
-        (itemSum, item) => itemSum + (parseFloat(item.weight) || 0),
-        0
-      )
-    );
-  }, 0);
+  return sum + (parseFloat(entry.receiptWeight) || 0);
+}, 0);
 
   const manualWastageSum = wastageInputs.reduce(
     (sum, w) => sum + (parseFloat(w.value) || 0),
@@ -436,17 +430,8 @@ const BuffingLotDetails = () => {
   const totalWastage = totalWastageFromPercentage + manualWastageSum;
 
   const totalBalanceSum = filteredData.reduce((sum, entry) => {
-    // You'll need to adjust this based on your actual data structure
-    // This is a placeholder calculation
-    return (
-      sum +
-      entry.items.reduce(
-        (itemSum, item) => itemSum + (parseFloat(item.weight) || 0),
-        0
-      )
-    );
-  }, 0);
-
+  return sum + (parseFloat(entry.balance) || 0);
+}, 0);
   const overallWastage = totalBalanceSum - totalWastage;
 
   const additionalGold = parseFloat(givenGold) || 0;
