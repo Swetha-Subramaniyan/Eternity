@@ -177,8 +177,8 @@ model CastingItems {
   castingEntry     CastingEntry      @relation(fields: [casting_entry_id], references: [id], onDelete: Cascade)
   casting_entry_id Int
   filingEntry      FilingEntry[]
-  settingEntry     SettingEntry?
-  buffingEntry     BuffingEntry?
+  settingEntry     SettingEntry[]
+  buffingEntry     BuffingEntry[]
   stock            Stock[]
   filingLotMapper  LotFilingMapper[]
 
@@ -302,7 +302,7 @@ model SettingEntry {
   setting_person      AddSetting            @relation(fields: [setting_person_id], references: [id])
   setting_person_id   Int
   castingItem         CastingItems          @relation(fields: [casting_item_id], references: [id])
-  casting_item_id     Int                   @unique
+  casting_item_id     Int
   filingItems         FilingItems[]
   settingTotalBalance SettingTotalBalance[]
   settingWastage      SettingWastage[]
@@ -315,7 +315,7 @@ model SettingItems {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  type             CASTINGENTRYTYPE
+  type             CASTINGENTRYTYPE?
   setting_item_id  Int
   item             AddItem            @relation(fields: [setting_item_id], references: [id])
   scrap_weight     Float
@@ -385,36 +385,40 @@ model BuffingEntry {
   buffing_person      AddBuffing            @relation(fields: [buffing_person_id], references: [id])
   buffing_person_id   Int
   castingItem         CastingItems          @relation(fields: [casting_item_id], references: [id])
-  casting_item_id     Int                   @unique
+  casting_item_id     Int
   filing_items        FilingItems[]
   setting_items       SettingItems[]
   BuffingTotalBalance BuffingTotalBalance[]
   BuffingWastage      BuffingWastage[]
 
   LotBuffingMapper LotBuffingMapper[]
+
+  BuffingItems BuffingItems[]
 }
 
 model BuffingItems {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  type            CASTINGENTRYTYPE
-  buffing_item_id Int
-  item            AddItem          @relation(fields: [buffing_item_id], references: [id])
-  scrap_weight    Float
-  touch_id        Int
-  touch           AddTouch         @relation(fields: [touch_id], references: [id])
-  item_purity     Float
-  scrap_remarks   String
-  stock           Stock[]
-  buffing_wastage BuffingWastage[]
+  type             CASTINGENTRYTYPE
+  buffing_item_id  Int
+  item             AddItem          @relation(fields: [buffing_item_id], references: [id])
+  scrap_weight     Float
+  touch_id         Int
+  touch            AddTouch         @relation(fields: [touch_id], references: [id])
+  item_purity      Float
+  scrap_remarks    String?
+  stock            Stock[]
+  buffing_wastage  BuffingWastage[]
+  buffing_entry_id Int
+  buffingEntryId   BuffingEntry     @relation(fields: [buffing_entry_id], references: [id], onDelete: Cascade)
 }
 
 model BuffingTotalBalance {
   id                 Int          @id @default(autoincrement())
   createdAt          DateTime     @default(now())
   receipt_weight     Float
-  remarks            String
+  remarks            String?
   wastage            Boolean
   total_scrap_weight Float?
   balance            Float

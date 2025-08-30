@@ -390,7 +390,8 @@ exports.Prisma.BuffingItemsScalarFieldEnum = {
   scrap_weight: 'scrap_weight',
   touch_id: 'touch_id',
   item_purity: 'item_purity',
-  scrap_remarks: 'scrap_remarks'
+  scrap_remarks: 'scrap_remarks',
+  buffing_entry_id: 'buffing_entry_id'
 };
 
 exports.Prisma.BuffingTotalBalanceScalarFieldEnum = {

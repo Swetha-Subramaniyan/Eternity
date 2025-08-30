@@ -8,11 +8,7 @@ export const createFilingEntry = async (req, res) => {
     const { filing_person_id, lot_number, itemIds } = req.body;
 
     if (
-      !filing_person_id ||
-      !lot_number ||
-      !Array.isArray(itemIds) ||
-      itemIds.length === 0
-    ) {
+      !filing_person_id || !lot_number || !Array.isArray(itemIds) || itemIds.length === 0) {
       return res.status(400).json({
         error:
           "filing_person_id, lot_number, and at least one casting_item_id are required",

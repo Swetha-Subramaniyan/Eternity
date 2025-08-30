@@ -147,6 +147,7 @@ const Stock = () => {
                   item.castingItem?.castingEntry?.casting_customer?.name ||
                   item.filingItem?.filing_entry?.filing_person?.name ||
                   item.settingItem?.settingEntryId?.setting_person?.name ||
+                  item.buffingItem?.buffingEntryId?.buffing_person?.name ||
                   "-";
 
                 return (
