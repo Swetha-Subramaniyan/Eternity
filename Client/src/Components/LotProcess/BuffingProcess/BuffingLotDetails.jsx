@@ -21,6 +21,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { major } from "@mui/material";
 import { BACKEND_SERVER_URL } from "../../../../Config/config";
+
 import {
   DialogActions,
   Box,
@@ -32,19 +33,28 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from "@mui/material/Checkbox";
 
+
 const BuffingLotDetails = () => {
   const [open, setOpen] = useState(false);
   const today = new Date().toISOString().split("T")[0];
   const [date, setDate] = useState(today);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [mainTableData, setMainTableData] = useState([]);
-  major;
+
+  const [mainTableData, setMainTableData] = useState([]);major
   const [popupData, setPopupData] = useState([]);
   const [viewEntry, setViewEntry] = useState(null);
   const { id, name, lotNumber } = useParams();
-
-  // Monthly wastage state variables
-  const [wastageInputs, setWastageInputs] = useState([{ value: "" }]);
+const [receiptWeight, setReceiptWeight] = useState("");
+const [remarks, setRemarks] = useState("");
+const [wastage, setWastage] = useState("No");
+const [scrapItems, setScrapItems] = useState([]);
+const [itemOptions, setItemOptions] = useState([]);
+const [touchOptions, setTouchOptions] = useState([]);
+const [fromDate, setFromDate] = useState("");  
+const [toDate, setToDate] = useState("");      
+const [filteredData, setFilteredData] = useState([]); 
+  
+   const [wastageInputs, setWastageInputs] = useState([{ value: "" }]);
   const [wastagePercentage, setWastagePercentage] = useState("");
   const [givenGold, setGivenGold] = useState("");
   const [closingSummary, setClosingSummary] = useState(null);
@@ -52,15 +62,8 @@ const BuffingLotDetails = () => {
   const [toDate, setToDate] = useState("");
   const [filteredEntries, setFilteredEntries] = useState([]);
   const [existingWastageId, setExistingWastageId] = useState(null);
-
-  console.log(
-    "Buffing Datas:",
-    `person_id: ${id},`,
-    `name: ${name},`,
-    `lot_number: ${lotNumber}`
-  );
-
-  const fetchWastageData = async () => {
+  
+    const fetchWastageData = async () => {
     try {
       const response = await axios.get(
         `${BACKEND_SERVER_URL}/api/buffing/entry/${id}/${lotNumber}`
@@ -83,168 +86,150 @@ const BuffingLotDetails = () => {
     }
   };
 
-  const [receiptWeight, setReceiptWeight] = useState("");
-  const [remarks, setRemarks] = useState("");
-  const [wastage, setWastage] = useState("No");
-  const [scrapItems, setScrapItems] = useState([]);
-  const [itemOptions, setItemOptions] = useState([]);
-  const [touchOptions, setTouchOptions] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
 
-  useEffect(() => {
-    const fetchDropdowns = async () => {
-      try {
-        const [itemRes, touchRes] = await Promise.all([
-          axios.get(`${BACKEND_SERVER_URL}/api/additem`),
-          axios.get(`${BACKEND_SERVER_URL}/api/addtouch`),
-        ]);
-        setItemOptions(itemRes.data);
-        setTouchOptions(touchRes.data);
-        console.log(setItemOptions);
-      } catch (err) {
-        console.error("Error fetching dropdowns", err);
-      }
+
+useEffect(() => {
+  const fetchDropdowns = async () => {
+    try {
+      const [itemRes, touchRes] = await Promise.all([
+        axios.get(`${BACKEND_SERVER_URL}/api/additem`),
+        axios.get(`${BACKEND_SERVER_URL}/api/addtouch`),
+      ]);
+      setItemOptions(itemRes.data);
+      setTouchOptions(touchRes.data);
+      console.log(setItemOptions)
+    } catch (err) {
+      console.error("Error fetching dropdowns", err);
+    }
+  };
+  fetchDropdowns();
+}, []);
+
+const addScrapItem = () => {
+  setScrapItems([...scrapItems, { item: "", weight: "", touch: "", purity: "", remarks: "" }]);
+};
+
+const handleSave = async () => {
+  try {
+    if (!viewEntry) return;
+
+    // Calculate totals
+    const totalWeight = viewEntry.items.reduce(
+      (sum, item) => sum + (parseFloat(item.weight) || 0),
+      0
+    );
+
+    const totalScrapWeight = scrapItems.reduce(
+      (sum, s) => sum + (parseFloat(s.weight) || 0),
+      0
+    );
+
+    const balance = totalWeight - (parseFloat(receiptWeight) || 0) - totalScrapWeight;
+
+    // Prepare payload with proper buffing_item_id
+    const payload = {
+      buffingEntryId: viewEntry.id,
+      receiptWeight: parseFloat(receiptWeight) || 0,
+      remarks,
+      wastage,
+      totalScrapWeight,
+      balance,
+      scrapItems: scrapItems
+        .filter((s) => s.item) 
+        .map((s) => ({
+          buffing_item_id: parseInt(s.item),
+          weight: parseFloat(s.weight) || 0,
+          touch_id: s.touch || null,
+          item_purity: parseFloat(s.purity) || 0,
+          scrap_remarks: s.remarks || "",
+        })),
     };
-    fetchDropdowns();
-  }, []);
 
-  const addScrapItem = () => {
-    setScrapItems([
-      ...scrapItems,
-      { item: "", weight: "", touch: "", purity: "", remarks: "" },
-    ]);
-  };
+    console.log("Saving Buffing Items:", payload);
 
-  const handleSave = async () => {
-    try {
-      if (!viewEntry) return;
+    // POST to backend
+    await axios.post(`${BACKEND_SERVER_URL}/api/buffingitems`, payload);
 
-      // Calculate totals
-      const totalWeight = viewEntry.items.reduce(
-        (sum, item) => sum + (parseFloat(item.weight) || 0),
-        0
-      );
+    // Update frontend table
+    const updatedEntry = {
+      ...viewEntry,
+      receiptWeight,
+      wastage,
+      scrapItems: scrapItems.map((s) => ({
+        itemName: itemOptions.find((opt) => opt.id === parseInt(s.item))?.name || "",
+        ...s,
+      })),
+      totalScrapWeight,
+      balance,
+    };
 
-      const totalScrapWeight = scrapItems.reduce(
-        (sum, s) => sum + (parseFloat(s.weight) || 0),
-        0
-      );
+    setMainTableData((prev) =>
+      prev.map((e) => (e.id === viewEntry.id ? updatedEntry : e))
+    );
+await fetchBuffingEntries();
 
-      const balance =
-        totalWeight - (parseFloat(receiptWeight) || 0) - totalScrapWeight;
+    alert("Buffing Entry saved successfully!");
+    setOpen(false);
+    setViewEntry(null);
+    setScrapItems([]);
+    setReceiptWeight("");
+    setRemarks("");
+    setWastage("No");
+  } catch (error) {
+    console.error("Error saving Buffing entry:", error);
+    alert("Failed to save Buffing Entry");
+  }
+};
 
-      // Prepare payload with proper buffing_item_id
-      const payload = {
-        buffingEntryId: viewEntry.id,
-        receiptWeight: parseFloat(receiptWeight) || 0,
-        remarks,
-        wastage,
-        totalScrapWeight,
-        balance,
-        scrapItems: scrapItems
-          .filter((s) => s.item)
-          .map((s) => ({
-            buffing_item_id: parseInt(s.item),
-            weight: parseFloat(s.weight) || 0,
-            touch_id: s.touch || null,
-            item_purity: parseFloat(s.purity) || 0,
-            scrap_remarks: s.remarks || "",
-          })),
-      };
-
-      console.log("Saving Buffing Items:", payload);
-
-      // POST to backend
-      await axios.post(`${BACKEND_SERVER_URL}/api/buffingitems`, payload);
-
-      // Update frontend table
-      const updatedEntry = {
-        ...viewEntry,
-        receiptWeight,
-        wastage,
-        scrapItems: scrapItems.map((s) => ({
-          itemName:
-            itemOptions.find((opt) => opt.id === parseInt(s.item))?.name || "",
-          ...s,
-        })),
-        totalScrapWeight,
-        balance,
-      };
-
-      setMainTableData((prev) =>
-        prev.map((e) => (e.id === viewEntry.id ? updatedEntry : e))
-      );
-      await fetchBuffingEntries();
-
-      alert("Buffing Entry saved successfully!");
-      setOpen(false);
-      setViewEntry(null);
-      setScrapItems([]);
-      setReceiptWeight("");
-      setRemarks("");
-      setWastage("No");
-    } catch (error) {
-      console.error("Error saving Buffing entry:", error);
-      alert("Failed to save Buffing Entry");
-    }
-  };
-
-  console.log(
-    "Buffing Datas:",
-    `person_id: ${id},`,
-    `name: ${name},`,
-    `lot_number: ${lotNumber}`
-  );
-
-  const handleAssign = async () => {
-    if (selectedItems.length === 0) {
-      alert("Please select at least one row.");
-      return;
-    }
-
-    try {
-      const payload = {
-        buffing_person_id: parseInt(id),
-        lot_number: parseInt(lotNumber),
-        items: selectedItems.map((item) => ({
-          filing_item_id: item.id,
-        })),
-      };
-
-      console.log("Posting Buffing Entry:", payload);
-
-      const res = await axios.post(
-        "http://localhost:5000/api/buffingentry",
-        payload
-      );
-      const newEntry = {
-        id: res.data.entry.id,
-        date,
-        items: selectedItems,
-        receiptWeight: "-",
-        wastage: "-",
-        scrapItems: [],
-        totalScrapWeight: "-",
-        balance: "-",
-      };
-      setMainTableData((prev) => [...prev, newEntry]);
+  console.log('Buffing Datas:',`person_id: ${id},`,`name: ${name},`,`lot_number: ${lotNumber}`)
+ 
+const handleAssign = async () => {
+  if (selectedItems.length === 0) {
+    alert("Please select at least one row.");
+    return;
+  }
+ 
+  try {
+    const payload = {
+      buffing_person_id: parseInt(id),      
+      lot_number: parseInt(lotNumber),            
+      items: selectedItems.map((item) => ({
+        filing_item_id: item.id,  
+      })),
+    };
+ 
+    console.log("Posting Buffing Entry:", payload);
+ 
+    const res = await axios.post("http://localhost:5000/api/buffingentry", payload);
+    const newEntry = {
+      id: res.data.entry.id, 
+      date,
+      items: selectedItems,
+      receiptWeight: "-",
+      wastage: "-",
+      scrapItems: [],
+      totalScrapWeight: "-",
+      balance: "-"
+    };
+    setMainTableData((prev) => [...prev, newEntry]);
+    
 
       setPopupData((prev) =>
         prev.filter((item) => !selectedItems.some((sel) => sel.id === item.id))
       );
-      setOpen(false);
-      setSelectedItems([]);
-      alert("Buffing Entry created successfully!");
-    } catch (error) {
-      console.error("Error assigning buffing entry:", error);
-
-      if (error.response) {
-        alert(error.response.data.error || "Failed to create Buffing Entry");
-      } else {
-        alert("Something went wrong while assigning buffing entry.");
-      }
+    setOpen(false);
+    setSelectedItems([]);
+    alert("Buffing Entry created successfully!");
+  } catch (error) {
+    console.error("Error assigning buffing entry:", error);
+ 
+    if (error.response) {
+      alert(error.response.data.error || "Failed to create Buffing Entry");
+    } else {
+      alert("Something went wrong while assigning buffing entry.");
     }
   };
+
 
   useEffect(() => {
     const fetchBuffingEntries = async () => {
@@ -546,13 +531,8 @@ const BuffingLotDetails = () => {
       fetchBuffingEntries();
     }, [id]);
 
-    const handleView = (entry) => {
-      setViewEntry(entry);
-      setOpen(true);
-    };
+   
 
-    fetchBuffingEntries();
-  }, [id]);
 
   const handleView = (entry) => {
     setViewEntry(entry);
@@ -582,18 +562,17 @@ const BuffingLotDetails = () => {
     setOpen(true);
   };
 
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:5000/api/filingitems/filingitems/available"
-        );
+
+        const res = await axios.get("http://localhost:5000/api/filingitems/filingitems/available" );
         const filtered = res.data.filter(
-          (item) =>
-            item.stone_option === "WithoutStone" && item.status === "Unassigned"
+          (item) => item.stone_option === "WithoutStone" && item.status === "Unassigned"
         );
         console.log("Filtered items from Filing Process", filtered);
-
+  
         const transformed = filtered.map((item) => ({
           id: item.id,
           item: item.filingitem?.name,
@@ -603,18 +582,19 @@ const BuffingLotDetails = () => {
           remarks: item.remarks,
           stoneCount: item.stoneCount || "-",
           stoneWeight: item.stoneWeight || "-",
-          status: item.status || "Unassigned",
+          status: item.status || "Unassigned" 
         }));
-
+  
         setPopupData(transformed);
       } catch (error) {
         console.error("Error fetching filing items:", error);
       }
     };
 
+  
     fetchItems();
   }, []);
-
+  
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
@@ -630,17 +610,15 @@ const BuffingLotDetails = () => {
     );
   };
 
-  const handleDeleteScrapItem = async (scrap, idx) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this scrap item?"
-    );
-    if (!confirmDelete) return;
 
+  const handleDeleteScrapItem = async (scrap, idx) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this scrap item?");
+    if (!confirmDelete) return;
+  
     try {
       if (scrap.id) {
-        await axios.delete(
-          `${BACKEND_SERVER_URL}/api/buffingitems/${scrap.id}`
-        );
+        await axios.delete(`${BACKEND_SERVER_URL}/api/buffingitems/${scrap.id}`);
+
       }
       alert("Scrap item deleted successfully!");
     } catch (error) {
@@ -649,31 +627,32 @@ const BuffingLotDetails = () => {
     }
   };
 
-  useEffect(() => {
-    setFilteredData(mainTableData);
-  }, [mainTableData]);
+  
+useEffect(() => {
+  setFilteredData(mainTableData);
+}, [mainTableData]);
 
-  const handleFilter = () => {
-    const from = fromDate ? new Date(fromDate) : null;
-    const to = toDate ? new Date(toDate) : null;
+const handleFilter = () => {
+  const from = fromDate ? new Date(fromDate) : null;
+  const to = toDate ? new Date(toDate) : null;
 
-    const filtered = mainTableData.filter((entry) => {
-      const entryDate = new Date(entry.date);
+  const filtered = mainTableData.filter(entry => {
+    const entryDate = new Date(entry.date);
 
-      if (from && to) return entryDate >= from && entryDate <= to;
-      if (from) return entryDate >= from;
-      if (to) return entryDate <= to;
-      return true;
-    });
+    if (from && to) return entryDate >= from && entryDate <= to;
+    if (from) return entryDate >= from;
+    if (to) return entryDate <= to;
+    return true;
+  });
 
-    setFilteredData(filtered);
-  };
+  setFilteredData(filtered);
+};
 
-  const handleResetFilter = () => {
-    setFromDate("");
-    setToDate("");
-    setFilteredData(mainTableData);
-  };
+const handleResetFilter = () => {
+  setFromDate("");
+  setToDate("");
+  setFilteredData(mainTableData);
+};
 
   return (
     <>
@@ -987,294 +966,250 @@ const BuffingLotDetails = () => {
                     checked={selectedItems.some((i) => i.id === item.id)}
                     onChange={() => handleCheckboxChange(item)}
                   /> */}
-                          <Checkbox
-                            checked={selectedItems.some(
-                              (i) => i.id === item.id
-                            )}
-                            onChange={() => handleCheckboxChange(item)}
-                          />
-                        </td>
-                      )}
-                      <td>{item.item}</td>
-                      <td>{item.weight}</td>
-                      <td>{item.touch}</td>
-                      <td>{item.purity}</td>
-                      <td>{item.remarks}</td>
-                      <td>{item.stoneCount}</td>
-                      <td>{item.stoneWeight}</td>
-                      {!viewEntry && <td>{item.status || "Unassigned"}</td>}
-                    </tr>
+                  <Checkbox 
+                  checked={selectedItems.some((i) => i.id === item.id)}
+                  onChange={() => handleCheckboxChange(item)}
+                      
+                  />
+             
+                </td>
+              )}
+              <td>{item.item}</td>
+              <td>{item.weight}</td>
+              <td>{item.touch}</td>
+              <td>{item.purity}</td>
+              <td>{item.remarks}</td>
+              <td>{item.stoneCount}</td>
+              <td>{item.stoneWeight}</td>
+              {!viewEntry && <td>{item.status || "Unassigned"}</td>}
+            </tr>
+          ))}
+        </tbody>
+        {viewEntry && (
+          <tfoot>
+            <tr>
+              <td colSpan={2}>Total</td>
+              <td>
+                {(
+                  viewEntry.items.reduce(
+                    (sum, item) => sum + (parseFloat(item.weight) || 0),
+                    0
                   )
-                )}
-              </tbody>
-              {viewEntry && (
-                <tfoot>
-                  <tr>
-                    <td colSpan={2}>Total</td>
-                    <td>
-                      {viewEntry.items
-                        .reduce(
-                          (sum, item) => sum + (parseFloat(item.weight) || 0),
-                          0
-                        )
-                        .toFixed(2)}
-                    </td>
-                    <td colSpan={6}></td>
-                  </tr>
-                </tfoot>
-              )}
-            </table>
+                ).toFixed(2)}
+              </td>
+              <td colSpan={6}></td>
+            </tr>
+          </tfoot>
+        )}
+      </table>
+    
 
-            {viewEntry && (
-              <>
-                <Box sx={{ mt: 3, display: "flex", gap: 2 }}>
-                  <TextField
-                    label="Receipt Weight"
-                    type="number"
-                    fullWidth
-                    required
-                    value={receiptWeight}
-                    onChange={(e) =>
-                      setReceiptWeight(parseFloat(e.target.value) || 0)
-                    }
-                  />
-                  <TextField
-                    label="Remarks"
-                    type="text"
-                    fullWidth
-                    required
-                    value={remarks}
-                    onChange={(e) => setRemarks(e.target.value)}
-                  />
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 1,
-                      marginTop: "10px",
-                    }}
-                  >
-                    <Typography>
-                      <b>Wastage:</b>
-                    </Typography>
-                    <Button
-                      variant={wastage === "Yes" ? "contained" : "outlined"}
-                      color="success"
-                      onClick={() => setWastage("Yes")}
-                      // value={wastage}
-                    >
-                      Yes
-                    </Button>
-                    <Button
-                      variant={wastage === "No" ? "contained" : "outlined"}
-                      color="error"
-                      onClick={() => setWastage("No")}
-                      // value={wastage}
-                    >
-                      No
-                    </Button>
-                  </Box>
-                </Box>
-                <div style={{ marginTop: "2rem" }}>
-                  <Button variant="outlined" onClick={addScrapItem}>
-                    {" "}
-                    Add Scrap Items{" "}
-                  </Button>
+      {viewEntry && (
+        <>
+          <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
+          
+           <TextField
+            label="Receipt Weight"
+            type="number"
+         
+            fullWidth required
+            value={receiptWeight}
+            onChange={(e) => setReceiptWeight(parseFloat(e.target.value) || 0)}
+          />
+             <TextField
+            label="Remarks"
+            type="text"
+         
+            fullWidth required
+            value={remarks}
+            onChange={(e) => setRemarks(e.target.value)}
+          />
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, marginTop: '10px' }}>
+  <Typography><b>Wastage:</b></Typography>
+  <Button
+    variant={wastage === 'Yes' ? 'contained' : 'outlined'}
+    color="success"
+    onClick={() => setWastage('Yes')}
+    // value={wastage}
+  >
+    Yes
+  </Button>
+  <Button
+    variant={wastage === 'No' ? 'contained' : 'outlined'}
+    color="error"
+    onClick={() => setWastage('No')}
+    // value={wastage}
+  >
+    No
+  </Button>
+</Box>
+</Box>
+          <div style={{ marginTop: "2rem" }}>
+          <Button variant="outlined" onClick={addScrapItem} > Add Scrap Items  </Button>
+        
+            <table style={{ width: '100%', marginTop: '1rem', borderCollapse: 'collapse' }} border="1">
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Item Name</th>
+                  <th>Weight</th>
+                  <th>Touch</th>
+                  <th>Purity</th>
+                  <th>Remarks</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+<tbody>
+  {(scrapItems || []).map((scrap, idx) => (
+    <tr key={idx}>
+      <td>{idx + 1}</td>
+      <td>
+        <TextField
+          select
+          size="small"
+          value={scrap.item || ''}
+          onChange={(e) => {
+            const updated = [...scrapItems];
+            const selectedItem = itemOptions.find(itm => itm.id === Number(e.target.value));
+            updated[idx].item = selectedItem?.id;
+            updated[idx].itemName = selectedItem?.name;
+            setScrapItems(updated);
+          }}
+        >
+          <MenuItem value="">Select Item</MenuItem>
+          {itemOptions.map((opt) => (
+            <MenuItem key={opt.id} value={opt.id}>
+              {opt.name}
+            </MenuItem>
+          ))}
+        </TextField>
+      </td>
+      <td>
+        <TextField
+          size="small"
+          type="number"
+          value={scrap.weight || ''}
+          onChange={(e) => {
+            const weight = parseFloat(e.target.value) || 0;
+            const touchObj = touchOptions.find(t => t.id === scrap.touch);
+            const purity = touchObj ? (weight * touchObj.touch) / 100 : 0;
 
-                  <table
-                    style={{
-                      width: "100%",
-                      marginTop: "1rem",
-                      borderCollapse: "collapse",
-                    }}
-                    border="1"
-                  >
-                    <thead>
-                      <tr>
-                        <th>S.No</th>
-                        <th>Item Name</th>
-                        <th>Weight</th>
-                        <th>Touch</th>
-                        <th>Purity</th>
-                        <th>Remarks</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {(scrapItems || []).map((scrap, idx) => (
-                        <tr key={idx}>
-                          <td>{idx + 1}</td>
-                          <td>
-                            <TextField
-                              select
-                              size="small"
-                              value={scrap.item || ""}
-                              onChange={(e) => {
-                                const updated = [...scrapItems];
-                                const selectedItem = itemOptions.find(
-                                  (itm) => itm.id === Number(e.target.value)
-                                );
-                                updated[idx].item = selectedItem?.id;
-                                updated[idx].itemName = selectedItem?.name;
-                                setScrapItems(updated);
-                              }}
-                            >
-                              <MenuItem value="">Select Item</MenuItem>
-                              {itemOptions.map((opt) => (
-                                <MenuItem key={opt.id} value={opt.id}>
-                                  {opt.name}
-                                </MenuItem>
-                              ))}
-                            </TextField>
-                          </td>
-                          <td>
-                            <TextField
-                              size="small"
-                              type="number"
-                              value={scrap.weight || ""}
-                              onChange={(e) => {
-                                const weight = parseFloat(e.target.value) || 0;
-                                const touchObj = touchOptions.find(
-                                  (t) => t.id === scrap.touch
-                                );
-                                const purity = touchObj
-                                  ? (weight * touchObj.touch) / 100
-                                  : 0;
+            const updated = [...scrapItems];
+            updated[idx].weight = weight;
+            updated[idx].purity = purity.toFixed(3);
+            setScrapItems(updated);
+          }}
+        />
+      </td>
+      <td>
+        <TextField
+          select
+          size="small"
+          value={scrap.touch || ''}
+          onChange={(e) => {
+            const touchId = parseInt(e.target.value);
+            const touchObj = touchOptions.find((t) => t.id === touchId);
+            const purity = scrap.weight ? (scrap.weight * (touchObj?.touch || 0)) / 100 : 0;
 
-                                const updated = [...scrapItems];
-                                updated[idx].weight = weight;
-                                updated[idx].purity = purity.toFixed(3);
-                                setScrapItems(updated);
-                              }}
-                            />
-                          </td>
-                          <td>
-                            <TextField
-                              select
-                              size="small"
-                              value={scrap.touch || ""}
-                              onChange={(e) => {
-                                const touchId = parseInt(e.target.value);
-                                const touchObj = touchOptions.find(
-                                  (t) => t.id === touchId
-                                );
-                                const purity = scrap.weight
-                                  ? (scrap.weight * (touchObj?.touch || 0)) /
-                                    100
-                                  : 0;
+            const updated = [...scrapItems];
+            updated[idx].touch = touchId;
+            updated[idx].purity = purity.toFixed(3);
+            setScrapItems(updated);
+          }}
+        >
+          <MenuItem value="">Select Touch</MenuItem>
+          {touchOptions.map((opt) => (
+            <MenuItem key={opt.id} value={opt.id}>
+              {opt.touch}
+            </MenuItem>
+          ))}
+        </TextField>
+      </td>
+      <td>
+        <TextField
+          size="small"
+          type="text"
+          value={scrap.purity || ''}
+          InputProps={{ readOnly: true }}
+        />
+      </td>
+      <td>
+        <TextField
+          size="small"
+          value={scrap.remarks || ''}
+          onChange={(e) => {
+            const updated = [...scrapItems];
+            updated[idx].remarks = e.target.value;
+            setScrapItems(updated);
+          }}
+        />
+      </td>
+      <td>
+        <Button onClick={() => handleDeleteScrapItem(scrap, idx)}>
+          <DeleteIcon style={{ color: 'red' }} />
+        </Button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+  </table>
+    
+<Box sx={{ mt: 2, display: 'flex', gap: 4 }}>
+  <Typography>
+    <strong>Total Scrap Weight:</strong>
+    {(  scrapItems.reduce((sum, s) => sum + (parseFloat(s.weight) || 0), 0)).toFixed(2)}
+  </Typography>
 
-                                const updated = [...scrapItems];
-                                updated[idx].touch = touchId;
-                                updated[idx].purity = purity.toFixed(3);
-                                setScrapItems(updated);
-                              }}
-                            >
-                              <MenuItem value="">Select Touch</MenuItem>
-                              {touchOptions.map((opt) => (
-                                <MenuItem key={opt.id} value={opt.id}>
-                                  {opt.touch}
-                                </MenuItem>
-                              ))}
-                            </TextField>
-                          </td>
-                          <td>
-                            <TextField
-                              size="small"
-                              type="text"
-                              value={scrap.purity || ""}
-                              InputProps={{ readOnly: true }}
-                            />
-                          </td>
-                          <td>
-                            <TextField
-                              size="small"
-                              value={scrap.remarks || ""}
-                              onChange={(e) => {
-                                const updated = [...scrapItems];
-                                updated[idx].remarks = e.target.value;
-                                setScrapItems(updated);
-                              }}
-                            />
-                          </td>
-                          <td>
-                            <Button
-                              onClick={() => handleDeleteScrapItem(scrap, idx)}
-                            >
-                              <DeleteIcon style={{ color: "red" }} />
-                            </Button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-
-                  <Box sx={{ mt: 2, display: "flex", gap: 4 }}>
-                    <Typography>
-                      <strong>Total Scrap Weight:</strong>
-                      {scrapItems
-                        .reduce(
-                          (sum, s) => sum + (parseFloat(s.weight) || 0),
-                          0
-                        )
-                        .toFixed(2)}
-                    </Typography>
-
-                    <Typography>
-                      <strong>Balance:</strong>
-                      {(
-                        viewEntry.items.reduce(
-                          (sum, item) => sum + (parseFloat(item.weight) || 0),
-                          0
-                        ) -
-                        receiptWeight -
-                        scrapItems.reduce(
-                          (sum, s) => sum + (parseFloat(s.weight) || 0),
-                          0
-                        )
-                      ).toFixed(2)}
-                    </Typography>
-                  </Box>
-                </div>
-              </>
-            )}
-            <DialogActions>
-              <Button
-                onClick={() => {
-                  setOpen(false);
-                  setSelectedItems([]);
-                  setViewEntry(null);
-                }}
-                variant="outlined"
-                color="primary"
-              >
-                Close
-              </Button>
-
-              {!viewEntry && (
-                <Button
-                  onClick={handleAssign}
-                  variant="contained"
-                  color="primary"
-                >
-                  Assign
-                </Button>
-              )}
-
-              {viewEntry && (
-                <Button
-                  onClick={handleSave}
-                  variant="contained"
-                  color="primary"
-                >
-                  Save
-                </Button>
-              )}
-            </DialogActions>
+  <Typography>
+    <strong>Balance:</strong>
+    {( viewEntry.items.reduce((sum, item) => sum + (parseFloat(item.weight) || 0), 0) - receiptWeight -
+      scrapItems.reduce((sum, s) => sum + (parseFloat(s.weight) || 0), 0) ).toFixed(2)}
+  </Typography>
+</Box>
           </div>
-        </div>
+        </>
       )}
+      <DialogActions>
+  <Button
+    onClick={() => {
+      setOpen(false);
+      setSelectedItems([]);
+      setViewEntry(null);
+    }}
+    variant="outlined"
+    color="primary"
+  >
+    Close
+  </Button>
+
+  {!viewEntry && (
+    <Button
+      onClick={handleAssign}
+      variant="contained"
+      color="primary"
+    >
+      Assign
+    </Button>
+  )}
+
+  {viewEntry && (
+    <Button
+      onClick={handleSave}
+      variant="contained"
+      color="primary"
+    >
+      Save
+    </Button>
+  )}
+</DialogActions>
+
+    </div>
+  </div>
+)}
     </>
   );
 };
-
+ 
 export default BuffingLotDetails;
+
+

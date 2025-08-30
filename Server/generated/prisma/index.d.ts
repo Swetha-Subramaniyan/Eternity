@@ -4275,6 +4275,13 @@ export namespace Prisma {
     where?: BuffingItemsWhereInput
   }
 
+  /**
+   * BuffingEntryCountOutputType without action
+   */
+  export type BuffingEntryCountOutputTypeCountBuffingItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BuffingItemsWhereInput
+  }
+
 
   /**
    * Count Type BuffingItemsCountOutputType
@@ -50765,25 +50772,9 @@ export namespace Prisma {
     data: XOR<BuffingEntryUpdateWithoutCastingItemInput, BuffingEntryUncheckedUpdateWithoutCastingItemInput>
   }
 
-  export type BuffingEntryUpdateWithoutCastingItemInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    buffing_person?: AddBuffingUpdateOneRequiredWithoutBuffingsNestedInput
-    filing_items?: FilingItemsUpdateManyWithoutBuffing_entryNestedInput
-    setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
-    BuffingTotalBalance?: BuffingTotalBalanceUpdateManyWithoutBuffingEntryIdNestedInput
-    BuffingWastage?: BuffingWastageUpdateManyWithoutBuffingEntryIdNestedInput
-    LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutBuffingEntryNestedInput
-  }
-
-  export type BuffingEntryUncheckedUpdateWithoutCastingItemInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    buffing_person_id?: IntFieldUpdateOperationsInput | number
-    filing_items?: FilingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
-    setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
-    BuffingTotalBalance?: BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
-    BuffingWastage?: BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
-    LotBuffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutBuffingEntryNestedInput
+  export type BuffingEntryUpdateManyWithWhereWithoutCastingItemInput = {
+    where: BuffingEntryScalarWhereInput
+    data: XOR<BuffingEntryUpdateManyMutationInput, BuffingEntryUncheckedUpdateManyWithoutCastingItemInput>
   }
 
   export type StockUpsertWithWhereUniqueWithoutCastingItemInput = {
@@ -54799,6 +54790,7 @@ export namespace Prisma {
     setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
     BuffingTotalBalance?: BuffingTotalBalanceCreateNestedManyWithoutBuffingEntryIdInput
     BuffingWastage?: BuffingWastageCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingItems?: BuffingItemsCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryUncheckedCreateWithoutLotBuffingMapperInput = {
@@ -54810,6 +54802,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
     BuffingTotalBalance?: BuffingTotalBalanceUncheckedCreateNestedManyWithoutBuffingEntryIdInput
     BuffingWastage?: BuffingWastageUncheckedCreateNestedManyWithoutBuffingEntryIdInput
+    BuffingItems?: BuffingItemsUncheckedCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type BuffingEntryCreateOrConnectWithoutLotBuffingMapperInput = {
@@ -54994,6 +54987,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
     BuffingTotalBalance?: BuffingTotalBalanceUpdateManyWithoutBuffingEntryIdNestedInput
     BuffingWastage?: BuffingWastageUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingItems?: BuffingItemsUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingEntryUncheckedUpdateWithoutLotBuffingMapperInput = {
@@ -55005,6 +54999,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
     BuffingTotalBalance?: BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
     BuffingWastage?: BuffingWastageUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
+    BuffingItems?: BuffingItemsUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type AddBuffingCreateWithoutBuffingWastagesInput = {
@@ -55015,6 +55010,7 @@ export namespace Prisma {
     setting_items?: SettingItemsCreateNestedManyWithoutBuffing_entryInput
     BuffingTotalBalance?: BuffingTotalBalanceCreateNestedManyWithoutBuffingEntryIdInput
     LotBuffingMapper?: LotBuffingMapperCreateNestedManyWithoutBuffingEntryInput
+    BuffingItems?: BuffingItemsCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type AddBuffingUncheckedCreateWithoutBuffingWastagesInput = {
@@ -55026,6 +55022,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutBuffing_entryInput
     BuffingTotalBalance?: BuffingTotalBalanceUncheckedCreateNestedManyWithoutBuffingEntryIdInput
     LotBuffingMapper?: LotBuffingMapperUncheckedCreateNestedManyWithoutBuffingEntryInput
+    BuffingItems?: BuffingItemsUncheckedCreateNestedManyWithoutBuffingEntryIdInput
   }
 
   export type LotInfoCreateOrConnectWithoutBuffingWastagesInput = {
@@ -55082,6 +55079,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUpdateManyWithoutBuffing_entryNestedInput
     BuffingTotalBalance?: BuffingTotalBalanceUpdateManyWithoutBuffingEntryIdNestedInput
     LotBuffingMapper?: LotBuffingMapperUpdateManyWithoutBuffingEntryNestedInput
+    BuffingItems?: BuffingItemsUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type AddBuffingUncheckedUpdateWithoutBuffingWastagesInput = {
@@ -55093,6 +55091,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedUpdateManyWithoutBuffing_entryNestedInput
     BuffingTotalBalance?: BuffingTotalBalanceUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
     LotBuffingMapper?: LotBuffingMapperUncheckedUpdateManyWithoutBuffingEntryNestedInput
+    BuffingItems?: BuffingItemsUncheckedUpdateManyWithoutBuffingEntryIdNestedInput
   }
 
   export type BuffingItemsUpsertWithWhereUniqueWithoutBuffing_wastageInput = {
