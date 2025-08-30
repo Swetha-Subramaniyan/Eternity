@@ -166,6 +166,7 @@ CREATE TABLE `CastiingTotalBalance` (
     `total_wastage` DOUBLE NOT NULL,
     `item_entry` INTEGER NOT NULL,
 
+    UNIQUE INDEX `CastiingTotalBalance_item_entry_key`(`item_entry`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -176,6 +177,7 @@ CREATE TABLE `LotInfo` (
     `filing_customer_id` INTEGER NULL,
     `setting_customer_id` INTEGER NULL,
     `buffing_customer_id` INTEGER NULL,
+    `IsActive` BOOLEAN NOT NULL DEFAULT false,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -186,6 +188,17 @@ CREATE TABLE `FilingEntry` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `filing_person_id` INTEGER NOT NULL,
     `casting_item_id` INTEGER NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `LotFilingMapper` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `filing_id` INTEGER NOT NULL,
+    `lot_id` INTEGER NOT NULL,
+    `item_id` INTEGER NOT NULL,
+    `filing_entry_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -208,21 +221,12 @@ CREATE TABLE `FilingItems` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `LotFilingMapper` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `filing_id` INTEGER NOT NULL,
-    `lot_id` INTEGER NOT NULL,
-    `item_id` INTEGER NOT NULL,
-
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `FilingTotalBalance` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `after_weight` DOUBLE NULL,
     `total_product_weight` DOUBLE NOT NULL,
+    `current_balance_weight` DOUBLE NOT NULL,
     `total_scrap_weight` DOUBLE NULL,
     `wastage` BOOLEAN NOT NULL,
     `balance` DOUBLE NOT NULL,
@@ -239,12 +243,13 @@ CREATE TABLE `FilingWastage` (
     `total_wastage` DOUBLE NOT NULL,
     `balance` DOUBLE NOT NULL,
     `wastage_percentage` INTEGER NOT NULL,
-    `given_gold` INTEGER NULL,
+    `given_gold` DOUBLE NULL,
     `add_wastage` DOUBLE NULL,
     `overall_wastage` DOUBLE NOT NULL,
     `closing_balance` DOUBLE NOT NULL,
     `opening_balance` DOUBLE NOT NULL,
-    `filing_entry_id` INTEGER NOT NULL,
+    `filing_person_id` INTEGER NULL,
+    `filing_lot_id` INTEGER NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -256,7 +261,6 @@ CREATE TABLE `SettingEntry` (
     `setting_person_id` INTEGER NOT NULL,
     `casting_item_id` INTEGER NOT NULL,
 
-    UNIQUE INDEX `SettingEntry_casting_item_id_key`(`casting_item_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -264,12 +268,13 @@ CREATE TABLE `SettingEntry` (
 CREATE TABLE `SettingItems` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `type` ENUM('Items', 'ScrapItems') NOT NULL,
+    `type` ENUM('Items', 'ScrapItems') NULL,
     `setting_item_id` INTEGER NOT NULL,
     `scrap_weight` DOUBLE NOT NULL,
     `touch_id` INTEGER NOT NULL,
     `item_purity` DOUBLE NOT NULL,
     `scrap_remarks` VARCHAR(191) NULL,
+    `setting_entry_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -280,6 +285,7 @@ CREATE TABLE `LotSettingMapper` (
     `setting_id` INTEGER NOT NULL,
     `lot_id` INTEGER NOT NULL,
     `filing_item_id` INTEGER NULL,
+    `setting_entry_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -293,6 +299,8 @@ CREATE TABLE `SettingTotalBalance` (
     `stone_weight` DOUBLE NOT NULL,
     `remarks` VARCHAR(191) NULL,
     `wastage` BOOLEAN NOT NULL,
+    `total_product_weight` DOUBLE NOT NULL,
+    `current_balance_weight` DOUBLE NOT NULL,
     `total_scrap_weight` DOUBLE NULL,
     `balance` DOUBLE NULL,
     `setting_entry_id` INTEGER NOT NULL,
@@ -325,7 +333,6 @@ CREATE TABLE `BuffingEntry` (
     `buffing_person_id` INTEGER NOT NULL,
     `casting_item_id` INTEGER NOT NULL,
 
-    UNIQUE INDEX `BuffingEntry_casting_item_id_key`(`casting_item_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -338,7 +345,8 @@ CREATE TABLE `BuffingItems` (
     `scrap_weight` DOUBLE NOT NULL,
     `touch_id` INTEGER NOT NULL,
     `item_purity` DOUBLE NOT NULL,
-    `scrap_remarks` VARCHAR(191) NOT NULL,
+    `scrap_remarks` VARCHAR(191) NULL,
+    `buffing_entry_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -348,7 +356,7 @@ CREATE TABLE `BuffingTotalBalance` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `receipt_weight` DOUBLE NOT NULL,
-    `remarks` VARCHAR(191) NOT NULL,
+    `remarks` VARCHAR(191) NULL,
     `wastage` BOOLEAN NOT NULL,
     `total_scrap_weight` DOUBLE NULL,
     `balance` DOUBLE NOT NULL,
@@ -364,6 +372,7 @@ CREATE TABLE `LotBuffingMapper` (
     `lot_id` INTEGER NOT NULL,
     `setting_item_id` INTEGER NULL,
     `filing_item_id` INTEGER NULL,
+    `buffing_entry_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -381,7 +390,8 @@ CREATE TABLE `BuffingWastage` (
     `overall_wastage` DOUBLE NOT NULL,
     `closing_balance` DOUBLE NOT NULL,
     `opening_balance` DOUBLE NOT NULL,
-    `buffing_entry_id` INTEGER NOT NULL,
+    `buffing_person_id` INTEGER NULL,
+    `buffing_lot_id` INTEGER NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -498,6 +508,18 @@ ALTER TABLE `FilingEntry` ADD CONSTRAINT `FilingEntry_filing_person_id_fkey` FOR
 ALTER TABLE `FilingEntry` ADD CONSTRAINT `FilingEntry_casting_item_id_fkey` FOREIGN KEY (`casting_item_id`) REFERENCES `CastingItems`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `LotFilingMapper` ADD CONSTRAINT `LotFilingMapper_filing_id_fkey` FOREIGN KEY (`filing_id`) REFERENCES `AddFiling`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `LotFilingMapper` ADD CONSTRAINT `LotFilingMapper_lot_id_fkey` FOREIGN KEY (`lot_id`) REFERENCES `LotInfo`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `LotFilingMapper` ADD CONSTRAINT `LotFilingMapper_item_id_fkey` FOREIGN KEY (`item_id`) REFERENCES `CastingItems`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `LotFilingMapper` ADD CONSTRAINT `LotFilingMapper_filing_entry_id_fkey` FOREIGN KEY (`filing_entry_id`) REFERENCES `FilingEntry`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `FilingItems` ADD CONSTRAINT `FilingItems_filing_entry_id_fkey` FOREIGN KEY (`filing_entry_id`) REFERENCES `FilingEntry`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -510,19 +532,13 @@ ALTER TABLE `FilingItems` ADD CONSTRAINT `FilingItems_touch_id_fkey` FOREIGN KEY
 ALTER TABLE `FilingItems` ADD CONSTRAINT `FilingItems_lot_filing_mapper_id_fkey` FOREIGN KEY (`lot_filing_mapper_id`) REFERENCES `LotFilingMapper`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `LotFilingMapper` ADD CONSTRAINT `LotFilingMapper_filing_id_fkey` FOREIGN KEY (`filing_id`) REFERENCES `AddFiling`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `LotFilingMapper` ADD CONSTRAINT `LotFilingMapper_lot_id_fkey` FOREIGN KEY (`lot_id`) REFERENCES `LotInfo`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `LotFilingMapper` ADD CONSTRAINT `LotFilingMapper_item_id_fkey` FOREIGN KEY (`item_id`) REFERENCES `CastingItems`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE `FilingTotalBalance` ADD CONSTRAINT `FilingTotalBalance_filing_entry_id_fkey` FOREIGN KEY (`filing_entry_id`) REFERENCES `FilingEntry`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `FilingWastage` ADD CONSTRAINT `FilingWastage_filing_entry_id_fkey` FOREIGN KEY (`filing_entry_id`) REFERENCES `FilingEntry`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `FilingWastage` ADD CONSTRAINT `FilingWastage_filing_person_id_fkey` FOREIGN KEY (`filing_person_id`) REFERENCES `AddFiling`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `FilingWastage` ADD CONSTRAINT `FilingWastage_filing_lot_id_fkey` FOREIGN KEY (`filing_lot_id`) REFERENCES `LotInfo`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `SettingEntry` ADD CONSTRAINT `SettingEntry_setting_person_id_fkey` FOREIGN KEY (`setting_person_id`) REFERENCES `AddSetting`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -537,6 +553,9 @@ ALTER TABLE `SettingItems` ADD CONSTRAINT `SettingItems_setting_item_id_fkey` FO
 ALTER TABLE `SettingItems` ADD CONSTRAINT `SettingItems_touch_id_fkey` FOREIGN KEY (`touch_id`) REFERENCES `AddTouch`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `SettingItems` ADD CONSTRAINT `SettingItems_setting_entry_id_fkey` FOREIGN KEY (`setting_entry_id`) REFERENCES `SettingEntry`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `LotSettingMapper` ADD CONSTRAINT `LotSettingMapper_setting_id_fkey` FOREIGN KEY (`setting_id`) REFERENCES `AddSetting`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -544,6 +563,9 @@ ALTER TABLE `LotSettingMapper` ADD CONSTRAINT `LotSettingMapper_lot_id_fkey` FOR
 
 -- AddForeignKey
 ALTER TABLE `LotSettingMapper` ADD CONSTRAINT `LotSettingMapper_filing_item_id_fkey` FOREIGN KEY (`filing_item_id`) REFERENCES `FilingItems`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `LotSettingMapper` ADD CONSTRAINT `LotSettingMapper_setting_entry_id_fkey` FOREIGN KEY (`setting_entry_id`) REFERENCES `SettingEntry`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `SettingTotalBalance` ADD CONSTRAINT `SettingTotalBalance_setting_entry_id_fkey` FOREIGN KEY (`setting_entry_id`) REFERENCES `SettingEntry`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -564,6 +586,9 @@ ALTER TABLE `BuffingItems` ADD CONSTRAINT `BuffingItems_buffing_item_id_fkey` FO
 ALTER TABLE `BuffingItems` ADD CONSTRAINT `BuffingItems_touch_id_fkey` FOREIGN KEY (`touch_id`) REFERENCES `AddTouch`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `BuffingItems` ADD CONSTRAINT `BuffingItems_buffing_entry_id_fkey` FOREIGN KEY (`buffing_entry_id`) REFERENCES `BuffingEntry`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `BuffingTotalBalance` ADD CONSTRAINT `BuffingTotalBalance_buffing_entry_id_fkey` FOREIGN KEY (`buffing_entry_id`) REFERENCES `BuffingEntry`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -579,7 +604,13 @@ ALTER TABLE `LotBuffingMapper` ADD CONSTRAINT `LotBuffingMapper_setting_item_id_
 ALTER TABLE `LotBuffingMapper` ADD CONSTRAINT `LotBuffingMapper_filing_item_id_fkey` FOREIGN KEY (`filing_item_id`) REFERENCES `FilingItems`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `BuffingWastage` ADD CONSTRAINT `BuffingWastage_buffing_entry_id_fkey` FOREIGN KEY (`buffing_entry_id`) REFERENCES `BuffingEntry`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `LotBuffingMapper` ADD CONSTRAINT `LotBuffingMapper_buffing_entry_id_fkey` FOREIGN KEY (`buffing_entry_id`) REFERENCES `BuffingEntry`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `BuffingWastage` ADD CONSTRAINT `BuffingWastage_buffing_person_id_fkey` FOREIGN KEY (`buffing_person_id`) REFERENCES `AddBuffing`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `BuffingWastage` ADD CONSTRAINT `BuffingWastage_buffing_lot_id_fkey` FOREIGN KEY (`buffing_lot_id`) REFERENCES `LotInfo`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Stock` ADD CONSTRAINT `Stock_casting_item_id_fkey` FOREIGN KEY (`casting_item_id`) REFERENCES `CastingItems`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

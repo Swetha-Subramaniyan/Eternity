@@ -71,15 +71,16 @@ model AddSetting {
 }
 
 model AddBuffing {
-  id            Int                @id @default(autoincrement())
-  createdAt     DateTime           @default(now())
-  name          String
-  phoneNumber   String?
-  address       String?
-  email         String?
-  buffings      BuffingEntry[]
-  buffingMapper LotBuffingMapper[]
-  lotInfo       LotInfo[]
+  id              Int                @id @default(autoincrement())
+  createdAt       DateTime           @default(now())
+  name            String
+  phoneNumber     String?
+  address         String?
+  email           String?
+  buffings        BuffingEntry[]
+  buffingMapper   LotBuffingMapper[]
+  lotInfo         LotInfo[]
+  buffingWastages BuffingWastage[]
 }
 
 model AddSupplierItem {
@@ -211,6 +212,7 @@ model LotInfo {
   settingMapper       LotSettingMapper[]
   buffingMapper       LotBuffingMapper[]
   filingWastages      FilingWastage[]
+  buffingWastages     BuffingWastage[]
 }
 
 model FilingEntry {
@@ -389,7 +391,6 @@ model BuffingEntry {
   filing_items        FilingItems[]
   setting_items       SettingItems[]
   BuffingTotalBalance BuffingTotalBalance[]
-  BuffingWastage      BuffingWastage[]
 
   LotBuffingMapper LotBuffingMapper[]
 
@@ -441,8 +442,8 @@ model LotBuffingMapper {
 }
 
 model BuffingWastage {
-  id                 Int          @id @default(autoincrement())
-  createdAt          DateTime     @default(now())
+  id                 Int         @id @default(autoincrement())
+  createdAt          DateTime    @default(now())
   total_receipt      Float
   total_wastage      Float
   balance            Float
@@ -452,8 +453,10 @@ model BuffingWastage {
   overall_wastage    Float
   closing_balance    Float
   opening_balance    Float
-  buffing_entry_id   Int
-  BuffingEntryId     BuffingEntry @relation(fields: [buffing_entry_id], references: [id])
+  buffing_person_id  Int?
+  buffingPersonId    AddBuffing? @relation(fields: [buffing_person_id], references: [id])
+  buffing_lot_id     Int?
+  buffingLotId       LotInfo?    @relation(fields: [buffing_lot_id], references: [id])
 
   buffing_items BuffingItems[]
 }

@@ -219,89 +219,90 @@ export const getFilingItemById = async (req, res) => {
   }
 };
 
-  export const deleteFilingItem = async (req, res) => {
-    const { id } = req.params;
-  
-    try {
-      const existingItem = await prisma.filingItems.findUnique({ where: { id: Number(id) } });
-  
-      if (!existingItem) {
-        return res.status(404).json({ message: "Filing item not found" });
-      }
-  
-      await prisma.filingItems.delete({ where: { id: Number(id) } });
-  
-      res.status(200).json({ message: "Filing item deleted successfully" });
-    } catch (error) {
-      console.error("Error deleting filing item:", error);
-      res.status(500).json({ message: "Internal server error" });
-    }
-  };
-  
-  // GET - http://localhost:5000/api/filingitems/filingitems/available
+export const deleteFilingItem = async (req, res) => {
+  const { id } = req.params;
 
-  // export const getAvailableFilingItems = async (req, res) => {
-  //   try {
-  //     const items = await prisma.filingItems.findMany({
-  //       where: {
-  //         type: "Items",
-  //         lot_setting_mapper: {
-  //           none: {},
-  //         },
-      
-  //       },
-  //       include: {
-  //         filingitem: true,
-  //         touch: true,
-  //       },
-  //     });
-      
-  //     // Append status field to each item
-  //     const result = items.map((item) => ({
-  //       ...item,
-  //       status: "Unassigned",
-  //     }));
-  
-  //     res.status(200).json(result);
-  //   } catch (err) {
-  //     console.error("Failed to fetch unassigned filing items", err);
-  //     res.status(500).json({ error: "Failed to fetch unassigned filing items" });
-  //   }
-  // };
+  try {
+    const existingItem = await prisma.filingItems.findUnique({
+      where: { id: Number(id) },
+    });
 
-  export const getAvailableFilingItems = async (req, res) => {
-    try {
-      const items = await prisma.filingItems.findMany({
-        where: {
-          type: "Items",
-        },
-        include: {
-          filingitem: true,
-          touch: true,
-          lot_setting_mapper: true, // mappings for setting assignments
-          LotBuffingMapper: true,   // mappings for buffing assignments
-        },
-      });
-  
-      const result = items.map((item) => {
-        // Assigned if either mapping exists
-        const isAssigned =
-          (item.lot_setting_mapper && item.lot_setting_mapper.length > 0) ||
-          (item.LotBuffingMapper && item.LotBuffingMapper.length > 0);
-  
-        return {
-          ...item,
-          status: isAssigned ? "Assigned" : "Unassigned",
-        };
-      });
-  
-      res.status(200).json(result);
-    } catch (err) {
-      console.error("Failed to fetch filing items", err);
-      res.status(500).json({ error: "Failed to fetch filing items" });
+    if (!existingItem) {
+      return res.status(404).json({ message: "Filing item not found" });
     }
-  };
-  
+
+    await prisma.filingItems.delete({ where: { id: Number(id) } });
+
+    res.status(200).json({ message: "Filing item deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting filing item:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// GET - http://localhost:5000/api/filingitems/filingitems/available
+
+// export const getAvailableFilingItems = async (req, res) => {
+//   try {
+//     const items = await prisma.filingItems.findMany({
+//       where: {
+//         type: "Items",
+//         lot_setting_mapper: {
+//           none: {},
+//         },
+
+//       },
+//       include: {
+//         filingitem: true,
+//         touch: true,
+//       },
+//     });
+
+//     // Append status field to each item
+//     const result = items.map((item) => ({
+//       ...item,
+//       status: "Unassigned",
+//     }));
+
+//     res.status(200).json(result);
+//   } catch (err) {
+//     console.error("Failed to fetch unassigned filing items", err);
+//     res.status(500).json({ error: "Failed to fetch unassigned filing items" });
+//   }
+// };
+
+export const getAvailableFilingItems = async (req, res) => {
+  try {
+    const items = await prisma.filingItems.findMany({
+      where: {
+        type: "Items",
+      },
+      include: {
+        filingitem: true,
+        touch: true,
+        lot_setting_mapper: true, // mappings for setting assignments
+        LotBuffingMapper: true, // mappings for buffing assignments
+      },
+    });
+
+    const result = items.map((item) => {
+      // Assigned if either mapping exists
+      const isAssigned =
+        (item.lot_setting_mapper && item.lot_setting_mapper.length > 0) ||
+        (item.LotBuffingMapper && item.LotBuffingMapper.length > 0);
+
+      return {
+        ...item,
+        status: isAssigned ? "Assigned" : "Unassigned",
+      };
+    });
+
+    res.status(200).json(result);
+  } catch (err) {
+    console.error("Failed to fetch filing items", err);
+    res.status(500).json({ error: "Failed to fetch filing items" });
+  }
+};
 
 export const createFilingWastage = async (req, res) => {
   try {
@@ -401,4 +402,74 @@ export const getFilingWastageByEntryId = async (req, res) => {
   }
 };
 
-  
+export const closeJobcardAndCreateNewLot = async (req, res) => {
+  try {
+    const { filing_person_id, current_lot_number } = req.body;
+
+    const currentActiveLot = await prisma.LotInfo.findFirst({
+      where: {
+        filing_customer_id: parseInt(filing_person_id),
+        IsActive: true,
+      },
+    });
+
+    let lastClosingBalance = 0;
+
+    if (currentActiveLot) {
+      const lastWastage = await prisma.filingWastage.findFirst({
+        where: { filing_lot_id: currentActiveLot.id },
+        orderBy: { id: "desc" },
+      });
+
+      if (lastWastage) {
+        lastClosingBalance = lastWastage.closing_balance || 0;
+      }
+
+      await prisma.LotInfo.update({
+        where: { id: currentActiveLot.id },
+        data: { IsActive: false },
+      });
+    }
+
+    console.log("lot numberrr", currentActiveLot);
+
+    const newLotNumber = currentActiveLot ? currentActiveLot.lotNumber + 1 : 1;
+
+    const newLot = await prisma.LotInfo.create({
+      data: {
+        lotNumber: newLotNumber,
+        filing_customer_id: parseInt(filing_person_id),
+        IsActive: true,
+      },
+    });
+
+    await prisma.FilingWastage.create({
+      data: {
+        filing_person_id: parseInt(filing_person_id),
+        filing_lot_id: newLot.id,
+        opening_balance: lastClosingBalance,
+        closing_balance: 0,
+        total_receipt: 0,
+        total_wastage: 0,
+        balance: 0,
+        wastage_percentage: 0,
+        given_gold: 0,
+        add_wastage: 0,
+        overall_wastage: 0,
+      },
+    });
+
+    res.status(200).json({
+      message:
+        "Jobcard closed, new lot created, and FilingWastage initialized successfully",
+      newLotNumber: newLot.lotNumber,
+      newLotId: newLot.id,
+      opening_balance: lastClosingBalance,
+    });
+  } catch (error) {
+    console.error("Error closing jobcard:", error);
+    res
+      .status(500)
+      .json({ message: "Failed to close jobcard and create new lot" });
+  }
+};
