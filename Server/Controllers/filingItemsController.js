@@ -384,10 +384,17 @@ export const getFilingWastageByEntryId = async (req, res) => {
   try {
     const { filingPersonId, lotNumber } = req.params;
 
+    const lotId = await prisma.LotInfo.findFirst({
+      where: {
+        filing_customer_id: parseInt(filingPersonId),
+        lotNumber: parseInt(lotNumber),
+      },
+    });
+
     const wastageRecords = await prisma.filingWastage.findMany({
       where: {
         filing_person_id: parseInt(filingPersonId),
-        filing_lot_id: parseInt(lotNumber),
+        filing_lot_id: parseInt(lotId.id),
       },
       include: {
         filingLotId: true,
@@ -413,6 +420,8 @@ export const closeJobcardAndCreateNewLot = async (req, res) => {
       },
     });
 
+    console.log("currentActiveLot", currentActiveLot, filing_person_id);
+
     let lastClosingBalance = 0;
 
     if (currentActiveLot) {
@@ -425,13 +434,15 @@ export const closeJobcardAndCreateNewLot = async (req, res) => {
         lastClosingBalance = lastWastage.closing_balance || 0;
       }
 
+      console.log("lot numberrr", lastWastage, lastClosingBalance);
+
       await prisma.LotInfo.update({
         where: { id: currentActiveLot.id },
         data: { IsActive: false },
       });
     }
 
-    console.log("lot numberrr", currentActiveLot);
+    console.log("lot numberrr", currentActiveLot, lastClosingBalance);
 
     const newLotNumber = currentActiveLot ? currentActiveLot.lotNumber + 1 : 1;
 
@@ -447,7 +458,7 @@ export const closeJobcardAndCreateNewLot = async (req, res) => {
       data: {
         filing_person_id: parseInt(filing_person_id),
         filing_lot_id: newLot.id,
-        opening_balance: lastClosingBalance,
+        opening_balance: Math.abs(lastClosingBalance),
         closing_balance: 0,
         total_receipt: 0,
         total_wastage: 0,
