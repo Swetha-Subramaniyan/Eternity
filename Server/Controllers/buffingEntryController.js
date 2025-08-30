@@ -1,18 +1,23 @@
 import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
-
- // CREATE - Single BuffingEntry for multiple setting/filing items
+// CREATE - Single BuffingEntry for multiple setting/filing items
 
 export const createBuffingEntry = async (req, res) => {
   try {
     const { buffing_person_id, lot_number, items } = req.body;
 
     // Extract setting/filing item IDs
-    const settingItemIds = items?.map((i) => i.setting_item_id).filter(Boolean) || [];
-    const filingItemIds = items?.map((i) => i.filing_item_id).filter(Boolean) || [];
+    const settingItemIds =
+      items?.map((i) => i.setting_item_id).filter(Boolean) || [];
+    const filingItemIds =
+      items?.map((i) => i.filing_item_id).filter(Boolean) || [];
 
-    if (!buffing_person_id || !lot_number || (settingItemIds.length === 0 && filingItemIds.length === 0)) {
+    if (
+      !buffing_person_id ||
+      !lot_number ||
+      (settingItemIds.length === 0 && filingItemIds.length === 0)
+    ) {
       return res.status(400).json({
         error:
           "buffing_person_id, lot_number, and at least one setting_item_id or filing_item_id are required",
@@ -21,10 +26,16 @@ export const createBuffingEntry = async (req, res) => {
 
     // Find lot by lot_number
     const lot = await prisma.lotInfo.findFirst({
-      where: { lotNumber: parseInt(lot_number) },
+      where: {
+        lotNumber: parseInt(lot_number),
+        IsActive: true,
+        buffing_customer_id: buffing_person_id,
+      },
     });
     if (!lot) {
-      return res.status(404).json({ error: "Lot not found with the given lot_number" });
+      return res
+        .status(404)
+        .json({ error: "Lot not found with the given lot_number or Not Active" });
     }
 
     // Get castingItemId from first filing or setting item
@@ -133,17 +144,33 @@ export const createBuffingEntry = async (req, res) => {
   }
 };
 
+// GET - Buffing Entries by Person ID
 
- // GET - Buffing Entries by Person ID
- 
 export const getBuffingEntriesByPersonId = async (req, res) => {
   try {
     const buffing_person_id = parseInt(req.params.buffing_person_id);
+    const lotNumber = parseInt(req.params.lotNumber);
+
+    const LotId = await prisma.LotInfo.findFirst({
+      where: {
+        lotNumber: lotNumber,
+      },
+    });
+
     if (!buffing_person_id) {
       return res.status(400).json({ error: "buffing_person_id is required" });
     }
     const entries = await prisma.buffingEntry.findMany({
-      where: { buffing_person_id },
+      where: {
+        buffing_person_id,
+        LotBuffingMapper: {
+          some: {
+            lotId: {
+              id: parseInt(LotId.id),
+            },
+          },
+        },
+      },
       include: {
         buffing_person: true,
         castingItem: {
@@ -195,7 +222,6 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
           },
         },
         BuffingTotalBalance: true,
-        BuffingWastage: true,
       },
       orderBy: { id: "asc" },
     });
@@ -205,8 +231,8 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
     // }
 
     if (!entries || entries.length === 0) {
-        return res.status(200).json([]); 
-      }
+      return res.status(200).json([]);
+    }
 
     const result = entries.map((entry) => {
       const totalBalance = entry.BuffingTotalBalance?.[0] || {};
@@ -255,19 +281,18 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
 
         // Lot Mapper
         lotBuffingMapper: entry.LotBuffingMapper.map((mapper) => ({
-            lot_id: mapper.lot_id,
-            lot_number: mapper.lotId?.lotNumber || "",
-            filing_item_id: mapper.filing_item_id,
-            setting_item_id: mapper.setting_item_id,
-            filing_item_name: mapper.filingItemId?.filingitem?.name || "",
-            filing_item_weight: mapper.filingItemId?.weight || null,
-            filing_item_touch: mapper.filingItemId?.touch?.touch || "",
-            filing_item_purity: mapper.filingItemId?.item_purity || null,
-            filing_item_remarks: mapper.filingItemId?.remarks || "",
-            setting_item_name: mapper.settingItemId?.item?.name || "",
-            buffing_entry_id: mapper.buffing_entry_id,
-          })),
-          
+          lot_id: mapper.lot_id,
+          lot_number: mapper.lotId?.lotNumber || "",
+          filing_item_id: mapper.filing_item_id,
+          setting_item_id: mapper.setting_item_id,
+          filing_item_name: mapper.filingItemId?.filingitem?.name || "",
+          filing_item_weight: mapper.filingItemId?.weight || null,
+          filing_item_touch: mapper.filingItemId?.touch?.touch || "",
+          filing_item_purity: mapper.filingItemId?.item_purity || null,
+          filing_item_remarks: mapper.filingItemId?.remarks || "",
+          setting_item_name: mapper.settingItemId?.item?.name || "",
+          buffing_entry_id: mapper.buffing_entry_id,
+        })),
 
         // Flattened Total Balance
         receiptWeight: totalBalance.receipt_weight ?? null,

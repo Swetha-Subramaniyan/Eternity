@@ -43,6 +43,7 @@ const FilingLotDetails = () => {
   const [showScrapTable, setShowScrapTable] = useState(false);
   const [wastageOption, setWastageOption] = useState("No");
   const [currentFilingEntryId, setCurrentFilingEntryId] = useState(null);
+  const [existingWastageId, setExistingWastageId] = useState(null);
 
   // Monthly wastage state variables
   const [wastageInputs, setWastageInputs] = useState([{ value: "" }]);
@@ -55,12 +56,37 @@ const FilingLotDetails = () => {
   const fetchAssignedEntries = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/filingentry/person/${filingPersonId}`
+        `http://localhost:5000/api/filingentry/person/${filingPersonId}/${lotNumber}`
       );
       setAssignedEntries(res.data);
       setFilteredEntries(res.data);
     } catch (error) {
       console.error("Error fetching assigned entries:", error);
+    }
+  };
+
+  const fetchWastageData = async () => {
+    try {
+      const response = await axios.get(
+        `${BACKEND_SERVER_URL}/api/filingitems/entry/${filingPersonId}/${lotNumber}`
+      );
+
+      if (response.data.length > 0) {
+        const wastageData = response.data[0];
+        setExistingWastageId(wastageData.id);
+        setWastagePercentage(wastageData.wastage_percentage.toString());
+        setGivenGold(wastageData.given_gold?.toString() || "");
+
+        // If you have multiple wastage inputs, you might need to handle this differently
+        if (wastageData.add_wastage) {
+          setWastageInputs([{ value: wastageData.add_wastage.toString() }]);
+        }
+      } else {
+        setExistingWastageId(null);
+      }
+    } catch (error) {
+      console.error("Error fetching wastage data:", error);
+      setExistingWastageId(null);
     }
   };
 
@@ -105,6 +131,7 @@ const FilingLotDetails = () => {
 
   useEffect(() => {
     fetchAssignedEntries();
+    fetchWastageData();
     fetchAvailableItems();
     fetchDropdownOptions();
   }, []);
@@ -125,10 +152,16 @@ const FilingLotDetails = () => {
       setSelectedItemIds([]);
       setIsAssignOpen(false);
     } catch (error) {
-      console.error(
-        "Assignment failed:",
-        error.response?.data || error.message
-      );
+      console.log("errr", error)
+      if (error.response) {
+        if (error.status === 404) {
+          alert(error.response.data.error || "Resource not found");
+        } else {
+          alert(error.response.data.error || "Something went wrong");
+        }
+      } else {
+        alert("Assignment failed:", error.response?.data || error.message);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -236,6 +269,7 @@ const FilingLotDetails = () => {
   const overallWastage = totalBalanceSum - totalWastage;
 
   const additionalGold = parseFloat(givenGold) || 0;
+
   const closingBalance =
     overallWastage < 0 ? overallWastage + additionalGold : overallWastage;
 
@@ -244,23 +278,7 @@ const FilingLotDetails = () => {
       ? "Owner must give to worker"
       : "Worker must give to owner";
 
-  /* const handleSaveSummary = () => {
-    const data = {
-      totalReceipt,
-      totalBalance,
-      wastagePercentage: parseFloat(wastagePercentage),
-      totalWastage,
-      overallWastage,
-      givenGold: additionalGold,
-      closingBalance,
-      settlementMessage,
-    };
-    localStorage.setItem("filingSummary", JSON.stringify(data));
-    setClosingSummary(data);
-    alert("Summary saved successfully.");
-  }; */
-
-  const handleSaveSummary = async () => {
+  /*   const handleSaveSummary = async () => {
     try {
       const data = {
         total_receipt: totalReceipt,
@@ -289,13 +307,78 @@ const FilingLotDetails = () => {
       console.error("Error saving summary:", error);
       alert("Failed to save summary. Check console for details.");
     }
+  }; */
+
+  const handleSaveSummary = async () => {
+    try {
+      console.log("ssssssss", additionalGold);
+
+      const data = {
+        total_receipt: totalReceipt,
+        total_wastage: totalWastage,
+        balance: totalBalanceSum,
+        wastage_percentage: parseFloat(wastagePercentage) || 0,
+        given_gold: additionalGold,
+        add_wastage: manualWastageSum,
+        overall_wastage: overallWastage,
+        closing_balance: closingBalance,
+        opening_balance: 0,
+        filing_person_id: filingPersonId,
+        lotId: lotNumber,
+      };
+
+      let response;
+      if (existingWastageId) {
+        // Update existing wastage record
+        response = await axios.put(
+          `${BACKEND_SERVER_URL}/api/filingitems/wastage/${existingWastageId}`,
+          data
+        );
+      } else {
+        // Create new wastage record
+        response = await axios.post(
+          `${BACKEND_SERVER_URL}/api/filingitems/wastage`,
+          data
+        );
+        setExistingWastageId(response.data.id);
+      }
+
+      localStorage.setItem("filingSummary", JSON.stringify(data));
+      setClosingSummary(data);
+
+      alert(`Summary ${existingWastageId ? "updated" : "saved"} successfully!`);
+    } catch (error) {
+      console.error("Error saving summary:", error);
+      alert("Failed to save summary. Check console for details.");
+    }
   };
-  const handleCloseJobcard = () => {
+
+  /* const handleCloseJobcard = () => {
     const savedLots = JSON.parse(localStorage.getItem("filingLots")) || [];
     const nextId = savedLots.length + 1;
     const updatedLots = [...savedLots, { id: nextId }];
     localStorage.setItem("filingLots", JSON.stringify(updatedLots));
     alert("Jobcard closed and lot created.");
+  }; */
+
+  const handleCloseJobcard = async () => {
+    try {
+      const response = await axios.post(
+        `${BACKEND_SERVER_URL}/api/filingitems/close-jobcard`,
+        {
+          filing_person_id: filingPersonId,
+          current_lot_number: lotNumber,
+        }
+      );
+
+      // Redirect to the new lot
+      window.location.href = `/filinglot/${filingPersonId}/${name}/${response.data.newLotNumber}`;
+
+      alert("Jobcard closed and new lot created successfully!");
+    } catch (error) {
+      console.error("Error closing jobcard:", error);
+      alert("Failed to close jobcard. Check console for details.");
+    }
   };
 
   const handleSaveFilingData = async () => {
@@ -626,7 +709,7 @@ const FilingLotDetails = () => {
         </table>
       </div>
 
-      {/* Monthly Wastage Box - Same as BuffingLotDetails */}
+      {/* Monthly Wastage Box  */}
       <Box
         sx={{
           ml: 4,
@@ -667,7 +750,7 @@ const FilingLotDetails = () => {
 
         <Box sx={{ mt: 2 }}>
           <Typography variant="subtitle2" gutterBottom>
-            Wastage Values (g):
+            Wastage Values (g) Optional:
           </Typography>
           {wastageInputs.map((input, index) => (
             <Box
@@ -684,17 +767,9 @@ const FilingLotDetails = () => {
                 size="small"
                 sx={{ flexGrow: 1, mr: 1 }}
               />
-              {wastageInputs.length > 1 && (
-                <IconButton
-                  onClick={() => removeWastageInput(index)}
-                  size="small"
-                >
-                  <DeleteIcon />
-                </IconButton>
-              )}
             </Box>
           ))}
-          <Button
+          {/* <Button
             variant="outlined"
             startIcon={<AddIcon />}
             onClick={addWastageInput}
@@ -702,7 +777,7 @@ const FilingLotDetails = () => {
             sx={{ mt: 1 }}
           >
             Add Wastage
-          </Button>
+          </Button> */}
         </Box>
 
         <Typography sx={{ mt: 2 }}>
@@ -725,7 +800,7 @@ const FilingLotDetails = () => {
             fullWidth
             size="small"
             value={givenGold}
-            onChange={(e) => setGivenGold(e.target.value)}
+            onChange={(e) => setGivenGold(parseFloat(e.target.value))}
             sx={{ mt: 2 }}
           />
         )}
@@ -757,7 +832,7 @@ const FilingLotDetails = () => {
           }}
           onClick={handleSaveSummary}
         >
-          Save Summary
+          {existingWastageId ? "Update Summary" : "Save Summary"}
         </Button>
 
         <Button
