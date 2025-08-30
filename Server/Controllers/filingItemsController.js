@@ -1,14 +1,10 @@
 // app.use("/api/filingitems",filingItemsRoutes);
 
 import { PrismaClient, CASTINGENTRYTYPE } from "../generated/prisma/index.js";
-const prisma =new PrismaClient();
+const prisma = new PrismaClient();
 
 export const createFilingItem = async (req, res) => {
-  const {
-    filing_entry_id,
-    items,
-    totalBalance
-  } = req.body;
+  const { filing_entry_id, items, totalBalance } = req.body;
 
   try {
     const entry = await prisma.filingEntry.findUnique({
@@ -16,31 +12,36 @@ export const createFilingItem = async (req, res) => {
       include: {
         castingItem: {
           select: {
-            casting_customer_id: true
-          }
-        }
-      }
+            casting_customer_id: true,
+          },
+        },
+      },
     });
-    
+
     if (!entry) {
-      return res.status(404).json({ error: 'Filing Entry not found' });
+      return res.status(404).json({ error: "Filing Entry not found" });
     }
     const castingCustomerId = entry.castingItem?.casting_customer_id;
 
-if (!castingCustomerId) {
-  return res.status(400).json({ error: 'Casting customer ID is missing in filing entry' });
-}
+    if (!castingCustomerId) {
+      return res
+        .status(400)
+        .json({ error: "Casting customer ID is missing in filing entry" });
+    }
     const result = await prisma.$transaction(async (tx) => {
       const processedItems = await Promise.all(
         items.map(async (item) => {
-          const prismaType = item.type === 'ProductItems' ? 'Items' :
-                             item.type === 'ScrapItems' ? 'ScrapItems' :
-                             null;
-    
+          const prismaType =
+            item.type === "ProductItems"
+              ? "Items"
+              : item.type === "ScrapItems"
+              ? "ScrapItems"
+              : null;
+
           if (!prismaType) {
             throw new Error(`Invalid filing item type: ${item.type}`);
           }
-    
+
           let filingItem;
           if (item.id) {
             // Update existing
@@ -74,8 +75,8 @@ if (!castingCustomerId) {
               },
             });
           }
-    
-          if (prismaType === 'ScrapItems') {
+
+          if (prismaType === "ScrapItems") {
             if (item.id) {
               // Update existing stock linked to this filingItem
               await tx.stock.updateMany({
@@ -107,13 +108,13 @@ if (!castingCustomerId) {
           return filingItem;
         })
       );
-    
+
       // Update or create filingTotalBalance record:
       // You might want to upsert it instead of just create to avoid duplicates
       const existingBalance = await tx.filingTotalBalance.findFirst({
-        where: { filing_entry_id }
+        where: { filing_entry_id },
       });
-    
+
       let balanceRecord;
       if (existingBalance) {
         balanceRecord = await tx.filingTotalBalance.update({
@@ -140,14 +141,14 @@ if (!castingCustomerId) {
           },
         });
       }
-    
+
       return { createdItems: processedItems, balanceRecord };
     });
-    
+
     // Send only selected fields to avoid circular JSON error
     res.status(201).json({
-      message: 'Filing data saved successfully',
-      items: result.createdItems.map(item => ({
+      message: "Filing data saved successfully",
+      items: result.createdItems.map((item) => ({
         id: item.id,
         filing_entry_id: item.filing_entry_id,
         type: item.type,
@@ -171,56 +172,52 @@ if (!castingCustomerId) {
         createdAt: result.balanceRecord.createdAt,
       },
     });
-
   } catch (error) {
-    console.error('Error saving filing data:', error);
-    res.status(500).json({ error: 'Failed to save filing data' });
+    console.error("Error saving filing data:", error);
+    res.status(500).json({ error: "Failed to save filing data" });
   }
 };
 
-  export const getAllFilingItems = async (req, res) => {
-    try {
-      const items = await prisma.filingItems.findMany({
-        include: {   
-          filingitem:true,   
-          touch: true,        
-          filing_entry: true, 
-        },
-      });
-      res.status(200).json(items);
-    } catch (error) {
-      console.error("Error fetching filing items:", error);
-      res.status(500).json({ message: "Failed to fetch filing items" });
-    }
-  };
-  
-  export const getFilingItemById = async (req, res) => {
-    try {
-      const { id } = req.params;
-  
-      const item = await prisma.filingItems.findUnique({
-        where: { id: parseInt(id) },
-        include: {       
-          touch: true,
-          stock: true,
-          setting_entry: true,
-          buffing_entry: true,
-          filing_wastage: true,
-          filing_entry: true,
-        },
-      });
-  
-      if (!item) return res.status(404).json({ error: "Filing item not found" });
-  
-      res.json(item);
-    } catch (error) {
-      console.error("Error fetching filing item:", error);
-      res.status(500).json({ error: "Failed to fetch filing item" });
-    }
-  };
-  
-  
+export const getAllFilingItems = async (req, res) => {
+  try {
+    const items = await prisma.filingItems.findMany({
+      include: {
+        filingitem: true,
+        touch: true,
+        filing_entry: true,
+      },
+    });
+    res.status(200).json(items);
+  } catch (error) {
+    console.error("Error fetching filing items:", error);
+    res.status(500).json({ message: "Failed to fetch filing items" });
+  }
+};
 
+export const getFilingItemById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const item = await prisma.filingItems.findUnique({
+      where: { id: parseInt(id) },
+      include: {
+        touch: true,
+        stock: true,
+        setting_entry: true,
+        buffing_entry: true,
+        filing_wastage: true,
+        filing_entry: true,
+      },
+    });
+
+    if (!item) return res.status(404).json({ error: "Filing item not found" });
+
+    res.json(item);
+  } catch (error) {
+    console.error("Error fetching filing item:", error);
+    res.status(500).json({ error: "Failed to fetch filing item" });
+  }
+};
 
   export const deleteFilingItem = async (req, res) => {
     const { id } = req.params;
@@ -318,13 +315,9 @@ export const createFilingWastage = async (req, res) => {
       overall_wastage,
       closing_balance,
       opening_balance,
-      filing_entry_id
+      lotId,
+      filing_person_id,
     } = req.body;
-
-    // Validate required fields
-    if (!filing_entry_id) {
-      return res.status(400).json({ message: "Filing entry ID is required" });
-    }
 
     const filingWastage = await prisma.filingWastage.create({
       data: {
@@ -332,13 +325,14 @@ export const createFilingWastage = async (req, res) => {
         total_wastage: parseFloat(total_wastage) || 0,
         balance: parseFloat(balance) || 0,
         wastage_percentage: parseInt(wastage_percentage) || 0,
-        given_gold: given_gold ? parseInt(given_gold) : null,
+        given_gold: given_gold ? parseFloat(given_gold) : null,
         add_wastage: add_wastage ? parseFloat(add_wastage) : null,
         overall_wastage: parseFloat(overall_wastage) || 0,
         closing_balance: parseFloat(closing_balance) || 0,
         opening_balance: parseFloat(opening_balance) || 0,
-        filing_entry_id: parseInt(filing_entry_id)
-      }
+        filing_lot_id: parseInt(lotId),
+        filing_person_id: parseInt(filing_person_id),
+      },
     });
 
     res.status(201).json(filingWastage);
@@ -348,19 +342,58 @@ export const createFilingWastage = async (req, res) => {
   }
 };
 
+export const updateFilingWastage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      total_receipt,
+      total_wastage,
+      balance,
+      wastage_percentage,
+      given_gold,
+      add_wastage,
+      overall_wastage,
+      closing_balance,
+      opening_balance,
+    } = req.body;
+
+    const filingWastage = await prisma.filingWastage.update({
+      where: { id: parseInt(id) },
+      data: {
+        total_receipt: parseFloat(total_receipt) || 0,
+        total_wastage: parseFloat(total_wastage) || 0,
+        balance: parseFloat(balance) || 0,
+        wastage_percentage: parseInt(wastage_percentage) || 0,
+        given_gold: given_gold ? parseFloat(given_gold) : null,
+        add_wastage: add_wastage ? parseFloat(add_wastage) : null,
+        overall_wastage: parseFloat(overall_wastage) || 0,
+        closing_balance: parseFloat(closing_balance) || 0,
+        opening_balance: parseFloat(opening_balance) || 0,
+      },
+    });
+
+    res.status(200).json(filingWastage);
+  } catch (error) {
+    console.error("Error updating filing wastage:", error);
+    res.status(500).json({ message: "Failed to update filing wastage record" });
+  }
+};
+
 export const getFilingWastageByEntryId = async (req, res) => {
   try {
-    const { filing_entry_id } = req.params;
-    
+    const { filingPersonId, lotNumber } = req.params;
+
     const wastageRecords = await prisma.filingWastage.findMany({
       where: {
-        filing_entry_id: parseInt(filing_entry_id)
+        filing_person_id: parseInt(filingPersonId),
+        filing_lot_id: parseInt(lotNumber),
       },
       include: {
-        filing_entry: true
-      }
+        filingLotId: true,
+        filingPersonId: true,
+      },
     });
-    
+
     res.status(200).json(wastageRecords);
   } catch (error) {
     console.error("Error fetching filing wastage:", error);

@@ -257,7 +257,8 @@ exports.Prisma.LotInfoScalarFieldEnum = {
   lotNumber: 'lotNumber',
   filing_customer_id: 'filing_customer_id',
   setting_customer_id: 'setting_customer_id',
-  buffing_customer_id: 'buffing_customer_id'
+  buffing_customer_id: 'buffing_customer_id',
+  IsActive: 'IsActive'
 };
 
 exports.Prisma.FilingEntryScalarFieldEnum = {
@@ -313,7 +314,8 @@ exports.Prisma.FilingWastageScalarFieldEnum = {
   overall_wastage: 'overall_wastage',
   closing_balance: 'closing_balance',
   opening_balance: 'opening_balance',
-  filing_entry_id: 'filing_entry_id'
+  filing_person_id: 'filing_person_id',
+  filing_lot_id: 'filing_lot_id'
 };
 
 exports.Prisma.SettingEntryScalarFieldEnum = {
@@ -424,7 +426,8 @@ exports.Prisma.BuffingWastageScalarFieldEnum = {
   overall_wastage: 'overall_wastage',
   closing_balance: 'closing_balance',
   opening_balance: 'opening_balance',
-  buffing_entry_id: 'buffing_entry_id'
+  buffing_person_id: 'buffing_person_id',
+  buffing_lot_id: 'buffing_lot_id'
 };
 
 exports.Prisma.StockScalarFieldEnum = {

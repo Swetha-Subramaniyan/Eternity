@@ -3,7 +3,7 @@ import { createBuffingEntry, getBuffingEntriesByPersonId } from '../Controllers/
 const router = express.Router();
 
 router.post("/",createBuffingEntry );
-router.get("/person/:buffing_person_id", getBuffingEntriesByPersonId)
+router.get("/person/:buffing_person_id/:lotNumber", getBuffingEntriesByPersonId)
 
 export default router;
 

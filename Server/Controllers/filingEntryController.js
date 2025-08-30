@@ -10,16 +10,19 @@ export const createFilingEntry = async (req, res) => {
     if (
       !filing_person_id || !lot_number || !Array.isArray(itemIds) || itemIds.length === 0) {
       return res.status(400).json({
-        error: 'filing_person_id, lot_number, and at least one casting_item_id are required',
+        error:
+          "filing_person_id, lot_number, and at least one casting_item_id are required",
       });
     }
 
     const lot = await prisma.lotInfo.findFirst({
-      where: { lotNumber: parseInt(lot_number) },
+      where: { lotNumber: parseInt(lot_number), IsActive: true , filing_customer_id:filing_person_id},
     });
 
-    if (!lot) {
-      return res.status(404).json({ error: 'Lot not found with the given lot_number' });
+    if (!lot) {   
+      return res
+        .status(404)
+        .json({ error: "Lot not found with the given lot_number or Given Lot is Not Active" });
     }
 
     //  Create a single FilingEntry
@@ -61,23 +64,23 @@ export const createFilingEntry = async (req, res) => {
 
     //  Respond with FilingEntry + all associated items
     return res.status(201).json({
-      message: 'Single FilingEntry created for multiple items successfully',
+      message: "Single FilingEntry created for multiple items successfully",
       entry: {
         ...filingEntry,
-        castingItems: fullItems, 
+        castingItems: fullItems,
       },
     });
-
   } catch (error) {
-    console.error('Error creating single filing entry for multiple items:', error);
+    console.error(
+      "Error creating single filing entry for multiple items:",
+      error
+    );
     return res.status(500).json({
-      error: 'Internal server error',
+      error: "Internal server error",
       details: error?.message || error,
     });
   }
 };
-
-
 
 export const getAllFilingEntries = async (req, res) => {
   try {
@@ -114,43 +117,42 @@ export const getAllFilingEntries = async (req, res) => {
         casting_item_id: entry.casting_item_id,
 
         // Flattened related data
-        filing_person_name: entry.filing_person?.name || '',
+        filing_person_name: entry.filing_person?.name || "",
         casting_item_weight: castingItem.weight || 0,
-        casting_item_type: castingItem.type || '',
+        casting_item_type: castingItem.type || "",
         casting_item_purity: castingItem.item_purity || 0,
-        casting_item_remarks: castingItem.remarks || '',
-        item_name: castingItem.item?.name || '',
+        casting_item_remarks: castingItem.remarks || "",
+        item_name: castingItem.item?.name || "",
 
         filingItems: entry.filingItems,
 
         // Expanded LotFilingMapper array with full castingItem info included
         lotFilingMapper: entry.LotFilingMapper.map((mapper) => ({
           lot_id: mapper.lot_id,
-          lot_name: mapper.lotId?.lot_no || '',
+          lot_name: mapper.lotId?.lot_no || "",
           item_id: mapper.item_id,
-          item_name: mapper.itemId?.item?.name || '',
+          item_name: mapper.itemId?.item?.name || "",
           filing_id: mapper.filing_id,
-          filing_person_name: mapper.filingId?.name || '',
+          filing_person_name: mapper.filingId?.name || "",
           filing_entry_id: mapper.filing_entry_id,
 
           // Casting item details
           casting_item_id: entry.casting_item_id,
           casting_item_weight: castingItem.weight || 0,
-          casting_item_type: castingItem.type || '',
+          casting_item_type: castingItem.type || "",
           casting_item_purity: castingItem.item_purity || 0,
-          casting_item_remarks: castingItem.remarks || '',
-          casting_item_name: castingItem.item?.name || '',
+          casting_item_remarks: castingItem.remarks || "",
+          casting_item_name: castingItem.item?.name || "",
         })),
       };
     });
 
     res.status(200).json(flatEntries);
   } catch (error) {
-    console.error('Error fetching filing entries:', error);
+    console.error("Error fetching filing entries:", error);
     res.status(500).json({ error: error.message });
   }
 };
-
 
 export const getFilingEntryById = async (req, res) => {
   const { id } = req.params;
@@ -166,8 +168,8 @@ export const getFilingEntryById = async (req, res) => {
         lotId: true,
         itemId: {
           include: {
-            item: true, 
-            touch:true, 
+            item: true,
+            touch: true,
           },
         },
         filingId: true,
@@ -185,7 +187,7 @@ export const getFilingEntryById = async (req, res) => {
     });
 
     if (!parentFilingEntry) {
-      return res.status(404).json({ error: 'Filing entry not found' });
+      return res.status(404).json({ error: "Filing entry not found" });
     }
 
     const grouped = {
@@ -198,22 +200,22 @@ export const getFilingEntryById = async (req, res) => {
             return {
               id: lm.id,
               lot_id: lm.lot_id,
-              lot_name: lm.lotId?.lot_no || '',
+              lot_name: lm.lotId?.lot_no || "",
               item_id: lm.item_id,
-              item_name: casting.item?.name || '', 
+              item_name: casting.item?.name || "",
               filing_id: lm.filing_id,
-              filing_person_name: lm.filingId?.name || '',
+              filing_person_name: lm.filingId?.name || "",
               filing_entry_id: lm.filing_entry_id,
 
               // Casting item details from itemId (CastingItems)
               casting_item_id: casting.id || null,
               casting_item_item_id: casting.item_id || null,
-              casting_item_item_name: casting.item?.name || '',
+              casting_item_item_name: casting.item?.name || "",
               casting_item_weight: casting.weight || 0,
-              casting_item_type: casting.type || '',
-              casting_item_remarks: casting.remarks || '',
+              casting_item_type: casting.type || "",
+              casting_item_remarks: casting.remarks || "",
               casting_item_touch_id: casting.touch?.id || null,
-              casting_item_touch_name: casting.touch?.touch || '',
+              casting_item_touch_name: casting.touch?.touch || "",
               casting_item_purity: casting.item_purity || 0,
             };
           }),
@@ -223,7 +225,7 @@ export const getFilingEntryById = async (req, res) => {
 
     res.status(200).json(grouped);
   } catch (error) {
-    console.error('Error in getFilingEntryById:', error);
+    console.error("Error in getFilingEntryById:", error);
     res.status(500).json({ error: error.message });
   }
 };
@@ -242,8 +244,8 @@ export const getFilingEntryByFilingId = async (req, res) => {
         LotFilingMapper: {
           some: {
             filing_id: parseInt(filing_id),
-          }
-        }
+          },
+        },
       },
       include: {
         castingItem: {
@@ -270,30 +272,29 @@ export const getFilingEntryByFilingId = async (req, res) => {
       },
     });
 
-    const groupedEntries = entries.map(entry => ({
+    const groupedEntries = entries.map((entry) => ({
       id: entry.id,
       createdAt: entry.createdAt,
       filing_person_id: entry.filing_person_id,
       casting_item_id: entry.casting_item_id,
-      filing_person_name: entry.filing_person?.name || '',
+      filing_person_name: entry.filing_person?.name || "",
       casting_item_weight: entry.castingItem?.weight || 0,
-      casting_item_type: entry.castingItem?.type || '',
+      casting_item_type: entry.castingItem?.type || "",
       casting_item_purity: entry.castingItem?.item_purity || 0,
-      casting_item_remarks: entry.castingItem?.remarks || '',
-      item_name: entry.castingItem?.item?.name || '',
+      casting_item_remarks: entry.castingItem?.remarks || "",
+      item_name: entry.castingItem?.item?.name || "",
       filingItems: entry.filingItems,
-      lotFilingMapper: entry.LotFilingMapper.map(mapper => ({
+      lotFilingMapper: entry.LotFilingMapper.map((mapper) => ({
         lot_id: mapper.lot_id,
-        lot_name: mapper.lotId?.lot_no || '',
+        lot_name: mapper.lotId?.lot_no || "",
         item_id: mapper.item_id,
-        item_name: mapper.itemId?.item?.name || '',
+        item_name: mapper.itemId?.item?.name || "",
         filing_id: mapper.filing_id,
-        filing_person_name: mapper.filingId?.name || '',
-      }))
+        filing_person_name: mapper.filingId?.name || "",
+      })),
     }));
 
     res.status(200).json(groupedEntries);
-
   } catch (error) {
     console.error("Error fetching entries by filing_id:", error);
     res.status(500).json({ error: error.message });
@@ -303,11 +304,28 @@ export const getFilingEntryByFilingId = async (req, res) => {
 export const getFilingEntriesByPersonId = async (req, res) => {
   try {
     const filing_person_id = parseInt(req.params.filing_person_id);
+    const lotNumber = parseInt(req.params.lotNumber);
+
+    const LotId = await prisma.LotInfo.findFirst({
+      where: {
+        lotNumber: lotNumber,
+      },
+    });
+
     const entries = await prisma.filingEntry.findMany({
-      where: { filing_person_id },
+      where: {
+        filing_person_id: filing_person_id,
+        LotFilingMapper: {
+          some: {
+            lotId: {
+              id: parseInt(LotId.id),
+            },
+          },
+        },
+      },
       include: {
         filing_person: true,
-        filingTotalBalance:true,
+        filingTotalBalance: true,
         castingItem: {
           include: {
             item: true,
@@ -328,55 +346,57 @@ export const getFilingEntriesByPersonId = async (req, res) => {
           },
         },
       },
-      orderBy: { id: 'asc' },
+      orderBy: { id: "asc" },
     });
 
     if (!entries || entries.length === 0) {
-      return res.status(404).json({ message: 'No entries found for this person' });
+      return res
+        .status(404)
+        .json({ message: "No entries found for this person" });
     }
 
     // Flatten and enrich the data for frontend usage
-    const result = entries.map(entry => ({
+    const result = entries.map((entry) => ({
       id: entry.id,
       createdAt: entry.createdAt,
       filing_person_id: entry.filing_person_id,
-      filing_person_name: entry.filing_person?.name || '',
+      filing_person_name: entry.filing_person?.name || "",
       casting_item_id: entry.casting_item_id,
       casting_item_weight: entry.castingItem?.weight || 0,
-      casting_item_type: entry.castingItem?.type || '',
+      casting_item_type: entry.castingItem?.type || "",
       casting_item_purity: entry.castingItem?.item_purity || 0,
-      casting_item_remarks: entry.castingItem?.remarks || '',
-      item_name: entry.castingItem?.item?.name || '',
+      casting_item_remarks: entry.castingItem?.remarks || "",
+      item_name: entry.castingItem?.item?.name || "",
       filingItems: entry.filingItems || [],
-      
-      castingItems: entry.LotFilingMapper.map(mapper => ({
+
+      castingItems: entry.LotFilingMapper.map((mapper) => ({
         id: mapper.item_id,
-        item_name: mapper.itemId?.item?.name || '',
+        item_name: mapper.itemId?.item?.name || "",
         weight: mapper.itemId?.weight || 0,
-        type: mapper.itemId?.type || '',
+        type: mapper.itemId?.type || "",
         purity: mapper.itemId?.item_purity || 0,
-        remarks: mapper.itemId?.remarks || '',
-        touch: mapper.itemId?.touch?.touch || '',
+        remarks: mapper.itemId?.remarks || "",
+        touch: mapper.itemId?.touch?.touch || "",
       })),
 
-      lotFilingMapper: entry.LotFilingMapper.map(mapper => ({
+      lotFilingMapper: entry.LotFilingMapper.map((mapper) => ({
         lot_id: mapper.lot_id,
-        lot_name: mapper.lotId?.lot_no || '',
+        lot_name: mapper.lotId?.lot_no || "",
         item_id: mapper.item_id,
-        item_name: mapper.itemId?.item?.name || '',
+        item_name: mapper.itemId?.item?.name || "",
         filing_id: mapper.filing_id,
-        filing_person_name: mapper.filingId?.name || '',
+        filing_person_name: mapper.filingId?.name || "",
         filing_entry_id: mapper.filing_entry_id,
       })),
-    
-  filingTotalBalance: entry.filingTotalBalance.map(balance => ({
-    after_weight: balance.after_weight ?? null,
-    total_product_weight: balance.total_product_weight ?? null,
-    current_balance_weight: balance.current_balance_weight ?? null,
-    total_scrap_weight: balance.total_scrap_weight ?? null,
-    wastage: balance.wastage ?? null,
-    balance: balance.balance ?? null,
-  })),
+
+      filingTotalBalance: entry.filingTotalBalance.map((balance) => ({
+        after_weight: balance.after_weight ?? null,
+        total_product_weight: balance.total_product_weight ?? null,
+        current_balance_weight: balance.current_balance_weight ?? null,
+        total_scrap_weight: balance.total_scrap_weight ?? null,
+        wastage: balance.wastage ?? null,
+        balance: balance.balance ?? null,
+      })),
     }));
 
     res.status(200).json(result);
@@ -399,12 +419,13 @@ export const updateFilingEntry = async (req, res) => {
       },
     });
 
-    res.status(200).json({ message: 'Filing Entry updated', entry: updatedEntry });
+    res
+      .status(200)
+      .json({ message: "Filing Entry updated", entry: updatedEntry });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 export const deleteFilingEntry = async (req, res) => {
   try {
@@ -414,9 +435,8 @@ export const deleteFilingEntry = async (req, res) => {
       where: { id },
     });
 
-    res.status(200).json({ message: 'Filing Entry deleted' });
+    res.status(200).json({ message: "Filing Entry deleted" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
-
