@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, MenuItem, Table, TableHead, TableRow, TableCell, TableBody, Typography } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent,Grid, DialogActions, Button, TextField, MenuItem, Table, TableHead, TableRow, TableCell, TableBody, Typography } from '@mui/material';
 import axios from 'axios';
 import { BACKEND_SERVER_URL } from "../../../../Config/config";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const CastingEntryViewModal = ({
   open,
@@ -205,84 +206,128 @@ handleCastingItemsSaved(castingEntryId, {
           fullWidth
           margin="dense"
           value={form.date}
+          style={{marginTop:'1.5rem'}}
           onChange={handleChange('date')}
           InputLabelProps={{ shrink: true }}
           InputProps={{ readOnly: isView }}
         />
-        <TextField
-          label="Name"
-          select
-          fullWidth
-          margin="dense"
-          value={form.name}
-          onChange={handleChange('name')}
-          InputProps={{ readOnly: isView }}
-        >
-          {nameOptions.map((nameObj) => (
-            <MenuItem key={nameObj.id} value={nameObj.name}>
-              {nameObj.name}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          label="Given Gold"
-          type="number"
-          fullWidth
-          margin="dense"
-          value={form.givenGold}
-          onChange={handleChange('givenGold')}
-          InputProps={{ readOnly: isView }}
-        />
-        <TextField
-          label="Touch"
-          select
-          fullWidth
-          margin="dense"
-          value={form.touch}
-          onChange={handleChange('touch')}
-          InputProps={{ readOnly: isView }}
-        >
-          {touchOptions.map((touchObj) => (
-            <MenuItem key={touchObj.id} value={touchObj.touch}>
-              {touchObj.touch}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField label="Purity" fullWidth margin="dense" value={form.purity} InputProps={{ readOnly: true }} />
-        <TextField
-          label="Final Touch"
-          type="number"
-          fullWidth
-          margin="dense"
-          value={form.finalTouch}
-          onChange={handleChange('finalTouch')}
-          InputProps={{ readOnly: isView }}
-        />
-        <TextField label="Pure Value" fullWidth margin="dense" value={form.pureValue} InputProps={{ readOnly: true }} />
-        <TextField
-          label="Before Weight"
-          fullWidth
-          margin="dense"
-          value={form.beforeWeight}
-          InputProps={{ readOnly: true }}
-        />
-        <TextField label="Copper" fullWidth margin="dense" value={form.copper} InputProps={{ readOnly: true }} />
+
+
+<Grid container spacing={6}>
+  {/* 1st Row */}
+  <Grid item xs={3}>
+    <TextField
+      label="Name"
+      select
+      sx={{ width: "190px" }}
+      margin="dense"
+      value={form.name}
+      onChange={handleChange('name')}
+      InputProps={{ readOnly: isView }}
+    >
+      {nameOptions.map((nameObj) => (
+        <MenuItem key={nameObj.id} value={nameObj.name}>
+          {nameObj.name}
+        </MenuItem>
+      ))}
+    </TextField>
+  </Grid>
+  <Grid item xs={3}>
+    <TextField
+      label="Given Gold"
+      type="number"
+      sx={{ width: "160px" }}
+      margin="dense"
+      value={form.givenGold}
+      onChange={handleChange('givenGold')}
+      InputProps={{ readOnly: isView }}
+    />
+  </Grid>
+  <Grid item xs={3}>
+    <TextField
+      label="Touch"
+      select
+      sx={{ width: "160px" }}
+      margin="dense"
+      value={form.touch}
+      onChange={handleChange('touch')}
+      InputProps={{ readOnly: isView }}
+    >
+      {touchOptions.map((touchObj) => (
+        <MenuItem key={touchObj.id} value={touchObj.touch}>
+          {touchObj.touch}
+        </MenuItem>
+      ))}
+    </TextField>
+  </Grid>
+  <Grid item xs={3}>
+    <TextField
+      label="Purity"
+      sx={{ width: "160px" }}
+      margin="dense"
+      value={form.purity}
+      InputProps={{ readOnly: true }}
+    />
+  </Grid> 
+  </Grid> 
+<Grid container spacing={6}> 
+  {/* 2nd Row */}
+  <Grid item xs={2}>
+    <TextField
+      label="Final Touch"
+      type="number"
+      sx={{ width: "190px" }}
+      margin="dense"
+      value={form.finalTouch}
+      onChange={handleChange('finalTouch')}
+      InputProps={{ readOnly: isView }}
+    />
+  </Grid>
+  <Grid item xs={2}>
+    <TextField
+      label="Pure Value"
+      sx={{ width: "160px" }}
+      margin="dense"
+      value={form.pureValue}
+      InputProps={{ readOnly: true }}
+    />
+  </Grid>
+  <Grid item xs={2}>
+    <TextField
+      label="Before Weight"
+      sx={{ width: "160px" }}
+      margin="dense"
+      value={form.beforeWeight}
+      InputProps={{ readOnly: true }}
+    />
+  </Grid>
+  <Grid item xs={2}>
+    <TextField
+      label="Copper"
+      sx={{ width: "160px" }}
+      margin="dense"
+      value={form.copper}
+      InputProps={{ readOnly: true }}
+    />
+  </Grid>
+</Grid>
 
         {/* Add Product Items Section */}
         <Button onClick={addProductItem} variant="outlined" sx={{ mt: 2 }}>
           Add Product Items
         </Button>
-        <Table size="small" sx={{ mt: 1 }}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Item</TableCell>
-              <TableCell>Weight</TableCell>
-              <TableCell>Touch</TableCell>
-              <TableCell>Purity</TableCell>
-              <TableCell>Remarks</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
+        <Table size="small" sx={{ mt: 1  }}>
+                 <TableHead>
+  <TableRow >
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center' }}>Item</TableCell>
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center'  }}>Weight</TableCell>
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center'  }}>Touch</TableCell>
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center'  }}>Purity</TableCell>
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center'  }}>Remarks</TableCell>
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center'  }}>Actions</TableCell>
+  </TableRow>
+</TableHead>
+
           <TableBody>
             {productItems.map((row, index) => (
               <TableRow key={index}>
@@ -344,7 +389,7 @@ handleCastingItemsSaved(castingEntryId, {
 
                 <TableCell>
                   <Button color="error" size="small" onClick={() => deleteProductItem(index)}>
-                    Delete
+                     <DeleteIcon/>
                   </Button>
                 </TableCell>
               </TableRow>
@@ -362,16 +407,16 @@ handleCastingItemsSaved(castingEntryId, {
           Add Scrap Items
         </Button>
         <Table size="small" sx={{ mt: 1 }}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Item</TableCell>
-              <TableCell>Weight</TableCell>
-              <TableCell>Touch</TableCell>
-              <TableCell>Purity</TableCell>
-              <TableCell>Remarks</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
+  <TableHead>
+  <TableRow >
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center' }}>Item</TableCell>
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center'  }}>Weight</TableCell>
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center'  }}>Touch</TableCell>
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center'  }}>Purity</TableCell>
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center'  }}>Remarks</TableCell>
+    <TableCell sx={{ color: "white",backgroundColor: "#38383e", textAlign:'center'  }}>Actions</TableCell>
+  </TableRow>
+</TableHead>
           <TableBody>
             {scrapItems.map((row, index) => (
               <TableRow key={index}>
@@ -430,7 +475,7 @@ handleCastingItemsSaved(castingEntryId, {
                 </TableCell>
                 <TableCell>
                   <Button color="error" size="small" onClick={() => deleteScrapItem(index)}>
-                    Delete
+                  <DeleteIcon/>
                   </Button>
                 </TableCell>
               </TableRow>

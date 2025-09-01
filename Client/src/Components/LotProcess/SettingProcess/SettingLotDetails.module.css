@@ -101,8 +101,25 @@
   
 
 
-
-
+  .tableContainer {
+    max-height: 300px; 
+    overflow-y: auto;
+  }
+  
+  .table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color:#38383e;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .heading{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
 
 
 

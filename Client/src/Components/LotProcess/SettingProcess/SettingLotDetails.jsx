@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Dialog, DialogTitle, DialogContent, DialogActions,Box, Button, TextField, Typography, MenuItem, IconButton,} from '@mui/material';
 import { BACKEND_SERVER_URL } from '../../../../Config/config';
 import DeleteIcon from '@mui/icons-material/Delete';
+import styles from './SettingLotDetails.module.css'
 
 const SettingLotDetails = () => {
   const getTodayDateString = () => {
@@ -214,8 +215,9 @@ const applyDateFilter = () => {
   return (
     <>
       <Navbar />
+      <h5 className={styles.heading}>Setting Lot Details</h5>
 
-<div  style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginTop:'2rem' }}>
+<div  style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginTop:'1rem' }}>
   <TextField
     label="From Datee"
     type="date"
@@ -235,12 +237,27 @@ const applyDateFilter = () => {
   />
   <Button variant="outlined" onClick={applyDateFilter}> Filter </Button>
   <Button variant="outlined" onClick={resetFilter}>Reset</Button>
-
-   <Button variant="contained" onClick={handleOpen} sx={{ml:99}}>Add Setting</Button>
+   <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft:"49rem"
+            }}
+            variant="contained"
+            onClick={handleOpen}
+          >
+           Add Setting
+          </Button>
 </div>
 
       {/* Main Table */}
-      <table border="1" style={{ width: '100%', marginTop: '1rem' }}>
+      <table className={styles.table} border="1" style={{ width: '100%', marginTop: '1rem' }}>
+
+      {/* <div className={styles.tableContainer}> */}
+             
   <thead>
     <tr>
       <th>S.No</th>
@@ -348,10 +365,10 @@ const applyDateFilter = () => {
             sx={{ ml: 0, mt: 3, mb: 2, width: '200px' }}
           />
 
-          <table style={{ width: '100%', marginTop: '1rem' }}>
+          <table  className={styles.table}style={{ width: '100%', marginTop: '1rem' }} >
             <thead>
               <tr>
-                <th>Select</th>
+                <th >Select</th>
                 <th>Item</th>
                 <th>Weight</th>
                 <th>Touch</th>
@@ -403,7 +420,7 @@ const applyDateFilter = () => {
     {viewData ? (
       <>
         {/* Filing Items Table */}
-        <table style={{ width: '100%', marginBottom: '1rem', borderCollapse: 'collapse' }} border="1">
+        <table className={styles.table} style={{ width: '100%', marginTop:'1rem', marginBottom: '1rem', borderCollapse: 'collapse' }} border="1">
           <thead>
             <tr>
               <th>S.No</th>
@@ -482,7 +499,7 @@ const applyDateFilter = () => {
           <Typography>
             <strong>Current Balance Weight:</strong> {(((viewData.filingItems.reduce((sum, fi) => sum + Number(fi.weight || 0), 0) - (viewData.receiptWeight || 0)) + (viewData.stoneWeight || 0))).toFixed(2)}
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, marginLeft:'7.1rem'}}>
             <Typography><b>Wastage:</b></Typography>
             <Button
               variant={viewData.wastage === 'Yes' ? 'contained' : 'outlined'}
@@ -516,8 +533,8 @@ const applyDateFilter = () => {
     Add Scrap Items
   </Button>
 
-  <table style={{ width: '100%', marginTop: '1rem', borderCollapse: 'collapse' }} border="1">
-    <thead>
+  <table className={styles.table}  style={{ width: '100%', marginTop: '1rem', borderCollapse: 'collapse' }} border="1">
+    <thead >
       <tr>
         <th>S.No</th>
         <th>Item Name</th>
