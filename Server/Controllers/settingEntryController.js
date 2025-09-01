@@ -260,10 +260,40 @@ export const getSettingEntriesByPersonId = async (req, res) => {
 };
 
 
+export const getLotSettingMapperWithItems = async (req, res) => {
+  try {
+    const { id } = req.params;
 
+    if (!id) {
+      return res.status(400).json({ error: "ID is required" });
+    }
 
+    const lotSettingMapper = await prisma.lotSettingMapper.findMany({
+      where: {
+        setting_entry_id: parseInt(id) 
+      },
+      include: {
+        settingEntry: {
+          include: {
+            SettingItems: {
+              include: {
+                item: true,
+                touch: true
+              }
+            },
+            settingTotalBalance: true,
+          }
+        },
+        lotId: true,
+        settingId: true,
+        itemId: true
+      }
+    });
 
-
-
-
+    res.json(lotSettingMapper);
+  } catch (error) {
+    console.error("Error fetching LotSettingMapper with Setting Items:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
 

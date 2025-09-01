@@ -367,24 +367,8 @@ const BuffingLotDetails = () => {
     );
   };
 
-  const handleDeleteScrapItem = async (scrap, idx) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this scrap item?"
-    );
-    if (!confirmDelete) return;
+  // http://localhost:5000/api/buffingitems/:id - DELETE 
 
-    try {
-      if (scrap.id) {
-        await axios.delete(
-          `${BACKEND_SERVER_URL}/api/buffingitems/${scrap.id}`
-        );
-      }
-      alert("Scrap item deleted successfully!");
-    } catch (error) {
-      console.error("Error deleting scrap item:", error);
-      alert("Failed to delete scrap item.");
-    }
-  };
 
   useEffect(() => {
     setFilteredData(mainTableData);
@@ -525,53 +509,50 @@ const BuffingLotDetails = () => {
   return (
     <>
       <Navbar />
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "1rem",
-          flexWrap: "wrap",
-          marginTop: "2rem",
-        }}
-      >
-        <TextField
-          label="From Date"
-          type="date"
-          size="small"
-          value={fromDate}
-          sx={{ ml: "2rem" }}
-          onChange={(e) => setFromDate(e.target.value)}
-          InputLabelProps={{ shrink: true }}
-        />
-        <TextField
-          label="To Date"
-          type="date"
-          size="small"
-          value={toDate}
-          onChange={(e) => setToDate(e.target.value)}
-          InputLabelProps={{ shrink: true }}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => handleFilter()}
-        >
-          Filter
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={() => handleResetFilter()}
-        >
-          Reset
-        </Button>
-        <Button variant="contained" onClick={handleClickOpen} sx={{ ml: 99 }}>
+      <h5 className={styles.heading}>Buffing Lot Details</h5>
+       <div  style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginTop:'1rem' }}>
+
+<TextField
+    label="From Datee"
+    type="date"
+    size="small"
+    value={fromDate}
+    onChange={(e) => setFromDate(e.target.value)}
+    InputLabelProps={{ shrink: true }}
+    sx={{ml:'2rem'}}
+  />
+  <TextField
+    label="To Date"
+    type="date"
+    size="small"
+    value={toDate}
+    onChange={(e) => setToDate(e.target.value)}
+    InputLabelProps={{ shrink: true }}
+  />
+         
+        <Button variant="outlined"   onClick={() => handleFilter()}> Filter </Button>
+  <Button variant="outlined"   onClick={() => handleResetFilter()}>Reset</Button>
+    
+           <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft:"47rem"
+            }}
+            variant="contained"
+            onClick={handleClickOpen}
+          >
           Add Buffing
-        </Button>
-      </div>
-      <table
+          </Button>
+
+</div>
+
+      <table className={styles.table}
         border="1"
-        style={{ width: "95%", marginTop: "1rem", marginLeft: "2rem" }}
+        style={{ width: "95%", marginTop: "2rem", marginLeft: "2rem" }}
       >
         <thead>
           <tr>
@@ -633,7 +614,8 @@ const BuffingLotDetails = () => {
                         {entry.balance || "-"}
                       </td>
                       <td rowSpan={entry.items.length}>
-                        <button onClick={() => handleView(entry)}>View</button>
+                   
+                        <Button variant="outlined" size="small" onClick={() => handleView(entry)}>View</Button>
                       </td>
                     </>
                   )}
@@ -808,7 +790,7 @@ const BuffingLotDetails = () => {
               </>
             )}
 
-            <table border="1" cellPadding="5">
+            <table border="1" cellPadding="5" className={styles.table}>
               <thead>
                 <tr>
                   <th>S.No</th>
@@ -858,14 +840,14 @@ const BuffingLotDetails = () => {
               {viewEntry && (
                 <tfoot>
                   <tr>
-                    <td colSpan={2}>Total</td>
-                    <td>
+                    <td colSpan={2}> <b> Total </b></td>
+                    <td><b>
                       {viewEntry.items
                         .reduce(
                           (sum, item) => sum + (parseFloat(item.weight) || 0),
                           0
                         )
-                        .toFixed(2)}
+                        .toFixed(2)} </b>
                     </td>
                     <td colSpan={6}></td>
                   </tr>
@@ -875,7 +857,7 @@ const BuffingLotDetails = () => {
 
             {viewEntry && (
               <>
-                <Box sx={{ mt: 3, display: "flex", gap: 2 }}>
+                <Box sx={{ mt: 3, display: "flex", gap: 15 }}>
                   <TextField
                     label="Receipt Weight"
                     type="number"
@@ -924,12 +906,9 @@ const BuffingLotDetails = () => {
                   </Box>
                 </Box>
                 <div style={{ marginTop: "2rem" }}>
-                  <Button variant="outlined" onClick={addScrapItem}>
-                    {" "}
-                    Add Scrap Items{" "}
-                  </Button>
+                  <Button variant="outlined" onClick={addScrapItem}>  Add Scrap Items </Button>
 
-                  <table
+                  <table className={styles.table}
                     style={{
                       width: "100%",
                       marginTop: "1rem",
@@ -937,7 +916,7 @@ const BuffingLotDetails = () => {
                     }}
                     border="1"
                   >
-                    <thead>
+                    <thead >
                       <tr>
                         <th>S.No</th>
                         <th>Item Name</th>

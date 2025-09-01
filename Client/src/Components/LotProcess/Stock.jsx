@@ -75,7 +75,7 @@ const Stock = () => {
     <>
       <Navbar />
       <div style={{ margin: "2rem" }}>
-        <h4 style={{ color: "#5f4917", textAlign: "center" }}>
+        <h4 style={{ color: "#5f4917", textAlign: "center" , color:'black' }}>
           Scrap Items (Stock)
         </h4>
         <br />
@@ -115,23 +115,23 @@ const Stock = () => {
 
         {/* Table */}
         {filteredItems.length > 0 ? (
-          <table
+          <table 
             border="1"
             cellPadding="8"
             cellSpacing="0"
             style={{ width: "100%", borderCollapse: "collapse" ,marginTop:'1rem'}}
           >
-            <thead style={{ backgroundColor: "#f0f0f0" }}>
+            <thead style={{ backgroundColor: "#38383e" }}>
               <tr>
-                <th>S.No</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Customer Name</th>
-                <th>Item</th>
-                <th>Weight</th>
-                <th>Touch</th>
-                <th>Purity</th>
-                <th>Remarks</th>
+                <th style={{ backgroundColor: "#38383e" }}>S.No</th>
+                <th style={{ backgroundColor: "#38383e" }}>Date</th>
+                <th style={{ backgroundColor: "#38383e" }}>Time</th>
+                <th style={{ backgroundColor: "#38383e" }}>Customer Name</th>
+                <th style={{ backgroundColor: "#38383e" }}>Item</th>
+                <th style={{ backgroundColor: "#38383e" }}>Weight</th>
+                <th style={{ backgroundColor: "#38383e" }}>Touch</th>
+                <th style={{ backgroundColor: "#38383e" }}>Purity</th>
+                <th style={{ backgroundColor: "#38383e" }}>Remarks</th>
               </tr>
             </thead>
             <tbody>

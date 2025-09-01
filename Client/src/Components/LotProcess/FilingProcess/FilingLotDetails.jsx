@@ -540,14 +540,22 @@ const FilingLotDetails = () => {
           >
             Reset
           </Button>
+      
           <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft:"49rem"
+            }}
             variant="contained"
             onClick={() => setIsAssignOpen(true)}
-            sx={{ ml: "50rem" }}
           >
-            {" "}
-            Add Filing{" "}
+            Add Filing
           </Button>
+
         </div>
         <table className={styles.table}>
           <thead>
@@ -623,7 +631,8 @@ const FilingLotDetails = () => {
                         </td>
                         <td rowSpan={entry.castingItems.length}>
                           <Button
-                            size="small"
+                            
+                            variant="outlined" size="small"
                             onClick={() => {
                               setViewedItems(entry.castingItems);
                               setCurrentFilingEntryId(entry.id);
@@ -692,6 +701,8 @@ const FilingLotDetails = () => {
                           >
                             View
                           </Button>
+                         
+
                         </td>
                       </>
                     );
@@ -864,7 +875,7 @@ const FilingLotDetails = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
             InputLabelProps={{ shrink: true }}
-            sx={{ mb: 2, mt: 2 }}
+            sx={{ mb: 2, mt: 3 }}
           />
           <Typography variant="h6" gutterBottom>
             Available Filing Items
@@ -993,13 +1004,9 @@ const FilingLotDetails = () => {
             fullWidth
             margin="normal"
           />
-          <Button
-            variant="contained"
-            sx={{ mt: 3 }}
-            onClick={handleAddProductRow}
-          >
-            Add Product Items
-          </Button>
+
+          <Button variant="outlined" sx={{mt:'1rem'}} onClick={handleAddProductRow}>     Add Product Items </Button> 
+
           {showProductTable && (
             <>
               <div className={styles.tableContainer}>
@@ -1008,10 +1015,10 @@ const FilingLotDetails = () => {
                     <tr>
                       <th>S.No</th>
                       <th>Item</th>
-                      <th>Weight</th>
+                      <th style={{width:'7rem'}}>Weight</th>
                       <th>Touch</th>
                       <th>Purity</th>
-                      <th>Remarks</th>
+                      <th style={{width:'4rem'}}>Remarks</th>
                       <th>Has Stone</th>
                       <th>Process</th>
                       <th>Actions</th>
@@ -1130,10 +1137,10 @@ const FilingLotDetails = () => {
                 {/* Left side: weights */}
                 <Box sx={{ display: "flex", gap: 5 }}>
                   <Typography variant="body1">
-                    Total Product Weight: {(totalProductWeight ?? 0).toFixed(2)}
+                  <b> Total Product Weight:</b> {(totalProductWeight ?? 0).toFixed(2)}
                   </Typography>
                   <Typography variant="body1">
-                    Current Balance Weight:{" "}
+                  <b> Current Balance Weight:</b>
                     {(currentBalanceWeight ?? 0).toFixed(2)}
                   </Typography>
                 </Box>
@@ -1163,13 +1170,8 @@ const FilingLotDetails = () => {
             </>
           )}
           <br />
-          <Button
-            variant="contained"
-            onClick={handleAddScrapRow}
-            sx={{ mt: 1, ml: 0, pl: 3, pr: 3.6 }}
-          >
-            Add Scrap Items
-          </Button>
+
+          <Button variant="outlined"    onClick={handleAddScrapRow}>  Add Scrap Items </Button> 
           {showScrapTable && (
             <>
               <div className={styles.tableContainer}>
@@ -1178,7 +1180,7 @@ const FilingLotDetails = () => {
                     <tr>
                       <th>S.No</th>
                       <th>Item</th>
-                      <th>Weight</th>
+                      <th style={{width:'7rem'}}>Weight</th>
                       <th>Touch</th>
                       <th>Purity</th>
                       <th>Remarks</th>
@@ -1270,10 +1272,10 @@ const FilingLotDetails = () => {
 
               <Box display="flex" alignItems="center" gap={8}>
                 <Typography variant="body1">
-                  Total Scrap Weight: {(totalScrapWeight ?? 0).toFixed(2)}
+                  <b> Total Scrap Weight: </b> {(totalScrapWeight ?? 0).toFixed(2)}
                 </Typography>
                 <Typography variant="body1">
-                  Balance: {(finalBalance ?? 0).toFixed(2)}
+                <b> Balance: </b> {(finalBalance ?? 0).toFixed(2)}
                 </Typography>
               </Box>
             </>
