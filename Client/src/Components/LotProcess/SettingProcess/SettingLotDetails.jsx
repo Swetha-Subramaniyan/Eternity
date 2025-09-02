@@ -315,7 +315,7 @@ const applyDateFilter = () => {
         <td rowSpan={entry.filingItems.length}>{entry.receiptWeight}</td>
         <td rowSpan={entry.filingItems.length}>{entry.wastage}</td>
         <td rowSpan={entry.filingItems.length}>
-          {(entry.scrapItems || []).map(item => item.itemName).join(', ')}
+          {(entry.scrapItems || []).map(item => item.itemName).join(', ') || "-"}
         </td>
         <td rowSpan={entry.filingItems.length}>
   {(entry.scrapItems || []).length}
@@ -538,7 +538,7 @@ const applyDateFilter = () => {
       <tr>
         <th>S.No</th>
         <th>Item Name</th>
-        <th>Weight</th>
+        <th style={{width:'6rem'}}>Weight</th>
         <th>Touch</th>
         <th>Purity</th>
         <th>Remarks</th>
@@ -677,5 +677,13 @@ const applyDateFilter = () => {
   );
 };
 
-export default SettingLotDetails;
+export default SettingLotDetails; 
  
+
+
+
+
+
+
+
+

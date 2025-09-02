@@ -297,3 +297,88 @@ export const getLotSettingMapperWithItems = async (req, res) => {
   }
 };
 
+
+// GET - http://localhost:5000/api/settingentry/lotsettingmapper
+
+export const getAllLotSettingMapperWithItems = async (req, res) => {
+  try {
+    const lotSettingMappers = await prisma.lotSettingMapper.findMany({
+      include: {
+        lotId: true,
+        settingId: true,
+        itemId: {
+          include: {
+            filingitem: true,
+            touch: true,
+            LotBuffingMapper: true,
+          },
+        },
+        settingEntry: {
+          include: {
+            SettingItems: {
+              include: {
+                item: true,
+                touch: true,
+              },
+            },
+            settingTotalBalance: true,
+            settingWastage: true,
+          },
+        },
+      },
+    });
+
+    // Filter only entries with settingTotalBalance
+    const filteredMappers = lotSettingMappers.filter(
+      (mapper) =>
+        mapper.settingEntry?.settingTotalBalance &&
+        mapper.settingEntry.settingTotalBalance.length > 0
+    );
+
+    // Group by settingEntryId
+    const grouped = Object.values(
+      filteredMappers.reduce((acc, mapper) => {
+        const entry = mapper.settingEntry;
+        if (!entry || !mapper.itemId) return acc;
+
+        const balance = entry.settingTotalBalance[0];
+        const entryId = entry.id;
+
+        if (!acc[entryId]) {
+          acc[entryId] = {
+            settingEntryId: entryId,
+            lotNumber: mapper.lotId?.lotNumber || "-",
+            settingName: mapper.settingId?.name || "-",
+            stoneCount: balance?.stone_count || "-",
+            stoneWeight: balance?.stone_weight || "-",
+            status: "Unassigned", // default
+            items: [],
+          };
+        }
+
+        // Push item details
+        acc[entryId].items.push({
+          id: mapper.itemId.id,
+          item: mapper.itemId.filingitem?.name || "-",
+          weight: mapper.itemId.weight || 0,
+          touch: mapper.itemId.touch?.touch || "-",
+          purity: mapper.itemId.item_purity || "-",
+          remarks: mapper.itemId.remarks || "-",
+        });
+
+        // Determine common status: if any item has LotBuffingMapper, mark entry as Assigned
+        const isAssigned = mapper.itemId.LotBuffingMapper?.length > 0;
+        if (isAssigned) {
+          acc[entryId].status = "Assigned";
+        }
+
+        return acc;
+      }, {})
+    );
+
+    res.json(grouped);
+  } catch (error) {
+    console.error("Error fetching grouped LotSettingMapper:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
