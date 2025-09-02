@@ -24,4 +24,7 @@ router.get("/entry/:buffingPersonId/:lotNumber", getBuffingWastageByEntryId);
 router.put("/wastage/:id", updateBuffingWastage);
 router.post("/close-jobcard", closeJobcardAndCreateNewLot);
 
+
+
+
 export default router;

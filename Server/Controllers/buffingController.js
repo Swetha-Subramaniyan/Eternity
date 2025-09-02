@@ -190,6 +190,8 @@ export const updateBuffingWastage = async (req, res) => {
   }
 };
 
+
+
 export const getBuffingWastageByEntryId = async (req, res) => {
   try {
     const { buffingPersonId, lotNumber } = req.params;

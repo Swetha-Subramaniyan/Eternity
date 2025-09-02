@@ -460,7 +460,7 @@ const BuffingLotDetails = () => {
     setToDate("");
     setFilteredData(mainTableData);
   };
-
+//new
   // Monthly wastage calculations
   const totalReceipt = filteredData.reduce((sum, entry) => {
   return sum + (parseFloat(entry.receiptWeight) || 0);

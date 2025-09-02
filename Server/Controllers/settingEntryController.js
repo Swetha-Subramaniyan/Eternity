@@ -110,6 +110,8 @@ export const getSettingEntriesByPersonId = async (req, res) => {
       return res.status(400).json({ error: "setting_person_id is required" });
     }
 
+
+    
     const entries = await prisma.settingEntry.findMany({
       where: { setting_person_id },
       include: {
