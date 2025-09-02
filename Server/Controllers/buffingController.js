@@ -129,6 +129,13 @@ export const createBuffingWastage = async (req, res) => {
       buffing_person_id,
     } = req.body;
 
+      const lotIdNumber = await prisma.LotInfo.findFirst({
+      where: {
+        buffing_customer_id: parseInt(buffing_person_id),
+        lotNumber: parseInt(lotId),
+      },
+    });
+
 
     const filingWastage = await prisma.buffingWastage.create({
       data: {
@@ -141,7 +148,7 @@ export const createBuffingWastage = async (req, res) => {
         overall_wastage: parseFloat(overall_wastage) || 0,
         closing_balance: parseFloat(closing_balance) || 0,
         opening_balance: parseFloat(opening_balance) || 0,
-        buffing_lot_id: parseInt(lotId),
+        buffing_lot_id: parseInt(lotIdNumber.id),
         buffing_person_id: parseInt(buffing_person_id),
       },
     });
@@ -194,10 +201,18 @@ export const getBuffingWastageByEntryId = async (req, res) => {
   try {
     const { buffingPersonId, lotNumber } = req.params;
 
+
+      const lotId = await prisma.LotInfo.findFirst({
+      where: {
+        buffing_customer_id: parseInt(buffingPersonId),
+        lotNumber: parseInt(lotNumber),
+      },
+    });
+
     const wastageRecords = await prisma.buffingWastage.findMany({
       where: {
         buffing_person_id: parseInt(buffingPersonId),
-        buffing_lot_id: parseInt(lotNumber),
+        buffing_lot_id: parseInt(lotId.id),
       },
       include: {
         buffingLotId: true,
@@ -230,6 +245,8 @@ export const closeJobcardAndCreateNewLot = async (req, res) => {
         where: { buffing_lot_id: currentActiveLot.id },
         orderBy: { id: "desc" },
       });
+
+      console.log("last wastage", lastWastage);
 
       if (lastWastage) {
         lastClosingBalance = lastWastage.closing_balance || 0;

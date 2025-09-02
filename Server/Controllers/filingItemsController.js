@@ -305,6 +305,9 @@ export const getAvailableFilingItems = async (req, res) => {
 };
 
 export const createFilingWastage = async (req, res) => {
+
+
+
   try {
     const {
       total_receipt,
@@ -320,6 +323,13 @@ export const createFilingWastage = async (req, res) => {
       filing_person_id,
     } = req.body;
 
+     const lotIdNumber = await prisma.LotInfo.findFirst({
+      where: {
+        filing_customer_id: parseInt(filing_person_id),
+        lotNumber: parseInt(lotId),
+      },
+    });
+
     const filingWastage = await prisma.filingWastage.create({
       data: {
         total_receipt: parseFloat(total_receipt) || 0,
@@ -331,7 +341,7 @@ export const createFilingWastage = async (req, res) => {
         overall_wastage: parseFloat(overall_wastage) || 0,
         closing_balance: parseFloat(closing_balance) || 0,
         opening_balance: parseFloat(opening_balance) || 0,
-        filing_lot_id: parseInt(lotId),
+        filing_lot_id: parseInt(lotIdNumber.id),
         filing_person_id: parseInt(filing_person_id),
       },
     });
@@ -458,7 +468,7 @@ export const closeJobcardAndCreateNewLot = async (req, res) => {
       data: {
         filing_person_id: parseInt(filing_person_id),
         filing_lot_id: newLot.id,
-        opening_balance: Math.abs(lastClosingBalance),
+        opening_balance: lastClosingBalance,
         closing_balance: 0,
         total_receipt: 0,
         total_wastage: 0,

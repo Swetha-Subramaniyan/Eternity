@@ -33,11 +33,9 @@ export const createBuffingEntry = async (req, res) => {
       },
     });
     if (!lot) {
-      return res
-        .status(404)
-        .json({
-          error: "Lot not found with the given lot_number or Not Active",
-        });
+      return res.status(404).json({
+        error: "Lot not found with the given lot_number or Not Active",
+      });
     }
 
     // Get castingItemId from first filing or setting item
@@ -478,6 +476,7 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
         lotBuffingMapper: entry.LotBuffingMapper.map((mapper) => ({
           lot_id: mapper.lot_id,
           lot_number: mapper.lotId?.lotNumber || "",
+          isactive: mapper.lotId.IsActive,
           filing_item_id: mapper.filing_item_id,
           setting_item_id: mapper.setting_item_id,
           filing_item_name: mapper.filingItemId?.filingitem?.name || "",

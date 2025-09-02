@@ -363,7 +363,7 @@ exports.Prisma.SettingTotalBalanceScalarFieldEnum = {
 exports.Prisma.SettingWastageScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  total_receipt: 'total_receipt',
+  total_stone_count: 'total_stone_count',
   total_wastage: 'total_wastage',
   balance: 'balance',
   wastage_percentage: 'wastage_percentage',
@@ -372,7 +372,8 @@ exports.Prisma.SettingWastageScalarFieldEnum = {
   overall_wastage: 'overall_wastage',
   closing_balance: 'closing_balance',
   opening_balance: 'opening_balance',
-  setting_entry_id: 'setting_entry_id'
+  setting_person_id: 'setting_person_id',
+  setting_lot_id: 'setting_lot_id'
 };
 
 exports.Prisma.BuffingEntryScalarFieldEnum = {
