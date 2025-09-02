@@ -53,7 +53,7 @@ const FilingLotDetails = () => {
   const [closingSummary, setClosingSummary] = useState(null);
 
   const { id: filingPersonId, name, lotNumber } = useParams();
-
+//new
   const fetchAssignedEntries = async () => {
     try {
       const res = await axios.get(

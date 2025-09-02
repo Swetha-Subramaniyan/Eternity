@@ -484,3 +484,6 @@ export const closeJobcardAndCreateNewLot = async (req, res) => {
       .json({ message: "Failed to close jobcard and create new lot" });
   }
 };
+
+
+

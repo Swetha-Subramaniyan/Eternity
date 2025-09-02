@@ -9,3 +9,6 @@ router.get("/:id", getSettingItemById)
 router.delete("/:id",deleteSettingItem)
 
 export default router;
+
+
+

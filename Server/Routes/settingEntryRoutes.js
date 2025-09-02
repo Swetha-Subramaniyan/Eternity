@@ -10,3 +10,6 @@ router.get("/lotsettingmapper", getAllLotSettingMapperWithItems);
 
 export default router;
 
+
+
+
