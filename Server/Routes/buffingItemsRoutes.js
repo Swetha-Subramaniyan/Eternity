@@ -9,3 +9,4 @@ router.get("/:id", getBuffingItemById)
 router.delete("/:id",deleteBuffingItem)
 
 export default router;
+

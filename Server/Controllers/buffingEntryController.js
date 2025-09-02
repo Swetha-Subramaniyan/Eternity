@@ -357,6 +357,8 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
           },
         },
       },
+
+      
       include: {
         buffing_person: true,
         castingItem: {

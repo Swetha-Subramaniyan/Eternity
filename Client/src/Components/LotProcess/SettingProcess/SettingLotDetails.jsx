@@ -121,6 +121,8 @@ const SettingLotDetails = () => {
     }
   };
 
+
+  
   const fetchAssignedItems = async () => {
     try {
       const res = await axios.get(

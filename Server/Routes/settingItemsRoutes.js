@@ -12,6 +12,8 @@ import {
 
 const router = express.Router();
 
+
+
 router.post("/", createSettingItem);
 router.get("/", getAllSettingItems);
 router.get("/:id", getSettingItemById);

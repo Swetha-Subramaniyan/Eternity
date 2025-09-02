@@ -463,6 +463,8 @@ const BuffingLotDetails = () => {
           `${BACKEND_SERVER_URL}/api/buffing/wastage`,
           data
         );
+
+        
         setExistingWastageId(response.data.id);
       }
 

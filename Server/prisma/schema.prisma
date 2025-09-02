@@ -363,6 +363,7 @@ model SettingTotalBalance {
   setting_entry          SettingEntry @relation(fields: [setting_entry_id], references: [id])
 }
 
+
 model SettingWastage {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
