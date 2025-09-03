@@ -22,15 +22,29 @@ export const createSettingEntry = async (req, res) => {
     }
 
     // Find lot by lot_number
-    const lot = await prisma.lotInfo.findFirst({
-      where: { lotNumber: parseInt(lot_number) },
-    });
+    // const lot = await prisma.lotInfo.findFirst({
+    //   where: { lotNumber: parseInt(lot_number) },
+    // });
 
-    if (!lot) {
+    // if (!lot) {
+    //   return res
+    //     .status(404)
+    //     .json({ error: "Lot not found with the given lot_number" });
+    // }
+    const LotId = await prisma.LotInfo.findFirst({
+      where: {
+        lotNumber: parseInt(lot_number),
+        setting_customer_id: parseInt(setting_person_id),
+      },
+    });
+ 
+ 
+    if (!LotId) {
       return res
         .status(404)
         .json({ error: "Lot not found with the given lot_number" });
     }
+ 
 
     // Get the first filing item's casting_item_id from its filing_entry relation
     const firstFilingItem = await prisma.filingItems.findUnique({
@@ -66,7 +80,7 @@ export const createSettingEntry = async (req, res) => {
         prisma.lotSettingMapper.create({
           data: {
             setting_id: setting_person_id,
-            lot_id: lot.id,
+            lot_id: LotId.id,
             filing_item_id: filingItemId,
             setting_entry_id: settingEntry.id,
           },
@@ -120,6 +134,7 @@ export const getSettingEntriesByPersonId = async (req, res) => {
         setting_customer_id: setting_person_id,
       },
     });
+    console.log('lot id', LotId)
 
 
     const entries = await prisma.settingEntry.findMany({
@@ -180,7 +195,7 @@ export const getSettingEntriesByPersonId = async (req, res) => {
       },
       orderBy: { id: "asc" },
     });
-
+console.log('entries:', entries)
     if (!entries || entries.length === 0) {
       // return res.status(404) .json({ message: "No setting entries found for this person" });
       return res.status(200).json([]);

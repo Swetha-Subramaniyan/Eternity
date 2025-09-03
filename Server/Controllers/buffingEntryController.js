@@ -25,14 +25,23 @@ export const createBuffingEntry = async (req, res) => {
     }
 
     // Find lot by lot_number
-    const lot = await prisma.lotInfo.findFirst({
+    // const lot = await prisma.lotInfo.findFirst({
+    //   where: {
+    //     lotNumber: parseInt(lot_number),
+    //     IsActive: true,
+    //     buffing_customer_id: buffing_person_id,
+    //   },
+    // });
+
+    const LotId = await prisma.LotInfo.findFirst({
       where: {
         lotNumber: parseInt(lot_number),
-        IsActive: true,
-        buffing_customer_id: buffing_person_id,
+        buffing_customer_id: parseInt(buffing_person_id),
       },
     });
-    if (!lot) {
+
+
+    if (!LotId) {
       return res.status(404).json({
         error: "Lot not found with the given lot_number or Not Active",
       });
@@ -88,7 +97,7 @@ export const createBuffingEntry = async (req, res) => {
         prisma.lotBuffingMapper.create({
           data: {
             buffing_id: buffing_person_id,
-            lot_id: lot.id,
+            lot_id: LotId.id,
             filing_item_id: filingItemId,
             buffing_entry_id: buffingEntry.id,
           },
@@ -98,7 +107,7 @@ export const createBuffingEntry = async (req, res) => {
         prisma.lotBuffingMapper.create({
           data: {
             buffing_id: buffing_person_id,
-            lot_id: lot.id,
+            lot_id: LotId.id,
             setting_item_id: settingItemId,
             buffing_entry_id: buffingEntry.id,
           },

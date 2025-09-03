@@ -1014,8 +1014,8 @@ const FilingLotDetails = () => {
             sx={{ mt: "1rem" }}
             onClick={handleAddProductRow}
           >
-            {" "}
-            Add Product Items{" "}
+         
+            Add Product Items
           </Button>
 
           {showProductTable && (
@@ -1183,9 +1183,9 @@ const FilingLotDetails = () => {
           )}
           <br />
 
-          <Button variant="outlined" onClick={handleAddScrapRow}>
-            {" "}
-            Add Scrap Items{" "}
+          <Button variant="outlined" onClick={handleAddScrapRow} sx={{marginTop:'1rem'}}>
+           
+            Add Scrap Items
           </Button>
           {showScrapTable && (
             <>
