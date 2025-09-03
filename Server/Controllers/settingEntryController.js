@@ -124,7 +124,7 @@ export const getSettingEntriesByPersonId = async (req, res) => {
     const entries = await prisma.settingEntry.findMany({
       where: {
         setting_person_id,
-        LotFilingMapper: {
+        LotSettingMapper: {
           some: {
             lotId: {
               id: parseInt(LotId.id),
@@ -342,7 +342,6 @@ export const getAllLotSettingMapperWithItems = async (req, res) => {
               },
             },
             settingTotalBalance: true,
-            settingWastage: true,
           },
         },
       },
