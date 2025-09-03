@@ -309,6 +309,7 @@ export const getFilingEntriesByPersonId = async (req, res) => {
     const LotId = await prisma.LotInfo.findFirst({
       where: {
         lotNumber: lotNumber,
+        filling_customer_id: filing_person_id,
       },
     });
 

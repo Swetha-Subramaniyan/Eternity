@@ -121,15 +121,16 @@ const SettingLotDetails = () => {
     }
   };
 
-
-  
   const fetchAssignedItems = async () => {
     try {
       const res = await axios.get(
         `${BACKEND_SERVER_URL}/api/settingentry/person/${settingPersonId}/${lotNumber}`
       );
       setAssignedItems(res.data || []);
-      //setActive(res.data.lotFilingMapper?.isactive);
+      const isActive = res.data?.[0]?.lotSettingMapper?.[0]?.isactive ?? false;
+      console.log("isActive value:", isActive);
+
+      setActive(isActive);
       console.log("Assigned items:", res.data);
     } catch (err) {
       console.error("Error fetching assigned items:", err);
@@ -167,8 +168,6 @@ const SettingLotDetails = () => {
       prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
     );
   };
-
-
 
   const handleSave = async () => {
     try {
@@ -1018,7 +1017,6 @@ const SettingLotDetails = () => {
                   </Button>
                 </Box>
               </Box>
-
 
               {/* Scrap Items Table */}
               <Box sx={{ mt: 2 }}>

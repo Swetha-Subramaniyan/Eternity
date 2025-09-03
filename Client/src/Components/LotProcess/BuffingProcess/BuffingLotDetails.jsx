@@ -726,7 +726,9 @@ const BuffingLotDetails = () => {
                         {entry.totalScrapWeight || "-"}
                       </td>
                       <td rowSpan={entry.items.length}>
-                        {entry.balance }
+
+                        {entry.balance || "-"}
+
                       </td>
                       <td rowSpan={entry.items.length}>
                         <Button
@@ -927,7 +929,6 @@ const BuffingLotDetails = () => {
                   {!viewEntry && <th>Status</th>}
                 </tr>
               </thead>
-
               <tbody>
   {viewEntry ? (
     viewEntry.items.map((item, index) => (
@@ -1039,6 +1040,7 @@ const BuffingLotDetails = () => {
     })
   )}
 </tbody>
+
               {viewEntry && (
                 <tfoot>
                   <tr>
