@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.post("/", createSettingEntry);
-router.get("/person/:setting_person_id", getSettingEntriesByPersonId);
+router.get("/person/:setting_person_id/:lotNumber", getSettingEntriesByPersonId);
 router.get('/lotsettingmapper/:id',getLotSettingMapperWithItems);
 router.get("/lotsettingmapper", getAllLotSettingMapperWithItems);
 
