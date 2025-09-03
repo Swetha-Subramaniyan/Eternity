@@ -15,11 +15,17 @@ export const createFilingEntry = async (req, res) => {
       });
     }
 
-    const lot = await prisma.lotInfo.findFirst({
-      where: { lotNumber: parseInt(lot_number), IsActive: true , filing_customer_id:filing_person_id},
+    // const lot = await prisma.lotInfo.findFirst({
+    //   where: { lotNumber: parseInt(lot_number), IsActive: true , filing_customer_id:filing_person_id},
+    // });
+    const LotId = await prisma.LotInfo.findFirst({
+      where: {
+        lotNumber: parseInt(lot_number),
+        filing_customer_id: parseInt(filing_person_id),
+      },
     });
 
-    if (!lot) {   
+    if (!LotId) {   
       return res
         .status(404)
         .json({ error: "Lot not found with the given lot_number or Given Lot is Not Active" });
@@ -43,7 +49,7 @@ export const createFilingEntry = async (req, res) => {
         prisma.lotFilingMapper.create({
           data: {
             filing_id: filing_person_id,
-            lot_id: lot.id,
+            lot_id: LotId.id,
             item_id: itemId,
             filing_entry_id: filingEntry.id,
           },
@@ -309,7 +315,7 @@ export const getFilingEntriesByPersonId = async (req, res) => {
     const LotId = await prisma.LotInfo.findFirst({
       where: {
         lotNumber: lotNumber,
-        filling_customer_id: filing_person_id,
+        filing_customer_id: filing_person_id,
       },
     });
 

@@ -599,7 +599,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "mysql://root:password@localhost:3306/eternity3"
+        "value": "mysql://root:password@localhost:3306/eternity31"
       }
     }
   },
