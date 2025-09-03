@@ -44,7 +44,6 @@ const BuffingLotDetails = () => {
   const [toDate, setToDate] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
-
   useEffect(() => {
     const fetchDropdowns = async () => {
       try {
@@ -74,11 +73,10 @@ const BuffingLotDetails = () => {
       const res = await axios.get(
         `http://localhost:5000/api/buffingentry/person/${id}/${lotNumber}`
       );
+      const isActive = res.data?.[0]?.lotBuffingMapper?.[0]?.isactive ?? false;
+      console.log("isActive value:", isActive);
 
-
-      setActive(res.data.lotFilingMapper?.isactive);
-
-
+      setActive(isActive);
       const formatted = res.data.map((entry) => ({
         id: entry.id,
         date: new Date(entry.createdAt).toISOString().split("T")[0],
@@ -87,23 +85,28 @@ const BuffingLotDetails = () => {
             ? entry.lotBuffingMapper.map((mapper) => {
                 let stoneCount = "-";
                 let stoneWeight = "-";
-  
+
                 // If setting_entry_id exists, take values from setting_total_balance
-                if (mapper.setting_entry_id && mapper.setting_total_balance?.length) {
+                if (
+                  mapper.setting_entry_id &&
+                  mapper.setting_total_balance?.length
+                ) {
                   const settingBalance = mapper.setting_total_balance[0]; // assuming one record
                   stoneCount = settingBalance.stone_count || "-";
                   stoneWeight = settingBalance.stone_weight || "-";
                 }
-  
+
                 return {
                   id: mapper.filing_item_id || mapper.setting_item_id,
                   item:
                     mapper.filing_item_name ||
                     mapper.setting_item_name ||
                     entry.item_name,
-                  weight: mapper.filing_item_weight || entry.casting_item_weight,
+                  weight:
+                    mapper.filing_item_weight || entry.casting_item_weight,
                   touch: mapper.filing_item_touch || entry.touch,
-                  purity: mapper.filing_item_purity || entry.casting_item_purity,
+                  purity:
+                    mapper.filing_item_purity || entry.casting_item_purity,
                   remarks:
                     mapper.filing_item_remarks || entry.casting_item_remarks,
                   stoneCount,
@@ -122,7 +125,7 @@ const BuffingLotDetails = () => {
                   stoneWeight: "-",
                 },
               ],
-  
+
         receiptWeight: entry.receiptWeight || "-",
         remarks: entry.remarks || "",
         wastage: entry.wastage || "-",
@@ -135,18 +138,18 @@ const BuffingLotDetails = () => {
             purity: bi.item_purity,
             remarks: bi.scrap_remarks,
           })) || [],
-  
+
         totalScrapWeight: entry.totalScrapWeight || "-",
         balance: entry.balance || "-",
       }));
-  
+
       setMainTableData(formatted);
       console.log("buffing datas", formatted);
     } catch (error) {
       console.error("Error fetching buffing entries:", error);
     }
   };
-  
+
   const fetchWastageData = async () => {
     try {
       const response = await axios.get(
@@ -338,9 +341,7 @@ const BuffingLotDetails = () => {
     );
 
     setOpen(true);
-
   };
-
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -365,33 +366,33 @@ const BuffingLotDetails = () => {
           status: item.status || "Unassigned",
           source: "Filing",
         }));
-  
+
         // Lot setting mappers (grouped)
         const lotSettingRes = await axios.get(
           "http://localhost:5000/api/settingentry/lotsettingmapper"
         );
-  
+
         // Filter only entries with status 'Unassigned'
         const unassignedLotSettings = lotSettingRes.data.filter(
           (entry) => entry.status === "Unassigned"
         );
-  
+
         // No need to flatten, keep grouped structure
         const lotSettingTransformed = unassignedLotSettings.map((entry) => ({
           ...entry, // keep all top-level fields (settingEntryId, lotNumber, stoneCount, etc.)
           source: "Setting",
         }));
-  
+
         // Merge filing items (flat) and grouped setting entries
         setPopupData([...filingTransformed, ...lotSettingTransformed]);
       } catch (error) {
         console.error("Error fetching items for popup:", error);
       }
     };
-  
+
     fetchItems();
   }, []);
-  
+
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
@@ -406,27 +407,35 @@ const BuffingLotDetails = () => {
     );
   };
 
-
   const handleDeleteScrapItem = async (scrap, idx) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this scrap item?"
     );
     if (!confirmDelete) return;
-  
+
     try {
       if (scrap.id) {
-        await axios.delete(`${BACKEND_SERVER_URL}/api/buffingitems/${scrap.id}`);
+        await axios.delete(
+          `${BACKEND_SERVER_URL}/api/buffingitems/${scrap.id}`
+        );
       }
-  
+
       //  Update scrapItems state immediately
       const updatedScrapItems = scrapItems.filter((_, i) => i !== idx);
       setScrapItems(updatedScrapItems);
-  
+
       //  Recalculate total scrap weight and balance
-      const totalScrapWeight = updatedScrapItems.reduce( (sum, s) => sum + (parseFloat(s.weight) || 0),  0   );
-      const totalWeight = viewEntry.items.reduce((sum, item) => sum + (parseFloat(item.weight) || 0),  0 ); 
-      const balance =  totalWeight - (parseFloat(receiptWeight) || 0) - totalScrapWeight;
-  
+      const totalScrapWeight = updatedScrapItems.reduce(
+        (sum, s) => sum + (parseFloat(s.weight) || 0),
+        0
+      );
+      const totalWeight = viewEntry.items.reduce(
+        (sum, item) => sum + (parseFloat(item.weight) || 0),
+        0
+      );
+      const balance =
+        totalWeight - (parseFloat(receiptWeight) || 0) - totalScrapWeight;
+
       //  Update main table entry in state
       setMainTableData((prev) =>
         prev.map((e) =>
@@ -435,7 +444,7 @@ const BuffingLotDetails = () => {
             : e
         )
       );
-  
+
       // alert("Scrap item deleted successfully!");
     } catch (error) {
       console.error("Error deleting scrap item:", error);
@@ -443,9 +452,6 @@ const BuffingLotDetails = () => {
     }
   };
 
-
-  
-   
   useEffect(() => {
     setFilteredData(mainTableData);
   }, [mainTableData]);
@@ -471,7 +477,7 @@ const BuffingLotDetails = () => {
     setToDate("");
     setFilteredData(mainTableData);
   };
-//new
+  //new
   // Monthly wastage calculations
   const totalReceipt = filteredData.reduce((sum, entry) => {
     return sum + (parseFloat(entry.receiptWeight) || 0);
@@ -534,7 +540,6 @@ const BuffingLotDetails = () => {
           data
         );
 
-        
         setExistingWastageId(response.data.id);
       }
 
@@ -668,71 +673,81 @@ const BuffingLotDetails = () => {
         </thead>
 
         <tbody>
+          {filteredData.length > 0 ? (
+            filteredData.map((entry, index) =>
+              entry.items.map((item, i) => (
+                <tr key={item.id}>
+                  {i === 0 && (
+                    <>
+                      <td rowSpan={entry.items.length}>{index + 1}</td>
+                      <td rowSpan={entry.items.length}>{entry.date}</td>
+                    </>
+                  )}
+                  <td>{item.item}</td>
+                  <td>{item.weight}</td>
+                  <td>{item.touch}</td>
+                  <td>{item.purity}</td>
+                  <td>{item.remarks}</td>
 
-  {filteredData.length > 0 ? (
-    filteredData.map((entry, index) =>
-      entry.items.map((item, i) => (
-        <tr key={item.id}>
-          {i === 0 && (
-            <>
-              <td rowSpan={entry.items.length}>{index + 1}</td>
-              <td rowSpan={entry.items.length}>{entry.date}</td>
-            </>
+                  {/* Stone fields: Filing items show "-", Setting items show popup values */}
+                  {i === 0 && (
+                    <>
+                      <td rowSpan={entry.items.length}>
+                        {entry.source === "Filing"
+                          ? "-"
+                          : item.stoneCount || "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.source === "Filing"
+                          ? "-"
+                          : item.stoneWeight || "-"}
+                      </td>
+                    </>
+                  )}
+
+                  {i === 0 && (
+                    <>
+                      <td rowSpan={entry.items.length}>
+                        {entry.receiptWeight || "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.wastage || "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.scrapItems?.map((s) => s.itemName).join(", ") ||
+                          "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.scrapItems?.length || "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.totalScrapWeight || "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.balance || "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          onClick={() => handleView(entry)}
+                        >
+                          View
+                        </Button>
+                      </td>
+                    </>
+                  )}
+                </tr>
+              ))
+            )
+          ) : (
+            <tr>
+              <td colSpan="16" align="center">
+                No records found
+              </td>
+            </tr>
           )}
-          <td>{item.item}</td>
-          <td>{item.weight}</td>
-          <td>{item.touch}</td>
-          <td>{item.purity}</td>
-          <td>{item.remarks}</td>
-
-          {/* Stone fields: Filing items show "-", Setting items show popup values */}
-          {i === 0 && (
-            <>
-              <td rowSpan={entry.items.length}>
-                {entry.source === "Filing" ? "-" : item.stoneCount || "-"}
-
-              </td>
-              <td rowSpan={entry.items.length}>
-                {entry.source === "Filing" ? "-" : item.stoneWeight || "-"}
-              </td>
-            </>
-          )}
-
-          {i === 0 && (
-            <>
-              <td rowSpan={entry.items.length}>{entry.receiptWeight || "-"}</td>
-              <td rowSpan={entry.items.length}>{entry.wastage || "-"}</td>
-              <td rowSpan={entry.items.length}>
-                {entry.scrapItems?.map((s) => s.itemName).join(", ") || "-"}
-              </td>
-              <td rowSpan={entry.items.length}>
-                {entry.scrapItems?.length || "-"}
-              </td>
-              <td rowSpan={entry.items.length}>{entry.totalScrapWeight || "-"}</td>
-              <td rowSpan={entry.items.length}>{entry.balance || "-"}</td>
-              <td rowSpan={entry.items.length}>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  onClick={() => handleView(entry)}
-                >
-                  View
-                </Button>
-              </td>
-            </>
-          )}
-        </tr>
-      ))
-    )
-  ) : (
-    <tr>
-      <td colSpan="16" align="center">
-        No records found
-      </td>
-    </tr>
-  )}
-</tbody>
-     
+        </tbody>
       </table>
 
       {/* Monthly Wastage Box - Similar to Filing */}
@@ -910,110 +925,121 @@ const BuffingLotDetails = () => {
                   {!viewEntry && <th>Status</th>}
                 </tr>
               </thead>
-<tbody>
-  {viewEntry ? (
+              <tbody>
+                {viewEntry
+                  ? viewEntry.items.map((item, index) => (
+                      <tr key={item.id}>
+                        <td>{index + 1}</td>
+                        <td>{item.item}</td>
+                        <td>{item.weight}</td>
+                        <td>{item.touch}</td>
+                        <td>{item.purity}</td>
+                        <td>{item.remarks}</td>
+                        <td>{item.stoneCount}</td>
+                        <td>{item.stoneWeight}</td>
+                      </tr>
+                    ))
+                  : popupData.map((entry, idx) => {
+                      // Filing items (no grouping)
+                      if (!entry.settingEntryId && !entry.items) {
+                        return (
+                          <tr key={`filing-${entry.id}`}>
+                            <td>{idx + 1}</td>
+                            <td>
+                              <Checkbox
+                                checked={selectedItems.some(
+                                  (i) => i.id === entry.id
+                                )}
+                                onChange={() => handleCheckboxChange(entry)}
+                              />
+                            </td>
+                            <td>{entry.item}</td>
+                            <td>{entry.weight}</td>
+                            <td>{entry.touch}</td>
+                            <td>{entry.purity}</td>
+                            <td>{entry.remarks}</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>{entry.status}</td>
+                          </tr>
+                        );
+                      }
 
-    viewEntry.items.map((item, index) => (
-      <tr key={item.id}>
-        <td>{index + 1}</td>
-        <td>{item.item}</td>
-        <td>{item.weight}</td>
-        <td>{item.touch}</td>
-        <td>{item.purity}</td>
-        <td>{item.remarks}</td>
-        <td>{item.stoneCount}</td>
-        <td>{item.stoneWeight}</td>
-      </tr>
-    ))
-  ) : (
-   
-    popupData.map((entry, idx) => {
-      // Filing items (no grouping)
-      if (!entry.settingEntryId && !entry.items) {
-        return (
-          <tr key={`filing-${entry.id}`}>
-            <td>{idx + 1}</td>
-            <td>
-              <Checkbox
-                checked={selectedItems.some((i) => i.id === entry.id)}
-                onChange={() => handleCheckboxChange(entry)}
-              />
-            </td>
-            <td>{entry.item}</td>
-            <td>{entry.weight}</td>
-            <td>{entry.touch}</td>
-            <td>{entry.purity}</td>
-            <td>{entry.remarks}</td>
-            <td>-</td>
-            <td>-</td>
-            <td>{entry.status}</td>
-          </tr>
-        );
-      }
+                      // Grouped setting entries
+                      return entry.items.map((item, subIdx) => (
+                        <tr key={`item-${item.id}`}>
+                          {subIdx === 0 && (
+                            <td rowSpan={entry.items.length}>{idx + 1}</td>
+                          )}
+                          {subIdx === 0 && (
+                            <td rowSpan={entry.items.length}>
+                              <Checkbox
+                                checked={entry.items.every((i) =>
+                                  selectedItems.some((s) => s.id === i.id)
+                                )}
+                                indeterminate={
+                                  entry.items.some((i) =>
+                                    selectedItems.some((s) => s.id === i.id)
+                                  ) &&
+                                  !entry.items.every((i) =>
+                                    selectedItems.some((s) => s.id === i.id)
+                                  )
+                                }
+                                onChange={() => {
+                                  const allSelected = entry.items.every((i) =>
+                                    selectedItems.some((s) => s.id === i.id)
+                                  );
+                                  if (allSelected) {
+                                    setSelectedItems((prev) =>
+                                      prev.filter(
+                                        (s) =>
+                                          !entry.items.some(
+                                            (i) => i.id === s.id
+                                          )
+                                      )
+                                    );
+                                  } else {
+                                    setSelectedItems((prev) => [
+                                      ...prev.filter(
+                                        (s) =>
+                                          !entry.items.some(
+                                            (i) => i.id === s.id
+                                          )
+                                      ),
+                                      ...entry.items,
+                                    ]);
+                                  }
+                                }}
+                              />
+                            </td>
+                          )}
 
-      // Grouped setting entries
-      return entry.items.map((item, subIdx) => (
-        <tr key={`item-${item.id}`}>
-          {subIdx === 0 && <td rowSpan={entry.items.length}>{idx + 1}</td>}
-          {subIdx === 0 && (
-            <td rowSpan={entry.items.length}>
-              <Checkbox
-                checked={entry.items.every((i) =>
-                  selectedItems.some((s) => s.id === i.id)
-                )}
-                indeterminate={
-                  entry.items.some((i) =>
-                    selectedItems.some((s) => s.id === i.id)
-                  ) &&
-                  !entry.items.every((i) =>
-                    selectedItems.some((s) => s.id === i.id)
-                  )
-                }
-                onChange={() => {
-                  const allSelected = entry.items.every((i) =>
-                    selectedItems.some((s) => s.id === i.id)
-                  );
-                  if (allSelected) {
-                    setSelectedItems((prev) =>
-                      prev.filter((s) => !entry.items.some((i) => i.id === s.id))
-                    );
-                  } else {
-                    setSelectedItems((prev) => [
-                      ...prev.filter(
-                        (s) => !entry.items.some((i) => i.id === s.id)
-                      ),
-                      ...entry.items,
-                    ]);
-                  }
-                }}
-              />
-            </td>
-          )}
-
-          <td>{item.item}</td>
-          <td>{item.weight}</td>
-          <td>{item.touch}</td>
-          <td>{item.purity}</td>
-          <td>{item.remarks}</td>
-          {subIdx === 0 && (
-            <>
-              <td rowSpan={entry.items.length}>{entry.stoneCount}</td>
-              <td rowSpan={entry.items.length}>{entry.stoneWeight}</td>
-            </>
-          )}
-          {subIdx === 0 && (
-            <td rowSpan={entry.items.length}>Unassigned</td>
-          )}
-        </tr>
-      ));
-    })
-  )}
-</tbody>
+                          <td>{item.item}</td>
+                          <td>{item.weight}</td>
+                          <td>{item.touch}</td>
+                          <td>{item.purity}</td>
+                          <td>{item.remarks}</td>
+                          {subIdx === 0 && (
+                            <>
+                              <td rowSpan={entry.items.length}>
+                                {entry.stoneCount}
+                              </td>
+                              <td rowSpan={entry.items.length}>
+                                {entry.stoneWeight}
+                              </td>
+                            </>
+                          )}
+                          {subIdx === 0 && (
+                            <td rowSpan={entry.items.length}>Unassigned</td>
+                          )}
+                        </tr>
+                      ));
+                    })}
+              </tbody>
 
               {viewEntry && (
                 <tfoot>
                   <tr>
-
                     <td colSpan={2}>
                       {" "}
                       <b> Total </b>
@@ -1211,11 +1237,9 @@ const BuffingLotDetails = () => {
                             <Button
                               onClick={() => handleDeleteScrapItem(scrap, idx)}
                             >
-                              <DeleteIcon style={{ color: "red" }} /> 
+                              <DeleteIcon style={{ color: "red" }} />
                             </Button>
-                            
                           </td>
-
                         </tr>
                       ))}
                     </tbody>
@@ -1225,8 +1249,11 @@ const BuffingLotDetails = () => {
                     <Typography>
                       <strong>Total Scrap Weight:</strong>
                       {scrapItems
-                        .reduce( (sum, s) => sum + (parseFloat(s.weight) || 0),   0 )  .toFixed(2)}
-                      
+                        .reduce(
+                          (sum, s) => sum + (parseFloat(s.weight) || 0),
+                          0
+                        )
+                        .toFixed(2)}
                     </Typography>
 
                     <Typography>

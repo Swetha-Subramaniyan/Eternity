@@ -55,10 +55,6 @@ const FilingLotDetails = () => {
 
   const { id: filingPersonId, name, lotNumber } = useParams();
 
-
-
-  
-
   const fetchAssignedEntries = async () => {
     try {
       const res = await axios.get(
@@ -66,7 +62,12 @@ const FilingLotDetails = () => {
       );
       setAssignedEntries(res.data);
       setFilteredEntries(res.data);
-      setActive(res.data.lotFilingMapper?.isactive);
+
+      const isActive = res.data?.[0]?.lotFilingMapper?.[0]?.isactive ?? false;
+      console.log("isActive value:", isActive);
+
+      setActive(isActive);
+
     } catch (error) {
       console.error("Error fetching assigned entries:", error);
     }
@@ -851,7 +852,7 @@ const FilingLotDetails = () => {
           {existingWastageId ? "Update Summary" : "Save Summary"}
         </Button>
 
-        {active && (
+        {active && existingWastageId && (
           <Button
             variant="outlined"
             color="error"
