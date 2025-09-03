@@ -207,11 +207,12 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
                     settingEntry: {
                       include: {
                         setting_person: true,
-                        settingTotalBalance: true, // <-- get total balance
+                        settingTotalBalance: true, 
                       },
                     },
                   },
                 },
+                
               },
             },
             settingItemId: {
@@ -231,6 +232,7 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
         },
         
         BuffingTotalBalance: true,
+        // BuffingItems: true ,
         BuffingItems: {
           include: {
             item: true,
@@ -241,7 +243,7 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
       },
       orderBy: { id: "asc" },
     });
-
+console.log('Entries', entries)
     // if (!entries || entries.length === 0) {
     //   return res .status(404)   .json({ message: "No buffing entries found for this person" });
     // }
@@ -294,7 +296,7 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
             setting_person_name: s.settingEntryId?.setting_person?.name || "",
           })),
         ],
-
+      
         // Lot Mapper
 
         lotBuffingMapper: entry.LotBuffingMapper.map((mapper) => ({

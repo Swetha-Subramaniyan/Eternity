@@ -140,7 +140,8 @@ const BuffingLotDetails = () => {
           })) || [],
 
         totalScrapWeight: entry.totalScrapWeight || "-",
-        balance: entry.balance || "-",
+        balance: entry.balance?? "-" ,
+        
       }));
 
       setMainTableData(formatted);
@@ -296,6 +297,7 @@ const BuffingLotDetails = () => {
         balance: "-",
       };
       setMainTableData((prev) => [...prev, newEntry]);
+      await fetchBuffingEntries();
 
       setPopupData((prev) =>
         prev.filter((item) => !selectedItems.some((sel) => sel.id === item.id))
@@ -724,7 +726,9 @@ const BuffingLotDetails = () => {
                         {entry.totalScrapWeight || "-"}
                       </td>
                       <td rowSpan={entry.items.length}>
+
                         {entry.balance || "-"}
+
                       </td>
                       <td rowSpan={entry.items.length}>
                         <Button
@@ -926,116 +930,116 @@ const BuffingLotDetails = () => {
                 </tr>
               </thead>
               <tbody>
-                {viewEntry
-                  ? viewEntry.items.map((item, index) => (
-                      <tr key={item.id}>
-                        <td>{index + 1}</td>
-                        <td>{item.item}</td>
-                        <td>{item.weight}</td>
-                        <td>{item.touch}</td>
-                        <td>{item.purity}</td>
-                        <td>{item.remarks}</td>
-                        <td>{item.stoneCount}</td>
-                        <td>{item.stoneWeight}</td>
-                      </tr>
-                    ))
-                  : popupData.map((entry, idx) => {
-                      // Filing items (no grouping)
-                      if (!entry.settingEntryId && !entry.items) {
-                        return (
-                          <tr key={`filing-${entry.id}`}>
-                            <td>{idx + 1}</td>
-                            <td>
-                              <Checkbox
-                                checked={selectedItems.some(
-                                  (i) => i.id === entry.id
-                                )}
-                                onChange={() => handleCheckboxChange(entry)}
-                              />
-                            </td>
-                            <td>{entry.item}</td>
-                            <td>{entry.weight}</td>
-                            <td>{entry.touch}</td>
-                            <td>{entry.purity}</td>
-                            <td>{entry.remarks}</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>{entry.status}</td>
-                          </tr>
-                        );
-                      }
+  {viewEntry ? (
+    viewEntry.items.map((item, index) => (
+      <tr key={item.id}>
+              {index === 0 && (
+          <td rowSpan={viewEntry.items.length}>{1}</td>
+        )}
+        <td>{item.item}</td>
+        <td>{item.weight}</td>
+        <td>{item.touch}</td>
+        <td>{item.purity}</td>
+        <td>{item.remarks}</td>
+           {index === 0 && (
+        <>
+          <td rowSpan={viewEntry.items.length}>
+            {/* {viewEntry.stoneCount} */}
+            {viewEntry.source === "Filing" ? "-" : item.stoneCount || "-"}
+          </td>
+          <td rowSpan={viewEntry.items.length}>
+            {/* {viewEntry.stoneWeight} */}
+            {viewEntry.source === "Filing" ? "-" : item.stoneWeight || "-"}
+          </td>
+        </>
+      )}
+      </tr>
+    ))
 
-                      // Grouped setting entries
-                      return entry.items.map((item, subIdx) => (
-                        <tr key={`item-${item.id}`}>
-                          {subIdx === 0 && (
-                            <td rowSpan={entry.items.length}>{idx + 1}</td>
-                          )}
-                          {subIdx === 0 && (
-                            <td rowSpan={entry.items.length}>
-                              <Checkbox
-                                checked={entry.items.every((i) =>
-                                  selectedItems.some((s) => s.id === i.id)
-                                )}
-                                indeterminate={
-                                  entry.items.some((i) =>
-                                    selectedItems.some((s) => s.id === i.id)
-                                  ) &&
-                                  !entry.items.every((i) =>
-                                    selectedItems.some((s) => s.id === i.id)
-                                  )
-                                }
-                                onChange={() => {
-                                  const allSelected = entry.items.every((i) =>
-                                    selectedItems.some((s) => s.id === i.id)
-                                  );
-                                  if (allSelected) {
-                                    setSelectedItems((prev) =>
-                                      prev.filter(
-                                        (s) =>
-                                          !entry.items.some(
-                                            (i) => i.id === s.id
-                                          )
-                                      )
-                                    );
-                                  } else {
-                                    setSelectedItems((prev) => [
-                                      ...prev.filter(
-                                        (s) =>
-                                          !entry.items.some(
-                                            (i) => i.id === s.id
-                                          )
-                                      ),
-                                      ...entry.items,
-                                    ]);
-                                  }
-                                }}
-                              />
-                            </td>
-                          )}
+  ) : (
+   
+    popupData.map((entry, idx) => {
+      // Filing items (no grouping)
+      if (!entry.settingEntryId && !entry.items) {
+        return (
+          <tr key={`filing-${entry.id}`}>
+            <td>{idx + 1}</td>
+            <td>
+              <Checkbox
+                checked={selectedItems.some((i) => i.id === entry.id)}
+                onChange={() => handleCheckboxChange(entry)}
+              />
+            </td>
+            <td>{entry.item}</td>
+            <td>{entry.weight}</td>
+            <td>{entry.touch}</td>
+            <td>{entry.purity}</td>
+            <td>{entry.remarks}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>{entry.status}</td>
+          </tr>
+        );
+      }
 
-                          <td>{item.item}</td>
-                          <td>{item.weight}</td>
-                          <td>{item.touch}</td>
-                          <td>{item.purity}</td>
-                          <td>{item.remarks}</td>
-                          {subIdx === 0 && (
-                            <>
-                              <td rowSpan={entry.items.length}>
-                                {entry.stoneCount}
-                              </td>
-                              <td rowSpan={entry.items.length}>
-                                {entry.stoneWeight}
-                              </td>
-                            </>
-                          )}
-                          {subIdx === 0 && (
-                            <td rowSpan={entry.items.length}>Unassigned</td>
-                          )}
-                        </tr>
-                      ));
-                    })}
-              </tbody>
+      // Grouped setting entries
+      return entry.items.map((item, subIdx) => (
+        <tr key={`item-${item.id}`}>
+          {subIdx === 0 && <td rowSpan={entry.items.length}>{idx + 1}</td>}
+          {subIdx === 0 && (
+            <td rowSpan={entry.items.length}>
+              <Checkbox
+                checked={entry.items.every((i) =>
+                  selectedItems.some((s) => s.id === i.id)
+                )}
+                indeterminate={
+                  entry.items.some((i) =>
+                    selectedItems.some((s) => s.id === i.id)
+                  ) &&
+                  !entry.items.every((i) =>
+                    selectedItems.some((s) => s.id === i.id)
+                  )
+                }
+                onChange={() => {
+                  const allSelected = entry.items.every((i) =>
+                    selectedItems.some((s) => s.id === i.id)
+                  );
+                  if (allSelected) {
+                    setSelectedItems((prev) =>
+                      prev.filter((s) => !entry.items.some((i) => i.id === s.id))
+                    );
+                  } else {
+                    setSelectedItems((prev) => [
+                      ...prev.filter(
+                        (s) => !entry.items.some((i) => i.id === s.id)
+                      ),
+                      ...entry.items,
+                    ]);
+                  }
+                }}
+              />
+            </td>
+          )}
+
+          <td>{item.item}</td>
+          <td>{item.weight}</td>
+          <td>{item.touch}</td>
+          <td>{item.purity}</td>
+          <td>{item.remarks}</td>
+          {subIdx === 0 && (
+            <>
+              <td rowSpan={entry.items.length}>{entry.stoneCount}</td>
+              <td rowSpan={entry.items.length}>{entry.stoneWeight}</td>
+            </>
+          )}
+          {subIdx === 0 && (
+            <td rowSpan={entry.items.length}>Unassigned</td>
+          )}
+        </tr>
+      ));
+    })
+  )}
+</tbody>
 
               {viewEntry && (
                 <tfoot>

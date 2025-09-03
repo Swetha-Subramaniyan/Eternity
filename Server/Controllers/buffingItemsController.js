@@ -144,7 +144,9 @@ export const createBuffingItem = async (req, res) => {
     for (const item of scrapItems) {
       const existingItem = await prisma.buffingItems.findFirst({
         where: {
+          // buffingEntryId: buffingEntryId,
           buffing_item_id: item.buffing_item_id,
+          buffing_entry_id: buffingEntryId,
         },
       });
 
@@ -158,6 +160,7 @@ export const createBuffingItem = async (req, res) => {
             scrap_weight: item.weight,
             item_purity: item.item_purity ?? 0,
             scrap_remarks: item.scrap_remarks || "",
+            buffingEntryId: { connect: { id: buffingEntryId } },
             item: { connect: { id: item.buffing_item_id } },        
             touch: item.touch_id ? { connect: { id: item.touch_id } } : undefined,
           },
@@ -171,7 +174,8 @@ export const createBuffingItem = async (req, res) => {
             scrap_weight: item.weight,
             item_purity: item.item_purity ?? 0,
             scrap_remarks: item.scrap_remarks || "",
-            buffingEntryId: { connect: { id: buffingEntryId } },      
+            buffingEntryId: { connect: { id: buffingEntryId } },  
+    
             item: { connect: { id: item.buffing_item_id } },           
             touch: item.touch_id ? { connect: { id: item.touch_id } } : undefined, 
           },
