@@ -117,6 +117,7 @@ export const getSettingEntriesByPersonId = async (req, res) => {
     const LotId = await prisma.LotInfo.findFirst({
       where: {
         lotNumber: lotNumber,
+        setting_customer_id: setting_person_id,
       },
     });
 
