@@ -31,8 +31,10 @@ const BuffingLotDetails = () => {
   const [wastagePercentage, setWastagePercentage] = useState("");
   const [givenGold, setGivenGold] = useState("");
   const [closingSummary, setClosingSummary] = useState(null);
+  const [openingBalance, setOpeningBalance] = useState(0);
 
   const [existingWastageId, setExistingWastageId] = useState(null);
+  const [active, setActive] = useState(true);
 
   const [wastage, setWastage] = useState("No");
   const [scrapItems, setScrapItems] = useState([]);
@@ -72,7 +74,11 @@ const BuffingLotDetails = () => {
       const res = await axios.get(
         `http://localhost:5000/api/buffingentry/person/${id}/${lotNumber}`
       );
-  
+
+
+      setActive(res.data.lotFilingMapper?.isactive);
+
+
       const formatted = res.data.map((entry) => ({
         id: entry.id,
         date: new Date(entry.createdAt).toISOString().split("T")[0],
@@ -147,11 +153,14 @@ const BuffingLotDetails = () => {
         `${BACKEND_SERVER_URL}/api/buffing/entry/${id}/${lotNumber}`
       );
 
+      console.log("Sssssssssssssssssssssssssssssssssop", response);
+
       if (response.data.length > 0) {
         const wastageData = response.data[0];
         setExistingWastageId(wastageData.id);
         setWastagePercentage(wastageData.wastage_percentage.toString());
         setGivenGold(wastageData.given_gold?.toString() || "");
+        setOpeningBalance(wastageData.opening_balance || 0);
 
         if (wastageData.add_wastage) {
           setWastageInputs([{ value: wastageData.add_wastage.toString() }]);
@@ -397,6 +406,7 @@ const BuffingLotDetails = () => {
     );
   };
 
+
   const handleDeleteScrapItem = async (scrap, idx) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this scrap item?"
@@ -433,6 +443,7 @@ const BuffingLotDetails = () => {
     }
   };
 
+
   
    
   useEffect(() => {
@@ -463,8 +474,8 @@ const BuffingLotDetails = () => {
 //new
   // Monthly wastage calculations
   const totalReceipt = filteredData.reduce((sum, entry) => {
-  return sum + (parseFloat(entry.receiptWeight) || 0);
-}, 0);
+    return sum + (parseFloat(entry.receiptWeight) || 0);
+  }, 0);
 
   const manualWastageSum = wastageInputs.reduce(
     (sum, w) => sum + (parseFloat(w.value) || 0),
@@ -479,9 +490,9 @@ const BuffingLotDetails = () => {
   const totalWastage = totalWastageFromPercentage + manualWastageSum;
 
   const totalBalanceSum = filteredData.reduce((sum, entry) => {
-  return sum + (parseFloat(entry.balance) || 0);
-}, 0);
-  const overallWastage = totalBalanceSum - totalWastage;
+    return sum + (parseFloat(entry.balance) || 0);
+  }, 0);
+  const overallWastage = totalBalanceSum - totalWastage + openingBalance;
 
   const additionalGold = parseFloat(givenGold) || 0;
 
@@ -504,7 +515,7 @@ const BuffingLotDetails = () => {
         add_wastage: manualWastageSum,
         overall_wastage: overallWastage,
         closing_balance: closingBalance,
-        opening_balance: 0,
+        opening_balance: openingBalance,
         buffing_person_id: id,
         lotId: lotNumber,
       };
@@ -522,6 +533,8 @@ const BuffingLotDetails = () => {
           `${BACKEND_SERVER_URL}/api/buffing/wastage`,
           data
         );
+
+        
         setExistingWastageId(response.data.id);
       }
 
@@ -534,6 +547,8 @@ const BuffingLotDetails = () => {
       alert("Failed to save summary. Check console for details.");
     }
   };
+
+  console.log("ssss", openingBalance);
 
   const handleCloseJobcard = async () => {
     try {
@@ -575,47 +590,59 @@ const BuffingLotDetails = () => {
     <>
       <Navbar />
       <h5 className={styles.heading}>Buffing Lot Details</h5>
-       <div  style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginTop:'1rem' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "1rem",
+          flexWrap: "wrap",
+          marginTop: "1rem",
+        }}
+      >
+        <TextField
+          label="From Datee"
+          type="date"
+          size="small"
+          value={fromDate}
+          onChange={(e) => setFromDate(e.target.value)}
+          InputLabelProps={{ shrink: true }}
+          sx={{ ml: "2rem" }}
+        />
+        <TextField
+          label="To Date"
+          type="date"
+          size="small"
+          value={toDate}
+          onChange={(e) => setToDate(e.target.value)}
+          InputLabelProps={{ shrink: true }}
+        />
 
-<TextField
-    label="From Datee"
-    type="date"
-    size="small"
-    value={fromDate}
-    onChange={(e) => setFromDate(e.target.value)}
-    InputLabelProps={{ shrink: true }}
-    sx={{ml:'2rem'}}
-  />
-  <TextField
-    label="To Date"
-    type="date"
-    size="small"
-    value={toDate}
-    onChange={(e) => setToDate(e.target.value)}
-    InputLabelProps={{ shrink: true }}
-  />
-         
-        <Button variant="outlined"   onClick={() => handleFilter()}> Filter </Button>
-  <Button variant="outlined"   onClick={() => handleResetFilter()}>Reset</Button>
-    
-           <Button
-            style={{
-              backgroundColor: "#F5F5F5",
-              color: "black",
-              borderColor: "#25274D",
-              borderStyle: "solid",
-              borderWidth: "2px",
-              marginLeft:"47rem"
-            }}
-            variant="contained"
-            onClick={handleClickOpen}
-          >
+        <Button variant="outlined" onClick={() => handleFilter()}>
+          {" "}
+          Filter{" "}
+        </Button>
+        <Button variant="outlined" onClick={() => handleResetFilter()}>
+          Reset
+        </Button>
+
+        <Button
+          style={{
+            backgroundColor: "#F5F5F5",
+            color: "black",
+            borderColor: "#25274D",
+            borderStyle: "solid",
+            borderWidth: "2px",
+            marginLeft: "47rem",
+          }}
+          variant="contained"
+          onClick={handleClickOpen}
+        >
           Add Buffing
-          </Button>
+        </Button>
+      </div>
 
-</div>
-
-      <table className={styles.table}
+      <table
+        className={styles.table}
         border="1"
         style={{ width: "95%", marginTop: "2rem", marginLeft: "2rem" }}
       >
@@ -641,6 +668,7 @@ const BuffingLotDetails = () => {
         </thead>
 
         <tbody>
+
   {filteredData.length > 0 ? (
     filteredData.map((entry, index) =>
       entry.items.map((item, i) => (
@@ -662,6 +690,7 @@ const BuffingLotDetails = () => {
             <>
               <td rowSpan={entry.items.length}>
                 {entry.source === "Filing" ? "-" : item.stoneCount || "-"}
+
               </td>
               <td rowSpan={entry.items.length}>
                 {entry.source === "Filing" ? "-" : item.stoneWeight || "-"}
@@ -720,7 +749,7 @@ const BuffingLotDetails = () => {
         }}
       >
         <Typography sx={{ marginLeft: "3rem", color: "darkblue" }}>
-          <b>Opening Balance:</b> 0
+          <b>Opening Balance:</b> {openingBalance.toFixed(2)}
         </Typography>
         <hr />
 
@@ -835,14 +864,16 @@ const BuffingLotDetails = () => {
           {existingWastageId ? "Update Summary" : "Save Summary"}
         </Button>
 
-        <Button
-          variant="outlined"
-          color="error"
-          sx={{ mt: 2, width: "100%" }}
-          onClick={handleCloseJobcard}
-        >
-          Close Jobcard
-        </Button>
+        {existingWastageId && active && (
+          <Button
+            variant="outlined"
+            color="error"
+            sx={{ mt: 2, width: "100%" }}
+            onClick={handleCloseJobcard}
+          >
+            Close Jobcard
+          </Button>
+        )}
       </Box>
 
       {open && (
@@ -982,9 +1013,22 @@ const BuffingLotDetails = () => {
               {viewEntry && (
                 <tfoot>
                   <tr>
-                    <td colSpan={2}> <b> Total </b></td>
-                    <td><b>
-                      {viewEntry.items .reduce( (sum, item) => sum + (parseFloat(item.weight) || 0), 0  )   .toFixed(2)} </b> </td>
+
+                    <td colSpan={2}>
+                      {" "}
+                      <b> Total </b>
+                    </td>
+                    <td>
+                      <b>
+                        {viewEntry.items
+                          .reduce(
+                            (sum, item) => sum + (parseFloat(item.weight) || 0),
+                            0
+                          )
+                          .toFixed(2)}{" "}
+                      </b>
+                    </td>
+
                     <td colSpan={6}></td>
                   </tr>
                 </tfoot>
@@ -1042,9 +1086,13 @@ const BuffingLotDetails = () => {
                   </Box>
                 </Box>
                 <div style={{ marginTop: "2rem" }}>
-                  <Button variant="outlined" onClick={addScrapItem}>  Add Scrap Items </Button>
+                  <Button variant="outlined" onClick={addScrapItem}>
+                    {" "}
+                    Add Scrap Items{" "}
+                  </Button>
 
-                  <table className={styles.table}
+                  <table
+                    className={styles.table}
                     style={{
                       width: "100%",
                       marginTop: "1rem",
@@ -1052,7 +1100,7 @@ const BuffingLotDetails = () => {
                     }}
                     border="1"
                   >
-                    <thead >
+                    <thead>
                       <tr>
                         <th>S.No</th>
                         <th>Item Name</th>

@@ -51,9 +51,14 @@ const FilingLotDetails = () => {
   const [wastagePercentage, setWastagePercentage] = useState("");
   const [givenGold, setGivenGold] = useState("");
   const [closingSummary, setClosingSummary] = useState(null);
+  const [active, setActive] = useState(true);
 
   const { id: filingPersonId, name, lotNumber } = useParams();
-//new
+
+
+
+  
+
   const fetchAssignedEntries = async () => {
     try {
       const res = await axios.get(
@@ -61,6 +66,7 @@ const FilingLotDetails = () => {
       );
       setAssignedEntries(res.data);
       setFilteredEntries(res.data);
+      setActive(res.data.lotFilingMapper?.isactive);
     } catch (error) {
       console.error("Error fetching assigned entries:", error);
     }
@@ -71,8 +77,6 @@ const FilingLotDetails = () => {
       const response = await axios.get(
         `${BACKEND_SERVER_URL}/api/filingitems/entry/${filingPersonId}/${lotNumber}`
       );
-
-      console.log("Sssssssss", response)
 
       if (response.data.length > 0) {
         const wastageData = response.data[0];
@@ -156,7 +160,7 @@ const FilingLotDetails = () => {
       setSelectedItemIds([]);
       setIsAssignOpen(false);
     } catch (error) {
-      console.log("errr", error)
+      console.log("errr", error);
       if (error.response) {
         if (error.status === 404) {
           alert(error.response.data.error || "Resource not found");
@@ -270,7 +274,7 @@ const FilingLotDetails = () => {
 
     return sum + (parseFloat(balance?.balance) || 0);
   }, 0);
-  const overallWastage = totalBalanceSum - totalWastage;
+  const overallWastage = totalBalanceSum - totalWastage + openingBalance;
 
   const additionalGold = parseFloat(givenGold) || 0;
 
@@ -540,7 +544,7 @@ const FilingLotDetails = () => {
           >
             Reset
           </Button>
-      
+
           <Button
             style={{
               backgroundColor: "#F5F5F5",
@@ -548,14 +552,13 @@ const FilingLotDetails = () => {
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
-              marginLeft:"49rem"
+              marginLeft: "49rem",
             }}
             variant="contained"
             onClick={() => setIsAssignOpen(true)}
           >
             Add Filing
           </Button>
-
         </div>
         <table className={styles.table}>
           <thead>
@@ -631,8 +634,8 @@ const FilingLotDetails = () => {
                         </td>
                         <td rowSpan={entry.castingItems.length}>
                           <Button
-                            
-                            variant="outlined" size="small"
+                            variant="outlined"
+                            size="small"
                             onClick={() => {
                               setViewedItems(entry.castingItems);
                               setCurrentFilingEntryId(entry.id);
@@ -701,8 +704,6 @@ const FilingLotDetails = () => {
                           >
                             View
                           </Button>
-                         
-
                         </td>
                       </>
                     );
@@ -850,14 +851,16 @@ const FilingLotDetails = () => {
           {existingWastageId ? "Update Summary" : "Save Summary"}
         </Button>
 
-        <Button
-          variant="outlined"
-          color="error"
-          sx={{ mt: 2, width: "100%" }}
-          onClick={handleCloseJobcard}
-        >
-          Close Jobcard
-        </Button>
+        {active && (
+          <Button
+            variant="outlined"
+            color="error"
+            sx={{ mt: 2, width: "100%" }}
+            onClick={handleCloseJobcard}
+          >
+            Close Jobcard
+          </Button>
+        )}
       </Box>
 
       <Dialog
@@ -1005,7 +1008,14 @@ const FilingLotDetails = () => {
             margin="normal"
           />
 
-          <Button variant="outlined" sx={{mt:'1rem'}} onClick={handleAddProductRow}>     Add Product Items </Button> 
+          <Button
+            variant="outlined"
+            sx={{ mt: "1rem" }}
+            onClick={handleAddProductRow}
+          >
+            {" "}
+            Add Product Items{" "}
+          </Button>
 
           {showProductTable && (
             <>
@@ -1015,10 +1025,10 @@ const FilingLotDetails = () => {
                     <tr>
                       <th>S.No</th>
                       <th>Item</th>
-                      <th style={{width:'7rem'}}>Weight</th>
+                      <th style={{ width: "7rem" }}>Weight</th>
                       <th>Touch</th>
                       <th>Purity</th>
-                      <th style={{width:'4rem'}}>Remarks</th>
+                      <th style={{ width: "4rem" }}>Remarks</th>
                       <th>Has Stone</th>
                       <th>Process</th>
                       <th>Actions</th>
@@ -1137,10 +1147,11 @@ const FilingLotDetails = () => {
                 {/* Left side: weights */}
                 <Box sx={{ display: "flex", gap: 5 }}>
                   <Typography variant="body1">
-                  <b> Total Product Weight:</b> {(totalProductWeight ?? 0).toFixed(2)}
+                    <b> Total Product Weight:</b>{" "}
+                    {(totalProductWeight ?? 0).toFixed(2)}
                   </Typography>
                   <Typography variant="body1">
-                  <b> Current Balance Weight:</b>
+                    <b> Current Balance Weight:</b>
                     {(currentBalanceWeight ?? 0).toFixed(2)}
                   </Typography>
                 </Box>
@@ -1171,7 +1182,10 @@ const FilingLotDetails = () => {
           )}
           <br />
 
-          <Button variant="outlined"    onClick={handleAddScrapRow}>  Add Scrap Items </Button> 
+          <Button variant="outlined" onClick={handleAddScrapRow}>
+            {" "}
+            Add Scrap Items{" "}
+          </Button>
           {showScrapTable && (
             <>
               <div className={styles.tableContainer}>
@@ -1180,7 +1194,7 @@ const FilingLotDetails = () => {
                     <tr>
                       <th>S.No</th>
                       <th>Item</th>
-                      <th style={{width:'7rem'}}>Weight</th>
+                      <th style={{ width: "7rem" }}>Weight</th>
                       <th>Touch</th>
                       <th>Purity</th>
                       <th>Remarks</th>
@@ -1272,10 +1286,11 @@ const FilingLotDetails = () => {
 
               <Box display="flex" alignItems="center" gap={8}>
                 <Typography variant="body1">
-                  <b> Total Scrap Weight: </b> {(totalScrapWeight ?? 0).toFixed(2)}
+                  <b> Total Scrap Weight: </b>{" "}
+                  {(totalScrapWeight ?? 0).toFixed(2)}
                 </Typography>
                 <Typography variant="body1">
-                <b> Balance: </b> {(finalBalance ?? 0).toFixed(2)}
+                  <b> Balance: </b> {(finalBalance ?? 0).toFixed(2)}
                 </Typography>
               </Box>
             </>

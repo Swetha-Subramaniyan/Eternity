@@ -1,15 +1,13 @@
 import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
-
-
 export const createSettingEntry = async (req, res) => {
   try {
     const { setting_person_id, lot_number, items } = req.body;
 
     // Convert items array into plain array of filing item IDs
-    const filingItemIds = items?.map(i => i.filing_item_id) || [];
-    
+    const filingItemIds = items?.map((i) => i.filing_item_id) || [];
+
     // Validate
     if (
       !setting_person_id ||
@@ -19,7 +17,7 @@ export const createSettingEntry = async (req, res) => {
     ) {
       return res.status(400).json({
         error:
-          'setting_person_id, lot_number, and at least one filing_item_id are required',
+          "setting_person_id, lot_number, and at least one filing_item_id are required",
       });
     }
 
@@ -29,7 +27,9 @@ export const createSettingEntry = async (req, res) => {
     });
 
     if (!lot) {
-      return res.status(404).json({ error: 'Lot not found with the given lot_number' });
+      return res
+        .status(404)
+        .json({ error: "Lot not found with the given lot_number" });
     }
 
     // Get the first filing item's casting_item_id from its filing_entry relation
@@ -43,36 +43,36 @@ export const createSettingEntry = async (req, res) => {
     });
 
     if (!firstFilingItem) {
-      return res.status(400).json({ error: 'First filing item not found' });
+      return res.status(400).json({ error: "First filing item not found" });
     }
 
     const castingItemId = firstFilingItem.filing_entry.casting_item_id;
 
-// Always create a new SettingEntry
-const settingEntry = await prisma.settingEntry.create({
-  data: {
-    setting_person: { connect: { id: setting_person_id } },
-    castingItem: { connect: { id: castingItemId } },
-  },
-  include: {
-    setting_person: true,
-    filingItems: true,
-  },
-});
-
-//  Now create LotSettingMapper for all filing items
-await Promise.all(
-  filingItemIds.map((filingItemId) =>
-    prisma.lotSettingMapper.create({
+    // Always create a new SettingEntry
+    const settingEntry = await prisma.settingEntry.create({
       data: {
-        setting_id: setting_person_id,
-        lot_id: lot.id,
-        filing_item_id: filingItemId,
-        setting_entry_id: settingEntry.id,
+        setting_person: { connect: { id: setting_person_id } },
+        castingItem: { connect: { id: castingItemId } },
       },
-    })
-  )
-);
+      include: {
+        setting_person: true,
+        filingItems: true,
+      },
+    });
+
+    //  Now create LotSettingMapper for all filing items
+    await Promise.all(
+      filingItemIds.map((filingItemId) =>
+        prisma.lotSettingMapper.create({
+          data: {
+            setting_id: setting_person_id,
+            lot_id: lot.id,
+            filing_item_id: filingItemId,
+            setting_entry_id: settingEntry.id,
+          },
+        })
+      )
+    );
 
     // Fetch full filing items with details
     const fullItems = await prisma.filingItems.findMany({
@@ -82,7 +82,7 @@ await Promise.all(
 
     return res.status(201).json({
       message:
-        'Single SettingEntry created for multiple filing items successfully',
+        "Single SettingEntry created for multiple filing items successfully",
       entry: {
         ...settingEntry,
         filingItems: fullItems,
@@ -90,16 +90,15 @@ await Promise.all(
     });
   } catch (error) {
     console.error(
-      'Error creating single setting entry for multiple items:',
+      "Error creating single setting entry for multiple items:",
       error
     );
     return res.status(500).json({
-      error: 'Internal server error',
+      error: "Internal server error",
       details: error?.message || error,
     });
   }
 };
-
 
 // GET - http://localhost:5000/api/settingentry/person/:id
 
@@ -111,9 +110,28 @@ export const getSettingEntriesByPersonId = async (req, res) => {
     }
 
 
+    const lotNumber = parseInt(req.params.lotNumber);
+
+
     
+    const LotId = await prisma.LotInfo.findFirst({
+      where: {
+        lotNumber: lotNumber,
+      },
+    });
+
+
     const entries = await prisma.settingEntry.findMany({
-      where: { setting_person_id },
+      where: {
+        setting_person_id,
+        LotFilingMapper: {
+          some: {
+            lotId: {
+              id: parseInt(LotId.id),
+            },
+          },
+        },
+      },
       include: {
         setting_person: true,
         castingItem: {
@@ -152,7 +170,6 @@ export const getSettingEntriesByPersonId = async (req, res) => {
           },
         },
         settingTotalBalance: true,
-        settingWastage: true,
         SettingItems: {
           include: {
             item: true,
@@ -162,10 +179,10 @@ export const getSettingEntriesByPersonId = async (req, res) => {
       },
       orderBy: { id: "asc" },
     });
-   
+
     if (!entries || entries.length === 0) {
       // return res.status(404) .json({ message: "No setting entries found for this person" });
-      return res.status(200).json([]); 
+      return res.status(200).json([]);
     }
 
     const result = entries.map((entry) => {
@@ -220,6 +237,7 @@ export const getSettingEntriesByPersonId = async (req, res) => {
         lotSettingMapper: entry.LotSettingMapper.map((mapper) => ({
           lot_id: mapper.lot_id,
           lot_number: mapper.lotId?.lotNumber || "",
+          isactive: mapper.lotId.IsActive,
           filing_item_id: mapper.filing_item_id,
           filing_item_name: mapper.itemId?.filingitem?.name || "",
           filing_entry_id: mapper.itemId?.filing_entry_id || null,
@@ -261,7 +279,6 @@ export const getSettingEntriesByPersonId = async (req, res) => {
   }
 };
 
-
 export const getLotSettingMapperWithItems = async (req, res) => {
   try {
     const { id } = req.params;
@@ -272,7 +289,7 @@ export const getLotSettingMapperWithItems = async (req, res) => {
 
     const lotSettingMapper = await prisma.lotSettingMapper.findMany({
       where: {
-        setting_entry_id: parseInt(id) 
+        setting_entry_id: parseInt(id),
       },
       include: {
         settingEntry: {
@@ -280,16 +297,16 @@ export const getLotSettingMapperWithItems = async (req, res) => {
             SettingItems: {
               include: {
                 item: true,
-                touch: true
-              }
+                touch: true,
+              },
             },
             settingTotalBalance: true,
-          }
+          },
         },
         lotId: true,
         settingId: true,
-        itemId: true
-      }
+        itemId: true,
+      },
     });
 
     res.json(lotSettingMapper);
@@ -298,6 +315,7 @@ export const getLotSettingMapperWithItems = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 
 // GET - http://localhost:5000/api/settingentry/lotsettingmapper
@@ -384,3 +402,4 @@ export const getAllLotSettingMapperWithItems = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+

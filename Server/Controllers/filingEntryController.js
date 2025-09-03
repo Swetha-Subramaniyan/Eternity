@@ -300,7 +300,7 @@ export const getFilingEntryByFilingId = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
+  
 export const getFilingEntriesByPersonId = async (req, res) => {
   try {
     const filing_person_id = parseInt(req.params.filing_person_id);
@@ -385,6 +385,7 @@ export const getFilingEntriesByPersonId = async (req, res) => {
       lotFilingMapper: entry.LotFilingMapper.map((mapper) => ({
         lot_id: mapper.lot_id,
         lot_name: mapper.lotId?.lot_no || "",
+        isactive:mapper.lotId.IsActive,
         item_id: mapper.item_id,
         item_name: mapper.itemId?.item?.name || "",
         filing_id: mapper.filing_id,

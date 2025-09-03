@@ -59,15 +59,16 @@ model AddFiling {
 }
 
 model AddSetting {
-  id            Int                @id @default(autoincrement())
-  createdAt     DateTime           @default(now())
-  name          String
-  phoneNumber   String?
-  address       String?
-  email         String?
-  settings      SettingEntry[]
-  settingMapper LotSettingMapper[]
-  lotInfo       LotInfo[]
+  id              Int                @id @default(autoincrement())
+  createdAt       DateTime           @default(now())
+  name            String
+  phoneNumber     String?
+  address         String?
+  email           String?
+  settingWastages SettingWastage[]
+  settings        SettingEntry[]
+  settingMapper   LotSettingMapper[]
+  lotInfo         LotInfo[]
 }
 
 model AddBuffing {
@@ -213,6 +214,7 @@ model LotInfo {
   buffingMapper       LotBuffingMapper[]
   filingWastages      FilingWastage[]
   buffingWastages     BuffingWastage[]
+  SettingWastage      SettingWastage[]
 }
 
 model FilingEntry {
@@ -307,7 +309,6 @@ model SettingEntry {
   casting_item_id     Int
   filingItems         FilingItems[]
   settingTotalBalance SettingTotalBalance[]
-  settingWastage      SettingWastage[]
   LotSettingMapper    LotSettingMapper[]
 
   SettingItems SettingItems[]
@@ -366,19 +367,22 @@ model SettingWastage {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  total_receipt      Float
+  total_stone_count  Float
   total_wastage      Float
   balance            Float
   wastage_percentage Int
-  given_gold         Int?
+  given_gold         Float?
   add_wastage        Float?
   overall_wastage    Float
   closing_balance    Float
   opening_balance    Float
 
-  setting_items    SettingItems[]
-  setting_entry_id Int
-  SettingEntryId   SettingEntry   @relation(fields: [setting_entry_id], references: [id])
+  setting_person_id Int?
+  settingPersonId   AddSetting? @relation(fields: [setting_person_id], references: [id])
+  setting_lot_id    Int?
+  settingLotId      LotInfo?    @relation(fields: [setting_lot_id], references: [id])
+
+  setting_items SettingItems[]
 }
 
 model BuffingEntry {
