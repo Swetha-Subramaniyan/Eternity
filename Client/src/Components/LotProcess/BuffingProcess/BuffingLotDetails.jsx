@@ -3,7 +3,6 @@ import Navbar from "../../Navbar/Navbar";
 import styles from "./BuffingLotDetails.module.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { major } from "@mui/material";
 import { BACKEND_SERVER_URL } from "../../../../Config/config";
 import {
   DialogActions,
@@ -22,7 +21,6 @@ const BuffingLotDetails = () => {
   const [date, setDate] = useState(today);
   const [selectedItems, setSelectedItems] = useState([]);
   const [mainTableData, setMainTableData] = useState([]);
-  major;
   const [popupData, setPopupData] = useState([]);
   const [viewEntry, setViewEntry] = useState(null);
   const { id, name, lotNumber } = useParams();
@@ -45,6 +43,7 @@ const BuffingLotDetails = () => {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+
 
   useEffect(() => {
     const fetchDropdowns = async () => {
@@ -76,27 +75,41 @@ const BuffingLotDetails = () => {
         `http://localhost:5000/api/buffingentry/person/${id}/${lotNumber}`
       );
 
+
       setActive(res.data.lotFilingMapper?.isactive);
+
 
       const formatted = res.data.map((entry) => ({
         id: entry.id,
         date: new Date(entry.createdAt).toISOString().split("T")[0],
         items:
           entry.lotBuffingMapper.length > 0
-            ? entry.lotBuffingMapper.map((mapper) => ({
-                id: mapper.filing_item_id || mapper.setting_item_id,
-                item:
-                  mapper.filing_item_name ||
-                  mapper.setting_item_name ||
-                  entry.item_name,
-                weight: mapper.filing_item_weight || entry.casting_item_weight,
-                touch: mapper.filing_item_touch || entry.touch,
-                purity: mapper.filing_item_purity || entry.casting_item_purity,
-                remarks:
-                  mapper.filing_item_remarks || entry.casting_item_remarks,
-                stoneCount: "-",
-                stoneWeight: "-",
-              }))
+            ? entry.lotBuffingMapper.map((mapper) => {
+                let stoneCount = "-";
+                let stoneWeight = "-";
+  
+                // If setting_entry_id exists, take values from setting_total_balance
+                if (mapper.setting_entry_id && mapper.setting_total_balance?.length) {
+                  const settingBalance = mapper.setting_total_balance[0]; // assuming one record
+                  stoneCount = settingBalance.stone_count || "-";
+                  stoneWeight = settingBalance.stone_weight || "-";
+                }
+  
+                return {
+                  id: mapper.filing_item_id || mapper.setting_item_id,
+                  item:
+                    mapper.filing_item_name ||
+                    mapper.setting_item_name ||
+                    entry.item_name,
+                  weight: mapper.filing_item_weight || entry.casting_item_weight,
+                  touch: mapper.filing_item_touch || entry.touch,
+                  purity: mapper.filing_item_purity || entry.casting_item_purity,
+                  remarks:
+                    mapper.filing_item_remarks || entry.casting_item_remarks,
+                  stoneCount,
+                  stoneWeight,
+                };
+              })
             : [
                 {
                   id: entry.casting_item_id,
@@ -109,7 +122,7 @@ const BuffingLotDetails = () => {
                   stoneWeight: "-",
                 },
               ],
-
+  
         receiptWeight: entry.receiptWeight || "-",
         remarks: entry.remarks || "",
         wastage: entry.wastage || "-",
@@ -122,18 +135,18 @@ const BuffingLotDetails = () => {
             purity: bi.item_purity,
             remarks: bi.scrap_remarks,
           })) || [],
-
+  
         totalScrapWeight: entry.totalScrapWeight || "-",
         balance: entry.balance || "-",
       }));
-
+  
       setMainTableData(formatted);
       console.log("buffing datas", formatted);
     } catch (error) {
       console.error("Error fetching buffing entries:", error);
     }
   };
-
+  
   const fetchWastageData = async () => {
     try {
       const response = await axios.get(
@@ -325,41 +338,60 @@ const BuffingLotDetails = () => {
     );
 
     setOpen(true);
+
   };
+
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get(
+        // Filing items (flat structure, as before)
+        const filingRes = await axios.get(
           "http://localhost:5000/api/filingitems/filingitems/available"
         );
-        const filtered = res.data.filter(
+        const filingFiltered = filingRes.data.filter(
           (item) =>
             item.stone_option === "WithoutStone" && item.status === "Unassigned"
         );
-        console.log("Filtered items from Filing Process", filtered);
-
-        const transformed = filtered.map((item) => ({
+        const filingTransformed = filingFiltered.map((item) => ({
           id: item.id,
           item: item.filingitem?.name,
           weight: item.weight,
           touch: item.touch?.touch || "-",
           purity: item.item_purity,
           remarks: item.remarks,
-          stoneCount: item.stoneCount || "-",
-          stoneWeight: item.stoneWeight || "-",
+          stoneCount: "-",
+          stoneWeight: "-",
           status: item.status || "Unassigned",
+          source: "Filing",
         }));
-
-        setPopupData(transformed);
+  
+        // Lot setting mappers (grouped)
+        const lotSettingRes = await axios.get(
+          "http://localhost:5000/api/settingentry/lotsettingmapper"
+        );
+  
+        // Filter only entries with status 'Unassigned'
+        const unassignedLotSettings = lotSettingRes.data.filter(
+          (entry) => entry.status === "Unassigned"
+        );
+  
+        // No need to flatten, keep grouped structure
+        const lotSettingTransformed = unassignedLotSettings.map((entry) => ({
+          ...entry, // keep all top-level fields (settingEntryId, lotNumber, stoneCount, etc.)
+          source: "Setting",
+        }));
+  
+        // Merge filing items (flat) and grouped setting entries
+        setPopupData([...filingTransformed, ...lotSettingTransformed]);
       } catch (error) {
-        console.error("Error fetching filing items:", error);
+        console.error("Error fetching items for popup:", error);
       }
     };
-
+  
     fetchItems();
   }, []);
-
+  
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
@@ -374,8 +406,46 @@ const BuffingLotDetails = () => {
     );
   };
 
-  // http://localhost:5000/api/buffingitems/:id - DELETE
 
+  const handleDeleteScrapItem = async (scrap, idx) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this scrap item?"
+    );
+    if (!confirmDelete) return;
+  
+    try {
+      if (scrap.id) {
+        await axios.delete(`${BACKEND_SERVER_URL}/api/buffingitems/${scrap.id}`);
+      }
+  
+      //  Update scrapItems state immediately
+      const updatedScrapItems = scrapItems.filter((_, i) => i !== idx);
+      setScrapItems(updatedScrapItems);
+  
+      //  Recalculate total scrap weight and balance
+      const totalScrapWeight = updatedScrapItems.reduce( (sum, s) => sum + (parseFloat(s.weight) || 0),  0   );
+      const totalWeight = viewEntry.items.reduce((sum, item) => sum + (parseFloat(item.weight) || 0),  0 ); 
+      const balance =  totalWeight - (parseFloat(receiptWeight) || 0) - totalScrapWeight;
+  
+      //  Update main table entry in state
+      setMainTableData((prev) =>
+        prev.map((e) =>
+          e.id === viewEntry.id
+            ? { ...e, scrapItems: updatedScrapItems, totalScrapWeight, balance }
+            : e
+        )
+      );
+  
+      // alert("Scrap item deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting scrap item:", error);
+      alert("Failed to delete scrap item.");
+    }
+  };
+
+
+  
+   
   useEffect(() => {
     setFilteredData(mainTableData);
   }, [mainTableData]);
@@ -401,7 +471,7 @@ const BuffingLotDetails = () => {
     setToDate("");
     setFilteredData(mainTableData);
   };
-
+//new
   // Monthly wastage calculations
   const totalReceipt = filteredData.reduce((sum, entry) => {
     return sum + (parseFloat(entry.receiptWeight) || 0);
@@ -596,67 +666,73 @@ const BuffingLotDetails = () => {
             <th>Actions</th>
           </tr>
         </thead>
+
         <tbody>
-          {filteredData.length > 0 ? (
-            filteredData.map((entry, index) =>
-              entry.items.map((item, i) => (
-                <tr key={item.id}>
-                  {i === 0 && (
-                    <>
-                      <td rowSpan={entry.items.length}>{index + 1}</td>
-                      <td rowSpan={entry.items.length}>{entry.date}</td>
-                    </>
-                  )}
-                  <td>{item.item}</td>
-                  <td>{item.weight}</td>
-                  <td>{item.touch}</td>
-                  <td>{item.purity}</td>
-                  <td>{item.remarks}</td>
-                  <td>{item.stoneCount || "-"}</td>
-                  <td>{item.stoneWeight || "-"}</td>
-                  {i === 0 && (
-                    <>
-                      <td rowSpan={entry.items.length}>
-                        {entry.receiptWeight || "-"}
-                      </td>
-                      <td rowSpan={entry.items.length}>
-                        {entry.wastage || "-"}
-                      </td>
-                      <td rowSpan={entry.items.length}>
-                        {entry.scrapItems?.map((s) => s.itemName).join(", ") ||
-                          "-"}
-                      </td>
-                      <td rowSpan={entry.items.length}>
-                        {entry.scrapItems?.length || "-"}
-                      </td>
-                      <td rowSpan={entry.items.length}>
-                        {entry.totalScrapWeight || "-"}
-                      </td>
-                      <td rowSpan={entry.items.length}>
-                        {entry.balance || "-"}
-                      </td>
-                      <td rowSpan={entry.items.length}>
-                        <Button
-                          variant="outlined"
-                          size="small"
-                          onClick={() => handleView(entry)}
-                        >
-                          View
-                        </Button>
-                      </td>
-                    </>
-                  )}
-                </tr>
-              ))
-            )
-          ) : (
-            <tr>
-              <td colSpan="16" align="center">
-                No records found
-              </td>
-            </tr>
+
+  {filteredData.length > 0 ? (
+    filteredData.map((entry, index) =>
+      entry.items.map((item, i) => (
+        <tr key={item.id}>
+          {i === 0 && (
+            <>
+              <td rowSpan={entry.items.length}>{index + 1}</td>
+              <td rowSpan={entry.items.length}>{entry.date}</td>
+            </>
           )}
-        </tbody>
+          <td>{item.item}</td>
+          <td>{item.weight}</td>
+          <td>{item.touch}</td>
+          <td>{item.purity}</td>
+          <td>{item.remarks}</td>
+
+          {/* Stone fields: Filing items show "-", Setting items show popup values */}
+          {i === 0 && (
+            <>
+              <td rowSpan={entry.items.length}>
+                {entry.source === "Filing" ? "-" : item.stoneCount || "-"}
+
+              </td>
+              <td rowSpan={entry.items.length}>
+                {entry.source === "Filing" ? "-" : item.stoneWeight || "-"}
+              </td>
+            </>
+          )}
+
+          {i === 0 && (
+            <>
+              <td rowSpan={entry.items.length}>{entry.receiptWeight || "-"}</td>
+              <td rowSpan={entry.items.length}>{entry.wastage || "-"}</td>
+              <td rowSpan={entry.items.length}>
+                {entry.scrapItems?.map((s) => s.itemName).join(", ") || "-"}
+              </td>
+              <td rowSpan={entry.items.length}>
+                {entry.scrapItems?.length || "-"}
+              </td>
+              <td rowSpan={entry.items.length}>{entry.totalScrapWeight || "-"}</td>
+              <td rowSpan={entry.items.length}>{entry.balance || "-"}</td>
+              <td rowSpan={entry.items.length}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={() => handleView(entry)}
+                >
+                  View
+                </Button>
+              </td>
+            </>
+          )}
+        </tr>
+      ))
+    )
+  ) : (
+    <tr>
+      <td colSpan="16" align="center">
+        No records found
+      </td>
+    </tr>
+  )}
+</tbody>
+     
       </table>
 
       {/* Monthly Wastage Box - Similar to Filing */}
@@ -834,41 +910,110 @@ const BuffingLotDetails = () => {
                   {!viewEntry && <th>Status</th>}
                 </tr>
               </thead>
-              <tbody>
-                {(viewEntry ? viewEntry.items : popupData).map(
-                  (item, index) => (
-                    <tr key={item.id}>
-                      <td>{index + 1}</td>
-                      {!viewEntry && (
-                        <td>
-                          {/* <input
-                    type="checkbox"
-                    checked={selectedItems.some((i) => i.id === item.id)}
-                    onChange={() => handleCheckboxChange(item)}
-                  /> */}
-                          <Checkbox
-                            checked={selectedItems.some(
-                              (i) => i.id === item.id
-                            )}
-                            onChange={() => handleCheckboxChange(item)}
-                          />
-                        </td>
-                      )}
-                      <td>{item.item}</td>
-                      <td>{item.weight}</td>
-                      <td>{item.touch}</td>
-                      <td>{item.purity}</td>
-                      <td>{item.remarks}</td>
-                      <td>{item.stoneCount}</td>
-                      <td>{item.stoneWeight}</td>
-                      {!viewEntry && <td>{item.status || "Unassigned"}</td>}
-                    </tr>
-                  )
+<tbody>
+  {viewEntry ? (
+
+    viewEntry.items.map((item, index) => (
+      <tr key={item.id}>
+        <td>{index + 1}</td>
+        <td>{item.item}</td>
+        <td>{item.weight}</td>
+        <td>{item.touch}</td>
+        <td>{item.purity}</td>
+        <td>{item.remarks}</td>
+        <td>{item.stoneCount}</td>
+        <td>{item.stoneWeight}</td>
+      </tr>
+    ))
+  ) : (
+   
+    popupData.map((entry, idx) => {
+      // Filing items (no grouping)
+      if (!entry.settingEntryId && !entry.items) {
+        return (
+          <tr key={`filing-${entry.id}`}>
+            <td>{idx + 1}</td>
+            <td>
+              <Checkbox
+                checked={selectedItems.some((i) => i.id === entry.id)}
+                onChange={() => handleCheckboxChange(entry)}
+              />
+            </td>
+            <td>{entry.item}</td>
+            <td>{entry.weight}</td>
+            <td>{entry.touch}</td>
+            <td>{entry.purity}</td>
+            <td>{entry.remarks}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>{entry.status}</td>
+          </tr>
+        );
+      }
+
+      // Grouped setting entries
+      return entry.items.map((item, subIdx) => (
+        <tr key={`item-${item.id}`}>
+          {subIdx === 0 && <td rowSpan={entry.items.length}>{idx + 1}</td>}
+          {subIdx === 0 && (
+            <td rowSpan={entry.items.length}>
+              <Checkbox
+                checked={entry.items.every((i) =>
+                  selectedItems.some((s) => s.id === i.id)
                 )}
-              </tbody>
+                indeterminate={
+                  entry.items.some((i) =>
+                    selectedItems.some((s) => s.id === i.id)
+                  ) &&
+                  !entry.items.every((i) =>
+                    selectedItems.some((s) => s.id === i.id)
+                  )
+                }
+                onChange={() => {
+                  const allSelected = entry.items.every((i) =>
+                    selectedItems.some((s) => s.id === i.id)
+                  );
+                  if (allSelected) {
+                    setSelectedItems((prev) =>
+                      prev.filter((s) => !entry.items.some((i) => i.id === s.id))
+                    );
+                  } else {
+                    setSelectedItems((prev) => [
+                      ...prev.filter(
+                        (s) => !entry.items.some((i) => i.id === s.id)
+                      ),
+                      ...entry.items,
+                    ]);
+                  }
+                }}
+              />
+            </td>
+          )}
+
+          <td>{item.item}</td>
+          <td>{item.weight}</td>
+          <td>{item.touch}</td>
+          <td>{item.purity}</td>
+          <td>{item.remarks}</td>
+          {subIdx === 0 && (
+            <>
+              <td rowSpan={entry.items.length}>{entry.stoneCount}</td>
+              <td rowSpan={entry.items.length}>{entry.stoneWeight}</td>
+            </>
+          )}
+          {subIdx === 0 && (
+            <td rowSpan={entry.items.length}>Unassigned</td>
+          )}
+        </tr>
+      ));
+    })
+  )}
+</tbody>
+
               {viewEntry && (
                 <tfoot>
                   <tr>
+
                     <td colSpan={2}>
                       {" "}
                       <b> Total </b>
@@ -883,6 +1028,7 @@ const BuffingLotDetails = () => {
                           .toFixed(2)}{" "}
                       </b>
                     </td>
+
                     <td colSpan={6}></td>
                   </tr>
                 </tfoot>
@@ -891,7 +1037,7 @@ const BuffingLotDetails = () => {
 
             {viewEntry && (
               <>
-                <Box sx={{ mt: 3, display: "flex", gap: 15 }}>
+                <Box sx={{ mt: 3, display: "flex", gap: 65 }}>
                   <TextField
                     label="Receipt Weight"
                     type="number"
@@ -902,14 +1048,14 @@ const BuffingLotDetails = () => {
                       setReceiptWeight(parseFloat(e.target.value) || 0)
                     }
                   />
-                  <TextField
+                  {/* <TextField
                     label="Remarks"
                     type="text"
                     fullWidth
                     required
                     value={remarks}
                     onChange={(e) => setRemarks(e.target.value)}
-                  />
+                  /> */}
                   <Box
                     sx={{
                       display: "flex",
@@ -1065,9 +1211,11 @@ const BuffingLotDetails = () => {
                             <Button
                               onClick={() => handleDeleteScrapItem(scrap, idx)}
                             >
-                              <DeleteIcon style={{ color: "red" }} />
+                              <DeleteIcon style={{ color: "red" }} /> 
                             </Button>
+                            
                           </td>
+
                         </tr>
                       ))}
                     </tbody>
@@ -1077,11 +1225,8 @@ const BuffingLotDetails = () => {
                     <Typography>
                       <strong>Total Scrap Weight:</strong>
                       {scrapItems
-                        .reduce(
-                          (sum, s) => sum + (parseFloat(s.weight) || 0),
-                          0
-                        )
-                        .toFixed(2)}
+                        .reduce( (sum, s) => sum + (parseFloat(s.weight) || 0),   0 )  .toFixed(2)}
+                      
                     </Typography>
 
                     <Typography>

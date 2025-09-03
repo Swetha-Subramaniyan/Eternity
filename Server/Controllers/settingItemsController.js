@@ -406,6 +406,7 @@ export const deleteSettingItem = async (req, res) => {
 
 
 
+
 export const createSettingWastage = async (req, res) => {
 
   try {
@@ -598,3 +599,4 @@ export const closeJobcardAndCreateNewLot = async (req, res) => {
       .json({ message: "Failed to close jobcard and create new lot" });
   }
 };
+

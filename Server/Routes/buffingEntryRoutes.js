@@ -8,3 +8,4 @@ router.get("/person/:buffing_person_id/:lotNumber", getBuffingEntriesByPersonId)
 export default router;
 
 
+

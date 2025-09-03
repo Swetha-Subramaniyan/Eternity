@@ -168,6 +168,8 @@ const SettingLotDetails = () => {
     );
   };
 
+
+
   const handleSave = async () => {
     try {
       const payload = {
@@ -484,6 +486,7 @@ const SettingLotDetails = () => {
       </div>
 
       {/* Main Table */}
+
       <table
         className={styles.table}
         border="1"
@@ -999,6 +1002,7 @@ const SettingLotDetails = () => {
                   </Button>
                 </Box>
               </Box>
+
 
               {/* Scrap Items Table */}
               <Box sx={{ mt: 2 }}>

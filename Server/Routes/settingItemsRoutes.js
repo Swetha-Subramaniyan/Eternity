@@ -25,3 +25,4 @@ router.put("/wastage/:id", updateSettingWastage);
 router.post("/close-jobcard", closeJobcardAndCreateNewLot);
 
 export default router;
+
