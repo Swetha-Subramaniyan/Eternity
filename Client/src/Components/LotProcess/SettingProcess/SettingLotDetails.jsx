@@ -867,7 +867,7 @@ const SettingLotDetails = () => {
                     <th>Remarks</th>
                   </tr>
                 </thead>
-                <tbody>
+                {/* <tbody>
                   {viewData.filingItems.map((fi, index) => (
                     <tr key={fi.id}>
                       <td>{index + 1}</td>
@@ -878,7 +878,23 @@ const SettingLotDetails = () => {
                       <td>{fi.remarks}</td>
                     </tr>
                   ))}
-                </tbody>
+                </tbody> */}
+  <tbody>
+  {viewData.filingItems.map((fi, i) => (
+    <tr key={fi.id}>
+      {i === 0 && (
+        <td rowSpan={viewData.filingItems.length}>{1}</td>
+      )}
+      <td>{fi.item_name}</td>
+      <td>{fi.weight}</td>
+      <td>{fi.touch}</td>
+      <td>{fi.purity}</td>
+      <td>{fi.remarks}</td>
+    </tr>
+  ))}
+</tbody>
+
+
                 <tfoot>
                   <tr>
                     <td colSpan={2}>
