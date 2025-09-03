@@ -600,7 +600,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "mysql://root:password@localhost:3306/eternity31"
+        "value": "mysql://Ashwin:HjFzMtqUciOlv8wK3PFpSBIqj@mariadb-163077-0.cloudclusters.net:19986/eternity"
       }
     }
   },
