@@ -86,7 +86,7 @@ export const createFilingEntry = async (req, res) => {
       details: error?.message || error,
     });
   }
-};
+};     
 
 export const getAllFilingEntries = async (req, res) => {
   try {
@@ -201,7 +201,7 @@ export const getFilingEntryById = async (req, res) => {
         {
           id: parentFilingEntry.id,
           lotFilingMapper: lotMappers.map((lm) => {
-            const casting = lm.itemId || {}; // Already joined CastingItems via itemId
+            const casting = lm.itemId || {}; 
 
             return {
               id: lm.id,
@@ -446,6 +446,117 @@ export const deleteFilingEntry = async (req, res) => {
 
     res.status(200).json({ message: "Filing Entry deleted" });
   } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getReportFillingEntries = async (req, res) => {
+  try {
+    const { fromDate, toDate } = req.query;
+
+    // Build date filter if provided
+    let dateFilter = {};
+    if (fromDate && toDate) {
+      dateFilter = {
+        createdAt: {
+          gte: new Date(fromDate),
+          lte: new Date(new Date(toDate).setHours(23, 59, 59, 999))
+        }
+      };
+    }
+
+    const entries = await prisma.filingEntry.findMany({
+      where: {
+        ...dateFilter
+      },
+      include: {
+        filing_person: true,
+        filingTotalBalance: true,
+        castingItem: {
+          include: {
+            item: true,
+            touch: true,
+          },
+        },
+        filingItems: {
+          include:{
+            filingitem:true,
+            touch:true
+          }
+        },
+        LotFilingMapper: {
+          include: {
+            itemId: {
+              include: {
+                item: true,
+                touch: true,
+              },
+            },
+            lotId: true,
+            filingId: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    if (!entries || entries.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No filing entries found" });
+    }
+
+    console.log("Fetched Entries:", entries); 
+
+    // Flatten and enrich the data for frontend usage
+    const result = entries.map((entry) => ({
+      id: entry.id,
+      createdAt: entry.createdAt,
+      filing_person_id: entry.filing_person_id,
+      filing_person_name: entry.filing_person?.name || "",
+      casting_item_id: entry.casting_item_id,
+      casting_item_weight: entry.castingItem?.weight || 0,
+      casting_item_type: entry.castingItem?.type || "",
+      casting_item_purity: entry.castingItem?.item_purity || 0,
+      casting_item_remarks: entry.castingItem?.remarks || "",
+      item_name: entry.castingItem?.item?.name || "",
+      filingItems: entry.filingItems || [],
+
+      castingItems: entry.LotFilingMapper.map((mapper) => ({
+        id: mapper.item_id,
+        item_name: mapper.itemId?.item?.name || "",
+        weight: mapper.itemId?.weight || 0,
+        type: mapper.itemId?.type || "",
+        purity: mapper.itemId?.item_purity || 0,
+        remarks: mapper.itemId?.remarks || "",
+        touch: mapper.itemId?.touch?.touch || "",
+      })),
+
+      lotFilingMapper: entry.LotFilingMapper.map((mapper) => ({
+        lot_id: mapper.lot_id,
+        lot_number: mapper.lotId?.lotNumber || "",
+        lot_name: mapper.lotId?.lot_no || "",
+        isactive: mapper.lotId?.IsActive || false,
+        item_id: mapper.item_id,
+        item_name: mapper.itemId?.item?.name || "",
+        filing_id: mapper.filing_id,
+        filing_person_name: mapper.filingId?.name || "",
+        filing_entry_id: mapper.filing_entry_id,
+      })),
+
+      filingTotalBalance: entry.filingTotalBalance.map((balance) => ({
+        after_weight: balance.after_weight ?? null,
+        total_product_weight: balance.total_product_weight ?? null,
+        current_balance_weight: balance.current_balance_weight ?? null,
+        total_scrap_weight: balance.total_scrap_weight ?? null,
+        wastage: balance.wastage ?? null,
+        balance: balance.balance ?? null,
+      })),
+    }));
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error in getAllFilingEntries:", error);
     res.status(500).json({ error: error.message });
   }
 };
