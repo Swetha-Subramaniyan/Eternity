@@ -600,7 +600,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "mysql://root:password@localhost:3306/eternity31"
+        "value": "mysql://root:password@localhost:3306/eternitycom"
       }
     }
   },
