@@ -9,7 +9,7 @@ export const addToStock = async (req, res) => {
     // Step 1: Get the casting item by ID
     const castingItem = await prisma.castingItems.findUnique({
       where: { id: Number(casting_item_id) },
-      include: { item: true , // include related item if needed
+      include: { item: true , 
       castingEntry: true,}
     });
 
@@ -54,6 +54,7 @@ export const getAllStock = async (req, res) => {
     const stock = await prisma.stock.findMany({
       include:{
         item: true,
+        touch:true,
         castingItem:{
           include:{
             castingEntry:{

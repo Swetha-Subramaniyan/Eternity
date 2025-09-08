@@ -122,12 +122,7 @@ export const getSettingEntriesByPersonId = async (req, res) => {
     if (!setting_person_id) {
       return res.status(400).json({ error: "setting_person_id is required" });
     }
-
-
     const lotNumber = parseInt(req.params.lotNumber);
-
-
-    
     const LotId = await prisma.LotInfo.findFirst({
       where: {
         lotNumber: lotNumber,
@@ -418,3 +413,154 @@ export const getAllLotSettingMapperWithItems = async (req, res) => {
   }
 };
 
+
+
+
+export const getReportSettingEntries = async (req, res) => {
+  try {
+    const { fromDate, toDate } = req.query;
+
+    // Build date filter if provided
+    let dateFilter = {};
+    if (fromDate && toDate) {
+      dateFilter = {
+        createdAt: {
+          gte: new Date(fromDate),
+          lte: new Date(new Date(toDate).setHours(23, 59, 59, 999))
+        }
+      };
+    }
+
+    const entries = await prisma.settingEntry.findMany({
+      where: {
+        ...dateFilter
+      },
+      include: {
+        setting_person: true,
+        castingItem: {
+          include: {
+            item: true,
+            touch: true,
+          },
+        },
+        filingItems: {
+          include: {
+            filingitem: true,
+            touch: true,
+            lotFilingMapperId: {
+              include: {
+                lotId: true,
+                filingId: true,
+              },
+            },
+            filing_entry: {
+              include: {
+                filing_person: true,
+              },
+            },
+          },
+        },
+        
+        LotSettingMapper: {
+          include: {
+            lotId: true,
+            settingId: true,
+            itemId: {
+              include: {
+                filingitem: true,
+                touch: true,
+              },
+            },
+          },
+        },
+        settingTotalBalance: true,
+        SettingItems: {
+          include: {
+            item: true,
+            touch: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    if (!entries || entries.length === 0) {
+      return res.status(404).json({ message: "No setting entries found" });
+    }
+
+    console.log("Fetched Setting Entries:", entries);
+
+    const result = entries.map((entry) => ({
+      id: entry.id,
+      createdAt: entry.createdAt,
+      setting_person_id: entry.setting_person_id,
+      setting_person_name: entry.setting_person?.name || "",
+      casting_item_id: entry.casting_item_id,
+      casting_item_weight: entry.castingItem?.weight || 0,
+      casting_item_type: entry.castingItem?.type || "",
+      casting_item_purity: entry.castingItem?.item_purity || 0,
+      casting_item_remarks: entry.castingItem?.remarks || "",
+      item_name: entry.castingItem?.item?.name || "",
+
+      filingItems: entry.filingItems.map((item) => ({
+        id: item.id,
+        type: item.type,
+        filing_item_id: item.filing_item_id,
+        filing_item_name: item.filingitem?.name || "",
+        weight: item.weight,
+        touch: item.touch?.touch || 0,
+        item_purity: item.item_purity,
+        remarks: item.remarks || "",
+      })),
+
+      settingItems: entry.SettingItems.map((item) => ({
+        id: item.id,
+        type: item.type,
+        item_name: item.item?.name || "",
+        scrap_weight: item.scrap_weight,
+        item_purity: item.item_purity,
+        touch: item.touch?.touch || 0,
+        scrap_remarks: item.scrap_remarks || "",
+      })),
+
+      lotSettingMapper: entry.LotSettingMapper.map((mapper) => {
+        const filingItem = mapper.itemId;
+      
+        return {
+          lot_id: mapper.lot_id,
+          lot_number: mapper.lotId?.lotNumber || "",
+          lot_name: mapper.lotId?.lot_no || "",
+          isactive: mapper.lotId?.IsActive || false,
+          filing_item_id: mapper.filing_item_id,
+          filing_item_name: filingItem?.filingitem?.name || "",
+          weight: filingItem?.weight || 0,
+          item_purity: filingItem?.item_purity || 0,
+          touch: filingItem?.touch?.touch || 0,
+          stone_option: filingItem?.stone_option || null,
+          remarks: filingItem?.remarks || "",
+          setting_entry_id: mapper.setting_entry_id,
+          setting_person_name: mapper.settingId?.name || "",
+        };
+      }),
+      
+      settingTotalBalance: entry.settingTotalBalance.map((balance) => ({
+        receipt_weight: balance.receipt_weight,
+        stone_count: balance.stone_count,
+        stone_weight: balance.stone_weight,
+        remarks: balance.remarks,
+        wastage: balance.wastage,
+        total_product_weight: balance.total_product_weight,
+        current_balance_weight: balance.current_balance_weight,
+        total_scrap_weight: balance.total_scrap_weight,
+        balance: balance.balance,
+      })),
+    }));
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error in getReportSettingEntries:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+    

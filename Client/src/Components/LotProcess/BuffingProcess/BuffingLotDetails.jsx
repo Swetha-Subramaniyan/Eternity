@@ -725,11 +725,14 @@ const BuffingLotDetails = () => {
                       <td rowSpan={entry.items.length}>
                         {entry.totalScrapWeight || "-"}
                       </td>
-                      <td rowSpan={entry.items.length}>
-
+                      {/* <td rowSpan={entry.items.length}>
                         {entry.balance || "-"}
-
-                      </td>
+                      </td> */}
+                      <td rowSpan={entry.items.length}>
+  {entry.balance !== undefined && entry.balance !== null
+    ? parseFloat(entry.balance).toFixed(2)
+    : "-"}
+</td>
                       <td rowSpan={entry.items.length}>
                         <Button
                           variant="outlined"

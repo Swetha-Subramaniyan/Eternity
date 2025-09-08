@@ -365,4 +365,170 @@ console.log('Entries', entries)
 
 
 
+// export const getReportSettingEntries = async (req,res)=>{
+//   try{
+
+//   }catch(error){
+//     console.error("Error in getReportBuffingEntries:", error);
+//     res.status(500).json({ error: error.message });
+//   }
+// }
+
+
+export const getReportBuffingEntries = async (req, res) => {
+  try {
+    const { fromDate, toDate } = req.query;
+
+    // Build date filter if provided
+    let dateFilter = {};
+    if (fromDate && toDate) {
+      dateFilter = {
+        createdAt: {
+          gte: new Date(fromDate),
+          lte: new Date(new Date(toDate).setHours(23, 59, 59, 999))
+        }
+      };
+    }
+
+    const entries = await prisma.buffingEntry.findMany({
+      where: {
+        ...dateFilter
+      },
+      include: {
+        buffing_person: true,
+        castingItem: {
+          include: {
+            item: true,
+            touch: true,
+          },
+        },
+        filing_items: {
+          include: {
+            filingitem: true,
+            touch: true,
+            lotFilingMapperId: {
+              include: {
+                lotId: true,
+                filingId: true,
+              },
+            },
+            filing_entry: {
+              include: {
+                filing_person: true,
+              },
+            },
+          },
+        },
+        setting_items: {
+          include: {
+            item: true,
+            touch: true,
+          },
+        },
+        BuffingItems: {
+          include: {
+            item: true,
+            touch: true,
+          },
+        },
+        LotBuffingMapper: {
+          include: {
+            lotId: true,
+            buffingEntry: true,
+            filingItemId: {
+              include: {
+                filingitem: true,
+                touch: true,
+              },
+            },
+          },
+        },
+        BuffingTotalBalance: true,
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    if (!entries || entries.length === 0) {
+      return res.status(404).json({ message: "No buffing entries found" });
+    }
+
+    console.log("Fetched Buffing Entries:", entries);
+
+    const result = entries.map((entry) => ({
+      id: entry.id,
+      createdAt: entry.createdAt,
+      buffing_person_id: entry.buffing_person_id,
+      buffing_person_name: entry.buffing_person?.name || "",
+      casting_item_id: entry.casting_item_id,
+      casting_item_weight: entry.castingItem?.weight || 0,
+      casting_item_type: entry.castingItem?.type || "",
+      casting_item_purity: entry.castingItem?.item_purity || 0,
+      casting_item_remarks: entry.castingItem?.remarks || "",
+      item_name: entry.castingItem?.item?.name || "",
+
+      filingItems: entry.filing_items.map((item) => ({
+        id: item.id,
+        type: item.type,
+        filing_item_id: item.filing_item_id,
+        filing_item_name: item.filingitem?.name || "",
+        weight: item.weight,
+        touch: item.touch?.touch || 0,
+        item_purity: item.item_purity,
+        remarks: item.remarks || "",
+      })),
+
+      settingItems: entry.setting_items.map((item) => ({
+        id: item.id,
+        type: item.type,
+        item_name: item.item?.name || "",
+        scrap_weight: item.scrap_weight,
+        item_purity: item.item_purity,
+        touch: item.touch?.touch || 0,
+        scrap_remarks: item.scrap_remarks || "",
+      })),
+
+      buffingItems: entry.BuffingItems.map((item) => ({
+        id: item.id,
+        type: item.type,
+        item_name: item.item?.name || "",
+        scrap_weight: item.scrap_weight,
+        item_purity: item.item_purity,
+        touch: item.touch?.touch || 0,
+        scrap_remarks: item.scrap_remarks || "",
+      })),
+
+      lotBuffingMapper: entry.LotBuffingMapper.map((mapper) => {
+        const filingItem = mapper.filingItemId;
+
+        return {
+          lot_id: mapper.lot_id,
+          lot_number: mapper.lotId?.lotNumber || "",
+          lot_name: mapper.lotId?.lot_no || "",
+          isactive: mapper.lotId?.IsActive || false,
+          filing_item_id: mapper.filing_item_id,
+          filing_item_name: filingItem?.filingitem?.name || "",
+          weight: filingItem?.weight || 0,
+          item_purity: filingItem?.item_purity || 0,
+          touch: filingItem?.touch?.touch || 0,
+          remarks: filingItem?.remarks || "",
+          buffing_entry_id: mapper.buffing_entry_id,
+          buffing_person_name: entry.buffing_person?.name || "",
+        };
+      }),
+
+      buffingTotalBalance: entry.BuffingTotalBalance.map((balance) => ({
+        receipt_weight: balance.receipt_weight,
+        remarks: balance.remarks,
+        wastage: balance.wastage,
+        total_scrap_weight: balance.total_scrap_weight,
+        balance: balance.balance,
+      })),
+    }));
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error in getReportBuffingEntries:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
 
