@@ -7,15 +7,16 @@ import {
   deleteFilingEntry,
   getFilingEntriesByPersonId,
   getFilingEntryByFilingId,
-  getReportFillingEntries
+  getReportFillingEntries,
+  getAllProcessEntries
 
 } from "../Controllers/filingEntryController.js"
 
 const router = express.Router();
 
+router.get("/process-entries", getAllProcessEntries);
 router.get("/get-report-entries", getReportFillingEntries);
 router.post("/", createFilingEntry);
-
 router.get("/", getAllFilingEntries);
 router.get("/:id", getFilingEntryById);
 router.put("/:id", updateFilingEntry);

@@ -32,6 +32,7 @@ import CastingMeltingReports from './Components/Report/CastingMeltingReports';
 import SettingReports from './Components/Report/SettingReports';
 import FilingReports from './Components/Report/FilingReports';
 import BuffingReports from './Components/Report/BuffingReports';
+import WorkerReport from './Components/Report/workerReport';
 import FilingLotDetails from './Components/LotProcess/FilingProcess/FilingLotDetails';
 import BuffingLotDetails from './Components/LotProcess/BuffingProcess/BuffingLotDetails';
 import SettingLotDetails from './Components/LotProcess/SettingProcess/SettingLotDetails';
@@ -82,6 +83,7 @@ const App = () => {
     <Route path='/salesreport' element={<SalesReport />}/>
     <Route path='/stockreport' element={< StockReport/>}/>
     <Route path='/receiptreport' element={< ReceiptReport/>}/>
+    <Route path='/workerreport' element={< WorkerReport/>}/>
 
    </Routes>
     </BrowserRouter>
