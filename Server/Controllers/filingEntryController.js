@@ -8,7 +8,11 @@ export const createFilingEntry = async (req, res) => {
     const { filing_person_id, lot_number, itemIds } = req.body;
 
     if (
-      !filing_person_id || !lot_number || !Array.isArray(itemIds) || itemIds.length === 0) {
+      !filing_person_id ||
+      !lot_number ||
+      !Array.isArray(itemIds) ||
+      itemIds.length === 0
+    ) {
       return res.status(400).json({
         error:
           "filing_person_id, lot_number, and at least one casting_item_id are required",
@@ -25,10 +29,13 @@ export const createFilingEntry = async (req, res) => {
       },
     });
 
-    if (!LotId) {   
+    if (!LotId) {
       return res
         .status(404)
-        .json({ error: "Lot not found with the given lot_number or Given Lot is Not Active" });
+        .json({
+          error:
+            "Lot not found with the given lot_number or Given Lot is Not Active",
+        });
     }
 
     //  Create a single FilingEntry
@@ -86,7 +93,7 @@ export const createFilingEntry = async (req, res) => {
       details: error?.message || error,
     });
   }
-};     
+};
 
 export const getAllFilingEntries = async (req, res) => {
   try {
@@ -201,7 +208,7 @@ export const getFilingEntryById = async (req, res) => {
         {
           id: parentFilingEntry.id,
           lotFilingMapper: lotMappers.map((lm) => {
-            const casting = lm.itemId || {}; 
+            const casting = lm.itemId || {};
 
             return {
               id: lm.id,
@@ -306,7 +313,7 @@ export const getFilingEntryByFilingId = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-  
+
 export const getFilingEntriesByPersonId = async (req, res) => {
   try {
     const filing_person_id = parseInt(req.params.filing_person_id);
@@ -318,7 +325,6 @@ export const getFilingEntriesByPersonId = async (req, res) => {
         filing_customer_id: filing_person_id,
       },
     });
-
 
     const entries = await prisma.filingEntry.findMany({
       where: {
@@ -390,7 +396,7 @@ export const getFilingEntriesByPersonId = async (req, res) => {
       lotFilingMapper: entry.LotFilingMapper.map((mapper) => ({
         lot_id: mapper.lot_id,
         lot_name: mapper.lotId?.lot_no || "",
-        isactive:mapper.lotId.IsActive,
+        isactive: mapper.lotId.IsActive,
         item_id: mapper.item_id,
         item_name: mapper.itemId?.item?.name || "",
         filing_id: mapper.filing_id,
@@ -460,14 +466,14 @@ export const getReportFillingEntries = async (req, res) => {
       dateFilter = {
         createdAt: {
           gte: new Date(fromDate),
-          lte: new Date(new Date(toDate).setHours(23, 59, 59, 999))
-        }
+          lte: new Date(new Date(toDate).setHours(23, 59, 59, 999)),
+        },
       };
     }
 
     const entries = await prisma.filingEntry.findMany({
       where: {
-        ...dateFilter
+        ...dateFilter,
       },
       include: {
         filing_person: true,
@@ -479,10 +485,10 @@ export const getReportFillingEntries = async (req, res) => {
           },
         },
         filingItems: {
-          include:{
-            filingitem:true,
-            touch:true
-          }
+          include: {
+            filingitem: true,
+            touch: true,
+          },
         },
         LotFilingMapper: {
           include: {
@@ -501,12 +507,10 @@ export const getReportFillingEntries = async (req, res) => {
     });
 
     if (!entries || entries.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "No filing entries found" });
+      return res.status(404).json({ message: "No filing entries found" });
     }
 
-    console.log("Fetched Entries:", entries); 
+    console.log("Fetched Entries:", entries);
 
     // Flatten and enrich the data for frontend usage
     const result = entries.map((entry) => ({
@@ -557,6 +561,369 @@ export const getReportFillingEntries = async (req, res) => {
     res.status(200).json(result);
   } catch (error) {
     console.error("Error in getAllFilingEntries:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getAllProcessEntries = async (req, res) => {
+  try {
+    const { fromDate, toDate, processType } = req.query;
+
+    // Build date filter if provided
+    let dateFilter = {};
+    if (fromDate && toDate) {
+      dateFilter = {
+        createdAt: {
+          gte: new Date(fromDate),
+          lte: new Date(new Date(toDate).setHours(23, 59, 59, 999)),
+        },
+      };
+    }
+
+    let result = [];
+
+    // Handle Casting Entries
+    if (!processType || processType === "casting") {
+      const castingEntries = await prisma.castingEntry.findMany({
+        where: {
+          ...dateFilter,
+        },
+        include: {
+          items: {
+            include: {
+              item: true,
+              touch: true,
+            },
+          },
+          casting_customer: true,
+          touch: true,
+          CastiingTotalBalance: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+
+      const formattedCastingEntries = castingEntries.map((entry) => {
+        const productItems = entry.items.filter((i) => i.type === "Items");
+        const scrapItems = entry.items.filter((i) => i.type === "ScrapItems");
+
+        const totalItemWeight = productItems.reduce(
+          (sum, item) => sum + (item.weight || 0),
+          0
+        );
+        const totalScrapWeight = scrapItems.reduce(
+          (sum, item) => sum + (item.weight || 0),
+          0
+        );
+
+        return {
+          processType: "casting",
+          id: entry.id,
+          date: entry.date,
+          createdAt: entry.createdAt,
+          given_gold: entry.given_gold,
+          final_touch: entry.final_touch,
+          final_weight: entry.final_weight,
+          pure_value: entry.pure_value,
+          purity: entry.purity,
+          copper: entry.copper,
+          customer: entry.casting_customer,
+          touch: entry.touch,
+          casting_customer_id: entry.casting_customer_id,
+          touch_id: entry.touch_id,
+          productQty: productItems.length,
+          scrapQty: scrapItems.length,
+          productItems: productItems.map((i) => i.item.name),
+          scrapItems: scrapItems.map((i) => i.item.name),
+          totalItemWeight: totalItemWeight,
+          totalScrapWeight: totalScrapWeight,
+          currentBalanceWeight:
+            entry.CastiingTotalBalance[0]?.current_balance_weight || 0,
+          totalWastage: entry.CastiingTotalBalance[0]?.total_wastage || 0,
+        };
+      });
+
+      result = [...result, ...formattedCastingEntries];
+    }
+
+    // Handle Filing Entries
+    if (!processType || processType === "filing") {
+      const filingEntries = await prisma.filingEntry.findMany({
+        where: {
+          ...dateFilter,
+        },
+        include: {
+          filing_person: true,
+          filingTotalBalance: true,
+          castingItem: {
+            include: {
+              item: true,
+              touch: true,
+            },
+          },
+          filingItems: {
+            include: {
+              filingitem: true,
+              touch: true,
+            },
+          },
+          LotFilingMapper: {
+            include: {
+              itemId: {
+                include: {
+                  item: true,
+                  touch: true,
+                },
+              },
+              lotId: true,
+              filingId: true,
+            },
+          },
+        },
+        orderBy: { createdAt: "desc" },
+      });
+
+      const formattedFilingEntries = filingEntries.map((entry) => ({
+        processType: "filing",
+        id: entry.id,
+        createdAt: entry.createdAt,
+        filing_person_id: entry.filing_person_id,
+        filing_person_name: entry.filing_person?.name || "",
+        casting_item_id: entry.casting_item_id,
+        casting_item_weight: entry.castingItem?.weight || 0,
+        casting_item_type: entry.castingItem?.type || "",
+        casting_item_purity: entry.castingItem?.item_purity || 0,
+        casting_item_remarks: entry.castingItem?.remarks || "",
+        item_name: entry.castingItem?.item?.name || "",
+        filingItems: entry.filingItems || [],
+
+        castingItems: entry.LotFilingMapper.map((mapper) => ({
+          id: mapper.item_id,
+          item_name: mapper.itemId?.item?.name || "",
+          weight: mapper.itemId?.weight || 0,
+          type: mapper.itemId?.type || "",
+          purity: mapper.itemId?.item_purity || 0,
+          remarks: mapper.itemId?.remarks || "",
+          touch: mapper.itemId?.touch?.touch || "",
+        })),
+
+        lotFilingMapper: entry.LotFilingMapper.map((mapper) => ({
+          lot_id: mapper.lot_id,
+          lot_number: mapper.lotId?.lotNumber || "",
+          lot_name: mapper.lotId?.lot_no || "",
+          isactive: mapper.lotId?.IsActive || false,
+          item_id: mapper.item_id,
+          item_name: mapper.itemId?.item?.name || "",
+          filing_id: mapper.filing_id,
+          filing_person_name: mapper.filingId?.name || "",
+          filing_entry_id: mapper.filing_entry_id,
+        })),
+
+        filingTotalBalance: entry.filingTotalBalance.map((balance) => ({
+          after_weight: balance.after_weight ?? null,
+          total_product_weight: balance.total_product_weight ?? null,
+          current_balance_weight: balance.current_balance_weight ?? null,
+          total_scrap_weight: balance.total_scrap_weight ?? null,
+          wastage: balance.wastage ?? null,
+          balance: balance.balance ?? null,
+        })),
+      }));
+
+      result = [...result, ...formattedFilingEntries];
+    }
+
+    // Handle Setting Entries
+    if (!processType || processType === "setting") {
+      const settingEntries = await prisma.settingEntry.findMany({
+        where: {
+          ...dateFilter,
+        },
+        include: {
+          setting_person: true,
+          settingTotalBalance: true,
+          castingItem: {
+            include: {
+              item: true,
+              touch: true,
+            },
+          },
+          filingItems: {
+            include: {
+              filingitem: true,
+              touch: true,
+            },
+          },
+          SettingItems: {
+            include: {
+              item: true,
+              touch: true,
+            },
+          },
+          LotSettingMapper: {
+            include: {
+              itemId: {
+                include: {
+                  filingitem: true,
+                  touch: true,
+                },
+              },
+              lotId: true,
+              settingId: true,
+            },
+          },
+        },
+        orderBy: { createdAt: "desc" },
+      });
+
+      const formattedSettingEntries = settingEntries.map((entry) => ({
+        processType: "setting",
+        id: entry.id,
+        createdAt: entry.createdAt,
+        setting_person_id: entry.setting_person_id,
+        setting_person_name: entry.setting_person?.name || "",
+        casting_item_id: entry.casting_item_id,
+        casting_item_weight: entry.castingItem?.weight || 0,
+        casting_item_type: entry.castingItem?.type || "",
+        casting_item_purity: entry.castingItem?.item_purity || 0,
+        casting_item_remarks: entry.castingItem?.remarks || "",
+        item_name: entry.castingItem?.item?.name || "",
+        filingItems: entry.filingItems || [],
+        settingItems: entry.SettingItems || [],
+
+        lotSettingMapper: entry.LotSettingMapper.map((mapper) => ({
+          lot_id: mapper.lot_id,
+          lot_number: mapper.lotId?.lotNumber || "",
+          lot_name: mapper.lotId?.lot_no || "",
+          isactive: mapper.lotId?.IsActive || false,
+          filing_item_id: mapper.filing_item_id,
+          filing_item_name: mapper.itemId?.filingitem?.name || "",
+          setting_id: mapper.setting_id,
+          setting_person_name: mapper.settingId?.name || "",
+          setting_entry_id: mapper.setting_entry_id,
+        })),
+
+        settingTotalBalance: entry.settingTotalBalance.map((balance) => ({
+          receipt_weight: balance.receipt_weight ?? null,
+          stone_count: balance.stone_count ?? null,
+          stone_weight: balance.stone_weight ?? null,
+          total_product_weight: balance.total_product_weight ?? null,
+          current_balance_weight: balance.current_balance_weight ?? null,
+          total_scrap_weight: balance.total_scrap_weight ?? null,
+          wastage: balance.wastage ?? null,
+          balance: balance.balance ?? null,
+        })),
+      }));
+
+      result = [...result, ...formattedSettingEntries];
+    }
+
+    // Handle Buffing Entries
+    if (!processType || processType === "buffing") {
+      const buffingEntries = await prisma.buffingEntry.findMany({
+        where: {
+          ...dateFilter,
+        },
+        include: {
+          buffing_person: true,
+          BuffingTotalBalance: true,
+          castingItem: {
+            include: {
+              item: true,
+              touch: true,
+            },
+          },
+          filing_items: {
+            include: {
+              filingitem: true,
+              touch: true,
+            },
+          },
+          setting_items: {
+            include: {
+              item: true,
+              touch: true,
+            },
+          },
+          BuffingItems: {
+            include: {
+              item: true,
+              touch: true,
+            },
+          },
+          LotBuffingMapper: {
+            include: {
+              settingItemId: {
+                include: {
+                  item: true,
+                  touch: true,
+                },
+              },
+              filingItemId: {
+                include: {
+                  filingitem: true,
+                  touch: true,
+                },
+              },
+              lotId: true,
+              buffingId: true,
+            },
+          },
+        },
+        orderBy: { createdAt: "desc" },
+      });
+
+      const formattedBuffingEntries = buffingEntries.map((entry) => ({
+        processType: "buffing",
+        id: entry.id,
+        createdAt: entry.createdAt,
+        buffing_person_id: entry.buffing_person_id,
+        buffing_person_name: entry.buffing_person?.name || "",
+        casting_item_id: entry.casting_item_id,
+        casting_item_weight: entry.castingItem?.weight || 0,
+        casting_item_type: entry.castingItem?.type || "",
+        casting_item_purity: entry.castingItem?.item_purity || 0,
+        casting_item_remarks: entry.castingItem?.remarks || "",
+        item_name: entry.castingItem?.item?.name || "",
+        filingItems: entry.filingItems || [],
+        settingItems: entry.settingItems || [],
+        buffingItems: entry.BuffingItems || [],
+
+        lotBuffingMapper: entry.LotBuffingMapper.map((mapper) => ({
+          lot_id: mapper.lot_id,
+          lot_number: mapper.lotId?.lotNumber || "",
+          lot_name: mapper.lotId?.lot_no || "",
+          isactive: mapper.lotId?.IsActive || false,
+          setting_item_id: mapper.setting_item_id,
+          setting_item_name: mapper.settingItemId?.item?.name || "",
+          filing_item_id: mapper.filing_item_id,
+          filing_item_name: mapper.filingItemId?.filingitem?.name || "",
+          buffing_id: mapper.buffing_id,
+          buffing_person_name: mapper.buffingId?.name || "",
+          buffing_entry_id: mapper.buffing_entry_id,
+        })),
+
+        buffingTotalBalance: entry.BuffingTotalBalance.map((balance) => ({
+          receipt_weight: balance.receipt_weight ?? null,
+          total_scrap_weight: balance.total_scrap_weight ?? null,
+          wastage: balance.wastage ?? null,
+          balance: balance.balance ?? null,
+        })),
+      }));
+
+      result = [...result, ...formattedBuffingEntries];
+    }
+
+    // Sort all entries by date
+    result.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: "No entries found" });
+    }
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error in getAllProcessEntries:", error);
     res.status(500).json({ error: error.message });
   }
 };
