@@ -79,6 +79,8 @@ const FilingLotDetails = () => {
         `${BACKEND_SERVER_URL}/api/filingitems/entry/${filingPersonId}/${lotNumber}`
       );
 
+      console.log("Wastage Data Response:", response.data);
+
       if (response.data.length > 0) {
         const wastageData = response.data[0];
         setExistingWastageId(wastageData.id);
