@@ -177,18 +177,14 @@ exports.Prisma.AddSupplierItemScalarFieldEnum = {
 exports.Prisma.AddPurchaseStockScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  name: 'name',
+  supplierId: 'supplierId',
   item: 'item',
-  goldWeight: 'goldWeight',
-  goldTouch: 'goldTouch',
-  goldPurity: 'goldPurity',
-  goldRate: 'goldRate',
-  goldtotalValue: 'goldtotalValue',
-  silverWeight: 'silverWeight',
-  silverTouch: 'silverTouch',
-  silverPurity: 'silverPurity',
-  silverRate: 'silverRate',
-  silvertotalValue: 'silvertotalValue'
+  weight: 'weight',
+  touch_id: 'touch_id',
+  purity: 'purity',
+  rate: 'rate',
+  totalValue: 'totalValue',
+  remarks: 'remarks'
 };
 
 exports.Prisma.CustomerTransactionScalarFieldEnum = {
@@ -443,7 +439,8 @@ exports.Prisma.StockScalarFieldEnum = {
   touch_id: 'touch_id',
   item_purity: 'item_purity',
   remarks: 'remarks',
-  casting_customer_id: 'casting_customer_id'
+  casting_customer_id: 'casting_customer_id',
+  purchase_id: 'purchase_id'
 };
 
 exports.Prisma.SortOrder = {
@@ -499,7 +496,7 @@ exports.Prisma.AddSupplierItemOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.AddPurchaseStockOrderByRelevanceFieldEnum = {
-  name: 'name'
+  remarks: 'remarks'
 };
 
 exports.Prisma.CustomerTransactionOrderByRelevanceFieldEnum = {

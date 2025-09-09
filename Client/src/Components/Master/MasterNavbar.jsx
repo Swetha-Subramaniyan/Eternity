@@ -46,12 +46,12 @@ const MasterNavbar = () => {
         <li className='nav-itemm'>
           <a href="/mastertouch" className={`nav-link ${isActive('/mastertouch') ? 'active' : ''}`}>Touch</a>
         </li>
-        <li className='nav-itemm'>
-          <a href="/masterpurchasestock" className={`nav-link ${isActive('/masterpurchasestock') ? 'active' : ''}`}>Purchase Stock</a>
-        </li>
         <li className='nav-itemm'> 
           <a href='/mastersupplier' className={`nav-link ${isActive('/mastersupplier') ? 'active' : ''}`}> Supplier </a>
         </li>
+        <li className='nav-itemm'>
+          <a href="/masterpurchasestock" className={`nav-link ${isActive('/masterpurchasestock') ? 'active' : ''}`}>Purchase Stock</a>
+        </li>    
         <li className='nav-itemm'> 
           <a href='/masterjewel' className={`nav-link ${isActive('/masterjewel') ? 'active' : ''}`}> QC Stock </a>
         </li>
