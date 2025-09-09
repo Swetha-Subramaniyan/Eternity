@@ -177,6 +177,7 @@ function MasterAddSupplier() {
               fullWidth
               value={customerName}              
               onChange={(e) => setCustomerName(e.target.value)}
+              sx={{marginTop:'1.5rem'}}
               
             />
             <TextField
