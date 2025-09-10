@@ -434,6 +434,7 @@ exports.Prisma.StockScalarFieldEnum = {
   filing_item_id: 'filing_item_id',
   setting_item_id: 'setting_item_id',
   buffing_item_id: 'buffing_item_id',
+  item_type: 'item_type',
   item_id: 'item_id',
   weight: 'weight',
   touch_id: 'touch_id',

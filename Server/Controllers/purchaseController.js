@@ -2,82 +2,186 @@ import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
 
+
 export const savePurchase = async (req, res) => {
-    try {
-      const { id } = req.params; 
-      const {
-        supplierId,
-        createdAt,
-        item,
-        weight,
-        touch_id,
-        purity,
-        rate,
-        totalValue,
-        remarks,
-      } = req.body;
-  
-      // Validate supplier
-      const supplierExists = await prisma.addSupplierItem.findUnique({
-        where: { id: supplierId },
+  try {
+    const { id } = req.params;
+    const {
+      supplierId,
+      createdAt,
+      item,        // Gold / Silver (enum ITEMTYPE)
+      weight,
+      touch_id,
+      purity,
+      rate,
+      totalValue,
+      remarks,
+    } = req.body;
+
+    //  Validate supplier
+    const supplierExists = await prisma.addSupplierItem.findUnique({
+      where: { id: supplierId },
+    });
+    if (!supplierExists) {
+      return res.status(400).json({ error: "Supplier not found" });
+    }
+
+    //  Validate touch
+    const touchExists = await prisma.addTouch.findUnique({
+      where: { id: touch_id },
+    });
+    if (!touchExists) {
+      return res.status(400).json({ error: "Touch not found" });
+    }
+
+    let purchase;
+    if (id) {
+      //  Update purchase
+      purchase = await prisma.addPurchaseStock.update({
+        where: { id: Number(id) },
+        data: {
+          supplierId,
+          createdAt: new Date(createdAt),
+          item,
+          weight,
+          touch_id,
+          purity,
+          rate,
+          totalValue,
+          remarks,
+        },
+        include: { SupplierId: true, TouchId: true },
       });
-      if (!supplierExists) {
-        return res.status(400).json({ error: "Supplier not found" });
-      }
-  
-      // Validate touch
-      const touchExists = await prisma.addTouch.findUnique({
-        where: { id: touch_id },
+
+      //  Update linked stock entry
+      await prisma.stock.updateMany({
+        where: { purchase_id: Number(id) },
+        data: {
+          item_type: item,
+          weight,
+          touch_id,
+          item_purity: purity,
+          remarks,
+        },
       });
-      if (!touchExists) {
-        return res.status(400).json({ error: "Touch not found" });
-      }
-  
-      let purchase;
-      if (id) {
-        //  Update case
-        purchase = await prisma.addPurchaseStock.update({
-          where: { id: Number(id) },
-          data: {
-            supplierId,
-            createdAt: new Date(createdAt),
-            item,
-            weight,
-            touch_id,
-            purity,
-            rate,
-            totalValue,
-            remarks,
-          },
-          include: { SupplierId: true, TouchId: true },
-        });
-      } else {
-        //  Create case
-        purchase = await prisma.addPurchaseStock.create({
-          data: {
-            supplierId,
-            createdAt: new Date(createdAt),
-            item,
-            weight,
-            touch_id,
-            purity,
-            rate,
-            totalValue,
-            remarks,
-          },
-          include: { SupplierId: true, TouchId: true },
-        });
-      }
-  
-      res.status(id ? 200 : 201).json(purchase);
-    } catch (error) {
-      console.error("Save Purchase Error:", error);
-      res.status(400).json({
-        error: "Failed to save purchase",
-        detail: error.message,
+    } else {
+      //  Create purchase
+      purchase = await prisma.addPurchaseStock.create({
+        data: {
+          supplierId,
+          createdAt: new Date(createdAt),
+          item,
+          weight,
+          touch_id,
+          purity,
+          rate,
+          totalValue,
+          remarks,
+        },
+        include: { SupplierId: true, TouchId: true },
+      });
+
+      //  Create stock entry linked to this purchase
+      await prisma.stock.create({
+        data: {
+          purchase_id: purchase.id,
+          item_type: item,       
+          weight,
+          touch_id,
+          item_purity: purity,
+          remarks,
+          casting_customer_id: null, 
+        },
       });
     }
-  };
+
+    res.status(id ? 200 : 201).json(purchase);
+  } catch (error) {
+    console.error("Save Purchase Error:", error);
+    res.status(400).json({
+      error: "Failed to save purchase",
+      detail: error.message,
+    });
+  }
+};
+
+
+// export const savePurchase = async (req, res) => {
+//     try {
+//       const { id } = req.params; 
+//       const {
+//         supplierId,
+//         createdAt,
+//         item,
+//         weight,
+//         touch_id,
+//         purity,
+//         rate,
+//         totalValue,
+//         remarks,
+//       } = req.body;
+  
+//       // Validate supplier
+//       const supplierExists = await prisma.addSupplierItem.findUnique({
+//         where: { id: supplierId },
+//       });
+//       if (!supplierExists) {
+//         return res.status(400).json({ error: "Supplier not found" });
+//       }
+  
+//       // Validate touch
+//       const touchExists = await prisma.addTouch.findUnique({
+//         where: { id: touch_id },
+//       });
+//       if (!touchExists) {
+//         return res.status(400).json({ error: "Touch not found" });
+//       }
+  
+//       let purchase;
+//       if (id) {
+//         //  Update case
+//         purchase = await prisma.addPurchaseStock.update({
+//           where: { id: Number(id) },
+//           data: {
+//             supplierId,
+//             createdAt: new Date(createdAt),
+//             item,
+//             weight,
+//             touch_id,
+//             purity,
+//             rate,
+//             totalValue,
+//             remarks,
+//           },
+//           include: { SupplierId: true, TouchId: true },
+//         });
+//       } else {
+//         //  Create case
+//         purchase = await prisma.addPurchaseStock.create({
+//           data: {
+//             supplierId,
+//             createdAt: new Date(createdAt),
+//             item,
+//             weight,
+//             touch_id,
+//             purity,
+//             rate,
+//             totalValue,
+//             remarks,
+//           },
+//           include: { SupplierId: true, TouchId: true },
+//         });
+//       }
+  
+//       res.status(id ? 200 : 201).json(purchase);
+//     } catch (error) {
+//       console.error("Save Purchase Error:", error);
+//       res.status(400).json({
+//         error: "Failed to save purchase",
+//         detail: error.message,
+//       });
+//     }
+//   };
   
 
 export const createPurchase = async (req, res) => {
