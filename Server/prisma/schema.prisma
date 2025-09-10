@@ -101,13 +101,13 @@ model AddPurchaseStock {
   supplierId       Int
   SupplierId       AddSupplierItem @relation(fields: [supplierId], references: [id])
   item             ITEMTYPE
-  weight   Int
-  touch_id Int 
-  TouchId    AddTouch @relation(fields: [touch_id], references: [id])
-  purity   Float
-  rate     Float
-  totalValue Float
-  remarks String? 
+  weight           Int
+  touch_id         Int 
+  TouchId          AddTouch @relation(fields: [touch_id], references: [id])
+  purity           Float
+  rate             Float
+  totalValue       Float
+  remarks          String? 
 
   Stock Stock[]
 }
@@ -134,6 +134,8 @@ model AddItem {
   filing_items  FilingItems[]
   setting_items SettingItems[]
   buffing_items BuffingItems[]
+
+  QCStock QcStock[]
 }
 
 model AddTouch {
@@ -147,6 +149,22 @@ model AddTouch {
   buffing_items BuffingItems[]
   stock         Stock[]
   add_purchase_stock AddPurchaseStock[]
+
+  QCStock QcStock[]
+}
+
+model QcStock {
+  id   Int     @id @default(autoincrement())
+  createdAt DateTime
+  item_id Int
+  itemId AddItem @relation(fields: [item_id], references: [id])
+  weight Float
+  stone_weight Float
+  final_weight Float
+  touch_id Int
+  touchId AddTouch @relation(fields: [touch_id], references: [id])
+  purity Float
+  remarks String?
 }
 
 model CastingEntry {

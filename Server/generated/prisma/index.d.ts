@@ -64,6 +64,11 @@ export type AddItem = $Result.DefaultSelection<Prisma.$AddItemPayload>
  */
 export type AddTouch = $Result.DefaultSelection<Prisma.$AddTouchPayload>
 /**
+ * Model QcStock
+ * 
+ */
+export type QcStock = $Result.DefaultSelection<Prisma.$QcStockPayload>
+/**
  * Model CastingEntry
  * 
  */
@@ -429,6 +434,16 @@ export class PrismaClient<
     * ```
     */
   get addTouch(): Prisma.AddTouchDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.qcStock`: Exposes CRUD operations for the **QcStock** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QcStocks
+    * const qcStocks = await prisma.qcStock.findMany()
+    * ```
+    */
+  get qcStock(): Prisma.QcStockDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.castingEntry`: Exposes CRUD operations for the **CastingEntry** model.
@@ -1079,6 +1094,7 @@ export namespace Prisma {
     CustomerTransaction: 'CustomerTransaction',
     AddItem: 'AddItem',
     AddTouch: 'AddTouch',
+    QcStock: 'QcStock',
     CastingEntry: 'CastingEntry',
     CastingItems: 'CastingItems',
     CastiingTotalBalance: 'CastiingTotalBalance',
@@ -1117,7 +1133,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addSupplierItem" | "addPurchaseStock" | "customerTransaction" | "addItem" | "addTouch" | "castingEntry" | "castingItems" | "castiingTotalBalance" | "lotInfo" | "filingEntry" | "lotFilingMapper" | "filingItems" | "filingTotalBalance" | "filingWastage" | "settingEntry" | "settingItems" | "lotSettingMapper" | "settingTotalBalance" | "settingWastage" | "buffingEntry" | "buffingItems" | "buffingTotalBalance" | "lotBuffingMapper" | "buffingWastage" | "stock"
+      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addSupplierItem" | "addPurchaseStock" | "customerTransaction" | "addItem" | "addTouch" | "qcStock" | "castingEntry" | "castingItems" | "castiingTotalBalance" | "lotInfo" | "filingEntry" | "lotFilingMapper" | "filingItems" | "filingTotalBalance" | "filingWastage" | "settingEntry" | "settingItems" | "lotSettingMapper" | "settingTotalBalance" | "settingWastage" | "buffingEntry" | "buffingItems" | "buffingTotalBalance" | "lotBuffingMapper" | "buffingWastage" | "stock"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1778,6 +1794,72 @@ export namespace Prisma {
           count: {
             args: Prisma.AddTouchCountArgs<ExtArgs>
             result: $Utils.Optional<AddTouchCountAggregateOutputType> | number
+          }
+        }
+      }
+      QcStock: {
+        payload: Prisma.$QcStockPayload<ExtArgs>
+        fields: Prisma.QcStockFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QcStockFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QcStockPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QcStockFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QcStockPayload>
+          }
+          findFirst: {
+            args: Prisma.QcStockFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QcStockPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QcStockFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QcStockPayload>
+          }
+          findMany: {
+            args: Prisma.QcStockFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QcStockPayload>[]
+          }
+          create: {
+            args: Prisma.QcStockCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QcStockPayload>
+          }
+          createMany: {
+            args: Prisma.QcStockCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.QcStockDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QcStockPayload>
+          }
+          update: {
+            args: Prisma.QcStockUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QcStockPayload>
+          }
+          deleteMany: {
+            args: Prisma.QcStockDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QcStockUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.QcStockUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QcStockPayload>
+          }
+          aggregate: {
+            args: Prisma.QcStockAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQcStock>
+          }
+          groupBy: {
+            args: Prisma.QcStockGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QcStockGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QcStockCountArgs<ExtArgs>
+            result: $Utils.Optional<QcStockCountAggregateOutputType> | number
           }
         }
       }
@@ -3195,6 +3277,7 @@ export namespace Prisma {
     customerTransaction?: CustomerTransactionOmit
     addItem?: AddItemOmit
     addTouch?: AddTouchOmit
+    qcStock?: QcStockOmit
     castingEntry?: CastingEntryOmit
     castingItems?: CastingItemsOmit
     castiingTotalBalance?: CastiingTotalBalanceOmit
@@ -3630,6 +3713,7 @@ export namespace Prisma {
     filing_items: number
     setting_items: number
     buffing_items: number
+    QCStock: number
   }
 
   export type AddItemCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3638,6 +3722,7 @@ export namespace Prisma {
     filing_items?: boolean | AddItemCountOutputTypeCountFiling_itemsArgs
     setting_items?: boolean | AddItemCountOutputTypeCountSetting_itemsArgs
     buffing_items?: boolean | AddItemCountOutputTypeCountBuffing_itemsArgs
+    QCStock?: boolean | AddItemCountOutputTypeCountQCStockArgs
   }
 
   // Custom InputTypes
@@ -3686,6 +3771,13 @@ export namespace Prisma {
     where?: BuffingItemsWhereInput
   }
 
+  /**
+   * AddItemCountOutputType without action
+   */
+  export type AddItemCountOutputTypeCountQCStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QcStockWhereInput
+  }
+
 
   /**
    * Count Type AddTouchCountOutputType
@@ -3699,6 +3791,7 @@ export namespace Prisma {
     buffing_items: number
     stock: number
     add_purchase_stock: number
+    QCStock: number
   }
 
   export type AddTouchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3709,6 +3802,7 @@ export namespace Prisma {
     buffing_items?: boolean | AddTouchCountOutputTypeCountBuffing_itemsArgs
     stock?: boolean | AddTouchCountOutputTypeCountStockArgs
     add_purchase_stock?: boolean | AddTouchCountOutputTypeCountAdd_purchase_stockArgs
+    QCStock?: boolean | AddTouchCountOutputTypeCountQCStockArgs
   }
 
   // Custom InputTypes
@@ -3769,6 +3863,13 @@ export namespace Prisma {
    */
   export type AddTouchCountOutputTypeCountAdd_purchase_stockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AddPurchaseStockWhereInput
+  }
+
+  /**
+   * AddTouchCountOutputType without action
+   */
+  export type AddTouchCountOutputTypeCountQCStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QcStockWhereInput
   }
 
 
@@ -13029,6 +13130,7 @@ export namespace Prisma {
     filing_items?: boolean | AddItem$filing_itemsArgs<ExtArgs>
     setting_items?: boolean | AddItem$setting_itemsArgs<ExtArgs>
     buffing_items?: boolean | AddItem$buffing_itemsArgs<ExtArgs>
+    QCStock?: boolean | AddItem$QCStockArgs<ExtArgs>
     _count?: boolean | AddItemCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["addItem"]>
 
@@ -13047,6 +13149,7 @@ export namespace Prisma {
     filing_items?: boolean | AddItem$filing_itemsArgs<ExtArgs>
     setting_items?: boolean | AddItem$setting_itemsArgs<ExtArgs>
     buffing_items?: boolean | AddItem$buffing_itemsArgs<ExtArgs>
+    QCStock?: boolean | AddItem$QCStockArgs<ExtArgs>
     _count?: boolean | AddItemCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -13058,6 +13161,7 @@ export namespace Prisma {
       filing_items: Prisma.$FilingItemsPayload<ExtArgs>[]
       setting_items: Prisma.$SettingItemsPayload<ExtArgs>[]
       buffing_items: Prisma.$BuffingItemsPayload<ExtArgs>[]
+      QCStock: Prisma.$QcStockPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -13408,6 +13512,7 @@ export namespace Prisma {
     filing_items<T extends AddItem$filing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$filing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     setting_items<T extends AddItem$setting_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$setting_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     buffing_items<T extends AddItem$buffing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$buffing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    QCStock<T extends AddItem$QCStockArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$QCStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13903,6 +14008,30 @@ export namespace Prisma {
   }
 
   /**
+   * AddItem.QCStock
+   */
+  export type AddItem$QCStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    where?: QcStockWhereInput
+    orderBy?: QcStockOrderByWithRelationInput | QcStockOrderByWithRelationInput[]
+    cursor?: QcStockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QcStockScalarFieldEnum | QcStockScalarFieldEnum[]
+  }
+
+  /**
    * AddItem without action
    */
   export type AddItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14114,6 +14243,7 @@ export namespace Prisma {
     buffing_items?: boolean | AddTouch$buffing_itemsArgs<ExtArgs>
     stock?: boolean | AddTouch$stockArgs<ExtArgs>
     add_purchase_stock?: boolean | AddTouch$add_purchase_stockArgs<ExtArgs>
+    QCStock?: boolean | AddTouch$QCStockArgs<ExtArgs>
     _count?: boolean | AddTouchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["addTouch"]>
 
@@ -14134,6 +14264,7 @@ export namespace Prisma {
     buffing_items?: boolean | AddTouch$buffing_itemsArgs<ExtArgs>
     stock?: boolean | AddTouch$stockArgs<ExtArgs>
     add_purchase_stock?: boolean | AddTouch$add_purchase_stockArgs<ExtArgs>
+    QCStock?: boolean | AddTouch$QCStockArgs<ExtArgs>
     _count?: boolean | AddTouchCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -14147,6 +14278,7 @@ export namespace Prisma {
       buffing_items: Prisma.$BuffingItemsPayload<ExtArgs>[]
       stock: Prisma.$StockPayload<ExtArgs>[]
       add_purchase_stock: Prisma.$AddPurchaseStockPayload<ExtArgs>[]
+      QCStock: Prisma.$QcStockPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -14499,6 +14631,7 @@ export namespace Prisma {
     buffing_items<T extends AddTouch$buffing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$buffing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     stock<T extends AddTouch$stockArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     add_purchase_stock<T extends AddTouch$add_purchase_stockArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$add_purchase_stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddPurchaseStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    QCStock<T extends AddTouch$QCStockArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$QCStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15042,6 +15175,30 @@ export namespace Prisma {
   }
 
   /**
+   * AddTouch.QCStock
+   */
+  export type AddTouch$QCStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    where?: QcStockWhereInput
+    orderBy?: QcStockOrderByWithRelationInput | QcStockOrderByWithRelationInput[]
+    cursor?: QcStockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QcStockScalarFieldEnum | QcStockScalarFieldEnum[]
+  }
+
+  /**
    * AddTouch without action
    */
   export type AddTouchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15057,6 +15214,1041 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: AddTouchInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model QcStock
+   */
+
+  export type AggregateQcStock = {
+    _count: QcStockCountAggregateOutputType | null
+    _avg: QcStockAvgAggregateOutputType | null
+    _sum: QcStockSumAggregateOutputType | null
+    _min: QcStockMinAggregateOutputType | null
+    _max: QcStockMaxAggregateOutputType | null
+  }
+
+  export type QcStockAvgAggregateOutputType = {
+    id: number | null
+    item_id: number | null
+    weight: number | null
+    stone_weight: number | null
+    final_weight: number | null
+    touch_id: number | null
+    purity: number | null
+  }
+
+  export type QcStockSumAggregateOutputType = {
+    id: number | null
+    item_id: number | null
+    weight: number | null
+    stone_weight: number | null
+    final_weight: number | null
+    touch_id: number | null
+    purity: number | null
+  }
+
+  export type QcStockMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    item_id: number | null
+    weight: number | null
+    stone_weight: number | null
+    final_weight: number | null
+    touch_id: number | null
+    purity: number | null
+    remarks: string | null
+  }
+
+  export type QcStockMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    item_id: number | null
+    weight: number | null
+    stone_weight: number | null
+    final_weight: number | null
+    touch_id: number | null
+    purity: number | null
+    remarks: string | null
+  }
+
+  export type QcStockCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    item_id: number
+    weight: number
+    stone_weight: number
+    final_weight: number
+    touch_id: number
+    purity: number
+    remarks: number
+    _all: number
+  }
+
+
+  export type QcStockAvgAggregateInputType = {
+    id?: true
+    item_id?: true
+    weight?: true
+    stone_weight?: true
+    final_weight?: true
+    touch_id?: true
+    purity?: true
+  }
+
+  export type QcStockSumAggregateInputType = {
+    id?: true
+    item_id?: true
+    weight?: true
+    stone_weight?: true
+    final_weight?: true
+    touch_id?: true
+    purity?: true
+  }
+
+  export type QcStockMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    item_id?: true
+    weight?: true
+    stone_weight?: true
+    final_weight?: true
+    touch_id?: true
+    purity?: true
+    remarks?: true
+  }
+
+  export type QcStockMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    item_id?: true
+    weight?: true
+    stone_weight?: true
+    final_weight?: true
+    touch_id?: true
+    purity?: true
+    remarks?: true
+  }
+
+  export type QcStockCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    item_id?: true
+    weight?: true
+    stone_weight?: true
+    final_weight?: true
+    touch_id?: true
+    purity?: true
+    remarks?: true
+    _all?: true
+  }
+
+  export type QcStockAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QcStock to aggregate.
+     */
+    where?: QcStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QcStocks to fetch.
+     */
+    orderBy?: QcStockOrderByWithRelationInput | QcStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QcStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QcStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QcStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QcStocks
+    **/
+    _count?: true | QcStockCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: QcStockAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: QcStockSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QcStockMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QcStockMaxAggregateInputType
+  }
+
+  export type GetQcStockAggregateType<T extends QcStockAggregateArgs> = {
+        [P in keyof T & keyof AggregateQcStock]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQcStock[P]>
+      : GetScalarType<T[P], AggregateQcStock[P]>
+  }
+
+
+
+
+  export type QcStockGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QcStockWhereInput
+    orderBy?: QcStockOrderByWithAggregationInput | QcStockOrderByWithAggregationInput[]
+    by: QcStockScalarFieldEnum[] | QcStockScalarFieldEnum
+    having?: QcStockScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QcStockCountAggregateInputType | true
+    _avg?: QcStockAvgAggregateInputType
+    _sum?: QcStockSumAggregateInputType
+    _min?: QcStockMinAggregateInputType
+    _max?: QcStockMaxAggregateInputType
+  }
+
+  export type QcStockGroupByOutputType = {
+    id: number
+    createdAt: Date
+    item_id: number
+    weight: number
+    stone_weight: number
+    final_weight: number
+    touch_id: number
+    purity: number
+    remarks: string | null
+    _count: QcStockCountAggregateOutputType | null
+    _avg: QcStockAvgAggregateOutputType | null
+    _sum: QcStockSumAggregateOutputType | null
+    _min: QcStockMinAggregateOutputType | null
+    _max: QcStockMaxAggregateOutputType | null
+  }
+
+  type GetQcStockGroupByPayload<T extends QcStockGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QcStockGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QcStockGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QcStockGroupByOutputType[P]>
+            : GetScalarType<T[P], QcStockGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QcStockSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    item_id?: boolean
+    weight?: boolean
+    stone_weight?: boolean
+    final_weight?: boolean
+    touch_id?: boolean
+    purity?: boolean
+    remarks?: boolean
+    itemId?: boolean | AddItemDefaultArgs<ExtArgs>
+    touchId?: boolean | AddTouchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["qcStock"]>
+
+
+
+  export type QcStockSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    item_id?: boolean
+    weight?: boolean
+    stone_weight?: boolean
+    final_weight?: boolean
+    touch_id?: boolean
+    purity?: boolean
+    remarks?: boolean
+  }
+
+  export type QcStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "item_id" | "weight" | "stone_weight" | "final_weight" | "touch_id" | "purity" | "remarks", ExtArgs["result"]["qcStock"]>
+  export type QcStockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    itemId?: boolean | AddItemDefaultArgs<ExtArgs>
+    touchId?: boolean | AddTouchDefaultArgs<ExtArgs>
+  }
+
+  export type $QcStockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QcStock"
+    objects: {
+      itemId: Prisma.$AddItemPayload<ExtArgs>
+      touchId: Prisma.$AddTouchPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      item_id: number
+      weight: number
+      stone_weight: number
+      final_weight: number
+      touch_id: number
+      purity: number
+      remarks: string | null
+    }, ExtArgs["result"]["qcStock"]>
+    composites: {}
+  }
+
+  type QcStockGetPayload<S extends boolean | null | undefined | QcStockDefaultArgs> = $Result.GetResult<Prisma.$QcStockPayload, S>
+
+  type QcStockCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QcStockFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QcStockCountAggregateInputType | true
+    }
+
+  export interface QcStockDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QcStock'], meta: { name: 'QcStock' } }
+    /**
+     * Find zero or one QcStock that matches the filter.
+     * @param {QcStockFindUniqueArgs} args - Arguments to find a QcStock
+     * @example
+     * // Get one QcStock
+     * const qcStock = await prisma.qcStock.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QcStockFindUniqueArgs>(args: SelectSubset<T, QcStockFindUniqueArgs<ExtArgs>>): Prisma__QcStockClient<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QcStock that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QcStockFindUniqueOrThrowArgs} args - Arguments to find a QcStock
+     * @example
+     * // Get one QcStock
+     * const qcStock = await prisma.qcStock.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QcStockFindUniqueOrThrowArgs>(args: SelectSubset<T, QcStockFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QcStockClient<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QcStock that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcStockFindFirstArgs} args - Arguments to find a QcStock
+     * @example
+     * // Get one QcStock
+     * const qcStock = await prisma.qcStock.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QcStockFindFirstArgs>(args?: SelectSubset<T, QcStockFindFirstArgs<ExtArgs>>): Prisma__QcStockClient<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QcStock that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcStockFindFirstOrThrowArgs} args - Arguments to find a QcStock
+     * @example
+     * // Get one QcStock
+     * const qcStock = await prisma.qcStock.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QcStockFindFirstOrThrowArgs>(args?: SelectSubset<T, QcStockFindFirstOrThrowArgs<ExtArgs>>): Prisma__QcStockClient<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QcStocks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcStockFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QcStocks
+     * const qcStocks = await prisma.qcStock.findMany()
+     * 
+     * // Get first 10 QcStocks
+     * const qcStocks = await prisma.qcStock.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const qcStockWithIdOnly = await prisma.qcStock.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QcStockFindManyArgs>(args?: SelectSubset<T, QcStockFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QcStock.
+     * @param {QcStockCreateArgs} args - Arguments to create a QcStock.
+     * @example
+     * // Create one QcStock
+     * const QcStock = await prisma.qcStock.create({
+     *   data: {
+     *     // ... data to create a QcStock
+     *   }
+     * })
+     * 
+     */
+    create<T extends QcStockCreateArgs>(args: SelectSubset<T, QcStockCreateArgs<ExtArgs>>): Prisma__QcStockClient<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QcStocks.
+     * @param {QcStockCreateManyArgs} args - Arguments to create many QcStocks.
+     * @example
+     * // Create many QcStocks
+     * const qcStock = await prisma.qcStock.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QcStockCreateManyArgs>(args?: SelectSubset<T, QcStockCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a QcStock.
+     * @param {QcStockDeleteArgs} args - Arguments to delete one QcStock.
+     * @example
+     * // Delete one QcStock
+     * const QcStock = await prisma.qcStock.delete({
+     *   where: {
+     *     // ... filter to delete one QcStock
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QcStockDeleteArgs>(args: SelectSubset<T, QcStockDeleteArgs<ExtArgs>>): Prisma__QcStockClient<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QcStock.
+     * @param {QcStockUpdateArgs} args - Arguments to update one QcStock.
+     * @example
+     * // Update one QcStock
+     * const qcStock = await prisma.qcStock.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QcStockUpdateArgs>(args: SelectSubset<T, QcStockUpdateArgs<ExtArgs>>): Prisma__QcStockClient<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QcStocks.
+     * @param {QcStockDeleteManyArgs} args - Arguments to filter QcStocks to delete.
+     * @example
+     * // Delete a few QcStocks
+     * const { count } = await prisma.qcStock.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QcStockDeleteManyArgs>(args?: SelectSubset<T, QcStockDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QcStocks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcStockUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QcStocks
+     * const qcStock = await prisma.qcStock.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QcStockUpdateManyArgs>(args: SelectSubset<T, QcStockUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one QcStock.
+     * @param {QcStockUpsertArgs} args - Arguments to update or create a QcStock.
+     * @example
+     * // Update or create a QcStock
+     * const qcStock = await prisma.qcStock.upsert({
+     *   create: {
+     *     // ... data to create a QcStock
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QcStock we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QcStockUpsertArgs>(args: SelectSubset<T, QcStockUpsertArgs<ExtArgs>>): Prisma__QcStockClient<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QcStocks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcStockCountArgs} args - Arguments to filter QcStocks to count.
+     * @example
+     * // Count the number of QcStocks
+     * const count = await prisma.qcStock.count({
+     *   where: {
+     *     // ... the filter for the QcStocks we want to count
+     *   }
+     * })
+    **/
+    count<T extends QcStockCountArgs>(
+      args?: Subset<T, QcStockCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QcStockCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QcStock.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcStockAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QcStockAggregateArgs>(args: Subset<T, QcStockAggregateArgs>): Prisma.PrismaPromise<GetQcStockAggregateType<T>>
+
+    /**
+     * Group by QcStock.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcStockGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QcStockGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QcStockGroupByArgs['orderBy'] }
+        : { orderBy?: QcStockGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QcStockGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQcStockGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QcStock model
+   */
+  readonly fields: QcStockFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QcStock.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QcStockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    itemId<T extends AddItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddItemDefaultArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    touchId<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QcStock model
+   */
+  interface QcStockFieldRefs {
+    readonly id: FieldRef<"QcStock", 'Int'>
+    readonly createdAt: FieldRef<"QcStock", 'DateTime'>
+    readonly item_id: FieldRef<"QcStock", 'Int'>
+    readonly weight: FieldRef<"QcStock", 'Float'>
+    readonly stone_weight: FieldRef<"QcStock", 'Float'>
+    readonly final_weight: FieldRef<"QcStock", 'Float'>
+    readonly touch_id: FieldRef<"QcStock", 'Int'>
+    readonly purity: FieldRef<"QcStock", 'Float'>
+    readonly remarks: FieldRef<"QcStock", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QcStock findUnique
+   */
+  export type QcStockFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    /**
+     * Filter, which QcStock to fetch.
+     */
+    where: QcStockWhereUniqueInput
+  }
+
+  /**
+   * QcStock findUniqueOrThrow
+   */
+  export type QcStockFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    /**
+     * Filter, which QcStock to fetch.
+     */
+    where: QcStockWhereUniqueInput
+  }
+
+  /**
+   * QcStock findFirst
+   */
+  export type QcStockFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    /**
+     * Filter, which QcStock to fetch.
+     */
+    where?: QcStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QcStocks to fetch.
+     */
+    orderBy?: QcStockOrderByWithRelationInput | QcStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QcStocks.
+     */
+    cursor?: QcStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QcStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QcStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QcStocks.
+     */
+    distinct?: QcStockScalarFieldEnum | QcStockScalarFieldEnum[]
+  }
+
+  /**
+   * QcStock findFirstOrThrow
+   */
+  export type QcStockFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    /**
+     * Filter, which QcStock to fetch.
+     */
+    where?: QcStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QcStocks to fetch.
+     */
+    orderBy?: QcStockOrderByWithRelationInput | QcStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QcStocks.
+     */
+    cursor?: QcStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QcStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QcStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QcStocks.
+     */
+    distinct?: QcStockScalarFieldEnum | QcStockScalarFieldEnum[]
+  }
+
+  /**
+   * QcStock findMany
+   */
+  export type QcStockFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    /**
+     * Filter, which QcStocks to fetch.
+     */
+    where?: QcStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QcStocks to fetch.
+     */
+    orderBy?: QcStockOrderByWithRelationInput | QcStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QcStocks.
+     */
+    cursor?: QcStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QcStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QcStocks.
+     */
+    skip?: number
+    distinct?: QcStockScalarFieldEnum | QcStockScalarFieldEnum[]
+  }
+
+  /**
+   * QcStock create
+   */
+  export type QcStockCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    /**
+     * The data needed to create a QcStock.
+     */
+    data: XOR<QcStockCreateInput, QcStockUncheckedCreateInput>
+  }
+
+  /**
+   * QcStock createMany
+   */
+  export type QcStockCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QcStocks.
+     */
+    data: QcStockCreateManyInput | QcStockCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QcStock update
+   */
+  export type QcStockUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    /**
+     * The data needed to update a QcStock.
+     */
+    data: XOR<QcStockUpdateInput, QcStockUncheckedUpdateInput>
+    /**
+     * Choose, which QcStock to update.
+     */
+    where: QcStockWhereUniqueInput
+  }
+
+  /**
+   * QcStock updateMany
+   */
+  export type QcStockUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QcStocks.
+     */
+    data: XOR<QcStockUpdateManyMutationInput, QcStockUncheckedUpdateManyInput>
+    /**
+     * Filter which QcStocks to update
+     */
+    where?: QcStockWhereInput
+    /**
+     * Limit how many QcStocks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QcStock upsert
+   */
+  export type QcStockUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    /**
+     * The filter to search for the QcStock to update in case it exists.
+     */
+    where: QcStockWhereUniqueInput
+    /**
+     * In case the QcStock found by the `where` argument doesn't exist, create a new QcStock with this data.
+     */
+    create: XOR<QcStockCreateInput, QcStockUncheckedCreateInput>
+    /**
+     * In case the QcStock was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QcStockUpdateInput, QcStockUncheckedUpdateInput>
+  }
+
+  /**
+   * QcStock delete
+   */
+  export type QcStockDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
+    /**
+     * Filter which QcStock to delete.
+     */
+    where: QcStockWhereUniqueInput
+  }
+
+  /**
+   * QcStock deleteMany
+   */
+  export type QcStockDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QcStocks to delete
+     */
+    where?: QcStockWhereInput
+    /**
+     * Limit how many QcStocks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QcStock without action
+   */
+  export type QcStockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStock
+     */
+    select?: QcStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QcStock
+     */
+    omit?: QcStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QcStockInclude<ExtArgs> | null
   }
 
 
@@ -37432,6 +38624,21 @@ export namespace Prisma {
   export type AddTouchScalarFieldEnum = (typeof AddTouchScalarFieldEnum)[keyof typeof AddTouchScalarFieldEnum]
 
 
+  export const QcStockScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    item_id: 'item_id',
+    weight: 'weight',
+    stone_weight: 'stone_weight',
+    final_weight: 'final_weight',
+    touch_id: 'touch_id',
+    purity: 'purity',
+    remarks: 'remarks'
+  };
+
+  export type QcStockScalarFieldEnum = (typeof QcStockScalarFieldEnum)[keyof typeof QcStockScalarFieldEnum]
+
+
   export const CastingEntryScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
@@ -37820,6 +39027,13 @@ export namespace Prisma {
   };
 
   export type AddItemOrderByRelevanceFieldEnum = (typeof AddItemOrderByRelevanceFieldEnum)[keyof typeof AddItemOrderByRelevanceFieldEnum]
+
+
+  export const QcStockOrderByRelevanceFieldEnum: {
+    remarks: 'remarks'
+  };
+
+  export type QcStockOrderByRelevanceFieldEnum = (typeof QcStockOrderByRelevanceFieldEnum)[keyof typeof QcStockOrderByRelevanceFieldEnum]
 
 
   export const CastingItemsOrderByRelevanceFieldEnum: {
@@ -38525,6 +39739,7 @@ export namespace Prisma {
     filing_items?: FilingItemsListRelationFilter
     setting_items?: SettingItemsListRelationFilter
     buffing_items?: BuffingItemsListRelationFilter
+    QCStock?: QcStockListRelationFilter
   }
 
   export type AddItemOrderByWithRelationInput = {
@@ -38536,6 +39751,7 @@ export namespace Prisma {
     filing_items?: FilingItemsOrderByRelationAggregateInput
     setting_items?: SettingItemsOrderByRelationAggregateInput
     buffing_items?: BuffingItemsOrderByRelationAggregateInput
+    QCStock?: QcStockOrderByRelationAggregateInput
     _relevance?: AddItemOrderByRelevanceInput
   }
 
@@ -38551,6 +39767,7 @@ export namespace Prisma {
     filing_items?: FilingItemsListRelationFilter
     setting_items?: SettingItemsListRelationFilter
     buffing_items?: BuffingItemsListRelationFilter
+    QCStock?: QcStockListRelationFilter
   }, "id">
 
   export type AddItemOrderByWithAggregationInput = {
@@ -38587,6 +39804,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsListRelationFilter
     stock?: StockListRelationFilter
     add_purchase_stock?: AddPurchaseStockListRelationFilter
+    QCStock?: QcStockListRelationFilter
   }
 
   export type AddTouchOrderByWithRelationInput = {
@@ -38600,6 +39818,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsOrderByRelationAggregateInput
     stock?: StockOrderByRelationAggregateInput
     add_purchase_stock?: AddPurchaseStockOrderByRelationAggregateInput
+    QCStock?: QcStockOrderByRelationAggregateInput
   }
 
   export type AddTouchWhereUniqueInput = Prisma.AtLeast<{
@@ -38616,6 +39835,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsListRelationFilter
     stock?: StockListRelationFilter
     add_purchase_stock?: AddPurchaseStockListRelationFilter
+    QCStock?: QcStockListRelationFilter
   }, "id">
 
   export type AddTouchOrderByWithAggregationInput = {
@@ -38636,6 +39856,87 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"AddTouch"> | number
     createdAt?: DateTimeWithAggregatesFilter<"AddTouch"> | Date | string
     touch?: FloatWithAggregatesFilter<"AddTouch"> | number
+  }
+
+  export type QcStockWhereInput = {
+    AND?: QcStockWhereInput | QcStockWhereInput[]
+    OR?: QcStockWhereInput[]
+    NOT?: QcStockWhereInput | QcStockWhereInput[]
+    id?: IntFilter<"QcStock"> | number
+    createdAt?: DateTimeFilter<"QcStock"> | Date | string
+    item_id?: IntFilter<"QcStock"> | number
+    weight?: FloatFilter<"QcStock"> | number
+    stone_weight?: FloatFilter<"QcStock"> | number
+    final_weight?: FloatFilter<"QcStock"> | number
+    touch_id?: IntFilter<"QcStock"> | number
+    purity?: FloatFilter<"QcStock"> | number
+    remarks?: StringNullableFilter<"QcStock"> | string | null
+    itemId?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    touchId?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
+  }
+
+  export type QcStockOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    final_weight?: SortOrder
+    touch_id?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    itemId?: AddItemOrderByWithRelationInput
+    touchId?: AddTouchOrderByWithRelationInput
+    _relevance?: QcStockOrderByRelevanceInput
+  }
+
+  export type QcStockWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: QcStockWhereInput | QcStockWhereInput[]
+    OR?: QcStockWhereInput[]
+    NOT?: QcStockWhereInput | QcStockWhereInput[]
+    createdAt?: DateTimeFilter<"QcStock"> | Date | string
+    item_id?: IntFilter<"QcStock"> | number
+    weight?: FloatFilter<"QcStock"> | number
+    stone_weight?: FloatFilter<"QcStock"> | number
+    final_weight?: FloatFilter<"QcStock"> | number
+    touch_id?: IntFilter<"QcStock"> | number
+    purity?: FloatFilter<"QcStock"> | number
+    remarks?: StringNullableFilter<"QcStock"> | string | null
+    itemId?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    touchId?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
+  }, "id">
+
+  export type QcStockOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    final_weight?: SortOrder
+    touch_id?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    _count?: QcStockCountOrderByAggregateInput
+    _avg?: QcStockAvgOrderByAggregateInput
+    _max?: QcStockMaxOrderByAggregateInput
+    _min?: QcStockMinOrderByAggregateInput
+    _sum?: QcStockSumOrderByAggregateInput
+  }
+
+  export type QcStockScalarWhereWithAggregatesInput = {
+    AND?: QcStockScalarWhereWithAggregatesInput | QcStockScalarWhereWithAggregatesInput[]
+    OR?: QcStockScalarWhereWithAggregatesInput[]
+    NOT?: QcStockScalarWhereWithAggregatesInput | QcStockScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"QcStock"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"QcStock"> | Date | string
+    item_id?: IntWithAggregatesFilter<"QcStock"> | number
+    weight?: FloatWithAggregatesFilter<"QcStock"> | number
+    stone_weight?: FloatWithAggregatesFilter<"QcStock"> | number
+    final_weight?: FloatWithAggregatesFilter<"QcStock"> | number
+    touch_id?: IntWithAggregatesFilter<"QcStock"> | number
+    purity?: FloatWithAggregatesFilter<"QcStock"> | number
+    remarks?: StringNullableWithAggregatesFilter<"QcStock"> | string | null
   }
 
   export type CastingEntryWhereInput = {
@@ -40987,6 +42288,7 @@ export namespace Prisma {
     filing_items?: FilingItemsCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
+    QCStock?: QcStockCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemUncheckedCreateInput = {
@@ -40998,6 +42300,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemUpdateInput = {
@@ -41008,6 +42311,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddItemUncheckedUpdateInput = {
@@ -41019,6 +42323,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddItemCreateManyInput = {
@@ -41048,6 +42353,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
     stock?: StockCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchUncheckedCreateInput = {
@@ -41061,6 +42367,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
     stock?: StockUncheckedCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchUpdateInput = {
@@ -41073,6 +42380,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
     stock?: StockUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddTouchUncheckedUpdateInput = {
@@ -41086,6 +42394,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
     stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddTouchCreateManyInput = {
@@ -41103,6 +42412,85 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     touch?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type QcStockCreateInput = {
+    createdAt: Date | string
+    weight: number
+    stone_weight: number
+    final_weight: number
+    purity: number
+    remarks?: string | null
+    itemId: AddItemCreateNestedOneWithoutQCStockInput
+    touchId: AddTouchCreateNestedOneWithoutQCStockInput
+  }
+
+  export type QcStockUncheckedCreateInput = {
+    id?: number
+    createdAt: Date | string
+    item_id: number
+    weight: number
+    stone_weight: number
+    final_weight: number
+    touch_id: number
+    purity: number
+    remarks?: string | null
+  }
+
+  export type QcStockUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: AddItemUpdateOneRequiredWithoutQCStockNestedInput
+    touchId?: AddTouchUpdateOneRequiredWithoutQCStockNestedInput
+  }
+
+  export type QcStockUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type QcStockCreateManyInput = {
+    id?: number
+    createdAt: Date | string
+    item_id: number
+    weight: number
+    stone_weight: number
+    final_weight: number
+    touch_id: number
+    purity: number
+    remarks?: string | null
+  }
+
+  export type QcStockUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type QcStockUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CastingEntryCreateInput = {
@@ -43535,6 +44923,12 @@ export namespace Prisma {
     none?: BuffingItemsWhereInput
   }
 
+  export type QcStockListRelationFilter = {
+    every?: QcStockWhereInput
+    some?: QcStockWhereInput
+    none?: QcStockWhereInput
+  }
+
   export type FilingItemsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -43544,6 +44938,10 @@ export namespace Prisma {
   }
 
   export type BuffingItemsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type QcStockOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -43605,6 +45003,73 @@ export namespace Prisma {
   export type AddTouchSumOrderByAggregateInput = {
     id?: SortOrder
     touch?: SortOrder
+  }
+
+  export type AddItemScalarRelationFilter = {
+    is?: AddItemWhereInput
+    isNot?: AddItemWhereInput
+  }
+
+  export type QcStockOrderByRelevanceInput = {
+    fields: QcStockOrderByRelevanceFieldEnum | QcStockOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type QcStockCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    final_weight?: SortOrder
+    touch_id?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type QcStockAvgOrderByAggregateInput = {
+    id?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    final_weight?: SortOrder
+    touch_id?: SortOrder
+    purity?: SortOrder
+  }
+
+  export type QcStockMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    final_weight?: SortOrder
+    touch_id?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type QcStockMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    final_weight?: SortOrder
+    touch_id?: SortOrder
+    purity?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type QcStockSumOrderByAggregateInput = {
+    id?: SortOrder
+    item_id?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    final_weight?: SortOrder
+    touch_id?: SortOrder
+    purity?: SortOrder
   }
 
   export type AddCastingScalarRelationFilter = {
@@ -43693,11 +45158,6 @@ export namespace Prisma {
     in?: $Enums.CASTINGENTRYTYPE[]
     notIn?: $Enums.CASTINGENTRYTYPE[]
     not?: NestedEnumCASTINGENTRYTYPEFilter<$PrismaModel> | $Enums.CASTINGENTRYTYPE
-  }
-
-  export type AddItemScalarRelationFilter = {
-    is?: AddItemWhereInput
-    isNot?: AddItemWhereInput
   }
 
   export type CastingEntryScalarRelationFilter = {
@@ -45882,6 +47342,13 @@ export namespace Prisma {
     connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
   }
 
+  export type QcStockCreateNestedManyWithoutItemIdInput = {
+    create?: XOR<QcStockCreateWithoutItemIdInput, QcStockUncheckedCreateWithoutItemIdInput> | QcStockCreateWithoutItemIdInput[] | QcStockUncheckedCreateWithoutItemIdInput[]
+    connectOrCreate?: QcStockCreateOrConnectWithoutItemIdInput | QcStockCreateOrConnectWithoutItemIdInput[]
+    createMany?: QcStockCreateManyItemIdInputEnvelope
+    connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+  }
+
   export type CastingItemsUncheckedCreateNestedManyWithoutItemInput = {
     create?: XOR<CastingItemsCreateWithoutItemInput, CastingItemsUncheckedCreateWithoutItemInput> | CastingItemsCreateWithoutItemInput[] | CastingItemsUncheckedCreateWithoutItemInput[]
     connectOrCreate?: CastingItemsCreateOrConnectWithoutItemInput | CastingItemsCreateOrConnectWithoutItemInput[]
@@ -45915,6 +47382,13 @@ export namespace Prisma {
     connectOrCreate?: BuffingItemsCreateOrConnectWithoutItemInput | BuffingItemsCreateOrConnectWithoutItemInput[]
     createMany?: BuffingItemsCreateManyItemInputEnvelope
     connect?: BuffingItemsWhereUniqueInput | BuffingItemsWhereUniqueInput[]
+  }
+
+  export type QcStockUncheckedCreateNestedManyWithoutItemIdInput = {
+    create?: XOR<QcStockCreateWithoutItemIdInput, QcStockUncheckedCreateWithoutItemIdInput> | QcStockCreateWithoutItemIdInput[] | QcStockUncheckedCreateWithoutItemIdInput[]
+    connectOrCreate?: QcStockCreateOrConnectWithoutItemIdInput | QcStockCreateOrConnectWithoutItemIdInput[]
+    createMany?: QcStockCreateManyItemIdInputEnvelope
+    connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
   }
 
   export type CastingItemsUpdateManyWithoutItemNestedInput = {
@@ -45987,6 +47461,20 @@ export namespace Prisma {
     deleteMany?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
   }
 
+  export type QcStockUpdateManyWithoutItemIdNestedInput = {
+    create?: XOR<QcStockCreateWithoutItemIdInput, QcStockUncheckedCreateWithoutItemIdInput> | QcStockCreateWithoutItemIdInput[] | QcStockUncheckedCreateWithoutItemIdInput[]
+    connectOrCreate?: QcStockCreateOrConnectWithoutItemIdInput | QcStockCreateOrConnectWithoutItemIdInput[]
+    upsert?: QcStockUpsertWithWhereUniqueWithoutItemIdInput | QcStockUpsertWithWhereUniqueWithoutItemIdInput[]
+    createMany?: QcStockCreateManyItemIdInputEnvelope
+    set?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    disconnect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    delete?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    update?: QcStockUpdateWithWhereUniqueWithoutItemIdInput | QcStockUpdateWithWhereUniqueWithoutItemIdInput[]
+    updateMany?: QcStockUpdateManyWithWhereWithoutItemIdInput | QcStockUpdateManyWithWhereWithoutItemIdInput[]
+    deleteMany?: QcStockScalarWhereInput | QcStockScalarWhereInput[]
+  }
+
   export type CastingItemsUncheckedUpdateManyWithoutItemNestedInput = {
     create?: XOR<CastingItemsCreateWithoutItemInput, CastingItemsUncheckedCreateWithoutItemInput> | CastingItemsCreateWithoutItemInput[] | CastingItemsUncheckedCreateWithoutItemInput[]
     connectOrCreate?: CastingItemsCreateOrConnectWithoutItemInput | CastingItemsCreateOrConnectWithoutItemInput[]
@@ -46057,6 +47545,20 @@ export namespace Prisma {
     deleteMany?: BuffingItemsScalarWhereInput | BuffingItemsScalarWhereInput[]
   }
 
+  export type QcStockUncheckedUpdateManyWithoutItemIdNestedInput = {
+    create?: XOR<QcStockCreateWithoutItemIdInput, QcStockUncheckedCreateWithoutItemIdInput> | QcStockCreateWithoutItemIdInput[] | QcStockUncheckedCreateWithoutItemIdInput[]
+    connectOrCreate?: QcStockCreateOrConnectWithoutItemIdInput | QcStockCreateOrConnectWithoutItemIdInput[]
+    upsert?: QcStockUpsertWithWhereUniqueWithoutItemIdInput | QcStockUpsertWithWhereUniqueWithoutItemIdInput[]
+    createMany?: QcStockCreateManyItemIdInputEnvelope
+    set?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    disconnect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    delete?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    update?: QcStockUpdateWithWhereUniqueWithoutItemIdInput | QcStockUpdateWithWhereUniqueWithoutItemIdInput[]
+    updateMany?: QcStockUpdateManyWithWhereWithoutItemIdInput | QcStockUpdateManyWithWhereWithoutItemIdInput[]
+    deleteMany?: QcStockScalarWhereInput | QcStockScalarWhereInput[]
+  }
+
   export type CastingEntryCreateNestedManyWithoutTouchInput = {
     create?: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput> | CastingEntryCreateWithoutTouchInput[] | CastingEntryUncheckedCreateWithoutTouchInput[]
     connectOrCreate?: CastingEntryCreateOrConnectWithoutTouchInput | CastingEntryCreateOrConnectWithoutTouchInput[]
@@ -46106,6 +47608,13 @@ export namespace Prisma {
     connect?: AddPurchaseStockWhereUniqueInput | AddPurchaseStockWhereUniqueInput[]
   }
 
+  export type QcStockCreateNestedManyWithoutTouchIdInput = {
+    create?: XOR<QcStockCreateWithoutTouchIdInput, QcStockUncheckedCreateWithoutTouchIdInput> | QcStockCreateWithoutTouchIdInput[] | QcStockUncheckedCreateWithoutTouchIdInput[]
+    connectOrCreate?: QcStockCreateOrConnectWithoutTouchIdInput | QcStockCreateOrConnectWithoutTouchIdInput[]
+    createMany?: QcStockCreateManyTouchIdInputEnvelope
+    connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+  }
+
   export type CastingEntryUncheckedCreateNestedManyWithoutTouchInput = {
     create?: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput> | CastingEntryCreateWithoutTouchInput[] | CastingEntryUncheckedCreateWithoutTouchInput[]
     connectOrCreate?: CastingEntryCreateOrConnectWithoutTouchInput | CastingEntryCreateOrConnectWithoutTouchInput[]
@@ -46153,6 +47662,13 @@ export namespace Prisma {
     connectOrCreate?: AddPurchaseStockCreateOrConnectWithoutTouchIdInput | AddPurchaseStockCreateOrConnectWithoutTouchIdInput[]
     createMany?: AddPurchaseStockCreateManyTouchIdInputEnvelope
     connect?: AddPurchaseStockWhereUniqueInput | AddPurchaseStockWhereUniqueInput[]
+  }
+
+  export type QcStockUncheckedCreateNestedManyWithoutTouchIdInput = {
+    create?: XOR<QcStockCreateWithoutTouchIdInput, QcStockUncheckedCreateWithoutTouchIdInput> | QcStockCreateWithoutTouchIdInput[] | QcStockUncheckedCreateWithoutTouchIdInput[]
+    connectOrCreate?: QcStockCreateOrConnectWithoutTouchIdInput | QcStockCreateOrConnectWithoutTouchIdInput[]
+    createMany?: QcStockCreateManyTouchIdInputEnvelope
+    connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
   }
 
   export type CastingEntryUpdateManyWithoutTouchNestedInput = {
@@ -46253,6 +47769,20 @@ export namespace Prisma {
     deleteMany?: AddPurchaseStockScalarWhereInput | AddPurchaseStockScalarWhereInput[]
   }
 
+  export type QcStockUpdateManyWithoutTouchIdNestedInput = {
+    create?: XOR<QcStockCreateWithoutTouchIdInput, QcStockUncheckedCreateWithoutTouchIdInput> | QcStockCreateWithoutTouchIdInput[] | QcStockUncheckedCreateWithoutTouchIdInput[]
+    connectOrCreate?: QcStockCreateOrConnectWithoutTouchIdInput | QcStockCreateOrConnectWithoutTouchIdInput[]
+    upsert?: QcStockUpsertWithWhereUniqueWithoutTouchIdInput | QcStockUpsertWithWhereUniqueWithoutTouchIdInput[]
+    createMany?: QcStockCreateManyTouchIdInputEnvelope
+    set?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    disconnect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    delete?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    update?: QcStockUpdateWithWhereUniqueWithoutTouchIdInput | QcStockUpdateWithWhereUniqueWithoutTouchIdInput[]
+    updateMany?: QcStockUpdateManyWithWhereWithoutTouchIdInput | QcStockUpdateManyWithWhereWithoutTouchIdInput[]
+    deleteMany?: QcStockScalarWhereInput | QcStockScalarWhereInput[]
+  }
+
   export type CastingEntryUncheckedUpdateManyWithoutTouchNestedInput = {
     create?: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput> | CastingEntryCreateWithoutTouchInput[] | CastingEntryUncheckedCreateWithoutTouchInput[]
     connectOrCreate?: CastingEntryCreateOrConnectWithoutTouchInput | CastingEntryCreateOrConnectWithoutTouchInput[]
@@ -46349,6 +47879,48 @@ export namespace Prisma {
     update?: AddPurchaseStockUpdateWithWhereUniqueWithoutTouchIdInput | AddPurchaseStockUpdateWithWhereUniqueWithoutTouchIdInput[]
     updateMany?: AddPurchaseStockUpdateManyWithWhereWithoutTouchIdInput | AddPurchaseStockUpdateManyWithWhereWithoutTouchIdInput[]
     deleteMany?: AddPurchaseStockScalarWhereInput | AddPurchaseStockScalarWhereInput[]
+  }
+
+  export type QcStockUncheckedUpdateManyWithoutTouchIdNestedInput = {
+    create?: XOR<QcStockCreateWithoutTouchIdInput, QcStockUncheckedCreateWithoutTouchIdInput> | QcStockCreateWithoutTouchIdInput[] | QcStockUncheckedCreateWithoutTouchIdInput[]
+    connectOrCreate?: QcStockCreateOrConnectWithoutTouchIdInput | QcStockCreateOrConnectWithoutTouchIdInput[]
+    upsert?: QcStockUpsertWithWhereUniqueWithoutTouchIdInput | QcStockUpsertWithWhereUniqueWithoutTouchIdInput[]
+    createMany?: QcStockCreateManyTouchIdInputEnvelope
+    set?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    disconnect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    delete?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+    update?: QcStockUpdateWithWhereUniqueWithoutTouchIdInput | QcStockUpdateWithWhereUniqueWithoutTouchIdInput[]
+    updateMany?: QcStockUpdateManyWithWhereWithoutTouchIdInput | QcStockUpdateManyWithWhereWithoutTouchIdInput[]
+    deleteMany?: QcStockScalarWhereInput | QcStockScalarWhereInput[]
+  }
+
+  export type AddItemCreateNestedOneWithoutQCStockInput = {
+    create?: XOR<AddItemCreateWithoutQCStockInput, AddItemUncheckedCreateWithoutQCStockInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutQCStockInput
+    connect?: AddItemWhereUniqueInput
+  }
+
+  export type AddTouchCreateNestedOneWithoutQCStockInput = {
+    create?: XOR<AddTouchCreateWithoutQCStockInput, AddTouchUncheckedCreateWithoutQCStockInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutQCStockInput
+    connect?: AddTouchWhereUniqueInput
+  }
+
+  export type AddItemUpdateOneRequiredWithoutQCStockNestedInput = {
+    create?: XOR<AddItemCreateWithoutQCStockInput, AddItemUncheckedCreateWithoutQCStockInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutQCStockInput
+    upsert?: AddItemUpsertWithoutQCStockInput
+    connect?: AddItemWhereUniqueInput
+    update?: XOR<XOR<AddItemUpdateToOneWithWhereWithoutQCStockInput, AddItemUpdateWithoutQCStockInput>, AddItemUncheckedUpdateWithoutQCStockInput>
+  }
+
+  export type AddTouchUpdateOneRequiredWithoutQCStockNestedInput = {
+    create?: XOR<AddTouchCreateWithoutQCStockInput, AddTouchUncheckedCreateWithoutQCStockInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutQCStockInput
+    upsert?: AddTouchUpsertWithoutQCStockInput
+    connect?: AddTouchWhereUniqueInput
+    update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutQCStockInput, AddTouchUpdateWithoutQCStockInput>, AddTouchUncheckedUpdateWithoutQCStockInput>
   }
 
   export type AddTouchCreateNestedOneWithoutCasting_entryInput = {
@@ -50277,6 +51849,7 @@ export namespace Prisma {
     setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
     stock?: StockCreateNestedManyWithoutTouchInput
+    QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchUncheckedCreateWithoutAdd_purchase_stockInput = {
@@ -50289,6 +51862,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
     stock?: StockUncheckedCreateNestedManyWithoutTouchInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchCreateOrConnectWithoutAdd_purchase_stockInput = {
@@ -50385,6 +51959,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
     stock?: StockUpdateManyWithoutTouchNestedInput
+    QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutAdd_purchase_stockInput = {
@@ -50397,6 +51972,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
     stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
   }
 
   export type StockUpsertWithWhereUniqueWithoutPurchaseIdInput = {
@@ -50670,6 +52246,37 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type QcStockCreateWithoutItemIdInput = {
+    createdAt: Date | string
+    weight: number
+    stone_weight: number
+    final_weight: number
+    purity: number
+    remarks?: string | null
+    touchId: AddTouchCreateNestedOneWithoutQCStockInput
+  }
+
+  export type QcStockUncheckedCreateWithoutItemIdInput = {
+    id?: number
+    createdAt: Date | string
+    weight: number
+    stone_weight: number
+    final_weight: number
+    touch_id: number
+    purity: number
+    remarks?: string | null
+  }
+
+  export type QcStockCreateOrConnectWithoutItemIdInput = {
+    where: QcStockWhereUniqueInput
+    create: XOR<QcStockCreateWithoutItemIdInput, QcStockUncheckedCreateWithoutItemIdInput>
+  }
+
+  export type QcStockCreateManyItemIdInputEnvelope = {
+    data: QcStockCreateManyItemIdInput | QcStockCreateManyItemIdInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CastingItemsUpsertWithWhereUniqueWithoutItemInput = {
     where: CastingItemsWhereUniqueInput
     update: XOR<CastingItemsUpdateWithoutItemInput, CastingItemsUncheckedUpdateWithoutItemInput>
@@ -50795,6 +52402,37 @@ export namespace Prisma {
     item_purity?: FloatFilter<"BuffingItems"> | number
     scrap_remarks?: StringNullableFilter<"BuffingItems"> | string | null
     buffing_entry_id?: IntFilter<"BuffingItems"> | number
+  }
+
+  export type QcStockUpsertWithWhereUniqueWithoutItemIdInput = {
+    where: QcStockWhereUniqueInput
+    update: XOR<QcStockUpdateWithoutItemIdInput, QcStockUncheckedUpdateWithoutItemIdInput>
+    create: XOR<QcStockCreateWithoutItemIdInput, QcStockUncheckedCreateWithoutItemIdInput>
+  }
+
+  export type QcStockUpdateWithWhereUniqueWithoutItemIdInput = {
+    where: QcStockWhereUniqueInput
+    data: XOR<QcStockUpdateWithoutItemIdInput, QcStockUncheckedUpdateWithoutItemIdInput>
+  }
+
+  export type QcStockUpdateManyWithWhereWithoutItemIdInput = {
+    where: QcStockScalarWhereInput
+    data: XOR<QcStockUpdateManyMutationInput, QcStockUncheckedUpdateManyWithoutItemIdInput>
+  }
+
+  export type QcStockScalarWhereInput = {
+    AND?: QcStockScalarWhereInput | QcStockScalarWhereInput[]
+    OR?: QcStockScalarWhereInput[]
+    NOT?: QcStockScalarWhereInput | QcStockScalarWhereInput[]
+    id?: IntFilter<"QcStock"> | number
+    createdAt?: DateTimeFilter<"QcStock"> | Date | string
+    item_id?: IntFilter<"QcStock"> | number
+    weight?: FloatFilter<"QcStock"> | number
+    stone_weight?: FloatFilter<"QcStock"> | number
+    final_weight?: FloatFilter<"QcStock"> | number
+    touch_id?: IntFilter<"QcStock"> | number
+    purity?: FloatFilter<"QcStock"> | number
+    remarks?: StringNullableFilter<"QcStock"> | string | null
   }
 
   export type CastingEntryCreateWithoutTouchInput = {
@@ -51076,6 +52714,37 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type QcStockCreateWithoutTouchIdInput = {
+    createdAt: Date | string
+    weight: number
+    stone_weight: number
+    final_weight: number
+    purity: number
+    remarks?: string | null
+    itemId: AddItemCreateNestedOneWithoutQCStockInput
+  }
+
+  export type QcStockUncheckedCreateWithoutTouchIdInput = {
+    id?: number
+    createdAt: Date | string
+    item_id: number
+    weight: number
+    stone_weight: number
+    final_weight: number
+    purity: number
+    remarks?: string | null
+  }
+
+  export type QcStockCreateOrConnectWithoutTouchIdInput = {
+    where: QcStockWhereUniqueInput
+    create: XOR<QcStockCreateWithoutTouchIdInput, QcStockUncheckedCreateWithoutTouchIdInput>
+  }
+
+  export type QcStockCreateManyTouchIdInputEnvelope = {
+    data: QcStockCreateManyTouchIdInput | QcStockCreateManyTouchIdInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CastingEntryUpsertWithWhereUniqueWithoutTouchInput = {
     where: CastingEntryWhereUniqueInput
     update: XOR<CastingEntryUpdateWithoutTouchInput, CastingEntryUncheckedUpdateWithoutTouchInput>
@@ -51188,6 +52857,146 @@ export namespace Prisma {
     data: XOR<AddPurchaseStockUpdateManyMutationInput, AddPurchaseStockUncheckedUpdateManyWithoutTouchIdInput>
   }
 
+  export type QcStockUpsertWithWhereUniqueWithoutTouchIdInput = {
+    where: QcStockWhereUniqueInput
+    update: XOR<QcStockUpdateWithoutTouchIdInput, QcStockUncheckedUpdateWithoutTouchIdInput>
+    create: XOR<QcStockCreateWithoutTouchIdInput, QcStockUncheckedCreateWithoutTouchIdInput>
+  }
+
+  export type QcStockUpdateWithWhereUniqueWithoutTouchIdInput = {
+    where: QcStockWhereUniqueInput
+    data: XOR<QcStockUpdateWithoutTouchIdInput, QcStockUncheckedUpdateWithoutTouchIdInput>
+  }
+
+  export type QcStockUpdateManyWithWhereWithoutTouchIdInput = {
+    where: QcStockScalarWhereInput
+    data: XOR<QcStockUpdateManyMutationInput, QcStockUncheckedUpdateManyWithoutTouchIdInput>
+  }
+
+  export type AddItemCreateWithoutQCStockInput = {
+    createdAt?: Date | string
+    name: string
+    casting_items?: CastingItemsCreateNestedManyWithoutItemInput
+    stock?: StockCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsCreateNestedManyWithoutFilingitemInput
+    setting_items?: SettingItemsCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
+  }
+
+  export type AddItemUncheckedCreateWithoutQCStockInput = {
+    id?: number
+    createdAt?: Date | string
+    name: string
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
+    stock?: StockUncheckedCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFilingitemInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
+  }
+
+  export type AddItemCreateOrConnectWithoutQCStockInput = {
+    where: AddItemWhereUniqueInput
+    create: XOR<AddItemCreateWithoutQCStockInput, AddItemUncheckedCreateWithoutQCStockInput>
+  }
+
+  export type AddTouchCreateWithoutQCStockInput = {
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
+    stock?: StockCreateNestedManyWithoutTouchInput
+    add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
+  }
+
+  export type AddTouchUncheckedCreateWithoutQCStockInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
+    stock?: StockUncheckedCreateNestedManyWithoutTouchInput
+    add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
+  }
+
+  export type AddTouchCreateOrConnectWithoutQCStockInput = {
+    where: AddTouchWhereUniqueInput
+    create: XOR<AddTouchCreateWithoutQCStockInput, AddTouchUncheckedCreateWithoutQCStockInput>
+  }
+
+  export type AddItemUpsertWithoutQCStockInput = {
+    update: XOR<AddItemUpdateWithoutQCStockInput, AddItemUncheckedUpdateWithoutQCStockInput>
+    create: XOR<AddItemCreateWithoutQCStockInput, AddItemUncheckedCreateWithoutQCStockInput>
+    where?: AddItemWhereInput
+  }
+
+  export type AddItemUpdateToOneWithWhereWithoutQCStockInput = {
+    where?: AddItemWhereInput
+    data: XOR<AddItemUpdateWithoutQCStockInput, AddItemUncheckedUpdateWithoutQCStockInput>
+  }
+
+  export type AddItemUpdateWithoutQCStockInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    casting_items?: CastingItemsUpdateManyWithoutItemNestedInput
+    stock?: StockUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutFilingitemNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
+  }
+
+  export type AddItemUncheckedUpdateWithoutQCStockInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
+    stock?: StockUncheckedUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutFilingitemNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+  }
+
+  export type AddTouchUpsertWithoutQCStockInput = {
+    update: XOR<AddTouchUpdateWithoutQCStockInput, AddTouchUncheckedUpdateWithoutQCStockInput>
+    create: XOR<AddTouchCreateWithoutQCStockInput, AddTouchUncheckedCreateWithoutQCStockInput>
+    where?: AddTouchWhereInput
+  }
+
+  export type AddTouchUpdateToOneWithWhereWithoutQCStockInput = {
+    where?: AddTouchWhereInput
+    data: XOR<AddTouchUpdateWithoutQCStockInput, AddTouchUncheckedUpdateWithoutQCStockInput>
+  }
+
+  export type AddTouchUpdateWithoutQCStockInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
+    stock?: StockUpdateManyWithoutTouchNestedInput
+    add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
+  }
+
+  export type AddTouchUncheckedUpdateWithoutQCStockInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
+    add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
+  }
+
   export type AddTouchCreateWithoutCasting_entryInput = {
     createdAt?: Date | string
     touch: number
@@ -51197,6 +53006,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
     stock?: StockCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchUncheckedCreateWithoutCasting_entryInput = {
@@ -51209,6 +53019,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
     stock?: StockUncheckedCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchCreateOrConnectWithoutCasting_entryInput = {
@@ -51332,6 +53143,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
     stock?: StockUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutCasting_entryInput = {
@@ -51344,6 +53156,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
     stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddCastingUpsertWithoutEntriesInput = {
@@ -51432,6 +53245,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
     stock?: StockCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchUncheckedCreateWithoutCasting_itemsInput = {
@@ -51444,6 +53258,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
     stock?: StockUncheckedCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchCreateOrConnectWithoutCasting_itemsInput = {
@@ -51458,6 +53273,7 @@ export namespace Prisma {
     filing_items?: FilingItemsCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
+    QCStock?: QcStockCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemUncheckedCreateWithoutCasting_itemsInput = {
@@ -51468,6 +53284,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemCreateOrConnectWithoutCasting_itemsInput = {
@@ -51708,6 +53525,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
     stock?: StockUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutCasting_itemsInput = {
@@ -51720,6 +53538,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
     stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddItemUpsertWithoutCasting_itemsInput = {
@@ -51740,6 +53559,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutCasting_itemsInput = {
@@ -51750,6 +53570,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
   }
 
   export type CastingEntryUpsertWithoutItemsInput = {
@@ -53122,6 +54943,7 @@ export namespace Prisma {
     stock?: StockCreateNestedManyWithoutItemInput
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
+    QCStock?: QcStockCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemUncheckedCreateWithoutFiling_itemsInput = {
@@ -53132,6 +54954,7 @@ export namespace Prisma {
     stock?: StockUncheckedCreateNestedManyWithoutItemInput
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemCreateOrConnectWithoutFiling_itemsInput = {
@@ -53148,6 +54971,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
     stock?: StockCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchUncheckedCreateWithoutFiling_itemsInput = {
@@ -53160,6 +54984,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
     stock?: StockUncheckedCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchCreateOrConnectWithoutFiling_itemsInput = {
@@ -53408,6 +55233,7 @@ export namespace Prisma {
     stock?: StockUpdateManyWithoutItemNestedInput
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutFiling_itemsInput = {
@@ -53418,6 +55244,7 @@ export namespace Prisma {
     stock?: StockUncheckedUpdateManyWithoutItemNestedInput
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddTouchUpsertWithoutFiling_itemsInput = {
@@ -53440,6 +55267,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
     stock?: StockUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutFiling_itemsInput = {
@@ -53452,6 +55280,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
     stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
   }
 
   export type StockUpsertWithWhereUniqueWithoutFilingItemInput = {
@@ -54190,6 +56019,7 @@ export namespace Prisma {
     stock?: StockCreateNestedManyWithoutItemInput
     filing_items?: FilingItemsCreateNestedManyWithoutFilingitemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
+    QCStock?: QcStockCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemUncheckedCreateWithoutSetting_itemsInput = {
@@ -54200,6 +56030,7 @@ export namespace Prisma {
     stock?: StockUncheckedCreateNestedManyWithoutItemInput
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFilingitemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemCreateOrConnectWithoutSetting_itemsInput = {
@@ -54216,6 +56047,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
     stock?: StockCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchUncheckedCreateWithoutSetting_itemsInput = {
@@ -54228,6 +56060,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
     stock?: StockUncheckedCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchCreateOrConnectWithoutSetting_itemsInput = {
@@ -54405,6 +56238,7 @@ export namespace Prisma {
     stock?: StockUpdateManyWithoutItemNestedInput
     filing_items?: FilingItemsUpdateManyWithoutFilingitemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutSetting_itemsInput = {
@@ -54415,6 +56249,7 @@ export namespace Prisma {
     stock?: StockUncheckedUpdateManyWithoutItemNestedInput
     filing_items?: FilingItemsUncheckedUpdateManyWithoutFilingitemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddTouchUpsertWithoutSetting_itemsInput = {
@@ -54437,6 +56272,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
     stock?: StockUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutSetting_itemsInput = {
@@ -54449,6 +56285,7 @@ export namespace Prisma {
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
     stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
   }
 
   export type SettingWastageUpsertWithWhereUniqueWithoutSetting_itemsInput = {
@@ -55467,6 +57304,7 @@ export namespace Prisma {
     stock?: StockCreateNestedManyWithoutItemInput
     filing_items?: FilingItemsCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
+    QCStock?: QcStockCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemUncheckedCreateWithoutBuffing_itemsInput = {
@@ -55477,6 +57315,7 @@ export namespace Prisma {
     stock?: StockUncheckedCreateNestedManyWithoutItemInput
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemCreateOrConnectWithoutBuffing_itemsInput = {
@@ -55493,6 +57332,7 @@ export namespace Prisma {
     setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
     stock?: StockCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchUncheckedCreateWithoutBuffing_itemsInput = {
@@ -55505,6 +57345,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
     stock?: StockUncheckedCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchCreateOrConnectWithoutBuffing_itemsInput = {
@@ -55633,6 +57474,7 @@ export namespace Prisma {
     stock?: StockUpdateManyWithoutItemNestedInput
     filing_items?: FilingItemsUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutBuffing_itemsInput = {
@@ -55643,6 +57485,7 @@ export namespace Prisma {
     stock?: StockUncheckedUpdateManyWithoutItemNestedInput
     filing_items?: FilingItemsUncheckedUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddTouchUpsertWithoutBuffing_itemsInput = {
@@ -55665,6 +57508,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
     stock?: StockUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutBuffing_itemsInput = {
@@ -55677,6 +57521,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
     stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
   }
 
   export type StockUpsertWithWhereUniqueWithoutBuffingItemInput = {
@@ -56484,6 +58329,7 @@ export namespace Prisma {
     filing_items?: FilingItemsCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
+    QCStock?: QcStockCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemUncheckedCreateWithoutStockInput = {
@@ -56494,6 +58340,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
   }
 
   export type AddItemCreateOrConnectWithoutStockInput = {
@@ -56510,6 +58357,7 @@ export namespace Prisma {
     setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchUncheckedCreateWithoutStockInput = {
@@ -56522,6 +58370,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
   }
 
   export type AddTouchCreateOrConnectWithoutStockInput = {
@@ -56771,6 +58620,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutStockInput = {
@@ -56781,6 +58631,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
   }
 
   export type AddTouchUpsertWithoutStockInput = {
@@ -56803,6 +58654,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutStockInput = {
@@ -56815,6 +58667,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
   }
 
   export type AddCastingUpsertWithoutStockInput = {
@@ -57770,6 +59623,17 @@ export namespace Prisma {
     buffing_entry_id: number
   }
 
+  export type QcStockCreateManyItemIdInput = {
+    id?: number
+    createdAt: Date | string
+    weight: number
+    stone_weight: number
+    final_weight: number
+    touch_id: number
+    purity: number
+    remarks?: string | null
+  }
+
   export type CastingItemsUpdateWithoutItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
@@ -57988,6 +59852,38 @@ export namespace Prisma {
     buffing_entry_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type QcStockUpdateWithoutItemIdInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    touchId?: AddTouchUpdateOneRequiredWithoutQCStockNestedInput
+  }
+
+  export type QcStockUncheckedUpdateWithoutItemIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type QcStockUncheckedUpdateManyWithoutItemIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type CastingEntryCreateManyTouchInput = {
     id?: number
     createdAt?: Date | string
@@ -58073,6 +59969,17 @@ export namespace Prisma {
     purity: number
     rate: number
     totalValue: number
+    remarks?: string | null
+  }
+
+  export type QcStockCreateManyTouchIdInput = {
+    id?: number
+    createdAt: Date | string
+    item_id: number
+    weight: number
+    stone_weight: number
+    final_weight: number
+    purity: number
     remarks?: string | null
   }
 
@@ -58370,6 +60277,38 @@ export namespace Prisma {
     purity?: FloatFieldUpdateOperationsInput | number
     rate?: FloatFieldUpdateOperationsInput | number
     totalValue?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type QcStockUpdateWithoutTouchIdInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: AddItemUpdateOneRequiredWithoutQCStockNestedInput
+  }
+
+  export type QcStockUncheckedUpdateWithoutTouchIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type QcStockUncheckedUpdateManyWithoutTouchIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

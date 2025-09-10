@@ -211,6 +211,18 @@ exports.Prisma.AddTouchScalarFieldEnum = {
   touch: 'touch'
 };
 
+exports.Prisma.QcStockScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  item_id: 'item_id',
+  weight: 'weight',
+  stone_weight: 'stone_weight',
+  final_weight: 'final_weight',
+  touch_id: 'touch_id',
+  purity: 'purity',
+  remarks: 'remarks'
+};
+
 exports.Prisma.CastingEntryScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
@@ -508,6 +520,10 @@ exports.Prisma.AddItemOrderByRelevanceFieldEnum = {
   name: 'name'
 };
 
+exports.Prisma.QcStockOrderByRelevanceFieldEnum = {
+  remarks: 'remarks'
+};
+
 exports.Prisma.CastingItemsOrderByRelevanceFieldEnum = {
   remarks: 'remarks'
 };
@@ -561,6 +577,7 @@ exports.Prisma.ModelName = {
   CustomerTransaction: 'CustomerTransaction',
   AddItem: 'AddItem',
   AddTouch: 'AddTouch',
+  QcStock: 'QcStock',
   CastingEntry: 'CastingEntry',
   CastingItems: 'CastingItems',
   CastiingTotalBalance: 'CastiingTotalBalance',
