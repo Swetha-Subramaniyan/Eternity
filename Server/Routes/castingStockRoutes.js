@@ -8,7 +8,7 @@ import {
   deleteStock,
 } from '../Controllers/castingStockController.js';
 
-const router = express.Router();
+const router = express.Router();   
 
 router.post('/', addToStock);           // CREATE
 router.get('/', getAllStock);           // READ ALL
