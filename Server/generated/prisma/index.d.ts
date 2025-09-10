@@ -36081,6 +36081,7 @@ export namespace Prisma {
     filing_item_id: number | null
     setting_item_id: number | null
     buffing_item_id: number | null
+    item_type: $Enums.ITEMTYPE | null
     item_id: number | null
     weight: number | null
     touch_id: number | null
@@ -36097,6 +36098,7 @@ export namespace Prisma {
     filing_item_id: number | null
     setting_item_id: number | null
     buffing_item_id: number | null
+    item_type: $Enums.ITEMTYPE | null
     item_id: number | null
     weight: number | null
     touch_id: number | null
@@ -36113,6 +36115,7 @@ export namespace Prisma {
     filing_item_id: number
     setting_item_id: number
     buffing_item_id: number
+    item_type: number
     item_id: number
     weight: number
     touch_id: number
@@ -36159,6 +36162,7 @@ export namespace Prisma {
     filing_item_id?: true
     setting_item_id?: true
     buffing_item_id?: true
+    item_type?: true
     item_id?: true
     weight?: true
     touch_id?: true
@@ -36175,6 +36179,7 @@ export namespace Prisma {
     filing_item_id?: true
     setting_item_id?: true
     buffing_item_id?: true
+    item_type?: true
     item_id?: true
     weight?: true
     touch_id?: true
@@ -36191,6 +36196,7 @@ export namespace Prisma {
     filing_item_id?: true
     setting_item_id?: true
     buffing_item_id?: true
+    item_type?: true
     item_id?: true
     weight?: true
     touch_id?: true
@@ -36294,12 +36300,13 @@ export namespace Prisma {
     filing_item_id: number | null
     setting_item_id: number | null
     buffing_item_id: number | null
-    item_id: number
+    item_type: $Enums.ITEMTYPE | null
+    item_id: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks: string | null
-    casting_customer_id: number
+    casting_customer_id: number | null
     purchase_id: number | null
     _count: StockCountAggregateOutputType | null
     _avg: StockAvgAggregateOutputType | null
@@ -36329,6 +36336,7 @@ export namespace Prisma {
     filing_item_id?: boolean
     setting_item_id?: boolean
     buffing_item_id?: boolean
+    item_type?: boolean
     item_id?: boolean
     weight?: boolean
     touch_id?: boolean
@@ -36340,9 +36348,9 @@ export namespace Prisma {
     filingItem?: boolean | Stock$filingItemArgs<ExtArgs>
     settingItem?: boolean | Stock$settingItemArgs<ExtArgs>
     buffingItem?: boolean | Stock$buffingItemArgs<ExtArgs>
-    item?: boolean | AddItemDefaultArgs<ExtArgs>
+    item?: boolean | Stock$itemArgs<ExtArgs>
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
-    casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
+    casting_customer?: boolean | Stock$casting_customerArgs<ExtArgs>
     purchaseId?: boolean | Stock$purchaseIdArgs<ExtArgs>
   }, ExtArgs["result"]["stock"]>
 
@@ -36355,6 +36363,7 @@ export namespace Prisma {
     filing_item_id?: boolean
     setting_item_id?: boolean
     buffing_item_id?: boolean
+    item_type?: boolean
     item_id?: boolean
     weight?: boolean
     touch_id?: boolean
@@ -36364,15 +36373,15 @@ export namespace Prisma {
     purchase_id?: boolean
   }
 
-  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "casting_item_id" | "filing_item_id" | "setting_item_id" | "buffing_item_id" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "casting_customer_id" | "purchase_id", ExtArgs["result"]["stock"]>
+  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "casting_item_id" | "filing_item_id" | "setting_item_id" | "buffing_item_id" | "item_type" | "item_id" | "weight" | "touch_id" | "item_purity" | "remarks" | "casting_customer_id" | "purchase_id", ExtArgs["result"]["stock"]>
   export type StockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     castingItem?: boolean | Stock$castingItemArgs<ExtArgs>
     filingItem?: boolean | Stock$filingItemArgs<ExtArgs>
     settingItem?: boolean | Stock$settingItemArgs<ExtArgs>
     buffingItem?: boolean | Stock$buffingItemArgs<ExtArgs>
-    item?: boolean | AddItemDefaultArgs<ExtArgs>
+    item?: boolean | Stock$itemArgs<ExtArgs>
     touch?: boolean | AddTouchDefaultArgs<ExtArgs>
-    casting_customer?: boolean | AddCastingDefaultArgs<ExtArgs>
+    casting_customer?: boolean | Stock$casting_customerArgs<ExtArgs>
     purchaseId?: boolean | Stock$purchaseIdArgs<ExtArgs>
   }
 
@@ -36383,9 +36392,9 @@ export namespace Prisma {
       filingItem: Prisma.$FilingItemsPayload<ExtArgs> | null
       settingItem: Prisma.$SettingItemsPayload<ExtArgs> | null
       buffingItem: Prisma.$BuffingItemsPayload<ExtArgs> | null
-      item: Prisma.$AddItemPayload<ExtArgs>
+      item: Prisma.$AddItemPayload<ExtArgs> | null
       touch: Prisma.$AddTouchPayload<ExtArgs>
-      casting_customer: Prisma.$AddCastingPayload<ExtArgs>
+      casting_customer: Prisma.$AddCastingPayload<ExtArgs> | null
       purchaseId: Prisma.$AddPurchaseStockPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -36395,12 +36404,13 @@ export namespace Prisma {
       filing_item_id: number | null
       setting_item_id: number | null
       buffing_item_id: number | null
-      item_id: number
+      item_type: $Enums.ITEMTYPE | null
+      item_id: number | null
       weight: number
       touch_id: number
       item_purity: number
       remarks: string | null
-      casting_customer_id: number
+      casting_customer_id: number | null
       purchase_id: number | null
     }, ExtArgs["result"]["stock"]>
     composites: {}
@@ -36746,9 +36756,9 @@ export namespace Prisma {
     filingItem<T extends Stock$filingItemArgs<ExtArgs> = {}>(args?: Subset<T, Stock$filingItemArgs<ExtArgs>>): Prisma__FilingItemsClient<$Result.GetResult<Prisma.$FilingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     settingItem<T extends Stock$settingItemArgs<ExtArgs> = {}>(args?: Subset<T, Stock$settingItemArgs<ExtArgs>>): Prisma__SettingItemsClient<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     buffingItem<T extends Stock$buffingItemArgs<ExtArgs> = {}>(args?: Subset<T, Stock$buffingItemArgs<ExtArgs>>): Prisma__BuffingItemsClient<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    item<T extends AddItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddItemDefaultArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    item<T extends Stock$itemArgs<ExtArgs> = {}>(args?: Subset<T, Stock$itemArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     touch<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    casting_customer<T extends AddCastingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddCastingDefaultArgs<ExtArgs>>): Prisma__AddCastingClient<$Result.GetResult<Prisma.$AddCastingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    casting_customer<T extends Stock$casting_customerArgs<ExtArgs> = {}>(args?: Subset<T, Stock$casting_customerArgs<ExtArgs>>): Prisma__AddCastingClient<$Result.GetResult<Prisma.$AddCastingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     purchaseId<T extends Stock$purchaseIdArgs<ExtArgs> = {}>(args?: Subset<T, Stock$purchaseIdArgs<ExtArgs>>): Prisma__AddPurchaseStockClient<$Result.GetResult<Prisma.$AddPurchaseStockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -36785,6 +36795,7 @@ export namespace Prisma {
     readonly filing_item_id: FieldRef<"Stock", 'Int'>
     readonly setting_item_id: FieldRef<"Stock", 'Int'>
     readonly buffing_item_id: FieldRef<"Stock", 'Int'>
+    readonly item_type: FieldRef<"Stock", 'ITEMTYPE'>
     readonly item_id: FieldRef<"Stock", 'Int'>
     readonly weight: FieldRef<"Stock", 'Float'>
     readonly touch_id: FieldRef<"Stock", 'Int'>
@@ -37208,6 +37219,44 @@ export namespace Prisma {
      */
     include?: BuffingItemsInclude<ExtArgs> | null
     where?: BuffingItemsWhereInput
+  }
+
+  /**
+   * Stock.item
+   */
+  export type Stock$itemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddItem
+     */
+    select?: AddItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddItem
+     */
+    omit?: AddItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddItemInclude<ExtArgs> | null
+    where?: AddItemWhereInput
+  }
+
+  /**
+   * Stock.casting_customer
+   */
+  export type Stock$casting_customerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddCasting
+     */
+    select?: AddCastingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddCasting
+     */
+    omit?: AddCastingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddCastingInclude<ExtArgs> | null
+    where?: AddCastingWhereInput
   }
 
   /**
@@ -37663,6 +37712,7 @@ export namespace Prisma {
     filing_item_id: 'filing_item_id',
     setting_item_id: 'setting_item_id',
     buffing_item_id: 'buffing_item_id',
+    item_type: 'item_type',
     item_id: 'item_id',
     weight: 'weight',
     touch_id: 'touch_id',
@@ -40217,20 +40267,21 @@ export namespace Prisma {
     filing_item_id?: IntNullableFilter<"Stock"> | number | null
     setting_item_id?: IntNullableFilter<"Stock"> | number | null
     buffing_item_id?: IntNullableFilter<"Stock"> | number | null
-    item_id?: IntFilter<"Stock"> | number
+    item_type?: EnumITEMTYPENullableFilter<"Stock"> | $Enums.ITEMTYPE | null
+    item_id?: IntNullableFilter<"Stock"> | number | null
     weight?: FloatFilter<"Stock"> | number
     touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
-    casting_customer_id?: IntFilter<"Stock"> | number
+    casting_customer_id?: IntNullableFilter<"Stock"> | number | null
     purchase_id?: IntNullableFilter<"Stock"> | number | null
     castingItem?: XOR<CastingItemsNullableScalarRelationFilter, CastingItemsWhereInput> | null
     filingItem?: XOR<FilingItemsNullableScalarRelationFilter, FilingItemsWhereInput> | null
     settingItem?: XOR<SettingItemsNullableScalarRelationFilter, SettingItemsWhereInput> | null
     buffingItem?: XOR<BuffingItemsNullableScalarRelationFilter, BuffingItemsWhereInput> | null
-    item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    item?: XOR<AddItemNullableScalarRelationFilter, AddItemWhereInput> | null
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
-    casting_customer?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
+    casting_customer?: XOR<AddCastingNullableScalarRelationFilter, AddCastingWhereInput> | null
     purchaseId?: XOR<AddPurchaseStockNullableScalarRelationFilter, AddPurchaseStockWhereInput> | null
   }
 
@@ -40241,12 +40292,13 @@ export namespace Prisma {
     filing_item_id?: SortOrderInput | SortOrder
     setting_item_id?: SortOrderInput | SortOrder
     buffing_item_id?: SortOrderInput | SortOrder
-    item_id?: SortOrder
+    item_type?: SortOrderInput | SortOrder
+    item_id?: SortOrderInput | SortOrder
     weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
-    casting_customer_id?: SortOrder
+    casting_customer_id?: SortOrderInput | SortOrder
     purchase_id?: SortOrderInput | SortOrder
     castingItem?: CastingItemsOrderByWithRelationInput
     filingItem?: FilingItemsOrderByWithRelationInput
@@ -40269,20 +40321,21 @@ export namespace Prisma {
     filing_item_id?: IntNullableFilter<"Stock"> | number | null
     setting_item_id?: IntNullableFilter<"Stock"> | number | null
     buffing_item_id?: IntNullableFilter<"Stock"> | number | null
-    item_id?: IntFilter<"Stock"> | number
+    item_type?: EnumITEMTYPENullableFilter<"Stock"> | $Enums.ITEMTYPE | null
+    item_id?: IntNullableFilter<"Stock"> | number | null
     weight?: FloatFilter<"Stock"> | number
     touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
-    casting_customer_id?: IntFilter<"Stock"> | number
+    casting_customer_id?: IntNullableFilter<"Stock"> | number | null
     purchase_id?: IntNullableFilter<"Stock"> | number | null
     castingItem?: XOR<CastingItemsNullableScalarRelationFilter, CastingItemsWhereInput> | null
     filingItem?: XOR<FilingItemsNullableScalarRelationFilter, FilingItemsWhereInput> | null
     settingItem?: XOR<SettingItemsNullableScalarRelationFilter, SettingItemsWhereInput> | null
     buffingItem?: XOR<BuffingItemsNullableScalarRelationFilter, BuffingItemsWhereInput> | null
-    item?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
+    item?: XOR<AddItemNullableScalarRelationFilter, AddItemWhereInput> | null
     touch?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
-    casting_customer?: XOR<AddCastingScalarRelationFilter, AddCastingWhereInput>
+    casting_customer?: XOR<AddCastingNullableScalarRelationFilter, AddCastingWhereInput> | null
     purchaseId?: XOR<AddPurchaseStockNullableScalarRelationFilter, AddPurchaseStockWhereInput> | null
   }, "id">
 
@@ -40293,12 +40346,13 @@ export namespace Prisma {
     filing_item_id?: SortOrderInput | SortOrder
     setting_item_id?: SortOrderInput | SortOrder
     buffing_item_id?: SortOrderInput | SortOrder
-    item_id?: SortOrder
+    item_type?: SortOrderInput | SortOrder
+    item_id?: SortOrderInput | SortOrder
     weight?: SortOrder
     touch_id?: SortOrder
     item_purity?: SortOrder
     remarks?: SortOrderInput | SortOrder
-    casting_customer_id?: SortOrder
+    casting_customer_id?: SortOrderInput | SortOrder
     purchase_id?: SortOrderInput | SortOrder
     _count?: StockCountOrderByAggregateInput
     _avg?: StockAvgOrderByAggregateInput
@@ -40317,12 +40371,13 @@ export namespace Prisma {
     filing_item_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
     setting_item_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
     buffing_item_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
-    item_id?: IntWithAggregatesFilter<"Stock"> | number
+    item_type?: EnumITEMTYPENullableWithAggregatesFilter<"Stock"> | $Enums.ITEMTYPE | null
+    item_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
     weight?: FloatWithAggregatesFilter<"Stock"> | number
     touch_id?: IntWithAggregatesFilter<"Stock"> | number
     item_purity?: FloatWithAggregatesFilter<"Stock"> | number
     remarks?: StringNullableWithAggregatesFilter<"Stock"> | string | null
-    casting_customer_id?: IntWithAggregatesFilter<"Stock"> | number
+    casting_customer_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
     purchase_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
   }
 
@@ -42626,6 +42681,7 @@ export namespace Prisma {
 
   export type StockCreateInput = {
     createdAt?: Date | string
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     item_purity: number
     remarks?: string | null
@@ -42633,9 +42689,9 @@ export namespace Prisma {
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
-    item: AddItemCreateNestedOneWithoutStockInput
+    item?: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
-    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+    casting_customer?: AddCastingCreateNestedOneWithoutStockInput
     purchaseId?: AddPurchaseStockCreateNestedOneWithoutStockInput
   }
 
@@ -42646,17 +42702,19 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
   export type StockUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -42664,9 +42722,9 @@ export namespace Prisma {
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
-    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
-    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneWithoutStockNestedInput
     purchaseId?: AddPurchaseStockUpdateOneWithoutStockNestedInput
   }
 
@@ -42677,12 +42735,13 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -42693,17 +42752,19 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
   export type StockUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -42716,12 +42777,13 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -44820,6 +44882,13 @@ export namespace Prisma {
     buffing_lot_id?: SortOrder
   }
 
+  export type EnumITEMTYPENullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ITEMTYPE | EnumITEMTYPEFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ITEMTYPE[] | null
+    notIn?: $Enums.ITEMTYPE[] | null
+    not?: NestedEnumITEMTYPENullableFilter<$PrismaModel> | $Enums.ITEMTYPE | null
+  }
+
   export type CastingItemsNullableScalarRelationFilter = {
     is?: CastingItemsWhereInput | null
     isNot?: CastingItemsWhereInput | null
@@ -44828,6 +44897,16 @@ export namespace Prisma {
   export type BuffingItemsNullableScalarRelationFilter = {
     is?: BuffingItemsWhereInput | null
     isNot?: BuffingItemsWhereInput | null
+  }
+
+  export type AddItemNullableScalarRelationFilter = {
+    is?: AddItemWhereInput | null
+    isNot?: AddItemWhereInput | null
+  }
+
+  export type AddCastingNullableScalarRelationFilter = {
+    is?: AddCastingWhereInput | null
+    isNot?: AddCastingWhereInput | null
   }
 
   export type AddPurchaseStockNullableScalarRelationFilter = {
@@ -44848,6 +44927,7 @@ export namespace Prisma {
     filing_item_id?: SortOrder
     setting_item_id?: SortOrder
     buffing_item_id?: SortOrder
+    item_type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
     touch_id?: SortOrder
@@ -44878,6 +44958,7 @@ export namespace Prisma {
     filing_item_id?: SortOrder
     setting_item_id?: SortOrder
     buffing_item_id?: SortOrder
+    item_type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
     touch_id?: SortOrder
@@ -44894,6 +44975,7 @@ export namespace Prisma {
     filing_item_id?: SortOrder
     setting_item_id?: SortOrder
     buffing_item_id?: SortOrder
+    item_type?: SortOrder
     item_id?: SortOrder
     weight?: SortOrder
     touch_id?: SortOrder
@@ -44915,6 +44997,16 @@ export namespace Prisma {
     item_purity?: SortOrder
     casting_customer_id?: SortOrder
     purchase_id?: SortOrder
+  }
+
+  export type EnumITEMTYPENullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ITEMTYPE | EnumITEMTYPEFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ITEMTYPE[] | null
+    notIn?: $Enums.ITEMTYPE[] | null
+    not?: NestedEnumITEMTYPENullableWithAggregatesFilter<$PrismaModel> | $Enums.ITEMTYPE | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumITEMTYPENullableFilter<$PrismaModel>
+    _max?: NestedEnumITEMTYPENullableFilter<$PrismaModel>
   }
 
   export type CustomerTransactionCreateNestedManyWithoutCustomerInput = {
@@ -48703,6 +48795,10 @@ export namespace Prisma {
     connect?: AddPurchaseStockWhereUniqueInput
   }
 
+  export type NullableEnumITEMTYPEFieldUpdateOperationsInput = {
+    set?: $Enums.ITEMTYPE | null
+  }
+
   export type CastingItemsUpdateOneWithoutStockNestedInput = {
     create?: XOR<CastingItemsCreateWithoutStockInput, CastingItemsUncheckedCreateWithoutStockInput>
     connectOrCreate?: CastingItemsCreateOrConnectWithoutStockInput
@@ -48743,10 +48839,12 @@ export namespace Prisma {
     update?: XOR<XOR<BuffingItemsUpdateToOneWithWhereWithoutStockInput, BuffingItemsUpdateWithoutStockInput>, BuffingItemsUncheckedUpdateWithoutStockInput>
   }
 
-  export type AddItemUpdateOneRequiredWithoutStockNestedInput = {
+  export type AddItemUpdateOneWithoutStockNestedInput = {
     create?: XOR<AddItemCreateWithoutStockInput, AddItemUncheckedCreateWithoutStockInput>
     connectOrCreate?: AddItemCreateOrConnectWithoutStockInput
     upsert?: AddItemUpsertWithoutStockInput
+    disconnect?: AddItemWhereInput | boolean
+    delete?: AddItemWhereInput | boolean
     connect?: AddItemWhereUniqueInput
     update?: XOR<XOR<AddItemUpdateToOneWithWhereWithoutStockInput, AddItemUpdateWithoutStockInput>, AddItemUncheckedUpdateWithoutStockInput>
   }
@@ -48759,10 +48857,12 @@ export namespace Prisma {
     update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutStockInput, AddTouchUpdateWithoutStockInput>, AddTouchUncheckedUpdateWithoutStockInput>
   }
 
-  export type AddCastingUpdateOneRequiredWithoutStockNestedInput = {
+  export type AddCastingUpdateOneWithoutStockNestedInput = {
     create?: XOR<AddCastingCreateWithoutStockInput, AddCastingUncheckedCreateWithoutStockInput>
     connectOrCreate?: AddCastingCreateOrConnectWithoutStockInput
     upsert?: AddCastingUpsertWithoutStockInput
+    disconnect?: AddCastingWhereInput | boolean
+    delete?: AddCastingWhereInput | boolean
     connect?: AddCastingWhereUniqueInput
     update?: XOR<XOR<AddCastingUpdateToOneWithWhereWithoutStockInput, AddCastingUpdateWithoutStockInput>, AddCastingUncheckedUpdateWithoutStockInput>
   }
@@ -49057,6 +49157,23 @@ export namespace Prisma {
     _max?: NestedEnumCASTINGENTRYTYPENullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumITEMTYPENullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ITEMTYPE | EnumITEMTYPEFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ITEMTYPE[] | null
+    notIn?: $Enums.ITEMTYPE[] | null
+    not?: NestedEnumITEMTYPENullableFilter<$PrismaModel> | $Enums.ITEMTYPE | null
+  }
+
+  export type NestedEnumITEMTYPENullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ITEMTYPE | EnumITEMTYPEFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ITEMTYPE[] | null
+    notIn?: $Enums.ITEMTYPE[] | null
+    not?: NestedEnumITEMTYPENullableWithAggregatesFilter<$PrismaModel> | $Enums.ITEMTYPE | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumITEMTYPENullableFilter<$PrismaModel>
+    _max?: NestedEnumITEMTYPENullableFilter<$PrismaModel>
+  }
+
   export type CustomerTransactionCreateWithoutCustomerInput = {
     createdAt?: Date | string
     date: Date | string
@@ -49203,6 +49320,7 @@ export namespace Prisma {
 
   export type StockCreateWithoutCasting_customerInput = {
     createdAt?: Date | string
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     item_purity: number
     remarks?: string | null
@@ -49210,7 +49328,7 @@ export namespace Prisma {
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
-    item: AddItemCreateNestedOneWithoutStockInput
+    item?: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
     purchaseId?: AddPurchaseStockCreateNestedOneWithoutStockInput
   }
@@ -49222,7 +49340,8 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
@@ -49331,12 +49450,13 @@ export namespace Prisma {
     filing_item_id?: IntNullableFilter<"Stock"> | number | null
     setting_item_id?: IntNullableFilter<"Stock"> | number | null
     buffing_item_id?: IntNullableFilter<"Stock"> | number | null
-    item_id?: IntFilter<"Stock"> | number
+    item_type?: EnumITEMTYPENullableFilter<"Stock"> | $Enums.ITEMTYPE | null
+    item_id?: IntNullableFilter<"Stock"> | number | null
     weight?: FloatFilter<"Stock"> | number
     touch_id?: IntFilter<"Stock"> | number
     item_purity?: FloatFilter<"Stock"> | number
     remarks?: StringNullableFilter<"Stock"> | string | null
-    casting_customer_id?: IntFilter<"Stock"> | number
+    casting_customer_id?: IntNullableFilter<"Stock"> | number | null
     purchase_id?: IntNullableFilter<"Stock"> | number | null
   }
 
@@ -50178,6 +50298,7 @@ export namespace Prisma {
 
   export type StockCreateWithoutPurchaseIdInput = {
     createdAt?: Date | string
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     item_purity: number
     remarks?: string | null
@@ -50185,9 +50306,9 @@ export namespace Prisma {
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
-    item: AddItemCreateNestedOneWithoutStockInput
+    item?: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
-    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+    casting_customer?: AddCastingCreateNestedOneWithoutStockInput
   }
 
   export type StockUncheckedCreateWithoutPurchaseIdInput = {
@@ -50197,12 +50318,13 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
   }
 
   export type StockCreateOrConnectWithoutPurchaseIdInput = {
@@ -50388,6 +50510,7 @@ export namespace Prisma {
 
   export type StockCreateWithoutItemInput = {
     createdAt?: Date | string
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     item_purity: number
     remarks?: string | null
@@ -50396,7 +50519,7 @@ export namespace Prisma {
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
-    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+    casting_customer?: AddCastingCreateNestedOneWithoutStockInput
     purchaseId?: AddPurchaseStockCreateNestedOneWithoutStockInput
   }
 
@@ -50407,11 +50530,12 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -50878,6 +51002,7 @@ export namespace Prisma {
 
   export type StockCreateWithoutTouchInput = {
     createdAt?: Date | string
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     item_purity: number
     remarks?: string | null
@@ -50885,8 +51010,8 @@ export namespace Prisma {
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
-    item: AddItemCreateNestedOneWithoutStockInput
-    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+    item?: AddItemCreateNestedOneWithoutStockInput
+    casting_customer?: AddCastingCreateNestedOneWithoutStockInput
     purchaseId?: AddPurchaseStockCreateNestedOneWithoutStockInput
   }
 
@@ -50897,11 +51022,12 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -51472,15 +51598,16 @@ export namespace Prisma {
 
   export type StockCreateWithoutCastingItemInput = {
     createdAt?: Date | string
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     item_purity: number
     remarks?: string | null
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
-    item: AddItemCreateNestedOneWithoutStockInput
+    item?: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
-    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+    casting_customer?: AddCastingCreateNestedOneWithoutStockInput
     purchaseId?: AddPurchaseStockCreateNestedOneWithoutStockInput
   }
 
@@ -51490,12 +51617,13 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -53041,15 +53169,16 @@ export namespace Prisma {
 
   export type StockCreateWithoutFilingItemInput = {
     createdAt?: Date | string
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     item_purity: number
     remarks?: string | null
     castingItem?: CastingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
-    item: AddItemCreateNestedOneWithoutStockInput
+    item?: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
-    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+    casting_customer?: AddCastingCreateNestedOneWithoutStockInput
     purchaseId?: AddPurchaseStockCreateNestedOneWithoutStockInput
   }
 
@@ -53059,12 +53188,13 @@ export namespace Prisma {
     casting_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -54169,15 +54299,16 @@ export namespace Prisma {
 
   export type StockCreateWithoutSettingItemInput = {
     createdAt?: Date | string
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     item_purity: number
     remarks?: string | null
     castingItem?: CastingItemsCreateNestedOneWithoutStockInput
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     buffingItem?: BuffingItemsCreateNestedOneWithoutStockInput
-    item: AddItemCreateNestedOneWithoutStockInput
+    item?: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
-    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+    casting_customer?: AddCastingCreateNestedOneWithoutStockInput
     purchaseId?: AddPurchaseStockCreateNestedOneWithoutStockInput
   }
 
@@ -54187,12 +54318,13 @@ export namespace Prisma {
     casting_item_id?: number | null
     filing_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -55382,15 +55514,16 @@ export namespace Prisma {
 
   export type StockCreateWithoutBuffingItemInput = {
     createdAt?: Date | string
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     item_purity: number
     remarks?: string | null
     castingItem?: CastingItemsCreateNestedOneWithoutStockInput
     filingItem?: FilingItemsCreateNestedOneWithoutStockInput
     settingItem?: SettingItemsCreateNestedOneWithoutStockInput
-    item: AddItemCreateNestedOneWithoutStockInput
+    item?: AddItemCreateNestedOneWithoutStockInput
     touch: AddTouchCreateNestedOneWithoutStockInput
-    casting_customer: AddCastingCreateNestedOneWithoutStockInput
+    casting_customer?: AddCastingCreateNestedOneWithoutStockInput
     purchaseId?: AddPurchaseStockCreateNestedOneWithoutStockInput
   }
 
@@ -55400,12 +55533,13 @@ export namespace Prisma {
     casting_item_id?: number | null
     filing_item_id?: number | null
     setting_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -56826,7 +56960,8 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
@@ -56923,6 +57058,7 @@ export namespace Prisma {
 
   export type StockUpdateWithoutCasting_customerInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -56930,7 +57066,7 @@ export namespace Prisma {
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
-    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
     purchaseId?: AddPurchaseStockUpdateOneWithoutStockNestedInput
   }
@@ -56942,7 +57078,8 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -56957,7 +57094,8 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
@@ -57513,16 +57651,18 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
   }
 
   export type StockUpdateWithoutPurchaseIdInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -57530,9 +57670,9 @@ export namespace Prisma {
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
-    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
-    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneWithoutStockNestedInput
   }
 
   export type StockUncheckedUpdateWithoutPurchaseIdInput = {
@@ -57542,12 +57682,13 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type StockUncheckedUpdateManyWithoutPurchaseIdInput = {
@@ -57557,12 +57698,13 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type CastingItemsCreateManyItemInput = {
@@ -57584,11 +57726,12 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
+    item_type?: $Enums.ITEMTYPE | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -57674,6 +57817,7 @@ export namespace Prisma {
 
   export type StockUpdateWithoutItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -57682,7 +57826,7 @@ export namespace Prisma {
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
-    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneWithoutStockNestedInput
     purchaseId?: AddPurchaseStockUpdateOneWithoutStockNestedInput
   }
 
@@ -57693,11 +57837,12 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -57708,11 +57853,12 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -57909,11 +58055,12 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -58144,6 +58291,7 @@ export namespace Prisma {
 
   export type StockUpdateWithoutTouchInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -58151,8 +58299,8 @@ export namespace Prisma {
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
-    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
-    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneWithoutStockNestedInput
     purchaseId?: AddPurchaseStockUpdateOneWithoutStockNestedInput
   }
 
@@ -58163,11 +58311,12 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -58178,11 +58327,12 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -58339,12 +58489,13 @@ export namespace Prisma {
     filing_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -58432,15 +58583,16 @@ export namespace Prisma {
 
   export type StockUpdateWithoutCastingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
-    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
-    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneWithoutStockNestedInput
     purchaseId?: AddPurchaseStockUpdateOneWithoutStockNestedInput
   }
 
@@ -58450,12 +58602,13 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -58465,12 +58618,13 @@ export namespace Prisma {
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -58970,12 +59124,13 @@ export namespace Prisma {
     casting_item_id?: number | null
     setting_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -58996,15 +59151,16 @@ export namespace Prisma {
 
   export type StockUpdateWithoutFilingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
-    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
-    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneWithoutStockNestedInput
     purchaseId?: AddPurchaseStockUpdateOneWithoutStockNestedInput
   }
 
@@ -59014,12 +59170,13 @@ export namespace Prisma {
     casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -59029,12 +59186,13 @@ export namespace Prisma {
     casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -59423,12 +59581,13 @@ export namespace Prisma {
     casting_item_id?: number | null
     filing_item_id?: number | null
     buffing_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
@@ -59517,15 +59676,16 @@ export namespace Prisma {
 
   export type StockUpdateWithoutSettingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     buffingItem?: BuffingItemsUpdateOneWithoutStockNestedInput
-    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
-    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneWithoutStockNestedInput
     purchaseId?: AddPurchaseStockUpdateOneWithoutStockNestedInput
   }
 
@@ -59535,12 +59695,13 @@ export namespace Prisma {
     casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -59550,12 +59711,13 @@ export namespace Prisma {
     casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     buffing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -59838,26 +60000,28 @@ export namespace Prisma {
     casting_item_id?: number | null
     filing_item_id?: number | null
     setting_item_id?: number | null
-    item_id: number
+    item_type?: $Enums.ITEMTYPE | null
+    item_id?: number | null
     weight: number
     touch_id: number
     item_purity: number
     remarks?: string | null
-    casting_customer_id: number
+    casting_customer_id?: number | null
     purchase_id?: number | null
   }
 
   export type StockUpdateWithoutBuffingItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
     weight?: FloatFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     castingItem?: CastingItemsUpdateOneWithoutStockNestedInput
     filingItem?: FilingItemsUpdateOneWithoutStockNestedInput
     settingItem?: SettingItemsUpdateOneWithoutStockNestedInput
-    item?: AddItemUpdateOneRequiredWithoutStockNestedInput
+    item?: AddItemUpdateOneWithoutStockNestedInput
     touch?: AddTouchUpdateOneRequiredWithoutStockNestedInput
-    casting_customer?: AddCastingUpdateOneRequiredWithoutStockNestedInput
+    casting_customer?: AddCastingUpdateOneWithoutStockNestedInput
     purchaseId?: AddPurchaseStockUpdateOneWithoutStockNestedInput
   }
 
@@ -59867,12 +60031,13 @@ export namespace Prisma {
     casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -59882,12 +60047,13 @@ export namespace Prisma {
     casting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     filing_item_id?: NullableIntFieldUpdateOperationsInput | number | null
     setting_item_id?: NullableIntFieldUpdateOperationsInput | number | null
-    item_id?: IntFieldUpdateOperationsInput | number
+    item_type?: NullableEnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE | null
+    item_id?: NullableIntFieldUpdateOperationsInput | number | null
     weight?: FloatFieldUpdateOperationsInput | number
     touch_id?: IntFieldUpdateOperationsInput | number
     item_purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    casting_customer_id?: IntFieldUpdateOperationsInput | number
+    casting_customer_id?: NullableIntFieldUpdateOperationsInput | number | null
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 

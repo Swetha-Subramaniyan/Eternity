@@ -113,6 +113,7 @@ const MasterPurchaseStock = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
   
     const payload = {
       supplierId: parseInt(formData.supplierId, 10),
@@ -128,13 +129,13 @@ const MasterPurchaseStock = () => {
   
     try {
       const headers = { headers: { "Content-Type": "application/json" } };
-  
       let data;
+  
       if (editingIndex !== null) {
-        // 🔹 Update existing purchase
+        // Update existing purchase (using savePurchase endpoint)
         const id = purchaseList[editingIndex].id;
         const res = await axios.put(
-          `${BACKEND_SERVER_URL}/api/purchase/${id}`,
+          `${BACKEND_SERVER_URL}/api/purchase/purchase/${id}`,
           payload,
           headers
         );
@@ -146,9 +147,9 @@ const MasterPurchaseStock = () => {
         );
         toast.success("Purchase updated!");
       } else {
-        // 🔹 Create new purchase
+        //  Create new purchase (using savePurchase endpoint)
         const res = await axios.post(
-          `${BACKEND_SERVER_URL}/api/purchase`,
+          `${BACKEND_SERVER_URL}/api/purchase/purchase`,
           payload,
           headers
         );
@@ -374,7 +375,7 @@ const MasterPurchaseStock = () => {
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Supplier</th>
+                  <th>Name</th>
                   <th>Date</th>
                   <th>Item</th>
                   <th>Weight</th>

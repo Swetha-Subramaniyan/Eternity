@@ -126,12 +126,14 @@ const Stock = () => {
                 <th style={{ backgroundColor: "#38383e" }}>S.No</th>
                 <th style={{ backgroundColor: "#38383e" }}>Date</th>
                 <th style={{ backgroundColor: "#38383e" }}>Time</th>
-                <th style={{ backgroundColor: "#38383e" }}>Customer Name</th>
+                <th style={{ backgroundColor: "#38383e" }}> Name</th>
                 <th style={{ backgroundColor: "#38383e" }}>Item</th>
                 <th style={{ backgroundColor: "#38383e" }}>Weight</th>
                 <th style={{ backgroundColor: "#38383e" }}>Touch</th>
                 <th style={{ backgroundColor: "#38383e" }}>Purity</th>
                 <th style={{ backgroundColor: "#38383e" }}>Remarks</th>
+                <th style={{ backgroundColor: "#38383e" }}>Process</th>
+
               </tr>
             </thead>
             <tbody>
@@ -144,23 +146,40 @@ const Stock = () => {
                 });
 
                 const customerName =
-                  item.castingItem?.castingEntry?.casting_customer?.name ||
-                  item.filingItem?.filing_entry?.filing_person?.name ||
-                  item.settingItem?.settingEntryId?.setting_person?.name ||
-                  item.buffingItem?.buffingEntryId?.buffing_person?.name ||
-                  "-";
+                item.castingItem?.castingEntry?.casting_customer?.name ||
+                item.filingItem?.filing_entry?.filing_person?.name ||
+                item.settingItem?.settingEntryId?.setting_person?.name ||
+                item.buffingItem?.buffingEntryId?.buffing_person?.name ||
+                item.purchaseId?.SupplierId?.name || // <-- Add this for purchase flow
+                "-";
+              
+              const itemName =
+                item.item?.name || // scrap or item relation
+                item.purchaseId?.item || // <-- Add this for purchase flow
+                "-";
 
+                const processName = 
+  item.castingItem ? "Casting" :
+  item.filingItem ? "Filing" :
+  item.settingItem ? "Setting" :
+  item.buffingItem ? "Buffing" :
+  item.purchaseId ? "Purchase" :
+  "-";
+
+              
                 return (
                   <tr key={item.id}>
                     <td>{index + 1}</td>
                     <td>{dateString}</td>
                     <td>{timeString}</td>
                     <td>{customerName}</td>
-                    <td>{item.item?.name || "-"}</td>
+                    <td>{itemName}</td>
+
                     <td>{item.weight ?? "-"}</td>
                     <td>{item.touch?.touch ?? item.touch_id ?? "-"}</td>
                     <td>{item.item_purity ?? "-"}</td>
                     <td>{item.remarks || "-"}</td>
+                    <td>{processName}</td>
                   </tr>
                 );
               })}

@@ -48,50 +48,63 @@ export const addToStock = async (req, res) => {
 };
 
 
-// READ ALL
 export const getAllStock = async (req, res) => {
   try {
     const stock = await prisma.stock.findMany({
-      include:{
+      include: {
+        // Purchase details
+        purchaseId: {
+          include: {
+            SupplierId: true,
+            TouchId: true,
+          },
+        },
         item: true,
-        touch:true,
-        castingItem:{
-          include:{
-            castingEntry:{
-              include:{
-                casting_customer: true
+        touch: true,
+
+        // Casting flow
+        castingItem: {
+          include: {
+            castingEntry: {
+              include: {
+                casting_customer: true,
               },
             },
           },
         },
-        filingItem:{
-          include:{
-            filing_entry:{
-              include:{
-                filing_person:true
-              }
-            }
-          }
-        },
-        settingItem:{
-          include:{
-            settingEntryId:{
-              include:{
-                setting_person:true
-              }
-            }
-          }
-        },
-        buffingItem:{
-          include:{
-            buffingEntryId:{
-              include:{
-                buffing_person:true
-              }
-            }
-          }
 
-        }
+        // Filing flow
+        filingItem: {
+          include: {
+            filing_entry: {
+              include: {
+                filing_person: true,
+              },
+            },
+          },
+        },
+
+        // Setting flow
+        settingItem: {
+          include: {
+            settingEntryId: {
+              include: {
+                setting_person: true,
+              },
+            },
+          },
+        },
+
+        // Buffing flow
+        buffingItem: {
+          include: {
+            buffingEntryId: {
+              include: {
+                buffing_person: true,
+              },
+            },
+          },
+        },
       },
     });
 
@@ -100,6 +113,7 @@ export const getAllStock = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 // READ BY ID
 export const getStockById = async (req, res) => {

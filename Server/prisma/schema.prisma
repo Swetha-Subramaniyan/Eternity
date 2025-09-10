@@ -484,18 +484,18 @@ model Stock {
 
   buffing_item_id Int?
   buffingItem     BuffingItems? @relation(fields: [buffing_item_id], references: [id], onDelete: Cascade)
-
-  item_id             Int
-  item                AddItem    @relation(fields: [item_id], references: [id])
+  item_type           ITEMTYPE? 
+  item_id             Int?
+  item                AddItem?   @relation(fields: [item_id], references: [id])
   weight              Float
   touch_id            Int
   touch               AddTouch   @relation(fields: [touch_id], references: [id])
   item_purity         Float
   remarks             String?
-  casting_customer_id Int
-  casting_customer    AddCasting @relation(fields: [casting_customer_id], references: [id])
+  casting_customer_id Int?
+  casting_customer    AddCasting? @relation(fields: [casting_customer_id], references: [id])
 
   purchase_id Int?
-  purchaseId  AddPurchaseStock ? @relation(fields: [purchase_id], references: [id])
+  purchaseId  AddPurchaseStock ? @relation(fields: [purchase_id], references: [id], onDelete: Cascade) 
 
 }
