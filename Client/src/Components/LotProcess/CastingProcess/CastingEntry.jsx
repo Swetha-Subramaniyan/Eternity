@@ -151,6 +151,7 @@ const CastingEntry = () => {
 
       setMode("view");    
       setOpenModal(true);   
+      handleClose();
   
     } catch (err) {
       console.error("Failed to save:", err);

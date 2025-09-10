@@ -583,7 +583,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Administrator\\Desktop\\ETERNITY\\Server\\generated\\prisma",
+      "value": "C:\\Users\\sweth\\OneDrive\\Documents\\work\\Eternity\\Server\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -597,7 +597,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\Administrator\\Desktop\\ETERNITY\\Server\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\sweth\\OneDrive\\Documents\\work\\Eternity\\Server\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -615,7 +615,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "mysql://root:password@localhost:3306/eternitycom"
+        "value": "mysql://root:$weth@Subramaniyan2717@localhost:3306/eternity"
       }
     }
   },
