@@ -387,38 +387,59 @@ const MasterPurchaseStock = () => {
                   <th>Actions</th>
                 </tr>
               </thead>
+      
               <tbody>
-                {purchaseList.map((p, idx) => (
-                  <tr key={p.id}>
-                    <td>{idx + 1}</td>
-                    <td>{p.SupplierId?.name || "-"}</td>
-                    <td>{p.createdAt.split("T")[0]}</td>
-                    <td>{p.item}</td>
-                    <td>{p.weight}</td>
-                    <td>{p.TouchId?.touch}</td>
-                    <td>{p.purity}</td>
-                    <td>{p.rate}</td>
-                    <td>{p.totalValue}</td>
-                    <td>{p.remarks || "-"}</td>
-                    <td>
-                      <Edit
-                        style={{ cursor: "pointer" }}
-                        onClick={() => handleEdit(idx)}
-                      
-                      />
-                      <Delete
-                        style={{
-                          cursor: "pointer",
-                          color: "red",
-                          marginLeft: "0.5rem",
-                        }}
-                        onClick={() => handleDelete(idx)}
-                   
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+  {purchaseList.length > 0 ? (
+    purchaseList.map((p, idx) => {
+      const dateObj = p.createdAt ? new Date(p.createdAt) : null;
+
+      const formattedDate = dateObj
+        ? dateObj.toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })
+        : "-";
+
+
+      return (
+        <tr key={p.id}>
+          <td>{idx + 1}</td>
+          <td>{p.SupplierId?.name || "-"}</td>
+          <td>{formattedDate}</td>
+          <td>{p.item}</td>
+          <td>{p.weight}</td>
+          <td>{p.TouchId?.touch || "-"}</td>
+          <td>{p.purity}</td>
+          <td>{p.rate}</td>
+          <td>{p.totalValue}</td>
+          <td>{p.remarks || "-"}</td>
+          <td>
+            <Edit
+              style={{ cursor: "pointer" }}
+              onClick={() => handleEdit(idx)}
+            />
+            <Delete
+              style={{
+                cursor: "pointer",
+                color: "red",
+                marginLeft: "0.5rem",
+              }}
+              onClick={() => handleDelete(idx)}
+            />
+          </td>
+        </tr>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="12" style={{ textAlign: "center" }}>
+        No purchases found
+      </td>
+    </tr>
+  )}
+</tbody>
+
             </table>
           </div>
         )}

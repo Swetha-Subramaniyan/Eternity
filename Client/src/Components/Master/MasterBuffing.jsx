@@ -216,10 +216,13 @@ function MasterBuffing() {
           </DialogActions>
         </Dialog>
         <div className={styles.itemList}> 
-<table className={styles.customerTable} >
+
+<table className={styles.customerTable}>
   <thead>
     <tr>
-    <th>S.No</th>
+      <th>S.No</th>
+      <th>Date</th>   
+      <th>Time</th> 
       <th>Name</th>
       <th>Phone</th>
       <th>Email</th>
@@ -229,26 +232,52 @@ function MasterBuffing() {
   </thead>
   <tbody>
     {filteredCustomers.length > 0 ? (
-      filteredCustomers.map((customer, index) => (
-        <tr key={index}>
-          <td>{index + 1}</td>
-          <td>{customer.name}</td>
-          <td>{customer.phoneNumber}</td>
-          <td>{customer.email}</td>
-          <td>{customer.address}</td>
-          <td style={{width:"7rem"}}>
-             <Edit onClick={() => handleEdit(index)} className={styles.actionIcon} />
-             <Delete onClick={() => handleDelete(index)} className={styles.deleteIcon} />
-          </td>
-        </tr>
-      ))
+      filteredCustomers.map((customer, index) => {
+        const dateObj = customer.createdAt ? new Date(customer.createdAt) : null;
+
+        const formattedDate = dateObj
+          ? dateObj.toLocaleDateString("en-IN", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            })
+          : "—";
+
+        const formattedTime = dateObj
+          ? dateObj.toLocaleTimeString("en-IN", {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: true,
+            })
+          : "—";
+
+        return (
+          <tr key={index}>
+            <td>{index + 1}</td>
+            <td>{formattedDate}</td> 
+            <td>{formattedTime}</td> 
+            <td>{customer.name}</td>
+            <td>{customer.phoneNumber}</td>
+            <td>{customer.email}</td>
+            <td>{customer.address}</td>
+            <td className={styles.tableActions}>
+              <Edit onClick={() => handleEdit(index)} className={styles.actionIcon} />
+              <Delete onClick={() => handleDelete(index)} className={styles.deleteIcon} />
+            </td>
+          </tr>
+        );
+      })
     ) : (
       <tr>
-        <td colSpan="6" style={{ textAlign: "center" }}>Name not found</td>
+        <td colSpan="9" style={{ textAlign: "center" }}>
+          Name not found
+        </td>
       </tr>
     )}
   </tbody>
 </table>
+
+
 </div>
 
       </div>

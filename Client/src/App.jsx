@@ -20,7 +20,6 @@ import Stock from './Components/LotProcess/Stock';
 import FilingLot from './Components/LotProcess/FilingProcess/FilingLot';
 import BuffingLot from './Components/LotProcess/BuffingProcess/BuffingLot';
 import SettingLot from './Components/LotProcess/SettingProcess/SettingLot';
-import MasterJewelStock from './Components/Master/MasterJewelStock';
 import Billing from './Components/Billing/Billing';
 import Report from './Components/Report/Report';
 import MasterAddTouch from './Components/Master/MasterAddTouch';
@@ -38,6 +37,7 @@ import BuffingLotDetails from './Components/LotProcess/BuffingProcess/BuffingLot
 import SettingLotDetails from './Components/LotProcess/SettingProcess/SettingLotDetails';
 import MasterNavbar from './Components/Master/MasterNavbar';
 import CastingEntry from './Components/LotProcess/CastingProcess/CastingEntry';
+import QCStock from './Components/Master/QCStock';
 
 
 const App = () => {
@@ -72,7 +72,9 @@ const App = () => {
     <Route path='/settingLotDetails/:id/:name/:lotNumber' element={<SettingLotDetails />} />
     <Route path='/buffinglot/:id/:name/:lotNumber' element={<BuffingLot/>}/>
     <Route path='/buffingLotDetails/:id/:name/:lotNumber' element={<BuffingLotDetails/>}/>
-    <Route path='/masterjewel' element={< MasterJewelStock />} />
+    <Route path='/qcstock' element={<QCStock/>}/>
+
+
     <Route path='/billing' element={<Billing />}/>
     <Route path='/report' element={< Report/>}/>
     <Route path='/castingMeltingrreports'  element={< CastingMeltingReports/>}/>

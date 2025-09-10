@@ -53,7 +53,7 @@ const MasterNavbar = () => {
           <a href="/masterpurchasestock" className={`nav-link ${isActive('/masterpurchasestock') ? 'active' : ''}`}>Purchase Stock</a>
         </li>    
         <li className='nav-itemm'> 
-          <a href='/masterjewel' className={`nav-link ${isActive('/masterjewel') ? 'active' : ''}`}> QC Stock </a>
+          <a href='/qcstock' className={`nav-link ${isActive('/qcstock') ? 'active' : ''}`}> QC Stock </a>
         </li>
       </ul>
 
