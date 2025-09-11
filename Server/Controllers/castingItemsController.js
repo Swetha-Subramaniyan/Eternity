@@ -1,17 +1,10 @@
 import { PrismaClient } from "../generated/prisma/index.js";
-import { reduceStock, increaseStock } from "./castingStockController.js";
 const prisma = new PrismaClient();
 
 export const createCastingItem = async (req, res) => {
   const { items, balanceData } = req.body;
 
   console.log("Received items for casting entry:", items, balanceData);
-
-  const newItems = items.filter((item) => !item.id);
-
-  if (newItems.length > 0) {
-    await reduceStock(newItems);
-  }
 
   if (!items || !Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: "Items are required." });
@@ -202,15 +195,6 @@ export const deleteCastingItem = async (req, res) => {
     });
 
     console.log("Casting item to delete:", castingItem);
-
-    await increaseStock({
-      touch_id: castingItem[0].touch_id,
-      item_purity: castingItem[0].item_purity,
-      weight: castingItem[0].weight,
-      item_id: castingItem[0].item_id,
-      remarks: `Restored from deleted casting item ID: ${id}`,
-      casting_customer_id: castingItem[0].casting_customer_id,
-    });
 
     await prisma.castingItems.delete({
       where: { id: Number(id) },

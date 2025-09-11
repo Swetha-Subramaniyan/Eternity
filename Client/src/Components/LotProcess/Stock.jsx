@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import Navbar from "../Navbar/Navbar";
-import { Button, TextField } from '@mui/material';
-import styles from "../LotProcess/FilingProcess/FilingLotDetails.module.css"; 
+import { Button, TextField } from "@mui/material";
+import styles from "../LotProcess/FilingProcess/FilingLotDetails.module.css";
 
 const Stock = () => {
   const [stockItems, setStockItems] = useState([]);
@@ -32,47 +32,50 @@ const Stock = () => {
 
   const calculateSummary = (items) => {
     const summary = {};
-    
-    items.forEach(item => {
+
+    items.forEach((item) => {
       const touch = item.touch?.touch || item.touch_id;
-      const purity = item.item_purity || 0;
-      
+      const weight = parseFloat(item.weight) || 0;
+
       if (touch) {
         if (!summary[touch]) {
           summary[touch] = 0;
         }
-        summary[touch] += purity;
+        summary[touch] += weight;
       }
     });
-    
+
     setTouchSummary(summary);
   };
 
   const applyFilters = () => {
     let filtered = [...stockItems];
-  
+
     if (fromDate && toDate) {
       const from = new Date(fromDate);
       const to = new Date(toDate);
-      to.setHours(23, 59, 59, 999); 
-  
+      to.setHours(23, 59, 59, 999);
+
       filtered = filtered.filter((item) => {
         const itemDate = new Date(item.createdAt);
         return itemDate >= from && itemDate <= to;
       });
     }
-  
+
     if (customerName.trim()) {
       const nameLower = customerName.toLowerCase();
-  
+
       filtered = filtered.filter((item) => {
         const castingName =
-          item.castingItem?.castingEntry?.casting_customer?.name?.toLowerCase() || "";
+          item.castingItem?.castingEntry?.casting_customer?.name?.toLowerCase() ||
+          "";
         const filingName =
-          item.filingItem?.filing_entry?.filing_person?.name?.toLowerCase() || "";
+          item.filingItem?.filing_entry?.filing_person?.name?.toLowerCase() ||
+          "";
         const settingName =
-          item.settingItem?.settingEntryId?.setting_person?.name?.toLowerCase() || "";
-  
+          item.settingItem?.settingEntryId?.setting_person?.name?.toLowerCase() ||
+          "";
+
         return (
           castingName.includes(nameLower) ||
           filingName.includes(nameLower) ||
@@ -80,11 +83,11 @@ const Stock = () => {
         );
       });
     }
-  
+
     setFilteredItems(filtered);
     calculateSummary(filtered);
   };
-  
+
   const resetFilters = () => {
     setFromDate("");
     setToDate("");
@@ -97,12 +100,20 @@ const Stock = () => {
     <>
       <Navbar />
       <div style={{ margin: "2rem" }}>
-        <h4 style={{ color: "#5f4917", textAlign: "center" , color:'black' }}>
+        <h4 style={{ color: "#5f4917", textAlign: "center", color: "black" }}>
           Scrap Items (Stock)
         </h4>
         <br />
 
-        <div  style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginTop:'0.5rem' }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            flexWrap: "wrap",
+            marginTop: "0.5rem",
+          }}
+        >
           <TextField
             label="From Date"
             type="date"
@@ -110,7 +121,7 @@ const Stock = () => {
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
             InputLabelProps={{ shrink: true }}
-            sx={{ml:'2rem'}}
+            sx={{ ml: "2rem" }}
           />
           <TextField
             label="To Date"
@@ -131,8 +142,13 @@ const Stock = () => {
             onChange={(e) => setCustomerName(e.target.value)}
           />
 
-          <Button variant="outlined" onClick={applyFilters}> Filter </Button>
-          <Button variant="outlined" onClick={resetFilters}>Reset</Button> 
+          <Button variant="outlined" onClick={applyFilters}>
+            {" "}
+            Filter{" "}
+          </Button>
+          <Button variant="outlined" onClick={resetFilters}>
+            Reset
+          </Button>
         </div>
 
         {/* Summary Section */}
@@ -140,10 +156,10 @@ const Stock = () => {
           <div className={styles.summarySection}>
             <h4>Summary</h4>
             <div className={styles.summaryGrid}>
-              {Object.entries(touchSummary).map(([touch, purity]) => (
+              {Object.entries(touchSummary).map(([touch, weight]) => (
                 <div key={touch} className={styles.summaryItem}>
-                  <span>Touch {touch} Purity:</span>
-                  <span>{purity.toFixed(2)}</span>
+                  <span>Touch {touch} Total Weight:</span>
+                  <span>{weight.toFixed(2)}</span>
                 </div>
               ))}
             </div>
@@ -152,11 +168,15 @@ const Stock = () => {
 
         {/* Table */}
         {filteredItems.length > 0 ? (
-          <table 
+          <table
             border="1"
             cellPadding="8"
             cellSpacing="0"
-            style={{ width: "100%", borderCollapse: "collapse" ,marginTop:'1rem'}}
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              marginTop: "1rem",
+            }}
           >
             <thead style={{ backgroundColor: "#38383e" }}>
               <tr>
@@ -182,25 +202,27 @@ const Stock = () => {
                 });
 
                 const customerName =
-                item.castingItem?.castingEntry?.casting_customer?.name ||
-                item.filingItem?.filing_entry?.filing_person?.name ||
-                item.settingItem?.settingEntryId?.setting_person?.name ||
-                item.buffingItem?.buffingEntryId?.buffing_person?.name ||
-                item.purchaseId?.SupplierId?.name ||
-                "-";
-              
-              const itemName =
-                item.item?.name ||
-                item.purchaseId?.item ||
-                "-";
-
-                const processName = 
-                  item.castingItem ? "Casting" :
-                  item.filingItem ? "Filing" :
-                  item.settingItem ? "Setting" :
-                  item.buffingItem ? "Buffing" :
-                  item.purchaseId ? "Purchase" :
+                  item.castingItem?.castingEntry?.casting_customer?.name ||
+                  item.filingItem?.filing_entry?.filing_person?.name ||
+                  item.settingItem?.settingEntryId?.setting_person?.name ||
+                  item.buffingItem?.buffingEntryId?.buffing_person?.name ||
+                  item.purchaseId?.SupplierId?.name ||
                   "-";
+
+                const itemName =
+                  item.item?.name || item.purchaseId?.item || "-";
+
+                const processName = item.castingItem
+                  ? "Casting"
+                  : item.filingItem
+                    ? "Filing"
+                    : item.settingItem
+                      ? "Setting"
+                      : item.buffingItem
+                        ? "Buffing"
+                        : item.purchaseId
+                          ? "Purchase"
+                          : "-";
 
                 return (
                   <tr key={item.id}>

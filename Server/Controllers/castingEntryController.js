@@ -1,4 +1,9 @@
 import { PrismaClient } from "../generated/prisma/index.js";
+
+const { reduceStockOnCastingCreate, addStockOnCastingDelete } = await import(
+  "./castingStockController.js"
+);
+
 const prisma = new PrismaClient();
 
 // CREATE Casting Entry
@@ -46,21 +51,21 @@ export const createCastingEntry = async (req, res) => {
         touch_id: Number(touch_id),
       },
     });
+
+    await reduceStockOnCastingCreate(newEntry);
+
     res.status(201).json(newEntry); // flat response, includes id directly
 
     // res.status(201).json({ message: "Casting entry created successfully", data: newEntry });
   } catch (error) {
-    console.error( "Error creating casting entry:", error);
+    console.error("Error creating casting entry:", error);
     res.status(500).json({ error: "Failed to create casting entry" });
   }
 };
 
 // Post - http://localhost:5000/api/castingentry
 
-
-
 // GET ALL Casting Entries
-
 
 export const getAllCastingEntry = async (req, res) => {
   try {
@@ -76,18 +81,24 @@ export const getAllCastingEntry = async (req, res) => {
         touch: true,
         CastiingTotalBalance: true,
       },
-      
-  orderBy: {
-    createdAt: 'desc',
-  },
+
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
-    const formattedEntries = entries.map(entry => {
-      const productItems = entry.items.filter(i => i.type === "Items");
-      const scrapItems = entry.items.filter(i => i.type === "ScrapItems");
+    const formattedEntries = entries.map((entry) => {
+      const productItems = entry.items.filter((i) => i.type === "Items");
+      const scrapItems = entry.items.filter((i) => i.type === "ScrapItems");
 
-      const totalItemWeight = productItems.reduce((sum, item) => sum + (item.weight || 0), 0);
-      const totalScrapWeight = scrapItems.reduce((sum, item) => sum + (item.weight || 0), 0);
+      const totalItemWeight = productItems.reduce(
+        (sum, item) => sum + (item.weight || 0),
+        0
+      );
+      const totalScrapWeight = scrapItems.reduce(
+        (sum, item) => sum + (item.weight || 0),
+        0
+      );
 
       return {
         id: entry.id,
@@ -101,15 +112,16 @@ export const getAllCastingEntry = async (req, res) => {
         copper: entry.copper,
         customer: entry.casting_customer,
         touch: entry.touch,
-        casting_customer_id: entry.casting_customer_id, 
-        touch_id: entry.touch_id, 
+        casting_customer_id: entry.casting_customer_id,
+        touch_id: entry.touch_id,
         productQty: productItems.length,
         scrapQty: scrapItems.length,
-        productItems: productItems.map(i => i.item.name),
-        scrapItems: scrapItems.map(i => i.item.name),
+        productItems: productItems.map((i) => i.item.name),
+        scrapItems: scrapItems.map((i) => i.item.name),
         totalItemWeight: totalItemWeight,
         totalScrapWeight: totalScrapWeight,
-        currentBalanceWeight: entry.CastiingTotalBalance[0]?.current_balance_weight || 0,
+        currentBalanceWeight:
+          entry.CastiingTotalBalance[0]?.current_balance_weight || 0,
         totalWastage: entry.CastiingTotalBalance[0]?.total_wastage || 0,
       };
     });
@@ -117,10 +129,9 @@ export const getAllCastingEntry = async (req, res) => {
     res.status(200).json(formattedEntries);
   } catch (error) {
     console.error("Error fetching entries:", error);
-    res.status(500).json({ error: 'Failed to fetch entries' });
+    res.status(500).json({ error: "Failed to fetch entries" });
   }
 };
-
 
 // READ Casting Entry by ID
 
@@ -134,7 +145,7 @@ export const getCastingEntryById = async (req, res) => {
           include: {
             item: true,
             touch: true,
-          }
+          },
         },
         casting_customer: true,
         touch: true,
@@ -143,16 +154,15 @@ export const getCastingEntryById = async (req, res) => {
     });
 
     if (!entry) {
-      return res.status(404).json({ error: 'Casting entry not found' });
+      return res.status(404).json({ error: "Casting entry not found" });
     }
 
     res.status(200).json(entry);
   } catch (error) {
     console.error("Error fetching entry:", error);
-    res.status(500).json({ error: 'Failed to fetch entry' });
+    res.status(500).json({ error: "Failed to fetch entry" });
   }
 };
-
 
 // UPDATE Casting Entry
 
@@ -221,13 +231,15 @@ export const updateCastingEntry = async (req, res) => {
       console.log(" No casting items provided to re-create");
     }
 
-    res.status(200).json({ message: 'Casting entry and items updated successfully', data: updatedEntry });
+    res.status(200).json({
+      message: "Casting entry and items updated successfully",
+      data: updatedEntry,
+    });
   } catch (error) {
     console.error("Error updating entry:", error);
-    res.status(500).json({ error: 'Failed to update casting entry' });
+    res.status(500).json({ error: "Failed to update casting entry" });
   }
 };
-
 
 export const deleteCastingEntry = async (req, res) => {
   try {
@@ -268,14 +280,25 @@ export const deleteCastingEntry = async (req, res) => {
       where: { casting_entry_id: parseInt(id) },
     });
 
+    const entryToDelete = await prisma.castingEntry.findUnique({
+      where: { id: parseInt(id) },
+    });
+
+    // Call add stock function
+    if (entryToDelete) {
+      await addStockOnCastingDelete(entryToDelete);
+    }
+
     // Finally, delete the casting entry itself
     await prisma.castingEntry.delete({
       where: { id: parseInt(id) },
     });
 
-    res.status(200).json({ message: 'Casting entry and all related items deleted successfully' });
+    res.status(200).json({
+      message: "Casting entry and all related items deleted successfully",
+    });
   } catch (error) {
     console.error("Error deleting entry:", error);
-    res.status(500).json({ error: 'Failed to delete casting entry' });
+    res.status(500).json({ error: "Failed to delete casting entry" });
   }
 };
