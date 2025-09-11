@@ -40,3 +40,9 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
   }
+
+  .deleteIcon {
+    color: rgb(178, 21, 21);
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
