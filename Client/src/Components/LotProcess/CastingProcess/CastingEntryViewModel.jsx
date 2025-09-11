@@ -15,11 +15,11 @@ import {
   TableBody,
   Typography,
   Box,
+  Alert,
 } from "@mui/material";
 import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../../Config/config";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 
 const CastingEntryViewModal = ({
   open,
@@ -39,6 +39,12 @@ const CastingEntryViewModal = ({
   const [scrapItems, setScrapItems] = useState([]);
   const [itemOptions, setItemOptions] = useState([]);
   const [availableStock, setAvailableStock] = useState([]);
+  const [stockValidation, setStockValidation] = useState({
+    isValid: true,
+    message: "",
+    available: 0,
+    requested: 0,
+  });
 
   console.log("Casting Entry ID from parent:", castingEntryId);
 
@@ -66,9 +72,53 @@ const CastingEntryViewModal = ({
     }
   }, [open]);
 
+  useEffect(() => {
+    if (form.givenGold && form.touch) {
+      const selectedTouch = touchOptions.find((t) => t.touch === form.touch);
+      if (selectedTouch) {
+        const touchId = selectedTouch.id;
+
+        // Calculate available weight for this touch
+        const availableForTouch = availableStock
+          .filter((item) => item.touch_id === touchId)
+          .reduce((sum, item) => sum + parseFloat(item.weight || 0), 0);
+
+        const requestedGold = parseFloat(form.givenGold);
+
+        if (requestedGold > availableForTouch) {
+          setStockValidation({
+            isValid: false,
+            message: `Insufficient stock! Available: ${availableForTouch.toFixed(2)}, Requested: ${requestedGold.toFixed(2)}`,
+            available: availableForTouch,
+            requested: requestedGold,
+          });
+        } else {
+          setStockValidation({
+            isValid: true,
+            message: `Available: ${availableForTouch.toFixed(2)}`,
+            available: availableForTouch,
+            requested: requestedGold,
+          });
+        }
+      }
+    } else {
+      setStockValidation({
+        isValid: true,
+        message: "",
+        available: 0,
+        requested: 0,
+      });
+    }
+  }, [form.givenGold, form.touch, availableStock, touchOptions]);
+
   const handleSaveItems = async () => {
     if (!castingEntryId) {
       alert("Casting Entry ID is missing.");
+      return;
+    }
+
+    if (!stockValidation.isValid) {
+      alert("Cannot save with insufficient stock!");
       return;
     }
 
@@ -269,7 +319,7 @@ const CastingEntryViewModal = ({
   }, [castingEntryId, mode]);
 
   // Calculate available stock summary by touch
-  const calculateStockSummary = () => {
+    const calculateStockSummary = () => {
     const summary = {};
 
     availableStock.forEach((item) => {
@@ -287,11 +337,37 @@ const CastingEntryViewModal = ({
     return summary;
   };
 
-  const stockSummary = calculateStockSummary();
+  const adjustedStockSummary = () => {
+    const summary = calculateStockSummary();
+
+    if (form.givenGold && form.touch) {
+      const selectedTouch = touchOptions.find((t) => t.touch === form.touch);
+      if (selectedTouch) {
+        const touchId = selectedTouch.id;
+        const requestedGold = parseFloat(form.givenGold) || 0;
+
+        const touchKey = selectedTouch.touch; 
+        if (summary[touchKey] !== undefined) {
+          summary[touchKey] = Math.max(summary[touchKey] - requestedGold, 0); 
+        }
+      }
+    }
+
+    return summary;
+  };
+
+  const stockSummary = adjustedStockSummary();
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-      <div style={{fontSize:'1.3rem', padding:'1rem', textAlign:'center',fontWeight:'500' }} >    
+      <div
+        style={{
+          fontSize: "1.3rem",
+          padding: "1rem",
+          textAlign: "center",
+          fontWeight: "500",
+        }}
+      >
         {isView ? "View Casting Entry" : "Add Casting Entry"}
       </div>
 
@@ -365,6 +441,8 @@ const CastingEntryViewModal = ({
               value={form.givenGold}
               onChange={handleChange("givenGold")}
               InputProps={{ readOnly: isView }}
+              error={!stockValidation.isValid}
+              helperText={stockValidation.message}
             />
           </Grid>
           <Grid item xs={3}>
@@ -394,6 +472,15 @@ const CastingEntryViewModal = ({
             />
           </Grid>
         </Grid>
+
+        {!stockValidation.isValid && (
+          <Alert severity="error" sx={{ mt: 1 }}>
+            Insufficient stock for this touch! Available:{" "}
+            {stockValidation.available.toFixed(2)}, Requested:{" "}
+            {stockValidation.requested.toFixed(2)}
+          </Alert>
+        )}
+
         <Grid container spacing={6}>
           {/* 2nd Row */}
           <Grid item xs={2}>
