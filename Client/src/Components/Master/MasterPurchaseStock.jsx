@@ -5,8 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Master from "./MasterNavbar";
 import styles from './MasterPurchaseStock.module.css';
 import { BACKEND_SERVER_URL } from "../../../Config/config";
-import { Edit, Delete } from "@mui/icons-material";
-import { TextField, MenuItem, Button, Box } from "@mui/material";
+import { Edit, Delete, Search  } from "@mui/icons-material";
+import { TextField, MenuItem, Button, Box, InputAdornment } from "@mui/material";
 
 const MasterPurchaseStock = () => {
   const [showModal, setShowModal] = useState(false);
@@ -14,6 +14,7 @@ const MasterPurchaseStock = () => {
   const [editingIndex, setEditingIndex] = useState(null);
   const [supplierList, setSupplierList] = useState([]);
   const [touchList, setTouchList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getTodayDate = () =>
     new Date().toISOString().split("T")[0];
@@ -198,12 +199,19 @@ const MasterPurchaseStock = () => {
     }
   };
 
+
+  const filteredPurchases = purchaseList.filter((p) =>
+    (p.SupplierId?.name || "")
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <Master />
       <div className={styles.stockPage}>
         <ToastContainer />
-
+<div className={styles.search}> 
     <Button
             style={{
               backgroundColor: "#F5F5F5",
@@ -211,6 +219,7 @@ const MasterPurchaseStock = () => {
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
+              marginLeft:'3rem'
             }}
             variant="contained"
             onClick={() => {
@@ -220,7 +229,37 @@ const MasterPurchaseStock = () => {
           >
              Add Stock Purchase
     </Button>
-
+    
+    <TextField
+            placeholder="Search by Supplier Name"
+            variant="outlined"
+            size="small"
+            sx={{ marginLeft: "51.5rem" }}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft: "1.2rem",
+            }}
+            onClick={() => setSearchTerm("")}
+          >
+            Reset
+          </Button>
+          </div>
+    
         {showModal && (
           <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
@@ -368,9 +407,9 @@ const MasterPurchaseStock = () => {
             </div>
           </div>
         )}
-
-        {purchaseList.length > 0 && (
-          <div >
+     
+{filteredPurchases.length > 0 ? (
+          <div>
             <table className={styles.purchaseTable}>
               <thead>
                 <tr>
@@ -387,61 +426,53 @@ const MasterPurchaseStock = () => {
                   <th>Actions</th>
                 </tr>
               </thead>
-      
               <tbody>
-  {purchaseList.length > 0 ? (
-    purchaseList.map((p, idx) => {
-      const dateObj = p.createdAt ? new Date(p.createdAt) : null;
+                {filteredPurchases.map((p, idx) => {
+                  const dateObj = p.createdAt ? new Date(p.createdAt) : null;
+                  const formattedDate = dateObj
+                    ? dateObj.toLocaleDateString("en-IN", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : "-";
 
-      const formattedDate = dateObj
-        ? dateObj.toLocaleDateString("en-IN", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          })
-        : "-";
-
-
-      return (
-        <tr key={p.id}>
-          <td>{idx + 1}</td>
-          <td>{p.SupplierId?.name || "-"}</td>
-          <td>{formattedDate}</td>
-          <td>{p.item}</td>
-          <td>{p.weight}</td>
-          <td>{p.TouchId?.touch || "-"}</td>
-          <td>{p.purity}</td>
-          <td>{p.rate}</td>
-          <td>{p.totalValue}</td>
-          <td>{p.remarks || "-"}</td>
-          <td>
-            <Edit
-              style={{ cursor: "pointer" }}
-              onClick={() => handleEdit(idx)}
-            />
-            <Delete
-              style={{
-                cursor: "pointer",
-                color: "red",
-                marginLeft: "0.5rem",
-              }}
-              onClick={() => handleDelete(idx)}
-            />
-          </td>
-        </tr>
-      );
-    })
-  ) : (
-    <tr>
-      <td colSpan="12" style={{ textAlign: "center" }}>
-        No purchases found
-      </td>
-    </tr>
-  )}
-</tbody>
-
+                  return (
+                    <tr key={p.id}>
+                      <td>{idx + 1}</td>
+                      <td>{p.SupplierId?.name || "-"}</td>
+                      <td>{formattedDate}</td>
+                      <td>{p.item}</td>
+                      <td>{p.weight}</td>
+                      <td>{p.TouchId?.touch || "-"}</td>
+                      <td>{p.purity}</td>
+                      <td>{p.rate}</td>
+                      <td>{p.totalValue}</td>
+                      <td>{p.remarks || "-"}</td>
+                      <td>
+                        <Edit
+                          style={{ cursor: "pointer" }}
+                          onClick={() => handleEdit(idx)}
+                        />
+                        <Delete
+                          style={{
+                            cursor: "pointer",
+                            color: "red",
+                            marginLeft: "0.5rem",
+                          }}
+                          onClick={() => handleDelete(idx)}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
             </table>
           </div>
+        ) : (
+          <p style={{ textAlign: "center", marginTop: "1rem" }}>
+            Purchase Name not found
+          </p>
         )}
       </div>
     </>
@@ -449,3 +480,5 @@ const MasterPurchaseStock = () => {
 };
 
 export default MasterPurchaseStock;
+
+

@@ -2,21 +2,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./QCStock.module.css";
-import {
-  TextField,
-  Button,
-  Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
-} from "@mui/material";
-import { Edit, Delete } from "@mui/icons-material";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import MasterNavbar from "./MasterNavbar";
+import { Edit, Delete, Search  } from "@mui/icons-material";
+import { TextField, MenuItem, Button, Box, InputAdornment,  FormControl,   InputLabel, Select,  Dialog,  DialogTitle,  DialogContent } from "@mui/material";
 
 
 const QCStock = () => {
@@ -24,9 +13,9 @@ const QCStock = () => {
   const [entries, setEntries] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
   const [editingId, setEditingId] = useState(null);
-
   const [items, setItems] = useState([]);
   const [touches, setTouches] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const today = new Date().toISOString().split("T")[0];
   const [formData, setFormData] = useState({
@@ -156,6 +145,10 @@ const handleSave = async () => {
       console.error("Error deleting QC stock:", err);
     }
   };
+
+  const filteredEntries = entries.filter((entry) =>
+    entry.itemId?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   
 
   return (
@@ -175,6 +168,37 @@ const handleSave = async () => {
       >
         Add QC Stock
       </Button>
+
+<TextField
+            placeholder="Search by Jewel Name"
+            variant="outlined"
+            size="small"
+            sx={{ marginLeft: "55.5rem", mt:'3rem' }}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft: "1.2rem",
+              marginTop:'3rem'
+              
+            }}
+            onClick={() => setSearchTerm("")}
+          >
+            Reset
+          </Button>
 
       {/* Popup */}
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
@@ -290,83 +314,86 @@ const handleSave = async () => {
       </Dialog>
 
       {/* Main Table */}
-      <div>
-      <table className={styles.purchaseTable}>
-  <thead>
-    <tr>
-      <th>S.No</th>
-      <th>Date</th>
-      <th>Time</th>
-      <th>Jewel Name</th>
-      <th>Weight</th>
-      <th>Stone Weight</th>
-      <th>Final Weight</th>
-      <th>Touch</th>
-      <th>Purity</th>
-      <th>Remarks</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {entries.length > 0 ? (
-      entries.map((entry, index) => {
-        const dateObj = entry.createdAt ? new Date(entry.createdAt) : null;
 
-        const formattedDate = dateObj
-          ? dateObj.toLocaleDateString("en-IN", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            })
-          : "-";
+<div>
+        <table className={styles.purchaseTable}>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Date</th>
+              {/* <th>Time</th> */}
+              <th>Jewel Name</th>
+              <th>Weight</th>
+              <th>Stone Weight</th>
+              <th>Final Weight</th>
+              <th>Touch</th>
+              <th>Purity</th>
+              <th>Remarks</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredEntries.length > 0 ? (
+              filteredEntries.map((entry, index) => {
+                const dateObj = entry.createdAt
+                  ? new Date(entry.createdAt)
+                  : null;
 
-        const formattedTime = dateObj
-          ? dateObj.toLocaleTimeString("en-IN", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: true,
-            })
-          : "-";
+                const formattedDate = dateObj
+                  ? dateObj.toLocaleDateString("en-IN", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })
+                  : "-";
 
-        return (
-          <tr key={entry.id}>
-            <td>{index + 1}</td>
-            <td>{formattedDate}</td>
-            <td>{formattedTime}</td>
-            <td>{entry.itemId?.name }</td>
-            <td>{entry.weight}</td>
-            <td>{entry.stone_weight }</td>
-            <td>{entry.final_weight }</td>
-            <td>{entry.touchId?.touch }</td>
-            <td>{entry.purity }</td>
-            <td>{entry.remarks }</td>
-            <td>
-              <Edit
-                style={{ cursor: "pointer" }}
-                onClick={() => handleEdit(index)}
-              />
-              <Delete
-                style={{
-                  cursor: "pointer",
-                  color: "red",
-                  marginLeft: "0.5rem",
-                }}
-                onClick={() => handleDelete(entry.id)}
-              />
-            </td>
-          </tr>
-        );
-      })
-    ) : (
-      <tr>
-        <td colSpan="11" style={{ textAlign: "center" }}>
-          No entries found
-        </td>
-      </tr>
-    )}
-  </tbody>
-</table>
 
+                  const formattedTime = dateObj
+                  ? dateObj.toLocaleTimeString("en-IN", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })
+                  : "-";
+
+                return (
+                  <tr key={entry.id}>
+                    <td>{index + 1}</td>
+                    <td>{formattedDate}</td>
+                    {/* <td>{formattedTime}</td>  */}
+                    <td>{entry.itemId?.name}</td>
+                    <td>{entry.weight}</td>
+                    <td>{entry.stone_weight}</td>
+                    <td>{entry.final_weight}</td>
+                    <td>{entry.touchId?.touch}</td>
+                    <td>{entry.purity}</td>
+                    <td>{entry.remarks}</td>
+                    <td>
+                      <Edit
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleEdit(index)}
+                      />
+                      <Delete
+                        style={{
+                          cursor: "pointer",
+                          color: "red",
+                          marginLeft: "0.5rem",
+                        }}
+                        onClick={() => handleDelete(entry.id)}
+                      />
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan="10" style={{ textAlign: "center" }}>
+                  Jewel Name not found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </>
   );

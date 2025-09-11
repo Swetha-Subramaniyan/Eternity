@@ -274,7 +274,7 @@ function MasterAddSupplier() {
     ) : (
       <tr>
         <td colSpan="8" style={{ textAlign: "center" }}>
-          Name not found
+          Supplier Name not found
         </td>
       </tr>
     )}
