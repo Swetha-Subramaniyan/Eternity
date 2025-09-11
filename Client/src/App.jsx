@@ -32,6 +32,9 @@ import SettingReports from './Components/Report/SettingReports';
 import FilingReports from './Components/Report/FilingReports';
 import BuffingReports from './Components/Report/BuffingReports';
 import WorkerReport from './Components/Report/workerReport';
+import PurchaseRegister from './Components/Report/PurchaseReport';
+import SupplierLedger from './Components/Report/SupplierLedger';
+import TouchWisePurchaseReport from './Components/Report/TouchWisePurchaseReports';
 import FilingLotDetails from './Components/LotProcess/FilingProcess/FilingLotDetails';
 import BuffingLotDetails from './Components/LotProcess/BuffingProcess/BuffingLotDetails';
 import SettingLotDetails from './Components/LotProcess/SettingProcess/SettingLotDetails';
@@ -86,6 +89,9 @@ const App = () => {
     <Route path='/stockreport' element={< StockReport/>}/>
     <Route path='/receiptreport' element={< ReceiptReport/>}/>
     <Route path='/workerreport' element={< WorkerReport/>}/>
+    <Route path='/supplier-ledger' element={< SupplierLedger/>}/>
+    <Route path='/purchase-report' element={< PurchaseRegister/>}/>
+    <Route path='/touch-purchase-report' element={< TouchWisePurchaseReport/>}/>
 
    </Routes>
     </BrowserRouter>
