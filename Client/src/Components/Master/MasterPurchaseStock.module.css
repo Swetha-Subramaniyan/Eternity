@@ -83,9 +83,10 @@
 }
 
 .purchaseTable {
-  margin-top: 30px;
-  width: 100%;
+  margin-top: 35px;
+  width: 93%;
   border-collapse: collapse;
+  margin-left: 3rem;
 }
 
 .purchaseTable th,
@@ -148,4 +149,8 @@
 .line {
   display: flex;
   gap: 2rem;
+}
+
+.search{
+  margin-top: 1rem;
 }
