@@ -113,7 +113,7 @@ export const getAllStock = async (req, res) => {
   }
 };
 
-export const reduceStock = async (items) => {
+/* export const reduceStock = async (items) => {
   try {
     console.log("Items to reduce from stock:", items);
 
@@ -187,8 +187,79 @@ export const reduceStock = async (items) => {
     console.error("Error reducing stock:", error);
     throw error;
   }
-};
+}; */
 
+export const reduceStock = async (items) => {
+  try {
+    console.log("Items to reduce from stock:", items);
+
+    for (const item of items) {
+      const { touch_id, item_purity, weight } = item;
+
+      // Find available stock for this touch
+      const availableStock = await prisma.stock.findMany({
+        where: {
+          touch_id: parseInt(touch_id),
+          item_purity: { gt: 0 },
+          weight: { gt: 0 }
+        },
+        orderBy: { createdAt: "asc" },
+      });
+
+      // Calculate total available
+      const totalAvailablePurity = availableStock.reduce((sum, s) => sum + s.item_purity, 0);
+      const totalAvailableWeight = availableStock.reduce((sum, s) => sum + s.weight, 0);
+
+      // Check if sufficient stock exists
+      if (totalAvailablePurity < item_purity || totalAvailableWeight < weight) {
+        throw new Error(`Insufficient stock for touch ${touch_id}`);
+      }
+
+      // Reduce from available stock
+      let remainingPurity = item_purity;
+      let remainingWeight = weight;
+
+      for (const stockItem of availableStock) {
+        if (remainingPurity <= 0 && remainingWeight <= 0) break;
+
+        // Reduce purity
+        if (stockItem.item_purity >= remainingPurity) {
+          await prisma.stock.update({
+            where: { id: stockItem.id },
+            data: { item_purity: stockItem.item_purity - remainingPurity }
+          });
+          remainingPurity = 0;
+        } else {
+          remainingPurity -= stockItem.item_purity;
+          await prisma.stock.update({
+            where: { id: stockItem.id },
+            data: { item_purity: 0 }
+          });
+        }
+
+        // Reduce weight
+        if (stockItem.weight >= remainingWeight) {
+          await prisma.stock.update({
+            where: { id: stockItem.id },
+            data: { weight: stockItem.weight - remainingWeight }
+          });
+          remainingWeight = 0;
+        } else {
+          remainingWeight -= stockItem.weight;
+          await prisma.stock.update({
+            where: { id: stockItem.id },
+            data: { weight: 0 }
+          });
+        }
+      }
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error reducing stock:", error);
+    throw error;
+  }
+};
 export const increaseStock = async (item) => {
   try {
     console.log("Increasing stock for item:", item);
