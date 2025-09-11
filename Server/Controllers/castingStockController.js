@@ -113,193 +113,77 @@ export const getAllStock = async (req, res) => {
   }
 };
 
-/* export const reduceStock = async (items) => {
+export const reduceStockOnCastingCreate = async (castingEntry) => {
   try {
-    console.log("Items to reduce from stock:", items);
+    console.log("Reducing stock for casting entry:", castingEntry);
 
-    const purityByTouch = {};
+    const { touch_id, given_gold } = castingEntry;
 
-    items.forEach((item) => {
-      const { touch_id, item_purity, weight } = item;
-      const totalPurity = item_purity;
+    if (!touch_id || !given_gold) return;
 
-      if (!purityByTouch[touch_id]) {
-        purityByTouch[touch_id] = 0;
-      }
-      purityByTouch[touch_id] += totalPurity;
+    let remainingToReduce = parseFloat(given_gold);
+
+    const stocks = await prisma.stock.findMany({
+      where: { touch_id: Number(touch_id) },
+      orderBy: { createdAt: "asc" },
     });
 
-    console.log("Purity to reduce by touch:", purityByTouch);
+    const totalAvailable = stocks.reduce((sum, s) => sum + s.weight, 0);
 
-    for (const [touch_id, totalPurityToReduce] of Object.entries(
-      purityByTouch
-    )) {
-      const availableStock = await prisma.stock.findMany({
-        where: {
-          touch_id: parseInt(touch_id),
-          item_purity: {
-            gt: 0,
-          },
-        },
-        orderBy: {
-          createdAt: "asc", 
-        },
-      });
-
-      const totalAvailablePurity = availableStock.reduce(
-        (sum, item) => sum + item.item_purity,
-        0
+    if (totalAvailable < remainingToReduce) {
+      throw new Error(
+        `Insufficient stock: required ${remainingToReduce}, available ${totalAvailable}`
       );
+    }
 
-      if (totalAvailablePurity < totalPurityToReduce) {
-        throw new Error(
-          `Insufficient stock for touch ${touch_id}. Needed: ${totalPurityToReduce}, Available: ${totalAvailablePurity}`
-        );
-      }
+    for (const stock of stocks) {
+      if (remainingToReduce <= 0) break;
 
-      let remainingPurityToReduce = totalPurityToReduce;
-
-      for (const stockItem of availableStock) {
-        if (remainingPurityToReduce <= 0) break;
-
-        if (stockItem.item_purity >= remainingPurityToReduce) {
-          await prisma.stock.update({
-            where: { id: stockItem.id },
-            data: {
-              item_purity: stockItem.item_purity - remainingPurityToReduce,
-            },
-          });
-          remainingPurityToReduce = 0;
-        } else {
-          await prisma.stock.update({
-            where: { id: stockItem.id },
-            data: {
-              item_purity: 0,
-            },
-          });
-          remainingPurityToReduce -= stockItem.item_purity;
-        }
+      if (stock.weight >= remainingToReduce) {
+        await prisma.stock.update({
+          where: { id: stock.id },
+          data: { weight: stock.weight - remainingToReduce },
+        });
+        remainingToReduce = 0;
+      } else {
+        await prisma.stock.update({
+          where: { id: stock.id },
+          data: { weight: 0 },
+        });
+        remainingToReduce -= stock.weight;
       }
     }
 
-    return { success: true };
-  } catch (error) {
-    console.error("Error reducing stock:", error);
-    throw error;
-  }
-}; */
-
-export const reduceStock = async (items) => {
-  try {
-    console.log("Items to reduce from stock:", items);
-
-    for (const item of items) {
-      const { touch_id, item_purity, weight } = item;
-
-      // Find available stock for this touch
-      const availableStock = await prisma.stock.findMany({
-        where: {
-          touch_id: parseInt(touch_id),
-          item_purity: { gt: 0 },
-          weight: { gt: 0 }
-        },
-        orderBy: { createdAt: "asc" },
-      });
-
-      // Calculate total available
-      const totalAvailablePurity = availableStock.reduce((sum, s) => sum + s.item_purity, 0);
-      const totalAvailableWeight = availableStock.reduce((sum, s) => sum + s.weight, 0);
-
-      // Check if sufficient stock exists
-      if (totalAvailablePurity < item_purity || totalAvailableWeight < weight) {
-        throw new Error(`Insufficient stock for touch ${touch_id}`);
-      }
-
-      // Reduce from available stock
-      let remainingPurity = item_purity;
-      let remainingWeight = weight;
-
-      for (const stockItem of availableStock) {
-        if (remainingPurity <= 0 && remainingWeight <= 0) break;
-
-        // Reduce purity
-        if (stockItem.item_purity >= remainingPurity) {
-          await prisma.stock.update({
-            where: { id: stockItem.id },
-            data: { item_purity: stockItem.item_purity - remainingPurity }
-          });
-          remainingPurity = 0;
-        } else {
-          remainingPurity -= stockItem.item_purity;
-          await prisma.stock.update({
-            where: { id: stockItem.id },
-            data: { item_purity: 0 }
-          });
-        }
-
-        // Reduce weight
-        if (stockItem.weight >= remainingWeight) {
-          await prisma.stock.update({
-            where: { id: stockItem.id },
-            data: { weight: stockItem.weight - remainingWeight }
-          });
-          remainingWeight = 0;
-        } else {
-          remainingWeight -= stockItem.weight;
-          await prisma.stock.update({
-            where: { id: stockItem.id },
-            data: { weight: 0 }
-          });
-        }
-      }
-    }
-
-    return { success: true };
+    console.log("Stock reduced successfully");
   } catch (error) {
     console.error("Error reducing stock:", error);
     throw error;
   }
 };
-export const increaseStock = async (item) => {
-  try {
-    console.log("Increasing stock for item:", item);
 
-    const existingStock = await prisma.stock.findFirst({
-      where: {
-        touch_id: item.touch_id,
-      },
-      orderBy: {
-        createdAt: 'desc', 
-      },
+export const addStockOnCastingDelete = async (castingEntry) => {
+  try {
+    console.log("Adding stock back for casting entry:", castingEntry);
+    const { touch_id, given_gold } = castingEntry;
+
+    if (!touch_id || !given_gold) return;
+
+    const stock = await prisma.stock.findFirst({
+      where: { touch_id: Number(touch_id) },
     });
 
-    console.log("Existing stock found:", existingStock);
-
-    if (existingStock) {
+    if (stock) {
       await prisma.stock.update({
-        where: { id: existingStock.id },
+        where: { id: stock.id },
         data: {
-          item_purity: existingStock.item_purity + item.item_purity,
-          weight: existingStock.weight + item.weight,
+          weight: stock.weight + parseFloat(given_gold),
         },
       });
     } else {
-      await prisma.stock.create({
-        data: {
-          item_id: item.item_id,
-          touch_id: item.touch_id,
-          item_purity: item.item_purity,
-          weight: item.weight,
-          remarks: item.remarks,
-          casting_customer_id: item.casting_customer_id,
-        },
-      });
+      console.warn(`No stock found for touch_id ${touch_id}`);
     }
-
-    return { success: true };
   } catch (error) {
-    console.error("Error increasing stock:", error);
-    throw error;
+    console.error("Error adding stock back:", error);
   }
 };
 

@@ -270,19 +270,19 @@ const CastingEntryViewModal = ({
   // Calculate available stock summary by touch
   const calculateStockSummary = () => {
     const summary = {};
-    
-    availableStock.forEach(item => {
+
+    availableStock.forEach((item) => {
       const touch = item.touch?.touch || item.touch_id;
-      const purity = item.item_purity || 0;
-      
+      const weight = parseFloat(item.weight) || 0;
+
       if (touch) {
         if (!summary[touch]) {
           summary[touch] = 0;
         }
-        summary[touch] += purity;
+        summary[touch] += weight;
       }
     });
-    
+
     return summary;
   };
 
@@ -300,7 +300,7 @@ const CastingEntryViewModal = ({
             Available Stock
           </Typography>
           <Grid container spacing={2}>
-            {Object.entries(stockSummary).map(([touch, purity]) => (
+            {Object.entries(stockSummary).map(([touch, weight]) => (
               <Grid item xs={6} sm={4} md={3} key={touch}>
                 <Box
                   sx={{
@@ -313,7 +313,7 @@ const CastingEntryViewModal = ({
                 >
                   <Typography variant="body1">Touch {touch}:</Typography>
                   <Typography variant="body1" fontWeight="bold">
-                    {purity.toFixed(2)}
+                    {weight.toFixed(2)}
                   </Typography>
                 </Box>
               </Grid>
