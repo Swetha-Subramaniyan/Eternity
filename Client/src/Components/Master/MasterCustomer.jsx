@@ -322,7 +322,7 @@ function MasterCustomer() {
         </Dialog>
 
         <div className={styles.itemList}>
-          <table className={styles.customerTable}>
+        <table className={styles.purchaseTable}>
             <thead>
               <tr>
                 <th>S.No</th>

@@ -373,14 +373,11 @@ const handleSave = async () => {
                         style={{ cursor: "pointer" }}
                         onClick={() => handleEdit(index)}
                       />
+                    
                       <Delete
-                        style={{
-                          cursor: "pointer",
-                          color: "red",
-                          marginLeft: "0.5rem",
-                        }}
-                        onClick={() => handleDelete(entry.id)}
-                      />
+             onClick={() => handleDelete(entry.id)}
+              className={styles.deleteIcon}
+            />
                     </td>
                   </tr>
                 );

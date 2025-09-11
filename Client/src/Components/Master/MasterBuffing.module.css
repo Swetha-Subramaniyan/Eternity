@@ -9,6 +9,7 @@
   color: white;
   border-collapse: collapse;
   width: 100%;
+
 }
 
 .customerTable td {
@@ -70,4 +71,9 @@
 
 .addButton{
   background-color: #fffbe2 !important;
+}
+
+.purchaseTable th {
+  background-color:#38383e;
+  color: white;
 }

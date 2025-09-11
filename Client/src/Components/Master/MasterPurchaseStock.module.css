@@ -154,3 +154,9 @@
 .search{
   margin-top: 1rem;
 }
+
+.deleteIcon {
+  color: rgb(178, 21, 21);
+  margin-left: 0.5rem;
+  cursor: pointer;
+}

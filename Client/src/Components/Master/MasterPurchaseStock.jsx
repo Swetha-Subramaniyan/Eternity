@@ -454,14 +454,12 @@ const MasterPurchaseStock = () => {
                           style={{ cursor: "pointer" }}
                           onClick={() => handleEdit(idx)}
                         />
-                        <Delete
-                          style={{
-                            cursor: "pointer",
-                            color: "red",
-                            marginLeft: "0.5rem",
-                          }}
-                          onClick={() => handleDelete(idx)}
-                        />
+                  
+
+          <Delete
+            onClick={() => handleDelete(idx)}
+              className={styles.deleteIcon}
+            />
                       </td>
                     </tr>
                   );
