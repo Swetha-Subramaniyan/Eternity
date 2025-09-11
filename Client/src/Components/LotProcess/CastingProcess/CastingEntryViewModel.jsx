@@ -20,6 +20,7 @@ import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../../Config/config";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+
 const CastingEntryViewModal = ({
   open,
   handleClose,
@@ -290,9 +291,9 @@ const CastingEntryViewModal = ({
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-      <DialogTitle>
+      <div style={{fontSize:'1.3rem', padding:'1rem', textAlign:'center',fontWeight:'500' }} >    
         {isView ? "View Casting Entry" : "Add Casting Entry"}
-      </DialogTitle>
+      </div>
 
       {Object.keys(stockSummary).length > 0 && (
         <Box sx={{ mt: 0, p: 2, border: "1px solid #ddd", borderRadius: 1 }}>
@@ -326,7 +327,8 @@ const CastingEntryViewModal = ({
         <TextField
           label="Date"
           type="date"
-          fullWidth
+          // fullWidth
+          sx={{ width: "190px" }}
           margin="dense"
           value={form.date}
           style={{ marginTop: "1.5rem" }}
