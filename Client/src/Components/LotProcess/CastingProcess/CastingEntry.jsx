@@ -5,8 +5,8 @@ import { BACKEND_SERVER_URL } from "../../../../Config/config";
 import CastingEntryViewModal from './CastingEntryViewModel';
 import Navbar from '../../Navbar/Navbar';
 import { FaEye } from "react-icons/fa";
-import { RiDeleteBin2Fill } from "react-icons/ri";
 import styles from './CastingEntry.module.css'
+import { Delete  } from "@mui/icons-material";
 
 const CastingEntry = () => {
   const [open, setOpen] = useState(false);
@@ -261,7 +261,7 @@ const CastingEntry = () => {
       </Stack>
 
         <div className={styles.itemList}> 
-<table className={styles.customerTable} >
+<table className={styles.purchaseTable}>
   <thead>
     <tr>
       <th>S.No</th>
@@ -298,7 +298,7 @@ const CastingEntry = () => {
         <td>{entry.totalWastage ? entry.totalWastage.toFixed(2) : '-'}</td>
         <td>
           <FaEye onClick={() => handleView(entry)} style={{ cursor: "pointer", marginRight: "0.5rem" }} />
-          <RiDeleteBin2Fill onClick={() => handleDelete(entry.id)} style={{ cursor: "pointer" }} />
+          <Delete onClick={() => handleDelete(entry.id)} style={{ cursor: "pointer", color:'rgb(178, 21, 21)' }} />
         </td>
       </tr>
     ))}
