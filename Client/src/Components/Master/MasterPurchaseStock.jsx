@@ -3,10 +3,16 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Master from "./MasterNavbar";
-import styles from './MasterPurchaseStock.module.css';
+import styles from "./MasterPurchaseStock.module.css";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
-import { Edit, Delete, Search  } from "@mui/icons-material";
-import { TextField, MenuItem, Button, Box, InputAdornment } from "@mui/material";
+import { Edit, Delete, Search } from "@mui/icons-material";
+import {
+  TextField,
+  MenuItem,
+  Button,
+  Box,
+  InputAdornment,
+} from "@mui/material";
 
 const MasterPurchaseStock = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,16 +22,15 @@ const MasterPurchaseStock = () => {
   const [touchList, setTouchList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const getTodayDate = () =>
-    new Date().toISOString().split("T")[0];
+  const getTodayDate = () => new Date().toISOString().split("T")[0];
 
   const [formData, setFormData] = useState({
     supplierId: "",
     purchaseDate: getTodayDate(),
     item: "",
     weight: "",
-    touch_id: "",      
-    touch_value: "",   
+    touch_id: "",
+    touch_value: "",
     purity: "",
     rate: "",
     totalValue: "",
@@ -40,6 +45,7 @@ const MasterPurchaseStock = () => {
   const fetchPurchases = async () => {
     try {
       const { data } = await axios.get(`${BACKEND_SERVER_URL}/api/purchase`);
+      console.log("Qqqqqqqqqqq", data)
       setPurchaseList(data);
     } catch {
       toast.error("Failed to fetch purchases");
@@ -77,7 +83,7 @@ const MasterPurchaseStock = () => {
       item: "",
       weight: "",
       touch_id: "",
-      touch_value: "",  
+      touch_value: "",
       purity: "",
       rate: "",
       totalValue: "",
@@ -85,7 +91,6 @@ const MasterPurchaseStock = () => {
     });
     setEditingIndex(null);
   };
-
 
   useEffect(() => {
     const w = parseFloat(formData.weight);
@@ -114,8 +119,7 @@ const MasterPurchaseStock = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-  
+
     const payload = {
       supplierId: parseInt(formData.supplierId, 10),
       createdAt: formData.purchaseDate,
@@ -127,11 +131,11 @@ const MasterPurchaseStock = () => {
       totalValue: parseFloat(formData.totalValue),
       remarks: formData.remarks || "",
     };
-  
+
     try {
       const headers = { headers: { "Content-Type": "application/json" } };
       let data;
-  
+
       if (editingIndex !== null) {
         // Update existing purchase (using savePurchase endpoint)
         const id = purchaseList[editingIndex].id;
@@ -141,7 +145,7 @@ const MasterPurchaseStock = () => {
           headers
         );
         data = res.data;
-  
+
         // Replace updated row in state
         setPurchaseList((prev) =>
           prev.map((p, i) => (i === editingIndex ? data : p))
@@ -155,19 +159,19 @@ const MasterPurchaseStock = () => {
           headers
         );
         data = res.data;
-  
+
         // Add new row at end of table
         setPurchaseList((prev) => [...prev, data]);
         toast.success("Purchase submitted!");
       }
-  
+
       resetForm();
       setShowModal(false);
     } catch (err) {
       toast.error(`Error: ${err.response?.data?.message || err.message}`);
     }
   };
-  
+
   const handleEdit = (index) => {
     const p = purchaseList[index];
     setFormData({
@@ -176,7 +180,7 @@ const MasterPurchaseStock = () => {
       item: p.item,
       weight: p.weight,
       touch_id: p.touch_id,
-      touch_value: p.TouchId?.touch || "", 
+      touch_value: p.TouchId?.touch || "",
       purity: p.purity,
       rate: p.rate,
       totalValue: p.totalValue,
@@ -199,11 +203,8 @@ const MasterPurchaseStock = () => {
     }
   };
 
-
   const filteredPurchases = purchaseList.filter((p) =>
-    (p.SupplierId?.name || "")
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
+    (p.SupplierId?.name || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -211,15 +212,15 @@ const MasterPurchaseStock = () => {
       <Master />
       <div className={styles.stockPage}>
         <ToastContainer />
-<div className={styles.search}> 
-    <Button
+        <div className={styles.search}>
+          <Button
             style={{
               backgroundColor: "#F5F5F5",
               color: "black",
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
-              marginLeft:'3rem'
+              marginLeft: "3rem",
             }}
             variant="contained"
             onClick={() => {
@@ -227,10 +228,10 @@ const MasterPurchaseStock = () => {
               setShowModal(true);
             }}
           >
-             Add Stock Purchase
-    </Button>
-    
-    <TextField
+            Add Stock Purchase
+          </Button>
+
+          <TextField
             placeholder="Search by Supplier Name"
             variant="outlined"
             size="small"
@@ -258,15 +259,13 @@ const MasterPurchaseStock = () => {
           >
             Reset
           </Button>
-          </div>
-    
+        </div>
+
         {showModal && (
           <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
               <h5 style={{ textAlign: "center" }}>
-                {editingIndex !== null
-                  ? "Edit Purchase"
-                  : "Add Stock Purchase"}
+                {editingIndex !== null ? "Edit Purchase" : "Add Stock Purchase"}
               </h5>
               <form onSubmit={handleSubmit} className={styles.purchaseForm}>
                 <Box display="flex" flexDirection="column" gap={2}>
@@ -299,86 +298,85 @@ const MasterPurchaseStock = () => {
                     value={formData.purchaseDate}
                     onChange={handleChange}
                   />
- <Box display="flex" gap={2}> 
-                  <TextField
-                    select
-                    label="Item"
-                    name="item"
-                    fullWidth
-                    required
-                    value={formData.item}
-                    onChange={handleChange}
-                  >
-                    <MenuItem value="Gold">Gold</MenuItem>
-                    <MenuItem value="Silver">Silver</MenuItem>
-                  </TextField>
+                  <Box display="flex" gap={2}>
+                    <TextField
+                      select
+                      label="Item"
+                      name="item"
+                      fullWidth
+                      required
+                      value={formData.item}
+                      onChange={handleChange}
+                    >
+                      <MenuItem value="Gold">Gold</MenuItem>
+                      <MenuItem value="Silver">Silver</MenuItem>
+                    </TextField>
 
-                  <TextField
-                    label="Weight"
-                    name="weight"
-                    type="number"
-                    fullWidth
-                    required
-                    value={formData.weight}
-                    onChange={handleChange}
-                  />
+                    <TextField
+                      label="Weight"
+                      name="weight"
+                      type="number"
+                      fullWidth
+                      required
+                      value={formData.weight}
+                      onChange={handleChange}
+                    />
+                  </Box>
+                  <Box display="flex" gap={2}>
+                    <TextField
+                      select
+                      label="Touch"
+                      name="touch_id"
+                      fullWidth
+                      required
+                      value={formData.touch_id}
+                      onChange={(e) => {
+                        const selected = touchList.find(
+                          (t) => t.id === parseInt(e.target.value)
+                        );
+                        setFormData((prev) => ({
+                          ...prev,
+                          touch_id: e.target.value,
+                          touch_value: selected?.touch || "",
+                        }));
+                      }}
+                    >
+                      {touchList.map((t) => (
+                        <MenuItem key={t.id} value={t.id}>
+                          {t.touch}
+                        </MenuItem>
+                      ))}
+                    </TextField>
 
-</Box>
-<Box display="flex" gap={2}> 
-                  <TextField
-                    select
-                    label="Touch"
-                    name="touch_id"
-                    fullWidth
-                    required
-                    value={formData.touch_id}
-                    onChange={(e) => {
-                      const selected = touchList.find(
-                        (t) => t.id === parseInt(e.target.value)
-                      );
-                      setFormData((prev) => ({
-                        ...prev,
-                        touch_id: e.target.value, 
-                        touch_value: selected?.touch || "", 
-                      }));
-                    }}
-                  >
-                    {touchList.map((t) => (
-                      <MenuItem key={t.id} value={t.id}>
-                        {t.touch}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                    <TextField
+                      label="Purity"
+                      name="purity"
+                      type="number"
+                      fullWidth
+                      value={formData.purity}
+                      InputProps={{ readOnly: true }}
+                    />
+                  </Box>
+                  <Box display="flex" gap={2}>
+                    <TextField
+                      label="Rate"
+                      name="rate"
+                      type="number"
+                      fullWidth
+                      required
+                      value={formData.rate}
+                      onChange={handleChange}
+                    />
 
-                  <TextField
-                    label="Purity"
-                    name="purity"
-                    type="number"
-                    fullWidth
-                    value={formData.purity}
-                    InputProps={{ readOnly: true }}
-                  />
-</Box>
-<Box display="flex" gap={2}> 
-                  <TextField
-                    label="Rate"
-                    name="rate"
-                    type="number"
-                    fullWidth
-                    required
-                    value={formData.rate}
-                    onChange={handleChange}
-                  />
-
-                  <TextField
-                    label="Total Value"
-                    name="totalValue"
-                    type="number"
-                    fullWidth
-                    value={formData.totalValue}
-                    InputProps={{ readOnly: true }}
-                  />
-</Box>
+                    <TextField
+                      label="Total Value"
+                      name="totalValue"
+                      type="number"
+                      fullWidth
+                      value={formData.totalValue}
+                      InputProps={{ readOnly: true }}
+                    />
+                  </Box>
                   <TextField
                     label="Remarks"
                     name="remarks"
@@ -390,14 +388,14 @@ const MasterPurchaseStock = () => {
                   />
 
                   <Box display="flex" justifyContent="flex-end" gap={2}>
-                    <Button variant="contained" type="submit" >
+                    <Button variant="contained" type="submit">
                       {editingIndex !== null
                         ? "Update Purchase"
                         : "Submit Purchase"}
                     </Button>
                     <Button
                       variant="outlined"
-                      onClick={() => setShowModal(false)}                     
+                      onClick={() => setShowModal(false)}
                     >
                       Cancel
                     </Button>
@@ -407,8 +405,8 @@ const MasterPurchaseStock = () => {
             </div>
           </div>
         )}
-     
-{filteredPurchases.length > 0 ? (
+
+        {filteredPurchases.length > 0 ? (
           <div>
             <table className={styles.purchaseTable}>
               <thead>
@@ -454,12 +452,11 @@ const MasterPurchaseStock = () => {
                           style={{ cursor: "pointer" }}
                           onClick={() => handleEdit(idx)}
                         />
-                  
 
-          <Delete
-            onClick={() => handleDelete(idx)}
-              className={styles.deleteIcon}
-            />
+                        <Delete
+                          onClick={() => handleDelete(idx)}
+                          className={styles.deleteIcon}
+                        />
                       </td>
                     </tr>
                   );
@@ -478,5 +475,3 @@ const MasterPurchaseStock = () => {
 };
 
 export default MasterPurchaseStock;
-
-

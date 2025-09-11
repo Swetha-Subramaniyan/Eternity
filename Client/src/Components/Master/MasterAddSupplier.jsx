@@ -45,6 +45,8 @@ function MasterAddSupplier() {
     const fetchCustomers = async () => {
       try {
         const response = await axios.get(`${BACKEND_SERVER_URL}/api/addsupplier`);
+
+        console.log("Ssssss", response);
         setCustomers(response.data);
       } catch (error) {
         console.error("Error fetching customers:", error.message);
