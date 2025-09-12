@@ -193,7 +193,7 @@ exports.Prisma.CustomerTransactionScalarFieldEnum = {
   date: 'date',
   value: 'value',
   type: 'type',
-  touch: 'touch',
+  touchId: 'touchId',
   purity: 'purity',
   goldRate: 'goldRate',
   customerId: 'customerId'

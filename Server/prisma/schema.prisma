@@ -96,18 +96,18 @@ model AddSupplierItem {
 }
 
 model AddPurchaseStock {
-  id               Int      @id @default(autoincrement())
-  createdAt        DateTime @default(now())
-  supplierId       Int
-  SupplierId       AddSupplierItem @relation(fields: [supplierId], references: [id])
-  item             ITEMTYPE
-  weight           Int
-  touch_id         Int 
-  TouchId          AddTouch @relation(fields: [touch_id], references: [id])
-  purity           Float
-  rate             Float
-  totalValue       Float
-  remarks          String? 
+  id         Int             @id @default(autoincrement())
+  createdAt  DateTime        @default(now())
+  supplierId Int
+  SupplierId AddSupplierItem @relation(fields: [supplierId], references: [id])
+  item       ITEMTYPE
+  weight     Int
+  touch_id   Int
+  TouchId    AddTouch        @relation(fields: [touch_id], references: [id])
+  purity     Float
+  rate       Float
+  totalValue Float
+  remarks    String?
 
   Stock Stock[]
 }
@@ -118,10 +118,11 @@ model CustomerTransaction {
   date       DateTime
   value      Float
   type       String
-  touch      Float?
+  touchId    Int?
   purity     Float?
   goldRate   Float?
   customer   AddCustomer @relation(fields: [customerId], references: [id])
+  touch      AddTouch?    @relation(fields: [touchId], references: [id])
   customerId Int
 }
 
@@ -139,32 +140,33 @@ model AddItem {
 }
 
 model AddTouch {
-  id            Int            @id @default(autoincrement())
-  createdAt     DateTime       @default(now())
-  touch         Float
-  casting_entry CastingEntry[]
-  casting_items CastingItems[]
-  filing_items  FilingItems[]
-  setting_items SettingItems[]
-  buffing_items BuffingItems[]
-  stock         Stock[]
-  add_purchase_stock AddPurchaseStock[]
+  id                   Int                   @id @default(autoincrement())
+  createdAt            DateTime              @default(now())
+  touch                Float
+  casting_entry        CastingEntry[]
+  casting_items        CastingItems[]
+  filing_items         FilingItems[]
+  setting_items        SettingItems[]
+  buffing_items        BuffingItems[]
+  stock                Stock[]
+  add_purchase_stock   AddPurchaseStock[]
+  customer_transaction CustomerTransaction[]
 
   QCStock QcStock[]
 }
 
 model QcStock {
-  id   Int     @id @default(autoincrement())
-  createdAt DateTime
-  item_id Int
-  itemId AddItem @relation(fields: [item_id], references: [id])
-  weight Float
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime
+  item_id      Int
+  itemId       AddItem  @relation(fields: [item_id], references: [id])
+  weight       Float
   stone_weight Float
   final_weight Float
-  touch_id Int
-  touchId AddTouch @relation(fields: [touch_id], references: [id])
-  purity Float
-  remarks String?
+  touch_id     Int
+  touchId      AddTouch @relation(fields: [touch_id], references: [id])
+  purity       Float
+  remarks      String?
 }
 
 model CastingEntry {
@@ -384,7 +386,6 @@ model SettingTotalBalance {
   setting_entry          SettingEntry @relation(fields: [setting_entry_id], references: [id])
 }
 
-
 model SettingWastage {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -500,20 +501,19 @@ model Stock {
   setting_item_id Int?
   settingItem     SettingItems? @relation(fields: [setting_item_id], references: [id], onDelete: Cascade)
 
-  buffing_item_id Int?
-  buffingItem     BuffingItems? @relation(fields: [buffing_item_id], references: [id], onDelete: Cascade)
-  item_type           ITEMTYPE? 
+  buffing_item_id     Int?
+  buffingItem         BuffingItems? @relation(fields: [buffing_item_id], references: [id], onDelete: Cascade)
+  item_type           ITEMTYPE?
   item_id             Int?
-  item                AddItem?   @relation(fields: [item_id], references: [id])
+  item                AddItem?      @relation(fields: [item_id], references: [id])
   weight              Float
-  touch_id            Int
-  touch               AddTouch   @relation(fields: [touch_id], references: [id])
+  touch_id            Int?
+  touch               AddTouch ?     @relation(fields: [touch_id], references: [id])
   item_purity         Float
   remarks             String?
   casting_customer_id Int?
-  casting_customer    AddCasting? @relation(fields: [casting_customer_id], references: [id])
+  casting_customer    AddCasting?   @relation(fields: [casting_customer_id], references: [id])
 
   purchase_id Int?
-  purchaseId  AddPurchaseStock ? @relation(fields: [purchase_id], references: [id], onDelete: Cascade) 
-
+  purchaseId  AddPurchaseStock? @relation(fields: [purchase_id], references: [id], onDelete: Cascade)
 }

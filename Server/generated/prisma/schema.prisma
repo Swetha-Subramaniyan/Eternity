@@ -118,10 +118,11 @@ model CustomerTransaction {
   date       DateTime
   value      Float
   type       String
-  touch      Float?
+  touchId    Int?
   purity     Float?
   goldRate   Float?
   customer   AddCustomer @relation(fields: [customerId], references: [id])
+  touch      AddTouch?   @relation(fields: [touchId], references: [id])
   customerId Int
 }
 
@@ -139,30 +140,31 @@ model AddItem {
 }
 
 model AddTouch {
-  id                 Int                @id @default(autoincrement())
-  createdAt          DateTime           @default(now())
-  touch              Float
-  casting_entry      CastingEntry[]
-  casting_items      CastingItems[]
-  filing_items       FilingItems[]
-  setting_items      SettingItems[]
-  buffing_items      BuffingItems[]
-  stock              Stock[]
-  add_purchase_stock AddPurchaseStock[]
+  id                   Int                   @id @default(autoincrement())
+  createdAt            DateTime              @default(now())
+  touch                Float
+  casting_entry        CastingEntry[]
+  casting_items        CastingItems[]
+  filing_items         FilingItems[]
+  setting_items        SettingItems[]
+  buffing_items        BuffingItems[]
+  stock                Stock[]
+  add_purchase_stock   AddPurchaseStock[]
+  customer_transaction CustomerTransaction[]
 
   QCStock QcStock[]
 }
 
 model QcStock {
-  id           Int      @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   createdAt    DateTime
   item_id      Int
-  itemId       AddItem  @relation(fields: [item_id], references: [id])
+  itemId       AddItem   @relation(fields: [item_id], references: [id])
   weight       Float
   stone_weight Float
   final_weight Float
-  touch_id     Int
-  touchId      AddTouch @relation(fields: [touch_id], references: [id])
+  touch_id     Int?
+  touchId      AddTouch? @relation(fields: [touch_id], references: [id])
   purity       Float
   remarks      String?
 }
