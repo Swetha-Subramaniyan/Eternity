@@ -538,7 +538,7 @@ const FilingLotDetails = () => {
             Filter{" "}
           </Button>
           <Button
-            variant="text"
+            variant="outlined"
             onClick={() => {
               setFromDate("");
               setToDate("");
@@ -547,6 +547,7 @@ const FilingLotDetails = () => {
           >
             Reset
           </Button>
+        
 
           <Button
             style={{
@@ -563,7 +564,7 @@ const FilingLotDetails = () => {
             Add Filing
           </Button>
         </div>
-        <table className={styles.table}>
+        <table className={styles.table} style={{marginTop:'2rem'}}>
           <thead>
             <tr>
               <th>S.No</th>
@@ -872,7 +873,19 @@ const FilingLotDetails = () => {
         fullWidth
         maxWidth="md"
       >
-        <DialogTitle>Assign Filing Items</DialogTitle>
+        {/* <DialogTitle>Assign Filing Items</DialogTitle> */}
+       
+        <div
+        style={{
+          fontSize: "1.3rem",
+          padding: "1rem",
+          textAlign: "center",
+          fontWeight: "500",
+          backgroundColor:' #f8f9fa'
+        }}
+      >
+       Assign Filing Items 
+      </div>
         <DialogContent>
           <TextField
             label="Date"
@@ -881,13 +894,13 @@ const FilingLotDetails = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
             InputLabelProps={{ shrink: true }}
-            sx={{ mb: 2, mt: 3 }}
+            sx={{ mb: 2, mt: 0 }}
           />
           <Typography variant="h6" gutterBottom>
             Available Filing Items
           </Typography>
           <div className={styles.tableContainer}>
-            <table className={styles.table}>
+            <table className={styles.table} >
               <thead>
                 <tr>
                   <th>Select</th>
@@ -928,7 +941,7 @@ const FilingLotDetails = () => {
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setIsAssignOpen(false)}>Cancel</Button>
+          <Button  variant="outlined" onClick={() => setIsAssignOpen(false)}>Cancel</Button>
           <Button
             variant="contained"
             color="primary"
@@ -949,7 +962,18 @@ const FilingLotDetails = () => {
         maxWidth="md"
         fullWidth
       >
-        <DialogTitle>Assigned Items</DialogTitle>
+        {/* <DialogTitle>Assigned Items</DialogTitle> */}
+        <div
+        style={{
+          fontSize: "1.3rem",
+          padding: "1rem",
+          textAlign: "center",
+          fontWeight: "500",
+          backgroundColor:' #f8f9fa'
+        }}
+      >
+       Assigned  Filing Items
+      </div>
         <DialogContent>
           <table className={styles.table}>
             <thead>
@@ -989,7 +1013,6 @@ const FilingLotDetails = () => {
                   <strong>Total</strong>
                 </td>
                 <td>
-                  {" "}
                   <strong>
                     {Number(
                       viewedItems.reduce(
@@ -1013,7 +1036,7 @@ const FilingLotDetails = () => {
 
           <Button
             variant="outlined"
-            sx={{ mt: "1rem" }}
+            sx={{ mt: 2 , backgroundColor:' #f8f9fa', fontWeight:'530' }}
             onClick={handleAddProductRow}
           >
          
@@ -1061,6 +1084,8 @@ const FilingLotDetails = () => {
                         <td>
                           <TextField
                             type="number"
+                            autoComplete="off"
+                            onWheel={(e) => e.target.blur()}
                             value={row.weight}
                             onChange={(e) => {
                               const updated = [...productItems];
@@ -1129,11 +1154,13 @@ const FilingLotDetails = () => {
 
                         <td>
                           <IconButton
+                           color="error"
                             onClick={() => handleDeleteItem(row.id, "product")}
                           >
                             <DeleteIcon />
                           </IconButton>
                         </td>
+                     
                       </tr>
                     ))}
                   </tbody>
@@ -1185,7 +1212,8 @@ const FilingLotDetails = () => {
           )}
           <br />
 
-          <Button variant="outlined" onClick={handleAddScrapRow} sx={{marginTop:'1rem'}}>
+          <Button variant="outlined" onClick={handleAddScrapRow} 
+            sx={{ mt: 0 , backgroundColor:' #f8f9fa', fontWeight:'530' }}   >
            
             Add Scrap Items
           </Button>
@@ -1229,6 +1257,8 @@ const FilingLotDetails = () => {
                           <TextField
                             type="number"
                             value={row.weight}
+                            autoComplete="off"
+                            onWheel={(e) => e.target.blur()}
                             onChange={(e) => {
                               const updated = [...scrapItems];
                               updated[index].weight = parseFloat(
@@ -1276,6 +1306,7 @@ const FilingLotDetails = () => {
                         </td>
                         <td>
                           <IconButton
+                              color="error"
                             onClick={() => handleDeleteItem(row.id, "scrap")}
                           >
                             <DeleteIcon />
@@ -1309,7 +1340,7 @@ const FilingLotDetails = () => {
             {" "}
             Save{" "}
           </Button>
-          <Button onClick={() => setViewDialogOpen(false)}>Close</Button>
+          <Button variant="outlined" onClick={() => setViewDialogOpen(false)}>Close</Button>
         </DialogActions>
       </Dialog>
     </>

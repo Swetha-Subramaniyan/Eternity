@@ -372,8 +372,8 @@ const CastingEntryViewModal = ({
       </div>
 
       {Object.keys(stockSummary).length > 0 && (
-        <Box sx={{ mt: 0, p: 2, border: "1px solid #ddd", borderRadius: 1 }}>
-          <Typography variant="h6" gutterBottom>
+        <Box sx={{ mt: 0, p: 2, border: "1px solid #ddd", borderRadius: 1, backgroundColor:' #f8f9fa' }}>
+          <Typography variant="h6" gutterBottom color="primary">
             Available Stock
           </Typography>
           <Grid container spacing={2}>
@@ -384,7 +384,9 @@ const CastingEntryViewModal = ({
                     display: "flex",
                     justifyContent: "space-between",
                     p: 1,
-                    backgroundColor: "#f5f5f5",
+                    // backgroundColor: "#f5f5f5",
+                    backgroundColor:"#38383e",
+                    color:'white',
                     borderRadius: 1,
                   }}
                 >
@@ -400,26 +402,27 @@ const CastingEntryViewModal = ({
       )}
 
       <DialogContent>
-        <TextField
+  
+     <Grid container spacing={6}>
+     <Grid item xs={3}>
+          <TextField
           label="Date"
           type="date"
-          // fullWidth
-          sx={{ width: "190px" }}
+          sx={{ width: "180px" }}
           margin="dense"
           value={form.date}
-          style={{ marginTop: "1.5rem" }}
           onChange={handleChange("date")}
           InputLabelProps={{ shrink: true }}
           InputProps={{ readOnly: isView }}
         />
+          </Grid>
 
-        <Grid container spacing={6}>
-          {/* 1st Row */}
-          <Grid item xs={3}>
+      
+<Grid item xs={3}>
             <TextField
               label="Name"
               select
-              sx={{ width: "190px" }}
+              sx={{ width: "180px" }}
               margin="dense"
               value={form.name}
               onChange={handleChange("name")}
@@ -432,19 +435,7 @@ const CastingEntryViewModal = ({
               ))}
             </TextField>
           </Grid>
-          <Grid item xs={3}>
-            <TextField
-              label="Given Gold"
-              type="number"
-              sx={{ width: "160px" }}
-              margin="dense"
-              value={form.givenGold}
-              onChange={handleChange("givenGold")}
-              InputProps={{ readOnly: isView }}
-              error={!stockValidation.isValid}
-              helperText={stockValidation.message}
-            />
-          </Grid>
+
           <Grid item xs={3}>
             <TextField
               label="Touch"
@@ -462,15 +453,23 @@ const CastingEntryViewModal = ({
               ))}
             </TextField>
           </Grid>
+          
           <Grid item xs={3}>
             <TextField
-              label="Purity"
+              label="Given Gold"
+              type="number"
+              autoComplete="off"
+              onWheel={(e) => e.target.blur()}
               sx={{ width: "160px" }}
               margin="dense"
-              value={form.purity}
-              InputProps={{ readOnly: true }}
+              value={form.givenGold}
+              onChange={handleChange("givenGold")}
+              InputProps={{ readOnly: isView }}
+              error={!stockValidation.isValid}
+              helperText={stockValidation.message}
             />
           </Grid>
+      
         </Grid>
 
         {!stockValidation.isValid && (
@@ -483,18 +482,31 @@ const CastingEntryViewModal = ({
 
         <Grid container spacing={6}>
           {/* 2nd Row */}
-          <Grid item xs={2}>
+
+          <Grid item xs={3}>
+            <TextField
+              label="Purity"
+              sx={{ width: "180px" }}
+              margin="dense"
+              value={form.purity}
+              InputProps={{ readOnly: true }}
+            />
+          </Grid>
+
+          <Grid item xs={3}>
             <TextField
               label="Final Touch"
               type="number"
-              sx={{ width: "190px" }}
+              autoComplete="off"
+              onWheel={(e) => e.target.blur()}
+              sx={{ width: "180px" }}
               margin="dense"
               value={form.finalTouch}
               onChange={handleChange("finalTouch")}
               InputProps={{ readOnly: isView }}
             />
           </Grid>
-          <Grid item xs={2}>
+          {/* <Grid item xs={2}>
             <TextField
               label="Pure Value"
               sx={{ width: "160px" }}
@@ -502,7 +514,7 @@ const CastingEntryViewModal = ({
               value={form.pureValue}
               InputProps={{ readOnly: true }}
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={2}>
             <TextField
               label="Before Weight"
@@ -524,7 +536,7 @@ const CastingEntryViewModal = ({
         </Grid>
 
         {/* Add Product Items Section */}
-        <Button onClick={addProductItem} variant="outlined" sx={{ mt: 2 }}>
+        <Button onClick={addProductItem} variant="outlined" sx={{ mt: 3 , backgroundColor:' #f8f9fa', fontWeight:'530' }}>
           Add Product Items
         </Button>
         <Table size="small" sx={{ mt: 1 }}>
@@ -611,6 +623,8 @@ const CastingEntryViewModal = ({
                     value={row.weight}
                     size="small"
                     type="number"
+                    autoComplete="off"
+                    onWheel={(e) => e.target.blur()}                 
                     onChange={(e) =>
                       handleItemChange(
                         "product",
@@ -688,7 +702,7 @@ const CastingEntryViewModal = ({
         </Typography>
 
         {/* Add Scrap Items Section */}
-        <Button onClick={addScrapItem} variant="outlined" sx={{ mt: 3 }}>
+        <Button onClick={addScrapItem} variant="outlined" sx={{ mt: 3 , backgroundColor:' #f8f9fa', fontWeight:'530' }}>
           Add Scrap Items
         </Button>
         <Table size="small" sx={{ mt: 1 }}>
@@ -774,6 +788,8 @@ const CastingEntryViewModal = ({
                     value={row.weight}
                     size="small"
                     type="number"
+                    autoComplete="off"
+                    onWheel={(e) => e.target.blur()}
                     onChange={(e) =>
                       handleItemChange("scrap", index, "weight", e.target.value)
                     }
@@ -839,7 +855,7 @@ const CastingEntryViewModal = ({
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={handleClose}>Close</Button>
+        <Button  variant="outlined"  onClick={handleClose}>Close</Button>
 
         {mode === "add" && (
           <Button onClick={handleSave} variant="contained" color="primary">
@@ -848,7 +864,7 @@ const CastingEntryViewModal = ({
         )}
 
         {mode === "view" && (
-          <Button onClick={handleSaveItems} variant="contained" color="success">
+          <Button onClick={handleSaveItems} variant="contained" color="primary">
             Save Items
           </Button>
         )}

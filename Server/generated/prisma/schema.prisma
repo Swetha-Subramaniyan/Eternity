@@ -156,15 +156,15 @@ model AddTouch {
 }
 
 model QcStock {
-  id           Int       @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   createdAt    DateTime
   item_id      Int
-  itemId       AddItem   @relation(fields: [item_id], references: [id])
+  itemId       AddItem  @relation(fields: [item_id], references: [id])
   weight       Float
   stone_weight Float
   final_weight Float
-  touch_id     Int?
-  touchId      AddTouch? @relation(fields: [touch_id], references: [id])
+  touch_id     Int
+  touchId      AddTouch @relation(fields: [touch_id], references: [id])
   purity       Float
   remarks      String?
 }
@@ -507,8 +507,8 @@ model Stock {
   item_id             Int?
   item                AddItem?      @relation(fields: [item_id], references: [id])
   weight              Float
-  touch_id            Int
-  touch               AddTouch      @relation(fields: [touch_id], references: [id])
+  touch_id            Int?
+  touch               AddTouch?     @relation(fields: [touch_id], references: [id])
   item_purity         Float
   remarks             String?
   casting_customer_id Int?

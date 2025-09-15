@@ -607,7 +607,7 @@ const BuffingLotDetails = () => {
         }}
       >
         <TextField
-          label="From Datee"
+          label="From Date"
           type="date"
           size="small"
           value={fromDate}
@@ -901,8 +901,14 @@ const BuffingLotDetails = () => {
       {open && (
         <div className={styles.overlay}>
           <div className={styles.assign}>
-            <h5>{viewEntry ? "View Buffing Lot" : "Assign Buffing Lot"}</h5>
-
+            <div style={{
+          fontSize: "1.3rem",
+          padding: "0rem",
+          textAlign: "center",
+          fontWeight: "500",
+          backgroundColor:' #f8f9fa'
+        }} >{viewEntry ? "Assigned Buffing Items" : "Assign Buffing Items"}</div>
+           
             {!viewEntry && (
               <>
                 <TextField
@@ -914,9 +920,11 @@ const BuffingLotDetails = () => {
                   InputLabelProps={{ shrink: true }}
                   sx={{ ml: 0, mt: 2, mb: 2, width: "200px" }}
                 />
+                 <Typography variant="h6" gutterBottom>
+            Available Buffing Items
+          </Typography>
               </>
             )}
-
             <table border="1" cellPadding="5" className={styles.table}>
               <thead>
                 <tr>
@@ -1074,11 +1082,13 @@ const BuffingLotDetails = () => {
                   <TextField
                     label="Receipt Weight"
                     type="number"
+                    autoComplete="off"
+                    onWheel={(e) => e.target.blur()}
                     fullWidth
                     required
                     value={receiptWeight}
                     onChange={(e) =>
-                      setReceiptWeight(parseFloat(e.target.value) || 0)
+                      setReceiptWeight(parseFloat(e.target.value) )
                     }
                   />
                   {/* <TextField
@@ -1119,9 +1129,8 @@ const BuffingLotDetails = () => {
                   </Box>
                 </Box>
                 <div style={{ marginTop: "2rem" }}>
-                  <Button variant="outlined" onClick={addScrapItem}>
-                    {" "}
-                    Add Scrap Items{" "}
+                  <Button variant="outlined" onClick={addScrapItem} sx={{ backgroundColor:' #f8f9fa', fontWeight:'530' }}>
+                    Add Scrap Items
                   </Button>
 
                   <table
@@ -1175,6 +1184,8 @@ const BuffingLotDetails = () => {
                             <TextField
                               size="small"
                               type="number"
+                              autoComplete="off"
+                              onWheel={(e) => e.target.blur()}
                               value={scrap.weight || ""}
                               onChange={(e) => {
                                 const weight = parseFloat(e.target.value) || 0;
@@ -1242,9 +1253,10 @@ const BuffingLotDetails = () => {
                           </td>
                           <td>
                             <Button
+                            color="error"
                               onClick={() => handleDeleteScrapItem(scrap, idx)}
                             >
-                              <DeleteIcon style={{ color: "red" }} />
+                              <DeleteIcon />
                             </Button>
                           </td>
                         </tr>
