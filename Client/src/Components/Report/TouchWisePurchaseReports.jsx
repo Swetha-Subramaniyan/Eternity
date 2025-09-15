@@ -9,19 +9,17 @@ import {
   InputLabel,
   Box,
   Typography,
-  Paper,
-  Table,
-  TableBody,
- TableCell,
   TableContainer,
+  Table,
   TableHead,
+  TableBody,
   TableRow,
-  Grid,
+  TableCell,
 } from "@mui/material";
 import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
-import Navbar from "../Navbar/Navbar";
 import styles from "../LotProcess/FilingProcess/FilingLotDetails.module.css";
+import Navbar from "../Navbar/Navbar";
 
 const TouchWisePurchaseReport = () => {
   const [purchases, setPurchases] = useState([]);
@@ -29,10 +27,13 @@ const TouchWisePurchaseReport = () => {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [touchFilter, setTouchFilter] = useState("");
+  const [supplierFilter, setSupplierFilter] = useState("");
   const [uniqueTouches, setUniqueTouches] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
     fetchPurchases();
+    fetchSuppliers();
   }, []);
 
   const fetchPurchases = async () => {
@@ -48,6 +49,15 @@ const TouchWisePurchaseReport = () => {
       setUniqueTouches(touches);
     } catch (error) {
       console.error("Failed to fetch purchases", error);
+    }
+  };
+
+  const fetchSuppliers = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_SERVER_URL}/api/addsupplier`);
+      setSuppliers(response.data.data || response.data);
+    } catch (error) {
+      console.error("Error fetching suppliers:", error.message);
     }
   };
 
@@ -70,6 +80,13 @@ const TouchWisePurchaseReport = () => {
       );
     }
 
+    if (supplierFilter) {
+      filtered = filtered.filter(
+        (purchase) =>
+          (purchase.SupplierId?.id || purchase.supplier_id) == supplierFilter
+      );
+    }
+
     setPurchases(filtered);
   };
 
@@ -77,28 +94,29 @@ const TouchWisePurchaseReport = () => {
     setFromDate("");
     setToDate("");
     setTouchFilter("");
+    setSupplierFilter("");
     setPurchases(allPurchases);
   };
 
   // Calculate summary data by touch
   const calculateTouchSummary = () => {
     const summary = {};
-    
+
     purchases.forEach((purchase) => {
       const touch = purchase.TouchId?.touch || purchase.touch_id;
       if (!summary[touch]) {
         summary[touch] = {
           totalWeight: 0,
           totalValue: 0,
-          count: 0
+          count: 0,
         };
       }
-      
+
       summary[touch].totalWeight += parseFloat(purchase.weight) || 0;
       summary[touch].totalValue += parseFloat(purchase.totalValue) || 0;
       summary[touch].count += 1;
     });
-    
+
     return summary;
   };
 
@@ -121,12 +139,18 @@ const TouchWisePurchaseReport = () => {
   return (
     <>
       <Navbar />
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h5" gutterBottom>
-          Touch-wise Purchase Report
+      <Box>
+        <Typography variant="h5" gutterBottom sx={{ mb: 5, mt: 5 }}>
+          Purchase Report
         </Typography>
 
-        <Stack direction="row" spacing={2} alignItems="center" mb={3}>
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          mb={3}
+          flexWrap="wrap"
+        >
           <TextField
             type="date"
             label="From Date"
@@ -152,6 +176,21 @@ const TouchWisePurchaseReport = () => {
               {uniqueTouches.map((touch) => (
                 <MenuItem key={touch} value={touch}>
                   {touch}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl sx={{ minWidth: 150 }}>
+            <InputLabel>Supplier</InputLabel>
+            <Select
+              value={supplierFilter}
+              label="Supplier"
+              onChange={(e) => setSupplierFilter(e.target.value)}
+            >
+              <MenuItem value="">All Suppliers</MenuItem>
+              {suppliers.map((supplier) => (
+                <MenuItem key={supplier.id} value={supplier.id}>
+                  {supplier.name}
                 </MenuItem>
               ))}
             </Select>
@@ -211,15 +250,33 @@ const TouchWisePurchaseReport = () => {
           <Table className={styles.customerTable} style={{ margin: 0 }}>
             <TableHead>
               <TableRow sx={{ backgroundColor: "#f5f5f5" }}>
-                <TableCell><strong>S.No</strong></TableCell>
-                <TableCell><strong>Date</strong></TableCell>
-                <TableCell><strong>Supplier</strong></TableCell>
-                <TableCell><strong>Item</strong></TableCell>
-                <TableCell><strong>Touch</strong></TableCell>
-                <TableCell><strong>Weight</strong></TableCell>
-                <TableCell><strong>Rate</strong></TableCell>
-                <TableCell><strong>Value</strong></TableCell>
-                <TableCell><strong>Remarks</strong></TableCell>
+                <TableCell>
+                  <strong>S.No</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Date</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Supplier</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Item</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Touch</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Weight</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Rate</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Value</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Remarks</strong>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

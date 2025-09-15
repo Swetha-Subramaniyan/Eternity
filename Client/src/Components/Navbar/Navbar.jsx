@@ -95,29 +95,12 @@ function Navbar() {
                 </Link>
               </li>
 
-               <li>
-                <Link className="dropdown-item" to="/purchase-report">
-                  Purchase Register
-                </Link>
-              </li>
-
               <li>
-                <Link className="dropdown-item" to="/supplier-ledger">
-                  Supplier Ledger 
+                <Link className="dropdown-item" to="/purchasereport">
+                  Purchase Report
                 </Link>
               </li>
               
-              <li>
-                <Link className="dropdown-item" to="/touch-purchase-report">
-                  Touch-wise Purchase Report 
-                </Link>
-              </li>
-
-              <li>
-                <Link className="dropdown-item" to="/castingMeltingrreports">
-                  Casting/Melting Report
-                </Link>
-              </li>
               <li>
                 <Link className="dropdown-item" to="/filingreports">
                   Filing Report

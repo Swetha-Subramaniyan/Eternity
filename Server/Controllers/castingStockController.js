@@ -104,10 +104,39 @@ export const getAllStock = async (req, res) => {
             },
           },
         },
+        casting_customer: true,
+
       },
     });
 
-    res.status(200).json(stock);
+    const stockWithCustomerInfo = await Promise.all(
+      stock.map(async (item) => {
+        if (item.remarks && item.remarks.includes('From Customer Transaction')) {
+          const customerIdMatch = item.remarks.match(/Customer Id (\d+)/);
+          
+          if (customerIdMatch) {
+            const customerId = parseInt(customerIdMatch[1]);
+            
+            // Only fetch customer if not already included via casting_customer relation
+            if (!item.casting_customer || item.casting_customer.id !== customerId) {
+              const customer = await prisma.AddCustomer.findUnique({
+                where: { id: customerId },
+              });
+              
+              return {
+                ...item,
+                transactionCustomer: customer || null
+              };
+            }
+          }
+        }
+        return item;
+      })
+    );
+
+
+
+    res.status(200).json(stockWithCustomerInfo);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

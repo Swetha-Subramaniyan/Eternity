@@ -1,13 +1,18 @@
-import React from 'react'
-import Navbar from '../Navbar/Navbar'
+import React, { useState } from "react";
+import { Box, Tabs, Tab, Typography } from "@mui/material";
+import Navbar from "../Navbar/Navbar";
 
-const CustomerReport = () => {
+
+
+const MasterCustomerReport = () => {
+  
+
   return (
-    <> 
-    <Navbar/>
-    <div>CustomerReport</div>
+    <>
+      <Navbar />
+      <>Customer Report</>
     </>
-  )
-}
+  );
+};
 
-export default CustomerReport
+export default MasterCustomerReport;
