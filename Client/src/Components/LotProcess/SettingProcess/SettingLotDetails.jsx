@@ -489,7 +489,7 @@ const SettingLotDetails = () => {
       <table
         className={styles.table}
         border="1"
-        style={{ width: "100%", marginTop: "1rem" }}
+        style={{ width: "100%", marginTop: "2rem" }}
       >
         {/* <div className={styles.tableContainer}> */}
 
@@ -771,7 +771,19 @@ const SettingLotDetails = () => {
 
       {/* Add Setting Dialog */}
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-        <DialogTitle>Add Setting Details</DialogTitle>
+        {/* <DialogTitle>Add Setting Details</DialogTitle> */}
+        <div
+        style={{
+          fontSize: "1.3rem",
+          padding: "1rem",
+          textAlign: "center",
+          fontWeight: "500",
+          backgroundColor:' #f8f9fa'
+        }}
+      >
+       Assign Setting Items 
+      </div>
+     
         <DialogContent>
           <TextField
             label="Date"
@@ -780,8 +792,11 @@ const SettingLotDetails = () => {
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
             InputLabelProps={{ shrink: true }}
-            sx={{ ml: 0, mt: 3, mb: 2, width: "200px" }}
+            sx={{ ml: 0, mt: 0, mb: 2, width: "200px" }}
           />
+           <Typography variant="h6" gutterBottom>
+            Available Setting Items
+          </Typography>
 
           <table
             className={styles.table}
@@ -827,7 +842,7 @@ const SettingLotDetails = () => {
           </table>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button variant="outlined" onClick={handleClose}>Cancel</Button>
           <Button variant="contained" onClick={handleSave}>
             Save
           </Button>
@@ -841,7 +856,18 @@ const SettingLotDetails = () => {
         maxWidth="md"
         fullWidth
       >
-        <DialogTitle>Assigned Items</DialogTitle>
+        {/* <DialogTitle>Assigned Items</DialogTitle> */}
+        <div
+        style={{
+          fontSize: "1.3rem",
+          padding: "1rem",
+          textAlign: "center",
+          fontWeight: "500",
+          backgroundColor:' #f8f9fa'
+        }}
+      >
+       Assigned  Setting Items
+      </div>
         <DialogContent>
           {viewData ? (
             <>
@@ -850,7 +876,7 @@ const SettingLotDetails = () => {
                 className={styles.table}
                 style={{
                   width: "100%",
-                  marginTop: "1rem",
+                  marginTop: "0rem",
                   marginBottom: "1rem",
                   borderCollapse: "collapse",
                 }}
@@ -866,18 +892,6 @@ const SettingLotDetails = () => {
                     <th>Remarks</th>
                   </tr>
                 </thead>
-                {/* <tbody>
-                  {viewData.filingItems.map((fi, index) => (
-                    <tr key={fi.id}>
-                      <td>{index + 1}</td>
-                      <td>{fi.item_name}</td>
-                      <td>{fi.weight}</td>
-                      <td>{fi.touch}</td>
-                      <td>{fi.purity}</td>
-                      <td>{fi.remarks}</td>
-                    </tr>
-                  ))}
-                </tbody> */}
   <tbody>
   {viewData.filingItems.map((fi, i) => (
     <tr key={fi.id}>
@@ -892,7 +906,6 @@ const SettingLotDetails = () => {
     </tr>
   ))}
 </tbody>
-
 
                 <tfoot>
                   <tr>
@@ -916,6 +929,8 @@ const SettingLotDetails = () => {
                 <TextField
                   label="Receipt Weight"
                   type="number"
+                  autoComplete="off"
+                  onWheel={(e) => e.target.blur()}
                   fullWidth
                   required
                   value={viewData.receiptWeight || ""}
@@ -929,6 +944,8 @@ const SettingLotDetails = () => {
                 <TextField
                   label="Stone Count"
                   type="number"
+                  autoComplete="off"
+                  onWheel={(e) => e.target.blur()}
                   fullWidth
                   required
                   value={viewData.stoneCount || ""}
@@ -942,6 +959,8 @@ const SettingLotDetails = () => {
                 <TextField
                   label="Stone Weight"
                   type="number"
+                  autoComplete="off"
+                  onWheel={(e) => e.target.blur()}
                   fullWidth
                   required
                   value={viewData.stoneWeight || ""}
@@ -1052,9 +1071,9 @@ const SettingLotDetails = () => {
                     <tr>
                       <th>S.No</th>
                       <th>Item Name</th>
-                      <th>Weight</th>
-                      <th>Touch</th>
-                      <th>Purity</th>
+                      <th style={{width:'7rem'}}>Weight</th>
+                      <th style={{width:'7rem'}}>Touch</th>
+                      <th style={{width:'7rem'}}>Purity</th>
                       <th>Remarks</th>
                       <th>Actions</th>
                     </tr>
@@ -1090,6 +1109,8 @@ const SettingLotDetails = () => {
                             size="small"
                             type="number"
                             value={item.weight}
+                            autoComplete="off"
+                            onWheel={(e) => e.target.blur()}
                             onChange={(e) => {
                               const updated = [...viewData.scrapItems];
                               updated[idx].weight = e.target.value;
@@ -1147,9 +1168,10 @@ const SettingLotDetails = () => {
                         </td>
                         <td>
                           <Button
+                          color="error"
                             onClick={() => handleDeleteScrapItem(item, idx)}
                           >
-                            <DeleteIcon style={{ color: "red" }} />
+                            <DeleteIcon  />
                           </Button>
                         </td>
                       </tr>
@@ -1200,7 +1222,7 @@ const SettingLotDetails = () => {
           >
             Save
           </Button>
-          <Button onClick={() => setViewOpen(false)}>Close</Button>
+          <Button variant="outlined" onClick={() => setViewOpen(false)}>Close</Button>
         </DialogActions>
       </Dialog>
     </>

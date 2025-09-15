@@ -232,10 +232,15 @@ const CastingEntry = () => {
           value={fromDate}
           onChange={(e) => setFromDate(e.target.value)}
           InputLabelProps={{ shrink: true }}
+          size="small"
+          sx={{ ml: "2rem" }}
         />
+
         <TextField
           type="date"
           label="To Date"
+          size="small"
+          sx={{ ml: "2rem" }}
           value={toDate}
           onChange={(e) => setToDate(e.target.value)}
           InputLabelProps={{ shrink: true }}
