@@ -75,11 +75,23 @@ const Stock = () => {
         const settingName =
           item.settingItem?.settingEntryId?.setting_person?.name?.toLowerCase() ||
           "";
+        const buffingName =
+          item.buffingItem?.buffingEntryId?.buffing_person?.name?.toLowerCase() ||
+          "";
+        const purchaseName =
+          item.purchaseId?.SupplierId?.name?.toLowerCase() || "";
+        const transactionName =
+          item.customer?.name?.toLowerCase() || 
+          item.transactionCustomer?.name?.toLowerCase() || 
+          "";
 
         return (
           castingName.includes(nameLower) ||
           filingName.includes(nameLower) ||
-          settingName.includes(nameLower)
+          settingName.includes(nameLower) ||
+          buffingName.includes(nameLower) ||
+          purchaseName.includes(nameLower) ||
+          transactionName.includes(nameLower)
         );
       });
     }
@@ -100,7 +112,7 @@ const Stock = () => {
     <>
       <Navbar />
       <div style={{ margin: "2rem" }}>
-        <h4 style={{ color: "#5f4917", textAlign: "center", color: "black" }}>
+        <h4 style={{ textAlign: "center", color: "black" }}>
           Scrap Items (Stock)
         </h4>
         <br />
@@ -143,15 +155,13 @@ const Stock = () => {
           />
 
           <Button variant="outlined" onClick={applyFilters}>
-            {" "}
-            Filter{" "}
+            Filter
           </Button>
           <Button variant="outlined" onClick={resetFilters}>
             Reset
           </Button>
         </div>
 
-        {/* Summary Section */}
         {Object.keys(touchSummary).length > 0 && (
           <div className={styles.summarySection}>
             <h4>Summary</h4>
@@ -166,7 +176,6 @@ const Stock = () => {
           </div>
         )}
 
-        {/* Table */}
         {filteredItems.length > 0 ? (
           <table
             border="1"
@@ -178,18 +187,18 @@ const Stock = () => {
               marginTop: "1rem",
             }}
           >
-            <thead style={{ backgroundColor: "#38383e" }}>
+            <thead style={{ backgroundColor: "#38383e", color: "white" }}>
               <tr>
-                <th style={{ backgroundColor: "#38383e" }}>S.No</th>
-                <th style={{ backgroundColor: "#38383e" }}>Date</th>
-                <th style={{ backgroundColor: "#38383e" }}>Time</th>
-                <th style={{ backgroundColor: "#38383e" }}> Name</th>
-                <th style={{ backgroundColor: "#38383e" }}>Item</th>
-                <th style={{ backgroundColor: "#38383e" }}>Weight</th>
-                <th style={{ backgroundColor: "#38383e" }}>Touch</th>
-                <th style={{ backgroundColor: "#38383e" }}>Purity</th>
-                <th style={{ backgroundColor: "#38383e" }}>Remarks</th>
-                <th style={{ backgroundColor: "#38383e" }}>Process</th>
+                <th>S.No</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Name</th>
+                <th>Item</th>
+                <th>Weight</th>
+                <th>Touch</th>
+                <th>Purity</th>
+                <th>Remarks</th>
+                <th>Process</th>
               </tr>
             </thead>
             <tbody>
@@ -207,10 +216,12 @@ const Stock = () => {
                   item.settingItem?.settingEntryId?.setting_person?.name ||
                   item.buffingItem?.buffingEntryId?.buffing_person?.name ||
                   item.purchaseId?.SupplierId?.name ||
+                  item.customer?.name || 
+                  item.transactionCustomer?.name || 
                   "-";
 
                 const itemName =
-                  item.item?.name || item.purchaseId?.item || "-";
+                  item.item?.name || item.purchaseId?.item || item.item_type  || "-";
 
                 const processName = item.castingItem
                   ? "Casting"
@@ -222,7 +233,7 @@ const Stock = () => {
                         ? "Buffing"
                         : item.purchaseId
                           ? "Purchase"
-                          : "-";
+                          : "Customer Transaction";
 
                 return (
                   <tr key={item.id}>
