@@ -264,7 +264,7 @@ const MasterPurchaseStock = () => {
         {showModal && (
           <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
-              <h5 style={{ textAlign: "center" }}>
+              <h5 style={{ textAlign: "center", fontWeight:'530' }}>
                 {editingIndex !== null ? "Edit Purchase" : "Add Stock Purchase"}
               </h5>
               <form onSubmit={handleSubmit} className={styles.purchaseForm}>
@@ -316,6 +316,8 @@ const MasterPurchaseStock = () => {
                       label="Weight"
                       name="weight"
                       type="number"
+                      autoComplete="off"
+                      onWheel={(e) => e.target.blur()}
                       fullWidth
                       required
                       value={formData.weight}
@@ -362,6 +364,8 @@ const MasterPurchaseStock = () => {
                       label="Rate"
                       name="rate"
                       type="number"
+                      autoComplete="off"
+                      onWheel={(e) => e.target.blur()}
                       fullWidth
                       required
                       value={formData.rate}
@@ -388,17 +392,18 @@ const MasterPurchaseStock = () => {
                   />
 
                   <Box display="flex" justifyContent="flex-end" gap={2}>
-                    <Button variant="contained" type="submit">
-                      {editingIndex !== null
-                        ? "Update Purchase"
-                        : "Submit Purchase"}
-                    </Button>
-                    <Button
+                  <Button
                       variant="outlined"
                       onClick={() => setShowModal(false)}
                     >
                       Cancel
                     </Button>
+                    <Button variant="contained" type="submit">
+                      {editingIndex !== null
+                        ? "Update "
+                        : "Submit "}
+                    </Button>
+                  
                   </Box>
                 </Box>
               </form>

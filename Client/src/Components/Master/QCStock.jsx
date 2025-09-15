@@ -200,12 +200,16 @@ const handleSave = async () => {
             Reset
           </Button>
 
-      {/* Popup */}
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-        <DialogTitle>
-          {editingIndex !== null ? "Edit QC Stock" : "Add QC Stock"}
-        </DialogTitle>
-        <DialogContent dividers>
+
+                <Dialog
+  open={open}
+  onClose={handleClose}
+  PaperProps={{
+    sx: { width: "450px", maxWidth: "90%", borderRadius:'7px' } }}>
+          <h5 style={{ textAlign: "center", padding:'1.1rem', backgroundColor:"#F5F5F5"}}>
+          {editingIndex !== null ? "Edit QC Stock" : "Add QC Stock"}</h5>
+
+        <DialogContent >
           <TextField
             label="Date"
             name="date"
@@ -236,6 +240,8 @@ const handleSave = async () => {
               label="Weight"
               name="weight"
               type="number"
+              autoComplete="off"
+              onWheel={(e) => e.target.blur()}
               value={formData.weight}
               onChange={handleChange}
               fullWidth
@@ -248,6 +254,8 @@ const handleSave = async () => {
               label="Stone Weight"
               name="stoneWeight"
               type="number"
+              autoComplete="off"
+              onWheel={(e) => e.target.blur()}
               value={formData.stoneWeight}
               onChange={handleChange}
               fullWidth
@@ -304,17 +312,14 @@ const handleSave = async () => {
         </DialogContent>
 
         <Box display="flex" justifyContent="flex-end" p={2} gap={2}>
-          <Button variant="outlined" color="secondary" onClick={handleClose}>
+          <Button variant="outlined" color="primary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="contained" color="primary" onClick={handleSave}>
+          <Button variant="contained" color="primary" onClick={handleSave}  sx={{marginRight:'0.5rem'}}>
             {editingIndex !== null ? "Update" : "Save"}
           </Button>
         </Box>
       </Dialog>
-
-      {/* Main Table */}
-
 <div>
         <table className={styles.purchaseTable}>
           <thead>
