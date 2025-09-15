@@ -883,7 +883,7 @@ const FilingLotDetails = () => {
           fontWeight: "500",
           backgroundColor:' #f8f9fa'
         }}
-      >
+      > 
        Assign Filing Items 
       </div>
         <DialogContent>

@@ -165,11 +165,14 @@ function MasterAddSupplier() {
             Reset
           </Button>
         </div>
+        <Dialog
+  open={isModalOpen}
+  onClose={closeModal}
+  PaperProps={{
+    sx: { width: "450px", maxWidth: "90%", borderRadius:'5px' } }}>
+          <h5 style={{ textAlign: "center", padding:'1.1rem', backgroundColor:"#F5F5F5" }}>
+          {editIndex !== null ? "Edit Supplier" : "Add New Supplier"} </h5>
 
-        <Dialog open={isModalOpen} onClose={closeModal}>
-          <DialogTitle style={{ color: "#a33768" }}>
-            {editIndex !== null ? "Edit Supplier" : "Add New Supplier"}
-          </DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
@@ -179,7 +182,7 @@ function MasterAddSupplier() {
               fullWidth
               value={customerName}              
               onChange={(e) => setCustomerName(e.target.value)}
-              sx={{marginTop:'1.5rem'}}
+              sx={{marginTop:'0rem'}}
               
             />
             <TextField
@@ -209,9 +212,9 @@ function MasterAddSupplier() {
               onChange={(e) => setAddress(e.target.value)}
             />
           </DialogContent>
-          <DialogActions>
-            <Button onClick={closeModal} color="secondary">Cancel</Button>
-            <Button onClick={handleSave} color="primary">Save</Button>
+          <DialogActions sx={{padding:'1rem'}}>
+          <Button onClick={closeModal} color="primary" variant="outlined">Cancel</Button>
+          <Button onClick={handleSave} color="primary" variant="contained" sx={{marginRight:'0.5rem'}}>Save</Button>
           </DialogActions>
         </Dialog>
 

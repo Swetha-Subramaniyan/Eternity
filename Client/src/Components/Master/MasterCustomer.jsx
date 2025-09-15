@@ -220,28 +220,19 @@ function MasterCustomer() {
             Reset
           </Button>
         </div>
-
-        <Dialog
-          open={isModalOpen}
-          onClose={closeModal}
-          PaperProps={{
-            style: {
-              width: "450px",
-              maxWidth: "90%",
-              padding: "1rem",
-            },
-          }}
-        >
-          <DialogTitle style={{ color: "#a33768" }}>
-            {editIndex !== null ? "Edit Customer" : "Add New Customer"}
-          </DialogTitle>
+          <Dialog
+  open={isModalOpen}
+  onClose={closeModal}
+  PaperProps={{ sx: { width: "450px", maxWidth: "90%", borderRadius:'5px' } }}>
+          <h5 style={{ textAlign: "center", padding:'1.1rem', backgroundColor:"#F5F5F5" }}>
+          {editIndex !== null ? "Edit Casting Member" : "Add Casting Member"} </h5>
           <DialogContent>
-            <br />
             <TextField
               autoFocus
               margin="dense"
               label="Customer Name"
               type="text"
+              sx={{marginTop:'0rem'}}
               fullWidth
               autoComplete="off"
               inputRef={nameRef}
@@ -310,14 +301,10 @@ function MasterCustomer() {
               onChange={(e) => setAddress(e.target.value)}
             />
           </DialogContent>
-
-          <DialogActions>
-            <Button onClick={closeModal} color="secondary">
-              Cancel
-            </Button>
-            <Button onClick={handleSave} color="primary">
-              Save
-            </Button>
+             <DialogActions sx={{padding:'1rem'}}>
+            <Button onClick={closeModal} color="primary" variant="outlined">Cancel</Button>
+            <Button onClick={handleSave} color="primary" variant="contained"  sx={{marginRight:'0.5rem'}}>Save</Button>
+      
           </DialogActions>
         </Dialog>
 

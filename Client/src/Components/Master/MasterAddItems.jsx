@@ -3,7 +3,10 @@ import styles from './MasterAddItems.module.css';
 import Master from "./MasterNavbar";
 import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
-import { Edit } from "@mui/icons-material";
+import { Edit, Delete } from "@mui/icons-material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const MasterAdditems = () => {
   const [items, setItems] = useState([]);
@@ -24,24 +27,6 @@ const MasterAdditems = () => {
     fetchItems();
   }, []);
 
-  const handleAddItem = async () => {
-    if (!itemName) {
-      alert("Please enter an item name.");
-      return;
-    }
-
-    try {
-      const response = await axios.post(`${BACKEND_SERVER_URL}/api/additem`, {
-        name: itemName,
-      });
-
-      setItems((prevItems) => [...prevItems, response.data]);
-      setItemName("");
-    } catch (error) {
-      console.error("Error adding item:", error);
-    }
-  };
-
   const handleEditClick = (item) => {
     setEditItemId(item.id);
     setEditItemName(item.name);
@@ -52,29 +37,69 @@ const MasterAdditems = () => {
     setEditItemName("");
   };
 
-  const handleSaveEdit = async (id) => {
-    if (!editItemName) {
-      alert("Please enter item name.");
+  const handleAddItem = async () => {
+    if (!itemName) {
+      toast.error("Please enter an item name.", { position: "top-right" });
       return;
     }
-
+  
     try {
-      const response = await axios.put( `${BACKEND_SERVER_URL}/api/additem/${id}`,
-      { name: editItemName } );
-      
+      const response = await axios.post(`${BACKEND_SERVER_URL}/api/additem`, {
+        name: itemName,
+      });
+  
+      setItems((prevItems) => [...prevItems, response.data]);
+      setItemName("");
+      toast.success("Item added successfully!", { position: "top-right" });
+    } catch (error) {
+      toast.error("Error adding item.", { position: "top-right" });
+      console.error("Error adding item:", error);
+    }
+  };
+  
+  const handleSaveEdit = async (id) => {
+    if (!editItemName) {
+      toast.error("Please enter item name.", { position: "top-right" });
+      return;
+    }
+  
+    try {
+      const response = await axios.put(`${BACKEND_SERVER_URL}/api/additem/${id}`,
+        { name: editItemName }
+      );
+  
       setItems((prevItems) =>
         prevItems.map((item) =>
           item.id === id ? { ...item, name: response.data.name } : item
         )
       );
-
+  
       setEditItemId(null);
       setEditItemName("");
+      toast.success("Item updated successfully!", { position: "top-right" });
     } catch (error) {
+      toast.error("Error updating item.", { position: "top-right" });
       console.error("Error updating item:", error);
     }
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this item?")) return;
+
+    try {
+      await axios.delete(`${BACKEND_SERVER_URL}/api/additem/${id}`);
+      setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+      toast.success("Item deleted successfully!", { position: "top-right" });
+    } catch (error) {
+      if (error.response?.data?.code === "P2003") {
+        toast.error("Cannot delete: Item is in use.", { position: "top-right" });
+      } else {
+        toast.error("Error deleting item.", { position: "top-right" });
+      }
+      console.error("Error deleting item:", error);
+    }
+  };
+  
   return (
     <>
       <Master />
@@ -126,7 +151,14 @@ const MasterAdditems = () => {
                           <button onClick={handleCancelEdit}>Cancel</button>
                         </>
                       ) : (
-                        <Edit onClick={() => handleEditClick(item)} />                       
+                        <> 
+                        <Edit onClick={() => handleEditClick(item)} />  
+                        <Delete 
+                        color='error'
+                        onClick={() => handleDelete(item.id)}
+                        style={{ cursor: "pointer", marginLeft:'1rem' }} 
+                         /> 
+                         </>                    
                       )}
                     </td>
                   </tr>
@@ -138,6 +170,7 @@ const MasterAdditems = () => {
           )}
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

@@ -3,7 +3,9 @@ import axios from 'axios';
 import styles from './MasterAddTouch.module.css';
 import Master from './MasterNavbar';
 import { BACKEND_SERVER_URL } from '../../../Config/config';
-import { Edit } from "@mui/icons-material";
+import { Delete, Edit } from "@mui/icons-material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MasterAddTouch = () => {
   const [touchValue, setTouchValue] = useState("");
@@ -36,9 +38,11 @@ const MasterAddTouch = () => {
       });
       setTouchItems(prev => [...prev, response.data]);
       setTouchValue("");
+      toast.success("Touch added successfully!", { position: "top-right" });
     } catch (error) {
       console.error("Error adding touch:", error);
       alert("Failed to add touch");
+    
     }
   };
 
@@ -62,9 +66,23 @@ const MasterAddTouch = () => {
       );
       setEditId(null);
       setEditValue("");
+      toast.success("Touch updated successfully!", { position: "top-right" });
     } catch (error) {
       console.error("Error updating touch:", error);
       alert("Failed to update touch");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this touch?")) return;
+
+    try {
+      await axios.delete(`${BACKEND_SERVER_URL}/api/addtouch/${id}`);
+      setTouchItems(prev => prev.filter(item => item.id !== id));
+      toast.success("Touch deleted successfully!", { position: "top-right" });
+    } catch (error) {
+      console.error("Error deleting touch:", error);
+      toast.error("Failed to delete touch", { position: "top-right" });
     }
   };
 
@@ -117,12 +135,19 @@ const MasterAddTouch = () => {
                           <button onClick={() => setEditId(null)}>Cancel</button>
                         </>
                       ) : (  
-                      
+                      <>
                         <Edit
                           onClick={() => handleEdit(item)}
                           className={styles.actionIcon}
                           style={{ cursor: "pointer" }}
                         />
+                        <Delete 
+                        color='error'
+                        onClick={() => handleDelete(item.id)}
+                        style={{ cursor: "pointer", marginLeft:'1rem' }} 
+                         />
+                        
+                        </>
                       )}
                     </td>
                   </tr>
@@ -136,6 +161,7 @@ const MasterAddTouch = () => {
           </table>
         </div>
       </div>
+      <ToastContainer autoClose={3000} hideProgressBar={false} />
     </>
   );
 };

@@ -134,14 +134,14 @@ function MasterFiling() {
             variant="contained"
             onClick={openModal}
           >
-            Add Filing
+            Add Filing Member
           </Button>
           <TextField
             placeholder="Search by Name"
             variant="outlined"
             size="small"
             value={searchTerm}
-            sx={{ marginLeft: "52.6rem" }}
+            sx={{ marginLeft: "48.6rem" }}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
               startAdornment: (
@@ -166,11 +166,13 @@ function MasterFiling() {
             Reset
           </Button>
         </div>
-
-        <Dialog open={isModalOpen} onClose={closeModal}>
-          <DialogTitle style={{ color: "#a33768" }}>
-            {editIndex !== null ? "Edit Filing Member" : "Add Filing Member"}
-          </DialogTitle>
+        <Dialog
+  open={isModalOpen}
+  onClose={closeModal}
+  PaperProps={{
+    sx: { width: "450px", maxWidth: "90%", borderRadius:'5px' } }}>
+          <h5 style={{ textAlign: "center", padding:'1.1rem', backgroundColor:"#F5F5F5" }}>
+          {editIndex !== null ? "Edit Filing Member" : "Add Filing Member"}</h5>
           <DialogContent>
             <TextField
               autoFocus
@@ -178,7 +180,7 @@ function MasterFiling() {
               label="Customer Name"
               type="text"
               fullWidth
-              sx={{mt:3}}
+              sx={{mt:0}}
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
             />
@@ -209,9 +211,9 @@ function MasterFiling() {
               onChange={(e) => setAddress(e.target.value)}
             />
           </DialogContent>
-          <DialogActions>
-            <Button onClick={closeModal} color="secondary">Cancel</Button>
-            <Button onClick={handleSave} color="primary">Save</Button>
+          <DialogActions sx={{padding:'1rem'}}>
+            <Button onClick={closeModal} color="primary" variant="outlined">Cancel</Button>
+            <Button onClick={handleSave} color="primary" variant="contained"  sx={{marginRight:'0.5rem'}}>Save</Button>
           </DialogActions>
         </Dialog>
 
