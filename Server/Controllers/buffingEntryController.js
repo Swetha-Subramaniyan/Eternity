@@ -79,8 +79,25 @@ export const createBuffingEntry = async (req, res) => {
     }
 
     // Create BuffingEntry
-    const buffingEntry = await prisma.buffingEntry.create({
-      data: {
+    // const buffingEntry = await prisma.buffingEntry.create({
+    //   data: {
+    //     buffing_person: { connect: { id: buffing_person_id } },
+    //     castingItem: { connect: { id: castingItemId } },
+    //   },
+    //   include: {
+    //     buffing_person: true,
+    //     filing_items: true,
+    //     setting_items: true,
+    //   },
+    // });
+
+    // Upsert BuffingEntry (create if not exists, update if already exists)
+    const buffingEntry = await prisma.buffingEntry.upsert({
+      where: { casting_item_id: castingItemId },
+      update: {
+        buffing_person: { connect: { id: buffing_person_id } },
+      },
+      create: {
         buffing_person: { connect: { id: buffing_person_id } },
         castingItem: { connect: { id: castingItemId } },
       },
@@ -90,7 +107,7 @@ export const createBuffingEntry = async (req, res) => {
         setting_items: true,
       },
     });
-
+    
     // Map all selected filing + setting items in LotBuffingMapper
     await Promise.all([
       ...filingItemIds.map((filingItemId) =>
@@ -152,6 +169,7 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
       return res.status(400).json({ error: "buffing_person_id is required" });
     }
 
+
     const lotNumber = parseInt(req.params.lotNumber);
 
     const LotId = await prisma.LotInfo.findFirst({
@@ -162,6 +180,7 @@ export const getBuffingEntriesByPersonId = async (req, res) => {
     });
 
     console.log("LotId:", LotId);
+
 
     const entries = await prisma.buffingEntry.findMany({
       where: {

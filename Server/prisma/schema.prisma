@@ -207,9 +207,11 @@ model CastingItems {
   stock            Stock[]
   filingLotMapper  LotFilingMapper[]
 
+
   casting_customer_id Int
   casting_customer    AddCasting @relation(fields: [casting_customer_id], references: [id])
 }
+
 
 model CastiingTotalBalance {
   id                     Int          @id @default(autoincrement())
@@ -409,6 +411,7 @@ model SettingWastage {
 }
 
 model BuffingEntry {
+
   id                  Int                   @id @default(autoincrement())
   createdAt           DateTime              @default(now())
   buffing_person      AddBuffing            @relation(fields: [buffing_person_id], references: [id])
@@ -418,9 +421,7 @@ model BuffingEntry {
   filing_items        FilingItems[]
   setting_items       SettingItems[]
   BuffingTotalBalance BuffingTotalBalance[]
-
   LotBuffingMapper LotBuffingMapper[]
-
   BuffingItems BuffingItems[]
 }
 

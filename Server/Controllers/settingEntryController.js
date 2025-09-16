@@ -1,12 +1,14 @@
 import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
+
 export const createSettingEntry = async (req, res) => {
   try {
     const { setting_person_id, lot_number, items } = req.body;
 
     // Convert items array into plain array of filing item IDs
     const filingItemIds = items?.map((i) => i.filing_item_id) || [];
+
 
     // Validate
     if (
@@ -95,6 +97,7 @@ export const createSettingEntry = async (req, res) => {
     });
 
     return res.status(201).json({
+
       message:
         "Single SettingEntry created for multiple filing items successfully",
       entry: {
@@ -113,6 +116,7 @@ export const createSettingEntry = async (req, res) => {
     });
   }
 };
+
 
 // GET - http://localhost:5000/api/settingentry/person/:id
 
