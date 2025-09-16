@@ -3,7 +3,8 @@ import Navbar from '../../Navbar/Navbar';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './BuffingLot.module.css';
-import { BACKEND_SERVER_URL } from '../../../../Config/config';
+import { BACKEND_SERVER_URL } from '../../../../Config/config'
+
 
 const BuffingLot = () => {
   
