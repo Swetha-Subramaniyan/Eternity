@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
-  "scripts": {
+   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "prisma generate && prisma db push && npm run build", 
-    "prisma:generate": "prisma generate",
-    "prisma:push": "prisma db push"
+    "build": "npx prisma generate",
+    "prisma:generate": "npx prisma generate",
+    "prisma:push": "npx prisma db push"
   },
   "keywords": [],
   "author": "",
