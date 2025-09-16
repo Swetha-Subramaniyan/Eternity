@@ -9,7 +9,6 @@ import {
   DialogActions,
   TextField,
   InputAdornment,
-  TextareaAutosize,
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
 import Master from "./MasterNavbar";
@@ -165,16 +164,19 @@ function MasterCasting() {
           </Button>
         </div>
 
-        <Dialog open={isModalOpen} onClose={closeModal}>
-          <DialogTitle style={{ color: "#a33768" }}>
-            {editIndex !== null ? "Edit Customer" : "Add New Casting"}
-          </DialogTitle>
+        <Dialog
+  open={isModalOpen}
+  onClose={closeModal}
+  PaperProps={{ sx: { width: "450px", maxWidth: "90%", borderRadius:'5px' } }}>
+          <h5 style={{ textAlign: "center", padding:'1.1rem', backgroundColor:"#F5F5F5" }}>
+          {editIndex !== null ? "Edit Casting / Melting Member" : "Add Casting / Melting Member"} </h5>
           <DialogContent>
             <TextField
               autoFocus
               margin="dense"
               label="Casting Name"
               type="text"
+              sx={{mt:0}}
               fullWidth
               value={customerName}              
               onChange={(e) => setCustomerName(e.target.value)}             
@@ -206,67 +208,80 @@ function MasterCasting() {
               onChange={(e) => setAddress(e.target.value)}
             />
           </DialogContent>
-          <DialogActions>
-            <Button onClick={closeModal} color="secondary">Cancel</Button>
-            <Button onClick={handleSave} color="primary">Save</Button>
+          <DialogActions sx={{padding:'1rem'}}>
+            <Button onClick={closeModal} color="primary" variant="outlined">Cancel</Button>
+            <Button onClick={handleSave} color="primary" variant="contained"  sx={{marginRight:'0.5rem'}}>Save</Button>
+      
           </DialogActions>
         </Dialog>
 
 <div className={styles.itemList}> 
-<table className={styles.customerTable} >
+<table className={styles.purchaseTable}>
   <thead>
-      <tr>
-                <th>S.No</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Actions</th>
-              </tr>
+    <tr>
+      <th>S.No</th>
+      <th>Date</th>  
+      <th>Time</th>  
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Actions</th>
+    </tr>
   </thead>
   <tbody>
-  {filteredCustomers.length > 0 ? (
-    filteredCustomers.map((customer, index) => {
-      const createdAt = new Date(customer.createdAt); 
-      const date = createdAt.toLocaleDateString("en-IN", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      });
-      const time = createdAt.toLocaleTimeString("en-IN", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
+    {filteredCustomers.length > 0 ? (
+      filteredCustomers.map((customer, index) => {
+        const dateObj = customer.createdAt ? new Date(customer.createdAt) : null;
 
-      return (
-        <tr key={index}>
-          <td>{index + 1}</td>
-          <td>{date}</td>     
-          <td>{time}</td>     
-          <td>{customer.name}</td>
-          <td>{customer.phoneNumber}</td>
-          <td>{customer.email}</td>
-          <td>{customer.address}</td>
-          <td className={styles.tableActions}>
-            <Edit onClick={() => handleEdit(index)} className={styles.actionIcon} />
-            <Delete onClick={() => handleDelete(index)} className={styles.deleteIcon} />
-          </td>
-        </tr>
-      );
-    })
-  ) : (
-    <tr>
-      <td colSpan="8" style={{ textAlign: "center" }}>
-        Name not found
-      </td>
-    </tr>
-  )}
-</tbody>
+        const formattedDate = dateObj
+          ? dateObj.toLocaleDateString("en-IN", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            })
+          : "—";
 
+        const formattedTime = dateObj
+          ? dateObj.toLocaleTimeString("en-IN", {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: true,
+            })
+          : "—";
+
+        return (
+          <tr key={index}>
+            <td>{index + 1}</td>
+            <td>{formattedDate}</td>
+            <td>{formattedTime}</td>
+            <td>{customer.name}</td>
+            <td>{customer.phoneNumber}</td>
+            <td>{customer.email}</td>
+            <td>{customer.address}</td>
+            <td className={styles.tableActions}>
+              <Edit
+                onClick={() => handleEdit(index)}
+                className={styles.actionIcon}
+              />
+              <Delete
+                onClick={() => handleDelete(index)}
+                className={styles.deleteIcon}
+              />
+            </td>
+          </tr>
+        );
+      })
+    ) : (
+      <tr>
+        <td colSpan="8" style={{ textAlign: "center" }}>
+          Name not found
+        </td>
+      </tr>
+    )}
+  </tbody>
 </table>
+
 </div>
 
       </div>

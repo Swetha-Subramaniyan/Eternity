@@ -1,17 +1,3 @@
-  .custom-button {
-    background-color: #F5F5F5 !important;
-    color: black !important;
-    border-color: #25274D !important;
-    border-style: solid !important;
-    border-width: 2px !important;
-    margin-left: 2rem !important;
-    
-  }
-  
-  .customer-container{
-    margin-top: 2rem;
-  }
-
 
   .customerContainer {
     width: 85%;
@@ -25,7 +11,6 @@
     width: 100%;
   }
   
-  /* .customerTable th, */
   .customerTable td {
     border: 1px solid #e5dfdf;
     padding: 8px;
@@ -85,4 +70,13 @@
 
   .addButton{
     background-color: #fffbe2 !important;
+  }
+
+  .purchaseTable th {
+    background-color:#38383e;
+    color: white;
+  }
+
+  .kkk{
+   background-color: #f4f7fa;
   }

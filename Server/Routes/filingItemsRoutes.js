@@ -4,8 +4,14 @@ import {
   getAllFilingItems,
   getFilingItemById,
   deleteFilingItem,
-  getAvailableFilingItems
-} from "../Controllers/filingItemsController.js"
+  getAvailableFilingItems,
+  createFilingWastage,
+  getFilingWastageByEntryId,
+  updateFilingWastage,
+  closeJobcardAndCreateNewLot
+} from "../Controllers/filingItemsController.js";
+
+
 
 const router = express.Router();
 
@@ -14,6 +20,11 @@ router.get("/", getAllFilingItems);
 router.get("/:id", getFilingItemById);
 router.delete("/:id", deleteFilingItem);
 
-router.get('/filingitems/available', getAvailableFilingItems);
+router.get("/filingitems/available", getAvailableFilingItems);
+
+router.post("/wastage", createFilingWastage);
+router.get("/entry/:filingPersonId/:lotNumber", getFilingWastageByEntryId);
+router.put('/wastage/:id', updateFilingWastage);
+router.post('/close-jobcard', closeJobcardAndCreateNewLot);
 
 export default router;

@@ -2,6 +2,8 @@ import {PrismaClient} from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
 
+
+
 export const createSetting = async (req, res) => {
   try {
     const { name, email, address, phoneNumber, casting_item_id } = req.body;

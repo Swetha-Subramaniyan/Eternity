@@ -1,10 +1,10 @@
-
 import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
-
 export const createCastingItem = async (req, res) => {
   const { items, balanceData } = req.body;
+
+  console.log("Received items for casting entry:", items, balanceData);
 
   if (!items || !Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: "Items are required." });
@@ -133,32 +133,31 @@ export const createCastingItem = async (req, res) => {
       return savedItems;
     });
 
-    res.status(201).json({ message: "Items and balance saved", items: createdItems });
+    res
+      .status(201)
+      .json({ message: "Items and balance saved", items: createdItems });
   } catch (error) {
     console.error("Error saving casting items and stock:", error);
     res.status(500).json({ error: "Failed to save casting items and stock." });
   }
 };
 
-
 export const getAllCastingItems = async (req, res) => {
   try {
-    const items = await prisma.castingItems.findMany(
-      {
-        include:{
-          item:true,
-          casting_customer:true,
-          castingEntry:{
-            select: {
-              id: true,
-              date: true,
-            }
+    const items = await prisma.castingItems.findMany({
+      include: {
+        item: true,
+        casting_customer: true,
+        castingEntry: {
+          select: {
+            id: true,
+            date: true,
           },
-          touch:true
-        }
-      }
-    );
-    console.log('All casting Items',items);
+        },
+        touch: true,
+      },
+    });
+    console.log("All casting Items", items);
     res.status(200).json(items);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -178,7 +177,7 @@ export const getCastingItemById = async (req, res) => {
         touch: true,
       },
     });
-    
+
     if (!item) return res.status(404).json({ error: "Item not found" });
     res.status(200).json(item);
   } catch (error) {
@@ -191,9 +190,16 @@ export const deleteCastingItem = async (req, res) => {
   const { id } = req.params;
 
   try {
+    const castingItem = await prisma.castingItems.findMany({
+      where: { id: Number(id) },
+    });
+
+    console.log("Casting item to delete:", castingItem);
+
     await prisma.castingItems.delete({
       where: { id: Number(id) },
     });
+
     res.status(200).json({ message: "Casting item deleted successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -206,10 +212,10 @@ export const getAvailableCastingItems = async (req, res) => {
       where: {
         type: "Items",
         filingEntry: {
-          none: {},  // Not assigned to FilingEntry
+          none: {}, // Not assigned to FilingEntry
         },
         filingLotMapper: {
-          none: {},  // Not assigned to LotFilingMapper
+          none: {}, // Not assigned to LotFilingMapper
         },
       },
       include: {
@@ -230,5 +236,3 @@ export const getAvailableCastingItems = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch unassigned casting items" });
   }
 };
-
-

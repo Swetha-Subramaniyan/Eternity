@@ -10,3 +10,4 @@ router.delete("/:id",deleteSetting);
 router.get('/:id', getSettingById);
 
 export default router;
+

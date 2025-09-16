@@ -177,18 +177,14 @@ exports.Prisma.AddSupplierItemScalarFieldEnum = {
 exports.Prisma.AddPurchaseStockScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  name: 'name',
+  supplierId: 'supplierId',
   item: 'item',
-  goldWeight: 'goldWeight',
-  goldTouch: 'goldTouch',
-  goldPurity: 'goldPurity',
-  goldRate: 'goldRate',
-  goldtotalValue: 'goldtotalValue',
-  silverWeight: 'silverWeight',
-  silverTouch: 'silverTouch',
-  silverPurity: 'silverPurity',
-  silverRate: 'silverRate',
-  silvertotalValue: 'silvertotalValue'
+  weight: 'weight',
+  touch_id: 'touch_id',
+  purity: 'purity',
+  rate: 'rate',
+  totalValue: 'totalValue',
+  remarks: 'remarks'
 };
 
 exports.Prisma.CustomerTransactionScalarFieldEnum = {
@@ -197,7 +193,7 @@ exports.Prisma.CustomerTransactionScalarFieldEnum = {
   date: 'date',
   value: 'value',
   type: 'type',
-  touch: 'touch',
+  touchId: 'touchId',
   purity: 'purity',
   goldRate: 'goldRate',
   customerId: 'customerId'
@@ -213,6 +209,18 @@ exports.Prisma.AddTouchScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   touch: 'touch'
+};
+
+exports.Prisma.QcStockScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  item_id: 'item_id',
+  weight: 'weight',
+  stone_weight: 'stone_weight',
+  final_weight: 'final_weight',
+  touch_id: 'touch_id',
+  purity: 'purity',
+  remarks: 'remarks'
 };
 
 exports.Prisma.CastingEntryScalarFieldEnum = {
@@ -257,7 +265,8 @@ exports.Prisma.LotInfoScalarFieldEnum = {
   lotNumber: 'lotNumber',
   filing_customer_id: 'filing_customer_id',
   setting_customer_id: 'setting_customer_id',
-  buffing_customer_id: 'buffing_customer_id'
+  buffing_customer_id: 'buffing_customer_id',
+  IsActive: 'IsActive'
 };
 
 exports.Prisma.FilingEntryScalarFieldEnum = {
@@ -313,7 +322,8 @@ exports.Prisma.FilingWastageScalarFieldEnum = {
   overall_wastage: 'overall_wastage',
   closing_balance: 'closing_balance',
   opening_balance: 'opening_balance',
-  filing_entry_id: 'filing_entry_id'
+  filing_person_id: 'filing_person_id',
+  filing_lot_id: 'filing_lot_id'
 };
 
 exports.Prisma.SettingEntryScalarFieldEnum = {
@@ -361,7 +371,7 @@ exports.Prisma.SettingTotalBalanceScalarFieldEnum = {
 exports.Prisma.SettingWastageScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  total_receipt: 'total_receipt',
+  total_stone_count: 'total_stone_count',
   total_wastage: 'total_wastage',
   balance: 'balance',
   wastage_percentage: 'wastage_percentage',
@@ -370,7 +380,8 @@ exports.Prisma.SettingWastageScalarFieldEnum = {
   overall_wastage: 'overall_wastage',
   closing_balance: 'closing_balance',
   opening_balance: 'opening_balance',
-  setting_entry_id: 'setting_entry_id'
+  setting_person_id: 'setting_person_id',
+  setting_lot_id: 'setting_lot_id'
 };
 
 exports.Prisma.BuffingEntryScalarFieldEnum = {
@@ -388,7 +399,8 @@ exports.Prisma.BuffingItemsScalarFieldEnum = {
   scrap_weight: 'scrap_weight',
   touch_id: 'touch_id',
   item_purity: 'item_purity',
-  scrap_remarks: 'scrap_remarks'
+  scrap_remarks: 'scrap_remarks',
+  buffing_entry_id: 'buffing_entry_id'
 };
 
 exports.Prisma.BuffingTotalBalanceScalarFieldEnum = {
@@ -423,7 +435,8 @@ exports.Prisma.BuffingWastageScalarFieldEnum = {
   overall_wastage: 'overall_wastage',
   closing_balance: 'closing_balance',
   opening_balance: 'opening_balance',
-  buffing_entry_id: 'buffing_entry_id'
+  buffing_person_id: 'buffing_person_id',
+  buffing_lot_id: 'buffing_lot_id'
 };
 
 exports.Prisma.StockScalarFieldEnum = {
@@ -433,12 +446,14 @@ exports.Prisma.StockScalarFieldEnum = {
   filing_item_id: 'filing_item_id',
   setting_item_id: 'setting_item_id',
   buffing_item_id: 'buffing_item_id',
+  item_type: 'item_type',
   item_id: 'item_id',
   weight: 'weight',
   touch_id: 'touch_id',
   item_purity: 'item_purity',
   remarks: 'remarks',
-  casting_customer_id: 'casting_customer_id'
+  casting_customer_id: 'casting_customer_id',
+  purchase_id: 'purchase_id'
 };
 
 exports.Prisma.SortOrder = {
@@ -494,7 +509,7 @@ exports.Prisma.AddSupplierItemOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.AddPurchaseStockOrderByRelevanceFieldEnum = {
-  name: 'name'
+  remarks: 'remarks'
 };
 
 exports.Prisma.CustomerTransactionOrderByRelevanceFieldEnum = {
@@ -503,6 +518,10 @@ exports.Prisma.CustomerTransactionOrderByRelevanceFieldEnum = {
 
 exports.Prisma.AddItemOrderByRelevanceFieldEnum = {
   name: 'name'
+};
+
+exports.Prisma.QcStockOrderByRelevanceFieldEnum = {
+  remarks: 'remarks'
 };
 
 exports.Prisma.CastingItemsOrderByRelevanceFieldEnum = {
@@ -558,6 +577,7 @@ exports.Prisma.ModelName = {
   CustomerTransaction: 'CustomerTransaction',
   AddItem: 'AddItem',
   AddTouch: 'AddTouch',
+  QcStock: 'QcStock',
   CastingEntry: 'CastingEntry',
   CastingItems: 'CastingItems',
   CastiingTotalBalance: 'CastiingTotalBalance',

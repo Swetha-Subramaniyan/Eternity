@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./MasterSetting.css";
+import styles from './MasterSetting.module.css';
 import axios from "axios";
 import {
   Button,
@@ -124,8 +124,8 @@ function MasterSetting() {
   return (
     <>
       <Master />
-      <div className="customer-container">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", marginTop: "2rem" }}>
+      <div className={styles.customerContainer}>
+        <div className={styles.headerRow}>
           <Button
             style={{
               backgroundColor: "#F5F5F5",
@@ -143,6 +143,7 @@ function MasterSetting() {
             placeholder="Search by Name"
             variant="outlined"
             size="small"
+            sx={{ marginLeft: "47rem" }}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
@@ -153,18 +154,35 @@ function MasterSetting() {
               ),
             }}
           />
+          <Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft: "1.2rem",
+            }}
+            onClick={() => setSearchTerm("")}
+          >
+            Reset
+          </Button>
         </div>
 
-        <Dialog open={isModalOpen} onClose={closeModal}>
-          <DialogTitle style={{ color: "#a33768" }}>
-            {editIndex !== null ? "Edit Setting Member" : "Add Setting Memberr"}
-          </DialogTitle>
+        <Dialog
+  open={isModalOpen}
+  onClose={closeModal}
+  PaperProps={{
+    sx: { width: "450px", maxWidth: "90%", borderRadius:'5px' } }}>
+          <h5 style={{ textAlign: "center", padding:'1.1rem', backgroundColor:"#F5F5F5" }}>
+          {editIndex !== null ? "Edit Setting Member" : "Add Setting Member"} </h5>
           <DialogContent>
             <TextField
               autoFocus
               margin="dense"
               label="Customer Name"
               type="text"
+              sx={{marginTop:'0rem'}}
               fullWidth
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
@@ -196,51 +214,79 @@ function MasterSetting() {
               onChange={(e) => setAddress(e.target.value)}
             />
           </DialogContent>
-          <DialogActions>
-            <Button onClick={closeModal} color="secondary">Cancel</Button>
-            <Button onClick={handleSave} color="primary">Save</Button>
+          <DialogActions sx={{padding:'1rem'}}>
+          <Button onClick={closeModal} color="primary" variant="outlined">Cancel</Button>
+            <Button onClick={handleSave} color="primary" variant="contained"  sx={{marginRight:'0.5rem'}}>Save</Button>
           </DialogActions>
         </Dialog>
-<div className="item-listt"> 
-<table>
+        <div className={styles.itemList}> 
+        <table className={styles.purchaseTable}>
   <thead>
     <tr>
-      <th><strong>S.No</strong></th>
-      <th><strong>Name</strong></th>
-      <th><strong>Phone</strong></th>
-      <th><strong>Email</strong></th>
-      <th><strong>Address</strong></th>
-      <th><strong>Actions</strong></th>
+      <th>S.No</th>
+      <th>Date</th>   
+      <th>Time</th>   
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    {filteredCustomers.length > 0 ? (
-      filteredCustomers.map((customer, index) => (
+  {filteredCustomers.length > 0 ? (
+    filteredCustomers.map((customer, index) => {
+      const dateObj = customer.createdAt ? new Date(customer.createdAt) : null;
+
+      const formattedDate = dateObj
+        ? dateObj.toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })
+        : "—";
+
+      const formattedTime = dateObj
+        ? dateObj.toLocaleTimeString("en-IN", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+          })
+        : "—";
+
+      return (
         <tr key={index}>
           <td>{index + 1}</td>
+          <td>{formattedDate}</td> 
+          <td>{formattedTime}</td> 
           <td>{customer.name}</td>
           <td>{customer.phoneNumber}</td>
           <td>{customer.email}</td>
           <td>{customer.address}</td>
-
-          <td style={{width:"7rem"}}>
-            <b onClick={() => handleEdit(index)} style={{ marginRight: "8px" }}>
-           <Edit />
-            </b>
-            <b onClick={() => handleDelete(customer.id)} style={{ color: "red", marginLeft:'0.5rem' }}>
-  <Delete />
-</b>
-
+          <td style={{ width: "7rem" }}>
+            <Edit
+              onClick={() => handleEdit(index)}
+              className={styles.actionIcon}
+            />
+            <Delete
+              onClick={() => handleDelete(customer.id)}
+              className={styles.deleteIcon}
+            />
           </td>
         </tr>
-      ))
-    ) : (
-      <tr>
-        <td colSpan="6">Name not found</td>
-      </tr>
-    )}
-  </tbody>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="9" className={styles.centerText}>
+        Name not found
+      </td>
+    </tr>
+  )}
+</tbody>
+
 </table>
+
 
 </div> 
       </div>

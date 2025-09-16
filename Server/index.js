@@ -19,6 +19,8 @@ import filingItemsRoutes from "./Routes/filingItemsRoutes.js";
 import settingEntryRoutes from './Routes/settingEntryRoutes.js';
 import settingItemsRoutes from './Routes/settingItemsRoutes.js';
 import buffingEntryRoutes from './Routes/buffingEntryRoutes.js';
+import buffingItemsRoutes from './Routes/buffingItemsRoutes.js';
+import qcStockRoutes from './Routes/qcStockRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT ||  5000;
@@ -46,9 +48,11 @@ app.use("/api/castingitems",castingItemsRoutes);
 app.use("/api/stock",castingStockRoutes);
 app.use("/api/filingentry",filingEntryRoutes );
 app.use("/api/filingitems",filingItemsRoutes);
-app.use("/api/settingentry", settingEntryRoutes )
+app.use("/api/settingentry", settingEntryRoutes );
 app.use("/api/settingitems", settingItemsRoutes);
-app.use("/api/buffingentry", buffingEntryRoutes)
+app.use("/api/buffingentry", buffingEntryRoutes);
+app.use("/api/buffingitems", buffingItemsRoutes);
+app.use("/api/qcstock", qcStockRoutes);
 
 
 app.get("/", (req, res) => {

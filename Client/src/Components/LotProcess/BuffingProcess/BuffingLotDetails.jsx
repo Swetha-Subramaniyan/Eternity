@@ -1,750 +1,19 @@
-// import React, { useState } from 'react';
-// import {
-//   Box, Button, Dialog, DialogActions, DialogContent, DialogTitle,
-//   Checkbox, Table, TableBody, TableCell,TableFooter,
-//   TableContainer, TableHead, TableRow, TextField, Typography, Paper
-// } from "@mui/material";
-// import { FaEye } from "react-icons/fa";
-// import Navbar from '../../Navbar/Navbar';
-// import { Delete } from "@mui/icons-material";
-// import styles from './BuffingLotDetails.module.css';
-// import { Tooltip } from '@mui/material'; 
-
-// const getTodayDate = () => {
-//   const today = new Date();
-//   return today.toISOString().split('T')[0];
-// };
-
-// const BuffingLotDetails = () => {
-//   const [isAssignOpen, setIsAssignOpen] = useState(false);
-//   const [viewEntry, setViewEntry] = useState(null);
-//   const [selectedItems, setSelectedItems] = useState([]);
-//   const [entries, setEntries] = useState([]);
-//   const [date, setDate] = useState(getTodayDate());
-//   const [fromDate, setFromDate] = useState("");
-//   const [toDate, setToDate] = useState("");
-//   const [wastagePercentage, setWastagePercentage] = useState('');
-//   const [givenGold, setGivenGold] = useState('');
-//   const [closingSummary, setClosingSummary] = useState(null);
-//   const [statusFilter, setStatusFilter] = useState(" ")
-
-
-
-//   const assignedItemNames = entries.flatMap(entry => entry.items.map(it => it.item));
-  // const items = [
-  //   { item: "cst", beforeWeight: "50", touch: "91.7", purity: "22K", remarks: 'aaaaaaa' },
-  //   { item: "cst1", beforeWeight: "48", touch: "91.7", purity: "22K", remarks: 'bbbbbbb' },
-  //   { item: "Chain", beforeWeight: "150", touch: "92", purity: "22K", remarks: 'cccccccc', stoneWeight: "20", stoneCount: "3" },
-  //   { item: "Ring", beforeWeight: "150", touch: "92", purity: "22K", remarks: 'cccccccc', stoneWeight: "20", stoneCount: "3" },
-  // ];
-
-//   const handleToggle = (item) => {
-//     setSelectedItems(prev =>
-//       prev.find(i => i.item === item.item)
-//         ? prev.filter(i => i.item !== item.item)
-//         : [...prev, item]
-//     );
-//   };
-
-//   const handleAssign = () => {
-//     if (!date) return alert("Please Select the Date to Assign the Item");
-//     if (!selectedItems.length) return alert("Select at least one item.");
-
-
-//     const newGroup = {
-//       date,
-//       wastage: null,
-//       afterWeight: '',
-//       extraRemarks: '',
-//       items: selectedItems.map(it => ({
-//         item: it.item,
-//         beforeWeight: it.beforeWeight,
-//         touch: it.touch,
-//         purity: it.purity,
-//         remarks: it.remarks,
-//         stoneWeight: it.stoneWeight,
-//         stoneCount: it.stoneCount,
-//       })),
-//       scrapItems: []
-//     };
-    
-//     setEntries(prev => [...prev, newGroup]);
-//     setSelectedItems([]);
-//     setDate(getTodayDate());
-//     setIsAssignOpen(false);
-//   };
-
-
-//   const filteredEntries = entries.filter(entry => {
-//     const entryDate = new Date(entry.date);
-//     const from = fromDate ? new Date(fromDate) : null;
-//     const to = toDate ? new Date(toDate) : null;
-  
-//     if (from && to) return entryDate >= from && entryDate <= to;
-//     if (from) return entryDate >= from;
-//     if (to) return entryDate <= to;
-//     return true;
-//   });
-
-
-//   const totalReceipt = filteredEntries.reduce(
-//     (sum, entry) => sum + (parseFloat(entry.receiptWeight) || 0),
-//     0
-//   );
-  
-//   const totalBalance = filteredEntries.reduce(
-//     (sum, entry) => sum + (parseFloat(entry.balance) || 0),
-//     0
-//   );
-  
-//   const totalWastage = (totalReceipt * (parseFloat(wastagePercentage) || 0)) / 100;
-//   const overallWastage = totalBalance - totalWastage;
-
-// const additionalGold = parseFloat(givenGold) || 0;
-// const closingBalance = overallWastage < 0
-//   ? overallWastage + additionalGold
-//   : overallWastage;
-
-// const settlementMessage =
-//   closingBalance < 0
-//     ? 'Owner must give to worker'
-//     : 'Worker must give to owner';
-  
-
-//     const handleSaveSummary = () => {
-//       const data = {
-//         totalReceipt,
-//         totalBalance,
-//         wastagePercentage: parseFloat(wastagePercentage),
-//         totalWastage,
-//         overallWastage,
-//         givenGold: additionalGold,
-//         closingBalance,
-//         settlementMessage
-//       };
-//       localStorage.setItem('filingSummary', JSON.stringify(data));
-//       setClosingSummary(data);
-//       alert("Summary saved successfully.");
-//     };
-  
-
-//     const handleCloseJobcard =  () => {
-//       const savedLots = JSON.parse(localStorage.getItem('buffingLots')) || [];
-//       const nextId = savedLots.length + 1;
-//       const updatedLots = [...savedLots, { id: nextId }];
-//       localStorage.setItem('buffingLots', JSON.stringify(updatedLots));
-//       alert('Jobcard closed and lot created.');
-//     }
-
-//   return (
-//     <>
-//       <Navbar />
-
-//        <div className="date-fields">
-//         <TextField
-
-//            sx={{ml:'2rem', mt:'1rem'}}
-
-//             id="from-date"
-//             label="From Date"
-//             type="date"
-//             InputLabelProps={{ shrink: true }}
-//             value={fromDate}
-//             onChange={(e) => setFromDate(e.target.value)}
-//           />
-//           <TextField
-          
-//           sx={{ml:'2rem', mt:'1rem'}}
-//             id="to-date"
-//             label="To Date"
-//             type="date"
-//             InputLabelProps={{ shrink: true }}
-//             value={toDate}
-//             onChange={(e) => setToDate(e.target.value)}
-//           />
-
-// <TextField
-//   select
-//   label="Status"
-//   SelectProps={{ native: true }}
-//   value={statusFilter}
-//   // onChange={(e) => setStatusFilter(e.target.value)}
-//   sx={{ marginLeft: "1.5rem", minWidth: 120 , mt:'1rem' }}
-// >
-//   <option value="All">All</option>
-//   <option value="Completed">Completed</option>
-//   <option value="Pending">Pending</option>
-// </TextField>
-
-//           <Button
-//              onClick={() => setIsAssignOpen(true)}
-//             sx={{
-//               m: 2,
-//               ml: 87,
-//               pl:2,
-//               pr:2,
-//               backgroundColor: "#5f4917",
-//               color: "white",
-//             }}
-//           >
-//             Add Buffing Items
-//           </Button>
-//         </div> 
-
-
-// <div style={{ display: 'flex', alignItems: 'flex-start', marginTop: '2rem', width:'100%' }}>
-
-// <div style={{ display: 'flex', flexDirection: 'column',}}>
-//   <div className={styles.tablecontainer} >
-
-//         <TableContainer component={Paper} sx={{ width: '65rem' }}>
-//           <Table>
-//             <TableHead>
-//               <TableRow>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>S.No</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Date</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Process</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Issue</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Receipt</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Balance </TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Stone Count</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Stone Weight</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Scrap Weight </TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Wastage</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Actions</TableCell>
-//               </TableRow>
-//             </TableHead>
-// <TableBody>
-//   {filteredEntries.length > 0 ? (
-//     filteredEntries.map((group, index) => (
-//       <TableRow key={index}>
-//         <TableCell align="center">{index + 1}</TableCell>
-//         <TableCell align="center">{group.date}</TableCell>
-//         <TableCell align="center">
-//           {group.items.map((it, i) => <div key={i}>{it.item}</div>)}
-//         </TableCell>
-//         <TableCell align="center">
-//           {group.items.map((it, i) => <div key={i}>{it.beforeWeight}</div>)}
-//         </TableCell>
-//         <TableCell align="center">
-//           {group.receiptWeight ? `${group.receiptWeight} g` : '—'}
-//         </TableCell>
-
-
-//         <TableCell align="center">
-//   {group.balance ? `${group.balance} g` : '—'}
-// </TableCell>
-     
-//         <TableCell align="center">
-//   {group.totalStoneCount || '-'}
-// </TableCell>
-
-// <TableCell align="center">
-//   {group.totalStoneWeight || '-'}
-// </TableCell>
-// <TableCell align="center">
-//   {group.totalScrapWeight ? `${group.totalScrapWeight} g` : '—'}
-// </TableCell>
-
-// <TableCell align="center">
-//           <span style={{ color: group.wastage === 'Yes' ? 'green' : 'red' }}>
-//             {group.wastage || '—'}
-//           </span>
-//         </TableCell>
-
-// <TableCell align="center">
-//         <FaEye style={{ cursor: 'pointer' }} onClick={() => setViewEntry({ ...group, index })} />
-
-//         </TableCell>
-
-//       </TableRow>
-//     ))
-//   ) : (
-//     <TableRow>
-//       <TableCell colSpan={9} align="center">
-//         <Typography color="text.secondary">
-//           No Product found...
-//         </Typography>
-//       </TableCell>
-//     </TableRow>
-//   )}
-// </TableBody>
-//           </Table>       
-//         </TableContainer>     
-//       </div>
-//       </div> 
-
-// <Box
-//   sx={{
-//     ml: 4,
-//     p: 2,
-//     border: '1px solid #ccc',
-//     borderRadius: '8px',
-//     minWidth: '70px',
-//     height: 'fit-content',
-//     mt: 1,
-//     mr: 10
-//   }}
-// >
-//   <Typography sx={{ marginLeft: '3rem', color: 'darkblue' }}>
-//     <b>Opening Balance:</b> 0
-//   </Typography>
-//   <hr />
-
-//   <Typography sx={{ color: 'red', fontWeight: 'bold', fontSize: '1.1rem' }}>
-//     Monthly Wastage
-//   </Typography>
-//   <br />
-
-//   <Typography><strong>Total Receipt:</strong> {totalReceipt.toFixed(2)} g</Typography>
-
-//   <TextField
-//     label="Wastage (%)"
-//     type="number"
-//     value={wastagePercentage}
-//     onChange={(e) => setWastagePercentage(e.target.value)}
-//     fullWidth
-//     size="small"
-//     sx={{ mt: 2 }}
-//   />
-
-//   <Typography sx={{ mt: 2 }}>
-//     <strong>Total Wastage:</strong> {totalWastage.toFixed(2)} g
-//   </Typography>
-
-//   <Typography sx={{ mt: 2 }}>
-//     <strong>Balance:</strong> {totalBalance.toFixed(2)} g
-//   </Typography>
-
-//   <Typography sx={{ mt: 2 }}>
-//     <strong>Overall Wastage:</strong> {overallWastage.toFixed(2)} g
-//   </Typography>
-
-//   {/* Show Given Gold only if Overall Wastage is negative */}
-// {parseFloat(overallWastage) < 0 && (
-//   <TextField
-//     label="Given Gold"
-//     type="number"
-//     fullWidth
-//     size="small"
-//     value={givenGold}
-//     onChange={(e) => setGivenGold(e.target.value)}
-//     sx={{ mt: 2 }}
-//   />
-// )}
-
-
-// <Typography sx={{ mt: 2, color: 'red' }}>
-//     <strong>Closing Balance:</strong> {closingBalance.toFixed(2)} g
-//   </Typography>
-
-//   {/* Show settlement message */}
-//   <Typography sx={{ mt: 2, fontWeight: 'bold', color: closingBalance < 0 ? 'red' : 'green' }}>
-//     {settlementMessage}
-//   </Typography>
-
-
-//   <Button
-//   variant="contained"
-//   color="primary"
-//   sx={{ mt: 3, width: '100%' , backgroundColor: '#1a1a1f', color:'white', textAlign:'center'  }}
-//   onClick={handleSaveSummary}
-// >
-//   Save Summary
-// </Button>
-
-
-// <Button
-//   variant="outlined"
-//   color="error"
-//   sx={{ mt: 2, width: '100%' }}
-//   onClick={handleCloseJobcard}
-// >
-//   Close Jobcard
-// </Button>
-
-
-// </Box>
-
-
-//       </div>
-
-//       {/* Assign Dialog */}
-//       <Dialog open={isAssignOpen} onClose={() => setIsAssignOpen(false)} fullWidth maxWidth={false}
-//         PaperProps={{ sx: { width: '50rem !important' } }}>
-//         <DialogTitle>Assign Buffing Items</DialogTitle>
-//         <DialogContent>
-//           <TextField
-//             sx={{ mt: '1rem', mb: 2 }}
-//             label="Date"
-//             type="date"
-//             value={date}
-//             onChange={(e) => setDate(e.target.value)}
-//             InputLabelProps={{ shrink: true }}
-//             fullWidth
-//           />
-//           <Typography variant="h6" gutterBottom>Available Buffing Items</Typography>
-//           <Table size="small">
-//             <TableHead>
-//               <TableRow>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Select</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Item</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Weight</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Touch</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Purity</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Remarks</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Stone Count</TableCell>
-//                 <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Stone Weight</TableCell>
-//               </TableRow>
-//             </TableHead>
-//             <TableBody>
-//               {items.map((item, index) => {
-//   const isAssigned = assignedItemNames.includes(item.item);
-//   const isSelected = selectedItems.find((i) => i.item === item.item);
-
-//   return (
-//     <TableRow
-//       key={index}
-//       hover
-//       sx={{
-//         backgroundColor: isAssigned ? '#d0f0c0' : 'inherit', 
-//         pointerEvents: isAssigned ? 'none' : 'auto',         
-//         opacity: isAssigned ? 0.6 : 1,                      
-//       }}
-//     >
-//       <TableCell>
-//         <Checkbox
-//           checked={!!isSelected}
-//           disabled={isAssigned}
-//           onChange={() => handleToggle(item)}
-//           sx={{
-//             color: isAssigned ? 'green' : 'inherit',
-//             '&.Mui-checked': {
-//               color: isAssigned ? 'green' : 'primary.main',
-//             }
-//           }}
-//         />
-//       </TableCell>
-//       <TableCell>{item.item}</TableCell>
-//       <TableCell>{item.beforeWeight}</TableCell>
-//       <TableCell>{item.touch}</TableCell>
-//       <TableCell>{item.purity}</TableCell>
-//       <TableCell>{item.remarks}</TableCell>
-//       <TableCell>{item.stoneCount}</TableCell>
-//       <TableCell>{item.stoneWeight}</TableCell>
-//     </TableRow>
-//   );
-// })}
-//          </TableBody>
-//           </Table>
-//         </DialogContent>
-//         <DialogActions>
-//           <Button onClick={() => setIsAssignOpen(false)}>Cancel</Button>
-//           <Button variant="contained" onClick={handleAssign}>Assign</Button>
-//         </DialogActions>
-//       </Dialog>
-
-//       {/* View Entry Dialog */}
-//       <Dialog open={!!viewEntry} onClose={() => setViewEntry(null)} fullWidth maxWidth={false}
-//         PaperProps={{ sx: { width: '60rem !important' } }}>
-//         <DialogTitle>Assigned Item Details</DialogTitle>
-//         <DialogContent>        
-//   <TableContainer component={Paper}>
-//     <Table size="small">
-//       <TableHead>
-//         <TableRow >
-//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>S.No</TableCell>
-//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Item</TableCell>
-//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Receipt</TableCell>
-//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Touch</TableCell>
-//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Purity</TableCell>
-//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Remarks</TableCell>
-//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Stone Count</TableCell>
-//           <TableCell sx={{ backgroundColor: '#38383e', color:'white', textAlign:'center'  }}>Stone Weight</TableCell>
-//         </TableRow>
-//       </TableHead>
-//       <TableBody>
-//         {viewEntry?.items?.map((item, i) => (
-//           <TableRow key={i} >
-//             <TableCell>{i + 1}</TableCell>
-//             <TableCell>{item.item}</TableCell>
-//             <TableCell>{item.beforeWeight}g</TableCell>
-//             <TableCell>{item.touch}</TableCell>
-//             <TableCell>{item.purity}</TableCell>
-//             <TableCell>{item.remarks}</TableCell>
-//             <TableCell>{item.stoneCount || '-'}</TableCell>
-//             <TableCell>{item.stoneWeight || '-'}</TableCell>
-//           </TableRow>       
-//         ))}
-//       </TableBody> 
-//       <TableFooter>
-//   <TableRow >
-//     <TableCell colSpan={2}><b>Totals</b></TableCell>
-//     <TableCell>
-//       {viewEntry?.items?.reduce((sum, item) => sum + parseFloat(item.beforeWeight || 0), 0).toFixed(2)} g
-//     </TableCell>
-//     <TableCell />
-//     <TableCell />
-//     <TableCell />
-//     <TableCell>
-//       {viewEntry?.items?.reduce((sum, item) => sum + parseFloat(item.stoneCount || 0), 0).toFixed(2)}
-//     </TableCell>
-//     <TableCell>
-//       {viewEntry?.items?.reduce((sum, item) => sum + parseFloat(item.stoneWeight || 0), 0).toFixed(2)} g
-//     </TableCell>
-//   </TableRow>
-// </TableFooter>
-
-//     </Table>
-
-//     <Box sx={{ mt: 3, display: 'flex', gap: 2, padding:2 }}>
-//                 <TextField label="After Weight" type="number" fullWidth required 
-//                  value={viewEntry?.afterWeight || ''}
-//                  onChange={(e) => setViewEntry({ ...viewEntry, afterWeight: e.target.value })} 
-//                  />
-                
-//                 <TextField label="Remarks" fullWidth 
-//                   value={viewEntry?.extraRemarks || ''}
-//                   onChange={(e) => setViewEntry({ ...viewEntry, extraRemarks: e.target.value })}
-//                  />
-//               </Box>
-
-
-//     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 2, mt:2,ml:1 }}>
-
-//   <Typography variant="subtitle1"><b>Wastage:</b></Typography>
-//   <Button
-//     variant={viewEntry?.wastage === 'Yes' ? 'contained' : 'outlined'}
-//     color="success"
-//     onClick={() => setViewEntry({ ...viewEntry, wastage: 'Yes' })}
-//   >
-//     Yes
-//   </Button>
-//   <Button
-//     variant={viewEntry?.wastage === 'No' ? 'contained' : 'outlined'}
-//     color="error"
-//     onClick={() => setViewEntry({ ...viewEntry, wastage: 'No' })}
-//   >   No 
-//   </Button>
-// </Box>
-// <hr/> 
-
-// <Button
-//   sx={{ paddingLeft: 2, paddingRight: 2, mb: 1 }}
-//   variant="outlined"
-//   onClick={() => {
-//     const updated = { ...viewEntry };
-//     updated.scrapItems = [...(viewEntry.scrapItems || []), {
-//       itemName: '',
-//       weight: '',
-//       touch: '',
-//       purity: '',
-//       remarks: ''
-//     }];
-//     setViewEntry(updated);
-//   }}
-// >
-//   Add Scrap Items
-// </Button>
-
-// {viewEntry?.scrapItems?.length > 0 && (
-//   <Table size="small">
-//     <TableHead>
-//       <TableRow>
-//         <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>S.No</TableCell>
-//         <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>Item Name</TableCell>
-//         <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>Weight</TableCell>
-//         <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>Touch</TableCell>
-//         <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>Purity</TableCell>
-//         <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>Remarks</TableCell>
-//         <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>Actions</TableCell>
-//       </TableRow>
-//     </TableHead>
-//     <TableBody>
-//       {viewEntry.scrapItems.map((scrap, index) => (
-//         <TableRow key={index}>
-//           <TableCell align="center">{index + 1}</TableCell>
-//           <TableCell>
-//             <TextField
-//               size="small"
-//               value={scrap.itemName}
-//               onChange={(e) => {
-//                 const updated = [...viewEntry.scrapItems];
-//                 updated[index].itemName = e.target.value;
-//                 setViewEntry({ ...viewEntry, scrapItems: updated });
-//               }}
-//             />
-//           </TableCell>
-//           <TableCell>
-//             <TextField
-//               size="small"
-//               type="number"
-//               value={scrap.weight}
-//               onChange={(e) => {
-//                 const updated = [...viewEntry.scrapItems];
-//                 updated[index].weight = e.target.value;
-//                 const weight = parseFloat(e.target.value) || 0;
-//                 const touch = parseFloat(updated[index].touch) || 0;
-//                 updated[index].purity = ((weight * touch) / 100).toFixed(2);
-//                 setViewEntry({ ...viewEntry, scrapItems: updated });
-//               }}
-//             />
-//           </TableCell>
-//           <TableCell>
-//             <TextField
-//               size="small"
-//               value={scrap.touch}
-//               onChange={(e) => {
-//                 const updated = [...viewEntry.scrapItems];
-//                 updated[index].touch = e.target.value;
-//                 const weight = parseFloat(updated[index].weight) || 0;
-//                 const touch = parseFloat(e.target.value) || 0;
-//                 updated[index].purity = ((weight * touch) / 100).toFixed(2);
-//                 setViewEntry({ ...viewEntry, scrapItems: updated });
-//               }}
-//             />
-//           </TableCell>
-//           <TableCell>
-//             <TextField
-//               size="small"
-//               value={scrap.purity}
-//               onChange={(e) => {
-//                 const updated = [...viewEntry.scrapItems];
-//                 updated[index].purity = e.target.value;
-//                 setViewEntry({ ...viewEntry, scrapItems: updated });
-//               }}
-//             />
-//           </TableCell>
-//           <TableCell>
-//             <TextField
-//               size="small"
-//               value={scrap.remarks}
-//               onChange={(e) => {
-//                 const updated = [...viewEntry.scrapItems];
-//                 updated[index].remarks = e.target.value;
-//                 setViewEntry({ ...viewEntry, scrapItems: updated });
-//               }}
-//             />
-//           </TableCell>
-//           <TableCell align="center">
-//             <Button
-//               color="error"
-//               size="small"
-//               onClick={() => {
-//                 const updated = [...viewEntry.scrapItems];
-//                 updated.splice(index, 1);
-//                 setViewEntry({ ...viewEntry, scrapItems: updated });
-//               }}
-//             >
-//               <Delete />
-//             </Button>
-//           </TableCell>
-//         </TableRow>
-//       ))}
-//     </TableBody>
-//   </Table>
-// )}
-
-//   </TableContainer>
-
-//   <Box sx={{ ml: 1, mt: 2 }}>
-//   <Typography variant="subtitle1">
-//     <strong>Total Scrap Weight: </strong>
-//     {viewEntry?.scrapItems?.reduce(
-//       (sum, scrap) => sum + (parseFloat(scrap.weight) || 0),
-//       0
-//     ).toFixed(2)} g
-//   </Typography>
-
-//   <Typography variant="subtitle1" sx={{ mt: 1 }}>
-//     <strong>Balance : </strong>
-// {(
-//         (viewEntry?.items?.reduce((sum, item) => sum + (parseFloat(item.beforeWeight) || 0), 0) || 0)
-//         - (parseFloat(viewEntry?.afterWeight) || 0)
-//         - (viewEntry?.scrapItems?.reduce((sum, scrap) => sum + (parseFloat(scrap.weight) || 0), 0) || 0)
-//       ).toFixed(2)} g
-//   </Typography>
-// </Box>
-
-// </DialogContent>
-
-
-//         <DialogActions>    
-        
-// <Tooltip
-//   title={!viewEntry?.wastage ? "Please select Wastage (Yes or No) to enable Save" : ""}
-//   arrow
-// >
-//   <span>
-//       <Button
-//       variant="contained"
-//       disabled={!viewEntry?.wastage}
-//       onClick={() => {
-   
-//         const totalAfterWeight = parseFloat(viewEntry?.afterWeight || 0);
-
-      
-//         const totalScrap = (viewEntry?.scrapItems?.length
-//           ? viewEntry.scrapItems.reduce((sum, scrap) => sum + (parseFloat(scrap.weight) || 0), 0)
-//           : 0);
-      
-//         const stoneCount = viewEntry?.items?.reduce(
-//           (sum, item) => sum + (parseFloat(item.stoneCount || 0)), 0
-//         );
-      
-//         const stoneWeight = viewEntry?.items?.reduce(
-//           (sum, item) => sum + (parseFloat(item.stoneWeight || 0)), 0
-//         );
-      
-//         // const balance =  totalAfterWeight - totalScrap;
-
-//         const totalBeforeWeight = viewEntry?.items?.reduce(
-//           (sum, item) => sum + (parseFloat(item.beforeWeight) || 0), 0
-//         );
-//         const balance =
-//           totalBeforeWeight - totalAfterWeight - totalScrap;
-        
-      
-//         const updatedEntries = [...entries];
-//         updatedEntries[viewEntry.index] = {
-//           ...viewEntry,
-//           totalStoneCount: stoneCount.toFixed(2),
-//           totalStoneWeight: stoneWeight.toFixed(2),
-//           totalScrapWeight: totalScrap.toFixed(2),
-//           balance: balance.toFixed(2),
-//           wastage: viewEntry.wastage,
-//           receiptWeight: parseFloat(viewEntry?.afterWeight || 0).toFixed(2),
-//           extraRemarks: viewEntry?.extraRemarks || '',
-
-//         };
-      
-//         setEntries(updatedEntries);
-//         setViewEntry(null);
-//       }}
-       
-//     >
-//       Save
-//     </Button>
-//   </span>
-// </Tooltip>
-//           <Button onClick={() => setViewEntry(null)}>Close</Button>
-//         </DialogActions>
-//       </Dialog> 
-    
-//     </>
-//   );
-// };
-
-// export default BuffingLotDetails;
-
-
-
- 
 import React, { useState, useEffect } from "react";
 import Navbar from "../../Navbar/Navbar";
 import styles from "./BuffingLotDetails.module.css";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import axios from "axios";
+import { BACKEND_SERVER_URL } from "../../../../Config/config";
+import {
+  DialogActions,
+  Box,
+  Button,
+  TextField,
+  Typography,
+  MenuItem,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Checkbox from "@mui/material/Checkbox";
 
 const BuffingLotDetails = () => {
   const [open, setOpen] = useState(false);
@@ -755,125 +24,371 @@ const BuffingLotDetails = () => {
   const [popupData, setPopupData] = useState([]);
   const [viewEntry, setViewEntry] = useState(null);
   const { id, name, lotNumber } = useParams();
+  const [receiptWeight, setReceiptWeight] = useState("");
+  const [remarks, setRemarks] = useState("");
 
-  console.log('Buffing Datas:',`person_id: ${id},`,`name: ${name},`,`lot_number: ${lotNumber}`)
+  const [wastageInputs, setWastageInputs] = useState([{ value: "" }]);
+  const [wastagePercentage, setWastagePercentage] = useState("");
+  const [givenGold, setGivenGold] = useState("");
+  const [closingSummary, setClosingSummary] = useState(null);
+  const [openingBalance, setOpeningBalance] = useState(0);
 
-const handleAssign = async () => {
-  if (selectedItems.length === 0) {
-    alert("Please select at least one row.");
-    return;
-  }
+  const [existingWastageId, setExistingWastageId] = useState(null);
+  const [active, setActive] = useState(true);
 
-  try {
-    // Prepare payload for backend
-    const payload = {
-      buffing_person_id: parseInt(id),       
-      lot_number: parseInt(lotNumber),            
-      items: selectedItems.map((item) => ({
-        filing_item_id: item.id,   
-      })),
+  const [wastage, setWastage] = useState("No");
+  const [scrapItems, setScrapItems] = useState([]);
+  const [itemOptions, setItemOptions] = useState([]);
+  const [touchOptions, setTouchOptions] = useState([]);
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    const fetchDropdowns = async () => {
+      try {
+        const [itemRes, touchRes] = await Promise.all([
+          axios.get(`${BACKEND_SERVER_URL}/api/additem`),
+          axios.get(`${BACKEND_SERVER_URL}/api/addtouch`),
+        ]);
+        setItemOptions(itemRes.data);
+        setTouchOptions(touchRes.data);
+        console.log(setItemOptions);
+      } catch (err) {
+        console.error("Error fetching dropdowns", err);
+      }
     };
+    fetchDropdowns();
+  }, []);
 
-    console.log("Posting Buffing Entry:", payload);
+  const addScrapItem = () => {
+    setScrapItems([
+      ...scrapItems,
+      { item: "", weight: "", touch: "", purity: "", remarks: "" },
+    ]);
+  };
 
-    const res = await axios.post("http://localhost:5000/api/buffingentry", payload);
-    const newEntry = {
-      date,
-      items: selectedItems,
-    };
-
-    setMainTableData((prev) => [...prev, newEntry]);
-    setOpen(false);
-    setSelectedItems([]);
-
-    alert("Buffing Entry created successfully!");
-  } catch (error) {
-    console.error("Error assigning buffing entry:", error);
-
-    if (error.response) {
-      alert(error.response.data.error || "Failed to create Buffing Entry");
-    } else {
-      alert("Something went wrong while assigning buffing entry.");
-    }
-  }
-};
-
-
-useEffect(() => {
   const fetchBuffingEntries = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/buffingentry/person/${id}`);
+      const res = await axios.get(
+        `http://localhost:5000/api/buffingentry/person/${id}/${lotNumber}`
+      );
+      const isActive = res.data?.[0]?.lotBuffingMapper?.[0]?.isactive ?? false;
+      console.log("isActive value:", isActive);
 
-
+      setActive(isActive);
       const formatted = res.data.map((entry) => ({
+        id: entry.id,
         date: new Date(entry.createdAt).toISOString().split("T")[0],
-        items: entry.lotBuffingMapper.length > 0
-          ? entry.lotBuffingMapper.map((mapper) => ({
-              id: mapper.filing_item_id || mapper.setting_item_id,
-              item: mapper.filing_item_name || mapper.setting_item_name,
-              weight: mapper.filing_item_weight || entry.casting_item_weight,
-              touch: mapper.filing_item_touch || entry.touch,
-              purity: mapper.filing_item_purity || entry.casting_item_purity,
-              remarks: mapper.filing_item_remarks || entry.casting_item_remarks,
-              stoneCount: "-", 
-              stoneWeight: "-"
-            }))
-          : [
-              {
-                id: entry.casting_item_id,
-                item: entry.item_name,
-                weight: entry.casting_item_weight,
-                touch: entry.touch,
-                purity: entry.casting_item_purity,
-                remarks: entry.casting_item_remarks,
-                stoneCount: "-",
-                stoneWeight: "-"
-              }
-            ]
+        items:
+          entry.lotBuffingMapper.length > 0
+            ? entry.lotBuffingMapper.map((mapper) => {
+                let stoneCount = "-";
+                let stoneWeight = "-";
+
+                // If setting_entry_id exists, take values from setting_total_balance
+                if (
+                  mapper.setting_entry_id &&
+                  mapper.setting_total_balance?.length
+                ) {
+                  const settingBalance = mapper.setting_total_balance[0]; // assuming one record
+                  stoneCount = settingBalance.stone_count || "-";
+                  stoneWeight = settingBalance.stone_weight || "-";
+                }
+
+                return {
+                  id: mapper.filing_item_id || mapper.setting_item_id,
+                  item:
+                    mapper.filing_item_name ||
+                    mapper.setting_item_name ||
+                    entry.item_name,
+                  weight:
+                    mapper.filing_item_weight || entry.casting_item_weight,
+                  touch: mapper.filing_item_touch || entry.touch,
+                  purity:
+                    mapper.filing_item_purity || entry.casting_item_purity,
+                  remarks:
+                    mapper.filing_item_remarks || entry.casting_item_remarks,
+                  stoneCount,
+                  stoneWeight,
+                };
+              })
+            : [
+                {
+                  id: entry.casting_item_id,
+                  item: entry.item_name,
+                  weight: entry.casting_item_weight,
+                  touch: entry.touch,
+                  purity: entry.casting_item_purity,
+                  remarks: entry.casting_item_remarks,
+                  stoneCount: "-",
+                  stoneWeight: "-",
+                },
+              ],
+
+        receiptWeight: entry.receiptWeight || "-",
+        remarks: entry.remarks || "",
+        wastage: entry.wastage || "-",
+        scrapItems:
+          entry.buffingItems?.map((bi) => ({
+            id: bi.id,
+            itemName: bi.item_name,
+            weight: bi.scrap_weight,
+            touch: bi.touch,
+            purity: bi.item_purity,
+            remarks: bi.scrap_remarks,
+          })) || [],
+
+        totalScrapWeight: entry.totalScrapWeight || "-",
+        balance: entry.balance?? "-" ,
+        
       }));
-      
+
       setMainTableData(formatted);
+      console.log("buffing datas", formatted);
     } catch (error) {
       console.error("Error fetching buffing entries:", error);
     }
   };
 
-  fetchBuffingEntries();
-}, [id]);
+  const fetchWastageData = async () => {
+    try {
+      const response = await axios.get(
+        `${BACKEND_SERVER_URL}/api/buffing/entry/${id}/${lotNumber}`
+      );
 
+      console.log("Sssssssssssssssssssssssssssssssssop", response);
+
+      if (response.data.length > 0) {
+        const wastageData = response.data[0];
+        setExistingWastageId(wastageData.id);
+        setWastagePercentage(wastageData.wastage_percentage.toString());
+        setGivenGold(wastageData.given_gold?.toString() || "");
+        setOpeningBalance(wastageData.opening_balance || 0);
+
+        if (wastageData.add_wastage) {
+          setWastageInputs([{ value: wastageData.add_wastage.toString() }]);
+        }
+      } else {
+        setExistingWastageId(null);
+      }
+    } catch (error) {
+      console.error("Error fetching wastage data:", error);
+      setExistingWastageId(null);
+    }
+  };
+
+  useEffect(() => {
+    fetchWastageData();
+    fetchBuffingEntries();
+  }, [id]);
+
+  const handleSave = async () => {
+    try {
+      if (!viewEntry) return;
+
+      // Calculate totals
+      const totalWeight = viewEntry.items.reduce(
+        (sum, item) => sum + (parseFloat(item.weight) || 0),
+        0
+      );
+
+      const totalScrapWeight = scrapItems.reduce(
+        (sum, s) => sum + (parseFloat(s.weight) || 0),
+        0
+      );
+
+      const balance =
+        totalWeight - (parseFloat(receiptWeight) || 0) - totalScrapWeight;
+
+      // Prepare payload with proper buffing_item_id
+      const payload = {
+        buffingEntryId: viewEntry.id,
+        receiptWeight: parseFloat(receiptWeight) || 0,
+        remarks,
+        wastage,
+        totalScrapWeight,
+        balance,
+        scrapItems: scrapItems
+          .filter((s) => s.item)
+          .map((s) => ({
+            buffing_item_id: parseInt(s.item),
+            weight: parseFloat(s.weight) || 0,
+            touch_id: s.touch || null,
+            item_purity: parseFloat(s.purity) || 0,
+            scrap_remarks: s.remarks || "",
+          })),
+      };
+
+      console.log("Saving Buffing Items:", payload);
+
+      // POST to backend
+      await axios.post(`${BACKEND_SERVER_URL}/api/buffingitems`, payload);
+
+      // Update frontend table
+      const updatedEntry = {
+        ...viewEntry,
+        receiptWeight,
+        wastage,
+        scrapItems: scrapItems.map((s) => ({
+          itemName:
+            itemOptions.find((opt) => opt.id === parseInt(s.item))?.name || "",
+          ...s,
+        })),
+        totalScrapWeight,
+        balance,
+      };
+
+      setMainTableData((prev) =>
+        prev.map((e) => (e.id === viewEntry.id ? updatedEntry : e))
+      );
+
+      alert("Buffing Entry saved successfully!");
+      await fetchBuffingEntries();
+
+      setOpen(false);
+      setViewEntry(null);
+      setScrapItems([]);
+      setReceiptWeight("");
+      setRemarks("");
+      setWastage("No");
+    } catch (error) {
+      console.error("Error saving Buffing entry:", error);
+      alert("Failed to save Buffing Entry");
+    }
+  };
+
+  console.log(
+    "Buffing Datas:",
+    `person_id: ${id},`,
+    `name: ${name},`,
+    `lot_number: ${lotNumber}`
+  );
+
+  const handleAssign = async () => {
+    if (selectedItems.length === 0) {
+      alert("Please select at least one row.");
+      return;
+    }
+
+    try {
+      const payload = {
+        buffing_person_id: parseInt(id),
+        lot_number: parseInt(lotNumber),
+        items: selectedItems.map((item) => ({
+          filing_item_id: item.id,
+        })),
+      };
+
+      console.log("Posting Buffing Entry:", payload);
+
+      const res = await axios.post(
+        "http://localhost:5000/api/buffingentry",
+        payload
+      );
+      const newEntry = {
+        id: res.data.entry.id,
+        date,
+        items: selectedItems,
+        receiptWeight: "-",
+        wastage: "-",
+        scrapItems: [],
+        totalScrapWeight: "-",
+        balance: "-",
+      };
+      setMainTableData((prev) => [...prev, newEntry]);
+      await fetchBuffingEntries();
+
+      setPopupData((prev) =>
+        prev.filter((item) => !selectedItems.some((sel) => sel.id === item.id))
+      );
+      setOpen(false);
+      setSelectedItems([]);
+      alert("Buffing Entry created successfully!");
+    } catch (error) {
+      console.error("Error assigning buffing entry:", error);
+
+      if (error.response) {
+        alert(error.response.data.error || "Failed to create Buffing Entry");
+      } else {
+        alert("Something went wrong while assigning buffing entry.");
+      }
+    }
+  };
 
   const handleView = (entry) => {
-    setViewEntry(entry); 
-    setOpen(true);        
+    setViewEntry(entry);
+    setReceiptWeight(entry.receiptWeight !== "-" ? entry.receiptWeight : "");
+    setRemarks(entry.remarks || "");
+    setWastage(entry.wastage !== "-" ? entry.wastage : "No");
+
+    setScrapItems(
+      entry.scrapItems.map((s) => {
+        console.log("entry", entry.scrapItems);
+        // find touch id from numeric touch value (95, 98 etc.)
+        const touchMatch = touchOptions.find((opt) => opt.touch === s.touch);
+
+        return {
+          id: s.id,
+          buffing_item_id:
+            itemOptions.find((opt) => opt.name === s.itemName)?.id || "",
+          item: itemOptions.find((opt) => opt.name === s.itemName)?.id || "",
+          weight: s.weight,
+          touch: touchMatch ? touchMatch.id : "",
+          purity: s.purity,
+          remarks: s.remarks,
+          itemName: s.itemName,
+        };
+      })
+    );
+
+    setOpen(true);
   };
-  
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/filingitems");
-        const data = await res.json();
-
-        // filter only WithoutStone
-        const filtered = data.filter(
-          (item) => item.stone_option === "WithoutStone"
+        // Filing items (flat structure, as before)
+        const filingRes = await axios.get(
+          "http://localhost:5000/api/filingitems/filingitems/available"
         );
-        console.log('Filtered items from Filing Process', filtered)
-
-        const transformed = filtered.map((item) => ({
+        const filingFiltered = filingRes.data.filter(
+          (item) =>
+            item.stone_option === "WithoutStone" && item.status === "Unassigned"
+        );
+        const filingTransformed = filingFiltered.map((item) => ({
           id: item.id,
           item: item.filingitem?.name,
           weight: item.weight,
           touch: item.touch?.touch || "-",
           purity: item.item_purity,
           remarks: item.remarks,
-          stoneCount: item.stoneCount || "-", 
-          stoneWeight: item.stoneWeight || "-", 
+          stoneCount: "-",
+          stoneWeight: "-",
+          status: item.status || "Unassigned",
+          source: "Filing",
         }));
 
-        setPopupData(transformed);
+        // Lot setting mappers (grouped)
+        const lotSettingRes = await axios.get(
+          "http://localhost:5000/api/settingentry/lotsettingmapper"
+        );
 
+        // Filter only entries with status 'Unassigned'
+        const unassignedLotSettings = lotSettingRes.data.filter(
+          (entry) => entry.status === "Unassigned"
+        );
+
+        // No need to flatten, keep grouped structure
+        const lotSettingTransformed = unassignedLotSettings.map((entry) => ({
+          ...entry, // keep all top-level fields (settingEntryId, lotNumber, stoneCount, etc.)
+          source: "Setting",
+        }));
+
+        // Merge filing items (flat) and grouped setting entries
+        setPopupData([...filingTransformed, ...lotSettingTransformed]);
       } catch (error) {
-        console.error("Error fetching filing items:", error);
+        console.error("Error fetching items for popup:", error);
       }
     };
 
@@ -893,11 +408,251 @@ useEffect(() => {
         : [...prev, item]
     );
   };
+
+  const handleDeleteScrapItem = async (scrap, idx) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this scrap item?"
+    );
+    if (!confirmDelete) return;
+
+    try {
+      if (scrap.id) {
+        await axios.delete(
+          `${BACKEND_SERVER_URL}/api/buffingitems/${scrap.id}`
+        );
+      }
+
+      //  Update scrapItems state immediately
+      const updatedScrapItems = scrapItems.filter((_, i) => i !== idx);
+      setScrapItems(updatedScrapItems);
+
+      //  Recalculate total scrap weight and balance
+      const totalScrapWeight = updatedScrapItems.reduce(
+        (sum, s) => sum + (parseFloat(s.weight) || 0),
+        0
+      );
+      const totalWeight = viewEntry.items.reduce(
+        (sum, item) => sum + (parseFloat(item.weight) || 0),
+        0
+      );
+      const balance =
+        totalWeight - (parseFloat(receiptWeight) || 0) - totalScrapWeight;
+
+      //  Update main table entry in state
+      setMainTableData((prev) =>
+        prev.map((e) =>
+          e.id === viewEntry.id
+            ? { ...e, scrapItems: updatedScrapItems, totalScrapWeight, balance }
+            : e
+        )
+      );
+
+      // alert("Scrap item deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting scrap item:", error);
+      alert("Failed to delete scrap item.");
+    }
+  };
+
+  useEffect(() => {
+    setFilteredData(mainTableData);
+  }, [mainTableData]);
+
+  const handleFilter = () => {
+    const from = fromDate ? new Date(fromDate) : null;
+    const to = toDate ? new Date(toDate) : null;
+
+    const filtered = mainTableData.filter((entry) => {
+      const entryDate = new Date(entry.date);
+
+      if (from && to) return entryDate >= from && entryDate <= to;
+      if (from) return entryDate >= from;
+      if (to) return entryDate <= to;
+      return true;
+    });
+
+    setFilteredData(filtered);
+  };
+
+  const handleResetFilter = () => {
+    setFromDate("");
+    setToDate("");
+    setFilteredData(mainTableData);
+  };
+  //new
+  // Monthly wastage calculations
+  const totalReceipt = filteredData.reduce((sum, entry) => {
+    return sum + (parseFloat(entry.receiptWeight) || 0);
+  }, 0);
+
+  const manualWastageSum = wastageInputs.reduce(
+    (sum, w) => sum + (parseFloat(w.value) || 0),
+    0
+  );
+
+  // % wastage calculation
+  const totalWastageFromPercentage =
+    (totalReceipt * (parseFloat(wastagePercentage) || 0)) / 100;
+
+  // Final total wastage = percentage wastage + manual wastage inputs
+  const totalWastage = totalWastageFromPercentage + manualWastageSum;
+
+  const totalBalanceSum = filteredData.reduce((sum, entry) => {
+    return sum + (parseFloat(entry.balance) || 0);
+  }, 0);
+  const overallWastage = totalBalanceSum - totalWastage + openingBalance;
+
+  const additionalGold = parseFloat(givenGold) || 0;
+
+  const closingBalance =
+    overallWastage < 0 ? overallWastage + additionalGold : overallWastage;
+
+  const settlementMessage =
+    closingBalance < 0
+      ? "Owner must give to worker"
+      : "Worker must give to owner";
+
+  const handleSaveSummary = async () => {
+    try {
+      const data = {
+        total_receipt: totalReceipt,
+        total_wastage: totalWastage,
+        balance: totalBalanceSum,
+        wastage_percentage: parseFloat(wastagePercentage) || 0,
+        given_gold: additionalGold,
+        add_wastage: manualWastageSum,
+        overall_wastage: overallWastage,
+        closing_balance: closingBalance,
+        opening_balance: openingBalance,
+        buffing_person_id: id,
+        lotId: lotNumber,
+      };
+
+      let response;
+      if (existingWastageId) {
+        // Update existing wastage record
+        response = await axios.put(
+          `${BACKEND_SERVER_URL}/api/buffing/wastage/${existingWastageId}`,
+          data
+        );
+      } else {
+        // Create new wastage record
+        response = await axios.post(
+          `${BACKEND_SERVER_URL}/api/buffing/wastage`,
+          data
+        );
+
+        setExistingWastageId(response.data.id);
+      }
+
+      localStorage.setItem("buffingSummary", JSON.stringify(data));
+      setClosingSummary(data);
+
+      alert(`Summary ${existingWastageId ? "updated" : "saved"} successfully!`);
+    } catch (error) {
+      console.error("Error saving summary:", error);
+      alert("Failed to save summary. Check console for details.");
+    }
+  };
+
+  console.log("ssss", openingBalance);
+
+  const handleCloseJobcard = async () => {
+    try {
+      const response = await axios.post(
+        `${BACKEND_SERVER_URL}/api/buffing/close-jobcard`,
+        {
+          buffing_person_id: id,
+          current_lot_number: lotNumber,
+        }
+      );
+
+      // Redirect to the new lot
+      window.location.href = `/buffinglot/${id}/${name}/${response.data.newLotNumber}`;
+
+      alert("Jobcard closed and new lot created successfully!");
+    } catch (error) {
+      console.error("Error closing jobcard:", error);
+      alert("Failed to close jobcard. Check console for details.");
+    }
+  };
+
+  const addWastageInput = () => {
+    setWastageInputs([...wastageInputs, { value: "" }]);
+  };
+
+  const removeWastageInput = (index) => {
+    const newInputs = [...wastageInputs];
+    newInputs.splice(index, 1);
+    setWastageInputs(newInputs);
+  };
+
+  const handleWastageInputChange = (index, value) => {
+    const newInputs = [...wastageInputs];
+    newInputs[index].value = value;
+    setWastageInputs(newInputs);
+  };
+
   return (
     <>
       <Navbar />
-      <button onClick={handleClickOpen}>Add</button>
-      <table border="1" cellPadding="5">
+      <h5 className={styles.heading}>Buffing Lot Details</h5>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "1rem",
+          flexWrap: "wrap",
+          marginTop: "1rem",
+        }}
+      >
+        <TextField
+          label="From Date"
+          type="date"
+          size="small"
+          value={fromDate}
+          onChange={(e) => setFromDate(e.target.value)}
+          InputLabelProps={{ shrink: true }}
+          sx={{ ml: "2rem" }}
+        />
+        <TextField
+          label="To Date"
+          type="date"
+          size="small"
+          value={toDate}
+          onChange={(e) => setToDate(e.target.value)}
+          InputLabelProps={{ shrink: true }}
+        />
+
+        <Button variant="outlined" onClick={() => handleFilter()}>
+          {" "}
+          Filter{" "}
+        </Button>
+        <Button variant="outlined" onClick={() => handleResetFilter()}>
+          Reset
+        </Button>
+
+        <Button
+          style={{
+            backgroundColor: "#F5F5F5",
+            color: "black",
+            borderColor: "#25274D",
+            borderStyle: "solid",
+            borderWidth: "2px",
+            marginLeft: "47rem",
+          }}
+          variant="contained"
+          onClick={handleClickOpen}
+        >
+          Add Buffing
+        </Button>
+      </div>
+
+      <table
+        className={styles.table}
+        border="1"
+        style={{ width: "95%", marginTop: "2rem", marginLeft: "2rem" }}
+      >
         <thead>
           <tr>
             <th>S.No</th>
@@ -909,12 +664,19 @@ useEffect(() => {
             <th>Remarks</th>
             <th>Stone Count</th>
             <th>Stone Weight</th>
+            <th>Receipt weight</th>
+            <th>Wastage</th>
+            <th>Scrap Item Name</th>
+            <th>Scrap Quantity</th>
+            <th>Total Scrap Weight</th>
+            <th>Balance</th>
             <th>Actions</th>
           </tr>
         </thead>
+
         <tbody>
-          {mainTableData.length > 0 ? (
-            mainTableData.map((entry, index) =>
+          {filteredData.length > 0 ? (
+            filteredData.map((entry, index) =>
               entry.items.map((item, i) => (
                 <tr key={item.id}>
                   {i === 0 && (
@@ -923,103 +685,650 @@ useEffect(() => {
                       <td rowSpan={entry.items.length}>{entry.date}</td>
                     </>
                   )}
-
                   <td>{item.item}</td>
                   <td>{item.weight}</td>
                   <td>{item.touch}</td>
                   <td>{item.purity}</td>
                   <td>{item.remarks}</td>
-                  <td>{item.stoneCount || "-"}</td>
-                  <td>{item.stoneWeight || "-"}</td>
+
+                  {/* Stone fields: Filing items show "-", Setting items show popup values */}
+                  {i === 0 && (
+                    <>
+                      <td rowSpan={entry.items.length}>
+                        {entry.source === "Filing"
+                          ? "-"
+                          : item.stoneCount || "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.source === "Filing"
+                          ? "-"
+                          : item.stoneWeight || "-"}
+                      </td>
+                    </>
+                  )}
 
                   {i === 0 && (
-                    <td rowSpan={entry.items.length}>
-                      <button onClick={() => handleView(entry)}>View</button>
-                    </td>
+                    <>
+                      <td rowSpan={entry.items.length}>
+                        {entry.receiptWeight || "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.wastage || "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.scrapItems?.map((s) => s.itemName).join(", ") ||
+                          "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.scrapItems?.length || "-"}
+                      </td>
+                      <td rowSpan={entry.items.length}>
+                        {entry.totalScrapWeight || "-"}
+                      </td>
+                      {/* <td rowSpan={entry.items.length}>
+                        {entry.balance || "-"}
+                      </td> */}
+                      <td rowSpan={entry.items.length}>
+  {entry.balance !== undefined && entry.balance !== null
+    ? parseFloat(entry.balance).toFixed(2)
+    : "-"}
+</td>
+                      <td rowSpan={entry.items.length}>
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          onClick={() => handleView(entry)}
+                        >
+                          View
+                        </Button>
+                      </td>
+                    </>
                   )}
                 </tr>
               ))
             )
           ) : (
             <tr>
-              <td colSpan="10" align="center">
-                No records yet
+              <td colSpan="16" align="center">
+                No records found
               </td>
             </tr>
           )}
         </tbody>
       </table>
 
-{open && (
-  <div className={styles.overlay}>
-    <div className={styles.assign}>
-      <h5>{viewEntry ? "View Buffing Lot" : "Assign Buffing Lot"}</h5>
+      {/* Monthly Wastage Box - Similar to Filing */}
+      <Box
+        sx={{
+          ml: 4,
+          p: 2,
+          border: "1px solid #ccc",
+          borderRadius: "8px",
+          minWidth: "70px",
+          height: "fit-content",
+          mt: 1,
+          mr: 10,
+        }}
+      >
+        <Typography sx={{ marginLeft: "3rem", color: "darkblue" }}>
+          <b>Opening Balance:</b> {openingBalance.toFixed(2)}
+        </Typography>
+        <hr />
 
-      {!viewEntry && (
-        <>
-          <label>Date: </label>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </>
-      )}
+        <Typography
+          sx={{ color: "red", fontWeight: "bold", fontSize: "1.1rem" }}
+        >
+          Monthly Wastage
+        </Typography>
+        <br />
 
-      <table border="1" cellPadding="5">
-        <thead>
-          <tr>
-            {!viewEntry && 
-            <th>Select</th>}
-            <th>Item</th>
-            <th>Weight</th>
-            <th>Touch</th>
-            <th>Purity</th>
-            <th>Remarks</th>
-            <th>Stone Count</th>
-            <th>Stone Weight</th>
-          </tr>
-        </thead>
-        <tbody>
-          {(viewEntry ? viewEntry.items : popupData).map((item) => (
-            <tr key={item.id}>
-              {!viewEntry && (
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedItems.some((i) => i.id === item.id)}
-                    onChange={() => handleCheckboxChange(item)}
-                  />
-                </td>
-              )}
-              <td>{item.item}</td>
-              <td>{item.weight}</td>
-              <td>{item.touch}</td>
-              <td>{item.purity}</td>
-              <td>{item.remarks}</td>
-              <td>{item.stoneCount}</td>
-              <td>{item.stoneWeight}</td>
-            </tr>
+        <Typography>
+          <strong>Total Receipt:</strong> {totalReceipt.toFixed(2)} g
+        </Typography>
+
+        <TextField
+          label="Wastage (%)"
+          type="number"
+          value={wastagePercentage}
+          onChange={(e) => setWastagePercentage(e.target.value)}
+          fullWidth
+          size="small"
+          sx={{ mt: 2 }}
+        />
+
+        <Box sx={{ mt: 2 }}>
+          <Typography variant="subtitle2" gutterBottom>
+            Wastage Values (g) Optional:
+          </Typography>
+          {wastageInputs.map((input, index) => (
+            <Box
+              key={index}
+              sx={{ display: "flex", alignItems: "center", mb: 1 }}
+            >
+              <TextField
+                label={`Wastage ${index + 1}`}
+                type="number"
+                value={input.value}
+                onChange={(e) =>
+                  handleWastageInputChange(index, e.target.value)
+                }
+                size="small"
+                sx={{ flexGrow: 1, mr: 1 }}
+              />
+              {/* {wastageInputs.length > 1 && (
+                <IconButton onClick={() => removeWastageInput(index)}>
+                  <DeleteIcon />
+                </IconButton>
+              )} */}
+            </Box>
           ))}
-        </tbody>
-      </table>
+          {/*  <Button
+            variant="outlined"
+            startIcon={<AddIcon />}
+            onClick={addWastageInput}
+            size="small"
+            sx={{ mt: 1 }}
+          >
+            Add Wastage
+          </Button> */}
+        </Box>
 
-      <div className={styles.buttonRow}>
-        <button
-          onClick={() => {
-            setOpen(false);
-            setSelectedItems([]);
-            setViewEntry(null);
+        <Typography sx={{ mt: 2 }}>
+          <strong>Total Wastage:</strong> {totalWastage.toFixed(2)} g
+        </Typography>
+
+        <Typography sx={{ mt: 2 }}>
+          <strong>Balance:</strong> {totalBalanceSum.toFixed(2)} g
+        </Typography>
+
+        <Typography sx={{ mt: 2 }}>
+          <strong>Overall Wastage:</strong> {overallWastage.toFixed(2)} g
+        </Typography>
+
+        {parseFloat(overallWastage) < 0 && (
+          <TextField
+            label="Given Gold"
+            type="number"
+            fullWidth
+            size="small"
+            value={givenGold}
+            onChange={(e) => setGivenGold(parseFloat(e.target.value))}
+            sx={{ mt: 2 }}
+          />
+        )}
+
+        <Typography sx={{ mt: 2, color: "red" }}>
+          <strong>Closing Balance:</strong> {closingBalance.toFixed(2)} g
+        </Typography>
+
+        <Typography
+          sx={{
+            mt: 2,
+            fontWeight: "bold",
+            color: closingBalance < 0 ? "red" : "green",
           }}
         >
-          Close
-        </button>
-        {!viewEntry && <button onClick={handleAssign}>Assign</button>}
-      </div>
-    </div>
-  </div>
-)}
+          {settlementMessage}
+        </Typography>
 
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{
+            mt: 3,
+            width: "100%",
+            backgroundColor: "#1a1a1f",
+            color: "white",
+            textAlign: "center",
+          }}
+          onClick={handleSaveSummary}
+        >
+          {existingWastageId ? "Update Summary" : "Save Summary"}
+        </Button>
+
+        {existingWastageId && active && (
+          <Button
+            variant="outlined"
+            color="error"
+            sx={{ mt: 2, width: "100%" }}
+            onClick={handleCloseJobcard}
+          >
+            Close Jobcard
+          </Button>
+        )}
+      </Box>
+
+      {open && (
+        <div className={styles.overlay}>
+          <div className={styles.assign}>
+            <div style={{
+          fontSize: "1.3rem",
+          padding: "0rem",
+          textAlign: "center",
+          fontWeight: "500",
+          backgroundColor:' #f8f9fa'
+        }} >{viewEntry ? "Assigned Buffing Items" : "Assign Buffing Items"}</div>
+           
+            {!viewEntry && (
+              <>
+                <TextField
+                  label="Date"
+                  type="date"
+                  size="small"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  InputLabelProps={{ shrink: true }}
+                  sx={{ ml: 0, mt: 2, mb: 2, width: "200px" }}
+                />
+                 <Typography variant="h6" gutterBottom>
+            Available Buffing Items
+          </Typography>
+              </>
+            )}
+            <table border="1" cellPadding="5" className={styles.table}>
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  {!viewEntry && <th>Select</th>}
+                  <th>Item</th>
+                  <th>Weight</th>
+                  <th>Touch</th>
+                  <th>Purity</th>
+                  <th>Remarks</th>
+                  <th>Stone Count</th>
+                  <th>Stone Weight</th>
+                  {!viewEntry && <th>Status</th>}
+                </tr>
+              </thead>
+              <tbody>
+  {viewEntry ? (
+    viewEntry.items.map((item, index) => (
+      <tr key={item.id}>
+              {index === 0 && (
+          <td rowSpan={viewEntry.items.length}>{1}</td>
+        )}
+        <td>{item.item}</td>
+        <td>{item.weight}</td>
+        <td>{item.touch}</td>
+        <td>{item.purity}</td>
+        <td>{item.remarks}</td>
+           {index === 0 && (
+        <>
+          <td rowSpan={viewEntry.items.length}>
+            {/* {viewEntry.stoneCount} */}
+            {viewEntry.source === "Filing" ? "-" : item.stoneCount || "-"}
+          </td>
+          <td rowSpan={viewEntry.items.length}>
+            {/* {viewEntry.stoneWeight} */}
+            {viewEntry.source === "Filing" ? "-" : item.stoneWeight || "-"}
+          </td>
+        </>
+      )}
+      </tr>
+    ))
+
+  ) : (
+   
+    popupData.map((entry, idx) => {
+      // Filing items (no grouping)
+      if (!entry.settingEntryId && !entry.items) {
+        return (
+          <tr key={`filing-${entry.id}`}>
+            <td>{idx + 1}</td>
+            <td>
+              <Checkbox
+                checked={selectedItems.some((i) => i.id === entry.id)}
+                onChange={() => handleCheckboxChange(entry)}
+              />
+            </td>
+            <td>{entry.item}</td>
+            <td>{entry.weight}</td>
+            <td>{entry.touch}</td>
+            <td>{entry.purity}</td>
+            <td>{entry.remarks}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>{entry.status}</td>
+          </tr>
+        );
+      }
+
+      // Grouped setting entries
+      return entry.items.map((item, subIdx) => (
+        <tr key={`item-${item.id}`}>
+          {subIdx === 0 && <td rowSpan={entry.items.length}>{idx + 1}</td>}
+          {subIdx === 0 && (
+            <td rowSpan={entry.items.length}>
+              <Checkbox
+                checked={entry.items.every((i) =>
+                  selectedItems.some((s) => s.id === i.id)
+                )}
+                indeterminate={
+                  entry.items.some((i) =>
+                    selectedItems.some((s) => s.id === i.id)
+                  ) &&
+                  !entry.items.every((i) =>
+                    selectedItems.some((s) => s.id === i.id)
+                  )
+                }
+                onChange={() => {
+                  const allSelected = entry.items.every((i) =>
+                    selectedItems.some((s) => s.id === i.id)
+                  );
+                  if (allSelected) {
+                    setSelectedItems((prev) =>
+                      prev.filter((s) => !entry.items.some((i) => i.id === s.id))
+                    );
+                  } else {
+                    setSelectedItems((prev) => [
+                      ...prev.filter(
+                        (s) => !entry.items.some((i) => i.id === s.id)
+                      ),
+                      ...entry.items,
+                    ]);
+                  }
+                }}
+              />
+            </td>
+          )}
+
+          <td>{item.item}</td>
+          <td>{item.weight}</td>
+          <td>{item.touch}</td>
+          <td>{item.purity}</td>
+          <td>{item.remarks}</td>
+          {subIdx === 0 && (
+            <>
+              <td rowSpan={entry.items.length}>{entry.stoneCount}</td>
+              <td rowSpan={entry.items.length}>{entry.stoneWeight}</td>
+            </>
+          )}
+          {subIdx === 0 && (
+            <td rowSpan={entry.items.length}>Unassigned</td>
+          )}
+        </tr>
+      ));
+    })
+  )}
+</tbody>
+
+              {viewEntry && (
+                <tfoot>
+                  <tr>
+                    <td colSpan={2}>
+                      {" "}
+                      <b> Total </b>
+                    </td>
+                    <td>
+                      <b>
+                        {viewEntry.items
+                          .reduce(
+                            (sum, item) => sum + (parseFloat(item.weight) || 0),
+                            0
+                          )
+                          .toFixed(2)}{" "}
+                      </b>
+                    </td>
+
+                    <td colSpan={6}></td>
+                  </tr>
+                </tfoot>
+              )}
+            </table>
+
+            {viewEntry && (
+              <>
+                <Box sx={{ mt: 3, display: "flex", gap: 65 }}>
+                  <TextField
+                    label="Receipt Weight"
+                    type="number"
+                    autoComplete="off"
+                    onWheel={(e) => e.target.blur()}
+                    fullWidth
+                    required
+                    value={receiptWeight}
+                    onChange={(e) =>
+                      setReceiptWeight(parseFloat(e.target.value) )
+                    }
+                  />
+                  {/* <TextField
+                    label="Remarks"
+                    type="text"
+                    fullWidth
+                    required
+                    value={remarks}
+                    onChange={(e) => setRemarks(e.target.value)}
+                  /> */}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 1,
+                      marginTop: "10px",
+                    }}
+                  >
+                    <Typography>
+                      <b>Wastage:</b>
+                    </Typography>
+                    <Button
+                      variant={wastage === "Yes" ? "contained" : "outlined"}
+                      color="success"
+                      onClick={() => setWastage("Yes")}
+                      // value={wastage}
+                    >
+                      Yes
+                    </Button>
+                    <Button
+                      variant={wastage === "No" ? "contained" : "outlined"}
+                      color="error"
+                      onClick={() => setWastage("No")}
+                      // value={wastage}
+                    >
+                      No
+                    </Button>
+                  </Box>
+                </Box>
+                <div style={{ marginTop: "2rem" }}>
+                  <Button variant="outlined" onClick={addScrapItem} sx={{ backgroundColor:' #f8f9fa', fontWeight:'530' }}>
+                    Add Scrap Items
+                  </Button>
+
+                  <table
+                    className={styles.table}
+                    style={{
+                      width: "100%",
+                      marginTop: "1rem",
+                      borderCollapse: "collapse",
+                    }}
+                    border="1"
+                  >
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <th>Item Name</th>
+                        <th>Weight</th>
+                        <th>Touch</th>
+                        <th>Purity</th>
+                        <th>Remarks</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(scrapItems || []).map((scrap, idx) => (
+                        <tr key={idx}>
+                          <td>{idx + 1}</td>
+                          <td>
+                            <TextField
+                              select
+                              size="small"
+                              value={scrap.item || ""}
+                              onChange={(e) => {
+                                const updated = [...scrapItems];
+                                const selectedItem = itemOptions.find(
+                                  (itm) => itm.id === Number(e.target.value)
+                                );
+                                updated[idx].item = selectedItem?.id;
+                                updated[idx].itemName = selectedItem?.name;
+                                setScrapItems(updated);
+                              }}
+                            >
+                              <MenuItem value="">Select Item</MenuItem>
+                              {itemOptions.map((opt) => (
+                                <MenuItem key={opt.id} value={opt.id}>
+                                  {opt.name}
+                                </MenuItem>
+                              ))}
+                            </TextField>
+                          </td>
+                          <td>
+                            <TextField
+                              size="small"
+                              type="number"
+                              autoComplete="off"
+                              onWheel={(e) => e.target.blur()}
+                              value={scrap.weight || ""}
+                              onChange={(e) => {
+                                const weight = parseFloat(e.target.value) || 0;
+                                const touchObj = touchOptions.find(
+                                  (t) => t.id === scrap.touch
+                                );
+                                const purity = touchObj
+                                  ? (weight * touchObj.touch) / 100
+                                  : 0;
+
+                                const updated = [...scrapItems];
+                                updated[idx].weight = weight;
+                                updated[idx].purity = purity.toFixed(3);
+                                setScrapItems(updated);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <TextField
+                              select
+                              size="small"
+                              value={scrap.touch || ""}
+                              onChange={(e) => {
+                                const touchId = parseInt(e.target.value);
+                                const touchObj = touchOptions.find(
+                                  (t) => t.id === touchId
+                                );
+                                const purity = scrap.weight
+                                  ? (scrap.weight * (touchObj?.touch || 0)) /
+                                    100
+                                  : 0;
+
+                                const updated = [...scrapItems];
+                                updated[idx].touch = touchId;
+                                updated[idx].purity = purity.toFixed(3);
+                                setScrapItems(updated);
+                              }}
+                            >
+                              <MenuItem value="">Select Touch</MenuItem>
+                              {touchOptions.map((opt) => (
+                                <MenuItem key={opt.id} value={opt.id}>
+                                  {opt.touch}
+                                </MenuItem>
+                              ))}
+                            </TextField>
+                          </td>
+                          <td>
+                            <TextField
+                              size="small"
+                              type="text"
+                              value={scrap.purity || ""}
+                              InputProps={{ readOnly: true }}
+                            />
+                          </td>
+                          <td>
+                            <TextField
+                              size="small"
+                              value={scrap.remarks || ""}
+                              onChange={(e) => {
+                                const updated = [...scrapItems];
+                                updated[idx].remarks = e.target.value;
+                                setScrapItems(updated);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <Button
+                            color="error"
+                              onClick={() => handleDeleteScrapItem(scrap, idx)}
+                            >
+                              <DeleteIcon />
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+
+                  <Box sx={{ mt: 2, display: "flex", gap: 4 }}>
+                    <Typography>
+                      <strong>Total Scrap Weight:</strong>
+                      {scrapItems
+                        .reduce(
+                          (sum, s) => sum + (parseFloat(s.weight) || 0),
+                          0
+                        )
+                        .toFixed(2)}
+                    </Typography>
+
+                    <Typography>
+                      <strong>Balance:</strong>
+                      {(
+                        viewEntry.items.reduce(
+                          (sum, item) => sum + (parseFloat(item.weight) || 0),
+                          0
+                        ) -
+                        receiptWeight -
+                        scrapItems.reduce(
+                          (sum, s) => sum + (parseFloat(s.weight) || 0),
+                          0
+                        )
+                      ).toFixed(2)}
+                    </Typography>
+                  </Box>
+                </div>
+              </>
+            )}
+            <DialogActions>
+              <Button
+                onClick={() => {
+                  setOpen(false);
+                  setSelectedItems([]);
+                  setViewEntry(null);
+                }}
+                variant="outlined"
+                color="primary"
+              >
+                Close
+              </Button>
+
+              {!viewEntry && (
+                <Button
+                  onClick={handleAssign}
+                  variant="contained"
+                  color="primary"
+                >
+                  Assign
+                </Button>
+              )}
+
+              {viewEntry && (
+                <Button
+                  onClick={handleSave}
+                  variant="contained"
+                  color="primary"
+                >
+                  Save
+                </Button>
+              )}
+            </DialogActions>
+          </div>
+        </div>
+      )}
     </>
   );
 };

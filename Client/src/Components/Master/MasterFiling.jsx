@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./MasterFiling.css";
 import axios from "axios";
 import {
   Button,
@@ -8,19 +7,12 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  IconButton,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableContainer,
-  Paper,
   InputAdornment,
 } from "@mui/material";
 import { Edit, Delete, Search } from "@mui/icons-material";
 import Master from "./MasterNavbar";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
+import styles from './MasterFiling.module.css';
 
 function MasterFiling() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -128,8 +120,9 @@ function MasterFiling() {
   return (
     <>
       <Master />
-      <div className="customer-container">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", marginTop: "2rem" }}>
+        <div className={styles.customerContainer}>
+        <div className={styles.headerRow}>
+          
           <Button
             style={{
               backgroundColor: "#F5F5F5",
@@ -141,13 +134,14 @@ function MasterFiling() {
             variant="contained"
             onClick={openModal}
           >
-            Add Filing
+            Add Filing Member
           </Button>
           <TextField
             placeholder="Search by Name"
             variant="outlined"
             size="small"
             value={searchTerm}
+            sx={{ marginLeft: "48.6rem" }}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
               startAdornment: (
@@ -157,12 +151,28 @@ function MasterFiling() {
               ),
             }}
           />
-        </div>
 
-        <Dialog open={isModalOpen} onClose={closeModal}>
-          <DialogTitle style={{ color: "#a33768" }}>
-            {editIndex !== null ? "Edit Filing Member" : "Add Filing Member"}
-          </DialogTitle>
+<Button
+            style={{
+              backgroundColor: "#F5F5F5",
+              color: "black",
+              borderColor: "#25274D",
+              borderStyle: "solid",
+              borderWidth: "2px",
+              marginLeft: "1.2rem",
+            }}
+            onClick={() => setSearchTerm("")}
+          >
+            Reset
+          </Button>
+        </div>
+        <Dialog
+  open={isModalOpen}
+  onClose={closeModal}
+  PaperProps={{
+    sx: { width: "450px", maxWidth: "90%", borderRadius:'5px' } }}>
+          <h5 style={{ textAlign: "center", padding:'1.1rem', backgroundColor:"#F5F5F5" }}>
+          {editIndex !== null ? "Edit Filing Member" : "Add Filing Member"}</h5>
           <DialogContent>
             <TextField
               autoFocus
@@ -170,7 +180,7 @@ function MasterFiling() {
               label="Customer Name"
               type="text"
               fullWidth
-              sx={{mt:5}}
+              sx={{mt:0}}
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
             />
@@ -201,51 +211,75 @@ function MasterFiling() {
               onChange={(e) => setAddress(e.target.value)}
             />
           </DialogContent>
-          <DialogActions>
-            <Button onClick={closeModal} color="secondary">Cancel</Button>
-            <Button onClick={handleSave} color="primary">Save</Button>
+          <DialogActions sx={{padding:'1rem'}}>
+            <Button onClick={closeModal} color="primary" variant="outlined">Cancel</Button>
+            <Button onClick={handleSave} color="primary" variant="contained"  sx={{marginRight:'0.5rem'}}>Save</Button>
           </DialogActions>
         </Dialog>
 
 
-<div className="item-listt"> 
-<table >
-  <thead>
-    <tr>
-      <th><strong>S.No</strong></th>
-      <th><strong>Name</strong></th>
-      <th><strong>Phone</strong></th>
-      <th><strong>Email</strong></th>
-      <th><strong>Address</strong></th>
-      <th><strong>Actions</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    {filteredCustomers.length > 0 ? (
-      filteredCustomers.map((customer, index) => (
+        <div className={styles.itemList}> 
+  <table className={styles.purchaseTable}>
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Date</th> 
+        <th>Time</th> 
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>       
+        <th>Actions</th>
+      </tr>
+    </thead>
+<tbody>
+  {filteredCustomers.length > 0 ? (
+    filteredCustomers.map((customer, index) => {
+      const dateObj = customer.createdAt ? new Date(customer.createdAt) : null;
+
+      const formattedDate = dateObj
+        ? dateObj.toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })
+        : "—";
+
+      const formattedTime = dateObj
+        ? dateObj.toLocaleTimeString("en-IN", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+          })
+        : "—";
+
+      return (
         <tr key={index}>
           <td>{index + 1}</td>
+          <td>{formattedDate}</td> {/* ✅ dd-MMM-yyyy */}
+          <td>{formattedTime}</td> {/* ✅ hh:mm AM/PM */}
           <td>{customer.name}</td>
           <td>{customer.phoneNumber}</td>
           <td>{customer.email}</td>
-          <td>{customer.address}</td>          
-          <td style={{width:"7rem"}}>
-           <Edit onClick={() => handleEdit(index)} style={{ marginRight: "8px" }} />
-          <Delete  onClick={() => handleDelete(index)} style={{ color: "red", marginLeft:'0.5rem' }} />  
+          <td>{customer.address}</td>
+          <td style={{ width: "7rem" }}>
+            <Edit onClick={() => handleEdit(index)} className={styles.actionIcon} />
+            <Delete onClick={() => handleDelete(index)} className={styles.deleteIcon} />
           </td>
         </tr>
-      ))
-    ) : (
-      <tr>
-        <td colSpan="6" style={{ textAlign: "center" }}>
-          Name not found
-        </td>
-      </tr>
-    )}
-  </tbody>
-</table>
-</div>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="9" className={styles.centerText}>
+        Name not found
+      </td>
+    </tr>
+  )}
+</tbody>
 
+  </table>
+</div>
 
       </div>
     </>

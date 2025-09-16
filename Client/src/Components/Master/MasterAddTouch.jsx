@@ -1,14 +1,17 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Styles from './MasterAddTouch.module.css';
+import styles from './MasterAddTouch.module.css';
 import Master from './MasterNavbar';
 import { BACKEND_SERVER_URL } from '../../../Config/config';
+import { Delete, Edit } from "@mui/icons-material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MasterAddTouch = () => {
   const [touchValue, setTouchValue] = useState("");
   const [touchItems, setTouchItems] = useState([]);
-
+  const [editId, setEditId] = useState(null);
+  const [editValue, setEditValue] = useState("");
 
   useEffect(() => {
     fetchTouchItems();
@@ -33,20 +36,62 @@ const MasterAddTouch = () => {
       const response = await axios.post(`${BACKEND_SERVER_URL}/api/addtouch`, {
         touch: parseFloat(touchValue),
       });
-      setTouchItems(prev => [...prev, response.data]); // Update list
-      setTouchValue(""); // Reset input
+      setTouchItems(prev => [...prev, response.data]);
+      setTouchValue("");
+      toast.success("Touch added successfully!", { position: "top-right" });
     } catch (error) {
       console.error("Error adding touch:", error);
       alert("Failed to add touch");
+    
+    }
+  };
+
+  const handleEdit = (item) => {
+    setEditId(item.id);
+    setEditValue(item.touch);
+  };
+
+  const handleUpdate = async (id) => {
+    if (!editValue.trim()) {
+      alert("Please enter a valid touch value");
+      return;
+    }
+
+    try {
+      const response = await axios.put(`${BACKEND_SERVER_URL}/api/addtouch/${id}`, {
+        touch: parseFloat(editValue),
+      });
+      setTouchItems(prev =>
+        prev.map(item => (item.id === id ? response.data : item))
+      );
+      setEditId(null);
+      setEditValue("");
+      toast.success("Touch updated successfully!", { position: "top-right" });
+    } catch (error) {
+      console.error("Error updating touch:", error);
+      alert("Failed to update touch");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this touch?")) return;
+
+    try {
+      await axios.delete(`${BACKEND_SERVER_URL}/api/addtouch/${id}`);
+      setTouchItems(prev => prev.filter(item => item.id !== id));
+      toast.success("Touch deleted successfully!", { position: "top-right" });
+    } catch (error) {
+      console.error("Error deleting touch:", error);
+      toast.error("Failed to delete touch", { position: "top-right" });
     }
   };
 
   return (
     <>
       <Master />
-      <div className="master-container">
-        <div className="add-item-form">
-          <h2 style={{ textAlign: "center" }}>Add Touch</h2>
+      <div className={styles.mastercontainer}>
+        <div className={styles.additemform}>
+          <h4 style={{ textAlign: "center" }}>Add Touch</h4>
           <label>Touch Value:</label>
           <input
             type="text"
@@ -57,13 +102,14 @@ const MasterAddTouch = () => {
           <button onClick={handleAddTouch}>Add Touch</button>
         </div>
 
-        <div className="item-list">
-          <h2 style={{ textAlign: "center" }}>Added Touch Items</h2>
+        <div className={styles.itemlist}>
+          <h4 style={{ textAlign: "center" }}>Added Touch Items</h4>
           <table>
             <thead>
               <tr>
                 <th>SI.No</th>
                 <th>Touch Value</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -71,18 +117,51 @@ const MasterAddTouch = () => {
                 touchItems.map((item, index) => (
                   <tr key={item.id}>
                     <td>{index + 1}</td>
-                    <td>{item.touch}</td>
+                    <td>
+                      {editId === item.id ? (
+                        <input
+                          type="number"
+                          value={editValue}
+                          onChange={(e) => setEditValue(e.target.value)}
+                        />
+                      ) : (
+                        item.touch
+                      )}
+                    </td>
+                    <td style={{ width: "6rem" }}>
+                      {editId === item.id ? (
+                        <>
+                          <button onClick={() => handleUpdate(item.id)}>Save</button>
+                          <button onClick={() => setEditId(null)}>Cancel</button>
+                        </>
+                      ) : (  
+                      <>
+                        <Edit
+                          onClick={() => handleEdit(item)}
+                          className={styles.actionIcon}
+                          style={{ cursor: "pointer" }}
+                        />
+                        <Delete 
+                        color='error'
+                        onClick={() => handleDelete(item.id)}
+                        style={{ cursor: "pointer", marginLeft:'1rem' }} 
+                         />
+                        
+                        </>
+                      )}
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="2" style={{ textAlign: 'center' }}>No touch values added yet.</td>
+                  <td colSpan="3" style={{ textAlign: 'center' }}>No touch values added yet.</td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
       </div>
+      <ToastContainer autoClose={3000} hideProgressBar={false} />
     </>
   );
 };
