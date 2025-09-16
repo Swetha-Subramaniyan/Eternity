@@ -10,9 +10,6 @@
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push"
   },
-
-
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
