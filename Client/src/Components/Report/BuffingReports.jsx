@@ -102,7 +102,7 @@ const BuffingReports = () => {
       <Navbar />
       <h5 className={styles.heading}>Buffing Report Details</h5>
 
-      <Stack direction="row" spacing={2} alignItems="center" mb={2} ml={6} mt={2}>
+      <Stack direction="row" spacing={2} alignItems="center" mb={2} ml={6} mt={3}>
         <TextField
           type="date"
           label="From Date"
