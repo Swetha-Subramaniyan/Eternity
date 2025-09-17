@@ -177,7 +177,7 @@ function MasterFiling() {
             <TextField
               autoFocus
               margin="dense"
-              label="Customer Name"
+              label="Filing Member Name"
               type="text"
               fullWidth
               sx={{mt:0}}
