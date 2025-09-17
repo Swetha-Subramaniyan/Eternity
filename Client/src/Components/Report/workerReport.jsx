@@ -1585,9 +1585,11 @@ const ProcessReport = () => {
       <Navbar />
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Box sx={{ p: 3 }}>
-          <Typography variant="h4" gutterBottom>
-            Process Report
+          <center>
+          <Typography variant="h5" gutterBottom>
+            Worker Process Report
           </Typography>
+          </center>
 
           {/* Filters */}
           <Card sx={{ mb: 3 }}>
@@ -1632,7 +1634,7 @@ const ProcessReport = () => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                  <FormControl fullWidth>
+                  <FormControl sx={{width:'10rem'}}>
                     <InputLabel>Person</InputLabel>
                     <Select
                       value={selectedPerson}

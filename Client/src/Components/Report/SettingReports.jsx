@@ -104,7 +104,7 @@ const SettingReports = () => {
         alignItems="center"
         mb={2}
         ml={6}
-        mt={2}
+        mt={3}
       >
         <TextField
           type="date"

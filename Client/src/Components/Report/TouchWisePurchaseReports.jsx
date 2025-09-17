@@ -18,8 +18,9 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
-import styles from "../LotProcess/FilingProcess/FilingLotDetails.module.css";
 import Navbar from "../Navbar/Navbar";
+import styles from "./TouchWisePurchaseReport.module.css";
+
 
 const TouchWisePurchaseReport = () => {
   const [purchases, setPurchases] = useState([]);
@@ -140,9 +141,10 @@ const TouchWisePurchaseReport = () => {
     <>
       <Navbar />
       <Box>
+        <center>
         <Typography variant="h5" gutterBottom sx={{ mb: 5, mt: 5 }}>
           Purchase Report
-        </Typography>
+        </Typography> </center>
 
         <Stack
           direction="row"
@@ -247,67 +249,44 @@ const TouchWisePurchaseReport = () => {
 
         {/* Purchases Table */}
         <TableContainer className={styles.itemList}>
-          <Table className={styles.customerTable} style={{ margin: 0 }}>
-            <TableHead>
-              <TableRow sx={{ backgroundColor: "#f5f5f5" }}>
-                <TableCell>
-                  <strong>S.No</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Date</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Supplier</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Item</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Touch</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Weight</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Rate</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Value</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Remarks</strong>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {purchases.length > 0 ? (
-                purchases.map((purchase, index) => (
-                  <TableRow key={purchase.id}>
-                    <TableCell>{index + 1}</TableCell>
-                    <TableCell>
-                      {new Date(purchase.createdAt).toLocaleDateString()}
-                    </TableCell>
-                    <TableCell>{purchase.SupplierId?.name || "-"}</TableCell>
-                    <TableCell>{purchase.item}</TableCell>
-                    <TableCell>
-                      {purchase.TouchId?.touch || purchase.touch_id}
-                    </TableCell>
-                    <TableCell>{purchase.weight}</TableCell>
-                    <TableCell>{purchase.rate}</TableCell>
-                    <TableCell>₹{purchase.totalValue}</TableCell>
-                    <TableCell>{purchase.remarks || "-"}</TableCell>
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell colSpan={9} align="center">
-                    No purchases found
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+  <Table className={styles.customerTable} style={{ margin: 0 }}>
+    <TableHead>
+      <TableRow className={styles.tableHeadRow}>
+        <TableCell>S.No</TableCell>
+        <TableCell>Date</TableCell>
+        <TableCell>Supplier</TableCell>
+        <TableCell>Item</TableCell>
+        <TableCell>Touch</TableCell>
+        <TableCell>Weight</TableCell>
+        <TableCell>Rate</TableCell>
+        <TableCell>Value</TableCell>
+        <TableCell>Remarks</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {purchases.length > 0 ? (
+        purchases.map((purchase, index) => (
+          <TableRow key={purchase.id}>
+            <TableCell>{index + 1}</TableCell>
+            <TableCell>{new Date(purchase.createdAt).toLocaleDateString()}</TableCell>
+            <TableCell>{purchase.SupplierId?.name || "-"}</TableCell>
+            <TableCell>{purchase.item}</TableCell>
+            <TableCell>{purchase.TouchId?.touch || purchase.touch_id}</TableCell>
+            <TableCell>{purchase.weight}</TableCell>
+            <TableCell>{purchase.rate}</TableCell>
+            <TableCell>₹{purchase.totalValue}</TableCell>
+            <TableCell>{purchase.remarks || "-"}</TableCell>
+          </TableRow>
+        ))
+      ) : (
+        <TableRow>
+          <TableCell colSpan={9} align="center">No purchases found</TableCell>
+        </TableRow>
+      )}
+    </TableBody>
+  </Table>
+</TableContainer>
+
       </Box>
     </>
   );

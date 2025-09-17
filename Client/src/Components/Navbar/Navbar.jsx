@@ -100,7 +100,11 @@ function Navbar() {
                   Purchase Report
                 </Link>
               </li>
-              
+              <li>
+                <Link className="dropdown-item" to="/castingMeltingrreports">
+                  Casting Report
+                </Link>
+              </li>            
               <li>
                 <Link className="dropdown-item" to="/filingreports">
                   Filing Report
