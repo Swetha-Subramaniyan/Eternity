@@ -15,22 +15,23 @@ const customerList = [
 
 const productList = {
   Ring: [
-    { weight: 5, touch: 91.5 },
-    { weight: 4.5, touch: 92 },
-    { weight: 6, touch: 90 }
+    { weight: 55, touch: 91.5, stoneWeight: 2 },
+    { weight: 45, touch: 92, stoneWeight: 3 },
+    { weight: 60, touch: 90, stoneWeight: 2 }
   ],
   Chain: [
-    { weight: 10, touch: 91 },
-    { weight: 9.5, touch: 92.5 }
+    { weight: 10, touch: 91, stoneWeight: 1 },
+    { weight: 95, touch: 92.5, stoneWeight: 6 }
   ],
   Stud: [
-    { weight: 3, touch: 91 },
-    { weight: 3.5, touch: 90 }
+    { weight: 3, touch: 91, stoneWeight: 0.2 },
+    { weight: 3.5, touch: 90, stoneWeight: 0.1 }
   ],
   Bracelite: [
-    { weight: 8, touch: 93 }
+    { weight: 8, touch: 93, stoneWeight: 0.7 }
   ]
 };
+
 
 const Billing = () => {
   const [selectedCustomer, setSelectedCustomer] = useState('');
@@ -40,6 +41,9 @@ const Billing = () => {
   const [goldRate, setGoldRate] = useState('');
   const [receivedRows, setReceivedRows] = useState([]);
   const [totalReceivedPurity, setTotalReceivedPurity] = useState(0);
+  const [prevHallmark, setPrevHallmark] = useState('');
+ const [hallmarkBalance, setHallmarkBalance] = useState(0);
+
 
 // Recalculate total received purity whenever receivedRows changes
 useEffect(() => {
@@ -65,7 +69,6 @@ const addReceivedRow = () => {
   ]);
 };
 
-// Handle field changes
 const handleReceivedInput = (index, field, value) => {
   const updated = [...receivedRows];
   updated[index][field] = value;
@@ -77,28 +80,32 @@ const handleReceivedInput = (index, field, value) => {
   const amount = parseFloat(row.amount);
 
   if (!isNaN(gold) && !isNaN(touch)) {
-    row.purityWeight = (gold * touch).toFixed(2);
+    row.purityWeight = ((gold * touch) / 100).toFixed(2);
   } else if (!isNaN(goldRate) && !isNaN(amount)) {
     row.purityWeight = (amount / goldRate).toFixed(2);
   } else {
     row.purityWeight = '';
   }
 
+  //  Recalculate hallmark balance
+  const totalHallmark = updated.reduce((sum, r) => sum + (parseFloat(r.hallmarkCharge) || 0), 0);
+  setHallmarkBalance((parseFloat(prevHallmark) || 0) - totalHallmark);
+
   setReceivedRows(updated);
 };
+
 
 
 
 useEffect(() => {
   if (!goldRate) return;
   const updated = billItems.map((item) => {
-    const weight = parseFloat(item.weight);
-    const touch = parseFloat(item.touch);
+    const totalWeight = parseFloat(item.totalWeight || 0);
     const percent = parseFloat(item.percent || 0);
     const rate = parseFloat(goldRate);
 
-    if (!isNaN(weight) && !isNaN(touch)) {
-      const pure = ((percent + touch) * weight) / 100;
+    if (!isNaN(totalWeight) && !isNaN(percent)) {
+      const pure = (totalWeight * percent) / 100;
       const amount = rate * pure;
 
       return {
@@ -113,6 +120,7 @@ useEffect(() => {
 
   setBillItems(updated);
 }, [goldRate]);
+
 
 
 const getBillTotal = () => {
@@ -161,10 +169,13 @@ const deleteBillItem = (index) => {
   }, [selectedProduct]);
 
   const addToBill = (item, index) => {
+    const totalWeight = item.weight - (item.stoneWeight || 0);
+  
     setBillItems(prev => [
       ...prev,
       {
         ...item,
+        totalWeight,
         percent: '',
         pure: 0,
         amount: 0
@@ -176,28 +187,29 @@ const deleteBillItem = (index) => {
     setAvailableItems(updatedAvailable);
   };
   
+  
 
 
 
   const handleInputChange = (index, field, value) => {
     const newBill = [...billItems];
     newBill[index][field] = value;
-
-    const weight = parseFloat(newBill[index].weight);
-    const touch = parseFloat(newBill[index].touch);
+  
+    const totalWeight = parseFloat(newBill[index].totalWeight || 0);
     const percent = parseFloat(newBill[index].percent || 0);
     const rate = parseFloat(goldRate || 0);
-
-    if (!isNaN(weight) && !isNaN(touch)) {
-      const pure = ((percent + touch) * weight) / 100;
+  
+    if (!isNaN(totalWeight) && !isNaN(percent)) {
+      const pure = (totalWeight * percent) / 100;
       const amount = rate ? pure * rate : 0;
-
+  
       newBill[index].pure = parseFloat(pure.toFixed(2));
       newBill[index].amount = parseFloat(amount.toFixed(2));
     }
-
+  
     setBillItems(newBill);
   };
+  
 
   const getCustomerBalance = () => {
     const customer = customerList.find(c => c.name === selectedCustomer);
@@ -220,9 +232,14 @@ const deleteBillItem = (index) => {
     ? validGoldRates[validGoldRates.length - 1] : 0;
   
   //  Final Cash Balance Logic
-  const cashBalance = pureBalanceValue > 0
-      ? (pureBalanceValue * lastGoldRate).toFixed(2) : '0.00';
+  // const cashBalance = pureBalanceValue > 0
+  //     ? (pureBalanceValue * lastGoldRate).toFixed(2) : '0.00';
   
+  let cashBalance = '0.00';
+  if (lastGoldRate > 0) {
+    const absPure = Math.abs(pureBalanceValue);
+    cashBalance = (absPure * lastGoldRate).toFixed(2);
+  }
 
       const handleSave = () => {
         const data = {
@@ -247,8 +264,6 @@ const deleteBillItem = (index) => {
         alert("Bill data saved successfully!");
       };
       
-
-
   return (
     <>
       <Navbar />
@@ -303,66 +318,93 @@ const deleteBillItem = (index) => {
   <span>Customer Name:</span> {selectedCustomer}
 </p>
 
-          <div className={styles.billdetails}>Bill Details:</div>
-          <div className={styles.tablehead}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Item Name</th>
-                  <th>Weight</th>
-                  <th>Touch</th>
-                  <th>%</th>
-                  <th>Pure</th>
-                  <th>Amount</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {billItems.map((item, index) => (
-                  <tr key={index}>
-                    <td>{selectedProduct}</td>
-                    <td>{item.weight}</td>
-                    <td>{item.touch}</td>
-                    <td>
-                      <TextField
-                        size="small"
-                        type="number"
-                        value={item.percent}
-                        onChange={(e) => handleInputChange(index, 'percent', e.target.value)}
-                      />
-                    </td>
-                    <td>{item.pure}</td>
-                    <td>{item.amount}</td>
-                    <td>
-        <IconButton onClick={() => deleteBillItem(index)} size="small">
-          <DeleteIcon color="error" />
-        </IconButton>
-      </td>
-                  </tr>
-                ))}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colSpan={4}><b>Bill Total</b></td>
-                  <td>{totalPure}</td>
-                  <td>{totalAmount}</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td colSpan={4}><b>Balance</b></td>
-                  <td colSpan={3}>{balance}</td>
-                </tr>
-                <tr>
-                  <td colSpan={4}><b>Total</b></td>
-                  <td colSpan={3}>{grandTotal} <br />
-                    {balance >= 0
-                      ? "Customer must give to Owner"
-                      : "Owner must give to Customer"}
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
+<div className={styles.billdetails}>Bill Details:</div>
+<div className={styles.tablehead}>
+  <table>
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Weight</th>
+        <th>Stone Weight</th>
+        <th>Total Weight</th>
+        <th>%</th>
+        <th>Pure</th>
+        <th>Amount</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {billItems.map((item, index) => (
+        <tr key={index}>
+          <td>{selectedProduct}</td>
+          <td>{item.weight}</td>
+          <td>{item.stoneWeight}</td>
+          <td>{item.totalWeight}</td>
+
+          <td>
+            <TextField
+              size="small"
+              type="number"
+              value={item.percent}
+              onChange={(e) => handleInputChange(index, 'percent', e.target.value)}
+            />
+          </td>
+          <td>{item.pure}</td>
+          <td>{item.amount}</td>
+          <td>
+            <IconButton onClick={() => deleteBillItem(index)} size="small">
+              <DeleteIcon color="error" />
+            </IconButton>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+    <tfoot>
+   
+      <tr>
+        <td colSpan={5}><b>Excess Balance</b></td>
+        <td colSpan={3}>{balance}</td>
+      </tr>
+      <tr>
+        <td colSpan={5}><b>Final Bill Total</b></td>
+        <td>{totalPure}</td>
+        <td>{totalAmount}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colSpan={6}><b>Total</b></td>
+        <td colSpan={3}>{grandTotal} <br />
+          {balance >= 0
+            ? "Customer must give to Owner"
+            : "Owner must give to Customer"}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<br/>
+{/* <label><b>  Prev Hallmark : </b> 0 </label> */}
+
+<div style={{ marginTop: "1rem" }}>
+  <label><b>Prev Hallmark:</b></label>
+  <TextField
+    type="number"
+    size="small"
+    value={prevHallmark}
+    onChange={(e) => {
+      const value = e.target.value;
+      setPrevHallmark(value);
+
+      // recalc balance when input changes
+      const totalHallmark = receivedRows.reduce((sum, r) => sum + (parseFloat(r.hallmarkCharge) || 0), 0);
+      setHallmarkBalance((parseFloat(value) || 0) - totalHallmark);
+    }}
+    style={{ marginLeft: "1rem" }}
+  />
+</div>
+
+
+
 
           <div className={styles.receivedHeader}>
             <div className={styles.billdetails}>Received Details:</div>
@@ -373,12 +415,13 @@ const deleteBillItem = (index) => {
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Date</th>
-                  <th>Gold Rate</th>
-                  <th>Gold</th>
-                  <th>Touch</th>
-                  <th>Purity Weight</th>
-                  <th>Amount</th>
+                  <th style={{width:'6rem'}}>Date</th>
+                  <th style={{width:'15rem'}}>Gold Rate</th>
+                  <th style={{width:'15rem'}}>Gold</th>
+                  <th style={{width:'15rem'}}>Touch</th>
+                  <th style={{width:'15rem'}}>Purity Weight</th>
+                  <th style={{width:'15rem'}}>Amount</th>
+                  <th style={{width:'15rem'}}>Hallmark Charge</th> 
                   <th>Action</th>
                 </tr>
               </thead>
@@ -428,6 +471,14 @@ const deleteBillItem = (index) => {
         />
       </td>
       <td>
+        <TextField
+          type="number"
+          size="small"
+          value={row.hallmarkCharge }
+          onChange={(e) => handleReceivedInput(idx, 'hallmarkCharge', e.target.value)}
+        />
+      </td>
+      <td>
         <IconButton onClick={() => deleteReceivedRow(row.id)} size="small">
           <DeleteIcon color="error" />
         </IconButton>
@@ -451,10 +502,9 @@ const deleteBillItem = (index) => {
   <p><b>Cash Balance:</b> ₹ {cashBalance}</p>
   <p><b>Excess Pure:</b> {pureBalanceValue < 0 ? Math.abs(pureBalance) : '0.00'}</p>
   <p><b>Pure Balance:</b> {pureBalanceValue >= 0 ? pureBalance : '0.00'}</p>
+  <p><b>Hallmark Balance:</b> {hallmarkBalance}</p>
 
 </div>
-
-
 
 <Button
   variant="contained"
@@ -469,24 +519,29 @@ const deleteBillItem = (index) => {
           <div className={styles.billdetails}>Product Details:</div>
           <div className={styles.tablehead}>
             <table>
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Product Finish Weight</th>
-                  <th>Touch</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {availableItems.map((item, idx) => (
-                  <tr key={idx}>
-                    <td>{idx + 1}</td>
-                    <td>{item.weight}</td>
-                    <td>{item.touch}</td>
-                    <td><Button size="small" onClick={() => addToBill(item,idx)}>Add</Button></td>
-                  </tr>
-                ))}
-              </tbody>
+            <thead>
+  <tr>
+    <th>S.No</th>
+    <th>Product Finish Weight</th>
+    <th>Stone Weight</th>
+    <th>Touch</th>
+    <th>Action</th>
+  </tr>
+</thead>
+<tbody>
+  {availableItems.map((item, idx) => (
+    <tr key={idx}>
+      <td>{idx + 1}</td>
+      <td>{item.weight}</td>
+      <td>{item.stoneWeight}</td>
+      <td>{item.touch}</td>
+      <td>
+        <Button size="small" onClick={() => addToBill(item, idx)}>Add</Button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
             </table>
           </div>
         </div>
