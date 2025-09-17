@@ -95,6 +95,7 @@ const QCStock = () => {
       const finalWeight = parseFloat(updated.finalWeight) || 0;
       const selectedTouch = touches.find((t) => t.id === parseInt(updated.touch_id));
       const touchValue = selectedTouch ? selectedTouch.touch : 0;
+
       updated.purity = finalWeight * touchValue/100;
     }
 

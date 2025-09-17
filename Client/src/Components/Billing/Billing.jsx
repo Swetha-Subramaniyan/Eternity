@@ -6,10 +6,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import styles from './Billing.module.css';
 
 const customerList = [
-  { name: "Dhanusha", balance: 1000 },
-  { name: "Selva", balance: -500 },
-  { name: "Saranya", balance: 200 },
-  { name: "Ashwin", balance: -300 },
+  { name: "Dhanusha", balance: 0 },
+  { name: "Swetha", balance: 50 },
+  { name: "Saranya", balance: 100 },
+  { name: "Ashwin", balance: 300 },
   { name: "Amal", balance: 0 }
 ];
 
@@ -209,7 +209,6 @@ const deleteBillItem = (index) => {
   
     setBillItems(newBill);
   };
-  
 
   const getCustomerBalance = () => {
     const customer = customerList.find(c => c.name === selectedCustomer);
@@ -234,12 +233,19 @@ const deleteBillItem = (index) => {
   //  Final Cash Balance Logic
   // const cashBalance = pureBalanceValue > 0
   //     ? (pureBalanceValue * lastGoldRate).toFixed(2) : '0.00';
-  
+
   let cashBalance = '0.00';
-  if (lastGoldRate > 0) {
+
+// Check the last row directly
+if (receivedRows.length > 0) {
+  const lastRow = receivedRows[receivedRows.length - 1];
+  const lastRate = parseFloat(lastRow.goldRate);
+
+  if (!isNaN(lastRate) && lastRate > 0) {
     const absPure = Math.abs(pureBalanceValue);
-    cashBalance = (absPure * lastGoldRate).toFixed(2);
+    cashBalance = (absPure * lastRate).toFixed(2);
   }
+}
 
       const handleSave = () => {
         const data = {
@@ -327,8 +333,8 @@ const deleteBillItem = (index) => {
         <th>Weight</th>
         <th>Stone Weight</th>
         <th>Total Weight</th>
-        <th>%</th>
-        <th>Pure</th>
+        <th style={{width:'7rem'}}>%</th>
+        <th style={{width:'7rem'}}>Pure</th>
         <th>Amount</th>
         <th>Actions</th>
       </tr>
@@ -363,7 +369,9 @@ const deleteBillItem = (index) => {
    
       <tr>
         <td colSpan={5}><b>Excess Balance</b></td>
-        <td colSpan={3}>{balance}</td>
+        <td >{balance}</td>
+        <td > </td>
+        <td > </td>
       </tr>
       <tr>
         <td colSpan={5}><b>Final Bill Total</b></td>
@@ -403,9 +411,6 @@ const deleteBillItem = (index) => {
   />
 </div>
 
-
-
-
           <div className={styles.receivedHeader}>
             <div className={styles.billdetails}>Received Details:</div>
             <IconButton onClick={addReceivedRow}><AddCircleOutlineIcon /></IconButton>
@@ -415,13 +420,13 @@ const deleteBillItem = (index) => {
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th style={{width:'6rem'}}>Date</th>
-                  <th style={{width:'15rem'}}>Gold Rate</th>
-                  <th style={{width:'15rem'}}>Gold</th>
-                  <th style={{width:'15rem'}}>Touch</th>
-                  <th style={{width:'15rem'}}>Purity Weight</th>
-                  <th style={{width:'15rem'}}>Amount</th>
-                  <th style={{width:'15rem'}}>Hallmark Charge</th> 
+                  <th >Date</th>
+                  <th >Gold Rate</th>
+                  <th >Gold</th>
+                  <th >Touch</th>
+                  <th >Purity Weight</th>
+                  <th >Amount</th>
+                  <th >Hallmark Charge</th> 
                   <th>Action</th>
                 </tr>
               </thead>
