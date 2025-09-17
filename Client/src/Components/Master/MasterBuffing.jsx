@@ -179,7 +179,7 @@ function MasterBuffing() {
             <TextField
               autoFocus
               margin="dense"
-              label="Customer Name"
+              label="Buffing Member Name"
               type="text"
               sx={{marginTop:'0rem'}}
               fullWidth

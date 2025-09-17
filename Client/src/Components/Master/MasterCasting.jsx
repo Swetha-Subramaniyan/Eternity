@@ -174,7 +174,7 @@ function MasterCasting() {
             <TextField
               autoFocus
               margin="dense"
-              label="Casting Name"
+              label="Casting Member Name"
               type="text"
               sx={{mt:0}}
               fullWidth

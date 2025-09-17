@@ -180,7 +180,7 @@ function MasterSetting() {
             <TextField
               autoFocus
               margin="dense"
-              label="Customer Name"
+              label="Setting Member Name"
               type="text"
               sx={{marginTop:'0rem'}}
               fullWidth

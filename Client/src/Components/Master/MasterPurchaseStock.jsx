@@ -271,7 +271,7 @@ const MasterPurchaseStock = () => {
                 <Box display="flex" flexDirection="column" gap={2}>
                   <TextField
                     select
-                    label="Supplier"
+                    label="Select Supplier"
                     name="supplierId"
                     fullWidth
                     required
