@@ -235,18 +235,18 @@ function MasterFiling() {
 <tbody>
   {filteredCustomers.length > 0 ? (
     filteredCustomers.map((customer, index) => {
-      const dateObj = customer.createdAt ? new Date(customer.createdAt) : null;
+      const updatedDateObj = customer.updatedAt ? new Date(customer.updatedAt) : null;
 
-      const formattedDate = dateObj
-        ? dateObj.toLocaleDateString("en-IN", {
+      const formattedUpdatedDate = updatedDateObj
+        ? updatedDateObj.toLocaleDateString("en-IN", {
             day: "2-digit",
             month: "short",
             year: "numeric",
           })
         : "—";
 
-      const formattedTime = dateObj
-        ? dateObj.toLocaleTimeString("en-IN", {
+      const formattedUpdatedTime = updatedDateObj
+        ? updatedDateObj.toLocaleTimeString("en-IN", {
             hour: "2-digit",
             minute: "2-digit",
             hour12: true,
@@ -256,8 +256,8 @@ function MasterFiling() {
       return (
         <tr key={index}>
           <td>{index + 1}</td>
-          <td>{formattedDate}</td> {/* ✅ dd-MMM-yyyy */}
-          <td>{formattedTime}</td> {/* ✅ hh:mm AM/PM */}
+          <td>{formattedUpdatedDate}</td>
+          <td>{formattedUpdatedTime}</td>
           <td>{customer.name}</td>
           <td>{customer.phoneNumber}</td>
           <td>{customer.email}</td>
