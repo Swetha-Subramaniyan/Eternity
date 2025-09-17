@@ -327,7 +327,7 @@ const handleSave = async () => {
             <tr>
               <th>S.No</th>
               <th>Date</th>
-              {/* <th>Time</th> */}
+              <th>Time</th>
               <th>Jewel Name</th>
               <th>Weight</th>
               <th>Stone Weight</th>
@@ -341,32 +341,41 @@ const handleSave = async () => {
           <tbody>
             {filteredEntries.length > 0 ? (
               filteredEntries.map((entry, index) => {
-                const dateObj = entry.createdAt
-                  ? new Date(entry.createdAt)
-                  : null;
+                // const dateObj = entry.createdAt
+                //   ? new Date(entry.createdAt)
+                //   : null;
 
-                const formattedDate = dateObj
-                  ? dateObj.toLocaleDateString("en-IN", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    })
-                  : "-";
+                // const formattedDate = dateObj
+                //   ? dateObj.toLocaleDateString("en-IN", {
+                //       day: "2-digit",
+                //       month: "short",
+                //       year: "numeric",
+                //     })
+                //   : "-";
 
+                const updatedDateObj = entry.updatedAt ? new Date(entry.updatedAt) : null;
 
-                  const formattedTime = dateObj
-                  ? dateObj.toLocaleTimeString("en-IN", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      hour12: true,
-                    })
-                  : "-";
+const formattedUpdatedDate = updatedDateObj
+  ? updatedDateObj.toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
+  : "—";
+
+const formattedUpdatedTime = updatedDateObj
+  ? updatedDateObj.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    })
+  : "—";
 
                 return (
                   <tr key={entry.id}>
                     <td>{index + 1}</td>
-                    <td>{formattedDate}</td>
-                    {/* <td>{formattedTime}</td>  */}
+                    <td>{formattedUpdatedDate}</td>
+                    <td>{formattedUpdatedTime}</td>
                     <td>{entry.itemId?.name}</td>
                     <td>{entry.weight}</td>
                     <td>{entry.stone_weight}</td>

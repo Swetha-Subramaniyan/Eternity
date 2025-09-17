@@ -64,6 +64,10 @@ export const getAllTransactions = async (req, res) => {
     const transactions = await prisma.customerTransaction.findMany({
       where: { customerId: parseInt(customerId) },
       orderBy: { date: "desc" },
+      include:{
+        touch:true,
+        customer:true
+      }
     });
 
     res.status(200).json(transactions);

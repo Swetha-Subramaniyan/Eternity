@@ -217,69 +217,66 @@ function MasterCasting() {
 
 <div className={styles.itemList}> 
 <table className={styles.purchaseTable}>
-  <thead>
+
+<thead>
+  <tr>
+    <th>S.No</th>
+    <th> Date</th>  
+    <th> Time</th>  
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+
+
+<tbody>
+  {filteredCustomers.length > 0 ? (
+    filteredCustomers.map((customer, index) => {
+      const updatedDateObj = customer.updatedAt ? new Date(customer.updatedAt) : null;
+
+      const formattedUpdatedDate = updatedDateObj
+        ? updatedDateObj.toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })
+        : "—";
+
+      const formattedUpdatedTime = updatedDateObj
+        ? updatedDateObj.toLocaleTimeString("en-IN", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+          })
+        : "—";
+
+      return (
+        <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{formattedUpdatedDate}</td>
+          <td>{formattedUpdatedTime}</td>
+          <td>{customer.name}</td>
+          <td>{customer.phoneNumber}</td>
+          <td>{customer.email}</td>
+          <td>{customer.address}</td>
+          <td className={styles.tableActions}>
+            <Edit onClick={() => handleEdit(index)} className={styles.actionIcon} />
+            <Delete onClick={() => handleDelete(index)} className={styles.deleteIcon} />
+          </td>
+        </tr>
+      );
+    })
+  ) : (
     <tr>
-      <th>S.No</th>
-      <th>Date</th>  
-      <th>Time</th>  
-      <th>Name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Actions</th>
+      <td colSpan="10" style={{ textAlign: "center" }}>
+        Name not found
+      </td>
     </tr>
-  </thead>
-  <tbody>
-    {filteredCustomers.length > 0 ? (
-      filteredCustomers.map((customer, index) => {
-        const dateObj = customer.createdAt ? new Date(customer.createdAt) : null;
-
-        const formattedDate = dateObj
-          ? dateObj.toLocaleDateString("en-IN", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            })
-          : "—";
-
-        const formattedTime = dateObj
-          ? dateObj.toLocaleTimeString("en-IN", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: true,
-            })
-          : "—";
-
-        return (
-          <tr key={index}>
-            <td>{index + 1}</td>
-            <td>{formattedDate}</td>
-            <td>{formattedTime}</td>
-            <td>{customer.name}</td>
-            <td>{customer.phoneNumber}</td>
-            <td>{customer.email}</td>
-            <td>{customer.address}</td>
-            <td className={styles.tableActions}>
-              <Edit
-                onClick={() => handleEdit(index)}
-                className={styles.actionIcon}
-              />
-              <Delete
-                onClick={() => handleDelete(index)}
-                className={styles.deleteIcon}
-              />
-            </td>
-          </tr>
-        );
-      })
-    ) : (
-      <tr>
-        <td colSpan="8" style={{ textAlign: "center" }}>
-          Name not found
-        </td>
-      </tr>
-    )}
-  </tbody>
+  )}
+</tbody>
 </table>
 
 </div>

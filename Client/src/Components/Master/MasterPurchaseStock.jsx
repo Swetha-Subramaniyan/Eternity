@@ -417,8 +417,9 @@ const MasterPurchaseStock = () => {
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Name</th>
                   <th>Date</th>
+                  <th>Time</th>
+                  <th>Name</th>
                   <th>Item</th>
                   <th>Weight</th>
                   <th>Touch</th>
@@ -431,20 +432,31 @@ const MasterPurchaseStock = () => {
               </thead>
               <tbody>
                 {filteredPurchases.map((p, idx) => {
-                  const dateObj = p.createdAt ? new Date(p.createdAt) : null;
-                  const formattedDate = dateObj
-                    ? dateObj.toLocaleDateString("en-IN", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                      })
-                    : "-";
+
+const updatedDateObj = p.updatedAt ? new Date(p.updatedAt) : null;
+
+const formattedUpdatedDate = updatedDateObj
+  ? updatedDateObj.toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
+  : "—";
+
+const formattedUpdatedTime = updatedDateObj
+  ? updatedDateObj.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    })
+  : "—";
 
                   return (
                     <tr key={p.id}>
                       <td>{idx + 1}</td>
+                      <td>{formattedUpdatedDate}</td>
+                      <td>{formattedUpdatedTime}</td>
                       <td>{p.SupplierId?.name || "-"}</td>
-                      <td>{formattedDate}</td>
                       <td>{p.item}</td>
                       <td>{p.weight}</td>
                       <td>{p.TouchId?.touch || "-"}</td>

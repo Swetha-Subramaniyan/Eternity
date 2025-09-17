@@ -325,28 +325,30 @@ function MasterCustomer() {
             <tbody>
               {filteredCustomers.length > 0 ? (
                 filteredCustomers.map((customer, index) => {
-                  const createdDate = new Date(customer.createdAt);
-                  const formattedDate = createdDate.toLocaleDateString(
-                    "en-IN",
-                    {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    }
-                  );
-                  const formattedTime = createdDate.toLocaleTimeString(
-                    "en-IN",
-                    {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    }
-                  );
+                  
+                  const updatedDateObj = customer.updatedAt ? new Date(customer.updatedAt) : null;
+
+                  const formattedUpdatedDate = updatedDateObj
+                    ? updatedDateObj.toLocaleDateString("en-IN", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : "—";
+            
+                  const formattedUpdatedTime = updatedDateObj
+                    ? updatedDateObj.toLocaleTimeString("en-IN", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: true,
+                      })
+                    : "—";
 
                   return (
                     <tr key={index}>
                       <td>{index + 1}</td>
-                      <td>{formattedDate}</td>
-                      <td>{formattedTime}</td>
+                      <td>{formattedUpdatedDate}</td>
+                      <td>{formattedUpdatedTime}</td>
                       <td>{customer.name}</td>
                       <td>{customer.phoneNumber}</td>
                       <td>{customer.email}</td>
