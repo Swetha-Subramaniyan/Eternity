@@ -3,7 +3,6 @@ import axios from "axios";
 import {
   Button,
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogActions,
   TextField,
@@ -12,7 +11,9 @@ import {
 import { Edit, Delete, Search } from "@mui/icons-material";
 import Master from "./MasterNavbar";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
-import styles from './MasterFiling.module.css';
+import styles from "./MasterFiling.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MasterFiling() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,7 +21,7 @@ function MasterFiling() {
   const [customerName, setCustomerName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [email, setEmail] = useState(""); 
+  const [email, setEmail] = useState("");
   const [editIndex, setEditIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -39,8 +40,6 @@ function MasterFiling() {
     setEditIndex(null);
   };
 
-
-
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
@@ -48,42 +47,94 @@ function MasterFiling() {
         setCustomers(response.data);
       } catch (error) {
         console.error("Error fetching customers:", error.message);
+        toast.error("Failed to fetch filing members");
       }
     };
-  
+
     fetchCustomers();
   }, []);
 
-
-
-
   const handleSave = async () => {
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const phoneRegex = /^[0-9]{7,15}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const trimmedName = customerName.trim();
+
+    if (!trimmedName) {
+      toast.error("Filing member name is required");
+      return;
+    }
+    if (!nameRegex.test(trimmedName)) {
+      toast.error("Invalid name. Only letters and spaces are allowed");
+      return;
+    }
+
+    const isDuplicate = customers.some((cust, idx) => {
+      return (
+        cust.name.toLowerCase() === trimmedName.toLowerCase() &&
+        idx !== editIndex
+      );
+    });
+    if (isDuplicate) {
+      toast.error("Filing member name already exists");
+      return;
+    }
+
+    if (!phoneNumber.trim()) {
+      toast.error("Phone number is required");
+      return;
+    }
+    if (!phoneRegex.test(phoneNumber.trim())) {
+      toast.error("Invalid phone number");
+      return;
+    }
+
+    if (!address.trim()) {
+      toast.error("Address is required");
+      return;
+    }
+
+    if (email.trim() && !emailRegex.test(email.trim())) {
+      toast.error("Invalid email format");
+      return;
+    }
+
     const customerData = {
-      name: customerName,
-      phoneNumber,
-      address,
-      email,
+      name: trimmedName,
+      phoneNumber: phoneNumber.trim(),
+      address: address.trim(),
+      email: email.trim(),
     };
-  
+
     try {
       if (editIndex !== null) {
         const id = customers[editIndex].id;
-        const response = await axios.put(`${BACKEND_SERVER_URL}/api/filing/${id}`, customerData);
+        const response = await axios.put(
+          `${BACKEND_SERVER_URL}/api/filing/${id}`,
+          customerData
+        );
         const updated = [...customers];
-        updated[editIndex] = response.data.filing || response.data; 
+        updated[editIndex] = response.data.filing || response.data;
         setCustomers(updated);
+        toast.success("Filing member updated successfully");
       } else {
-        const response = await axios.post(`${BACKEND_SERVER_URL}/api/filing`, customerData);
-        console.log('posting filing', response);
+        const response = await axios.post(
+          `${BACKEND_SERVER_URL}/api/filing`,
+          customerData
+        );
         setCustomers((prev) => [...prev, response.data.filing]);
+        toast.success("Filing member saved successfully");
       }
       closeModal();
     } catch (error) {
-      console.error("Error saving customer:", error.response?.data || error.message);
-      alert("Error: " + (error.response?.data?.error || "Something went wrong"));
+      console.error(
+        "Error saving customer:",
+        error.response?.data || error.message
+      );
+      toast.error("Failed to save filing member");
     }
   };
-  
 
   const handleEdit = (index) => {
     const customer = filteredCustomers[index];
@@ -97,32 +148,37 @@ function MasterFiling() {
     setEditIndex(originalIndex);
     openModal();
   };
+
   const handleDelete = async (index) => {
     const customer = customers[index];
-    const confirmed = window.confirm(`Are you sure you want to delete "${customer.name}"?`);
+    const confirmed = window.confirm(
+      `Are you sure you want to delete "${customer.name}"?`
+    );
     if (!confirmed) return;
     try {
       await axios.delete(`${BACKEND_SERVER_URL}/api/filing/${customer.id}`);
       const updatedCustomers = [...customers];
       updatedCustomers.splice(index, 1);
       setCustomers(updatedCustomers);
+      toast.success("Filing member deleted successfully");
     } catch (error) {
-      console.error("Error deleting customer:", error.response?.data || error.message);
-      alert("Error: " + (error.response?.data?.error || "Something went wrong"));
+      console.error(
+        "Error deleting customer:",
+        error.response?.data || error.message
+      );
+      toast.error("Failed to delete filing member");
     }
   };
-  
+
   const filteredCustomers = customers.filter((customer) =>
     customer.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
 
   return (
     <>
       <Master />
-        <div className={styles.customerContainer}>
+      <div className={styles.customerContainer}>
         <div className={styles.headerRow}>
-          
           <Button
             style={{
               backgroundColor: "#F5F5F5",
@@ -151,8 +207,7 @@ function MasterFiling() {
               ),
             }}
           />
-
-<Button
+          <Button
             style={{
               backgroundColor: "#F5F5F5",
               color: "black",
@@ -166,13 +221,24 @@ function MasterFiling() {
             Reset
           </Button>
         </div>
+
+        {/* Modal */}
         <Dialog
-  open={isModalOpen}
-  onClose={closeModal}
-  PaperProps={{
-    sx: { width: "450px", maxWidth: "90%", borderRadius:'5px' } }}>
-          <h5 style={{ textAlign: "center", padding:'1.1rem', backgroundColor:"#F5F5F5" }}>
-          {editIndex !== null ? "Edit Filing Member" : "Add Filing Member"}</h5>
+          open={isModalOpen}
+          onClose={closeModal}
+          PaperProps={{
+            sx: { width: "450px", maxWidth: "90%", borderRadius: "5px" },
+          }}
+        >
+          <h5
+            style={{
+              textAlign: "center",
+              padding: "1.1rem",
+              backgroundColor: "#F5F5F5",
+            }}
+          >
+            {editIndex !== null ? "Edit Filing Member" : "Add Filing Member"}
+          </h5>
           <DialogContent>
             <TextField
               autoFocus
@@ -180,7 +246,6 @@ function MasterFiling() {
               label="Filing Member Name"
               type="text"
               fullWidth
-              sx={{mt:0}}
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
             />
@@ -211,77 +276,103 @@ function MasterFiling() {
               onChange={(e) => setAddress(e.target.value)}
             />
           </DialogContent>
-          <DialogActions sx={{padding:'1rem'}}>
-            <Button onClick={closeModal} color="primary" variant="outlined">Cancel</Button>
-            <Button onClick={handleSave} color="primary" variant="contained"  sx={{marginRight:'0.5rem'}}>Save</Button>
+          <DialogActions sx={{ padding: "1rem" }}>
+            <Button onClick={closeModal} color="primary" variant="outlined">
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSave}
+              color="primary"
+              variant="contained"
+              sx={{ marginRight: "0.5rem" }}
+            >
+              Save
+            </Button>
           </DialogActions>
         </Dialog>
 
+        {/* Table */}
+        <div className={styles.itemList}>
+          <table className={styles.purchaseTable}>
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
 
-        <div className={styles.itemList}> 
-  <table className={styles.purchaseTable}>
-    <thead>
-      <tr>
-        <th>S.No</th>
-        <th>Date</th> 
-        <th>Time</th> 
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Address</th>       
-        <th>Actions</th>
-      </tr>
-    </thead>
-<tbody>
-  {filteredCustomers.length > 0 ? (
-    filteredCustomers.map((customer, index) => {
-      const updatedDateObj = customer.updatedAt ? new Date(customer.updatedAt) : null;
+            <tbody>
+              {filteredCustomers.length > 0 ? (
+                filteredCustomers.map((customer, index) => {
+                  const updatedDateObj = customer.updatedAt
+                    ? new Date(customer.updatedAt)
+                    : null;
 
-      const formattedUpdatedDate = updatedDateObj
-        ? updatedDateObj.toLocaleDateString("en-IN", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          })
-        : "—";
+                  const formattedUpdatedDate = updatedDateObj
+                    ? updatedDateObj.toLocaleDateString("en-IN", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : "—";
 
-      const formattedUpdatedTime = updatedDateObj
-        ? updatedDateObj.toLocaleTimeString("en-IN", {
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: true,
-          })
-        : "—";
+                  const formattedUpdatedTime = updatedDateObj
+                    ? updatedDateObj.toLocaleTimeString("en-IN", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: true,
+                      })
+                    : "—";
 
-      return (
-        <tr key={index}>
-          <td>{index + 1}</td>
-          <td>{formattedUpdatedDate}</td>
-          <td>{formattedUpdatedTime}</td>
-          <td>{customer.name}</td>
-          <td>{customer.phoneNumber}</td>
-          <td>{customer.email}</td>
-          <td>{customer.address}</td>
-          <td style={{ width: "7rem" }}>
-            <Edit onClick={() => handleEdit(index)} className={styles.actionIcon} />
-            <Delete onClick={() => handleDelete(index)} className={styles.deleteIcon} />
-          </td>
-        </tr>
-      );
-    })
-  ) : (
-    <tr>
-      <td colSpan="9" className={styles.centerText}>
-        Name not found
-      </td>
-    </tr>
-  )}
-</tbody>
-
-  </table>
-</div>
-
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{formattedUpdatedDate}</td>
+                      <td>{formattedUpdatedTime}</td>
+                      <td>{customer.name}</td>
+                      <td>{customer.phoneNumber}</td>
+                      <td>{customer.email}</td>
+                      <td>{customer.address}</td>
+                      <td className={styles.tableActions}>
+                        <Edit
+                          onClick={() => handleEdit(index)}
+                          className={styles.actionIcon}
+                        />
+                        <Delete
+                          onClick={() => handleDelete(index)}
+                          className={styles.deleteIcon}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: "center" }}>
+                    Name not found
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
     </>
   );
 }
