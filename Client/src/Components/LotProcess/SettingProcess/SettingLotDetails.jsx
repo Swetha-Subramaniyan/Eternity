@@ -475,7 +475,7 @@ const SettingLotDetails = () => {
             borderColor: "#25274D",
             borderStyle: "solid",
             borderWidth: "2px",
-            marginLeft: "49rem",
+            marginLeft: "47.3rem",
           }}
           variant="contained"
           onClick={handleOpen}
@@ -485,13 +485,8 @@ const SettingLotDetails = () => {
       </div>
 
       {/* Main Table */}
-
-      <table
-        className={styles.table}
-        border="1"
-        style={{ width: "100%", marginTop: "2rem" }}
-      >
-        {/* <div className={styles.tableContainer}> */}
+<div className={styles.tablecontainer}  > 
+      <table className={styles.table} border="1" style={{ width: "100%", marginTop: "2rem" }} >
 
         <thead>
           <tr>
@@ -600,7 +595,7 @@ const SettingLotDetails = () => {
           )}
         </tbody>
       </table>
-
+      </div>
       <Box
         sx={{
           ml: 4,
@@ -799,9 +794,7 @@ const SettingLotDetails = () => {
           </Typography>
 
           <table
-            className={styles.table}
-            style={{ width: "100%", marginTop: "1rem" }}
-          >
+            className={styles.table}  >
             <thead>
               <tr>
                 <th>Select</th>
@@ -907,7 +900,7 @@ const SettingLotDetails = () => {
   ))}
 </tbody>
 
-                <tfoot>
+                <tfoot  style={{backgroundColor:'#f8f9fa'}}>
                   <tr>
                     <td colSpan={2}>
                       <strong>Total Issue</strong>

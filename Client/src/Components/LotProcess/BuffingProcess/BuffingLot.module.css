@@ -3,10 +3,8 @@
   margin-top: 1rem;
   width: 90rem;
   margin-left: 3rem;
-  /* background: #38383e; */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 6px;
-  /* background: linear-gradient(135deg, #0d0d0d, #0b0b0b); */
   background-color: rgb(247, 249, 249);
  
 }
@@ -103,6 +101,7 @@ hr {
   cursor: pointer;
   transition: background 0.3s ease;
   font-weight: bold;
+  padding: 9px;
 }
 
 .button:hover {

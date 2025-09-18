@@ -54,13 +54,18 @@ function MasterFiling() {
     fetchCustomers();
   }, []);
 
+
   const handleSave = async () => {
     const nameRegex = /^[A-Za-z\s]+$/;
     const phoneRegex = /^[0-9]{7,15}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+  
     const trimmedName = customerName.trim();
-
+    const trimmedPhone = phoneNumber.trim();
+    const trimmedEmail = email.trim();
+    const trimmedAddress = address.trim();
+  
+    // Name validation
     if (!trimmedName) {
       toast.error("Filing member name is required");
       return;
@@ -69,44 +74,65 @@ function MasterFiling() {
       toast.error("Invalid name. Only letters and spaces are allowed");
       return;
     }
-
-    const isDuplicate = customers.some((cust, idx) => {
-      return (
-        cust.name.toLowerCase() === trimmedName.toLowerCase() &&
-        idx !== editIndex
-      );
-    });
-    if (isDuplicate) {
-      toast.error("Filing member name already exists");
-      return;
-    }
-
-    if (!phoneNumber.trim()) {
+  
+    // Phone validation
+    if (!trimmedPhone) {
       toast.error("Phone number is required");
       return;
     }
-    if (!phoneRegex.test(phoneNumber.trim())) {
-      toast.error("Invalid phone number");
+    if (!phoneRegex.test(trimmedPhone)) {
+      toast.error("Invalid phone number. Only digits allowed (7-15 numbers)");
       return;
     }
-
-    if (!address.trim()) {
-      toast.error("Address is required");
-      return;
-    }
-
-    if (email.trim() && !emailRegex.test(email.trim())) {
+  
+    // Email validation
+    if (trimmedEmail && !emailRegex.test(trimmedEmail)) {
       toast.error("Invalid email format");
       return;
     }
-
+  
+    // Address validation
+    // if (!trimmedAddress) {
+    //   toast.error("Address is required");
+    //   return;
+    // }
+  
+    // Duplicate checks
+    const isDuplicateName = customers.some(
+      (cust, idx) =>
+        cust.name.toLowerCase() === trimmedName.toLowerCase() &&
+        idx !== editIndex
+    );
+    if (isDuplicateName) {
+      toast.error("Filing member name already exists");
+      return;
+    }
+  
+    const isDuplicatePhone = customers.some(
+      (cust, idx) => cust.phoneNumber === trimmedPhone && idx !== editIndex
+    );
+    if (isDuplicatePhone) {
+      toast.error("Phone number already exists");
+      return;
+    }
+  
+    const isDuplicateEmail = trimmedEmail
+      ? customers.some(
+          (cust, idx) => cust.email === trimmedEmail && idx !== editIndex
+        )
+      : false;
+    if (isDuplicateEmail) {
+      toast.error("Email already exists");
+      return;
+    }
+  
     const customerData = {
       name: trimmedName,
-      phoneNumber: phoneNumber.trim(),
-      address: address.trim(),
-      email: email.trim(),
+      phoneNumber: trimmedPhone,
+      address: trimmedAddress,
+      email: trimmedEmail,
     };
-
+  
     try {
       if (editIndex !== null) {
         const id = customers[editIndex].id;
@@ -129,12 +155,13 @@ function MasterFiling() {
       closeModal();
     } catch (error) {
       console.error(
-        "Error saving customer:",
+        "Error saving filing member:",
         error.response?.data || error.message
       );
       toast.error("Failed to save filing member");
     }
   };
+  
 
   const handleEdit = (index) => {
     const customer = filteredCustomers[index];
@@ -186,6 +213,7 @@ function MasterFiling() {
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
+              marginLeft:'1rem'
             }}
             variant="contained"
             onClick={openModal}
@@ -197,7 +225,7 @@ function MasterFiling() {
             variant="outlined"
             size="small"
             value={searchTerm}
-            sx={{ marginLeft: "48.6rem" }}
+            sx={{ marginLeft: "47rem" }}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
               startAdornment: (

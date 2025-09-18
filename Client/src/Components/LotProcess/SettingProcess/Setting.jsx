@@ -19,6 +19,7 @@ import Navbar from "../../Navbar/Navbar";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../../Config/config";
+import styles from "./Setting.module.css";
 
 const Setting = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -81,44 +82,44 @@ const Setting = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
-                    <strong>S.No</strong>
+                  <TableCell className={styles.tablehead}>
+                  S.No
                   </TableCell>
-                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
-                    <strong>Date </strong>
+                  <TableCell className={styles.tablehead}>
+                Date 
                   </TableCell>
-                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
-                    <strong>Time </strong>
+                  <TableCell className={styles.tablehead}>
+                  Time 
                   </TableCell>
-                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
-                    <strong>Setting Member Name</strong>
+                  <TableCell className={styles.tablehead}>
+                  Setting Member Name
                   </TableCell>
-                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
-                    <strong>Phone Number</strong>
+                  <TableCell className={styles.tablehead}>
+                    Phone Number
                   </TableCell>
-                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
-                    <strong>Address</strong>
+                  <TableCell className={styles.tablehead}>
+                   Address
                   </TableCell>
-                  <TableCell sx={{ backgroundColor: '#38383e', color: 'white', textAlign: 'center' }}>
-                    <strong>Actions</strong>
+                  <TableCell className={styles.tablehead}>
+                  Actions
                   </TableCell>
                 </TableRow>
               </TableHead>
 <TableBody>
   {filteredData.length > 0 ? (
     filteredData.map((row, index) => (
-      <TableRow key={row.id}>
-        <TableCell align="center">{index + 1}</TableCell>
-        <TableCell align="center">
+      <TableRow key={row.id} className={index % 2 === 0 ? styles.trEven : ""}>
+        <TableCell className={styles.tableCell}>{index + 1}</TableCell>
+        <TableCell className={styles.tableCell}>
           {new Date(row.createdAt).toLocaleDateString()}
         </TableCell>
-        <TableCell align="center">
+        <TableCell className={styles.tableCell}>
           {new Date(row.createdAt).toLocaleTimeString()}
         </TableCell>
-        <TableCell align="center">{row.name}</TableCell>
-        <TableCell align="center">{row.phoneNumber || "-"}</TableCell>
-        <TableCell align="center">{row.address || "-"}</TableCell>
-        <TableCell align="center">
+        <TableCell className={styles.tableCell}>{row.name}</TableCell>
+        <TableCell className={styles.tableCell}>{row.phoneNumber || "-"}</TableCell>
+        <TableCell className={styles.tableCell}>{row.address || "-"}</TableCell>
+        <TableCell className={styles.tableCell}>
           <Link to={`/settinglot/${row.id}/${encodeURIComponent(row.name)}/${row.lotInfo?.[0]?.lotNumber || 0}`}>
   <IconButton>
     <PreviewIcon color="primary" />

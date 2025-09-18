@@ -341,17 +341,6 @@ const handleSave = async () => {
           <tbody>
             {filteredEntries.length > 0 ? (
               filteredEntries.map((entry, index) => {
-                // const dateObj = entry.createdAt
-                //   ? new Date(entry.createdAt)
-                //   : null;
-
-                // const formattedDate = dateObj
-                //   ? dateObj.toLocaleDateString("en-IN", {
-                //       day: "2-digit",
-                //       month: "short",
-                //       year: "numeric",
-                //     })
-                //   : "-";
 
                 const updatedDateObj = entry.updatedAt ? new Date(entry.updatedAt) : null;
 
@@ -399,7 +388,7 @@ const formattedUpdatedTime = updatedDateObj
               })
             ) : (
               <tr>
-                <td colSpan="10" style={{ textAlign: "center" }}>
+                <td colSpan="11" style={{ textAlign: "center" }}>
                   Jewel Name not found
                 </td>
               </tr>

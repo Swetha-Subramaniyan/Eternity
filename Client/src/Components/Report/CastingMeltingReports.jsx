@@ -3,7 +3,7 @@ import { Button, TextField, Stack } from "@mui/material";
 import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import Navbar from "../Navbar/Navbar";
-import styles from "../LotProcess/CastingProcess//CastingEntry.module.css";
+import styles from './CastingMeltingReports.module.css'
 
 const CastingMeltingReports = () => {
   const [entries, setEntries] = useState([]);
@@ -54,7 +54,7 @@ const CastingMeltingReports = () => {
         spacing={2}
         alignItems="center"
         mb={2}
-        ml={6}
+        ml={4}
         mt={1}
       >
         <TextField
@@ -78,9 +78,8 @@ const CastingMeltingReports = () => {
           Reset
         </Button>
       </Stack>
-
-      <div className={styles.itemList}>
-        <table className={styles.customerTable}>
+<div className={styles.tablecontainer} > 
+      <table className={styles.table}>
           <thead>
             <tr>
               <th>S.No</th>

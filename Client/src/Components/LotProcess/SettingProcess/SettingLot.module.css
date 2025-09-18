@@ -95,6 +95,7 @@ hr {
   cursor: pointer;
   transition: background 0.3s ease;
   font-weight: bold;
+  padding: 9px;
 }
 
 .button:hover {

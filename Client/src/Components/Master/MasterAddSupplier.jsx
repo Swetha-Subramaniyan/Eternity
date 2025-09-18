@@ -54,53 +54,79 @@ function MasterAddSupplier() {
     fetchCustomers();
   }, []);
 
-// 🔹 Validation function
+
+//  Validation function
 const validateForm = () => {
-  if (!customerName.trim()) {
+  const trimmedName = customerName.trim();
+  const trimmedPhone = phoneNumber.trim();
+  const trimmedEmail = email.trim().toLowerCase();
+
+  if (!trimmedName) {
     toast.error("Supplier Name is required");
     return false;
   }
-  if (!phoneNumber.trim()) {
+
+  if (!trimmedPhone) {
     toast.error("Phone Number is required");
     return false;
   }
-  if (!/^\d{10}$/.test(phoneNumber)) {
+  if (!/^\d{10}$/.test(trimmedPhone)) {
     toast.error("Phone Number must be 10 digits");
     return false;
   }
-  // ✅ Email is optional now
-  if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+
+  if (trimmedEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
     toast.error("Enter a valid Email");
     return false;
   }
-  if (!address.trim()) {
-    toast.error("Address is required");
+
+  // if (!address.trim()) {
+  //   toast.error("Address is required");
+  //   return false;
+  // }
+
+  //  Check duplicate name (case-insensitive)
+  const isDuplicateName = customers.some(
+    (c, i) => c.name.toLowerCase() === trimmedName.toLowerCase() && i !== editIndex
+  );
+  if (isDuplicateName) {
+    toast.error("Supplier Name already exists");
     return false;
   }
 
-  // 🔹 Check duplicate name (case-insensitive)
-  const isDuplicate = customers.some(
-    (c, i) =>
-      c.name.toLowerCase() === customerName.toLowerCase() &&
-      i !== editIndex
+  //  Check duplicate phone number
+  const isDuplicatePhone = customers.some(
+    (c, i) => c.phoneNumber === trimmedPhone && i !== editIndex
   );
-  if (isDuplicate) {
-    toast.error("Supplier Name already exists");
+  if (isDuplicatePhone) {
+    toast.error("Phone number already exists");
     return false;
+  }
+
+  //  Check duplicate email (if provided)
+  if (trimmedEmail) {
+    const isDuplicateEmail = customers.some(
+      (c, i) => c.email?.toLowerCase() === trimmedEmail && i !== editIndex
+    );
+    if (isDuplicateEmail) {
+      toast.error("Email already exists");
+      return false;
+    }
   }
 
   return true;
 };
 
 
+
   const handleSave = async () => {
     if (!validateForm()) return;
 
     const customerData = {
-      name: customerName,
-      phoneNumber,
-      address,
-      email,
+      name: customerName.trim(),
+      phoneNumber: phoneNumber.trim(),
+      address: address.trim(),
+      email: email.trim(),
     };
   
     try {
@@ -171,6 +197,7 @@ const validateForm = () => {
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
+              marginLeft:'1rem'
             }}
             variant="contained"
             onClick={openModal}
@@ -181,7 +208,7 @@ const validateForm = () => {
             placeholder="Search by Name"
             variant="outlined"
             size="small"
-            sx={{marginLeft:'51rem'}}
+            sx={{marginLeft:'49.5rem'}}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{

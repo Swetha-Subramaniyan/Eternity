@@ -325,8 +325,9 @@ if (receivedRows.length > 0) {
 </p>
 
 <div className={styles.billdetails}>Bill Details:</div>
-<div className={styles.tablehead}>
-  <table>
+
+  <div className={styles.tableContainer}>
+                <table className={styles.table}>
     <thead>
       <tr>
         <th>Item Name</th>
@@ -368,10 +369,10 @@ if (receivedRows.length > 0) {
     <tfoot>
    
       <tr>
-        <td colSpan={5}><b>Excess Balance</b></td>
-        <td >{balance}</td>
-        <td > </td>
-        <td > </td>
+        <td colSpan={5}  style={{backgroundColor:'#f8f9fa'}}><b>Excess Balance</b></td>
+        <td  style={{backgroundColor:'#f8f9fa'}} >{balance}</td>
+        <td   style={{backgroundColor:'#f8f9fa'}}> </td>
+        <td  style={{backgroundColor:'#f8f9fa'}} > </td>
       </tr>
       <tr>
         <td colSpan={5}><b>Final Bill Total</b></td>
@@ -415,8 +416,8 @@ if (receivedRows.length > 0) {
             <div className={styles.billdetails}>Received Details:</div>
             <IconButton onClick={addReceivedRow}><AddCircleOutlineIcon /></IconButton>
           </div>
-          <div className={styles.tablehead}>
-            <table>
+             <div className={styles.tableContainer}>
+                <table className={styles.table}>
               <thead>
                 <tr>
                   <th>S.No</th>
@@ -496,7 +497,7 @@ if (receivedRows.length > 0) {
   <tr>
     <td colSpan={5}><b>Total Purity</b></td>
     <td><b>{totalReceivedPurity}</b></td>
-    <td colSpan={2}></td>
+    <td colSpan={3}></td>
   </tr>
 </tfoot>
             </table>
@@ -513,21 +514,21 @@ if (receivedRows.length > 0) {
 
 <Button
   variant="contained"
-  sx={{ mt: 5, backgroundColor: 'rgb(139, 103, 14)', }}
-  onClick={handleSave}
->
+  sx={{ mt: 3 }}
+  onClick={handleSave} >
   Save
 </Button>
+
         </div>
         <div className={styles.tablecard}>
           <h3>Available Product Weights</h3>
           <div className={styles.billdetails}>Product Details:</div>
-          <div className={styles.tablehead}>
-            <table>
+                        <div className={styles.tableContainer}>
+                <table className={styles.table}>
             <thead>
   <tr>
     <th>S.No</th>
-    <th>Product Finish Weight</th>
+    <th>Product Finish Wt</th>
     <th>Stone Weight</th>
     <th>Touch</th>
     <th>Action</th>
@@ -541,7 +542,7 @@ if (receivedRows.length > 0) {
       <td>{item.stoneWeight}</td>
       <td>{item.touch}</td>
       <td>
-        <Button size="small" onClick={() => addToBill(item, idx)}>Add</Button>
+        <Button    variant="outlined" size="small" onClick={() => addToBill(item, idx)}>Add</Button>
       </td>
     </tr>
   ))}

@@ -230,7 +230,7 @@ const CustomerTranscation = () => {
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
-              marginRight:'19rem'
+              marginRight:'18rem'
             }}
             variant="contained"
             onClick={() => setShowPopup(true)}
@@ -249,7 +249,7 @@ const CustomerTranscation = () => {
             label="To Date"
             type="date"
             size="small"
-            sx={{ ml: "2rem" }}
+            sx={{ ml: "1.9rem" }}
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
             InputLabelProps={{ shrink: true }}
@@ -380,8 +380,8 @@ const CustomerTranscation = () => {
   </div>
 )}
 <br/>
-<div className={styles.tablehead}> 
-        <table>
+<div > 
+        <table className={styles.purchaseTable}>
           <thead>
             <tr>
             <th>S.No</th>
@@ -402,7 +402,7 @@ const CustomerTranscation = () => {
         key={index}
         className={transaction.type === "Gold" ? "gold-row" : "cash-row"}
       >
-        <td>{index + 1}</td>   {/* S.No */}
+        <td>{index + 1}</td>   
         <td>{new Date(transaction.date).toLocaleDateString("en-IN")}</td>
         <td>
           {transaction.updatedAt
@@ -434,7 +434,7 @@ const CustomerTranscation = () => {
 
 
           <tfoot> 
-            <tr><td colSpan={5}><b>  Total Purity ( Both Cash and Gold )</b> </td> 
+            <tr><td colSpan={6}><b>  Total Purity ( Both Cash and Gold )</b> </td> 
             <td> <b> {totals.goldTotalPurity.toFixed(3)} g </b></td>
             </tr>
           </tfoot>
