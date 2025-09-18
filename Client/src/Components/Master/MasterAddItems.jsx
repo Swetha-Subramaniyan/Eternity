@@ -37,15 +37,25 @@ const MasterAdditems = () => {
     setEditItemName("");
   };
 
+
   const handleAddItem = async () => {
-    if (!itemName) {
+    if (!itemName.trim()) {
       toast.error("Please enter an item name.", { position: "top-right" });
+      return;
+    }
+  
+    // 🔹 Prevent duplicate item name (case-insensitive)
+    const isDuplicate = items.some(
+      (item) => item.name.toLowerCase() === itemName.trim().toLowerCase()
+    );
+    if (isDuplicate) {
+      toast.error("Item name already exists!", { position: "top-right" });
       return;
     }
   
     try {
       const response = await axios.post(`${BACKEND_SERVER_URL}/api/additem`, {
-        name: itemName,
+        name: itemName.trim(),
       });
   
       setItems((prevItems) => [...prevItems, response.data]);
@@ -57,15 +67,28 @@ const MasterAdditems = () => {
     }
   };
   
+
   const handleSaveEdit = async (id) => {
-    if (!editItemName) {
+    if (!editItemName.trim()) {
       toast.error("Please enter item name.", { position: "top-right" });
       return;
     }
   
+    // 🔹 Prevent duplicate name except for current item
+    const isDuplicate = items.some(
+      (item) =>
+        item.name.toLowerCase() === editItemName.trim().toLowerCase() &&
+        item.id !== id
+    );
+    if (isDuplicate) {
+      toast.error("Item name already exists!", { position: "top-right" });
+      return;
+    }
+  
     try {
-      const response = await axios.put(`${BACKEND_SERVER_URL}/api/additem/${id}`,
-        { name: editItemName }
+      const response = await axios.put(
+        `${BACKEND_SERVER_URL}/api/additem/${id}`,
+        { name: editItemName.trim() }
       );
   
       setItems((prevItems) =>
@@ -82,6 +105,7 @@ const MasterAdditems = () => {
       console.error("Error updating item:", error);
     }
   };
+  
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
