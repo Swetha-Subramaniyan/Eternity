@@ -51,11 +51,6 @@
     margin: 0; 
   }
   
-  .tablehead th{
-    background-color: rgb(11, 11, 37);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    width: fit-content;
-  }
 
   .billNo{
     margin-top: 1rem;
@@ -66,7 +61,7 @@
   }
 
   .tablecard{
-    width: 25rem;
+    width: 26rem;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 
@@ -106,7 +101,8 @@
     color: rgb(234, 35, 35);
     font-weight: bold;
     font-size: 1.3rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+ 
     
 } 
 
@@ -125,4 +121,27 @@
 
 .tablehead b{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+.table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.table th {
+  background-color:#38383e;
+  color: white;
+  font-weight: bold;
+  padding: 11px;
+  border: 1px solid #ccc;
+  text-align: center;
 }

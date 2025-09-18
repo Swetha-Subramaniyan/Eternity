@@ -13,6 +13,9 @@ import {
 import { Edit, Delete, Search } from "@mui/icons-material";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import MasterNavbar from "./MasterNavbar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function MasterCustomer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,84 +60,126 @@ function MasterCustomer() {
     fetchCustomers();
   }, []);
 
+
+
+
   const handleSave = async () => {
     const nameRegex = /^[A-Za-z\s]+$/;
     const phoneRegex = /^[0-9]{7,15}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
     const trimmedName = customerName.trim();
+    const trimmedPhone = phoneNumber.trim();
+    const trimmedEmail = email.trim();
   
+    // Validate name
     if (!trimmedName) {
-      alert("Customer name is required.");
+      toast.error("Customer name is required");
       return;
     }
     if (!nameRegex.test(trimmedName)) {
-      alert("Invalid name. Only letters and spaces are allowed for NAME.");
+      toast.error("Invalid name. Only letters and spaces allowed");
       return;
     }
   
-  
-    const isDuplicate = customers.some((cust, idx) => {
-      return (
-        cust.name.toLowerCase() === trimmedName.toLowerCase() &&
-        idx !== editIndex
-      );
-    });
-  
-    if (isDuplicate) {
-      alert("Customer name already exists. Please use a different name.");
+    // Validate phone
+    if (!trimmedPhone) {
+      toast.error("Phone number is required");
+      return;
+    }
+    if (!phoneRegex.test(trimmedPhone)) {
+      toast.error("Invalid phone number. Only digits allowed (7 to 15 numbers)");
       return;
     }
   
-    if (!phoneNumber.trim()) {
-      alert("Phone number is required.");
+    // Validate email
+    if (trimmedEmail && !emailRegex.test(trimmedEmail)) {
+      toast.error("Invalid email format");
       return;
     }
-    if (!phoneRegex.test(phoneNumber.trim())) {
-      alert("Invalid phone number. Only digits allowed (7 to 15 numbers).");
+  
+    // Duplicate checks
+    const isDuplicateName = customers.some(
+      (cust, idx) =>
+        cust.name.toLowerCase() === trimmedName.toLowerCase() && idx !== editIndex
+    );
+    if (isDuplicateName) {
+      toast.error("Customer name already exists");
       return;
     }
-
-    if (!address.trim()) {
-      alert("Address is required.");
+  
+    const isDuplicatePhone = customers.some(
+      (cust, idx) =>
+        cust.phoneNumber === trimmedPhone && idx !== editIndex
+    );
+    if (isDuplicatePhone) {
+      toast.error("Phone number already exists");
       return;
     }
-
-    if (email.trim() && !emailRegex.test(email.trim())) {
-      alert("Invalid email format.");
+  
+    const isDuplicateEmail = trimmedEmail
+      ? customers.some(
+          (cust, idx) => cust.email === trimmedEmail && idx !== editIndex
+        )
+      : false;
+    if (isDuplicateEmail) {
+      toast.error("Email already exists");
       return;
     }
-
+  
+    // Save or update
     const customerData = {
-      name: customerName.trim(),
-      phoneNumber: phoneNumber.trim(),
+      name: trimmedName,
+      phoneNumber: trimmedPhone,
       address: address.trim(),
-      email: email.trim(),
+      email: trimmedEmail,
     };
-
+  
     try {
       if (editIndex !== null) {
         const id = customers[editIndex].id;
-        const response = await axios.put( `${BACKEND_SERVER_URL}/api/customers/${id}`,customerData);
+        const response = await axios.put(
+          `${BACKEND_SERVER_URL}/api/customers/${id}`,
+          customerData
+        );
         const updated = [...customers];
         updated[editIndex] = response.data;
         setCustomers(updated);
+        toast.success("Customer updated successfully");
       } else {
-        const response = await axios.post( `${BACKEND_SERVER_URL}/api/customers`,customerData );
+        const response = await axios.post(
+          `${BACKEND_SERVER_URL}/api/customers`,
+          customerData
+        );
         setCustomers((prev) => [...prev, response.data]);
+        toast.success("Customer added successfully");
       }
       closeModal();
     } catch (error) {
-      console.error(
-        "Error saving customer:",
-        error.response?.data || error.message
-      );
-      alert(
-        "Error: " + (error.response?.data?.error || "Something went wrong")
-      );
+      console.error("Error saving customer:", error.response?.data || error.message);
+      toast.error("Error saving customer");
     }
   };
-
+  
+  const handleDelete = async (index) => {
+    const customer = customers[index];
+    const confirmed = window.confirm(
+      `Are you sure you want to delete "${customer.name}"?`
+    );
+    if (!confirmed) return;
+  
+    try {
+      await axios.delete(`${BACKEND_SERVER_URL}/api/customers/${customer.id}`);
+      const updatedCustomers = [...customers];
+      updatedCustomers.splice(index, 1);
+      setCustomers(updatedCustomers);
+      toast.success("Customer deleted successfully");
+    } catch (error) {
+      console.error("Error deleting customer:", error.response?.data || error.message);
+      toast.error("Error deleting customer");
+    }
+  };
+  
   const handleEdit = (index) => {
     const customer = filteredCustomers[index];
     const originalIndex = customers.findIndex(
@@ -146,27 +191,6 @@ function MasterCustomer() {
     setEmail(customer.email || "");
     setEditIndex(originalIndex);
     openModal();
-  };
-  const handleDelete = async (index) => {
-    const customer = customers[index];
-    const confirmed = window.confirm(
-      `Are you sure you want to delete "${customer.name}"?`
-    );
-    if (!confirmed) return;
-    try {
-      await axios.delete(`${BACKEND_SERVER_URL}/api/customers/${customer.id}`);
-      const updatedCustomers = [...customers];
-      updatedCustomers.splice(index, 1);
-      setCustomers(updatedCustomers);
-    } catch (error) {
-      console.error(
-        "Error deleting customer:",
-        error.response?.data || error.message
-      );
-      alert(
-        "Error: " + (error.response?.data?.error || "Something went wrong")
-      );
-    }
   };
 
   const filteredCustomers = customers.filter((customer) =>
@@ -185,6 +209,7 @@ function MasterCustomer() {
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
+              marginLeft:'1rem'
             }}
             variant="contained"
             onClick={openModal}
@@ -197,7 +222,7 @@ function MasterCustomer() {
             size="small"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            sx={{ marginLeft: "50rem" }}
+            sx={{ marginLeft: "49rem" }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -308,7 +333,7 @@ function MasterCustomer() {
           </DialogActions>
         </Dialog>
 
-        <div className={styles.itemList}>
+        <div> 
         <table className={styles.purchaseTable}>
             <thead>
               <tr>
@@ -377,6 +402,11 @@ function MasterCustomer() {
           </table>
         </div>
       </div>
+
+      <ToastContainer position="top-right" autoClose={3000} />
+
+
+
     </>
   );
 }

@@ -54,13 +54,16 @@ function MasterSetting() {
     fetchCustomers();
   }, []);
 
+
   const handleSave = async () => {
     const nameRegex = /^[A-Za-z\s]+$/;
     const phoneRegex = /^[0-9]{7,15}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+  
     const trimmedName = customerName.trim();
-
+    const trimmedPhone = phoneNumber.trim();
+    const trimmedEmail = email.trim();
+  
     if (!trimmedName) {
       toast.error("Setting member name is required");
       return;
@@ -69,44 +72,62 @@ function MasterSetting() {
       toast.error("Invalid name. Only letters and spaces allowed");
       return;
     }
-
-    const isDuplicate = customers.some((cust, idx) => {
-      return (
-        cust.name.toLowerCase() === trimmedName.toLowerCase() &&
-        idx !== editIndex
-      );
+  
+    // Duplicate check for name
+    const isNameDuplicate = customers.some((cust, idx) => {
+      return cust.name.toLowerCase() === trimmedName.toLowerCase() && idx !== editIndex;
     });
-    if (isDuplicate) {
+    if (isNameDuplicate) {
       toast.error("Setting member name already exists");
       return;
     }
-
-    if (!phoneNumber.trim()) {
+  
+    if (!trimmedPhone) {
       toast.error("Phone number is required");
       return;
     }
-    if (!phoneRegex.test(phoneNumber.trim())) {
+    if (!phoneRegex.test(trimmedPhone)) {
       toast.error("Invalid phone number");
       return;
     }
-
-    if (!address.trim()) {
-      toast.error("Address is required");
+  
+    // Duplicate check for phone
+    const isPhoneDuplicate = customers.some((cust, idx) => {
+      return cust.phoneNumber === trimmedPhone && idx !== editIndex;
+    });
+    if (isPhoneDuplicate) {
+      toast.error("Phone number already exists");
       return;
     }
-
-    if (email.trim() && !emailRegex.test(email.trim())) {
+  
+    // if (!address.trim()) {
+    //   toast.error("Address is required");
+    //   return;
+    // }
+  
+    if (trimmedEmail && !emailRegex.test(trimmedEmail)) {
       toast.error("Invalid email format");
       return;
     }
-
+  
+    // Duplicate check for email (if not empty)
+    if (trimmedEmail) {
+      const isEmailDuplicate = customers.some((cust, idx) => {
+        return cust.email?.toLowerCase() === trimmedEmail.toLowerCase() && idx !== editIndex;
+      });
+      if (isEmailDuplicate) {
+        toast.error("Email already exists");
+        return;
+      }
+    }
+  
     const customerData = {
       name: trimmedName,
-      phoneNumber: phoneNumber.trim(),
+      phoneNumber: trimmedPhone,
       address: address.trim(),
-      email: email.trim(),
+      email: trimmedEmail,
     };
-
+  
     try {
       if (editIndex !== null) {
         const id = customers[editIndex].id;
@@ -135,6 +156,7 @@ function MasterSetting() {
       toast.error("Failed to save setting member");
     }
   };
+  
 
   const handleEdit = (index) => {
     const customer = filteredCustomers[index];
@@ -185,6 +207,7 @@ function MasterSetting() {
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
+              marginLeft:'1rem'
             }}
             variant="contained"
             onClick={openModal}
@@ -195,7 +218,7 @@ function MasterSetting() {
             placeholder="Search by Name"
             variant="outlined"
             size="small"
-            sx={{ marginLeft: "47rem" }}
+            sx={{ marginLeft: "46rem" }}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{

@@ -140,59 +140,62 @@ const MasterAdditems = () => {
           <button onClick={handleAddItem}>Add Item</button>
         </div>
 
-        <div className={styles.itemlist}>
-          <h4 style={{ textAlign: "center" }}>Added Items</h4>
-          {items.length > 0 ? (
-            <table>
-              <thead>
-                <tr>
-                  <th>SI.No</th>
-                  <th>Item Name</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((item, index) => (
-                  <tr key={item.id}>
-                    <td>{index + 1}</td>
-                    <td>
-                      {editItemId === item.id ? (
-                        <input
-                          type="text"
-                          value={editItemName}
-                          onChange={(e) => setEditItemName(e.target.value)}
-                        />
-                      ) : (
-                        item.name
-                      )}
-                    </td>
-                    <td style={{ width: "6rem" }}>
-                      {editItemId === item.id ? (
-                        <>
-                          <button onClick={() => handleSaveEdit(item.id)}>
-                            Save
-                          </button>
-                          <button onClick={handleCancelEdit}>Cancel</button>
-                        </>
-                      ) : (
-                        <> 
-                        <Edit onClick={() => handleEditClick(item)} />  
-                        <Delete 
-                        color='error'
-                        onClick={() => handleDelete(item.id)}
-                        style={{ cursor: "pointer", marginLeft:'1rem' }} 
-                         /> 
-                         </>                    
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p>No items added yet.</p>
-          )}
-        </div>
+<div className={styles.itemlist}>
+  <h4 style={{ textAlign: "center" }}>Added Items</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>SI.No</th>
+        <th>Item Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {items.length > 0 ? (
+        items.map((item, index) => (
+          <tr key={item.id}>
+            <td>{index + 1}</td>
+            <td>
+              {editItemId === item.id ? (
+                <input
+                  type="text"
+                  value={editItemName}
+                  onChange={(e) => setEditItemName(e.target.value)}
+                />
+              ) : (
+                item.name
+              )}
+            </td>
+            <td style={{ width: "6rem" }}>
+              {editItemId === item.id ? (
+                <>
+                  <button onClick={() => handleSaveEdit(item.id)}>Save</button>
+                  <button onClick={handleCancelEdit}>Cancel</button>
+                </>
+              ) : (
+                <>
+                  <Edit onClick={() => handleEditClick(item)} />
+                  <Delete
+                    color="error"
+                    onClick={() => handleDelete(item.id)}
+                    style={{ cursor: "pointer", marginLeft: "1rem" }}
+                  />
+                </>
+              )}
+            </td>
+          </tr>
+        ))
+      ) : (
+        <tr>
+          <td colSpan={3} style={{ textAlign: "center" }}>
+            No items added yet.
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</div>
+
       </div>
       <ToastContainer />
     </>

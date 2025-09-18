@@ -2,8 +2,8 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.jpg';
 import LogoutIcon from '@mui/icons-material/Logout';
-import './MasterNavbar.css';
 import HomeIcon from '@mui/icons-material/Home';
+import styles from './MasterNavbar.module.css';
 
 const MasterNavbar = () => {
   const navigate = useNavigate();
@@ -16,51 +16,106 @@ const MasterNavbar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className="navbarr">
-      <div className="navbar-leftt">
-        <img src={logo} alt="Logo" className="navbar-logoo" />
+    <div className={styles.navbarr}>
+      <div className={styles['navbar-leftt']}>
+        <img src={logo} alt="Logo" className={styles['navbar-logoo']} />
       </div>
 
-      <ul className="nav-listt"> 
-        <li className='nav-itemm'>
-          <a href="/customer" className={`nav-link ${isActive('/customer') ? 'active' : ''}`}><HomeIcon/> </a>
+      <ul className={styles['nav-listt']}>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/customer"
+            className={`${styles['nav-link']} ${isActive('/customer') ? styles.active : ''}`}
+          >
+            <HomeIcon />
+          </a>
         </li>
-        <li className='nav-itemm'>
-          <a href="/mastercustomer" className={`nav-link ${isActive('/mastercustomer') ? 'active' : ''}`}>Customer</a>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/mastercustomer"
+            className={`${styles['nav-link']} ${isActive('/mastercustomer') ? styles.active : ''}`}
+          >
+            Customer
+          </a>
         </li>
-        <li className='nav-itemm'>
-          <a href="/mastercasting" className={`nav-link ${isActive('/mastercasting') ? 'active' : ''}`}>Casting/Melting</a>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/mastercasting"
+            className={`${styles['nav-link']} ${isActive('/mastercasting') ? styles.active : ''}`}
+          >
+            Casting/Melting
+          </a>
         </li>
-        <li className='nav-itemm'>
-          <a href="/masterfiling" className={`nav-link ${isActive('/masterfiling') ? 'active' : ''}`}>Filing</a>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/masterfiling"
+            className={`${styles['nav-link']} ${isActive('/masterfiling') ? styles.active : ''}`}
+          >
+            Filing
+          </a>
         </li>
-        <li className='nav-itemm'>
-          <a href="/mastersetting" className={`nav-link ${isActive('/mastersetting') ? 'active' : ''}`}>Setting</a>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/mastersetting"
+            className={`${styles['nav-link']} ${isActive('/mastersetting') ? styles.active : ''}`}
+          >
+            Setting
+          </a>
         </li>
-        <li className='nav-itemm'>
-          <a href="/masterbuffing" className={`nav-link ${isActive('/masterbuffing') ? 'active' : ''}`}>Buffing</a>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/masterbuffing"
+            className={`${styles['nav-link']} ${isActive('/masterbuffing') ? styles.active : ''}`}
+          >
+            Buffing
+          </a>
         </li>
-        <li className='nav-itemm'>
-          <a href="/masteritems" className={`nav-link ${isActive('/masteritems') ? 'active' : ''}`}>Items</a>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/masteritems"
+            className={`${styles['nav-link']} ${isActive('/masteritems') ? styles.active : ''}`}
+          >
+            Items
+          </a>
         </li>
-        <li className='nav-itemm'>
-          <a href="/mastertouch" className={`nav-link ${isActive('/mastertouch') ? 'active' : ''}`}>Touch</a>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/mastertouch"
+            className={`${styles['nav-link']} ${isActive('/mastertouch') ? styles.active : ''}`}
+          >
+            Touch
+          </a>
         </li>
-        <li className='nav-itemm'> 
-          <a href='/mastersupplier' className={`nav-link ${isActive('/mastersupplier') ? 'active' : ''}`}> Supplier </a>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/mastersupplier"
+            className={`${styles['nav-link']} ${isActive('/mastersupplier') ? styles.active : ''}`}
+          >
+            Supplier
+          </a>
         </li>
-        <li className='nav-itemm'>
-          <a href="/masterpurchasestock" className={`nav-link ${isActive('/masterpurchasestock') ? 'active' : ''}`}>Purchase Stock</a>
-        </li>    
-        <li className='nav-itemm'> 
-          <a href='/qcstock' className={`nav-link ${isActive('/qcstock') ? 'active' : ''}`}> QC Stock </a>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/masterpurchasestock"
+            className={`${styles['nav-link']} ${isActive('/masterpurchasestock') ? styles.active : ''}`}
+          >
+            Purchase Stock
+          </a>
+        </li>
+        <li className={styles['nav-itemm']}>
+          <a
+            href="/qcstock"
+            className={`${styles['nav-link']} ${isActive('/qcstock') ? styles.active : ''}`}
+          >
+            QC Stock
+          </a>
         </li>
       </ul>
 
-      <div className="navbar-rightt">     
+      <div className={styles['navbar-rightt']}>
         <button
           onClick={handleLogout}
-          className="logout-button"
+          className={styles['logout-button']}
           title="Logout"
         >
           <LogoutIcon />

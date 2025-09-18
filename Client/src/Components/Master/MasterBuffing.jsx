@@ -52,39 +52,60 @@ function MasterBuffing() {
     fetchCustomers();
   }, []);
 
+
   const validateForm = () => {
-    if (!customerName.trim()) {
+    const trimmedName = customerName.trim();
+    const trimmedPhone = phoneNumber.trim();
+    const trimmedEmail = email.trim();
+  
+    if (!trimmedName) {
       toast.error("Name is required", { position: "top-right" });
       return false;
     }
-    if (!phoneNumber.trim() || !/^[0-9]{10}$/.test(phoneNumber)) {
-      toast.error("Enter a valid 10-digit phone number", {
-        position: "top-right",
-      });
+    if (!trimmedPhone || !/^[0-9]{10}$/.test(trimmedPhone)) {
+      toast.error("Enter a valid 10-digit phone number", { position: "top-right" });
       return false;
     }
-    if (email && !/\S+@\S+\.\S+/.test(email)) {
+    if (trimmedEmail && !/\S+@\S+\.\S+/.test(trimmedEmail)) {
       toast.error("Enter a valid email address", { position: "top-right" });
       return false;
     }
-    if (!address.trim()) {
-      toast.error("Address is required", { position: "top-right" });
-      return false;
-    }
-
+    // if (!address.trim()) {
+    //   toast.error("Address is required", { position: "top-right" });
+    //   return false;
+    // }
+  
     // Duplicate name check
-    const duplicate = customers.find(
+    const duplicateName = customers.find(
       (c, idx) =>
-        c.name.toLowerCase() === customerName.toLowerCase() &&
+        c.name.toLowerCase() === trimmedName.toLowerCase() &&
         idx !== editIndex
     );
-    if (duplicate) {
-      toast.error("Buffing member with this name already exists", {
-        position: "top-right",
-      });
+    if (duplicateName) {
+      toast.error("Buffing member with this name already exists", { position: "top-right" });
       return false;
     }
-
+  
+    // Duplicate phone check
+    const duplicatePhone = customers.find(
+      (c, idx) => c.phoneNumber === trimmedPhone && idx !== editIndex
+    );
+    if (duplicatePhone) {
+      toast.error("Phone number already exists", { position: "top-right" });
+      return false;
+    }
+  
+    // Duplicate email check (if email is not empty)
+    if (trimmedEmail) {
+      const duplicateEmail = customers.find(
+        (c, idx) => c.email?.toLowerCase() === trimmedEmail.toLowerCase() && idx !== editIndex
+      );
+      if (duplicateEmail) {
+        toast.error("Email already exists", { position: "top-right" });
+        return false;
+      }
+    }
+  
     return true;
   };
 
@@ -175,6 +196,7 @@ function MasterBuffing() {
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
+              marginLeft:'1rem'
             }}
             variant="contained"
             onClick={openModal}
@@ -185,7 +207,7 @@ function MasterBuffing() {
             placeholder="Search by Name"
             variant="outlined"
             size="small"
-            sx={{ marginLeft: "47rem" }}
+            sx={{ marginLeft: "46rem" }}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{

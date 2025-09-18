@@ -564,6 +564,7 @@ const FilingLotDetails = () => {
             Add Filing
           </Button>
         </div>
+        <div className={styles.tablecontainer} > 
         <table className={styles.table} style={{marginTop:'2rem'}}>
           <thead>
             <tr>
@@ -587,7 +588,7 @@ const FilingLotDetails = () => {
           </thead>
           <tbody>
             {filteredEntries.map((entry, index) => (
-              <React.Fragment key={entry.id}>
+              <React.Fragment key={entry.id} >
                 <tr className={styles.groupHeader}>
                   <td rowSpan={entry.castingItems.length}>{index + 1}</td>
                   <td rowSpan={entry.castingItems.length}>
@@ -727,6 +728,7 @@ const FilingLotDetails = () => {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
 
       {/* Monthly Wastage Box  */}
@@ -1007,12 +1009,12 @@ const FilingLotDetails = () => {
                   </tr>
                 ))}
             </tbody>
-            <tfoot>
+            <tfoot style={{backgroundColor:'#f8f9fa'}}>
               <tr>
-                <td colSpan={2}>
+                <td colSpan={2}  >
                   <strong>Total</strong>
                 </td>
-                <td>
+                <td >
                   <strong>
                     {Number(
                       viewedItems.reduce(
@@ -1030,10 +1032,11 @@ const FilingLotDetails = () => {
             label="After Weight"
             value={afterWeight}
             onChange={(e) => setAfterWeight(e.target.value)}
-            fullWidth
+            // fullWidth
+            sx={{width:'12rem'}}
             margin="normal"
           />
-
+<br/>
           <Button
             variant="outlined"
             sx={{ mt: 2 , backgroundColor:' #f8f9fa', fontWeight:'530' }}
@@ -1213,7 +1216,7 @@ const FilingLotDetails = () => {
           <br />
 
           <Button variant="outlined" onClick={handleAddScrapRow} 
-            sx={{ mt: 0 , backgroundColor:' #f8f9fa', fontWeight:'530' }}   >
+            sx={{ mt: 1 , backgroundColor:' #f8f9fa', fontWeight:'530' }}   >
            
             Add Scrap Items
           </Button>
@@ -1337,8 +1340,7 @@ const FilingLotDetails = () => {
             onClick={handleSaveFilingData}
             sx={{ ml: 30, mt: 0 }}
           >
-            {" "}
-            Save{" "}
+            Save
           </Button>
           <Button variant="outlined" onClick={() => setViewDialogOpen(false)}>Close</Button>
         </DialogActions>

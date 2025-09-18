@@ -4,29 +4,6 @@
     margin: 40px auto;
   }
   
-  .customerTable {
-    margin-top: 40px;
-    color: white;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .customerTable td {
-    border: 1px solid #e5dfdf;
-    padding: 8px;
-    text-align: left;
-    font-family:sans-serif;
-    background-color:white;
-    color: black;
-
-  }
-  
-  .customerTable th {
-    background-color:#38383e;
-    color: white;
-    font-weight: 500;
-  }
-  
   .styledButton {
     margin: 8px;
     padding: 8px 24px;
@@ -72,6 +49,22 @@
     background-color: #fffbe2 !important;
   }
 
+  
+  .purchaseTable {
+    margin-top: 35px;
+    width: 98%;
+    border-collapse: collapse;
+    margin-left: 1rem;
+  }
+  
+  .purchaseTable th,
+  .purchaseTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+   
+  }
+  
   .purchaseTable th {
     background-color:#38383e;
     color: white;

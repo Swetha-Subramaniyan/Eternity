@@ -155,7 +155,8 @@ const BuffingReports = () => {
         </div>
       </div>
 
-      <table className={styles.table} style={{ width: "100%", marginTop: "1rem" }}>
+
+      <table className={styles.table}>
         <thead>
           <tr>
             <th rowSpan={2}>S.No</th>
@@ -236,6 +237,7 @@ const BuffingReports = () => {
           )}
         </tbody>
       </table>
+
     </>
   );
 };

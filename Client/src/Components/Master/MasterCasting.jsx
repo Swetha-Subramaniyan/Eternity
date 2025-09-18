@@ -54,59 +54,86 @@ function MasterCasting() {
     fetchCustomers();
   }, []);
 
+
   const handleSave = async () => {
     const nameRegex = /^[A-Za-z\s]+$/;
     const phoneRegex = /^[0-9]{7,15}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+  
     const trimmedName = customerName.trim();
-
+    const trimmedPhone = phoneNumber.trim();
+    const trimmedEmail = email.trim();
+    const trimmedAddress = address.trim();
+  
+    // Name validation
     if (!trimmedName) {
-      toast.error("Casting member name is required ");
+      toast.error("Casting member name is required");
       return;
     }
     if (!nameRegex.test(trimmedName)) {
-      toast.error("Invalid name. Only letters and spaces are allowed ");
+      toast.error("Invalid name. Only letters and spaces are allowed");
       return;
     }
-
-    const isDuplicate = customers.some((cust, idx) => {
-      return (
+  
+    // Phone validation
+    if (!trimmedPhone) {
+      toast.error("Phone number is required");
+      return;
+    }
+    if (!phoneRegex.test(trimmedPhone)) {
+      toast.error("Invalid phone number. Only digits allowed (7-15 numbers)");
+      return;
+    }
+  
+    // Email validation
+    if (trimmedEmail && !emailRegex.test(trimmedEmail)) {
+      toast.error("Invalid email format");
+      return;
+    }
+  
+    // Address validation
+    // if (!trimmedAddress) {
+    //   toast.error("Address is required");
+    //   return;
+    // }
+  
+    // Duplicate checks
+    const isDuplicateName = customers.some(
+      (cust, idx) =>
         cust.name.toLowerCase() === trimmedName.toLowerCase() &&
         idx !== editIndex
-      );
-    });
-    if (isDuplicate) {
-      toast.error("Casting member name already exists ");
+    );
+    if (isDuplicateName) {
+      toast.error("Casting member name already exists");
       return;
     }
-
-    if (!phoneNumber.trim()) {
-      toast.error("Phone number is required ");
+  
+    const isDuplicatePhone = customers.some(
+      (cust, idx) =>
+        cust.phoneNumber === trimmedPhone && idx !== editIndex
+    );
+    if (isDuplicatePhone) {
+      toast.error("Phone number already exists");
       return;
     }
-    if (!phoneRegex.test(phoneNumber.trim())) {
-      toast.error("Invalid phone number ");
+  
+    const isDuplicateEmail = trimmedEmail
+      ? customers.some(
+          (cust, idx) => cust.email === trimmedEmail && idx !== editIndex
+        )
+      : false;
+    if (isDuplicateEmail) {
+      toast.error("Email already exists");
       return;
     }
-
-    if (!address.trim()) {
-      toast.error("Address is required ");
-      return;
-    }
-
-    if (email.trim() && !emailRegex.test(email.trim())) {
-      toast.error("Invalid email format ");
-      return;
-    }
-
+  
     const customerData = {
       name: trimmedName,
-      phoneNumber: phoneNumber.trim(),
-      address: address.trim(),
-      email: email.trim(),
+      phoneNumber: trimmedPhone,
+      address: trimmedAddress,
+      email: trimmedEmail,
     };
-
+  
     try {
       if (editIndex !== null) {
         const id = customers[editIndex].id;
@@ -117,22 +144,22 @@ function MasterCasting() {
         const updated = [...customers];
         updated[editIndex] = response.data;
         setCustomers(updated);
-        toast.success("Casting member updated successfully ");
+        toast.success("Casting member updated successfully");
       } else {
         const response = await axios.post(
           `${BACKEND_SERVER_URL}/api/casting`,
           customerData
         );
         setCustomers((prev) => [...prev, response.data]);
-        toast.success("Casting member saved successfully ");
+        toast.success("Casting member saved successfully");
       }
       closeModal();
     } catch (error) {
-      console.error("Error saving customer:", error.response?.data || error.message);
-      toast.error("Failed to save casting member ");
+      console.error("Error saving casting member:", error.response?.data || error.message);
+      toast.error("Failed to save casting member");
     }
   };
-
+  
   const handleEdit = (index) => {
     const customer = filteredCustomers[index];
     const originalIndex = customers.findIndex(
@@ -180,6 +207,7 @@ function MasterCasting() {
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
+              marginLeft:'1.2rem'
             }}
             variant="contained"
             onClick={openModal}
@@ -193,7 +221,7 @@ function MasterCasting() {
             size="small"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            sx={{ marginLeft: "46rem" }}
+            sx={{ marginLeft: "45rem" }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -363,7 +391,7 @@ function MasterCasting() {
 
       <ToastContainer 
         position="top-right"
-        autoClose={3000}   // auto close after 3s
+        autoClose={3000}   
         hideProgressBar={false}
         newestOnTop={true}
         closeOnClick
