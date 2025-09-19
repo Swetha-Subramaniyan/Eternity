@@ -214,10 +214,10 @@ const CustomerTranscation = () => {
       <Navbar />
       <div className={styles.customerTransactions}>
         <ToastContainer position="top-right" autoClose={3000} />
-        <h3>
+        <h4>
           Customer Transactions{" "}
           {customerName && `for ${decodeURIComponent(customerName)}`}
-        </h3><hr/>
+        </h4><hr/>
        
         {error && <div className={styles.errorMessage}>{error}</div>}
 
@@ -243,7 +243,7 @@ const CustomerTranscation = () => {
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
             InputLabelProps={{ shrink: true }}
-            sx={{ ml: "21rem" }}
+            sx={{ ml: "11.5rem" }}
           />
           <TextField
             label="To Date"
@@ -399,7 +399,7 @@ const CustomerTranscation = () => {
   {filteredTransactions.length > 0 ? (
     filteredTransactions.map((transaction, index) => (
       <tr
-        key={index}
+        key={index} 
         className={transaction.type === "Gold" ? "gold-row" : "cash-row"}
       >
         <td>{index + 1}</td>   
@@ -431,8 +431,6 @@ const CustomerTranscation = () => {
     </tr>
   )}
 </tbody>
-
-
           <tfoot> 
             <tr><td colSpan={6}><b>  Total Purity ( Both Cash and Gold )</b> </td> 
             <td> <b> {totals.goldTotalPurity.toFixed(3)} g </b></td>

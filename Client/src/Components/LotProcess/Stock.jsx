@@ -230,7 +230,7 @@ const Stock = () => {
                           : "Customer Transaction";
 
                 return (
-                  <tr key={item.id}>
+                  <tr key={item.id} className={styles.trEven}  >
                     <td>{index + 1}</td>
                     <td>{dateString}</td>
                     <td>{timeString}</td>

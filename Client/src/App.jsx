@@ -124,7 +124,6 @@ import { CircularProgress, Box } from "@mui/material";
 
 // Lazy load components
 
-
 const Login = lazy(() => import("./Components/Login/Login"));
 const Navbar = lazy(() => import("./Components/Navbar/Navbar"));
 const Customer = lazy(() => import("./Components/Customer/Customer"));
@@ -164,7 +163,7 @@ const CastingEntry = lazy(() => import("./Components/LotProcess/CastingProcess/C
 const QCStock = lazy(() => import("./Components/Master/QCStock"));
 const CustomerReport = lazy(() => import("./Components/Report/CustomerReport"));
 const TouchWisePurchaseReport = lazy(() => import("./Components/Report/TouchWisePurchaseReports"));
-
+const BillingReport = lazy (()=> import("./Components/Report/BillingReport"))
 
 const Loader = () => (
   <Box
@@ -225,6 +224,7 @@ const App = () => {
           <Route path="/receiptreport" element={<ReceiptReport />} />
           <Route path="/workerreport" element={<WorkerReport />} />
           <Route path="/purchasereport" element={<TouchWisePurchaseReport />} />
+          <Route path="/billingreport" element={<BillingReport/>}/>
         </Routes>
       </Suspense>
     </BrowserRouter>

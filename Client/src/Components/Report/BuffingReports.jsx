@@ -102,38 +102,40 @@ const BuffingReports = () => {
       <Navbar />
       <h5 className={styles.heading}>Buffing Report Details</h5>
 
-      <Stack direction="row" spacing={2} alignItems="center" mb={2} ml={6} mt={3}>
-        <TextField
-          type="date"
-          label="From Date"
-          value={fromDate}
-          onChange={(e) => setFromDate(e.target.value)}
-          InputLabelProps={{ shrink: true }}
-        />
-        <TextField
-          type="date"
-          label="To Date"
-          value={toDate}
-          onChange={(e) => setToDate(e.target.value)}
-          InputLabelProps={{ shrink: true }}
-        />
-        <TextField
+<div className={styles.dateFilter}>
+          <TextField
+            label="From Date"
+            type="date"
+            size="small"
+            value={fromDate}
+            onChange={(e) => setFromDate(e.target.value)}
+            InputLabelProps={{ shrink: true }}
+          />
+          <TextField
+            label="To Date"
+            type="date"
+            size="small"
+            value={toDate}
+            onChange={(e) => setToDate(e.target.value)}
+            InputLabelProps={{ shrink: true }}
+          />
+            <TextField
           select
           label="Person"
           value={selectedPerson}
           onChange={(e) => setSelectedPerson(e.target.value)}
           SelectProps={{ native: true }}
           InputLabelProps={{ shrink: true }}
-          style={{ width: 180 }}
+          size="small"
         >
           <option value="">All</option>
           {persons.map((p, idx) => (
             <option key={idx} value={p}>{p}</option>
           ))}
         </TextField>
-        <Button variant="outlined" onClick={handleFilter}>Filter</Button>
+             <Button variant="outlined" onClick={handleFilter}>Filter</Button>
         <Button variant="outlined" onClick={reset}>Reset</Button>
-      </Stack>
+        </div>
       
       <div className={styles.summarySection}>
         <h4>Summary</h4>
