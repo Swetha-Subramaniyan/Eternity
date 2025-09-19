@@ -191,7 +191,7 @@ const CastingEntryViewModal = ({
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/additem");
+        const response = await axios.get(`${BACKEND_SERVER_URL}/api/additem`);
         setItemOptions(response.data);
         console.log("Available Items:", response.data);
       } catch (error) {

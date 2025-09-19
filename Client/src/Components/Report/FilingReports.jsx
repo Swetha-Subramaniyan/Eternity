@@ -3,7 +3,7 @@ import { Button, TextField, Stack } from "@mui/material";
 import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import Navbar from "../Navbar/Navbar";
-import styles from "../LotProcess/FilingProcess/FilingLotDetails.module.css";
+import styles from "./FilingReports.module.css";
 
 const FilingReports = () => {
   const [entries, setEntries] = useState([]);
@@ -139,10 +139,10 @@ const FilingReports = () => {
           ))}
         </TextField>
 
-        <Button variant="outlined" onClick={handleDateFilter}>
+        <Button variant="outlined" onClick={handleDateFilter} >
           Filter
         </Button>
-        <Button variant="outlined" onClick={handleReset}>
+        <Button variant="outlined" onClick={handleReset} >
           Reset
         </Button>
       </Stack>

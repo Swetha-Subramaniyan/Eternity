@@ -152,11 +152,11 @@ function Navbar() {
                 Stock Report
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link className={styles.dropdownItem} to="/receiptreport">
                 Receipt Report
               </Link>
-            </li>
+            </li>  */}
           
           </ul>
         </li>
