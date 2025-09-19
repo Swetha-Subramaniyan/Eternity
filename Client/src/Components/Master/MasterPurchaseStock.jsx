@@ -451,7 +451,7 @@ const MasterPurchaseStock = () => {
             : "—";
 
           return (
-            <tr key={p.id}>
+            <tr key={p.id} className={idx % 2 === 0 ? styles.trEven : ""} >
               <td>{idx + 1}</td>
               <td>{formattedUpdatedDate}</td>
               <td>{formattedUpdatedTime}</td>

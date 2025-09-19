@@ -148,7 +148,7 @@ const MasterAddTouch = () => {
             <tbody>
               {touchItems.length > 0 ? (
                 touchItems.map((item, index) => (
-                  <tr key={item.id}>
+                  <tr key={item.id} className={index % 2 === 0 ? styles.trEven : ""}>
                     <td>{index + 1}</td>
                     <td>
                       {editId === item.id ? (

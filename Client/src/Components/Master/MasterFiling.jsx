@@ -359,7 +359,7 @@ function MasterFiling() {
                     : "—";
 
                   return (
-                    <tr key={index}>
+                    <tr key={index} className={index % 2 === 0 ? styles.trEven : ""}>
                       <td>{index + 1}</td>
                       <td>{formattedUpdatedDate}</td>
                       <td>{formattedUpdatedTime}</td>
