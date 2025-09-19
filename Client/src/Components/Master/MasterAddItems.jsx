@@ -153,7 +153,7 @@ const MasterAdditems = () => {
     <tbody>
       {items.length > 0 ? (
         items.map((item, index) => (
-          <tr key={item.id}>
+          <tr key={item.id} className={index % 2 === 0 ? styles.trEven : ""}>
             <td>{index + 1}</td>
             <td>
               {editItemId === item.id ? (

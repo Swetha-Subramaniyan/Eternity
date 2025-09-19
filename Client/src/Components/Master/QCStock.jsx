@@ -361,7 +361,7 @@ const formattedUpdatedTime = updatedDateObj
   : "—";
 
                 return (
-                  <tr key={entry.id}>
+                  <tr key={entry.id} className={index % 2 === 0 ? styles.trEven : ""}>
                     <td>{index + 1}</td>
                     <td>{formattedUpdatedDate}</td>
                     <td>{formattedUpdatedTime}</td>
