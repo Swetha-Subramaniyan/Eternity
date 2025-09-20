@@ -1,27 +1,10 @@
-.heading{
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-  }
 
-  
-  .table thead th {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    background-color:#38383e;
-    color: white;
-    font-weight: 500;
-  }
-  
-
-  .summarySection {
+.summarySection {
     margin: 20px auto;
     padding: 20px;
     background: #f8f9fa; 
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-
   }
   
   .summarySection h4 {
@@ -67,6 +50,12 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   }
   
+  
+  .tableContainer {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
   .table {
     width: 100%;
     border-collapse: collapse; 
@@ -86,23 +75,15 @@
     border: 1px solid #ccc;
     text-align: center;
   }
-
-  .heading{
-    text-align: center;
-    margin-top: 2rem;
-  }
-
+  
   .tablecontainer{
     width: 100%;
     padding: 0rem 2rem 0rem 2rem;
   }
 
-
-  .dateFilter {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-top: 2rem;
-    margin-left: 1rem;
+  .heading{
+    text-align: center;
+    padding: 1.5rem;
   }
-   
+
+  

@@ -27,51 +27,84 @@ const MasterAddTouch = () => {
     }
   };
 
+
   const handleAddTouch = async () => {
     if (!touchValue.trim()) {
-      alert("Please enter a touch value");
+      toast.error("Please enter a touch value", { position: "top-right" });
       return;
     }
-
+  
+    const parsedValue = parseFloat(touchValue);
+  
+    if (isNaN(parsedValue) || parsedValue <= 0) {
+      toast.error("Touch value must be a valid number greater than 0", { position: "top-right" });
+      return;
+    }
+  
+    // 🔹 Prevent duplicate touch values
+    const isDuplicate = touchItems.some(
+      (item) => parseFloat(item.touch) === parsedValue
+    );
+    if (isDuplicate) {
+      toast.error("Touch value already exists!", { position: "top-right" });
+      return;
+    }
+  
     try {
       const response = await axios.post(`${BACKEND_SERVER_URL}/api/addtouch`, {
-        touch: parseFloat(touchValue),
+        touch: parsedValue,
       });
-      setTouchItems(prev => [...prev, response.data]);
+      setTouchItems((prev) => [...prev, response.data]);
       setTouchValue("");
       toast.success("Touch added successfully!", { position: "top-right" });
     } catch (error) {
       console.error("Error adding touch:", error);
-      alert("Failed to add touch");
-    
+      toast.error("Failed to add touch", { position: "top-right" });
     }
   };
-
-  const handleEdit = (item) => {
-    setEditId(item.id);
-    setEditValue(item.touch);
-  };
-
+  
   const handleUpdate = async (id) => {
-    if (!editValue.trim()) {
-      alert("Please enter a valid touch value");
+    if (!editValue.toString().trim()) {
+      toast.error("Please enter a valid touch value", { position: "top-right" });
       return;
     }
-
+  
+    const parsedValue = parseFloat(editValue);
+  
+    if (isNaN(parsedValue) || parsedValue <= 0) {
+      toast.error("Touch value must be a valid number greater than 0", { position: "top-right" });
+      return;
+    }
+  
+    // 🔹 Prevent duplicate touch values (excluding current one)
+    const isDuplicate = touchItems.some(
+      (item) => parseFloat(item.touch) === parsedValue && item.id !== id
+    );
+    if (isDuplicate) {
+      toast.error("Touch value already exists!", { position: "top-right" });
+      return;
+    }
+  
     try {
       const response = await axios.put(`${BACKEND_SERVER_URL}/api/addtouch/${id}`, {
-        touch: parseFloat(editValue),
+        touch: parsedValue,
       });
-      setTouchItems(prev =>
-        prev.map(item => (item.id === id ? response.data : item))
+      setTouchItems((prev) =>
+        prev.map((item) => (item.id === id ? response.data : item))
       );
       setEditId(null);
       setEditValue("");
       toast.success("Touch updated successfully!", { position: "top-right" });
     } catch (error) {
       console.error("Error updating touch:", error);
-      alert("Failed to update touch");
+      toast.error("Failed to update touch", { position: "top-right" });
     }
+  };
+  
+
+  const handleEdit = (item) => {
+    setEditId(item.id);
+    setEditValue(item.touch);
   };
 
   const handleDelete = async (id) => {
@@ -116,7 +149,7 @@ const MasterAddTouch = () => {
             <tbody>
               {touchItems.length > 0 ? (
                 touchItems.map((item, index) => (
-                  <tr key={item.id}>
+                  <tr key={item.id} className={index % 2 === 0 ? styles.trEven : ""}>
                     <td>{index + 1}</td>
                     <td>
                       {editId === item.id ? (

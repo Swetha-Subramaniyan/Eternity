@@ -3,7 +3,9 @@ import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import Navbar from "../Navbar/Navbar";
 import { Button, TextField } from "@mui/material";
-import styles from "../LotProcess/FilingProcess/FilingLotDetails.module.css";
+import styles from "./Stock.module.css";
+
+
 
 const Stock = () => {
   const [stockItems, setStockItems] = useState([]);
@@ -177,16 +179,8 @@ const Stock = () => {
         )}
 
         {filteredItems.length > 0 ? (
-          <table
-            border="1"
-            cellPadding="8"
-            cellSpacing="0"
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-              marginTop: "1rem",
-            }}
-          >
+                    <div className={styles.tablecontainer} > 
+        <table className={styles.table} style={{marginTop:'2rem'}}>
             <thead style={{ backgroundColor: "#38383e", color: "white" }}>
               <tr>
                 <th>S.No</th>
@@ -236,7 +230,7 @@ const Stock = () => {
                           : "Customer Transaction";
 
                 return (
-                  <tr key={item.id}>
+                  <tr key={item.id} className={styles.trEven}  >
                     <td>{index + 1}</td>
                     <td>{dateString}</td>
                     <td>{timeString}</td>
@@ -252,6 +246,7 @@ const Stock = () => {
               })}
             </tbody>
           </table>
+          </div>
         ) : (
           <p style={{ textAlign: "center", color: "gray" }}>
             No matching stock data found.

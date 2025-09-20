@@ -32,6 +32,7 @@ enum STONEOPTION {
 model AddCustomer {
   id           Int                   @id @default(autoincrement())
   createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
   name         String
   phoneNumber  String?
   address      String?
@@ -44,6 +45,7 @@ model AddCustomer {
 model AddCasting {
   id           Int            @id @default(autoincrement())
   createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
   name         String
   phoneNumber  String?
   address      String?
@@ -56,6 +58,7 @@ model AddCasting {
 model AddFiling {
   id              Int               @id @default(autoincrement())
   createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
   name            String
   phoneNumber     String?
   address         String?
@@ -69,6 +72,7 @@ model AddFiling {
 model AddSetting {
   id              Int                @id @default(autoincrement())
   createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
   name            String
   phoneNumber     String?
   address         String?
@@ -82,6 +86,7 @@ model AddSetting {
 model AddBuffing {
   id              Int                @id @default(autoincrement())
   createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
   name            String
   phoneNumber     String?
   address         String?
@@ -95,6 +100,7 @@ model AddBuffing {
 model AddSupplierItem {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   name        String
   email       String?
   phoneNumber String?
@@ -106,6 +112,7 @@ model AddSupplierItem {
 model AddPurchaseStock {
   id         Int             @id @default(autoincrement())
   createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
   supplierId Int
   SupplierId AddSupplierItem @relation(fields: [supplierId], references: [id])
   item       ITEMTYPE
@@ -123,6 +130,7 @@ model AddPurchaseStock {
 model CustomerTransaction {
   id         Int         @id @default(autoincrement())
   createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
   date       DateTime
   value      Float
   type       String
@@ -137,6 +145,7 @@ model CustomerTransaction {
 model AddItem {
   id            Int            @id @default(autoincrement())
   createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   name          String
   casting_items CastingItems[]
   stock         Stock[]
@@ -150,6 +159,7 @@ model AddItem {
 model AddTouch {
   id                   Int                   @id @default(autoincrement())
   createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
   touch                Float
   casting_entry        CastingEntry[]
   casting_items        CastingItems[]
@@ -168,6 +178,7 @@ model AddTouch {
 model QcStock {
   id           Int        @id @default(autoincrement())
   createdAt    DateTime
+  updatedAt    DateTime @updatedAt
   item_id      Int
   itemId       AddItem    @relation(fields: [item_id], references: [id])
   weight       Float

@@ -38,15 +38,25 @@ const MasterAdditems = () => {
     setEditItemName("");
   };
 
+
   const handleAddItem = async () => {
-    if (!itemName) {
+    if (!itemName.trim()) {
       toast.error("Please enter an item name.", { position: "top-right" });
+      return;
+    }
+  
+    // 🔹 Prevent duplicate item name (case-insensitive)
+    const isDuplicate = items.some(
+      (item) => item.name.toLowerCase() === itemName.trim().toLowerCase()
+    );
+    if (isDuplicate) {
+      toast.error("Item name already exists!", { position: "top-right" });
       return;
     }
   
     try {
       const response = await axios.post(`${BACKEND_SERVER_URL}/api/additem`, {
-        name: itemName,
+        name: itemName.trim(),
       });
   
       setItems((prevItems) => [...prevItems, response.data]);
@@ -58,15 +68,28 @@ const MasterAdditems = () => {
     }
   };
   
+
   const handleSaveEdit = async (id) => {
-    if (!editItemName) {
+    if (!editItemName.trim()) {
       toast.error("Please enter item name.", { position: "top-right" });
       return;
     }
   
+    // 🔹 Prevent duplicate name except for current item
+    const isDuplicate = items.some(
+      (item) =>
+        item.name.toLowerCase() === editItemName.trim().toLowerCase() &&
+        item.id !== id
+    );
+    if (isDuplicate) {
+      toast.error("Item name already exists!", { position: "top-right" });
+      return;
+    }
+  
     try {
-      const response = await axios.put(`${BACKEND_SERVER_URL}/api/additem/${id}`,
-        { name: editItemName }
+      const response = await axios.put(
+        `${BACKEND_SERVER_URL}/api/additem/${id}`,
+        { name: editItemName.trim() }
       );
   
       setItems((prevItems) =>
@@ -83,6 +106,7 @@ const MasterAdditems = () => {
       console.error("Error updating item:", error);
     }
   };
+  
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
@@ -117,59 +141,62 @@ const MasterAdditems = () => {
           <button onClick={handleAddItem}>Add Item</button>
         </div>
 
-        <div className={styles.itemlist}>
-          <h4 style={{ textAlign: "center" }}>Added Items</h4>
-          {items.length > 0 ? (
-            <table>
-              <thead>
-                <tr>
-                  <th>SI.No</th>
-                  <th>Item Name</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((item, index) => (
-                  <tr key={item.id}>
-                    <td>{index + 1}</td>
-                    <td>
-                      {editItemId === item.id ? (
-                        <input
-                          type="text"
-                          value={editItemName}
-                          onChange={(e) => setEditItemName(e.target.value)}
-                        />
-                      ) : (
-                        item.name
-                      )}
-                    </td>
-                    <td style={{ width: "6rem" }}>
-                      {editItemId === item.id ? (
-                        <>
-                          <button onClick={() => handleSaveEdit(item.id)}>
-                            Save
-                          </button>
-                          <button onClick={handleCancelEdit}>Cancel</button>
-                        </>
-                      ) : (
-                        <> 
-                        <Edit onClick={() => handleEditClick(item)} />  
-                        <Delete 
-                        color='error'
-                        onClick={() => handleDelete(item.id)}
-                        style={{ cursor: "pointer", marginLeft:'1rem' }} 
-                         /> 
-                         </>                    
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p>No items added yet.</p>
-          )}
-        </div>
+<div className={styles.itemlist}>
+  <h4 style={{ textAlign: "center" }}>Added Items</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>SI.No</th>
+        <th>Item Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {items.length > 0 ? (
+        items.map((item, index) => (
+          <tr key={item.id} className={index % 2 === 0 ? styles.trEven : ""}>
+            <td>{index + 1}</td>
+            <td>
+              {editItemId === item.id ? (
+                <input
+                  type="text"
+                  value={editItemName}
+                  onChange={(e) => setEditItemName(e.target.value)}
+                />
+              ) : (
+                item.name
+              )}
+            </td>
+            <td style={{ width: "6rem" }}>
+              {editItemId === item.id ? (
+                <>
+                  <button onClick={() => handleSaveEdit(item.id)}>Save</button>
+                  <button onClick={handleCancelEdit}>Cancel</button>
+                </>
+              ) : (
+                <>
+                  <Edit onClick={() => handleEditClick(item)} />
+                  <Delete
+                    color="error"
+                    onClick={() => handleDelete(item.id)}
+                    style={{ cursor: "pointer", marginLeft: "1rem" }}
+                  />
+                </>
+              )}
+            </td>
+          </tr>
+        ))
+      ) : (
+        <tr>
+          <td colSpan={3} style={{ textAlign: "center" }}>
+            No items added yet.
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</div>
+
       </div>
       <ToastContainer />
     </>

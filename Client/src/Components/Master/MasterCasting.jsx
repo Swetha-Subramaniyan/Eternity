@@ -4,7 +4,6 @@ import axios from "axios";
 import {
   Button,
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogActions,
   TextField,
@@ -13,6 +12,8 @@ import {
 import { Edit, Delete, Search } from "@mui/icons-material";
 import Master from "./MasterNavbar";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MasterCasting() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,7 +21,7 @@ function MasterCasting() {
   const [customerName, setCustomerName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [email, setEmail] = useState(""); 
+  const [email, setEmail] = useState("");
   const [editIndex, setEditIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -32,13 +33,12 @@ function MasterCasting() {
   };
 
   const clearForm = () => {
-    setCustomerName("");   
+    setCustomerName("");
     setPhoneNumber("");
     setAddress("");
     setEmail("");
     setEditIndex(null);
   };
-
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -47,42 +47,119 @@ function MasterCasting() {
         setCustomers(response.data);
       } catch (error) {
         console.error("Error fetching customers:", error.message);
+        toast.error("Failed to fetch casting members ");
       }
     };
-  
+
     fetchCustomers();
   }, []);
 
-  
+
   const handleSave = async () => {
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const phoneRegex = /^[0-9]{7,15}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    const trimmedName = customerName.trim();
+    const trimmedPhone = phoneNumber.trim();
+    const trimmedEmail = email.trim();
+    const trimmedAddress = address.trim();
+  
+    // Name validation
+    if (!trimmedName) {
+      toast.error("Casting member name is required");
+      return;
+    }
+    if (!nameRegex.test(trimmedName)) {
+      toast.error("Invalid name. Only letters and spaces are allowed");
+      return;
+    }
+  
+    // Phone validation
+    if (!trimmedPhone) {
+      toast.error("Phone number is required");
+      return;
+    }
+    if (!phoneRegex.test(trimmedPhone)) {
+      toast.error("Invalid phone number. Only digits allowed (7-15 numbers)");
+      return;
+    }
+  
+    // Email validation
+    if (trimmedEmail && !emailRegex.test(trimmedEmail)) {
+      toast.error("Invalid email format");
+      return;
+    }
+  
+    // Address validation
+    // if (!trimmedAddress) {
+    //   toast.error("Address is required");
+    //   return;
+    // }
+  
+    // Duplicate checks
+    const isDuplicateName = customers.some(
+      (cust, idx) =>
+        cust.name.toLowerCase() === trimmedName.toLowerCase() &&
+        idx !== editIndex
+    );
+    if (isDuplicateName) {
+      toast.error("Casting member name already exists");
+      return;
+    }
+  
+    const isDuplicatePhone = customers.some(
+      (cust, idx) =>
+        cust.phoneNumber === trimmedPhone && idx !== editIndex
+    );
+    if (isDuplicatePhone) {
+      toast.error("Phone number already exists");
+      return;
+    }
+  
+    const isDuplicateEmail = trimmedEmail
+      ? customers.some(
+          (cust, idx) => cust.email === trimmedEmail && idx !== editIndex
+        )
+      : false;
+    if (isDuplicateEmail) {
+      toast.error("Email already exists");
+      return;
+    }
+  
     const customerData = {
-      name: customerName,
-      phoneNumber ,
-      address,
-      email,
+      name: trimmedName,
+      phoneNumber: trimmedPhone,
+      address: trimmedAddress,
+      email: trimmedEmail,
     };
   
     try {
       if (editIndex !== null) {
-        // PUT request for updating customer
-        const id = customers[editIndex].id; // assuming your customers have unique IDs
-        const response = await axios.put(`${BACKEND_SERVER_URL}/api/casting/${id}`, customerData);
+        const id = customers[editIndex].id;
+        const response = await axios.put(
+          `${BACKEND_SERVER_URL}/api/casting/${id}`,
+          customerData
+        );
         const updated = [...customers];
         updated[editIndex] = response.data;
         setCustomers(updated);
+        toast.success("Casting member updated successfully");
       } else {
-        // POST request for adding new customer
-        const response = await axios.post(`${BACKEND_SERVER_URL}/api/casting`, customerData);
+        const response = await axios.post(
+          `${BACKEND_SERVER_URL}/api/casting`,
+          customerData
+        );
         setCustomers((prev) => [...prev, response.data]);
+        toast.success("Casting member saved successfully");
       }
       closeModal();
     } catch (error) {
-      console.error("Error saving customer:", error.response?.data || error.message);
-      alert("Error: " + (error.response?.data?.error || "Something went wrong"));
+      console.error("Error saving casting member:", error.response?.data || error.message);
+      toast.error("Failed to save casting member");
     }
   };
   
-
   const handleEdit = (index) => {
     const customer = filteredCustomers[index];
     const originalIndex = customers.findIndex(
@@ -95,21 +172,24 @@ function MasterCasting() {
     setEditIndex(originalIndex);
     openModal();
   };
+
   const handleDelete = async (index) => {
     const customer = customers[index];
-    const confirmed = window.confirm(`Are you sure you want to delete "${customer.name}"?`);
+    const confirmed = window.confirm(
+      `Are you sure you want to delete "${customer.name}"?`
+    );
     if (!confirmed) return;
     try {
       await axios.delete(`${BACKEND_SERVER_URL}/api/casting/${customer.id}`);
       const updatedCustomers = [...customers];
       updatedCustomers.splice(index, 1);
       setCustomers(updatedCustomers);
+      toast.success("Casting member deleted successfully ");
     } catch (error) {
       console.error("Error deleting customer:", error.response?.data || error.message);
-      alert("Error: " + (error.response?.data?.error || "Something went wrong"));
+      toast.error("Failed to delete casting member ");
     }
   };
-  
 
   const filteredCustomers = customers.filter((customer) =>
     customer.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -127,6 +207,7 @@ function MasterCasting() {
               borderColor: "#25274D",
               borderStyle: "solid",
               borderWidth: "2px",
+              marginLeft:'1.2rem'
             }}
             variant="contained"
             onClick={openModal}
@@ -134,13 +215,13 @@ function MasterCasting() {
             Add Casting / Melting
           </Button>
 
-<TextField
+          <TextField
             placeholder="Search by Name"
             variant="outlined"
             size="small"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            sx={{ marginLeft: "46rem" }}
+            sx={{ marginLeft: "45rem" }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -164,22 +245,34 @@ function MasterCasting() {
           </Button>
         </div>
 
+        {/* Modal */}
         <Dialog
-  open={isModalOpen}
-  onClose={closeModal}
-  PaperProps={{ sx: { width: "450px", maxWidth: "90%", borderRadius:'5px' } }}>
-          <h5 style={{ textAlign: "center", padding:'1.1rem', backgroundColor:"#F5F5F5" }}>
-          {editIndex !== null ? "Edit Casting / Melting Member" : "Add Casting / Melting Member"} </h5>
+          open={isModalOpen}
+          onClose={closeModal}
+          PaperProps={{
+            sx: { width: "450px", maxWidth: "90%", borderRadius: "5px" },
+          }}
+        >
+          <h5
+            style={{
+              textAlign: "center",
+              padding: "1.1rem",
+              backgroundColor: "#F5F5F5",
+            }}
+          >
+            {editIndex !== null
+              ? "Edit Casting / Melting Member"
+              : "Add Casting / Melting Member"}
+          </h5>
           <DialogContent>
             <TextField
               autoFocus
               margin="dense"
               label="Casting Member Name"
               type="text"
-              sx={{mt:0}}
               fullWidth
-              value={customerName}              
-              onChange={(e) => setCustomerName(e.target.value)}             
+              value={customerName}
+              onChange={(e) => setCustomerName(e.target.value)}
             />
             <TextField
               margin="dense"
@@ -208,83 +301,103 @@ function MasterCasting() {
               onChange={(e) => setAddress(e.target.value)}
             />
           </DialogContent>
-          <DialogActions sx={{padding:'1rem'}}>
-            <Button onClick={closeModal} color="primary" variant="outlined">Cancel</Button>
-            <Button onClick={handleSave} color="primary" variant="contained"  sx={{marginRight:'0.5rem'}}>Save</Button>
-      
+          <DialogActions sx={{ padding: "1rem" }}>
+            <Button onClick={closeModal} color="primary" variant="outlined">
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSave}
+              color="primary"
+              variant="contained"
+              sx={{ marginRight: "0.5rem" }}
+            >
+              Save
+            </Button>
           </DialogActions>
         </Dialog>
 
-<div className={styles.itemList}> 
-<table className={styles.purchaseTable}>
-  <thead>
-    <tr>
-      <th>S.No</th>
-      <th>Date</th>  
-      <th>Time</th>  
-      <th>Name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {filteredCustomers.length > 0 ? (
-      filteredCustomers.map((customer, index) => {
-        const dateObj = customer.createdAt ? new Date(customer.createdAt) : null;
+        {/* Table */}
+        <div className={styles.itemList}>
+          <table className={styles.purchaseTable}>
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
 
-        const formattedDate = dateObj
-          ? dateObj.toLocaleDateString("en-IN", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            })
-          : "—";
+            <tbody>
+              {filteredCustomers.length > 0 ? (
+                filteredCustomers.map((customer, index) => {
+                  const updatedDateObj = customer.updatedAt
+                    ? new Date(customer.updatedAt)
+                    : null;
 
-        const formattedTime = dateObj
-          ? dateObj.toLocaleTimeString("en-IN", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: true,
-            })
-          : "—";
+                  const formattedUpdatedDate = updatedDateObj
+                    ? updatedDateObj.toLocaleDateString("en-IN", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : "—";
 
-        return (
-          <tr key={index}>
-            <td>{index + 1}</td>
-            <td>{formattedDate}</td>
-            <td>{formattedTime}</td>
-            <td>{customer.name}</td>
-            <td>{customer.phoneNumber}</td>
-            <td>{customer.email}</td>
-            <td>{customer.address}</td>
-            <td className={styles.tableActions}>
-              <Edit
-                onClick={() => handleEdit(index)}
-                className={styles.actionIcon}
-              />
-              <Delete
-                onClick={() => handleDelete(index)}
-                className={styles.deleteIcon}
-              />
-            </td>
-          </tr>
-        );
-      })
-    ) : (
-      <tr>
-        <td colSpan="8" style={{ textAlign: "center" }}>
-          Name not found
-        </td>
-      </tr>
-    )}
-  </tbody>
-</table>
+                  const formattedUpdatedTime = updatedDateObj
+                    ? updatedDateObj.toLocaleTimeString("en-IN", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: true,
+                      })
+                    : "—";
 
-</div>
-
+                  return (
+                    <tr key={index} className={index % 2 === 0 ? styles.trEven : ""}>
+                      <td>{index + 1}</td>
+                      <td>{formattedUpdatedDate}</td>
+                      <td>{formattedUpdatedTime}</td>
+                      <td>{customer.name}</td>
+                      <td>{customer.phoneNumber}</td>
+                      <td>{customer.email}</td>
+                      <td>{customer.address}</td>
+                      <td className={styles.tableActions}>
+                        <Edit
+                          onClick={() => handleEdit(index)}
+                          className={styles.actionIcon}
+                        />
+                        <Delete
+                          onClick={() => handleDelete(index)}
+                          className={styles.deleteIcon}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: "center" }}>
+                    Name not found
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      <ToastContainer 
+        position="top-right"
+        autoClose={3000}   
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
     </>
   );
 }

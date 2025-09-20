@@ -123,6 +123,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.AddCustomerScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
   phoneNumber: 'phoneNumber',
   address: 'address',
@@ -132,6 +133,7 @@ exports.Prisma.AddCustomerScalarFieldEnum = {
 exports.Prisma.AddCastingScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
   phoneNumber: 'phoneNumber',
   address: 'address',
@@ -141,6 +143,7 @@ exports.Prisma.AddCastingScalarFieldEnum = {
 exports.Prisma.AddFilingScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
   phoneNumber: 'phoneNumber',
   address: 'address',
@@ -150,6 +153,7 @@ exports.Prisma.AddFilingScalarFieldEnum = {
 exports.Prisma.AddSettingScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
   phoneNumber: 'phoneNumber',
   address: 'address',
@@ -159,6 +163,7 @@ exports.Prisma.AddSettingScalarFieldEnum = {
 exports.Prisma.AddBuffingScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
   phoneNumber: 'phoneNumber',
   address: 'address',
@@ -168,6 +173,7 @@ exports.Prisma.AddBuffingScalarFieldEnum = {
 exports.Prisma.AddSupplierItemScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
   email: 'email',
   phoneNumber: 'phoneNumber',
@@ -177,6 +183,7 @@ exports.Prisma.AddSupplierItemScalarFieldEnum = {
 exports.Prisma.AddPurchaseStockScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   supplierId: 'supplierId',
   item: 'item',
   weight: 'weight',
@@ -190,6 +197,7 @@ exports.Prisma.AddPurchaseStockScalarFieldEnum = {
 exports.Prisma.CustomerTransactionScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   date: 'date',
   value: 'value',
   type: 'type',
@@ -202,18 +210,21 @@ exports.Prisma.CustomerTransactionScalarFieldEnum = {
 exports.Prisma.AddItemScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name'
 };
 
 exports.Prisma.AddTouchScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   touch: 'touch'
 };
 
 exports.Prisma.QcStockScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   item_id: 'item_id',
   weight: 'weight',
   stone_weight: 'stone_weight',

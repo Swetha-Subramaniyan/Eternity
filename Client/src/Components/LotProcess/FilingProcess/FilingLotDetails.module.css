@@ -39,22 +39,6 @@
   margin-top: 1rem;
 }
 
-.tableContainer {
-  max-height: 300px; 
-  overflow-y: auto;
-  margin-top: 1rem;
-}
-
-.table thead th {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background-color:#38383e;
-  color: white;
-  font-weight: 500;
-}
-
-
 
 .summarySection {
   margin: 20px auto;
@@ -105,4 +89,35 @@
 .summaryItem:hover {
   transform: translateY(-2px);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.tableContainer {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+.table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.table th {
+  background-color:#38383e;
+  color: white;
+  font-weight: bold;
+  padding: 11px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.tablecontainer{
+  width: 100%;
+  padding: 0rem 2rem 0rem 2rem;
 }

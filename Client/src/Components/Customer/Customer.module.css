@@ -1,5 +1,4 @@
-
-.customer-table-container {
+.customerTableContainer {
     padding: 20px;
     margin-top: 30px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -7,32 +6,44 @@
     background: white;
   }
   
-  table {
+  .table {
     width: 100%;
     border-collapse: collapse;
   }
   
-  th, td {
+  .th, .td {
     padding: 14px;
     text-align: center;
-    
   }
   
-  th {
+  .th {
     background-color: #1976d2;
     color: white;
     font-weight: bold;
   }
   
-  tr:nth-child(even) {
+  .trEven {
     background-color: #f5f5f5;
   }
   
-  tr:hover {
-    background-color: #e3f2fd;
-  }
   
-  .icon-button {
+  .iconButton {
     color: #1976d2;
   }
   
+
+
+
+.tableCell {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+.tablehead {
+    background-color: #38383e;
+    color: antiquewhite;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-weight: bold;
+}

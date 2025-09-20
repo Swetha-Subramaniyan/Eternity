@@ -924,7 +924,7 @@ const BuffingLotDetails = () => {
             Available Buffing Items
           </Typography>
               </>
-            )}
+            )} <br/>
             <table border="1" cellPadding="5" className={styles.table}>
               <thead>
                 <tr>
@@ -1053,10 +1053,9 @@ const BuffingLotDetails = () => {
 </tbody>
 
               {viewEntry && (
-                <tfoot>
+                <tfoot  style={{backgroundColor:'#f8f9fa'}} >
                   <tr>
                     <td colSpan={2}>
-                      {" "}
                       <b> Total </b>
                     </td>
                     <td>
@@ -1145,9 +1144,9 @@ const BuffingLotDetails = () => {
                     <thead>
                       <tr>
                         <th>S.No</th>
-                        <th>Item Name</th>
+                        <th style={{width:'8rem'}}>Item Name</th>
                         <th>Weight</th>
-                        <th>Touch</th>
+                        <th style={{width:'8rem'}}>Touch</th>
                         <th>Purity</th>
                         <th>Remarks</th>
                         <th>Actions</th>
@@ -1292,7 +1291,8 @@ const BuffingLotDetails = () => {
                   </Box>
                 </div>
               </>
-            )}
+            )} 
+            <br/>
             <DialogActions>
               <Button
                 onClick={() => {

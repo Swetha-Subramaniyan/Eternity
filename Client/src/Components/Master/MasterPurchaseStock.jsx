@@ -411,69 +411,76 @@ const MasterPurchaseStock = () => {
           </div>
         )}
 
-        {filteredPurchases.length > 0 ? (
-          <div>
-            <table className={styles.purchaseTable}>
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Name</th>
-                  <th>Date</th>
-                  <th>Item</th>
-                  <th>Weight</th>
-                  <th>Touch</th>
-                  <th>Purity</th>
-                  <th>Rate</th>
-                  <th>Total Value</th>
-                  <th>Remarks</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredPurchases.map((p, idx) => {
-                  const dateObj = p.createdAt ? new Date(p.createdAt) : null;
-                  const formattedDate = dateObj
-                    ? dateObj.toLocaleDateString("en-IN", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                      })
-                    : "-";
+<div>
+  <table className={styles.purchaseTable}>
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Name</th>
+        <th>Item</th>
+        <th>Weight</th>
+        <th>Touch</th>
+        <th>Purity</th>
+        <th>Rate</th>
+        <th>Total Value</th>
+        <th>Remarks</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {filteredPurchases.length > 0 ? (
+        filteredPurchases.map((p, idx) => {
+          const updatedDateObj = p.updatedAt ? new Date(p.updatedAt) : null;
 
-                  return (
-                    <tr key={p.id}>
-                      <td>{idx + 1}</td>
-                      <td>{p.SupplierId?.name || "-"}</td>
-                      <td>{formattedDate}</td>
-                      <td>{p.item}</td>
-                      <td>{p.weight}</td>
-                      <td>{p.TouchId?.touch || "-"}</td>
-                      <td>{p.purity}</td>
-                      <td>{p.rate}</td>
-                      <td>{p.totalValue}</td>
-                      <td>{p.remarks || "-"}</td>
-                      <td>
-                        <Edit
-                          style={{ cursor: "pointer" }}
-                          onClick={() => handleEdit(idx)}
-                        />
+          const formattedUpdatedDate = updatedDateObj
+            ? updatedDateObj.toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })
+            : "—";
 
-                        <Delete
-                          onClick={() => handleDelete(idx)}
-                          className={styles.deleteIcon}
-                        />
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p style={{ textAlign: "center", marginTop: "1rem" }}>
+          const formattedUpdatedTime = updatedDateObj
+            ? updatedDateObj.toLocaleTimeString("en-IN", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              })
+            : "—";
+
+          return (
+            <tr key={p.id} className={idx % 2 === 0 ? styles.trEven : ""} >
+              <td>{idx + 1}</td>
+              <td>{formattedUpdatedDate}</td>
+              <td>{formattedUpdatedTime}</td>
+              <td>{p.SupplierId?.name || "-"}</td>
+              <td>{p.item}</td>
+              <td>{p.weight}</td>
+              <td>{p.TouchId?.touch || "-"}</td>
+              <td>{p.purity}</td>
+              <td>{p.rate}</td>
+              <td>{p.totalValue}</td>
+              <td>{p.remarks || "-"}</td>
+              <td>
+                <Edit style={{ cursor: "pointer" }} onClick={() => handleEdit(idx)} />
+                <Delete onClick={() => handleDelete(idx)} className={styles.deleteIcon} />
+              </td>
+            </tr>
+          );
+        })
+      ) : (
+        <tr>
+          <td colSpan={12} style={{ textAlign: "center", padding: "1rem" }}>
             Purchase Name not found
-          </p>
-        )}
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</div>
+
       </div>
     </>
   );

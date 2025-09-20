@@ -104,7 +104,7 @@ const SettingReports = () => {
         alignItems="center"
         mb={2}
         ml={6}
-        mt={2}
+        mt={3}
       >
         <TextField
           type="date"
@@ -179,7 +179,9 @@ const SettingReports = () => {
 </div>
 
       {/* Main Table */}
-      <table className={styles.table} >
+
+ 
+      <table className={styles.table}>
         <thead>
           <tr>
             <th rowSpan={2}>S.No</th>
@@ -311,6 +313,7 @@ const SettingReports = () => {
           )}
         </tbody>
       </table>
+
     </>
   );
 };

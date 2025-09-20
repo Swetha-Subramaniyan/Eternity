@@ -65,7 +65,11 @@ export const getAllTransactions = async (req, res) => {
       where: { customerId: parseInt(customerId) },
       include: { touch: true,customer:true },
       orderBy: { date: "desc" },
-      
+
+      include:{
+        touch:true,
+        customer:true
+      }
     });
 
     res.status(200).json(transactions);
