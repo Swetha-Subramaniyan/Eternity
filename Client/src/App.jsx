@@ -145,7 +145,7 @@ const FilingLot = lazy(() => import("./Components/LotProcess/FilingProcess/Filin
 const BuffingLot = lazy(() => import("./Components/LotProcess/BuffingProcess/BuffingLot"));
 const SettingLot = lazy(() => import("./Components/LotProcess/SettingProcess/SettingLot"));
 const Billing = lazy(() => import("./Components/Billing/Billing"));
-const Report = lazy(() => import("./Components/Report/Report"));
+//const Report = lazy(() => import("./Components/Report/Report"));
 const MasterAddTouch = lazy(() => import("./Components/Master/MasterAddTouch"));
 const SalesReport = lazy(() => import("./Components/Report/SalesReport"));
 const StockReport = lazy(() => import("./Components/Report/StockReport"));
@@ -163,7 +163,7 @@ const CastingEntry = lazy(() => import("./Components/LotProcess/CastingProcess/C
 const QCStock = lazy(() => import("./Components/Master/QCStock"));
 const CustomerReport = lazy(() => import("./Components/Report/CustomerReport"));
 const TouchWisePurchaseReport = lazy(() => import("./Components/Report/TouchWisePurchaseReports"));
-const BillingReport = lazy (()=> import("./Components/Report/BillingReport"))
+//const BillingReport = lazy (()=> import("./Components/Report/BillingReport"))
 
 const Loader = () => (
   <Box
@@ -213,7 +213,7 @@ const App = () => {
           <Route path="/buffingLotDetails/:id/:name/:lotNumber" element={<BuffingLotDetails />} />
           <Route path="/qcstock" element={<QCStock />} />
           <Route path="/billing" element={<Billing />} />
-          <Route path="/report" element={<Report />} />
+          {/* <Route path="/report" element={<Report />} /> */}
           <Route path="/castingMeltingrreports" element={<CastingMeltingReports />} />
           <Route path="/settingreports" element={<SettingReports />} />
           <Route path="/filingreports" element={<FilingReports />} />
@@ -224,7 +224,7 @@ const App = () => {
           <Route path="/receiptreport" element={<ReceiptReport />} />
           <Route path="/workerreport" element={<WorkerReport />} />
           <Route path="/purchasereport" element={<TouchWisePurchaseReport />} />
-          <Route path="/billingreport" element={<BillingReport/>}/>
+         {/*  <Route path="/billingreport" element={<BillingReport/>}/> */}
         </Routes>
       </Suspense>
     </BrowserRouter>
