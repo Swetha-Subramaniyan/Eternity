@@ -42,6 +42,7 @@ const CustomerTranscation = () => {
           const response = await axios.get(
             `${BACKEND_SERVER_URL}/api/transactions/${customerId}`
           );
+          console.log("transactions", response) 
           setTransactions(response.data);
         }
       } catch (error) {
@@ -191,6 +192,23 @@ const CustomerTranscation = () => {
 
     return (!from || transactionDate >= from) && (!to || transactionDate <= to);
   });
+
+
+  console.log("filteredTransactions", filteredTransactions);
+
+  // const totals = filteredTransactions.reduce(
+  //   (acc, transaction) => {
+  //     if (transaction.type === "Cash") {
+  //       acc.totalCash += parseFloat(transaction.value) || 0;
+  //     } else if (transaction.type === "Gold") {
+  //       acc.totalPurity += parseFloat(transaction.purity) || 0;
+  //     }
+  //     return acc;
+  //   },
+  //   { totalCash: 0, totalPurity: 0 }
+  // );
+
+
 
   const totals = filteredTransactions.reduce(
     (acc, transaction) => {

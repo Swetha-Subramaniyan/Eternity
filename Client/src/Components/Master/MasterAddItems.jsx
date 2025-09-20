@@ -18,6 +18,7 @@ const MasterAdditems = () => {
     const fetchItems = async () => {
       try {
         const response = await axios.get(`${BACKEND_SERVER_URL}/api/additem`);
+        console.log("items", response)
         setItems(response.data);
       } catch (error) {
         console.error("Error fetching items:", error);
