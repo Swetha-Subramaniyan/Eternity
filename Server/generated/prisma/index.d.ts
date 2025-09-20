@@ -66668,6 +66668,7 @@ export namespace Prisma {
 
   export type AddCustomerCreateWithoutHallmarksInput = {
     createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -66679,6 +66680,7 @@ export namespace Prisma {
   export type AddCustomerUncheckedCreateWithoutHallmarksInput = {
     id?: number
     createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -66705,6 +66707,7 @@ export namespace Prisma {
 
   export type AddCustomerUpdateWithoutHallmarksInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -66716,6 +66719,7 @@ export namespace Prisma {
   export type AddCustomerUncheckedUpdateWithoutHallmarksInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -66726,6 +66730,7 @@ export namespace Prisma {
 
   export type AddCustomerCreateWithoutBillsInput = {
     createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -66737,6 +66742,7 @@ export namespace Prisma {
   export type AddCustomerUncheckedCreateWithoutBillsInput = {
     id?: number
     createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     phoneNumber?: string | null
     address?: string | null
@@ -66839,6 +66845,7 @@ export namespace Prisma {
 
   export type AddCustomerUpdateWithoutBillsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -66850,6 +66857,7 @@ export namespace Prisma {
   export type AddCustomerUncheckedUpdateWithoutBillsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -66936,6 +66944,7 @@ export namespace Prisma {
 
   export type QcStockCreateWithoutBillItemInput = {
     createdAt: Date | string
+    updatedAt?: Date | string
     weight: number
     stone_weight: number
     final_weight: number
@@ -66948,6 +66957,7 @@ export namespace Prisma {
   export type QcStockUncheckedCreateWithoutBillItemInput = {
     id?: number
     createdAt: Date | string
+    updatedAt?: Date | string
     item_id: number
     weight: number
     stone_weight: number
@@ -66964,6 +66974,7 @@ export namespace Prisma {
 
   export type AddItemCreateWithoutBillItemsInput = {
     createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     casting_items?: CastingItemsCreateNestedManyWithoutItemInput
     stock?: StockCreateNestedManyWithoutItemInput
@@ -66976,6 +66987,7 @@ export namespace Prisma {
   export type AddItemUncheckedCreateWithoutBillItemsInput = {
     id?: number
     createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     casting_items?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
     stock?: StockUncheckedCreateNestedManyWithoutItemInput
@@ -66992,6 +67004,7 @@ export namespace Prisma {
 
   export type AddTouchCreateWithoutBillItemsInput = {
     createdAt?: Date | string
+    updatedAt?: Date | string
     touch: number
     casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
     casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
@@ -67008,6 +67021,7 @@ export namespace Prisma {
   export type AddTouchUncheckedCreateWithoutBillItemsInput = {
     id?: number
     createdAt?: Date | string
+    updatedAt?: Date | string
     touch: number
     casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
     casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
@@ -67089,6 +67103,7 @@ export namespace Prisma {
 
   export type QcStockUpdateWithoutBillItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     weight?: FloatFieldUpdateOperationsInput | number
     stone_weight?: FloatFieldUpdateOperationsInput | number
     final_weight?: FloatFieldUpdateOperationsInput | number
@@ -67101,6 +67116,7 @@ export namespace Prisma {
   export type QcStockUncheckedUpdateWithoutBillItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     item_id?: IntFieldUpdateOperationsInput | number
     weight?: FloatFieldUpdateOperationsInput | number
     stone_weight?: FloatFieldUpdateOperationsInput | number
@@ -67123,6 +67139,7 @@ export namespace Prisma {
 
   export type AddItemUpdateWithoutBillItemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     casting_items?: CastingItemsUpdateManyWithoutItemNestedInput
     stock?: StockUpdateManyWithoutItemNestedInput
@@ -67135,6 +67152,7 @@ export namespace Prisma {
   export type AddItemUncheckedUpdateWithoutBillItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     casting_items?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
     stock?: StockUncheckedUpdateManyWithoutItemNestedInput
@@ -67157,6 +67175,7 @@ export namespace Prisma {
 
   export type AddTouchUpdateWithoutBillItemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     touch?: FloatFieldUpdateOperationsInput | number
     casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
     casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
@@ -67173,6 +67192,7 @@ export namespace Prisma {
   export type AddTouchUncheckedUpdateWithoutBillItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     touch?: FloatFieldUpdateOperationsInput | number
     casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
     casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
@@ -67232,6 +67252,7 @@ export namespace Prisma {
 
   export type AddTouchCreateWithoutReceivedItemsInput = {
     createdAt?: Date | string
+    updatedAt?: Date | string
     touch: number
     casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
     casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
@@ -67248,6 +67269,7 @@ export namespace Prisma {
   export type AddTouchUncheckedCreateWithoutReceivedItemsInput = {
     id?: number
     createdAt?: Date | string
+    updatedAt?: Date | string
     touch: number
     casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
     casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
@@ -67329,6 +67351,7 @@ export namespace Prisma {
 
   export type AddTouchUpdateWithoutReceivedItemsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     touch?: FloatFieldUpdateOperationsInput | number
     casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
     casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
@@ -67345,6 +67368,7 @@ export namespace Prisma {
   export type AddTouchUncheckedUpdateWithoutReceivedItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     touch?: FloatFieldUpdateOperationsInput | number
     casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
     casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
