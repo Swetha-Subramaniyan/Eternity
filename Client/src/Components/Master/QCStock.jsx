@@ -39,6 +39,7 @@ const QCStock = () => {
   const fetchEntries = async () => {
     try {
       const res = await axios.get(`${BACKEND_SERVER_URL}/api/qcstock`);
+      console.log("qcstock", res)
       setEntries(res.data);
     } catch (err) {
       console.error("Error fetching QC stock:", err);

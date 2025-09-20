@@ -48,6 +48,7 @@ function MasterCustomer() {
     const fetchCustomers = async () => {
       try {
         const response = await axios.get(`${BACKEND_SERVER_URL}/api/customers`);
+        console.log("customerr", response)
         setCustomers(response.data);
       } catch (error) {
         console.error("Error fetching customers:", error.message);

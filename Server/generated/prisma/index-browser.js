@@ -456,6 +456,64 @@ exports.Prisma.StockScalarFieldEnum = {
   purchase_id: 'purchase_id'
 };
 
+exports.Prisma.HallmarkScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  balance: 'balance',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BillScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  bill_no: 'bill_no',
+  date: 'date',
+  time: 'time',
+  gold_rate: 'gold_rate',
+  total_pure: 'total_pure',
+  total_amount: 'total_amount',
+  customer_balance: 'customer_balance',
+  grand_total: 'grand_total',
+  cash_balance: 'cash_balance',
+  pure_balance: 'pure_balance',
+  prev_hallmark: 'prev_hallmark',
+  hallmark_balance: 'hallmark_balance',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BillItemScalarFieldEnum = {
+  id: 'id',
+  bill_id: 'bill_id',
+  qc_stock_id: 'qc_stock_id',
+  item_name: 'item_name',
+  weight: 'weight',
+  stone_weight: 'stone_weight',
+  total_weight: 'total_weight',
+  touchId: 'touchId',
+  pure: 'pure',
+  amount: 'amount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  addItemId: 'addItemId'
+};
+
+exports.Prisma.ReceivedItemScalarFieldEnum = {
+  id: 'id',
+  bill_id: 'bill_id',
+  type: 'type',
+  date: 'date',
+  gold_rate: 'gold_rate',
+  gold: 'gold',
+  touchId: 'touchId',
+  purity_weight: 'purity_weight',
+  amount: 'amount',
+  hallmark_charge: 'hallmark_charge',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -551,6 +609,20 @@ exports.Prisma.BuffingTotalBalanceOrderByRelevanceFieldEnum = {
 exports.Prisma.StockOrderByRelevanceFieldEnum = {
   remarks: 'remarks'
 };
+
+exports.Prisma.BillOrderByRelevanceFieldEnum = {
+  bill_no: 'bill_no',
+  date: 'date',
+  time: 'time'
+};
+
+exports.Prisma.BillItemOrderByRelevanceFieldEnum = {
+  item_name: 'item_name'
+};
+
+exports.Prisma.ReceivedItemOrderByRelevanceFieldEnum = {
+  date: 'date'
+};
 exports.ITEMTYPE = exports.$Enums.ITEMTYPE = {
   Gold: 'Gold',
   Silver: 'Silver'
@@ -597,7 +669,11 @@ exports.Prisma.ModelName = {
   BuffingTotalBalance: 'BuffingTotalBalance',
   LotBuffingMapper: 'LotBuffingMapper',
   BuffingWastage: 'BuffingWastage',
-  Stock: 'Stock'
+  Stock: 'Stock',
+  Hallmark: 'Hallmark',
+  Bill: 'Bill',
+  BillItem: 'BillItem',
+  ReceivedItem: 'ReceivedItem'
 };
 
 /**

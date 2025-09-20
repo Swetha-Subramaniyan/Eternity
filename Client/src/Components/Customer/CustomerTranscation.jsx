@@ -40,6 +40,7 @@ const CustomerTranscation = () => {
           const response = await axios.get(
             `${BACKEND_SERVER_URL}/api/transactions/${customerId}`
           );
+          console.log("transactions", response) 
           setTransactions(response.data);
         }
       } catch (error) {
@@ -190,6 +191,8 @@ const CustomerTranscation = () => {
 
     return (!from || transactionDate >= from) && (!to || transactionDate <= to);
   });
+
+  console.log("filteredTransactions", filteredTransactions);
 
   // const totals = filteredTransactions.reduce(
   //   (acc, transaction) => {
@@ -424,7 +427,7 @@ const CustomerTranscation = () => {
                       : `₹ ${transaction.value.toFixed(2)}`}
                   </td>
                   <td>{transaction.type}</td>
-                  <td>{transaction.touch || "-"}</td>
+                  <td>{transaction.touch ? transaction.touch.touch : "-"}</td>
                   <td>{transaction.purity || "-"}</td>
                 </tr>
               ))

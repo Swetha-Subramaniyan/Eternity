@@ -37,6 +37,8 @@ model AddCustomer {
   address      String?
   email        String?
   transactions CustomerTransaction[]
+  bills        Bill[]
+  hallmarks    Hallmark[]
 }
 
 model AddCasting {
@@ -141,8 +143,8 @@ model AddItem {
   filing_items  FilingItems[]
   setting_items SettingItems[]
   buffing_items BuffingItems[]
-
-  QCStock QcStock[]
+  QCStock       QcStock[]
+  billItems     BillItem[]
 }
 
 model AddTouch {
@@ -158,21 +160,24 @@ model AddTouch {
   add_purchase_stock   AddPurchaseStock[]
   customer_transaction CustomerTransaction[]
 
-  QCStock QcStock[]
+  QCStock       QcStock[]
+  receivedItems ReceivedItem[]
+  billItems     BillItem[]
 }
 
 model QcStock {
-  id           Int      @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
   createdAt    DateTime
   item_id      Int
-  itemId       AddItem  @relation(fields: [item_id], references: [id])
+  itemId       AddItem    @relation(fields: [item_id], references: [id])
   weight       Float
   stone_weight Float
   final_weight Float
   touch_id     Int
-  touchId      AddTouch @relation(fields: [touch_id], references: [id])
+  touchId      AddTouch   @relation(fields: [touch_id], references: [id])
   purity       Float
   remarks      String?
+  BillItem     BillItem[]
 }
 
 model CastingEntry {
@@ -520,4 +525,76 @@ model Stock {
 
   purchase_id Int?
   purchaseId  AddPurchaseStock? @relation(fields: [purchase_id], references: [id], onDelete: Cascade)
+}
+
+model Hallmark {
+  id          Int      @id @default(autoincrement())
+  customer_id Int
+  balance     Float    @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  customer AddCustomer @relation(fields: [customer_id], references: [id])
+}
+
+model Bill {
+  id               Int      @id @default(autoincrement())
+  customer_id      Int
+  bill_no          String
+  date             String
+  time             String
+  gold_rate        Float
+  total_pure       Float
+  total_amount     Float
+  customer_balance Float
+  grand_total      Float
+  cash_balance     Float
+  pure_balance     Float
+  prev_hallmark    Float
+  hallmark_balance Float
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  customer      AddCustomer    @relation(fields: [customer_id], references: [id])
+  billItems     BillItem[]
+  receivedItems ReceivedItem[]
+}
+
+model BillItem {
+  id           Int      @id @default(autoincrement())
+  bill_id      Int
+  qc_stock_id  Int
+  item_name    String
+  weight       Float
+  stone_weight Float?
+  total_weight Float
+  touchId      Int?
+  pure         Float
+  amount       Float
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  bill      Bill      @relation(fields: [bill_id], references: [id])
+  qcStock   QcStock   @relation(fields: [qc_stock_id], references: [id])
+  AddItem   AddItem?  @relation(fields: [addItemId], references: [id])
+  addItemId Int?
+  touch     AddTouch? @relation(fields: [touchId], references: [id])
+}
+
+model ReceivedItem {
+  id              Int      @id @default(autoincrement())
+  bill_id         Int
+  type            ITEMTYPE
+  date            String
+  gold_rate       Float?
+  gold            Float?
+  touchId         Int?
+  purity_weight   Float
+  amount          Float?
+  hallmark_charge Float?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  bill  Bill      @relation(fields: [bill_id], references: [id])
+  touch AddTouch? @relation(fields: [touchId], references: [id])
 }

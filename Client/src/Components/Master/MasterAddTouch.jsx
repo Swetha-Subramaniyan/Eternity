@@ -20,6 +20,7 @@ const MasterAddTouch = () => {
   const fetchTouchItems = async () => {
     try {
       const response = await axios.get(`${BACKEND_SERVER_URL}/api/addtouch`);
+      console.log("touch", response)
       setTouchItems(response.data);
     } catch (error) {
       console.error("Error fetching touch items:", error);

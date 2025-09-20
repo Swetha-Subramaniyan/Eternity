@@ -168,6 +168,26 @@ export type BuffingWastage = $Result.DefaultSelection<Prisma.$BuffingWastagePayl
  * 
  */
 export type Stock = $Result.DefaultSelection<Prisma.$StockPayload>
+/**
+ * Model Hallmark
+ * 
+ */
+export type Hallmark = $Result.DefaultSelection<Prisma.$HallmarkPayload>
+/**
+ * Model Bill
+ * 
+ */
+export type Bill = $Result.DefaultSelection<Prisma.$BillPayload>
+/**
+ * Model BillItem
+ * 
+ */
+export type BillItem = $Result.DefaultSelection<Prisma.$BillItemPayload>
+/**
+ * Model ReceivedItem
+ * 
+ */
+export type ReceivedItem = $Result.DefaultSelection<Prisma.$ReceivedItemPayload>
 
 /**
  * Enums
@@ -637,6 +657,46 @@ export class PrismaClient<
     * ```
     */
   get stock(): Prisma.StockDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hallmark`: Exposes CRUD operations for the **Hallmark** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hallmarks
+    * const hallmarks = await prisma.hallmark.findMany()
+    * ```
+    */
+  get hallmark(): Prisma.HallmarkDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bill`: Exposes CRUD operations for the **Bill** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Bills
+    * const bills = await prisma.bill.findMany()
+    * ```
+    */
+  get bill(): Prisma.BillDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.billItem`: Exposes CRUD operations for the **BillItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BillItems
+    * const billItems = await prisma.billItem.findMany()
+    * ```
+    */
+  get billItem(): Prisma.BillItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.receivedItem`: Exposes CRUD operations for the **ReceivedItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ReceivedItems
+    * const receivedItems = await prisma.receivedItem.findMany()
+    * ```
+    */
+  get receivedItem(): Prisma.ReceivedItemDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1107,7 +1167,11 @@ export namespace Prisma {
     BuffingTotalBalance: 'BuffingTotalBalance',
     LotBuffingMapper: 'LotBuffingMapper',
     BuffingWastage: 'BuffingWastage',
-    Stock: 'Stock'
+    Stock: 'Stock',
+    Hallmark: 'Hallmark',
+    Bill: 'Bill',
+    BillItem: 'BillItem',
+    ReceivedItem: 'ReceivedItem'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1126,7 +1190,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addSupplierItem" | "addPurchaseStock" | "customerTransaction" | "addItem" | "addTouch" | "qcStock" | "castingEntry" | "castingItems" | "castiingTotalBalance" | "lotInfo" | "filingEntry" | "lotFilingMapper" | "filingItems" | "filingTotalBalance" | "filingWastage" | "settingEntry" | "settingItems" | "lotSettingMapper" | "settingTotalBalance" | "settingWastage" | "buffingEntry" | "buffingItems" | "buffingTotalBalance" | "lotBuffingMapper" | "buffingWastage" | "stock"
+      modelProps: "addCustomer" | "addCasting" | "addFiling" | "addSetting" | "addBuffing" | "addSupplierItem" | "addPurchaseStock" | "customerTransaction" | "addItem" | "addTouch" | "qcStock" | "castingEntry" | "castingItems" | "castiingTotalBalance" | "lotInfo" | "filingEntry" | "lotFilingMapper" | "filingItems" | "filingTotalBalance" | "filingWastage" | "settingEntry" | "settingItems" | "lotSettingMapper" | "settingTotalBalance" | "settingWastage" | "buffingEntry" | "buffingItems" | "buffingTotalBalance" | "lotBuffingMapper" | "buffingWastage" | "stock" | "hallmark" | "bill" | "billItem" | "receivedItem"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3176,6 +3240,270 @@ export namespace Prisma {
           }
         }
       }
+      Hallmark: {
+        payload: Prisma.$HallmarkPayload<ExtArgs>
+        fields: Prisma.HallmarkFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HallmarkFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HallmarkPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HallmarkFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HallmarkPayload>
+          }
+          findFirst: {
+            args: Prisma.HallmarkFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HallmarkPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HallmarkFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HallmarkPayload>
+          }
+          findMany: {
+            args: Prisma.HallmarkFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HallmarkPayload>[]
+          }
+          create: {
+            args: Prisma.HallmarkCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HallmarkPayload>
+          }
+          createMany: {
+            args: Prisma.HallmarkCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.HallmarkDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HallmarkPayload>
+          }
+          update: {
+            args: Prisma.HallmarkUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HallmarkPayload>
+          }
+          deleteMany: {
+            args: Prisma.HallmarkDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HallmarkUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.HallmarkUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HallmarkPayload>
+          }
+          aggregate: {
+            args: Prisma.HallmarkAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHallmark>
+          }
+          groupBy: {
+            args: Prisma.HallmarkGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HallmarkGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HallmarkCountArgs<ExtArgs>
+            result: $Utils.Optional<HallmarkCountAggregateOutputType> | number
+          }
+        }
+      }
+      Bill: {
+        payload: Prisma.$BillPayload<ExtArgs>
+        fields: Prisma.BillFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BillFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BillFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillPayload>
+          }
+          findFirst: {
+            args: Prisma.BillFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BillFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillPayload>
+          }
+          findMany: {
+            args: Prisma.BillFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillPayload>[]
+          }
+          create: {
+            args: Prisma.BillCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillPayload>
+          }
+          createMany: {
+            args: Prisma.BillCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.BillDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillPayload>
+          }
+          update: {
+            args: Prisma.BillUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillPayload>
+          }
+          deleteMany: {
+            args: Prisma.BillDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BillUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BillUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillPayload>
+          }
+          aggregate: {
+            args: Prisma.BillAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBill>
+          }
+          groupBy: {
+            args: Prisma.BillGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BillGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BillCountArgs<ExtArgs>
+            result: $Utils.Optional<BillCountAggregateOutputType> | number
+          }
+        }
+      }
+      BillItem: {
+        payload: Prisma.$BillItemPayload<ExtArgs>
+        fields: Prisma.BillItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BillItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BillItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillItemPayload>
+          }
+          findFirst: {
+            args: Prisma.BillItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BillItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillItemPayload>
+          }
+          findMany: {
+            args: Prisma.BillItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillItemPayload>[]
+          }
+          create: {
+            args: Prisma.BillItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillItemPayload>
+          }
+          createMany: {
+            args: Prisma.BillItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.BillItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillItemPayload>
+          }
+          update: {
+            args: Prisma.BillItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.BillItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BillItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BillItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BillItemPayload>
+          }
+          aggregate: {
+            args: Prisma.BillItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBillItem>
+          }
+          groupBy: {
+            args: Prisma.BillItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BillItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BillItemCountArgs<ExtArgs>
+            result: $Utils.Optional<BillItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      ReceivedItem: {
+        payload: Prisma.$ReceivedItemPayload<ExtArgs>
+        fields: Prisma.ReceivedItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ReceivedItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceivedItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ReceivedItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceivedItemPayload>
+          }
+          findFirst: {
+            args: Prisma.ReceivedItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceivedItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ReceivedItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceivedItemPayload>
+          }
+          findMany: {
+            args: Prisma.ReceivedItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceivedItemPayload>[]
+          }
+          create: {
+            args: Prisma.ReceivedItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceivedItemPayload>
+          }
+          createMany: {
+            args: Prisma.ReceivedItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ReceivedItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceivedItemPayload>
+          }
+          update: {
+            args: Prisma.ReceivedItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceivedItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.ReceivedItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ReceivedItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ReceivedItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceivedItemPayload>
+          }
+          aggregate: {
+            args: Prisma.ReceivedItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReceivedItem>
+          }
+          groupBy: {
+            args: Prisma.ReceivedItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReceivedItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ReceivedItemCountArgs<ExtArgs>
+            result: $Utils.Optional<ReceivedItemCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3303,6 +3631,10 @@ export namespace Prisma {
     lotBuffingMapper?: LotBuffingMapperOmit
     buffingWastage?: BuffingWastageOmit
     stock?: StockOmit
+    hallmark?: HallmarkOmit
+    bill?: BillOmit
+    billItem?: BillItemOmit
+    receivedItem?: ReceivedItemOmit
   }
 
   /* Types for Logging */
@@ -3384,10 +3716,14 @@ export namespace Prisma {
 
   export type AddCustomerCountOutputType = {
     transactions: number
+    bills: number
+    hallmarks: number
   }
 
   export type AddCustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transactions?: boolean | AddCustomerCountOutputTypeCountTransactionsArgs
+    bills?: boolean | AddCustomerCountOutputTypeCountBillsArgs
+    hallmarks?: boolean | AddCustomerCountOutputTypeCountHallmarksArgs
   }
 
   // Custom InputTypes
@@ -3406,6 +3742,20 @@ export namespace Prisma {
    */
   export type AddCustomerCountOutputTypeCountTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CustomerTransactionWhereInput
+  }
+
+  /**
+   * AddCustomerCountOutputType without action
+   */
+  export type AddCustomerCountOutputTypeCountBillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillWhereInput
+  }
+
+  /**
+   * AddCustomerCountOutputType without action
+   */
+  export type AddCustomerCountOutputTypeCountHallmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HallmarkWhereInput
   }
 
 
@@ -3705,6 +4055,7 @@ export namespace Prisma {
     setting_items: number
     buffing_items: number
     QCStock: number
+    billItems: number
   }
 
   export type AddItemCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3714,6 +4065,7 @@ export namespace Prisma {
     setting_items?: boolean | AddItemCountOutputTypeCountSetting_itemsArgs
     buffing_items?: boolean | AddItemCountOutputTypeCountBuffing_itemsArgs
     QCStock?: boolean | AddItemCountOutputTypeCountQCStockArgs
+    billItems?: boolean | AddItemCountOutputTypeCountBillItemsArgs
   }
 
   // Custom InputTypes
@@ -3769,6 +4121,13 @@ export namespace Prisma {
     where?: QcStockWhereInput
   }
 
+  /**
+   * AddItemCountOutputType without action
+   */
+  export type AddItemCountOutputTypeCountBillItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillItemWhereInput
+  }
+
 
   /**
    * Count Type AddTouchCountOutputType
@@ -3784,6 +4143,8 @@ export namespace Prisma {
     add_purchase_stock: number
     customer_transaction: number
     QCStock: number
+    receivedItems: number
+    billItems: number
   }
 
   export type AddTouchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3796,6 +4157,8 @@ export namespace Prisma {
     add_purchase_stock?: boolean | AddTouchCountOutputTypeCountAdd_purchase_stockArgs
     customer_transaction?: boolean | AddTouchCountOutputTypeCountCustomer_transactionArgs
     QCStock?: boolean | AddTouchCountOutputTypeCountQCStockArgs
+    receivedItems?: boolean | AddTouchCountOutputTypeCountReceivedItemsArgs
+    billItems?: boolean | AddTouchCountOutputTypeCountBillItemsArgs
   }
 
   // Custom InputTypes
@@ -3870,6 +4233,51 @@ export namespace Prisma {
    */
   export type AddTouchCountOutputTypeCountQCStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: QcStockWhereInput
+  }
+
+  /**
+   * AddTouchCountOutputType without action
+   */
+  export type AddTouchCountOutputTypeCountReceivedItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReceivedItemWhereInput
+  }
+
+  /**
+   * AddTouchCountOutputType without action
+   */
+  export type AddTouchCountOutputTypeCountBillItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillItemWhereInput
+  }
+
+
+  /**
+   * Count Type QcStockCountOutputType
+   */
+
+  export type QcStockCountOutputType = {
+    BillItem: number
+  }
+
+  export type QcStockCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BillItem?: boolean | QcStockCountOutputTypeCountBillItemArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * QcStockCountOutputType without action
+   */
+  export type QcStockCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcStockCountOutputType
+     */
+    select?: QcStockCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * QcStockCountOutputType without action
+   */
+  export type QcStockCountOutputTypeCountBillItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillItemWhereInput
   }
 
 
@@ -4529,6 +4937,46 @@ export namespace Prisma {
 
 
   /**
+   * Count Type BillCountOutputType
+   */
+
+  export type BillCountOutputType = {
+    billItems: number
+    receivedItems: number
+  }
+
+  export type BillCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    billItems?: boolean | BillCountOutputTypeCountBillItemsArgs
+    receivedItems?: boolean | BillCountOutputTypeCountReceivedItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BillCountOutputType without action
+   */
+  export type BillCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillCountOutputType
+     */
+    select?: BillCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BillCountOutputType without action
+   */
+  export type BillCountOutputTypeCountBillItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillItemWhereInput
+  }
+
+  /**
+   * BillCountOutputType without action
+   */
+  export type BillCountOutputTypeCountReceivedItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReceivedItemWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -4739,6 +5187,8 @@ export namespace Prisma {
     address?: boolean
     email?: boolean
     transactions?: boolean | AddCustomer$transactionsArgs<ExtArgs>
+    bills?: boolean | AddCustomer$billsArgs<ExtArgs>
+    hallmarks?: boolean | AddCustomer$hallmarksArgs<ExtArgs>
     _count?: boolean | AddCustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["addCustomer"]>
 
@@ -4756,6 +5206,8 @@ export namespace Prisma {
   export type AddCustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "name" | "phoneNumber" | "address" | "email", ExtArgs["result"]["addCustomer"]>
   export type AddCustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transactions?: boolean | AddCustomer$transactionsArgs<ExtArgs>
+    bills?: boolean | AddCustomer$billsArgs<ExtArgs>
+    hallmarks?: boolean | AddCustomer$hallmarksArgs<ExtArgs>
     _count?: boolean | AddCustomerCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -4763,6 +5215,8 @@ export namespace Prisma {
     name: "AddCustomer"
     objects: {
       transactions: Prisma.$CustomerTransactionPayload<ExtArgs>[]
+      bills: Prisma.$BillPayload<ExtArgs>[]
+      hallmarks: Prisma.$HallmarkPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5112,6 +5566,8 @@ export namespace Prisma {
   export interface Prisma__AddCustomerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     transactions<T extends AddCustomer$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, AddCustomer$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bills<T extends AddCustomer$billsArgs<ExtArgs> = {}>(args?: Subset<T, AddCustomer$billsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hallmarks<T extends AddCustomer$hallmarksArgs<ExtArgs> = {}>(args?: Subset<T, AddCustomer$hallmarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HallmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5511,6 +5967,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CustomerTransactionScalarFieldEnum | CustomerTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * AddCustomer.bills
+   */
+  export type AddCustomer$billsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    where?: BillWhereInput
+    orderBy?: BillOrderByWithRelationInput | BillOrderByWithRelationInput[]
+    cursor?: BillWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BillScalarFieldEnum | BillScalarFieldEnum[]
+  }
+
+  /**
+   * AddCustomer.hallmarks
+   */
+  export type AddCustomer$hallmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+    where?: HallmarkWhereInput
+    orderBy?: HallmarkOrderByWithRelationInput | HallmarkOrderByWithRelationInput[]
+    cursor?: HallmarkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HallmarkScalarFieldEnum | HallmarkScalarFieldEnum[]
   }
 
   /**
@@ -13154,6 +13658,7 @@ export namespace Prisma {
     setting_items?: boolean | AddItem$setting_itemsArgs<ExtArgs>
     buffing_items?: boolean | AddItem$buffing_itemsArgs<ExtArgs>
     QCStock?: boolean | AddItem$QCStockArgs<ExtArgs>
+    billItems?: boolean | AddItem$billItemsArgs<ExtArgs>
     _count?: boolean | AddItemCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["addItem"]>
 
@@ -13173,6 +13678,7 @@ export namespace Prisma {
     setting_items?: boolean | AddItem$setting_itemsArgs<ExtArgs>
     buffing_items?: boolean | AddItem$buffing_itemsArgs<ExtArgs>
     QCStock?: boolean | AddItem$QCStockArgs<ExtArgs>
+    billItems?: boolean | AddItem$billItemsArgs<ExtArgs>
     _count?: boolean | AddItemCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -13185,6 +13691,7 @@ export namespace Prisma {
       setting_items: Prisma.$SettingItemsPayload<ExtArgs>[]
       buffing_items: Prisma.$BuffingItemsPayload<ExtArgs>[]
       QCStock: Prisma.$QcStockPayload<ExtArgs>[]
+      billItems: Prisma.$BillItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -13536,6 +14043,7 @@ export namespace Prisma {
     setting_items<T extends AddItem$setting_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$setting_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     buffing_items<T extends AddItem$buffing_itemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$buffing_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuffingItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     QCStock<T extends AddItem$QCStockArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$QCStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    billItems<T extends AddItem$billItemsArgs<ExtArgs> = {}>(args?: Subset<T, AddItem$billItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14055,6 +14563,30 @@ export namespace Prisma {
   }
 
   /**
+   * AddItem.billItems
+   */
+  export type AddItem$billItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    where?: BillItemWhereInput
+    orderBy?: BillItemOrderByWithRelationInput | BillItemOrderByWithRelationInput[]
+    cursor?: BillItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BillItemScalarFieldEnum | BillItemScalarFieldEnum[]
+  }
+
+  /**
    * AddItem without action
    */
   export type AddItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14268,6 +14800,8 @@ export namespace Prisma {
     add_purchase_stock?: boolean | AddTouch$add_purchase_stockArgs<ExtArgs>
     customer_transaction?: boolean | AddTouch$customer_transactionArgs<ExtArgs>
     QCStock?: boolean | AddTouch$QCStockArgs<ExtArgs>
+    receivedItems?: boolean | AddTouch$receivedItemsArgs<ExtArgs>
+    billItems?: boolean | AddTouch$billItemsArgs<ExtArgs>
     _count?: boolean | AddTouchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["addTouch"]>
 
@@ -14290,6 +14824,8 @@ export namespace Prisma {
     add_purchase_stock?: boolean | AddTouch$add_purchase_stockArgs<ExtArgs>
     customer_transaction?: boolean | AddTouch$customer_transactionArgs<ExtArgs>
     QCStock?: boolean | AddTouch$QCStockArgs<ExtArgs>
+    receivedItems?: boolean | AddTouch$receivedItemsArgs<ExtArgs>
+    billItems?: boolean | AddTouch$billItemsArgs<ExtArgs>
     _count?: boolean | AddTouchCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -14305,6 +14841,8 @@ export namespace Prisma {
       add_purchase_stock: Prisma.$AddPurchaseStockPayload<ExtArgs>[]
       customer_transaction: Prisma.$CustomerTransactionPayload<ExtArgs>[]
       QCStock: Prisma.$QcStockPayload<ExtArgs>[]
+      receivedItems: Prisma.$ReceivedItemPayload<ExtArgs>[]
+      billItems: Prisma.$BillItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -14659,6 +15197,8 @@ export namespace Prisma {
     add_purchase_stock<T extends AddTouch$add_purchase_stockArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$add_purchase_stockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddPurchaseStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     customer_transaction<T extends AddTouch$customer_transactionArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$customer_transactionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     QCStock<T extends AddTouch$QCStockArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$QCStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    receivedItems<T extends AddTouch$receivedItemsArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$receivedItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    billItems<T extends AddTouch$billItemsArgs<ExtArgs> = {}>(args?: Subset<T, AddTouch$billItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15250,6 +15790,54 @@ export namespace Prisma {
   }
 
   /**
+   * AddTouch.receivedItems
+   */
+  export type AddTouch$receivedItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    where?: ReceivedItemWhereInput
+    orderBy?: ReceivedItemOrderByWithRelationInput | ReceivedItemOrderByWithRelationInput[]
+    cursor?: ReceivedItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReceivedItemScalarFieldEnum | ReceivedItemScalarFieldEnum[]
+  }
+
+  /**
+   * AddTouch.billItems
+   */
+  export type AddTouch$billItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    where?: BillItemWhereInput
+    orderBy?: BillItemOrderByWithRelationInput | BillItemOrderByWithRelationInput[]
+    cursor?: BillItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BillItemScalarFieldEnum | BillItemScalarFieldEnum[]
+  }
+
+  /**
    * AddTouch without action
    */
   export type AddTouchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15524,6 +16112,8 @@ export namespace Prisma {
     remarks?: boolean
     itemId?: boolean | AddItemDefaultArgs<ExtArgs>
     touchId?: boolean | AddTouchDefaultArgs<ExtArgs>
+    BillItem?: boolean | QcStock$BillItemArgs<ExtArgs>
+    _count?: boolean | QcStockCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["qcStock"]>
 
 
@@ -15544,6 +16134,8 @@ export namespace Prisma {
   export type QcStockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     itemId?: boolean | AddItemDefaultArgs<ExtArgs>
     touchId?: boolean | AddTouchDefaultArgs<ExtArgs>
+    BillItem?: boolean | QcStock$BillItemArgs<ExtArgs>
+    _count?: boolean | QcStockCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $QcStockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15551,6 +16143,7 @@ export namespace Prisma {
     objects: {
       itemId: Prisma.$AddItemPayload<ExtArgs>
       touchId: Prisma.$AddTouchPayload<ExtArgs>
+      BillItem: Prisma.$BillItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -15904,6 +16497,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     itemId<T extends AddItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddItemDefaultArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     touchId<T extends AddTouchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddTouchDefaultArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    BillItem<T extends QcStock$BillItemArgs<ExtArgs> = {}>(args?: Subset<T, QcStock$BillItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16282,6 +16876,30 @@ export namespace Prisma {
      * Limit how many QcStocks to delete.
      */
     limit?: number
+  }
+
+  /**
+   * QcStock.BillItem
+   */
+  export type QcStock$BillItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    where?: BillItemWhereInput
+    orderBy?: BillItemOrderByWithRelationInput | BillItemOrderByWithRelationInput[]
+    cursor?: BillItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BillItemScalarFieldEnum | BillItemScalarFieldEnum[]
   }
 
   /**
@@ -38560,6 +39178,4387 @@ export namespace Prisma {
 
 
   /**
+   * Model Hallmark
+   */
+
+  export type AggregateHallmark = {
+    _count: HallmarkCountAggregateOutputType | null
+    _avg: HallmarkAvgAggregateOutputType | null
+    _sum: HallmarkSumAggregateOutputType | null
+    _min: HallmarkMinAggregateOutputType | null
+    _max: HallmarkMaxAggregateOutputType | null
+  }
+
+  export type HallmarkAvgAggregateOutputType = {
+    id: number | null
+    customer_id: number | null
+    balance: number | null
+  }
+
+  export type HallmarkSumAggregateOutputType = {
+    id: number | null
+    customer_id: number | null
+    balance: number | null
+  }
+
+  export type HallmarkMinAggregateOutputType = {
+    id: number | null
+    customer_id: number | null
+    balance: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HallmarkMaxAggregateOutputType = {
+    id: number | null
+    customer_id: number | null
+    balance: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HallmarkCountAggregateOutputType = {
+    id: number
+    customer_id: number
+    balance: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HallmarkAvgAggregateInputType = {
+    id?: true
+    customer_id?: true
+    balance?: true
+  }
+
+  export type HallmarkSumAggregateInputType = {
+    id?: true
+    customer_id?: true
+    balance?: true
+  }
+
+  export type HallmarkMinAggregateInputType = {
+    id?: true
+    customer_id?: true
+    balance?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HallmarkMaxAggregateInputType = {
+    id?: true
+    customer_id?: true
+    balance?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HallmarkCountAggregateInputType = {
+    id?: true
+    customer_id?: true
+    balance?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HallmarkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hallmark to aggregate.
+     */
+    where?: HallmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hallmarks to fetch.
+     */
+    orderBy?: HallmarkOrderByWithRelationInput | HallmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HallmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hallmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hallmarks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Hallmarks
+    **/
+    _count?: true | HallmarkCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HallmarkAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HallmarkSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HallmarkMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HallmarkMaxAggregateInputType
+  }
+
+  export type GetHallmarkAggregateType<T extends HallmarkAggregateArgs> = {
+        [P in keyof T & keyof AggregateHallmark]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHallmark[P]>
+      : GetScalarType<T[P], AggregateHallmark[P]>
+  }
+
+
+
+
+  export type HallmarkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HallmarkWhereInput
+    orderBy?: HallmarkOrderByWithAggregationInput | HallmarkOrderByWithAggregationInput[]
+    by: HallmarkScalarFieldEnum[] | HallmarkScalarFieldEnum
+    having?: HallmarkScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HallmarkCountAggregateInputType | true
+    _avg?: HallmarkAvgAggregateInputType
+    _sum?: HallmarkSumAggregateInputType
+    _min?: HallmarkMinAggregateInputType
+    _max?: HallmarkMaxAggregateInputType
+  }
+
+  export type HallmarkGroupByOutputType = {
+    id: number
+    customer_id: number
+    balance: number
+    createdAt: Date
+    updatedAt: Date
+    _count: HallmarkCountAggregateOutputType | null
+    _avg: HallmarkAvgAggregateOutputType | null
+    _sum: HallmarkSumAggregateOutputType | null
+    _min: HallmarkMinAggregateOutputType | null
+    _max: HallmarkMaxAggregateOutputType | null
+  }
+
+  type GetHallmarkGroupByPayload<T extends HallmarkGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HallmarkGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HallmarkGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HallmarkGroupByOutputType[P]>
+            : GetScalarType<T[P], HallmarkGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HallmarkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    customer_id?: boolean
+    balance?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customer?: boolean | AddCustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hallmark"]>
+
+
+
+  export type HallmarkSelectScalar = {
+    id?: boolean
+    customer_id?: boolean
+    balance?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HallmarkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customer_id" | "balance" | "createdAt" | "updatedAt", ExtArgs["result"]["hallmark"]>
+  export type HallmarkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | AddCustomerDefaultArgs<ExtArgs>
+  }
+
+  export type $HallmarkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Hallmark"
+    objects: {
+      customer: Prisma.$AddCustomerPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      customer_id: number
+      balance: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["hallmark"]>
+    composites: {}
+  }
+
+  type HallmarkGetPayload<S extends boolean | null | undefined | HallmarkDefaultArgs> = $Result.GetResult<Prisma.$HallmarkPayload, S>
+
+  type HallmarkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HallmarkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HallmarkCountAggregateInputType | true
+    }
+
+  export interface HallmarkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Hallmark'], meta: { name: 'Hallmark' } }
+    /**
+     * Find zero or one Hallmark that matches the filter.
+     * @param {HallmarkFindUniqueArgs} args - Arguments to find a Hallmark
+     * @example
+     * // Get one Hallmark
+     * const hallmark = await prisma.hallmark.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HallmarkFindUniqueArgs>(args: SelectSubset<T, HallmarkFindUniqueArgs<ExtArgs>>): Prisma__HallmarkClient<$Result.GetResult<Prisma.$HallmarkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hallmark that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HallmarkFindUniqueOrThrowArgs} args - Arguments to find a Hallmark
+     * @example
+     * // Get one Hallmark
+     * const hallmark = await prisma.hallmark.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HallmarkFindUniqueOrThrowArgs>(args: SelectSubset<T, HallmarkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HallmarkClient<$Result.GetResult<Prisma.$HallmarkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hallmark that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HallmarkFindFirstArgs} args - Arguments to find a Hallmark
+     * @example
+     * // Get one Hallmark
+     * const hallmark = await prisma.hallmark.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HallmarkFindFirstArgs>(args?: SelectSubset<T, HallmarkFindFirstArgs<ExtArgs>>): Prisma__HallmarkClient<$Result.GetResult<Prisma.$HallmarkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hallmark that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HallmarkFindFirstOrThrowArgs} args - Arguments to find a Hallmark
+     * @example
+     * // Get one Hallmark
+     * const hallmark = await prisma.hallmark.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HallmarkFindFirstOrThrowArgs>(args?: SelectSubset<T, HallmarkFindFirstOrThrowArgs<ExtArgs>>): Prisma__HallmarkClient<$Result.GetResult<Prisma.$HallmarkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hallmarks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HallmarkFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hallmarks
+     * const hallmarks = await prisma.hallmark.findMany()
+     * 
+     * // Get first 10 Hallmarks
+     * const hallmarks = await prisma.hallmark.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hallmarkWithIdOnly = await prisma.hallmark.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HallmarkFindManyArgs>(args?: SelectSubset<T, HallmarkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HallmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hallmark.
+     * @param {HallmarkCreateArgs} args - Arguments to create a Hallmark.
+     * @example
+     * // Create one Hallmark
+     * const Hallmark = await prisma.hallmark.create({
+     *   data: {
+     *     // ... data to create a Hallmark
+     *   }
+     * })
+     * 
+     */
+    create<T extends HallmarkCreateArgs>(args: SelectSubset<T, HallmarkCreateArgs<ExtArgs>>): Prisma__HallmarkClient<$Result.GetResult<Prisma.$HallmarkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hallmarks.
+     * @param {HallmarkCreateManyArgs} args - Arguments to create many Hallmarks.
+     * @example
+     * // Create many Hallmarks
+     * const hallmark = await prisma.hallmark.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HallmarkCreateManyArgs>(args?: SelectSubset<T, HallmarkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Hallmark.
+     * @param {HallmarkDeleteArgs} args - Arguments to delete one Hallmark.
+     * @example
+     * // Delete one Hallmark
+     * const Hallmark = await prisma.hallmark.delete({
+     *   where: {
+     *     // ... filter to delete one Hallmark
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HallmarkDeleteArgs>(args: SelectSubset<T, HallmarkDeleteArgs<ExtArgs>>): Prisma__HallmarkClient<$Result.GetResult<Prisma.$HallmarkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hallmark.
+     * @param {HallmarkUpdateArgs} args - Arguments to update one Hallmark.
+     * @example
+     * // Update one Hallmark
+     * const hallmark = await prisma.hallmark.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HallmarkUpdateArgs>(args: SelectSubset<T, HallmarkUpdateArgs<ExtArgs>>): Prisma__HallmarkClient<$Result.GetResult<Prisma.$HallmarkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hallmarks.
+     * @param {HallmarkDeleteManyArgs} args - Arguments to filter Hallmarks to delete.
+     * @example
+     * // Delete a few Hallmarks
+     * const { count } = await prisma.hallmark.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HallmarkDeleteManyArgs>(args?: SelectSubset<T, HallmarkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hallmarks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HallmarkUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hallmarks
+     * const hallmark = await prisma.hallmark.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HallmarkUpdateManyArgs>(args: SelectSubset<T, HallmarkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Hallmark.
+     * @param {HallmarkUpsertArgs} args - Arguments to update or create a Hallmark.
+     * @example
+     * // Update or create a Hallmark
+     * const hallmark = await prisma.hallmark.upsert({
+     *   create: {
+     *     // ... data to create a Hallmark
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hallmark we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HallmarkUpsertArgs>(args: SelectSubset<T, HallmarkUpsertArgs<ExtArgs>>): Prisma__HallmarkClient<$Result.GetResult<Prisma.$HallmarkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hallmarks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HallmarkCountArgs} args - Arguments to filter Hallmarks to count.
+     * @example
+     * // Count the number of Hallmarks
+     * const count = await prisma.hallmark.count({
+     *   where: {
+     *     // ... the filter for the Hallmarks we want to count
+     *   }
+     * })
+    **/
+    count<T extends HallmarkCountArgs>(
+      args?: Subset<T, HallmarkCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HallmarkCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hallmark.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HallmarkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HallmarkAggregateArgs>(args: Subset<T, HallmarkAggregateArgs>): Prisma.PrismaPromise<GetHallmarkAggregateType<T>>
+
+    /**
+     * Group by Hallmark.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HallmarkGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HallmarkGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HallmarkGroupByArgs['orderBy'] }
+        : { orderBy?: HallmarkGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HallmarkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHallmarkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Hallmark model
+   */
+  readonly fields: HallmarkFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Hallmark.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HallmarkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    customer<T extends AddCustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddCustomerDefaultArgs<ExtArgs>>): Prisma__AddCustomerClient<$Result.GetResult<Prisma.$AddCustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Hallmark model
+   */
+  interface HallmarkFieldRefs {
+    readonly id: FieldRef<"Hallmark", 'Int'>
+    readonly customer_id: FieldRef<"Hallmark", 'Int'>
+    readonly balance: FieldRef<"Hallmark", 'Float'>
+    readonly createdAt: FieldRef<"Hallmark", 'DateTime'>
+    readonly updatedAt: FieldRef<"Hallmark", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Hallmark findUnique
+   */
+  export type HallmarkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which Hallmark to fetch.
+     */
+    where: HallmarkWhereUniqueInput
+  }
+
+  /**
+   * Hallmark findUniqueOrThrow
+   */
+  export type HallmarkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which Hallmark to fetch.
+     */
+    where: HallmarkWhereUniqueInput
+  }
+
+  /**
+   * Hallmark findFirst
+   */
+  export type HallmarkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which Hallmark to fetch.
+     */
+    where?: HallmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hallmarks to fetch.
+     */
+    orderBy?: HallmarkOrderByWithRelationInput | HallmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Hallmarks.
+     */
+    cursor?: HallmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hallmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hallmarks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Hallmarks.
+     */
+    distinct?: HallmarkScalarFieldEnum | HallmarkScalarFieldEnum[]
+  }
+
+  /**
+   * Hallmark findFirstOrThrow
+   */
+  export type HallmarkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which Hallmark to fetch.
+     */
+    where?: HallmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hallmarks to fetch.
+     */
+    orderBy?: HallmarkOrderByWithRelationInput | HallmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Hallmarks.
+     */
+    cursor?: HallmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hallmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hallmarks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Hallmarks.
+     */
+    distinct?: HallmarkScalarFieldEnum | HallmarkScalarFieldEnum[]
+  }
+
+  /**
+   * Hallmark findMany
+   */
+  export type HallmarkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which Hallmarks to fetch.
+     */
+    where?: HallmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hallmarks to fetch.
+     */
+    orderBy?: HallmarkOrderByWithRelationInput | HallmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Hallmarks.
+     */
+    cursor?: HallmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hallmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hallmarks.
+     */
+    skip?: number
+    distinct?: HallmarkScalarFieldEnum | HallmarkScalarFieldEnum[]
+  }
+
+  /**
+   * Hallmark create
+   */
+  export type HallmarkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Hallmark.
+     */
+    data: XOR<HallmarkCreateInput, HallmarkUncheckedCreateInput>
+  }
+
+  /**
+   * Hallmark createMany
+   */
+  export type HallmarkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Hallmarks.
+     */
+    data: HallmarkCreateManyInput | HallmarkCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Hallmark update
+   */
+  export type HallmarkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Hallmark.
+     */
+    data: XOR<HallmarkUpdateInput, HallmarkUncheckedUpdateInput>
+    /**
+     * Choose, which Hallmark to update.
+     */
+    where: HallmarkWhereUniqueInput
+  }
+
+  /**
+   * Hallmark updateMany
+   */
+  export type HallmarkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Hallmarks.
+     */
+    data: XOR<HallmarkUpdateManyMutationInput, HallmarkUncheckedUpdateManyInput>
+    /**
+     * Filter which Hallmarks to update
+     */
+    where?: HallmarkWhereInput
+    /**
+     * Limit how many Hallmarks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hallmark upsert
+   */
+  export type HallmarkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Hallmark to update in case it exists.
+     */
+    where: HallmarkWhereUniqueInput
+    /**
+     * In case the Hallmark found by the `where` argument doesn't exist, create a new Hallmark with this data.
+     */
+    create: XOR<HallmarkCreateInput, HallmarkUncheckedCreateInput>
+    /**
+     * In case the Hallmark was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HallmarkUpdateInput, HallmarkUncheckedUpdateInput>
+  }
+
+  /**
+   * Hallmark delete
+   */
+  export type HallmarkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+    /**
+     * Filter which Hallmark to delete.
+     */
+    where: HallmarkWhereUniqueInput
+  }
+
+  /**
+   * Hallmark deleteMany
+   */
+  export type HallmarkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hallmarks to delete
+     */
+    where?: HallmarkWhereInput
+    /**
+     * Limit how many Hallmarks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hallmark without action
+   */
+  export type HallmarkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hallmark
+     */
+    select?: HallmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hallmark
+     */
+    omit?: HallmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HallmarkInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Bill
+   */
+
+  export type AggregateBill = {
+    _count: BillCountAggregateOutputType | null
+    _avg: BillAvgAggregateOutputType | null
+    _sum: BillSumAggregateOutputType | null
+    _min: BillMinAggregateOutputType | null
+    _max: BillMaxAggregateOutputType | null
+  }
+
+  export type BillAvgAggregateOutputType = {
+    id: number | null
+    customer_id: number | null
+    gold_rate: number | null
+    total_pure: number | null
+    total_amount: number | null
+    customer_balance: number | null
+    grand_total: number | null
+    cash_balance: number | null
+    pure_balance: number | null
+    prev_hallmark: number | null
+    hallmark_balance: number | null
+  }
+
+  export type BillSumAggregateOutputType = {
+    id: number | null
+    customer_id: number | null
+    gold_rate: number | null
+    total_pure: number | null
+    total_amount: number | null
+    customer_balance: number | null
+    grand_total: number | null
+    cash_balance: number | null
+    pure_balance: number | null
+    prev_hallmark: number | null
+    hallmark_balance: number | null
+  }
+
+  export type BillMinAggregateOutputType = {
+    id: number | null
+    customer_id: number | null
+    bill_no: string | null
+    date: string | null
+    time: string | null
+    gold_rate: number | null
+    total_pure: number | null
+    total_amount: number | null
+    customer_balance: number | null
+    grand_total: number | null
+    cash_balance: number | null
+    pure_balance: number | null
+    prev_hallmark: number | null
+    hallmark_balance: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BillMaxAggregateOutputType = {
+    id: number | null
+    customer_id: number | null
+    bill_no: string | null
+    date: string | null
+    time: string | null
+    gold_rate: number | null
+    total_pure: number | null
+    total_amount: number | null
+    customer_balance: number | null
+    grand_total: number | null
+    cash_balance: number | null
+    pure_balance: number | null
+    prev_hallmark: number | null
+    hallmark_balance: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BillCountAggregateOutputType = {
+    id: number
+    customer_id: number
+    bill_no: number
+    date: number
+    time: number
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BillAvgAggregateInputType = {
+    id?: true
+    customer_id?: true
+    gold_rate?: true
+    total_pure?: true
+    total_amount?: true
+    customer_balance?: true
+    grand_total?: true
+    cash_balance?: true
+    pure_balance?: true
+    prev_hallmark?: true
+    hallmark_balance?: true
+  }
+
+  export type BillSumAggregateInputType = {
+    id?: true
+    customer_id?: true
+    gold_rate?: true
+    total_pure?: true
+    total_amount?: true
+    customer_balance?: true
+    grand_total?: true
+    cash_balance?: true
+    pure_balance?: true
+    prev_hallmark?: true
+    hallmark_balance?: true
+  }
+
+  export type BillMinAggregateInputType = {
+    id?: true
+    customer_id?: true
+    bill_no?: true
+    date?: true
+    time?: true
+    gold_rate?: true
+    total_pure?: true
+    total_amount?: true
+    customer_balance?: true
+    grand_total?: true
+    cash_balance?: true
+    pure_balance?: true
+    prev_hallmark?: true
+    hallmark_balance?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BillMaxAggregateInputType = {
+    id?: true
+    customer_id?: true
+    bill_no?: true
+    date?: true
+    time?: true
+    gold_rate?: true
+    total_pure?: true
+    total_amount?: true
+    customer_balance?: true
+    grand_total?: true
+    cash_balance?: true
+    pure_balance?: true
+    prev_hallmark?: true
+    hallmark_balance?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BillCountAggregateInputType = {
+    id?: true
+    customer_id?: true
+    bill_no?: true
+    date?: true
+    time?: true
+    gold_rate?: true
+    total_pure?: true
+    total_amount?: true
+    customer_balance?: true
+    grand_total?: true
+    cash_balance?: true
+    pure_balance?: true
+    prev_hallmark?: true
+    hallmark_balance?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BillAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Bill to aggregate.
+     */
+    where?: BillWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Bills to fetch.
+     */
+    orderBy?: BillOrderByWithRelationInput | BillOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BillWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Bills from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Bills.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Bills
+    **/
+    _count?: true | BillCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BillAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BillSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BillMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BillMaxAggregateInputType
+  }
+
+  export type GetBillAggregateType<T extends BillAggregateArgs> = {
+        [P in keyof T & keyof AggregateBill]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBill[P]>
+      : GetScalarType<T[P], AggregateBill[P]>
+  }
+
+
+
+
+  export type BillGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillWhereInput
+    orderBy?: BillOrderByWithAggregationInput | BillOrderByWithAggregationInput[]
+    by: BillScalarFieldEnum[] | BillScalarFieldEnum
+    having?: BillScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BillCountAggregateInputType | true
+    _avg?: BillAvgAggregateInputType
+    _sum?: BillSumAggregateInputType
+    _min?: BillMinAggregateInputType
+    _max?: BillMaxAggregateInputType
+  }
+
+  export type BillGroupByOutputType = {
+    id: number
+    customer_id: number
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt: Date
+    updatedAt: Date
+    _count: BillCountAggregateOutputType | null
+    _avg: BillAvgAggregateOutputType | null
+    _sum: BillSumAggregateOutputType | null
+    _min: BillMinAggregateOutputType | null
+    _max: BillMaxAggregateOutputType | null
+  }
+
+  type GetBillGroupByPayload<T extends BillGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BillGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BillGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BillGroupByOutputType[P]>
+            : GetScalarType<T[P], BillGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BillSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    customer_id?: boolean
+    bill_no?: boolean
+    date?: boolean
+    time?: boolean
+    gold_rate?: boolean
+    total_pure?: boolean
+    total_amount?: boolean
+    customer_balance?: boolean
+    grand_total?: boolean
+    cash_balance?: boolean
+    pure_balance?: boolean
+    prev_hallmark?: boolean
+    hallmark_balance?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customer?: boolean | AddCustomerDefaultArgs<ExtArgs>
+    billItems?: boolean | Bill$billItemsArgs<ExtArgs>
+    receivedItems?: boolean | Bill$receivedItemsArgs<ExtArgs>
+    _count?: boolean | BillCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bill"]>
+
+
+
+  export type BillSelectScalar = {
+    id?: boolean
+    customer_id?: boolean
+    bill_no?: boolean
+    date?: boolean
+    time?: boolean
+    gold_rate?: boolean
+    total_pure?: boolean
+    total_amount?: boolean
+    customer_balance?: boolean
+    grand_total?: boolean
+    cash_balance?: boolean
+    pure_balance?: boolean
+    prev_hallmark?: boolean
+    hallmark_balance?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BillOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customer_id" | "bill_no" | "date" | "time" | "gold_rate" | "total_pure" | "total_amount" | "customer_balance" | "grand_total" | "cash_balance" | "pure_balance" | "prev_hallmark" | "hallmark_balance" | "createdAt" | "updatedAt", ExtArgs["result"]["bill"]>
+  export type BillInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | AddCustomerDefaultArgs<ExtArgs>
+    billItems?: boolean | Bill$billItemsArgs<ExtArgs>
+    receivedItems?: boolean | Bill$receivedItemsArgs<ExtArgs>
+    _count?: boolean | BillCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $BillPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Bill"
+    objects: {
+      customer: Prisma.$AddCustomerPayload<ExtArgs>
+      billItems: Prisma.$BillItemPayload<ExtArgs>[]
+      receivedItems: Prisma.$ReceivedItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      customer_id: number
+      bill_no: string
+      date: string
+      time: string
+      gold_rate: number
+      total_pure: number
+      total_amount: number
+      customer_balance: number
+      grand_total: number
+      cash_balance: number
+      pure_balance: number
+      prev_hallmark: number
+      hallmark_balance: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bill"]>
+    composites: {}
+  }
+
+  type BillGetPayload<S extends boolean | null | undefined | BillDefaultArgs> = $Result.GetResult<Prisma.$BillPayload, S>
+
+  type BillCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BillFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BillCountAggregateInputType | true
+    }
+
+  export interface BillDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Bill'], meta: { name: 'Bill' } }
+    /**
+     * Find zero or one Bill that matches the filter.
+     * @param {BillFindUniqueArgs} args - Arguments to find a Bill
+     * @example
+     * // Get one Bill
+     * const bill = await prisma.bill.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BillFindUniqueArgs>(args: SelectSubset<T, BillFindUniqueArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Bill that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BillFindUniqueOrThrowArgs} args - Arguments to find a Bill
+     * @example
+     * // Get one Bill
+     * const bill = await prisma.bill.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BillFindUniqueOrThrowArgs>(args: SelectSubset<T, BillFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Bill that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillFindFirstArgs} args - Arguments to find a Bill
+     * @example
+     * // Get one Bill
+     * const bill = await prisma.bill.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BillFindFirstArgs>(args?: SelectSubset<T, BillFindFirstArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Bill that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillFindFirstOrThrowArgs} args - Arguments to find a Bill
+     * @example
+     * // Get one Bill
+     * const bill = await prisma.bill.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BillFindFirstOrThrowArgs>(args?: SelectSubset<T, BillFindFirstOrThrowArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Bills that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Bills
+     * const bills = await prisma.bill.findMany()
+     * 
+     * // Get first 10 Bills
+     * const bills = await prisma.bill.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const billWithIdOnly = await prisma.bill.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BillFindManyArgs>(args?: SelectSubset<T, BillFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Bill.
+     * @param {BillCreateArgs} args - Arguments to create a Bill.
+     * @example
+     * // Create one Bill
+     * const Bill = await prisma.bill.create({
+     *   data: {
+     *     // ... data to create a Bill
+     *   }
+     * })
+     * 
+     */
+    create<T extends BillCreateArgs>(args: SelectSubset<T, BillCreateArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Bills.
+     * @param {BillCreateManyArgs} args - Arguments to create many Bills.
+     * @example
+     * // Create many Bills
+     * const bill = await prisma.bill.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BillCreateManyArgs>(args?: SelectSubset<T, BillCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Bill.
+     * @param {BillDeleteArgs} args - Arguments to delete one Bill.
+     * @example
+     * // Delete one Bill
+     * const Bill = await prisma.bill.delete({
+     *   where: {
+     *     // ... filter to delete one Bill
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BillDeleteArgs>(args: SelectSubset<T, BillDeleteArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Bill.
+     * @param {BillUpdateArgs} args - Arguments to update one Bill.
+     * @example
+     * // Update one Bill
+     * const bill = await prisma.bill.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BillUpdateArgs>(args: SelectSubset<T, BillUpdateArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Bills.
+     * @param {BillDeleteManyArgs} args - Arguments to filter Bills to delete.
+     * @example
+     * // Delete a few Bills
+     * const { count } = await prisma.bill.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BillDeleteManyArgs>(args?: SelectSubset<T, BillDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Bills.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Bills
+     * const bill = await prisma.bill.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BillUpdateManyArgs>(args: SelectSubset<T, BillUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Bill.
+     * @param {BillUpsertArgs} args - Arguments to update or create a Bill.
+     * @example
+     * // Update or create a Bill
+     * const bill = await prisma.bill.upsert({
+     *   create: {
+     *     // ... data to create a Bill
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Bill we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BillUpsertArgs>(args: SelectSubset<T, BillUpsertArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Bills.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillCountArgs} args - Arguments to filter Bills to count.
+     * @example
+     * // Count the number of Bills
+     * const count = await prisma.bill.count({
+     *   where: {
+     *     // ... the filter for the Bills we want to count
+     *   }
+     * })
+    **/
+    count<T extends BillCountArgs>(
+      args?: Subset<T, BillCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BillCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Bill.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BillAggregateArgs>(args: Subset<T, BillAggregateArgs>): Prisma.PrismaPromise<GetBillAggregateType<T>>
+
+    /**
+     * Group by Bill.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BillGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BillGroupByArgs['orderBy'] }
+        : { orderBy?: BillGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BillGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBillGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Bill model
+   */
+  readonly fields: BillFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Bill.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BillClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    customer<T extends AddCustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddCustomerDefaultArgs<ExtArgs>>): Prisma__AddCustomerClient<$Result.GetResult<Prisma.$AddCustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    billItems<T extends Bill$billItemsArgs<ExtArgs> = {}>(args?: Subset<T, Bill$billItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    receivedItems<T extends Bill$receivedItemsArgs<ExtArgs> = {}>(args?: Subset<T, Bill$receivedItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Bill model
+   */
+  interface BillFieldRefs {
+    readonly id: FieldRef<"Bill", 'Int'>
+    readonly customer_id: FieldRef<"Bill", 'Int'>
+    readonly bill_no: FieldRef<"Bill", 'String'>
+    readonly date: FieldRef<"Bill", 'String'>
+    readonly time: FieldRef<"Bill", 'String'>
+    readonly gold_rate: FieldRef<"Bill", 'Float'>
+    readonly total_pure: FieldRef<"Bill", 'Float'>
+    readonly total_amount: FieldRef<"Bill", 'Float'>
+    readonly customer_balance: FieldRef<"Bill", 'Float'>
+    readonly grand_total: FieldRef<"Bill", 'Float'>
+    readonly cash_balance: FieldRef<"Bill", 'Float'>
+    readonly pure_balance: FieldRef<"Bill", 'Float'>
+    readonly prev_hallmark: FieldRef<"Bill", 'Float'>
+    readonly hallmark_balance: FieldRef<"Bill", 'Float'>
+    readonly createdAt: FieldRef<"Bill", 'DateTime'>
+    readonly updatedAt: FieldRef<"Bill", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Bill findUnique
+   */
+  export type BillFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    /**
+     * Filter, which Bill to fetch.
+     */
+    where: BillWhereUniqueInput
+  }
+
+  /**
+   * Bill findUniqueOrThrow
+   */
+  export type BillFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    /**
+     * Filter, which Bill to fetch.
+     */
+    where: BillWhereUniqueInput
+  }
+
+  /**
+   * Bill findFirst
+   */
+  export type BillFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    /**
+     * Filter, which Bill to fetch.
+     */
+    where?: BillWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Bills to fetch.
+     */
+    orderBy?: BillOrderByWithRelationInput | BillOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Bills.
+     */
+    cursor?: BillWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Bills from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Bills.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Bills.
+     */
+    distinct?: BillScalarFieldEnum | BillScalarFieldEnum[]
+  }
+
+  /**
+   * Bill findFirstOrThrow
+   */
+  export type BillFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    /**
+     * Filter, which Bill to fetch.
+     */
+    where?: BillWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Bills to fetch.
+     */
+    orderBy?: BillOrderByWithRelationInput | BillOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Bills.
+     */
+    cursor?: BillWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Bills from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Bills.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Bills.
+     */
+    distinct?: BillScalarFieldEnum | BillScalarFieldEnum[]
+  }
+
+  /**
+   * Bill findMany
+   */
+  export type BillFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    /**
+     * Filter, which Bills to fetch.
+     */
+    where?: BillWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Bills to fetch.
+     */
+    orderBy?: BillOrderByWithRelationInput | BillOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Bills.
+     */
+    cursor?: BillWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Bills from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Bills.
+     */
+    skip?: number
+    distinct?: BillScalarFieldEnum | BillScalarFieldEnum[]
+  }
+
+  /**
+   * Bill create
+   */
+  export type BillCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Bill.
+     */
+    data: XOR<BillCreateInput, BillUncheckedCreateInput>
+  }
+
+  /**
+   * Bill createMany
+   */
+  export type BillCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Bills.
+     */
+    data: BillCreateManyInput | BillCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Bill update
+   */
+  export type BillUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Bill.
+     */
+    data: XOR<BillUpdateInput, BillUncheckedUpdateInput>
+    /**
+     * Choose, which Bill to update.
+     */
+    where: BillWhereUniqueInput
+  }
+
+  /**
+   * Bill updateMany
+   */
+  export type BillUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Bills.
+     */
+    data: XOR<BillUpdateManyMutationInput, BillUncheckedUpdateManyInput>
+    /**
+     * Filter which Bills to update
+     */
+    where?: BillWhereInput
+    /**
+     * Limit how many Bills to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Bill upsert
+   */
+  export type BillUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Bill to update in case it exists.
+     */
+    where: BillWhereUniqueInput
+    /**
+     * In case the Bill found by the `where` argument doesn't exist, create a new Bill with this data.
+     */
+    create: XOR<BillCreateInput, BillUncheckedCreateInput>
+    /**
+     * In case the Bill was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BillUpdateInput, BillUncheckedUpdateInput>
+  }
+
+  /**
+   * Bill delete
+   */
+  export type BillDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    /**
+     * Filter which Bill to delete.
+     */
+    where: BillWhereUniqueInput
+  }
+
+  /**
+   * Bill deleteMany
+   */
+  export type BillDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Bills to delete
+     */
+    where?: BillWhereInput
+    /**
+     * Limit how many Bills to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Bill.billItems
+   */
+  export type Bill$billItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    where?: BillItemWhereInput
+    orderBy?: BillItemOrderByWithRelationInput | BillItemOrderByWithRelationInput[]
+    cursor?: BillItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BillItemScalarFieldEnum | BillItemScalarFieldEnum[]
+  }
+
+  /**
+   * Bill.receivedItems
+   */
+  export type Bill$receivedItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    where?: ReceivedItemWhereInput
+    orderBy?: ReceivedItemOrderByWithRelationInput | ReceivedItemOrderByWithRelationInput[]
+    cursor?: ReceivedItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReceivedItemScalarFieldEnum | ReceivedItemScalarFieldEnum[]
+  }
+
+  /**
+   * Bill without action
+   */
+  export type BillDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BillItem
+   */
+
+  export type AggregateBillItem = {
+    _count: BillItemCountAggregateOutputType | null
+    _avg: BillItemAvgAggregateOutputType | null
+    _sum: BillItemSumAggregateOutputType | null
+    _min: BillItemMinAggregateOutputType | null
+    _max: BillItemMaxAggregateOutputType | null
+  }
+
+  export type BillItemAvgAggregateOutputType = {
+    id: number | null
+    bill_id: number | null
+    qc_stock_id: number | null
+    weight: number | null
+    stone_weight: number | null
+    total_weight: number | null
+    touchId: number | null
+    pure: number | null
+    amount: number | null
+    addItemId: number | null
+  }
+
+  export type BillItemSumAggregateOutputType = {
+    id: number | null
+    bill_id: number | null
+    qc_stock_id: number | null
+    weight: number | null
+    stone_weight: number | null
+    total_weight: number | null
+    touchId: number | null
+    pure: number | null
+    amount: number | null
+    addItemId: number | null
+  }
+
+  export type BillItemMinAggregateOutputType = {
+    id: number | null
+    bill_id: number | null
+    qc_stock_id: number | null
+    item_name: string | null
+    weight: number | null
+    stone_weight: number | null
+    total_weight: number | null
+    touchId: number | null
+    pure: number | null
+    amount: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    addItemId: number | null
+  }
+
+  export type BillItemMaxAggregateOutputType = {
+    id: number | null
+    bill_id: number | null
+    qc_stock_id: number | null
+    item_name: string | null
+    weight: number | null
+    stone_weight: number | null
+    total_weight: number | null
+    touchId: number | null
+    pure: number | null
+    amount: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    addItemId: number | null
+  }
+
+  export type BillItemCountAggregateOutputType = {
+    id: number
+    bill_id: number
+    qc_stock_id: number
+    item_name: number
+    weight: number
+    stone_weight: number
+    total_weight: number
+    touchId: number
+    pure: number
+    amount: number
+    createdAt: number
+    updatedAt: number
+    addItemId: number
+    _all: number
+  }
+
+
+  export type BillItemAvgAggregateInputType = {
+    id?: true
+    bill_id?: true
+    qc_stock_id?: true
+    weight?: true
+    stone_weight?: true
+    total_weight?: true
+    touchId?: true
+    pure?: true
+    amount?: true
+    addItemId?: true
+  }
+
+  export type BillItemSumAggregateInputType = {
+    id?: true
+    bill_id?: true
+    qc_stock_id?: true
+    weight?: true
+    stone_weight?: true
+    total_weight?: true
+    touchId?: true
+    pure?: true
+    amount?: true
+    addItemId?: true
+  }
+
+  export type BillItemMinAggregateInputType = {
+    id?: true
+    bill_id?: true
+    qc_stock_id?: true
+    item_name?: true
+    weight?: true
+    stone_weight?: true
+    total_weight?: true
+    touchId?: true
+    pure?: true
+    amount?: true
+    createdAt?: true
+    updatedAt?: true
+    addItemId?: true
+  }
+
+  export type BillItemMaxAggregateInputType = {
+    id?: true
+    bill_id?: true
+    qc_stock_id?: true
+    item_name?: true
+    weight?: true
+    stone_weight?: true
+    total_weight?: true
+    touchId?: true
+    pure?: true
+    amount?: true
+    createdAt?: true
+    updatedAt?: true
+    addItemId?: true
+  }
+
+  export type BillItemCountAggregateInputType = {
+    id?: true
+    bill_id?: true
+    qc_stock_id?: true
+    item_name?: true
+    weight?: true
+    stone_weight?: true
+    total_weight?: true
+    touchId?: true
+    pure?: true
+    amount?: true
+    createdAt?: true
+    updatedAt?: true
+    addItemId?: true
+    _all?: true
+  }
+
+  export type BillItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BillItem to aggregate.
+     */
+    where?: BillItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillItems to fetch.
+     */
+    orderBy?: BillItemOrderByWithRelationInput | BillItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BillItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BillItems
+    **/
+    _count?: true | BillItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BillItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BillItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BillItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BillItemMaxAggregateInputType
+  }
+
+  export type GetBillItemAggregateType<T extends BillItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateBillItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBillItem[P]>
+      : GetScalarType<T[P], AggregateBillItem[P]>
+  }
+
+
+
+
+  export type BillItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillItemWhereInput
+    orderBy?: BillItemOrderByWithAggregationInput | BillItemOrderByWithAggregationInput[]
+    by: BillItemScalarFieldEnum[] | BillItemScalarFieldEnum
+    having?: BillItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BillItemCountAggregateInputType | true
+    _avg?: BillItemAvgAggregateInputType
+    _sum?: BillItemSumAggregateInputType
+    _min?: BillItemMinAggregateInputType
+    _max?: BillItemMaxAggregateInputType
+  }
+
+  export type BillItemGroupByOutputType = {
+    id: number
+    bill_id: number
+    qc_stock_id: number
+    item_name: string
+    weight: number
+    stone_weight: number | null
+    total_weight: number
+    touchId: number | null
+    pure: number
+    amount: number
+    createdAt: Date
+    updatedAt: Date
+    addItemId: number | null
+    _count: BillItemCountAggregateOutputType | null
+    _avg: BillItemAvgAggregateOutputType | null
+    _sum: BillItemSumAggregateOutputType | null
+    _min: BillItemMinAggregateOutputType | null
+    _max: BillItemMaxAggregateOutputType | null
+  }
+
+  type GetBillItemGroupByPayload<T extends BillItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BillItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BillItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BillItemGroupByOutputType[P]>
+            : GetScalarType<T[P], BillItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BillItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    bill_id?: boolean
+    qc_stock_id?: boolean
+    item_name?: boolean
+    weight?: boolean
+    stone_weight?: boolean
+    total_weight?: boolean
+    touchId?: boolean
+    pure?: boolean
+    amount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    addItemId?: boolean
+    bill?: boolean | BillDefaultArgs<ExtArgs>
+    qcStock?: boolean | QcStockDefaultArgs<ExtArgs>
+    AddItem?: boolean | BillItem$AddItemArgs<ExtArgs>
+    touch?: boolean | BillItem$touchArgs<ExtArgs>
+  }, ExtArgs["result"]["billItem"]>
+
+
+
+  export type BillItemSelectScalar = {
+    id?: boolean
+    bill_id?: boolean
+    qc_stock_id?: boolean
+    item_name?: boolean
+    weight?: boolean
+    stone_weight?: boolean
+    total_weight?: boolean
+    touchId?: boolean
+    pure?: boolean
+    amount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    addItemId?: boolean
+  }
+
+  export type BillItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "bill_id" | "qc_stock_id" | "item_name" | "weight" | "stone_weight" | "total_weight" | "touchId" | "pure" | "amount" | "createdAt" | "updatedAt" | "addItemId", ExtArgs["result"]["billItem"]>
+  export type BillItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bill?: boolean | BillDefaultArgs<ExtArgs>
+    qcStock?: boolean | QcStockDefaultArgs<ExtArgs>
+    AddItem?: boolean | BillItem$AddItemArgs<ExtArgs>
+    touch?: boolean | BillItem$touchArgs<ExtArgs>
+  }
+
+  export type $BillItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BillItem"
+    objects: {
+      bill: Prisma.$BillPayload<ExtArgs>
+      qcStock: Prisma.$QcStockPayload<ExtArgs>
+      AddItem: Prisma.$AddItemPayload<ExtArgs> | null
+      touch: Prisma.$AddTouchPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      bill_id: number
+      qc_stock_id: number
+      item_name: string
+      weight: number
+      stone_weight: number | null
+      total_weight: number
+      touchId: number | null
+      pure: number
+      amount: number
+      createdAt: Date
+      updatedAt: Date
+      addItemId: number | null
+    }, ExtArgs["result"]["billItem"]>
+    composites: {}
+  }
+
+  type BillItemGetPayload<S extends boolean | null | undefined | BillItemDefaultArgs> = $Result.GetResult<Prisma.$BillItemPayload, S>
+
+  type BillItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BillItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BillItemCountAggregateInputType | true
+    }
+
+  export interface BillItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BillItem'], meta: { name: 'BillItem' } }
+    /**
+     * Find zero or one BillItem that matches the filter.
+     * @param {BillItemFindUniqueArgs} args - Arguments to find a BillItem
+     * @example
+     * // Get one BillItem
+     * const billItem = await prisma.billItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BillItemFindUniqueArgs>(args: SelectSubset<T, BillItemFindUniqueArgs<ExtArgs>>): Prisma__BillItemClient<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BillItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BillItemFindUniqueOrThrowArgs} args - Arguments to find a BillItem
+     * @example
+     * // Get one BillItem
+     * const billItem = await prisma.billItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BillItemFindUniqueOrThrowArgs>(args: SelectSubset<T, BillItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BillItemClient<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BillItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillItemFindFirstArgs} args - Arguments to find a BillItem
+     * @example
+     * // Get one BillItem
+     * const billItem = await prisma.billItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BillItemFindFirstArgs>(args?: SelectSubset<T, BillItemFindFirstArgs<ExtArgs>>): Prisma__BillItemClient<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BillItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillItemFindFirstOrThrowArgs} args - Arguments to find a BillItem
+     * @example
+     * // Get one BillItem
+     * const billItem = await prisma.billItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BillItemFindFirstOrThrowArgs>(args?: SelectSubset<T, BillItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__BillItemClient<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BillItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BillItems
+     * const billItems = await prisma.billItem.findMany()
+     * 
+     * // Get first 10 BillItems
+     * const billItems = await prisma.billItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const billItemWithIdOnly = await prisma.billItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BillItemFindManyArgs>(args?: SelectSubset<T, BillItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BillItem.
+     * @param {BillItemCreateArgs} args - Arguments to create a BillItem.
+     * @example
+     * // Create one BillItem
+     * const BillItem = await prisma.billItem.create({
+     *   data: {
+     *     // ... data to create a BillItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends BillItemCreateArgs>(args: SelectSubset<T, BillItemCreateArgs<ExtArgs>>): Prisma__BillItemClient<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BillItems.
+     * @param {BillItemCreateManyArgs} args - Arguments to create many BillItems.
+     * @example
+     * // Create many BillItems
+     * const billItem = await prisma.billItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BillItemCreateManyArgs>(args?: SelectSubset<T, BillItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a BillItem.
+     * @param {BillItemDeleteArgs} args - Arguments to delete one BillItem.
+     * @example
+     * // Delete one BillItem
+     * const BillItem = await prisma.billItem.delete({
+     *   where: {
+     *     // ... filter to delete one BillItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BillItemDeleteArgs>(args: SelectSubset<T, BillItemDeleteArgs<ExtArgs>>): Prisma__BillItemClient<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BillItem.
+     * @param {BillItemUpdateArgs} args - Arguments to update one BillItem.
+     * @example
+     * // Update one BillItem
+     * const billItem = await prisma.billItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BillItemUpdateArgs>(args: SelectSubset<T, BillItemUpdateArgs<ExtArgs>>): Prisma__BillItemClient<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BillItems.
+     * @param {BillItemDeleteManyArgs} args - Arguments to filter BillItems to delete.
+     * @example
+     * // Delete a few BillItems
+     * const { count } = await prisma.billItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BillItemDeleteManyArgs>(args?: SelectSubset<T, BillItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BillItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BillItems
+     * const billItem = await prisma.billItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BillItemUpdateManyArgs>(args: SelectSubset<T, BillItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one BillItem.
+     * @param {BillItemUpsertArgs} args - Arguments to update or create a BillItem.
+     * @example
+     * // Update or create a BillItem
+     * const billItem = await prisma.billItem.upsert({
+     *   create: {
+     *     // ... data to create a BillItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BillItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BillItemUpsertArgs>(args: SelectSubset<T, BillItemUpsertArgs<ExtArgs>>): Prisma__BillItemClient<$Result.GetResult<Prisma.$BillItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BillItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillItemCountArgs} args - Arguments to filter BillItems to count.
+     * @example
+     * // Count the number of BillItems
+     * const count = await prisma.billItem.count({
+     *   where: {
+     *     // ... the filter for the BillItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends BillItemCountArgs>(
+      args?: Subset<T, BillItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BillItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BillItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BillItemAggregateArgs>(args: Subset<T, BillItemAggregateArgs>): Prisma.PrismaPromise<GetBillItemAggregateType<T>>
+
+    /**
+     * Group by BillItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BillItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BillItemGroupByArgs['orderBy'] }
+        : { orderBy?: BillItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BillItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBillItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BillItem model
+   */
+  readonly fields: BillItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BillItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BillItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    bill<T extends BillDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BillDefaultArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    qcStock<T extends QcStockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QcStockDefaultArgs<ExtArgs>>): Prisma__QcStockClient<$Result.GetResult<Prisma.$QcStockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    AddItem<T extends BillItem$AddItemArgs<ExtArgs> = {}>(args?: Subset<T, BillItem$AddItemArgs<ExtArgs>>): Prisma__AddItemClient<$Result.GetResult<Prisma.$AddItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    touch<T extends BillItem$touchArgs<ExtArgs> = {}>(args?: Subset<T, BillItem$touchArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BillItem model
+   */
+  interface BillItemFieldRefs {
+    readonly id: FieldRef<"BillItem", 'Int'>
+    readonly bill_id: FieldRef<"BillItem", 'Int'>
+    readonly qc_stock_id: FieldRef<"BillItem", 'Int'>
+    readonly item_name: FieldRef<"BillItem", 'String'>
+    readonly weight: FieldRef<"BillItem", 'Float'>
+    readonly stone_weight: FieldRef<"BillItem", 'Float'>
+    readonly total_weight: FieldRef<"BillItem", 'Float'>
+    readonly touchId: FieldRef<"BillItem", 'Int'>
+    readonly pure: FieldRef<"BillItem", 'Float'>
+    readonly amount: FieldRef<"BillItem", 'Float'>
+    readonly createdAt: FieldRef<"BillItem", 'DateTime'>
+    readonly updatedAt: FieldRef<"BillItem", 'DateTime'>
+    readonly addItemId: FieldRef<"BillItem", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BillItem findUnique
+   */
+  export type BillItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    /**
+     * Filter, which BillItem to fetch.
+     */
+    where: BillItemWhereUniqueInput
+  }
+
+  /**
+   * BillItem findUniqueOrThrow
+   */
+  export type BillItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    /**
+     * Filter, which BillItem to fetch.
+     */
+    where: BillItemWhereUniqueInput
+  }
+
+  /**
+   * BillItem findFirst
+   */
+  export type BillItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    /**
+     * Filter, which BillItem to fetch.
+     */
+    where?: BillItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillItems to fetch.
+     */
+    orderBy?: BillItemOrderByWithRelationInput | BillItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BillItems.
+     */
+    cursor?: BillItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BillItems.
+     */
+    distinct?: BillItemScalarFieldEnum | BillItemScalarFieldEnum[]
+  }
+
+  /**
+   * BillItem findFirstOrThrow
+   */
+  export type BillItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    /**
+     * Filter, which BillItem to fetch.
+     */
+    where?: BillItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillItems to fetch.
+     */
+    orderBy?: BillItemOrderByWithRelationInput | BillItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BillItems.
+     */
+    cursor?: BillItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BillItems.
+     */
+    distinct?: BillItemScalarFieldEnum | BillItemScalarFieldEnum[]
+  }
+
+  /**
+   * BillItem findMany
+   */
+  export type BillItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    /**
+     * Filter, which BillItems to fetch.
+     */
+    where?: BillItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BillItems to fetch.
+     */
+    orderBy?: BillItemOrderByWithRelationInput | BillItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BillItems.
+     */
+    cursor?: BillItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BillItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BillItems.
+     */
+    skip?: number
+    distinct?: BillItemScalarFieldEnum | BillItemScalarFieldEnum[]
+  }
+
+  /**
+   * BillItem create
+   */
+  export type BillItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BillItem.
+     */
+    data: XOR<BillItemCreateInput, BillItemUncheckedCreateInput>
+  }
+
+  /**
+   * BillItem createMany
+   */
+  export type BillItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BillItems.
+     */
+    data: BillItemCreateManyInput | BillItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BillItem update
+   */
+  export type BillItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BillItem.
+     */
+    data: XOR<BillItemUpdateInput, BillItemUncheckedUpdateInput>
+    /**
+     * Choose, which BillItem to update.
+     */
+    where: BillItemWhereUniqueInput
+  }
+
+  /**
+   * BillItem updateMany
+   */
+  export type BillItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BillItems.
+     */
+    data: XOR<BillItemUpdateManyMutationInput, BillItemUncheckedUpdateManyInput>
+    /**
+     * Filter which BillItems to update
+     */
+    where?: BillItemWhereInput
+    /**
+     * Limit how many BillItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BillItem upsert
+   */
+  export type BillItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BillItem to update in case it exists.
+     */
+    where: BillItemWhereUniqueInput
+    /**
+     * In case the BillItem found by the `where` argument doesn't exist, create a new BillItem with this data.
+     */
+    create: XOR<BillItemCreateInput, BillItemUncheckedCreateInput>
+    /**
+     * In case the BillItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BillItemUpdateInput, BillItemUncheckedUpdateInput>
+  }
+
+  /**
+   * BillItem delete
+   */
+  export type BillItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+    /**
+     * Filter which BillItem to delete.
+     */
+    where: BillItemWhereUniqueInput
+  }
+
+  /**
+   * BillItem deleteMany
+   */
+  export type BillItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BillItems to delete
+     */
+    where?: BillItemWhereInput
+    /**
+     * Limit how many BillItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BillItem.AddItem
+   */
+  export type BillItem$AddItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddItem
+     */
+    select?: AddItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddItem
+     */
+    omit?: AddItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddItemInclude<ExtArgs> | null
+    where?: AddItemWhereInput
+  }
+
+  /**
+   * BillItem.touch
+   */
+  export type BillItem$touchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    where?: AddTouchWhereInput
+  }
+
+  /**
+   * BillItem without action
+   */
+  export type BillItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillItem
+     */
+    select?: BillItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BillItem
+     */
+    omit?: BillItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ReceivedItem
+   */
+
+  export type AggregateReceivedItem = {
+    _count: ReceivedItemCountAggregateOutputType | null
+    _avg: ReceivedItemAvgAggregateOutputType | null
+    _sum: ReceivedItemSumAggregateOutputType | null
+    _min: ReceivedItemMinAggregateOutputType | null
+    _max: ReceivedItemMaxAggregateOutputType | null
+  }
+
+  export type ReceivedItemAvgAggregateOutputType = {
+    id: number | null
+    bill_id: number | null
+    gold_rate: number | null
+    gold: number | null
+    touchId: number | null
+    purity_weight: number | null
+    amount: number | null
+    hallmark_charge: number | null
+  }
+
+  export type ReceivedItemSumAggregateOutputType = {
+    id: number | null
+    bill_id: number | null
+    gold_rate: number | null
+    gold: number | null
+    touchId: number | null
+    purity_weight: number | null
+    amount: number | null
+    hallmark_charge: number | null
+  }
+
+  export type ReceivedItemMinAggregateOutputType = {
+    id: number | null
+    bill_id: number | null
+    type: $Enums.ITEMTYPE | null
+    date: string | null
+    gold_rate: number | null
+    gold: number | null
+    touchId: number | null
+    purity_weight: number | null
+    amount: number | null
+    hallmark_charge: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ReceivedItemMaxAggregateOutputType = {
+    id: number | null
+    bill_id: number | null
+    type: $Enums.ITEMTYPE | null
+    date: string | null
+    gold_rate: number | null
+    gold: number | null
+    touchId: number | null
+    purity_weight: number | null
+    amount: number | null
+    hallmark_charge: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ReceivedItemCountAggregateOutputType = {
+    id: number
+    bill_id: number
+    type: number
+    date: number
+    gold_rate: number
+    gold: number
+    touchId: number
+    purity_weight: number
+    amount: number
+    hallmark_charge: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ReceivedItemAvgAggregateInputType = {
+    id?: true
+    bill_id?: true
+    gold_rate?: true
+    gold?: true
+    touchId?: true
+    purity_weight?: true
+    amount?: true
+    hallmark_charge?: true
+  }
+
+  export type ReceivedItemSumAggregateInputType = {
+    id?: true
+    bill_id?: true
+    gold_rate?: true
+    gold?: true
+    touchId?: true
+    purity_weight?: true
+    amount?: true
+    hallmark_charge?: true
+  }
+
+  export type ReceivedItemMinAggregateInputType = {
+    id?: true
+    bill_id?: true
+    type?: true
+    date?: true
+    gold_rate?: true
+    gold?: true
+    touchId?: true
+    purity_weight?: true
+    amount?: true
+    hallmark_charge?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ReceivedItemMaxAggregateInputType = {
+    id?: true
+    bill_id?: true
+    type?: true
+    date?: true
+    gold_rate?: true
+    gold?: true
+    touchId?: true
+    purity_weight?: true
+    amount?: true
+    hallmark_charge?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ReceivedItemCountAggregateInputType = {
+    id?: true
+    bill_id?: true
+    type?: true
+    date?: true
+    gold_rate?: true
+    gold?: true
+    touchId?: true
+    purity_weight?: true
+    amount?: true
+    hallmark_charge?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ReceivedItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReceivedItem to aggregate.
+     */
+    where?: ReceivedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReceivedItems to fetch.
+     */
+    orderBy?: ReceivedItemOrderByWithRelationInput | ReceivedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ReceivedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReceivedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReceivedItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ReceivedItems
+    **/
+    _count?: true | ReceivedItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ReceivedItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ReceivedItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReceivedItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReceivedItemMaxAggregateInputType
+  }
+
+  export type GetReceivedItemAggregateType<T extends ReceivedItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateReceivedItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReceivedItem[P]>
+      : GetScalarType<T[P], AggregateReceivedItem[P]>
+  }
+
+
+
+
+  export type ReceivedItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReceivedItemWhereInput
+    orderBy?: ReceivedItemOrderByWithAggregationInput | ReceivedItemOrderByWithAggregationInput[]
+    by: ReceivedItemScalarFieldEnum[] | ReceivedItemScalarFieldEnum
+    having?: ReceivedItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReceivedItemCountAggregateInputType | true
+    _avg?: ReceivedItemAvgAggregateInputType
+    _sum?: ReceivedItemSumAggregateInputType
+    _min?: ReceivedItemMinAggregateInputType
+    _max?: ReceivedItemMaxAggregateInputType
+  }
+
+  export type ReceivedItemGroupByOutputType = {
+    id: number
+    bill_id: number
+    type: $Enums.ITEMTYPE
+    date: string
+    gold_rate: number | null
+    gold: number | null
+    touchId: number | null
+    purity_weight: number
+    amount: number | null
+    hallmark_charge: number | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ReceivedItemCountAggregateOutputType | null
+    _avg: ReceivedItemAvgAggregateOutputType | null
+    _sum: ReceivedItemSumAggregateOutputType | null
+    _min: ReceivedItemMinAggregateOutputType | null
+    _max: ReceivedItemMaxAggregateOutputType | null
+  }
+
+  type GetReceivedItemGroupByPayload<T extends ReceivedItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReceivedItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReceivedItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReceivedItemGroupByOutputType[P]>
+            : GetScalarType<T[P], ReceivedItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ReceivedItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    bill_id?: boolean
+    type?: boolean
+    date?: boolean
+    gold_rate?: boolean
+    gold?: boolean
+    touchId?: boolean
+    purity_weight?: boolean
+    amount?: boolean
+    hallmark_charge?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    bill?: boolean | BillDefaultArgs<ExtArgs>
+    touch?: boolean | ReceivedItem$touchArgs<ExtArgs>
+  }, ExtArgs["result"]["receivedItem"]>
+
+
+
+  export type ReceivedItemSelectScalar = {
+    id?: boolean
+    bill_id?: boolean
+    type?: boolean
+    date?: boolean
+    gold_rate?: boolean
+    gold?: boolean
+    touchId?: boolean
+    purity_weight?: boolean
+    amount?: boolean
+    hallmark_charge?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ReceivedItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "bill_id" | "type" | "date" | "gold_rate" | "gold" | "touchId" | "purity_weight" | "amount" | "hallmark_charge" | "createdAt" | "updatedAt", ExtArgs["result"]["receivedItem"]>
+  export type ReceivedItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bill?: boolean | BillDefaultArgs<ExtArgs>
+    touch?: boolean | ReceivedItem$touchArgs<ExtArgs>
+  }
+
+  export type $ReceivedItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ReceivedItem"
+    objects: {
+      bill: Prisma.$BillPayload<ExtArgs>
+      touch: Prisma.$AddTouchPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      bill_id: number
+      type: $Enums.ITEMTYPE
+      date: string
+      gold_rate: number | null
+      gold: number | null
+      touchId: number | null
+      purity_weight: number
+      amount: number | null
+      hallmark_charge: number | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["receivedItem"]>
+    composites: {}
+  }
+
+  type ReceivedItemGetPayload<S extends boolean | null | undefined | ReceivedItemDefaultArgs> = $Result.GetResult<Prisma.$ReceivedItemPayload, S>
+
+  type ReceivedItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ReceivedItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ReceivedItemCountAggregateInputType | true
+    }
+
+  export interface ReceivedItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ReceivedItem'], meta: { name: 'ReceivedItem' } }
+    /**
+     * Find zero or one ReceivedItem that matches the filter.
+     * @param {ReceivedItemFindUniqueArgs} args - Arguments to find a ReceivedItem
+     * @example
+     * // Get one ReceivedItem
+     * const receivedItem = await prisma.receivedItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ReceivedItemFindUniqueArgs>(args: SelectSubset<T, ReceivedItemFindUniqueArgs<ExtArgs>>): Prisma__ReceivedItemClient<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ReceivedItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ReceivedItemFindUniqueOrThrowArgs} args - Arguments to find a ReceivedItem
+     * @example
+     * // Get one ReceivedItem
+     * const receivedItem = await prisma.receivedItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ReceivedItemFindUniqueOrThrowArgs>(args: SelectSubset<T, ReceivedItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReceivedItemClient<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ReceivedItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceivedItemFindFirstArgs} args - Arguments to find a ReceivedItem
+     * @example
+     * // Get one ReceivedItem
+     * const receivedItem = await prisma.receivedItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ReceivedItemFindFirstArgs>(args?: SelectSubset<T, ReceivedItemFindFirstArgs<ExtArgs>>): Prisma__ReceivedItemClient<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ReceivedItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceivedItemFindFirstOrThrowArgs} args - Arguments to find a ReceivedItem
+     * @example
+     * // Get one ReceivedItem
+     * const receivedItem = await prisma.receivedItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ReceivedItemFindFirstOrThrowArgs>(args?: SelectSubset<T, ReceivedItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReceivedItemClient<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ReceivedItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceivedItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ReceivedItems
+     * const receivedItems = await prisma.receivedItem.findMany()
+     * 
+     * // Get first 10 ReceivedItems
+     * const receivedItems = await prisma.receivedItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const receivedItemWithIdOnly = await prisma.receivedItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ReceivedItemFindManyArgs>(args?: SelectSubset<T, ReceivedItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ReceivedItem.
+     * @param {ReceivedItemCreateArgs} args - Arguments to create a ReceivedItem.
+     * @example
+     * // Create one ReceivedItem
+     * const ReceivedItem = await prisma.receivedItem.create({
+     *   data: {
+     *     // ... data to create a ReceivedItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends ReceivedItemCreateArgs>(args: SelectSubset<T, ReceivedItemCreateArgs<ExtArgs>>): Prisma__ReceivedItemClient<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ReceivedItems.
+     * @param {ReceivedItemCreateManyArgs} args - Arguments to create many ReceivedItems.
+     * @example
+     * // Create many ReceivedItems
+     * const receivedItem = await prisma.receivedItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ReceivedItemCreateManyArgs>(args?: SelectSubset<T, ReceivedItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ReceivedItem.
+     * @param {ReceivedItemDeleteArgs} args - Arguments to delete one ReceivedItem.
+     * @example
+     * // Delete one ReceivedItem
+     * const ReceivedItem = await prisma.receivedItem.delete({
+     *   where: {
+     *     // ... filter to delete one ReceivedItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ReceivedItemDeleteArgs>(args: SelectSubset<T, ReceivedItemDeleteArgs<ExtArgs>>): Prisma__ReceivedItemClient<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ReceivedItem.
+     * @param {ReceivedItemUpdateArgs} args - Arguments to update one ReceivedItem.
+     * @example
+     * // Update one ReceivedItem
+     * const receivedItem = await prisma.receivedItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ReceivedItemUpdateArgs>(args: SelectSubset<T, ReceivedItemUpdateArgs<ExtArgs>>): Prisma__ReceivedItemClient<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ReceivedItems.
+     * @param {ReceivedItemDeleteManyArgs} args - Arguments to filter ReceivedItems to delete.
+     * @example
+     * // Delete a few ReceivedItems
+     * const { count } = await prisma.receivedItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ReceivedItemDeleteManyArgs>(args?: SelectSubset<T, ReceivedItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ReceivedItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceivedItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ReceivedItems
+     * const receivedItem = await prisma.receivedItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ReceivedItemUpdateManyArgs>(args: SelectSubset<T, ReceivedItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ReceivedItem.
+     * @param {ReceivedItemUpsertArgs} args - Arguments to update or create a ReceivedItem.
+     * @example
+     * // Update or create a ReceivedItem
+     * const receivedItem = await prisma.receivedItem.upsert({
+     *   create: {
+     *     // ... data to create a ReceivedItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ReceivedItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ReceivedItemUpsertArgs>(args: SelectSubset<T, ReceivedItemUpsertArgs<ExtArgs>>): Prisma__ReceivedItemClient<$Result.GetResult<Prisma.$ReceivedItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ReceivedItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceivedItemCountArgs} args - Arguments to filter ReceivedItems to count.
+     * @example
+     * // Count the number of ReceivedItems
+     * const count = await prisma.receivedItem.count({
+     *   where: {
+     *     // ... the filter for the ReceivedItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends ReceivedItemCountArgs>(
+      args?: Subset<T, ReceivedItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReceivedItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ReceivedItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceivedItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReceivedItemAggregateArgs>(args: Subset<T, ReceivedItemAggregateArgs>): Prisma.PrismaPromise<GetReceivedItemAggregateType<T>>
+
+    /**
+     * Group by ReceivedItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceivedItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ReceivedItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ReceivedItemGroupByArgs['orderBy'] }
+        : { orderBy?: ReceivedItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ReceivedItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReceivedItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ReceivedItem model
+   */
+  readonly fields: ReceivedItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ReceivedItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ReceivedItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    bill<T extends BillDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BillDefaultArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    touch<T extends ReceivedItem$touchArgs<ExtArgs> = {}>(args?: Subset<T, ReceivedItem$touchArgs<ExtArgs>>): Prisma__AddTouchClient<$Result.GetResult<Prisma.$AddTouchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ReceivedItem model
+   */
+  interface ReceivedItemFieldRefs {
+    readonly id: FieldRef<"ReceivedItem", 'Int'>
+    readonly bill_id: FieldRef<"ReceivedItem", 'Int'>
+    readonly type: FieldRef<"ReceivedItem", 'ITEMTYPE'>
+    readonly date: FieldRef<"ReceivedItem", 'String'>
+    readonly gold_rate: FieldRef<"ReceivedItem", 'Float'>
+    readonly gold: FieldRef<"ReceivedItem", 'Float'>
+    readonly touchId: FieldRef<"ReceivedItem", 'Int'>
+    readonly purity_weight: FieldRef<"ReceivedItem", 'Float'>
+    readonly amount: FieldRef<"ReceivedItem", 'Float'>
+    readonly hallmark_charge: FieldRef<"ReceivedItem", 'Float'>
+    readonly createdAt: FieldRef<"ReceivedItem", 'DateTime'>
+    readonly updatedAt: FieldRef<"ReceivedItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ReceivedItem findUnique
+   */
+  export type ReceivedItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which ReceivedItem to fetch.
+     */
+    where: ReceivedItemWhereUniqueInput
+  }
+
+  /**
+   * ReceivedItem findUniqueOrThrow
+   */
+  export type ReceivedItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which ReceivedItem to fetch.
+     */
+    where: ReceivedItemWhereUniqueInput
+  }
+
+  /**
+   * ReceivedItem findFirst
+   */
+  export type ReceivedItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which ReceivedItem to fetch.
+     */
+    where?: ReceivedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReceivedItems to fetch.
+     */
+    orderBy?: ReceivedItemOrderByWithRelationInput | ReceivedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReceivedItems.
+     */
+    cursor?: ReceivedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReceivedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReceivedItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReceivedItems.
+     */
+    distinct?: ReceivedItemScalarFieldEnum | ReceivedItemScalarFieldEnum[]
+  }
+
+  /**
+   * ReceivedItem findFirstOrThrow
+   */
+  export type ReceivedItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which ReceivedItem to fetch.
+     */
+    where?: ReceivedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReceivedItems to fetch.
+     */
+    orderBy?: ReceivedItemOrderByWithRelationInput | ReceivedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReceivedItems.
+     */
+    cursor?: ReceivedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReceivedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReceivedItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReceivedItems.
+     */
+    distinct?: ReceivedItemScalarFieldEnum | ReceivedItemScalarFieldEnum[]
+  }
+
+  /**
+   * ReceivedItem findMany
+   */
+  export type ReceivedItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which ReceivedItems to fetch.
+     */
+    where?: ReceivedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReceivedItems to fetch.
+     */
+    orderBy?: ReceivedItemOrderByWithRelationInput | ReceivedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ReceivedItems.
+     */
+    cursor?: ReceivedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReceivedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReceivedItems.
+     */
+    skip?: number
+    distinct?: ReceivedItemScalarFieldEnum | ReceivedItemScalarFieldEnum[]
+  }
+
+  /**
+   * ReceivedItem create
+   */
+  export type ReceivedItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ReceivedItem.
+     */
+    data: XOR<ReceivedItemCreateInput, ReceivedItemUncheckedCreateInput>
+  }
+
+  /**
+   * ReceivedItem createMany
+   */
+  export type ReceivedItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ReceivedItems.
+     */
+    data: ReceivedItemCreateManyInput | ReceivedItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ReceivedItem update
+   */
+  export type ReceivedItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ReceivedItem.
+     */
+    data: XOR<ReceivedItemUpdateInput, ReceivedItemUncheckedUpdateInput>
+    /**
+     * Choose, which ReceivedItem to update.
+     */
+    where: ReceivedItemWhereUniqueInput
+  }
+
+  /**
+   * ReceivedItem updateMany
+   */
+  export type ReceivedItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ReceivedItems.
+     */
+    data: XOR<ReceivedItemUpdateManyMutationInput, ReceivedItemUncheckedUpdateManyInput>
+    /**
+     * Filter which ReceivedItems to update
+     */
+    where?: ReceivedItemWhereInput
+    /**
+     * Limit how many ReceivedItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ReceivedItem upsert
+   */
+  export type ReceivedItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ReceivedItem to update in case it exists.
+     */
+    where: ReceivedItemWhereUniqueInput
+    /**
+     * In case the ReceivedItem found by the `where` argument doesn't exist, create a new ReceivedItem with this data.
+     */
+    create: XOR<ReceivedItemCreateInput, ReceivedItemUncheckedCreateInput>
+    /**
+     * In case the ReceivedItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ReceivedItemUpdateInput, ReceivedItemUncheckedUpdateInput>
+  }
+
+  /**
+   * ReceivedItem delete
+   */
+  export type ReceivedItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+    /**
+     * Filter which ReceivedItem to delete.
+     */
+    where: ReceivedItemWhereUniqueInput
+  }
+
+  /**
+   * ReceivedItem deleteMany
+   */
+  export type ReceivedItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReceivedItems to delete
+     */
+    where?: ReceivedItemWhereInput
+    /**
+     * Limit how many ReceivedItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ReceivedItem.touch
+   */
+  export type ReceivedItem$touchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddTouch
+     */
+    select?: AddTouchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddTouch
+     */
+    omit?: AddTouchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddTouchInclude<ExtArgs> | null
+    where?: AddTouchWhereInput
+  }
+
+  /**
+   * ReceivedItem without action
+   */
+  export type ReceivedItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceivedItem
+     */
+    select?: ReceivedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReceivedItem
+     */
+    omit?: ReceivedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceivedItemInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -39002,6 +44001,76 @@ export namespace Prisma {
   export type StockScalarFieldEnum = (typeof StockScalarFieldEnum)[keyof typeof StockScalarFieldEnum]
 
 
+  export const HallmarkScalarFieldEnum: {
+    id: 'id',
+    customer_id: 'customer_id',
+    balance: 'balance',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HallmarkScalarFieldEnum = (typeof HallmarkScalarFieldEnum)[keyof typeof HallmarkScalarFieldEnum]
+
+
+  export const BillScalarFieldEnum: {
+    id: 'id',
+    customer_id: 'customer_id',
+    bill_no: 'bill_no',
+    date: 'date',
+    time: 'time',
+    gold_rate: 'gold_rate',
+    total_pure: 'total_pure',
+    total_amount: 'total_amount',
+    customer_balance: 'customer_balance',
+    grand_total: 'grand_total',
+    cash_balance: 'cash_balance',
+    pure_balance: 'pure_balance',
+    prev_hallmark: 'prev_hallmark',
+    hallmark_balance: 'hallmark_balance',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BillScalarFieldEnum = (typeof BillScalarFieldEnum)[keyof typeof BillScalarFieldEnum]
+
+
+  export const BillItemScalarFieldEnum: {
+    id: 'id',
+    bill_id: 'bill_id',
+    qc_stock_id: 'qc_stock_id',
+    item_name: 'item_name',
+    weight: 'weight',
+    stone_weight: 'stone_weight',
+    total_weight: 'total_weight',
+    touchId: 'touchId',
+    pure: 'pure',
+    amount: 'amount',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    addItemId: 'addItemId'
+  };
+
+  export type BillItemScalarFieldEnum = (typeof BillItemScalarFieldEnum)[keyof typeof BillItemScalarFieldEnum]
+
+
+  export const ReceivedItemScalarFieldEnum: {
+    id: 'id',
+    bill_id: 'bill_id',
+    type: 'type',
+    date: 'date',
+    gold_rate: 'gold_rate',
+    gold: 'gold',
+    touchId: 'touchId',
+    purity_weight: 'purity_weight',
+    amount: 'amount',
+    hallmark_charge: 'hallmark_charge',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ReceivedItemScalarFieldEnum = (typeof ReceivedItemScalarFieldEnum)[keyof typeof ReceivedItemScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -39155,6 +44224,29 @@ export namespace Prisma {
   export type StockOrderByRelevanceFieldEnum = (typeof StockOrderByRelevanceFieldEnum)[keyof typeof StockOrderByRelevanceFieldEnum]
 
 
+  export const BillOrderByRelevanceFieldEnum: {
+    bill_no: 'bill_no',
+    date: 'date',
+    time: 'time'
+  };
+
+  export type BillOrderByRelevanceFieldEnum = (typeof BillOrderByRelevanceFieldEnum)[keyof typeof BillOrderByRelevanceFieldEnum]
+
+
+  export const BillItemOrderByRelevanceFieldEnum: {
+    item_name: 'item_name'
+  };
+
+  export type BillItemOrderByRelevanceFieldEnum = (typeof BillItemOrderByRelevanceFieldEnum)[keyof typeof BillItemOrderByRelevanceFieldEnum]
+
+
+  export const ReceivedItemOrderByRelevanceFieldEnum: {
+    date: 'date'
+  };
+
+  export type ReceivedItemOrderByRelevanceFieldEnum = (typeof ReceivedItemOrderByRelevanceFieldEnum)[keyof typeof ReceivedItemOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -39230,6 +44322,8 @@ export namespace Prisma {
     address?: StringNullableFilter<"AddCustomer"> | string | null
     email?: StringNullableFilter<"AddCustomer"> | string | null
     transactions?: CustomerTransactionListRelationFilter
+    bills?: BillListRelationFilter
+    hallmarks?: HallmarkListRelationFilter
   }
 
   export type AddCustomerOrderByWithRelationInput = {
@@ -39240,6 +44334,8 @@ export namespace Prisma {
     address?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     transactions?: CustomerTransactionOrderByRelationAggregateInput
+    bills?: BillOrderByRelationAggregateInput
+    hallmarks?: HallmarkOrderByRelationAggregateInput
     _relevance?: AddCustomerOrderByRelevanceInput
   }
 
@@ -39254,6 +44350,8 @@ export namespace Prisma {
     address?: StringNullableFilter<"AddCustomer"> | string | null
     email?: StringNullableFilter<"AddCustomer"> | string | null
     transactions?: CustomerTransactionListRelationFilter
+    bills?: BillListRelationFilter
+    hallmarks?: HallmarkListRelationFilter
   }, "id">
 
   export type AddCustomerOrderByWithAggregationInput = {
@@ -39813,6 +44911,7 @@ export namespace Prisma {
     setting_items?: SettingItemsListRelationFilter
     buffing_items?: BuffingItemsListRelationFilter
     QCStock?: QcStockListRelationFilter
+    billItems?: BillItemListRelationFilter
   }
 
   export type AddItemOrderByWithRelationInput = {
@@ -39825,6 +44924,7 @@ export namespace Prisma {
     setting_items?: SettingItemsOrderByRelationAggregateInput
     buffing_items?: BuffingItemsOrderByRelationAggregateInput
     QCStock?: QcStockOrderByRelationAggregateInput
+    billItems?: BillItemOrderByRelationAggregateInput
     _relevance?: AddItemOrderByRelevanceInput
   }
 
@@ -39841,6 +44941,7 @@ export namespace Prisma {
     setting_items?: SettingItemsListRelationFilter
     buffing_items?: BuffingItemsListRelationFilter
     QCStock?: QcStockListRelationFilter
+    billItems?: BillItemListRelationFilter
   }, "id">
 
   export type AddItemOrderByWithAggregationInput = {
@@ -39879,6 +44980,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockListRelationFilter
     customer_transaction?: CustomerTransactionListRelationFilter
     QCStock?: QcStockListRelationFilter
+    receivedItems?: ReceivedItemListRelationFilter
+    billItems?: BillItemListRelationFilter
   }
 
   export type AddTouchOrderByWithRelationInput = {
@@ -39894,6 +44997,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockOrderByRelationAggregateInput
     customer_transaction?: CustomerTransactionOrderByRelationAggregateInput
     QCStock?: QcStockOrderByRelationAggregateInput
+    receivedItems?: ReceivedItemOrderByRelationAggregateInput
+    billItems?: BillItemOrderByRelationAggregateInput
   }
 
   export type AddTouchWhereUniqueInput = Prisma.AtLeast<{
@@ -39912,6 +45017,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockListRelationFilter
     customer_transaction?: CustomerTransactionListRelationFilter
     QCStock?: QcStockListRelationFilter
+    receivedItems?: ReceivedItemListRelationFilter
+    billItems?: BillItemListRelationFilter
   }, "id">
 
   export type AddTouchOrderByWithAggregationInput = {
@@ -39949,6 +45056,7 @@ export namespace Prisma {
     remarks?: StringNullableFilter<"QcStock"> | string | null
     itemId?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     touchId?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
+    BillItem?: BillItemListRelationFilter
   }
 
   export type QcStockOrderByWithRelationInput = {
@@ -39963,6 +45071,7 @@ export namespace Prisma {
     remarks?: SortOrderInput | SortOrder
     itemId?: AddItemOrderByWithRelationInput
     touchId?: AddTouchOrderByWithRelationInput
+    BillItem?: BillItemOrderByRelationAggregateInput
     _relevance?: QcStockOrderByRelevanceInput
   }
 
@@ -39981,6 +45090,7 @@ export namespace Prisma {
     remarks?: StringNullableFilter<"QcStock"> | string | null
     itemId?: XOR<AddItemScalarRelationFilter, AddItemWhereInput>
     touchId?: XOR<AddTouchScalarRelationFilter, AddTouchWhereInput>
+    BillItem?: BillItemListRelationFilter
   }, "id">
 
   export type QcStockOrderByWithAggregationInput = {
@@ -41758,6 +46868,385 @@ export namespace Prisma {
     purchase_id?: IntNullableWithAggregatesFilter<"Stock"> | number | null
   }
 
+  export type HallmarkWhereInput = {
+    AND?: HallmarkWhereInput | HallmarkWhereInput[]
+    OR?: HallmarkWhereInput[]
+    NOT?: HallmarkWhereInput | HallmarkWhereInput[]
+    id?: IntFilter<"Hallmark"> | number
+    customer_id?: IntFilter<"Hallmark"> | number
+    balance?: FloatFilter<"Hallmark"> | number
+    createdAt?: DateTimeFilter<"Hallmark"> | Date | string
+    updatedAt?: DateTimeFilter<"Hallmark"> | Date | string
+    customer?: XOR<AddCustomerScalarRelationFilter, AddCustomerWhereInput>
+  }
+
+  export type HallmarkOrderByWithRelationInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    balance?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customer?: AddCustomerOrderByWithRelationInput
+  }
+
+  export type HallmarkWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: HallmarkWhereInput | HallmarkWhereInput[]
+    OR?: HallmarkWhereInput[]
+    NOT?: HallmarkWhereInput | HallmarkWhereInput[]
+    customer_id?: IntFilter<"Hallmark"> | number
+    balance?: FloatFilter<"Hallmark"> | number
+    createdAt?: DateTimeFilter<"Hallmark"> | Date | string
+    updatedAt?: DateTimeFilter<"Hallmark"> | Date | string
+    customer?: XOR<AddCustomerScalarRelationFilter, AddCustomerWhereInput>
+  }, "id">
+
+  export type HallmarkOrderByWithAggregationInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    balance?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HallmarkCountOrderByAggregateInput
+    _avg?: HallmarkAvgOrderByAggregateInput
+    _max?: HallmarkMaxOrderByAggregateInput
+    _min?: HallmarkMinOrderByAggregateInput
+    _sum?: HallmarkSumOrderByAggregateInput
+  }
+
+  export type HallmarkScalarWhereWithAggregatesInput = {
+    AND?: HallmarkScalarWhereWithAggregatesInput | HallmarkScalarWhereWithAggregatesInput[]
+    OR?: HallmarkScalarWhereWithAggregatesInput[]
+    NOT?: HallmarkScalarWhereWithAggregatesInput | HallmarkScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Hallmark"> | number
+    customer_id?: IntWithAggregatesFilter<"Hallmark"> | number
+    balance?: FloatWithAggregatesFilter<"Hallmark"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Hallmark"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Hallmark"> | Date | string
+  }
+
+  export type BillWhereInput = {
+    AND?: BillWhereInput | BillWhereInput[]
+    OR?: BillWhereInput[]
+    NOT?: BillWhereInput | BillWhereInput[]
+    id?: IntFilter<"Bill"> | number
+    customer_id?: IntFilter<"Bill"> | number
+    bill_no?: StringFilter<"Bill"> | string
+    date?: StringFilter<"Bill"> | string
+    time?: StringFilter<"Bill"> | string
+    gold_rate?: FloatFilter<"Bill"> | number
+    total_pure?: FloatFilter<"Bill"> | number
+    total_amount?: FloatFilter<"Bill"> | number
+    customer_balance?: FloatFilter<"Bill"> | number
+    grand_total?: FloatFilter<"Bill"> | number
+    cash_balance?: FloatFilter<"Bill"> | number
+    pure_balance?: FloatFilter<"Bill"> | number
+    prev_hallmark?: FloatFilter<"Bill"> | number
+    hallmark_balance?: FloatFilter<"Bill"> | number
+    createdAt?: DateTimeFilter<"Bill"> | Date | string
+    updatedAt?: DateTimeFilter<"Bill"> | Date | string
+    customer?: XOR<AddCustomerScalarRelationFilter, AddCustomerWhereInput>
+    billItems?: BillItemListRelationFilter
+    receivedItems?: ReceivedItemListRelationFilter
+  }
+
+  export type BillOrderByWithRelationInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    bill_no?: SortOrder
+    date?: SortOrder
+    time?: SortOrder
+    gold_rate?: SortOrder
+    total_pure?: SortOrder
+    total_amount?: SortOrder
+    customer_balance?: SortOrder
+    grand_total?: SortOrder
+    cash_balance?: SortOrder
+    pure_balance?: SortOrder
+    prev_hallmark?: SortOrder
+    hallmark_balance?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customer?: AddCustomerOrderByWithRelationInput
+    billItems?: BillItemOrderByRelationAggregateInput
+    receivedItems?: ReceivedItemOrderByRelationAggregateInput
+    _relevance?: BillOrderByRelevanceInput
+  }
+
+  export type BillWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BillWhereInput | BillWhereInput[]
+    OR?: BillWhereInput[]
+    NOT?: BillWhereInput | BillWhereInput[]
+    customer_id?: IntFilter<"Bill"> | number
+    bill_no?: StringFilter<"Bill"> | string
+    date?: StringFilter<"Bill"> | string
+    time?: StringFilter<"Bill"> | string
+    gold_rate?: FloatFilter<"Bill"> | number
+    total_pure?: FloatFilter<"Bill"> | number
+    total_amount?: FloatFilter<"Bill"> | number
+    customer_balance?: FloatFilter<"Bill"> | number
+    grand_total?: FloatFilter<"Bill"> | number
+    cash_balance?: FloatFilter<"Bill"> | number
+    pure_balance?: FloatFilter<"Bill"> | number
+    prev_hallmark?: FloatFilter<"Bill"> | number
+    hallmark_balance?: FloatFilter<"Bill"> | number
+    createdAt?: DateTimeFilter<"Bill"> | Date | string
+    updatedAt?: DateTimeFilter<"Bill"> | Date | string
+    customer?: XOR<AddCustomerScalarRelationFilter, AddCustomerWhereInput>
+    billItems?: BillItemListRelationFilter
+    receivedItems?: ReceivedItemListRelationFilter
+  }, "id">
+
+  export type BillOrderByWithAggregationInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    bill_no?: SortOrder
+    date?: SortOrder
+    time?: SortOrder
+    gold_rate?: SortOrder
+    total_pure?: SortOrder
+    total_amount?: SortOrder
+    customer_balance?: SortOrder
+    grand_total?: SortOrder
+    cash_balance?: SortOrder
+    pure_balance?: SortOrder
+    prev_hallmark?: SortOrder
+    hallmark_balance?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BillCountOrderByAggregateInput
+    _avg?: BillAvgOrderByAggregateInput
+    _max?: BillMaxOrderByAggregateInput
+    _min?: BillMinOrderByAggregateInput
+    _sum?: BillSumOrderByAggregateInput
+  }
+
+  export type BillScalarWhereWithAggregatesInput = {
+    AND?: BillScalarWhereWithAggregatesInput | BillScalarWhereWithAggregatesInput[]
+    OR?: BillScalarWhereWithAggregatesInput[]
+    NOT?: BillScalarWhereWithAggregatesInput | BillScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Bill"> | number
+    customer_id?: IntWithAggregatesFilter<"Bill"> | number
+    bill_no?: StringWithAggregatesFilter<"Bill"> | string
+    date?: StringWithAggregatesFilter<"Bill"> | string
+    time?: StringWithAggregatesFilter<"Bill"> | string
+    gold_rate?: FloatWithAggregatesFilter<"Bill"> | number
+    total_pure?: FloatWithAggregatesFilter<"Bill"> | number
+    total_amount?: FloatWithAggregatesFilter<"Bill"> | number
+    customer_balance?: FloatWithAggregatesFilter<"Bill"> | number
+    grand_total?: FloatWithAggregatesFilter<"Bill"> | number
+    cash_balance?: FloatWithAggregatesFilter<"Bill"> | number
+    pure_balance?: FloatWithAggregatesFilter<"Bill"> | number
+    prev_hallmark?: FloatWithAggregatesFilter<"Bill"> | number
+    hallmark_balance?: FloatWithAggregatesFilter<"Bill"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Bill"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Bill"> | Date | string
+  }
+
+  export type BillItemWhereInput = {
+    AND?: BillItemWhereInput | BillItemWhereInput[]
+    OR?: BillItemWhereInput[]
+    NOT?: BillItemWhereInput | BillItemWhereInput[]
+    id?: IntFilter<"BillItem"> | number
+    bill_id?: IntFilter<"BillItem"> | number
+    qc_stock_id?: IntFilter<"BillItem"> | number
+    item_name?: StringFilter<"BillItem"> | string
+    weight?: FloatFilter<"BillItem"> | number
+    stone_weight?: FloatNullableFilter<"BillItem"> | number | null
+    total_weight?: FloatFilter<"BillItem"> | number
+    touchId?: IntNullableFilter<"BillItem"> | number | null
+    pure?: FloatFilter<"BillItem"> | number
+    amount?: FloatFilter<"BillItem"> | number
+    createdAt?: DateTimeFilter<"BillItem"> | Date | string
+    updatedAt?: DateTimeFilter<"BillItem"> | Date | string
+    addItemId?: IntNullableFilter<"BillItem"> | number | null
+    bill?: XOR<BillScalarRelationFilter, BillWhereInput>
+    qcStock?: XOR<QcStockScalarRelationFilter, QcStockWhereInput>
+    AddItem?: XOR<AddItemNullableScalarRelationFilter, AddItemWhereInput> | null
+    touch?: XOR<AddTouchNullableScalarRelationFilter, AddTouchWhereInput> | null
+  }
+
+  export type BillItemOrderByWithRelationInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    qc_stock_id?: SortOrder
+    item_name?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrderInput | SortOrder
+    total_weight?: SortOrder
+    touchId?: SortOrderInput | SortOrder
+    pure?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    addItemId?: SortOrderInput | SortOrder
+    bill?: BillOrderByWithRelationInput
+    qcStock?: QcStockOrderByWithRelationInput
+    AddItem?: AddItemOrderByWithRelationInput
+    touch?: AddTouchOrderByWithRelationInput
+    _relevance?: BillItemOrderByRelevanceInput
+  }
+
+  export type BillItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BillItemWhereInput | BillItemWhereInput[]
+    OR?: BillItemWhereInput[]
+    NOT?: BillItemWhereInput | BillItemWhereInput[]
+    bill_id?: IntFilter<"BillItem"> | number
+    qc_stock_id?: IntFilter<"BillItem"> | number
+    item_name?: StringFilter<"BillItem"> | string
+    weight?: FloatFilter<"BillItem"> | number
+    stone_weight?: FloatNullableFilter<"BillItem"> | number | null
+    total_weight?: FloatFilter<"BillItem"> | number
+    touchId?: IntNullableFilter<"BillItem"> | number | null
+    pure?: FloatFilter<"BillItem"> | number
+    amount?: FloatFilter<"BillItem"> | number
+    createdAt?: DateTimeFilter<"BillItem"> | Date | string
+    updatedAt?: DateTimeFilter<"BillItem"> | Date | string
+    addItemId?: IntNullableFilter<"BillItem"> | number | null
+    bill?: XOR<BillScalarRelationFilter, BillWhereInput>
+    qcStock?: XOR<QcStockScalarRelationFilter, QcStockWhereInput>
+    AddItem?: XOR<AddItemNullableScalarRelationFilter, AddItemWhereInput> | null
+    touch?: XOR<AddTouchNullableScalarRelationFilter, AddTouchWhereInput> | null
+  }, "id">
+
+  export type BillItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    qc_stock_id?: SortOrder
+    item_name?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrderInput | SortOrder
+    total_weight?: SortOrder
+    touchId?: SortOrderInput | SortOrder
+    pure?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    addItemId?: SortOrderInput | SortOrder
+    _count?: BillItemCountOrderByAggregateInput
+    _avg?: BillItemAvgOrderByAggregateInput
+    _max?: BillItemMaxOrderByAggregateInput
+    _min?: BillItemMinOrderByAggregateInput
+    _sum?: BillItemSumOrderByAggregateInput
+  }
+
+  export type BillItemScalarWhereWithAggregatesInput = {
+    AND?: BillItemScalarWhereWithAggregatesInput | BillItemScalarWhereWithAggregatesInput[]
+    OR?: BillItemScalarWhereWithAggregatesInput[]
+    NOT?: BillItemScalarWhereWithAggregatesInput | BillItemScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"BillItem"> | number
+    bill_id?: IntWithAggregatesFilter<"BillItem"> | number
+    qc_stock_id?: IntWithAggregatesFilter<"BillItem"> | number
+    item_name?: StringWithAggregatesFilter<"BillItem"> | string
+    weight?: FloatWithAggregatesFilter<"BillItem"> | number
+    stone_weight?: FloatNullableWithAggregatesFilter<"BillItem"> | number | null
+    total_weight?: FloatWithAggregatesFilter<"BillItem"> | number
+    touchId?: IntNullableWithAggregatesFilter<"BillItem"> | number | null
+    pure?: FloatWithAggregatesFilter<"BillItem"> | number
+    amount?: FloatWithAggregatesFilter<"BillItem"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"BillItem"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BillItem"> | Date | string
+    addItemId?: IntNullableWithAggregatesFilter<"BillItem"> | number | null
+  }
+
+  export type ReceivedItemWhereInput = {
+    AND?: ReceivedItemWhereInput | ReceivedItemWhereInput[]
+    OR?: ReceivedItemWhereInput[]
+    NOT?: ReceivedItemWhereInput | ReceivedItemWhereInput[]
+    id?: IntFilter<"ReceivedItem"> | number
+    bill_id?: IntFilter<"ReceivedItem"> | number
+    type?: EnumITEMTYPEFilter<"ReceivedItem"> | $Enums.ITEMTYPE
+    date?: StringFilter<"ReceivedItem"> | string
+    gold_rate?: FloatNullableFilter<"ReceivedItem"> | number | null
+    gold?: FloatNullableFilter<"ReceivedItem"> | number | null
+    touchId?: IntNullableFilter<"ReceivedItem"> | number | null
+    purity_weight?: FloatFilter<"ReceivedItem"> | number
+    amount?: FloatNullableFilter<"ReceivedItem"> | number | null
+    hallmark_charge?: FloatNullableFilter<"ReceivedItem"> | number | null
+    createdAt?: DateTimeFilter<"ReceivedItem"> | Date | string
+    updatedAt?: DateTimeFilter<"ReceivedItem"> | Date | string
+    bill?: XOR<BillScalarRelationFilter, BillWhereInput>
+    touch?: XOR<AddTouchNullableScalarRelationFilter, AddTouchWhereInput> | null
+  }
+
+  export type ReceivedItemOrderByWithRelationInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    type?: SortOrder
+    date?: SortOrder
+    gold_rate?: SortOrderInput | SortOrder
+    gold?: SortOrderInput | SortOrder
+    touchId?: SortOrderInput | SortOrder
+    purity_weight?: SortOrder
+    amount?: SortOrderInput | SortOrder
+    hallmark_charge?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    bill?: BillOrderByWithRelationInput
+    touch?: AddTouchOrderByWithRelationInput
+    _relevance?: ReceivedItemOrderByRelevanceInput
+  }
+
+  export type ReceivedItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ReceivedItemWhereInput | ReceivedItemWhereInput[]
+    OR?: ReceivedItemWhereInput[]
+    NOT?: ReceivedItemWhereInput | ReceivedItemWhereInput[]
+    bill_id?: IntFilter<"ReceivedItem"> | number
+    type?: EnumITEMTYPEFilter<"ReceivedItem"> | $Enums.ITEMTYPE
+    date?: StringFilter<"ReceivedItem"> | string
+    gold_rate?: FloatNullableFilter<"ReceivedItem"> | number | null
+    gold?: FloatNullableFilter<"ReceivedItem"> | number | null
+    touchId?: IntNullableFilter<"ReceivedItem"> | number | null
+    purity_weight?: FloatFilter<"ReceivedItem"> | number
+    amount?: FloatNullableFilter<"ReceivedItem"> | number | null
+    hallmark_charge?: FloatNullableFilter<"ReceivedItem"> | number | null
+    createdAt?: DateTimeFilter<"ReceivedItem"> | Date | string
+    updatedAt?: DateTimeFilter<"ReceivedItem"> | Date | string
+    bill?: XOR<BillScalarRelationFilter, BillWhereInput>
+    touch?: XOR<AddTouchNullableScalarRelationFilter, AddTouchWhereInput> | null
+  }, "id">
+
+  export type ReceivedItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    type?: SortOrder
+    date?: SortOrder
+    gold_rate?: SortOrderInput | SortOrder
+    gold?: SortOrderInput | SortOrder
+    touchId?: SortOrderInput | SortOrder
+    purity_weight?: SortOrder
+    amount?: SortOrderInput | SortOrder
+    hallmark_charge?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ReceivedItemCountOrderByAggregateInput
+    _avg?: ReceivedItemAvgOrderByAggregateInput
+    _max?: ReceivedItemMaxOrderByAggregateInput
+    _min?: ReceivedItemMinOrderByAggregateInput
+    _sum?: ReceivedItemSumOrderByAggregateInput
+  }
+
+  export type ReceivedItemScalarWhereWithAggregatesInput = {
+    AND?: ReceivedItemScalarWhereWithAggregatesInput | ReceivedItemScalarWhereWithAggregatesInput[]
+    OR?: ReceivedItemScalarWhereWithAggregatesInput[]
+    NOT?: ReceivedItemScalarWhereWithAggregatesInput | ReceivedItemScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ReceivedItem"> | number
+    bill_id?: IntWithAggregatesFilter<"ReceivedItem"> | number
+    type?: EnumITEMTYPEWithAggregatesFilter<"ReceivedItem"> | $Enums.ITEMTYPE
+    date?: StringWithAggregatesFilter<"ReceivedItem"> | string
+    gold_rate?: FloatNullableWithAggregatesFilter<"ReceivedItem"> | number | null
+    gold?: FloatNullableWithAggregatesFilter<"ReceivedItem"> | number | null
+    touchId?: IntNullableWithAggregatesFilter<"ReceivedItem"> | number | null
+    purity_weight?: FloatWithAggregatesFilter<"ReceivedItem"> | number
+    amount?: FloatNullableWithAggregatesFilter<"ReceivedItem"> | number | null
+    hallmark_charge?: FloatNullableWithAggregatesFilter<"ReceivedItem"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"ReceivedItem"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ReceivedItem"> | Date | string
+  }
+
   export type AddCustomerCreateInput = {
     createdAt?: Date | string
     name: string
@@ -41765,6 +47254,8 @@ export namespace Prisma {
     address?: string | null
     email?: string | null
     transactions?: CustomerTransactionCreateNestedManyWithoutCustomerInput
+    bills?: BillCreateNestedManyWithoutCustomerInput
+    hallmarks?: HallmarkCreateNestedManyWithoutCustomerInput
   }
 
   export type AddCustomerUncheckedCreateInput = {
@@ -41775,6 +47266,8 @@ export namespace Prisma {
     address?: string | null
     email?: string | null
     transactions?: CustomerTransactionUncheckedCreateNestedManyWithoutCustomerInput
+    bills?: BillUncheckedCreateNestedManyWithoutCustomerInput
+    hallmarks?: HallmarkUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type AddCustomerUpdateInput = {
@@ -41784,6 +47277,8 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     transactions?: CustomerTransactionUpdateManyWithoutCustomerNestedInput
+    bills?: BillUpdateManyWithoutCustomerNestedInput
+    hallmarks?: HallmarkUpdateManyWithoutCustomerNestedInput
   }
 
   export type AddCustomerUncheckedUpdateInput = {
@@ -41794,6 +47289,8 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     transactions?: CustomerTransactionUncheckedUpdateManyWithoutCustomerNestedInput
+    bills?: BillUncheckedUpdateManyWithoutCustomerNestedInput
+    hallmarks?: HallmarkUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type AddCustomerCreateManyInput = {
@@ -42364,6 +47861,7 @@ export namespace Prisma {
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
     QCStock?: QcStockCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemUncheckedCreateInput = {
@@ -42376,6 +47874,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemUpdateInput = {
@@ -42387,6 +47886,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddItemUncheckedUpdateInput = {
@@ -42399,6 +47899,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddItemCreateManyInput = {
@@ -42430,6 +47931,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
     QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUncheckedCreateInput = {
@@ -42445,6 +47948,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUpdateInput = {
@@ -42459,6 +47964,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchUncheckedUpdateInput = {
@@ -42474,6 +47981,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchCreateManyInput = {
@@ -42502,6 +48011,7 @@ export namespace Prisma {
     remarks?: string | null
     itemId: AddItemCreateNestedOneWithoutQCStockInput
     touchId: AddTouchCreateNestedOneWithoutQCStockInput
+    BillItem?: BillItemCreateNestedManyWithoutQcStockInput
   }
 
   export type QcStockUncheckedCreateInput = {
@@ -42514,6 +48024,7 @@ export namespace Prisma {
     touch_id: number
     purity: number
     remarks?: string | null
+    BillItem?: BillItemUncheckedCreateNestedManyWithoutQcStockInput
   }
 
   export type QcStockUpdateInput = {
@@ -42525,6 +48036,7 @@ export namespace Prisma {
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     itemId?: AddItemUpdateOneRequiredWithoutQCStockNestedInput
     touchId?: AddTouchUpdateOneRequiredWithoutQCStockNestedInput
+    BillItem?: BillItemUpdateManyWithoutQcStockNestedInput
   }
 
   export type QcStockUncheckedUpdateInput = {
@@ -42537,6 +48049,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    BillItem?: BillItemUncheckedUpdateManyWithoutQcStockNestedInput
   }
 
   export type QcStockCreateManyInput = {
@@ -44254,6 +49767,400 @@ export namespace Prisma {
     purchase_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type HallmarkCreateInput = {
+    balance?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer: AddCustomerCreateNestedOneWithoutHallmarksInput
+  }
+
+  export type HallmarkUncheckedCreateInput = {
+    id?: number
+    customer_id: number
+    balance?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HallmarkUpdateInput = {
+    balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: AddCustomerUpdateOneRequiredWithoutHallmarksNestedInput
+  }
+
+  export type HallmarkUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    customer_id?: IntFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HallmarkCreateManyInput = {
+    id?: number
+    customer_id: number
+    balance?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HallmarkUpdateManyMutationInput = {
+    balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HallmarkUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    customer_id?: IntFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillCreateInput = {
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer: AddCustomerCreateNestedOneWithoutBillsInput
+    billItems?: BillItemCreateNestedManyWithoutBillInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutBillInput
+  }
+
+  export type BillUncheckedCreateInput = {
+    id?: number
+    customer_id: number
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    billItems?: BillItemUncheckedCreateNestedManyWithoutBillInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutBillInput
+  }
+
+  export type BillUpdateInput = {
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: AddCustomerUpdateOneRequiredWithoutBillsNestedInput
+    billItems?: BillItemUpdateManyWithoutBillNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutBillNestedInput
+  }
+
+  export type BillUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    customer_id?: IntFieldUpdateOperationsInput | number
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    billItems?: BillItemUncheckedUpdateManyWithoutBillNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutBillNestedInput
+  }
+
+  export type BillCreateManyInput = {
+    id?: number
+    customer_id: number
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BillUpdateManyMutationInput = {
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    customer_id?: IntFieldUpdateOperationsInput | number
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillItemCreateInput = {
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bill: BillCreateNestedOneWithoutBillItemsInput
+    qcStock: QcStockCreateNestedOneWithoutBillItemInput
+    AddItem?: AddItemCreateNestedOneWithoutBillItemsInput
+    touch?: AddTouchCreateNestedOneWithoutBillItemsInput
+  }
+
+  export type BillItemUncheckedCreateInput = {
+    id?: number
+    bill_id: number
+    qc_stock_id: number
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    touchId?: number | null
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addItemId?: number | null
+  }
+
+  export type BillItemUpdateInput = {
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bill?: BillUpdateOneRequiredWithoutBillItemsNestedInput
+    qcStock?: QcStockUpdateOneRequiredWithoutBillItemNestedInput
+    AddItem?: AddItemUpdateOneWithoutBillItemsNestedInput
+    touch?: AddTouchUpdateOneWithoutBillItemsNestedInput
+  }
+
+  export type BillItemUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    qc_stock_id?: IntFieldUpdateOperationsInput | number
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addItemId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type BillItemCreateManyInput = {
+    id?: number
+    bill_id: number
+    qc_stock_id: number
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    touchId?: number | null
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addItemId?: number | null
+  }
+
+  export type BillItemUpdateManyMutationInput = {
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillItemUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    qc_stock_id?: IntFieldUpdateOperationsInput | number
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addItemId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ReceivedItemCreateInput = {
+    type: $Enums.ITEMTYPE
+    date: string
+    gold_rate?: number | null
+    gold?: number | null
+    purity_weight: number
+    amount?: number | null
+    hallmark_charge?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bill: BillCreateNestedOneWithoutReceivedItemsInput
+    touch?: AddTouchCreateNestedOneWithoutReceivedItemsInput
+  }
+
+  export type ReceivedItemUncheckedCreateInput = {
+    id?: number
+    bill_id: number
+    type: $Enums.ITEMTYPE
+    date: string
+    gold_rate?: number | null
+    gold?: number | null
+    touchId?: number | null
+    purity_weight: number
+    amount?: number | null
+    hallmark_charge?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReceivedItemUpdateInput = {
+    type?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
+    date?: StringFieldUpdateOperationsInput | string
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
+    gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity_weight?: FloatFieldUpdateOperationsInput | number
+    amount?: NullableFloatFieldUpdateOperationsInput | number | null
+    hallmark_charge?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bill?: BillUpdateOneRequiredWithoutReceivedItemsNestedInput
+    touch?: AddTouchUpdateOneWithoutReceivedItemsNestedInput
+  }
+
+  export type ReceivedItemUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    type?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
+    date?: StringFieldUpdateOperationsInput | string
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
+    gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    purity_weight?: FloatFieldUpdateOperationsInput | number
+    amount?: NullableFloatFieldUpdateOperationsInput | number | null
+    hallmark_charge?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReceivedItemCreateManyInput = {
+    id?: number
+    bill_id: number
+    type: $Enums.ITEMTYPE
+    date: string
+    gold_rate?: number | null
+    gold?: number | null
+    touchId?: number | null
+    purity_weight: number
+    amount?: number | null
+    hallmark_charge?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReceivedItemUpdateManyMutationInput = {
+    type?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
+    date?: StringFieldUpdateOperationsInput | string
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
+    gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity_weight?: FloatFieldUpdateOperationsInput | number
+    amount?: NullableFloatFieldUpdateOperationsInput | number | null
+    hallmark_charge?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReceivedItemUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    type?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
+    date?: StringFieldUpdateOperationsInput | string
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
+    gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    purity_weight?: FloatFieldUpdateOperationsInput | number
+    amount?: NullableFloatFieldUpdateOperationsInput | number | null
+    hallmark_charge?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -44312,12 +50219,32 @@ export namespace Prisma {
     none?: CustomerTransactionWhereInput
   }
 
+  export type BillListRelationFilter = {
+    every?: BillWhereInput
+    some?: BillWhereInput
+    none?: BillWhereInput
+  }
+
+  export type HallmarkListRelationFilter = {
+    every?: HallmarkWhereInput
+    some?: HallmarkWhereInput
+    none?: HallmarkWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type CustomerTransactionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BillOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HallmarkOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -45040,6 +50967,12 @@ export namespace Prisma {
     none?: QcStockWhereInput
   }
 
+  export type BillItemListRelationFilter = {
+    every?: BillItemWhereInput
+    some?: BillItemWhereInput
+    none?: BillItemWhereInput
+  }
+
   export type FilingItemsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -45053,6 +50986,10 @@ export namespace Prisma {
   }
 
   export type QcStockOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BillItemOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -45086,6 +51023,16 @@ export namespace Prisma {
 
   export type AddItemSumOrderByAggregateInput = {
     id?: SortOrder
+  }
+
+  export type ReceivedItemListRelationFilter = {
+    every?: ReceivedItemWhereInput
+    some?: ReceivedItemWhereInput
+    none?: ReceivedItemWhereInput
+  }
+
+  export type ReceivedItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type AddTouchCountOrderByAggregateInput = {
@@ -46553,6 +52500,296 @@ export namespace Prisma {
     _max?: NestedEnumITEMTYPENullableFilter<$PrismaModel>
   }
 
+  export type HallmarkCountOrderByAggregateInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    balance?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HallmarkAvgOrderByAggregateInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    balance?: SortOrder
+  }
+
+  export type HallmarkMaxOrderByAggregateInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    balance?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HallmarkMinOrderByAggregateInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    balance?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HallmarkSumOrderByAggregateInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    balance?: SortOrder
+  }
+
+  export type BillOrderByRelevanceInput = {
+    fields: BillOrderByRelevanceFieldEnum | BillOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type BillCountOrderByAggregateInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    bill_no?: SortOrder
+    date?: SortOrder
+    time?: SortOrder
+    gold_rate?: SortOrder
+    total_pure?: SortOrder
+    total_amount?: SortOrder
+    customer_balance?: SortOrder
+    grand_total?: SortOrder
+    cash_balance?: SortOrder
+    pure_balance?: SortOrder
+    prev_hallmark?: SortOrder
+    hallmark_balance?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BillAvgOrderByAggregateInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    gold_rate?: SortOrder
+    total_pure?: SortOrder
+    total_amount?: SortOrder
+    customer_balance?: SortOrder
+    grand_total?: SortOrder
+    cash_balance?: SortOrder
+    pure_balance?: SortOrder
+    prev_hallmark?: SortOrder
+    hallmark_balance?: SortOrder
+  }
+
+  export type BillMaxOrderByAggregateInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    bill_no?: SortOrder
+    date?: SortOrder
+    time?: SortOrder
+    gold_rate?: SortOrder
+    total_pure?: SortOrder
+    total_amount?: SortOrder
+    customer_balance?: SortOrder
+    grand_total?: SortOrder
+    cash_balance?: SortOrder
+    pure_balance?: SortOrder
+    prev_hallmark?: SortOrder
+    hallmark_balance?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BillMinOrderByAggregateInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    bill_no?: SortOrder
+    date?: SortOrder
+    time?: SortOrder
+    gold_rate?: SortOrder
+    total_pure?: SortOrder
+    total_amount?: SortOrder
+    customer_balance?: SortOrder
+    grand_total?: SortOrder
+    cash_balance?: SortOrder
+    pure_balance?: SortOrder
+    prev_hallmark?: SortOrder
+    hallmark_balance?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BillSumOrderByAggregateInput = {
+    id?: SortOrder
+    customer_id?: SortOrder
+    gold_rate?: SortOrder
+    total_pure?: SortOrder
+    total_amount?: SortOrder
+    customer_balance?: SortOrder
+    grand_total?: SortOrder
+    cash_balance?: SortOrder
+    pure_balance?: SortOrder
+    prev_hallmark?: SortOrder
+    hallmark_balance?: SortOrder
+  }
+
+  export type BillScalarRelationFilter = {
+    is?: BillWhereInput
+    isNot?: BillWhereInput
+  }
+
+  export type QcStockScalarRelationFilter = {
+    is?: QcStockWhereInput
+    isNot?: QcStockWhereInput
+  }
+
+  export type BillItemOrderByRelevanceInput = {
+    fields: BillItemOrderByRelevanceFieldEnum | BillItemOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type BillItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    qc_stock_id?: SortOrder
+    item_name?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    total_weight?: SortOrder
+    touchId?: SortOrder
+    pure?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    addItemId?: SortOrder
+  }
+
+  export type BillItemAvgOrderByAggregateInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    qc_stock_id?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    total_weight?: SortOrder
+    touchId?: SortOrder
+    pure?: SortOrder
+    amount?: SortOrder
+    addItemId?: SortOrder
+  }
+
+  export type BillItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    qc_stock_id?: SortOrder
+    item_name?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    total_weight?: SortOrder
+    touchId?: SortOrder
+    pure?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    addItemId?: SortOrder
+  }
+
+  export type BillItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    qc_stock_id?: SortOrder
+    item_name?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    total_weight?: SortOrder
+    touchId?: SortOrder
+    pure?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    addItemId?: SortOrder
+  }
+
+  export type BillItemSumOrderByAggregateInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    qc_stock_id?: SortOrder
+    weight?: SortOrder
+    stone_weight?: SortOrder
+    total_weight?: SortOrder
+    touchId?: SortOrder
+    pure?: SortOrder
+    amount?: SortOrder
+    addItemId?: SortOrder
+  }
+
+  export type ReceivedItemOrderByRelevanceInput = {
+    fields: ReceivedItemOrderByRelevanceFieldEnum | ReceivedItemOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ReceivedItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    type?: SortOrder
+    date?: SortOrder
+    gold_rate?: SortOrder
+    gold?: SortOrder
+    touchId?: SortOrder
+    purity_weight?: SortOrder
+    amount?: SortOrder
+    hallmark_charge?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ReceivedItemAvgOrderByAggregateInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    gold_rate?: SortOrder
+    gold?: SortOrder
+    touchId?: SortOrder
+    purity_weight?: SortOrder
+    amount?: SortOrder
+    hallmark_charge?: SortOrder
+  }
+
+  export type ReceivedItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    type?: SortOrder
+    date?: SortOrder
+    gold_rate?: SortOrder
+    gold?: SortOrder
+    touchId?: SortOrder
+    purity_weight?: SortOrder
+    amount?: SortOrder
+    hallmark_charge?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ReceivedItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    type?: SortOrder
+    date?: SortOrder
+    gold_rate?: SortOrder
+    gold?: SortOrder
+    touchId?: SortOrder
+    purity_weight?: SortOrder
+    amount?: SortOrder
+    hallmark_charge?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ReceivedItemSumOrderByAggregateInput = {
+    id?: SortOrder
+    bill_id?: SortOrder
+    gold_rate?: SortOrder
+    gold?: SortOrder
+    touchId?: SortOrder
+    purity_weight?: SortOrder
+    amount?: SortOrder
+    hallmark_charge?: SortOrder
+  }
+
   export type CustomerTransactionCreateNestedManyWithoutCustomerInput = {
     create?: XOR<CustomerTransactionCreateWithoutCustomerInput, CustomerTransactionUncheckedCreateWithoutCustomerInput> | CustomerTransactionCreateWithoutCustomerInput[] | CustomerTransactionUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: CustomerTransactionCreateOrConnectWithoutCustomerInput | CustomerTransactionCreateOrConnectWithoutCustomerInput[]
@@ -46560,11 +52797,39 @@ export namespace Prisma {
     connect?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
   }
 
+  export type BillCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<BillCreateWithoutCustomerInput, BillUncheckedCreateWithoutCustomerInput> | BillCreateWithoutCustomerInput[] | BillUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: BillCreateOrConnectWithoutCustomerInput | BillCreateOrConnectWithoutCustomerInput[]
+    createMany?: BillCreateManyCustomerInputEnvelope
+    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+  }
+
+  export type HallmarkCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<HallmarkCreateWithoutCustomerInput, HallmarkUncheckedCreateWithoutCustomerInput> | HallmarkCreateWithoutCustomerInput[] | HallmarkUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: HallmarkCreateOrConnectWithoutCustomerInput | HallmarkCreateOrConnectWithoutCustomerInput[]
+    createMany?: HallmarkCreateManyCustomerInputEnvelope
+    connect?: HallmarkWhereUniqueInput | HallmarkWhereUniqueInput[]
+  }
+
   export type CustomerTransactionUncheckedCreateNestedManyWithoutCustomerInput = {
     create?: XOR<CustomerTransactionCreateWithoutCustomerInput, CustomerTransactionUncheckedCreateWithoutCustomerInput> | CustomerTransactionCreateWithoutCustomerInput[] | CustomerTransactionUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: CustomerTransactionCreateOrConnectWithoutCustomerInput | CustomerTransactionCreateOrConnectWithoutCustomerInput[]
     createMany?: CustomerTransactionCreateManyCustomerInputEnvelope
     connect?: CustomerTransactionWhereUniqueInput | CustomerTransactionWhereUniqueInput[]
+  }
+
+  export type BillUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<BillCreateWithoutCustomerInput, BillUncheckedCreateWithoutCustomerInput> | BillCreateWithoutCustomerInput[] | BillUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: BillCreateOrConnectWithoutCustomerInput | BillCreateOrConnectWithoutCustomerInput[]
+    createMany?: BillCreateManyCustomerInputEnvelope
+    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+  }
+
+  export type HallmarkUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<HallmarkCreateWithoutCustomerInput, HallmarkUncheckedCreateWithoutCustomerInput> | HallmarkCreateWithoutCustomerInput[] | HallmarkUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: HallmarkCreateOrConnectWithoutCustomerInput | HallmarkCreateOrConnectWithoutCustomerInput[]
+    createMany?: HallmarkCreateManyCustomerInputEnvelope
+    connect?: HallmarkWhereUniqueInput | HallmarkWhereUniqueInput[]
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -46593,6 +52858,34 @@ export namespace Prisma {
     deleteMany?: CustomerTransactionScalarWhereInput | CustomerTransactionScalarWhereInput[]
   }
 
+  export type BillUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<BillCreateWithoutCustomerInput, BillUncheckedCreateWithoutCustomerInput> | BillCreateWithoutCustomerInput[] | BillUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: BillCreateOrConnectWithoutCustomerInput | BillCreateOrConnectWithoutCustomerInput[]
+    upsert?: BillUpsertWithWhereUniqueWithoutCustomerInput | BillUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: BillCreateManyCustomerInputEnvelope
+    set?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    disconnect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    delete?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    update?: BillUpdateWithWhereUniqueWithoutCustomerInput | BillUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: BillUpdateManyWithWhereWithoutCustomerInput | BillUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: BillScalarWhereInput | BillScalarWhereInput[]
+  }
+
+  export type HallmarkUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<HallmarkCreateWithoutCustomerInput, HallmarkUncheckedCreateWithoutCustomerInput> | HallmarkCreateWithoutCustomerInput[] | HallmarkUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: HallmarkCreateOrConnectWithoutCustomerInput | HallmarkCreateOrConnectWithoutCustomerInput[]
+    upsert?: HallmarkUpsertWithWhereUniqueWithoutCustomerInput | HallmarkUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: HallmarkCreateManyCustomerInputEnvelope
+    set?: HallmarkWhereUniqueInput | HallmarkWhereUniqueInput[]
+    disconnect?: HallmarkWhereUniqueInput | HallmarkWhereUniqueInput[]
+    delete?: HallmarkWhereUniqueInput | HallmarkWhereUniqueInput[]
+    connect?: HallmarkWhereUniqueInput | HallmarkWhereUniqueInput[]
+    update?: HallmarkUpdateWithWhereUniqueWithoutCustomerInput | HallmarkUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: HallmarkUpdateManyWithWhereWithoutCustomerInput | HallmarkUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: HallmarkScalarWhereInput | HallmarkScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -46613,6 +52906,34 @@ export namespace Prisma {
     update?: CustomerTransactionUpdateWithWhereUniqueWithoutCustomerInput | CustomerTransactionUpdateWithWhereUniqueWithoutCustomerInput[]
     updateMany?: CustomerTransactionUpdateManyWithWhereWithoutCustomerInput | CustomerTransactionUpdateManyWithWhereWithoutCustomerInput[]
     deleteMany?: CustomerTransactionScalarWhereInput | CustomerTransactionScalarWhereInput[]
+  }
+
+  export type BillUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<BillCreateWithoutCustomerInput, BillUncheckedCreateWithoutCustomerInput> | BillCreateWithoutCustomerInput[] | BillUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: BillCreateOrConnectWithoutCustomerInput | BillCreateOrConnectWithoutCustomerInput[]
+    upsert?: BillUpsertWithWhereUniqueWithoutCustomerInput | BillUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: BillCreateManyCustomerInputEnvelope
+    set?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    disconnect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    delete?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    update?: BillUpdateWithWhereUniqueWithoutCustomerInput | BillUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: BillUpdateManyWithWhereWithoutCustomerInput | BillUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: BillScalarWhereInput | BillScalarWhereInput[]
+  }
+
+  export type HallmarkUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<HallmarkCreateWithoutCustomerInput, HallmarkUncheckedCreateWithoutCustomerInput> | HallmarkCreateWithoutCustomerInput[] | HallmarkUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: HallmarkCreateOrConnectWithoutCustomerInput | HallmarkCreateOrConnectWithoutCustomerInput[]
+    upsert?: HallmarkUpsertWithWhereUniqueWithoutCustomerInput | HallmarkUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: HallmarkCreateManyCustomerInputEnvelope
+    set?: HallmarkWhereUniqueInput | HallmarkWhereUniqueInput[]
+    disconnect?: HallmarkWhereUniqueInput | HallmarkWhereUniqueInput[]
+    delete?: HallmarkWhereUniqueInput | HallmarkWhereUniqueInput[]
+    connect?: HallmarkWhereUniqueInput | HallmarkWhereUniqueInput[]
+    update?: HallmarkUpdateWithWhereUniqueWithoutCustomerInput | HallmarkUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: HallmarkUpdateManyWithWhereWithoutCustomerInput | HallmarkUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: HallmarkScalarWhereInput | HallmarkScalarWhereInput[]
   }
 
   export type CastingEntryCreateNestedManyWithoutCasting_customerInput = {
@@ -47457,6 +53778,13 @@ export namespace Prisma {
     connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
   }
 
+  export type BillItemCreateNestedManyWithoutAddItemInput = {
+    create?: XOR<BillItemCreateWithoutAddItemInput, BillItemUncheckedCreateWithoutAddItemInput> | BillItemCreateWithoutAddItemInput[] | BillItemUncheckedCreateWithoutAddItemInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutAddItemInput | BillItemCreateOrConnectWithoutAddItemInput[]
+    createMany?: BillItemCreateManyAddItemInputEnvelope
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+  }
+
   export type CastingItemsUncheckedCreateNestedManyWithoutItemInput = {
     create?: XOR<CastingItemsCreateWithoutItemInput, CastingItemsUncheckedCreateWithoutItemInput> | CastingItemsCreateWithoutItemInput[] | CastingItemsUncheckedCreateWithoutItemInput[]
     connectOrCreate?: CastingItemsCreateOrConnectWithoutItemInput | CastingItemsCreateOrConnectWithoutItemInput[]
@@ -47497,6 +53825,13 @@ export namespace Prisma {
     connectOrCreate?: QcStockCreateOrConnectWithoutItemIdInput | QcStockCreateOrConnectWithoutItemIdInput[]
     createMany?: QcStockCreateManyItemIdInputEnvelope
     connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+  }
+
+  export type BillItemUncheckedCreateNestedManyWithoutAddItemInput = {
+    create?: XOR<BillItemCreateWithoutAddItemInput, BillItemUncheckedCreateWithoutAddItemInput> | BillItemCreateWithoutAddItemInput[] | BillItemUncheckedCreateWithoutAddItemInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutAddItemInput | BillItemCreateOrConnectWithoutAddItemInput[]
+    createMany?: BillItemCreateManyAddItemInputEnvelope
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
   }
 
   export type CastingItemsUpdateManyWithoutItemNestedInput = {
@@ -47583,6 +53918,20 @@ export namespace Prisma {
     deleteMany?: QcStockScalarWhereInput | QcStockScalarWhereInput[]
   }
 
+  export type BillItemUpdateManyWithoutAddItemNestedInput = {
+    create?: XOR<BillItemCreateWithoutAddItemInput, BillItemUncheckedCreateWithoutAddItemInput> | BillItemCreateWithoutAddItemInput[] | BillItemUncheckedCreateWithoutAddItemInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutAddItemInput | BillItemCreateOrConnectWithoutAddItemInput[]
+    upsert?: BillItemUpsertWithWhereUniqueWithoutAddItemInput | BillItemUpsertWithWhereUniqueWithoutAddItemInput[]
+    createMany?: BillItemCreateManyAddItemInputEnvelope
+    set?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    disconnect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    delete?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    update?: BillItemUpdateWithWhereUniqueWithoutAddItemInput | BillItemUpdateWithWhereUniqueWithoutAddItemInput[]
+    updateMany?: BillItemUpdateManyWithWhereWithoutAddItemInput | BillItemUpdateManyWithWhereWithoutAddItemInput[]
+    deleteMany?: BillItemScalarWhereInput | BillItemScalarWhereInput[]
+  }
+
   export type CastingItemsUncheckedUpdateManyWithoutItemNestedInput = {
     create?: XOR<CastingItemsCreateWithoutItemInput, CastingItemsUncheckedCreateWithoutItemInput> | CastingItemsCreateWithoutItemInput[] | CastingItemsUncheckedCreateWithoutItemInput[]
     connectOrCreate?: CastingItemsCreateOrConnectWithoutItemInput | CastingItemsCreateOrConnectWithoutItemInput[]
@@ -47667,6 +54016,20 @@ export namespace Prisma {
     deleteMany?: QcStockScalarWhereInput | QcStockScalarWhereInput[]
   }
 
+  export type BillItemUncheckedUpdateManyWithoutAddItemNestedInput = {
+    create?: XOR<BillItemCreateWithoutAddItemInput, BillItemUncheckedCreateWithoutAddItemInput> | BillItemCreateWithoutAddItemInput[] | BillItemUncheckedCreateWithoutAddItemInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutAddItemInput | BillItemCreateOrConnectWithoutAddItemInput[]
+    upsert?: BillItemUpsertWithWhereUniqueWithoutAddItemInput | BillItemUpsertWithWhereUniqueWithoutAddItemInput[]
+    createMany?: BillItemCreateManyAddItemInputEnvelope
+    set?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    disconnect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    delete?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    update?: BillItemUpdateWithWhereUniqueWithoutAddItemInput | BillItemUpdateWithWhereUniqueWithoutAddItemInput[]
+    updateMany?: BillItemUpdateManyWithWhereWithoutAddItemInput | BillItemUpdateManyWithWhereWithoutAddItemInput[]
+    deleteMany?: BillItemScalarWhereInput | BillItemScalarWhereInput[]
+  }
+
   export type CastingEntryCreateNestedManyWithoutTouchInput = {
     create?: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput> | CastingEntryCreateWithoutTouchInput[] | CastingEntryUncheckedCreateWithoutTouchInput[]
     connectOrCreate?: CastingEntryCreateOrConnectWithoutTouchInput | CastingEntryCreateOrConnectWithoutTouchInput[]
@@ -47730,6 +54093,20 @@ export namespace Prisma {
     connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
   }
 
+  export type ReceivedItemCreateNestedManyWithoutTouchInput = {
+    create?: XOR<ReceivedItemCreateWithoutTouchInput, ReceivedItemUncheckedCreateWithoutTouchInput> | ReceivedItemCreateWithoutTouchInput[] | ReceivedItemUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: ReceivedItemCreateOrConnectWithoutTouchInput | ReceivedItemCreateOrConnectWithoutTouchInput[]
+    createMany?: ReceivedItemCreateManyTouchInputEnvelope
+    connect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+  }
+
+  export type BillItemCreateNestedManyWithoutTouchInput = {
+    create?: XOR<BillItemCreateWithoutTouchInput, BillItemUncheckedCreateWithoutTouchInput> | BillItemCreateWithoutTouchInput[] | BillItemUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutTouchInput | BillItemCreateOrConnectWithoutTouchInput[]
+    createMany?: BillItemCreateManyTouchInputEnvelope
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+  }
+
   export type CastingEntryUncheckedCreateNestedManyWithoutTouchInput = {
     create?: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput> | CastingEntryCreateWithoutTouchInput[] | CastingEntryUncheckedCreateWithoutTouchInput[]
     connectOrCreate?: CastingEntryCreateOrConnectWithoutTouchInput | CastingEntryCreateOrConnectWithoutTouchInput[]
@@ -47791,6 +54168,20 @@ export namespace Prisma {
     connectOrCreate?: QcStockCreateOrConnectWithoutTouchIdInput | QcStockCreateOrConnectWithoutTouchIdInput[]
     createMany?: QcStockCreateManyTouchIdInputEnvelope
     connect?: QcStockWhereUniqueInput | QcStockWhereUniqueInput[]
+  }
+
+  export type ReceivedItemUncheckedCreateNestedManyWithoutTouchInput = {
+    create?: XOR<ReceivedItemCreateWithoutTouchInput, ReceivedItemUncheckedCreateWithoutTouchInput> | ReceivedItemCreateWithoutTouchInput[] | ReceivedItemUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: ReceivedItemCreateOrConnectWithoutTouchInput | ReceivedItemCreateOrConnectWithoutTouchInput[]
+    createMany?: ReceivedItemCreateManyTouchInputEnvelope
+    connect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+  }
+
+  export type BillItemUncheckedCreateNestedManyWithoutTouchInput = {
+    create?: XOR<BillItemCreateWithoutTouchInput, BillItemUncheckedCreateWithoutTouchInput> | BillItemCreateWithoutTouchInput[] | BillItemUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutTouchInput | BillItemCreateOrConnectWithoutTouchInput[]
+    createMany?: BillItemCreateManyTouchInputEnvelope
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
   }
 
   export type CastingEntryUpdateManyWithoutTouchNestedInput = {
@@ -47919,6 +54310,34 @@ export namespace Prisma {
     deleteMany?: QcStockScalarWhereInput | QcStockScalarWhereInput[]
   }
 
+  export type ReceivedItemUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<ReceivedItemCreateWithoutTouchInput, ReceivedItemUncheckedCreateWithoutTouchInput> | ReceivedItemCreateWithoutTouchInput[] | ReceivedItemUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: ReceivedItemCreateOrConnectWithoutTouchInput | ReceivedItemCreateOrConnectWithoutTouchInput[]
+    upsert?: ReceivedItemUpsertWithWhereUniqueWithoutTouchInput | ReceivedItemUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: ReceivedItemCreateManyTouchInputEnvelope
+    set?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    disconnect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    delete?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    connect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    update?: ReceivedItemUpdateWithWhereUniqueWithoutTouchInput | ReceivedItemUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: ReceivedItemUpdateManyWithWhereWithoutTouchInput | ReceivedItemUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: ReceivedItemScalarWhereInput | ReceivedItemScalarWhereInput[]
+  }
+
+  export type BillItemUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<BillItemCreateWithoutTouchInput, BillItemUncheckedCreateWithoutTouchInput> | BillItemCreateWithoutTouchInput[] | BillItemUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutTouchInput | BillItemCreateOrConnectWithoutTouchInput[]
+    upsert?: BillItemUpsertWithWhereUniqueWithoutTouchInput | BillItemUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: BillItemCreateManyTouchInputEnvelope
+    set?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    disconnect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    delete?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    update?: BillItemUpdateWithWhereUniqueWithoutTouchInput | BillItemUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: BillItemUpdateManyWithWhereWithoutTouchInput | BillItemUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: BillItemScalarWhereInput | BillItemScalarWhereInput[]
+  }
+
   export type CastingEntryUncheckedUpdateManyWithoutTouchNestedInput = {
     create?: XOR<CastingEntryCreateWithoutTouchInput, CastingEntryUncheckedCreateWithoutTouchInput> | CastingEntryCreateWithoutTouchInput[] | CastingEntryUncheckedCreateWithoutTouchInput[]
     connectOrCreate?: CastingEntryCreateOrConnectWithoutTouchInput | CastingEntryCreateOrConnectWithoutTouchInput[]
@@ -48045,6 +54464,34 @@ export namespace Prisma {
     deleteMany?: QcStockScalarWhereInput | QcStockScalarWhereInput[]
   }
 
+  export type ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<ReceivedItemCreateWithoutTouchInput, ReceivedItemUncheckedCreateWithoutTouchInput> | ReceivedItemCreateWithoutTouchInput[] | ReceivedItemUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: ReceivedItemCreateOrConnectWithoutTouchInput | ReceivedItemCreateOrConnectWithoutTouchInput[]
+    upsert?: ReceivedItemUpsertWithWhereUniqueWithoutTouchInput | ReceivedItemUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: ReceivedItemCreateManyTouchInputEnvelope
+    set?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    disconnect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    delete?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    connect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    update?: ReceivedItemUpdateWithWhereUniqueWithoutTouchInput | ReceivedItemUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: ReceivedItemUpdateManyWithWhereWithoutTouchInput | ReceivedItemUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: ReceivedItemScalarWhereInput | ReceivedItemScalarWhereInput[]
+  }
+
+  export type BillItemUncheckedUpdateManyWithoutTouchNestedInput = {
+    create?: XOR<BillItemCreateWithoutTouchInput, BillItemUncheckedCreateWithoutTouchInput> | BillItemCreateWithoutTouchInput[] | BillItemUncheckedCreateWithoutTouchInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutTouchInput | BillItemCreateOrConnectWithoutTouchInput[]
+    upsert?: BillItemUpsertWithWhereUniqueWithoutTouchInput | BillItemUpsertWithWhereUniqueWithoutTouchInput[]
+    createMany?: BillItemCreateManyTouchInputEnvelope
+    set?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    disconnect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    delete?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    update?: BillItemUpdateWithWhereUniqueWithoutTouchInput | BillItemUpdateWithWhereUniqueWithoutTouchInput[]
+    updateMany?: BillItemUpdateManyWithWhereWithoutTouchInput | BillItemUpdateManyWithWhereWithoutTouchInput[]
+    deleteMany?: BillItemScalarWhereInput | BillItemScalarWhereInput[]
+  }
+
   export type AddItemCreateNestedOneWithoutQCStockInput = {
     create?: XOR<AddItemCreateWithoutQCStockInput, AddItemUncheckedCreateWithoutQCStockInput>
     connectOrCreate?: AddItemCreateOrConnectWithoutQCStockInput
@@ -48055,6 +54502,20 @@ export namespace Prisma {
     create?: XOR<AddTouchCreateWithoutQCStockInput, AddTouchUncheckedCreateWithoutQCStockInput>
     connectOrCreate?: AddTouchCreateOrConnectWithoutQCStockInput
     connect?: AddTouchWhereUniqueInput
+  }
+
+  export type BillItemCreateNestedManyWithoutQcStockInput = {
+    create?: XOR<BillItemCreateWithoutQcStockInput, BillItemUncheckedCreateWithoutQcStockInput> | BillItemCreateWithoutQcStockInput[] | BillItemUncheckedCreateWithoutQcStockInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutQcStockInput | BillItemCreateOrConnectWithoutQcStockInput[]
+    createMany?: BillItemCreateManyQcStockInputEnvelope
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+  }
+
+  export type BillItemUncheckedCreateNestedManyWithoutQcStockInput = {
+    create?: XOR<BillItemCreateWithoutQcStockInput, BillItemUncheckedCreateWithoutQcStockInput> | BillItemCreateWithoutQcStockInput[] | BillItemUncheckedCreateWithoutQcStockInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutQcStockInput | BillItemCreateOrConnectWithoutQcStockInput[]
+    createMany?: BillItemCreateManyQcStockInputEnvelope
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
   }
 
   export type AddItemUpdateOneRequiredWithoutQCStockNestedInput = {
@@ -48071,6 +54532,34 @@ export namespace Prisma {
     upsert?: AddTouchUpsertWithoutQCStockInput
     connect?: AddTouchWhereUniqueInput
     update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutQCStockInput, AddTouchUpdateWithoutQCStockInput>, AddTouchUncheckedUpdateWithoutQCStockInput>
+  }
+
+  export type BillItemUpdateManyWithoutQcStockNestedInput = {
+    create?: XOR<BillItemCreateWithoutQcStockInput, BillItemUncheckedCreateWithoutQcStockInput> | BillItemCreateWithoutQcStockInput[] | BillItemUncheckedCreateWithoutQcStockInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutQcStockInput | BillItemCreateOrConnectWithoutQcStockInput[]
+    upsert?: BillItemUpsertWithWhereUniqueWithoutQcStockInput | BillItemUpsertWithWhereUniqueWithoutQcStockInput[]
+    createMany?: BillItemCreateManyQcStockInputEnvelope
+    set?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    disconnect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    delete?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    update?: BillItemUpdateWithWhereUniqueWithoutQcStockInput | BillItemUpdateWithWhereUniqueWithoutQcStockInput[]
+    updateMany?: BillItemUpdateManyWithWhereWithoutQcStockInput | BillItemUpdateManyWithWhereWithoutQcStockInput[]
+    deleteMany?: BillItemScalarWhereInput | BillItemScalarWhereInput[]
+  }
+
+  export type BillItemUncheckedUpdateManyWithoutQcStockNestedInput = {
+    create?: XOR<BillItemCreateWithoutQcStockInput, BillItemUncheckedCreateWithoutQcStockInput> | BillItemCreateWithoutQcStockInput[] | BillItemUncheckedCreateWithoutQcStockInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutQcStockInput | BillItemCreateOrConnectWithoutQcStockInput[]
+    upsert?: BillItemUpsertWithWhereUniqueWithoutQcStockInput | BillItemUpsertWithWhereUniqueWithoutQcStockInput[]
+    createMany?: BillItemCreateManyQcStockInputEnvelope
+    set?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    disconnect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    delete?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    update?: BillItemUpdateWithWhereUniqueWithoutQcStockInput | BillItemUpdateWithWhereUniqueWithoutQcStockInput[]
+    updateMany?: BillItemUpdateManyWithWhereWithoutQcStockInput | BillItemUpdateManyWithWhereWithoutQcStockInput[]
+    deleteMany?: BillItemScalarWhereInput | BillItemScalarWhereInput[]
   }
 
   export type AddTouchCreateNestedOneWithoutCasting_entryInput = {
@@ -50593,6 +57082,208 @@ export namespace Prisma {
     update?: XOR<XOR<AddPurchaseStockUpdateToOneWithWhereWithoutStockInput, AddPurchaseStockUpdateWithoutStockInput>, AddPurchaseStockUncheckedUpdateWithoutStockInput>
   }
 
+  export type AddCustomerCreateNestedOneWithoutHallmarksInput = {
+    create?: XOR<AddCustomerCreateWithoutHallmarksInput, AddCustomerUncheckedCreateWithoutHallmarksInput>
+    connectOrCreate?: AddCustomerCreateOrConnectWithoutHallmarksInput
+    connect?: AddCustomerWhereUniqueInput
+  }
+
+  export type AddCustomerUpdateOneRequiredWithoutHallmarksNestedInput = {
+    create?: XOR<AddCustomerCreateWithoutHallmarksInput, AddCustomerUncheckedCreateWithoutHallmarksInput>
+    connectOrCreate?: AddCustomerCreateOrConnectWithoutHallmarksInput
+    upsert?: AddCustomerUpsertWithoutHallmarksInput
+    connect?: AddCustomerWhereUniqueInput
+    update?: XOR<XOR<AddCustomerUpdateToOneWithWhereWithoutHallmarksInput, AddCustomerUpdateWithoutHallmarksInput>, AddCustomerUncheckedUpdateWithoutHallmarksInput>
+  }
+
+  export type AddCustomerCreateNestedOneWithoutBillsInput = {
+    create?: XOR<AddCustomerCreateWithoutBillsInput, AddCustomerUncheckedCreateWithoutBillsInput>
+    connectOrCreate?: AddCustomerCreateOrConnectWithoutBillsInput
+    connect?: AddCustomerWhereUniqueInput
+  }
+
+  export type BillItemCreateNestedManyWithoutBillInput = {
+    create?: XOR<BillItemCreateWithoutBillInput, BillItemUncheckedCreateWithoutBillInput> | BillItemCreateWithoutBillInput[] | BillItemUncheckedCreateWithoutBillInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutBillInput | BillItemCreateOrConnectWithoutBillInput[]
+    createMany?: BillItemCreateManyBillInputEnvelope
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+  }
+
+  export type ReceivedItemCreateNestedManyWithoutBillInput = {
+    create?: XOR<ReceivedItemCreateWithoutBillInput, ReceivedItemUncheckedCreateWithoutBillInput> | ReceivedItemCreateWithoutBillInput[] | ReceivedItemUncheckedCreateWithoutBillInput[]
+    connectOrCreate?: ReceivedItemCreateOrConnectWithoutBillInput | ReceivedItemCreateOrConnectWithoutBillInput[]
+    createMany?: ReceivedItemCreateManyBillInputEnvelope
+    connect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+  }
+
+  export type BillItemUncheckedCreateNestedManyWithoutBillInput = {
+    create?: XOR<BillItemCreateWithoutBillInput, BillItemUncheckedCreateWithoutBillInput> | BillItemCreateWithoutBillInput[] | BillItemUncheckedCreateWithoutBillInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutBillInput | BillItemCreateOrConnectWithoutBillInput[]
+    createMany?: BillItemCreateManyBillInputEnvelope
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+  }
+
+  export type ReceivedItemUncheckedCreateNestedManyWithoutBillInput = {
+    create?: XOR<ReceivedItemCreateWithoutBillInput, ReceivedItemUncheckedCreateWithoutBillInput> | ReceivedItemCreateWithoutBillInput[] | ReceivedItemUncheckedCreateWithoutBillInput[]
+    connectOrCreate?: ReceivedItemCreateOrConnectWithoutBillInput | ReceivedItemCreateOrConnectWithoutBillInput[]
+    createMany?: ReceivedItemCreateManyBillInputEnvelope
+    connect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+  }
+
+  export type AddCustomerUpdateOneRequiredWithoutBillsNestedInput = {
+    create?: XOR<AddCustomerCreateWithoutBillsInput, AddCustomerUncheckedCreateWithoutBillsInput>
+    connectOrCreate?: AddCustomerCreateOrConnectWithoutBillsInput
+    upsert?: AddCustomerUpsertWithoutBillsInput
+    connect?: AddCustomerWhereUniqueInput
+    update?: XOR<XOR<AddCustomerUpdateToOneWithWhereWithoutBillsInput, AddCustomerUpdateWithoutBillsInput>, AddCustomerUncheckedUpdateWithoutBillsInput>
+  }
+
+  export type BillItemUpdateManyWithoutBillNestedInput = {
+    create?: XOR<BillItemCreateWithoutBillInput, BillItemUncheckedCreateWithoutBillInput> | BillItemCreateWithoutBillInput[] | BillItemUncheckedCreateWithoutBillInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutBillInput | BillItemCreateOrConnectWithoutBillInput[]
+    upsert?: BillItemUpsertWithWhereUniqueWithoutBillInput | BillItemUpsertWithWhereUniqueWithoutBillInput[]
+    createMany?: BillItemCreateManyBillInputEnvelope
+    set?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    disconnect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    delete?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    update?: BillItemUpdateWithWhereUniqueWithoutBillInput | BillItemUpdateWithWhereUniqueWithoutBillInput[]
+    updateMany?: BillItemUpdateManyWithWhereWithoutBillInput | BillItemUpdateManyWithWhereWithoutBillInput[]
+    deleteMany?: BillItemScalarWhereInput | BillItemScalarWhereInput[]
+  }
+
+  export type ReceivedItemUpdateManyWithoutBillNestedInput = {
+    create?: XOR<ReceivedItemCreateWithoutBillInput, ReceivedItemUncheckedCreateWithoutBillInput> | ReceivedItemCreateWithoutBillInput[] | ReceivedItemUncheckedCreateWithoutBillInput[]
+    connectOrCreate?: ReceivedItemCreateOrConnectWithoutBillInput | ReceivedItemCreateOrConnectWithoutBillInput[]
+    upsert?: ReceivedItemUpsertWithWhereUniqueWithoutBillInput | ReceivedItemUpsertWithWhereUniqueWithoutBillInput[]
+    createMany?: ReceivedItemCreateManyBillInputEnvelope
+    set?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    disconnect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    delete?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    connect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    update?: ReceivedItemUpdateWithWhereUniqueWithoutBillInput | ReceivedItemUpdateWithWhereUniqueWithoutBillInput[]
+    updateMany?: ReceivedItemUpdateManyWithWhereWithoutBillInput | ReceivedItemUpdateManyWithWhereWithoutBillInput[]
+    deleteMany?: ReceivedItemScalarWhereInput | ReceivedItemScalarWhereInput[]
+  }
+
+  export type BillItemUncheckedUpdateManyWithoutBillNestedInput = {
+    create?: XOR<BillItemCreateWithoutBillInput, BillItemUncheckedCreateWithoutBillInput> | BillItemCreateWithoutBillInput[] | BillItemUncheckedCreateWithoutBillInput[]
+    connectOrCreate?: BillItemCreateOrConnectWithoutBillInput | BillItemCreateOrConnectWithoutBillInput[]
+    upsert?: BillItemUpsertWithWhereUniqueWithoutBillInput | BillItemUpsertWithWhereUniqueWithoutBillInput[]
+    createMany?: BillItemCreateManyBillInputEnvelope
+    set?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    disconnect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    delete?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    connect?: BillItemWhereUniqueInput | BillItemWhereUniqueInput[]
+    update?: BillItemUpdateWithWhereUniqueWithoutBillInput | BillItemUpdateWithWhereUniqueWithoutBillInput[]
+    updateMany?: BillItemUpdateManyWithWhereWithoutBillInput | BillItemUpdateManyWithWhereWithoutBillInput[]
+    deleteMany?: BillItemScalarWhereInput | BillItemScalarWhereInput[]
+  }
+
+  export type ReceivedItemUncheckedUpdateManyWithoutBillNestedInput = {
+    create?: XOR<ReceivedItemCreateWithoutBillInput, ReceivedItemUncheckedCreateWithoutBillInput> | ReceivedItemCreateWithoutBillInput[] | ReceivedItemUncheckedCreateWithoutBillInput[]
+    connectOrCreate?: ReceivedItemCreateOrConnectWithoutBillInput | ReceivedItemCreateOrConnectWithoutBillInput[]
+    upsert?: ReceivedItemUpsertWithWhereUniqueWithoutBillInput | ReceivedItemUpsertWithWhereUniqueWithoutBillInput[]
+    createMany?: ReceivedItemCreateManyBillInputEnvelope
+    set?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    disconnect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    delete?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    connect?: ReceivedItemWhereUniqueInput | ReceivedItemWhereUniqueInput[]
+    update?: ReceivedItemUpdateWithWhereUniqueWithoutBillInput | ReceivedItemUpdateWithWhereUniqueWithoutBillInput[]
+    updateMany?: ReceivedItemUpdateManyWithWhereWithoutBillInput | ReceivedItemUpdateManyWithWhereWithoutBillInput[]
+    deleteMany?: ReceivedItemScalarWhereInput | ReceivedItemScalarWhereInput[]
+  }
+
+  export type BillCreateNestedOneWithoutBillItemsInput = {
+    create?: XOR<BillCreateWithoutBillItemsInput, BillUncheckedCreateWithoutBillItemsInput>
+    connectOrCreate?: BillCreateOrConnectWithoutBillItemsInput
+    connect?: BillWhereUniqueInput
+  }
+
+  export type QcStockCreateNestedOneWithoutBillItemInput = {
+    create?: XOR<QcStockCreateWithoutBillItemInput, QcStockUncheckedCreateWithoutBillItemInput>
+    connectOrCreate?: QcStockCreateOrConnectWithoutBillItemInput
+    connect?: QcStockWhereUniqueInput
+  }
+
+  export type AddItemCreateNestedOneWithoutBillItemsInput = {
+    create?: XOR<AddItemCreateWithoutBillItemsInput, AddItemUncheckedCreateWithoutBillItemsInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutBillItemsInput
+    connect?: AddItemWhereUniqueInput
+  }
+
+  export type AddTouchCreateNestedOneWithoutBillItemsInput = {
+    create?: XOR<AddTouchCreateWithoutBillItemsInput, AddTouchUncheckedCreateWithoutBillItemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutBillItemsInput
+    connect?: AddTouchWhereUniqueInput
+  }
+
+  export type BillUpdateOneRequiredWithoutBillItemsNestedInput = {
+    create?: XOR<BillCreateWithoutBillItemsInput, BillUncheckedCreateWithoutBillItemsInput>
+    connectOrCreate?: BillCreateOrConnectWithoutBillItemsInput
+    upsert?: BillUpsertWithoutBillItemsInput
+    connect?: BillWhereUniqueInput
+    update?: XOR<XOR<BillUpdateToOneWithWhereWithoutBillItemsInput, BillUpdateWithoutBillItemsInput>, BillUncheckedUpdateWithoutBillItemsInput>
+  }
+
+  export type QcStockUpdateOneRequiredWithoutBillItemNestedInput = {
+    create?: XOR<QcStockCreateWithoutBillItemInput, QcStockUncheckedCreateWithoutBillItemInput>
+    connectOrCreate?: QcStockCreateOrConnectWithoutBillItemInput
+    upsert?: QcStockUpsertWithoutBillItemInput
+    connect?: QcStockWhereUniqueInput
+    update?: XOR<XOR<QcStockUpdateToOneWithWhereWithoutBillItemInput, QcStockUpdateWithoutBillItemInput>, QcStockUncheckedUpdateWithoutBillItemInput>
+  }
+
+  export type AddItemUpdateOneWithoutBillItemsNestedInput = {
+    create?: XOR<AddItemCreateWithoutBillItemsInput, AddItemUncheckedCreateWithoutBillItemsInput>
+    connectOrCreate?: AddItemCreateOrConnectWithoutBillItemsInput
+    upsert?: AddItemUpsertWithoutBillItemsInput
+    disconnect?: AddItemWhereInput | boolean
+    delete?: AddItemWhereInput | boolean
+    connect?: AddItemWhereUniqueInput
+    update?: XOR<XOR<AddItemUpdateToOneWithWhereWithoutBillItemsInput, AddItemUpdateWithoutBillItemsInput>, AddItemUncheckedUpdateWithoutBillItemsInput>
+  }
+
+  export type AddTouchUpdateOneWithoutBillItemsNestedInput = {
+    create?: XOR<AddTouchCreateWithoutBillItemsInput, AddTouchUncheckedCreateWithoutBillItemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutBillItemsInput
+    upsert?: AddTouchUpsertWithoutBillItemsInput
+    disconnect?: AddTouchWhereInput | boolean
+    delete?: AddTouchWhereInput | boolean
+    connect?: AddTouchWhereUniqueInput
+    update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutBillItemsInput, AddTouchUpdateWithoutBillItemsInput>, AddTouchUncheckedUpdateWithoutBillItemsInput>
+  }
+
+  export type BillCreateNestedOneWithoutReceivedItemsInput = {
+    create?: XOR<BillCreateWithoutReceivedItemsInput, BillUncheckedCreateWithoutReceivedItemsInput>
+    connectOrCreate?: BillCreateOrConnectWithoutReceivedItemsInput
+    connect?: BillWhereUniqueInput
+  }
+
+  export type AddTouchCreateNestedOneWithoutReceivedItemsInput = {
+    create?: XOR<AddTouchCreateWithoutReceivedItemsInput, AddTouchUncheckedCreateWithoutReceivedItemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutReceivedItemsInput
+    connect?: AddTouchWhereUniqueInput
+  }
+
+  export type BillUpdateOneRequiredWithoutReceivedItemsNestedInput = {
+    create?: XOR<BillCreateWithoutReceivedItemsInput, BillUncheckedCreateWithoutReceivedItemsInput>
+    connectOrCreate?: BillCreateOrConnectWithoutReceivedItemsInput
+    upsert?: BillUpsertWithoutReceivedItemsInput
+    connect?: BillWhereUniqueInput
+    update?: XOR<XOR<BillUpdateToOneWithWhereWithoutReceivedItemsInput, BillUpdateWithoutReceivedItemsInput>, BillUncheckedUpdateWithoutReceivedItemsInput>
+  }
+
+  export type AddTouchUpdateOneWithoutReceivedItemsNestedInput = {
+    create?: XOR<AddTouchCreateWithoutReceivedItemsInput, AddTouchUncheckedCreateWithoutReceivedItemsInput>
+    connectOrCreate?: AddTouchCreateOrConnectWithoutReceivedItemsInput
+    upsert?: AddTouchUpsertWithoutReceivedItemsInput
+    disconnect?: AddTouchWhereInput | boolean
+    delete?: AddTouchWhereInput | boolean
+    connect?: AddTouchWhereUniqueInput
+    update?: XOR<XOR<AddTouchUpdateToOneWithWhereWithoutReceivedItemsInput, AddTouchUpdateWithoutReceivedItemsInput>, AddTouchUncheckedUpdateWithoutReceivedItemsInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -50921,6 +57612,78 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type BillCreateWithoutCustomerInput = {
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    billItems?: BillItemCreateNestedManyWithoutBillInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutBillInput
+  }
+
+  export type BillUncheckedCreateWithoutCustomerInput = {
+    id?: number
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    billItems?: BillItemUncheckedCreateNestedManyWithoutBillInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutBillInput
+  }
+
+  export type BillCreateOrConnectWithoutCustomerInput = {
+    where: BillWhereUniqueInput
+    create: XOR<BillCreateWithoutCustomerInput, BillUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type BillCreateManyCustomerInputEnvelope = {
+    data: BillCreateManyCustomerInput | BillCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HallmarkCreateWithoutCustomerInput = {
+    balance?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HallmarkUncheckedCreateWithoutCustomerInput = {
+    id?: number
+    balance?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HallmarkCreateOrConnectWithoutCustomerInput = {
+    where: HallmarkWhereUniqueInput
+    create: XOR<HallmarkCreateWithoutCustomerInput, HallmarkUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type HallmarkCreateManyCustomerInputEnvelope = {
+    data: HallmarkCreateManyCustomerInput | HallmarkCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CustomerTransactionUpsertWithWhereUniqueWithoutCustomerInput = {
     where: CustomerTransactionWhereUniqueInput
     update: XOR<CustomerTransactionUpdateWithoutCustomerInput, CustomerTransactionUncheckedUpdateWithoutCustomerInput>
@@ -50950,6 +57713,71 @@ export namespace Prisma {
     purity?: FloatNullableFilter<"CustomerTransaction"> | number | null
     goldRate?: FloatNullableFilter<"CustomerTransaction"> | number | null
     customerId?: IntFilter<"CustomerTransaction"> | number
+  }
+
+  export type BillUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: BillWhereUniqueInput
+    update: XOR<BillUpdateWithoutCustomerInput, BillUncheckedUpdateWithoutCustomerInput>
+    create: XOR<BillCreateWithoutCustomerInput, BillUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type BillUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: BillWhereUniqueInput
+    data: XOR<BillUpdateWithoutCustomerInput, BillUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type BillUpdateManyWithWhereWithoutCustomerInput = {
+    where: BillScalarWhereInput
+    data: XOR<BillUpdateManyMutationInput, BillUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type BillScalarWhereInput = {
+    AND?: BillScalarWhereInput | BillScalarWhereInput[]
+    OR?: BillScalarWhereInput[]
+    NOT?: BillScalarWhereInput | BillScalarWhereInput[]
+    id?: IntFilter<"Bill"> | number
+    customer_id?: IntFilter<"Bill"> | number
+    bill_no?: StringFilter<"Bill"> | string
+    date?: StringFilter<"Bill"> | string
+    time?: StringFilter<"Bill"> | string
+    gold_rate?: FloatFilter<"Bill"> | number
+    total_pure?: FloatFilter<"Bill"> | number
+    total_amount?: FloatFilter<"Bill"> | number
+    customer_balance?: FloatFilter<"Bill"> | number
+    grand_total?: FloatFilter<"Bill"> | number
+    cash_balance?: FloatFilter<"Bill"> | number
+    pure_balance?: FloatFilter<"Bill"> | number
+    prev_hallmark?: FloatFilter<"Bill"> | number
+    hallmark_balance?: FloatFilter<"Bill"> | number
+    createdAt?: DateTimeFilter<"Bill"> | Date | string
+    updatedAt?: DateTimeFilter<"Bill"> | Date | string
+  }
+
+  export type HallmarkUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: HallmarkWhereUniqueInput
+    update: XOR<HallmarkUpdateWithoutCustomerInput, HallmarkUncheckedUpdateWithoutCustomerInput>
+    create: XOR<HallmarkCreateWithoutCustomerInput, HallmarkUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type HallmarkUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: HallmarkWhereUniqueInput
+    data: XOR<HallmarkUpdateWithoutCustomerInput, HallmarkUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type HallmarkUpdateManyWithWhereWithoutCustomerInput = {
+    where: HallmarkScalarWhereInput
+    data: XOR<HallmarkUpdateManyMutationInput, HallmarkUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type HallmarkScalarWhereInput = {
+    AND?: HallmarkScalarWhereInput | HallmarkScalarWhereInput[]
+    OR?: HallmarkScalarWhereInput[]
+    NOT?: HallmarkScalarWhereInput | HallmarkScalarWhereInput[]
+    id?: IntFilter<"Hallmark"> | number
+    customer_id?: IntFilter<"Hallmark"> | number
+    balance?: FloatFilter<"Hallmark"> | number
+    createdAt?: DateTimeFilter<"Hallmark"> | Date | string
+    updatedAt?: DateTimeFilter<"Hallmark"> | Date | string
   }
 
   export type CastingEntryCreateWithoutCasting_customerInput = {
@@ -51995,6 +58823,8 @@ export namespace Prisma {
     stock?: StockCreateNestedManyWithoutTouchInput
     customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
     QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUncheckedCreateWithoutAdd_purchase_stockInput = {
@@ -52009,6 +58839,8 @@ export namespace Prisma {
     stock?: StockUncheckedCreateNestedManyWithoutTouchInput
     customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchCreateOrConnectWithoutAdd_purchase_stockInput = {
@@ -52107,6 +58939,8 @@ export namespace Prisma {
     stock?: StockUpdateManyWithoutTouchNestedInput
     customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutAdd_purchase_stockInput = {
@@ -52121,6 +58955,8 @@ export namespace Prisma {
     stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
     customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type StockUpsertWithWhereUniqueWithoutPurchaseIdInput = {
@@ -52145,6 +58981,8 @@ export namespace Prisma {
     phoneNumber?: string | null
     address?: string | null
     email?: string | null
+    bills?: BillCreateNestedManyWithoutCustomerInput
+    hallmarks?: HallmarkCreateNestedManyWithoutCustomerInput
   }
 
   export type AddCustomerUncheckedCreateWithoutTransactionsInput = {
@@ -52154,6 +58992,8 @@ export namespace Prisma {
     phoneNumber?: string | null
     address?: string | null
     email?: string | null
+    bills?: BillUncheckedCreateNestedManyWithoutCustomerInput
+    hallmarks?: HallmarkUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type AddCustomerCreateOrConnectWithoutTransactionsInput = {
@@ -52172,6 +59012,8 @@ export namespace Prisma {
     stock?: StockCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
     QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUncheckedCreateWithoutCustomer_transactionInput = {
@@ -52186,6 +59028,8 @@ export namespace Prisma {
     stock?: StockUncheckedCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchCreateOrConnectWithoutCustomer_transactionInput = {
@@ -52210,6 +59054,8 @@ export namespace Prisma {
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    bills?: BillUpdateManyWithoutCustomerNestedInput
+    hallmarks?: HallmarkUpdateManyWithoutCustomerNestedInput
   }
 
   export type AddCustomerUncheckedUpdateWithoutTransactionsInput = {
@@ -52219,6 +59065,8 @@ export namespace Prisma {
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    bills?: BillUncheckedUpdateManyWithoutCustomerNestedInput
+    hallmarks?: HallmarkUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type AddTouchUpsertWithoutCustomer_transactionInput = {
@@ -52243,6 +59091,8 @@ export namespace Prisma {
     stock?: StockUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
     QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutCustomer_transactionInput = {
@@ -52257,6 +59107,8 @@ export namespace Prisma {
     stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type CastingItemsCreateWithoutItemInput = {
@@ -52472,6 +59324,7 @@ export namespace Prisma {
     purity: number
     remarks?: string | null
     touchId: AddTouchCreateNestedOneWithoutQCStockInput
+    BillItem?: BillItemCreateNestedManyWithoutQcStockInput
   }
 
   export type QcStockUncheckedCreateWithoutItemIdInput = {
@@ -52483,6 +59336,7 @@ export namespace Prisma {
     touch_id: number
     purity: number
     remarks?: string | null
+    BillItem?: BillItemUncheckedCreateNestedManyWithoutQcStockInput
   }
 
   export type QcStockCreateOrConnectWithoutItemIdInput = {
@@ -52492,6 +59346,45 @@ export namespace Prisma {
 
   export type QcStockCreateManyItemIdInputEnvelope = {
     data: QcStockCreateManyItemIdInput | QcStockCreateManyItemIdInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BillItemCreateWithoutAddItemInput = {
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bill: BillCreateNestedOneWithoutBillItemsInput
+    qcStock: QcStockCreateNestedOneWithoutBillItemInput
+    touch?: AddTouchCreateNestedOneWithoutBillItemsInput
+  }
+
+  export type BillItemUncheckedCreateWithoutAddItemInput = {
+    id?: number
+    bill_id: number
+    qc_stock_id: number
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    touchId?: number | null
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BillItemCreateOrConnectWithoutAddItemInput = {
+    where: BillItemWhereUniqueInput
+    create: XOR<BillItemCreateWithoutAddItemInput, BillItemUncheckedCreateWithoutAddItemInput>
+  }
+
+  export type BillItemCreateManyAddItemInputEnvelope = {
+    data: BillItemCreateManyAddItemInput | BillItemCreateManyAddItemInput[]
     skipDuplicates?: boolean
   }
 
@@ -52651,6 +59544,41 @@ export namespace Prisma {
     touch_id?: IntFilter<"QcStock"> | number
     purity?: FloatFilter<"QcStock"> | number
     remarks?: StringNullableFilter<"QcStock"> | string | null
+  }
+
+  export type BillItemUpsertWithWhereUniqueWithoutAddItemInput = {
+    where: BillItemWhereUniqueInput
+    update: XOR<BillItemUpdateWithoutAddItemInput, BillItemUncheckedUpdateWithoutAddItemInput>
+    create: XOR<BillItemCreateWithoutAddItemInput, BillItemUncheckedCreateWithoutAddItemInput>
+  }
+
+  export type BillItemUpdateWithWhereUniqueWithoutAddItemInput = {
+    where: BillItemWhereUniqueInput
+    data: XOR<BillItemUpdateWithoutAddItemInput, BillItemUncheckedUpdateWithoutAddItemInput>
+  }
+
+  export type BillItemUpdateManyWithWhereWithoutAddItemInput = {
+    where: BillItemScalarWhereInput
+    data: XOR<BillItemUpdateManyMutationInput, BillItemUncheckedUpdateManyWithoutAddItemInput>
+  }
+
+  export type BillItemScalarWhereInput = {
+    AND?: BillItemScalarWhereInput | BillItemScalarWhereInput[]
+    OR?: BillItemScalarWhereInput[]
+    NOT?: BillItemScalarWhereInput | BillItemScalarWhereInput[]
+    id?: IntFilter<"BillItem"> | number
+    bill_id?: IntFilter<"BillItem"> | number
+    qc_stock_id?: IntFilter<"BillItem"> | number
+    item_name?: StringFilter<"BillItem"> | string
+    weight?: FloatFilter<"BillItem"> | number
+    stone_weight?: FloatNullableFilter<"BillItem"> | number | null
+    total_weight?: FloatFilter<"BillItem"> | number
+    touchId?: IntNullableFilter<"BillItem"> | number | null
+    pure?: FloatFilter<"BillItem"> | number
+    amount?: FloatFilter<"BillItem"> | number
+    createdAt?: DateTimeFilter<"BillItem"> | Date | string
+    updatedAt?: DateTimeFilter<"BillItem"> | Date | string
+    addItemId?: IntNullableFilter<"BillItem"> | number | null
   }
 
   export type CastingEntryCreateWithoutTouchInput = {
@@ -52971,6 +59899,7 @@ export namespace Prisma {
     purity: number
     remarks?: string | null
     itemId: AddItemCreateNestedOneWithoutQCStockInput
+    BillItem?: BillItemCreateNestedManyWithoutQcStockInput
   }
 
   export type QcStockUncheckedCreateWithoutTouchIdInput = {
@@ -52982,6 +59911,7 @@ export namespace Prisma {
     final_weight: number
     purity: number
     remarks?: string | null
+    BillItem?: BillItemUncheckedCreateNestedManyWithoutQcStockInput
   }
 
   export type QcStockCreateOrConnectWithoutTouchIdInput = {
@@ -52991,6 +59921,82 @@ export namespace Prisma {
 
   export type QcStockCreateManyTouchIdInputEnvelope = {
     data: QcStockCreateManyTouchIdInput | QcStockCreateManyTouchIdInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReceivedItemCreateWithoutTouchInput = {
+    type: $Enums.ITEMTYPE
+    date: string
+    gold_rate?: number | null
+    gold?: number | null
+    purity_weight: number
+    amount?: number | null
+    hallmark_charge?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bill: BillCreateNestedOneWithoutReceivedItemsInput
+  }
+
+  export type ReceivedItemUncheckedCreateWithoutTouchInput = {
+    id?: number
+    bill_id: number
+    type: $Enums.ITEMTYPE
+    date: string
+    gold_rate?: number | null
+    gold?: number | null
+    purity_weight: number
+    amount?: number | null
+    hallmark_charge?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReceivedItemCreateOrConnectWithoutTouchInput = {
+    where: ReceivedItemWhereUniqueInput
+    create: XOR<ReceivedItemCreateWithoutTouchInput, ReceivedItemUncheckedCreateWithoutTouchInput>
+  }
+
+  export type ReceivedItemCreateManyTouchInputEnvelope = {
+    data: ReceivedItemCreateManyTouchInput | ReceivedItemCreateManyTouchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BillItemCreateWithoutTouchInput = {
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bill: BillCreateNestedOneWithoutBillItemsInput
+    qcStock: QcStockCreateNestedOneWithoutBillItemInput
+    AddItem?: AddItemCreateNestedOneWithoutBillItemsInput
+  }
+
+  export type BillItemUncheckedCreateWithoutTouchInput = {
+    id?: number
+    bill_id: number
+    qc_stock_id: number
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addItemId?: number | null
+  }
+
+  export type BillItemCreateOrConnectWithoutTouchInput = {
+    where: BillItemWhereUniqueInput
+    create: XOR<BillItemCreateWithoutTouchInput, BillItemUncheckedCreateWithoutTouchInput>
+  }
+
+  export type BillItemCreateManyTouchInputEnvelope = {
+    data: BillItemCreateManyTouchInput | BillItemCreateManyTouchInput[]
     skipDuplicates?: boolean
   }
 
@@ -53138,6 +60144,56 @@ export namespace Prisma {
     data: XOR<QcStockUpdateManyMutationInput, QcStockUncheckedUpdateManyWithoutTouchIdInput>
   }
 
+  export type ReceivedItemUpsertWithWhereUniqueWithoutTouchInput = {
+    where: ReceivedItemWhereUniqueInput
+    update: XOR<ReceivedItemUpdateWithoutTouchInput, ReceivedItemUncheckedUpdateWithoutTouchInput>
+    create: XOR<ReceivedItemCreateWithoutTouchInput, ReceivedItemUncheckedCreateWithoutTouchInput>
+  }
+
+  export type ReceivedItemUpdateWithWhereUniqueWithoutTouchInput = {
+    where: ReceivedItemWhereUniqueInput
+    data: XOR<ReceivedItemUpdateWithoutTouchInput, ReceivedItemUncheckedUpdateWithoutTouchInput>
+  }
+
+  export type ReceivedItemUpdateManyWithWhereWithoutTouchInput = {
+    where: ReceivedItemScalarWhereInput
+    data: XOR<ReceivedItemUpdateManyMutationInput, ReceivedItemUncheckedUpdateManyWithoutTouchInput>
+  }
+
+  export type ReceivedItemScalarWhereInput = {
+    AND?: ReceivedItemScalarWhereInput | ReceivedItemScalarWhereInput[]
+    OR?: ReceivedItemScalarWhereInput[]
+    NOT?: ReceivedItemScalarWhereInput | ReceivedItemScalarWhereInput[]
+    id?: IntFilter<"ReceivedItem"> | number
+    bill_id?: IntFilter<"ReceivedItem"> | number
+    type?: EnumITEMTYPEFilter<"ReceivedItem"> | $Enums.ITEMTYPE
+    date?: StringFilter<"ReceivedItem"> | string
+    gold_rate?: FloatNullableFilter<"ReceivedItem"> | number | null
+    gold?: FloatNullableFilter<"ReceivedItem"> | number | null
+    touchId?: IntNullableFilter<"ReceivedItem"> | number | null
+    purity_weight?: FloatFilter<"ReceivedItem"> | number
+    amount?: FloatNullableFilter<"ReceivedItem"> | number | null
+    hallmark_charge?: FloatNullableFilter<"ReceivedItem"> | number | null
+    createdAt?: DateTimeFilter<"ReceivedItem"> | Date | string
+    updatedAt?: DateTimeFilter<"ReceivedItem"> | Date | string
+  }
+
+  export type BillItemUpsertWithWhereUniqueWithoutTouchInput = {
+    where: BillItemWhereUniqueInput
+    update: XOR<BillItemUpdateWithoutTouchInput, BillItemUncheckedUpdateWithoutTouchInput>
+    create: XOR<BillItemCreateWithoutTouchInput, BillItemUncheckedCreateWithoutTouchInput>
+  }
+
+  export type BillItemUpdateWithWhereUniqueWithoutTouchInput = {
+    where: BillItemWhereUniqueInput
+    data: XOR<BillItemUpdateWithoutTouchInput, BillItemUncheckedUpdateWithoutTouchInput>
+  }
+
+  export type BillItemUpdateManyWithWhereWithoutTouchInput = {
+    where: BillItemScalarWhereInput
+    data: XOR<BillItemUpdateManyMutationInput, BillItemUncheckedUpdateManyWithoutTouchInput>
+  }
+
   export type AddItemCreateWithoutQCStockInput = {
     createdAt?: Date | string
     name: string
@@ -53146,6 +60202,7 @@ export namespace Prisma {
     filing_items?: FilingItemsCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
+    billItems?: BillItemCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemUncheckedCreateWithoutQCStockInput = {
@@ -53157,6 +60214,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemCreateOrConnectWithoutQCStockInput = {
@@ -53175,6 +60233,8 @@ export namespace Prisma {
     stock?: StockCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUncheckedCreateWithoutQCStockInput = {
@@ -53189,11 +60249,52 @@ export namespace Prisma {
     stock?: StockUncheckedCreateNestedManyWithoutTouchInput
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchCreateOrConnectWithoutQCStockInput = {
     where: AddTouchWhereUniqueInput
     create: XOR<AddTouchCreateWithoutQCStockInput, AddTouchUncheckedCreateWithoutQCStockInput>
+  }
+
+  export type BillItemCreateWithoutQcStockInput = {
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bill: BillCreateNestedOneWithoutBillItemsInput
+    AddItem?: AddItemCreateNestedOneWithoutBillItemsInput
+    touch?: AddTouchCreateNestedOneWithoutBillItemsInput
+  }
+
+  export type BillItemUncheckedCreateWithoutQcStockInput = {
+    id?: number
+    bill_id: number
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    touchId?: number | null
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addItemId?: number | null
+  }
+
+  export type BillItemCreateOrConnectWithoutQcStockInput = {
+    where: BillItemWhereUniqueInput
+    create: XOR<BillItemCreateWithoutQcStockInput, BillItemUncheckedCreateWithoutQcStockInput>
+  }
+
+  export type BillItemCreateManyQcStockInputEnvelope = {
+    data: BillItemCreateManyQcStockInput | BillItemCreateManyQcStockInput[]
+    skipDuplicates?: boolean
   }
 
   export type AddItemUpsertWithoutQCStockInput = {
@@ -53215,6 +60316,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
+    billItems?: BillItemUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutQCStockInput = {
@@ -53226,6 +60328,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddTouchUpsertWithoutQCStockInput = {
@@ -53250,6 +60353,8 @@ export namespace Prisma {
     stock?: StockUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutQCStockInput = {
@@ -53264,6 +60369,24 @@ export namespace Prisma {
     stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
+  }
+
+  export type BillItemUpsertWithWhereUniqueWithoutQcStockInput = {
+    where: BillItemWhereUniqueInput
+    update: XOR<BillItemUpdateWithoutQcStockInput, BillItemUncheckedUpdateWithoutQcStockInput>
+    create: XOR<BillItemCreateWithoutQcStockInput, BillItemUncheckedCreateWithoutQcStockInput>
+  }
+
+  export type BillItemUpdateWithWhereUniqueWithoutQcStockInput = {
+    where: BillItemWhereUniqueInput
+    data: XOR<BillItemUpdateWithoutQcStockInput, BillItemUncheckedUpdateWithoutQcStockInput>
+  }
+
+  export type BillItemUpdateManyWithWhereWithoutQcStockInput = {
+    where: BillItemScalarWhereInput
+    data: XOR<BillItemUpdateManyMutationInput, BillItemUncheckedUpdateManyWithoutQcStockInput>
   }
 
   export type AddTouchCreateWithoutCasting_entryInput = {
@@ -53277,6 +60400,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
     QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUncheckedCreateWithoutCasting_entryInput = {
@@ -53291,6 +60416,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchCreateOrConnectWithoutCasting_entryInput = {
@@ -53416,6 +60543,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutCasting_entryInput = {
@@ -53430,6 +60559,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type AddCastingUpsertWithoutEntriesInput = {
@@ -53520,6 +60651,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
     QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUncheckedCreateWithoutCasting_itemsInput = {
@@ -53534,6 +60667,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchCreateOrConnectWithoutCasting_itemsInput = {
@@ -53549,6 +60684,7 @@ export namespace Prisma {
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
     QCStock?: QcStockCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemUncheckedCreateWithoutCasting_itemsInput = {
@@ -53560,6 +60696,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemCreateOrConnectWithoutCasting_itemsInput = {
@@ -53802,6 +60939,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutCasting_itemsInput = {
@@ -53816,6 +60955,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type AddItemUpsertWithoutCasting_itemsInput = {
@@ -53837,6 +60978,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutCasting_itemsInput = {
@@ -53848,6 +60990,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutAddItemNestedInput
   }
 
   export type CastingEntryUpsertWithoutItemsInput = {
@@ -55221,6 +62364,7 @@ export namespace Prisma {
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
     QCStock?: QcStockCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemUncheckedCreateWithoutFiling_itemsInput = {
@@ -55232,6 +62376,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemCreateOrConnectWithoutFiling_itemsInput = {
@@ -55250,6 +62395,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
     QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUncheckedCreateWithoutFiling_itemsInput = {
@@ -55264,6 +62411,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchCreateOrConnectWithoutFiling_itemsInput = {
@@ -55513,6 +62662,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutFiling_itemsInput = {
@@ -55524,6 +62674,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddTouchUpsertWithoutFiling_itemsInput = {
@@ -55548,6 +62699,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutFiling_itemsInput = {
@@ -55562,6 +62715,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type StockUpsertWithWhereUniqueWithoutFilingItemInput = {
@@ -56301,6 +63456,7 @@ export namespace Prisma {
     filing_items?: FilingItemsCreateNestedManyWithoutFilingitemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
     QCStock?: QcStockCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemUncheckedCreateWithoutSetting_itemsInput = {
@@ -56312,6 +63468,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFilingitemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemCreateOrConnectWithoutSetting_itemsInput = {
@@ -56330,6 +63487,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
     QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUncheckedCreateWithoutSetting_itemsInput = {
@@ -56344,6 +63503,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchCreateOrConnectWithoutSetting_itemsInput = {
@@ -56522,6 +63683,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUpdateManyWithoutFilingitemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutSetting_itemsInput = {
@@ -56533,6 +63695,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedUpdateManyWithoutFilingitemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddTouchUpsertWithoutSetting_itemsInput = {
@@ -56557,6 +63720,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutSetting_itemsInput = {
@@ -56571,6 +63736,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type SettingWastageUpsertWithWhereUniqueWithoutSetting_itemsInput = {
@@ -57590,6 +64757,7 @@ export namespace Prisma {
     filing_items?: FilingItemsCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
     QCStock?: QcStockCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemUncheckedCreateWithoutBuffing_itemsInput = {
@@ -57601,6 +64769,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFilingitemInput
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemCreateOrConnectWithoutBuffing_itemsInput = {
@@ -57619,6 +64788,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
     QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUncheckedCreateWithoutBuffing_itemsInput = {
@@ -57633,6 +64804,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchCreateOrConnectWithoutBuffing_itemsInput = {
@@ -57762,6 +64935,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutBuffing_itemsInput = {
@@ -57773,6 +64947,7 @@ export namespace Prisma {
     filing_items?: FilingItemsUncheckedUpdateManyWithoutFilingitemNestedInput
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddTouchUpsertWithoutBuffing_itemsInput = {
@@ -57797,6 +64972,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutBuffing_itemsInput = {
@@ -57811,6 +64988,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type StockUpsertWithWhereUniqueWithoutBuffingItemInput = {
@@ -58619,6 +65798,7 @@ export namespace Prisma {
     setting_items?: SettingItemsCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
     QCStock?: QcStockCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemUncheckedCreateWithoutStockInput = {
@@ -58630,6 +65810,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
     buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutAddItemInput
   }
 
   export type AddItemCreateOrConnectWithoutStockInput = {
@@ -58648,6 +65829,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
     QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchUncheckedCreateWithoutStockInput = {
@@ -58662,6 +65845,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
     customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
     QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
   }
 
   export type AddTouchCreateOrConnectWithoutStockInput = {
@@ -58912,6 +66097,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddItemUncheckedUpdateWithoutStockInput = {
@@ -58923,6 +66109,7 @@ export namespace Prisma {
     setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
     buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutAddItemNestedInput
   }
 
   export type AddTouchUpsertWithoutStockInput = {
@@ -58947,6 +66134,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
   }
 
   export type AddTouchUncheckedUpdateWithoutStockInput = {
@@ -58961,6 +66150,8 @@ export namespace Prisma {
     add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
     customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
     QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
   }
 
   export type AddCastingUpsertWithoutStockInput = {
@@ -59031,6 +66222,698 @@ export namespace Prisma {
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type AddCustomerCreateWithoutHallmarksInput = {
+    createdAt?: Date | string
+    name: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
+    transactions?: CustomerTransactionCreateNestedManyWithoutCustomerInput
+    bills?: BillCreateNestedManyWithoutCustomerInput
+  }
+
+  export type AddCustomerUncheckedCreateWithoutHallmarksInput = {
+    id?: number
+    createdAt?: Date | string
+    name: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
+    transactions?: CustomerTransactionUncheckedCreateNestedManyWithoutCustomerInput
+    bills?: BillUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type AddCustomerCreateOrConnectWithoutHallmarksInput = {
+    where: AddCustomerWhereUniqueInput
+    create: XOR<AddCustomerCreateWithoutHallmarksInput, AddCustomerUncheckedCreateWithoutHallmarksInput>
+  }
+
+  export type AddCustomerUpsertWithoutHallmarksInput = {
+    update: XOR<AddCustomerUpdateWithoutHallmarksInput, AddCustomerUncheckedUpdateWithoutHallmarksInput>
+    create: XOR<AddCustomerCreateWithoutHallmarksInput, AddCustomerUncheckedCreateWithoutHallmarksInput>
+    where?: AddCustomerWhereInput
+  }
+
+  export type AddCustomerUpdateToOneWithWhereWithoutHallmarksInput = {
+    where?: AddCustomerWhereInput
+    data: XOR<AddCustomerUpdateWithoutHallmarksInput, AddCustomerUncheckedUpdateWithoutHallmarksInput>
+  }
+
+  export type AddCustomerUpdateWithoutHallmarksInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    transactions?: CustomerTransactionUpdateManyWithoutCustomerNestedInput
+    bills?: BillUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type AddCustomerUncheckedUpdateWithoutHallmarksInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    transactions?: CustomerTransactionUncheckedUpdateManyWithoutCustomerNestedInput
+    bills?: BillUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type AddCustomerCreateWithoutBillsInput = {
+    createdAt?: Date | string
+    name: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
+    transactions?: CustomerTransactionCreateNestedManyWithoutCustomerInput
+    hallmarks?: HallmarkCreateNestedManyWithoutCustomerInput
+  }
+
+  export type AddCustomerUncheckedCreateWithoutBillsInput = {
+    id?: number
+    createdAt?: Date | string
+    name: string
+    phoneNumber?: string | null
+    address?: string | null
+    email?: string | null
+    transactions?: CustomerTransactionUncheckedCreateNestedManyWithoutCustomerInput
+    hallmarks?: HallmarkUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type AddCustomerCreateOrConnectWithoutBillsInput = {
+    where: AddCustomerWhereUniqueInput
+    create: XOR<AddCustomerCreateWithoutBillsInput, AddCustomerUncheckedCreateWithoutBillsInput>
+  }
+
+  export type BillItemCreateWithoutBillInput = {
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    qcStock: QcStockCreateNestedOneWithoutBillItemInput
+    AddItem?: AddItemCreateNestedOneWithoutBillItemsInput
+    touch?: AddTouchCreateNestedOneWithoutBillItemsInput
+  }
+
+  export type BillItemUncheckedCreateWithoutBillInput = {
+    id?: number
+    qc_stock_id: number
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    touchId?: number | null
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addItemId?: number | null
+  }
+
+  export type BillItemCreateOrConnectWithoutBillInput = {
+    where: BillItemWhereUniqueInput
+    create: XOR<BillItemCreateWithoutBillInput, BillItemUncheckedCreateWithoutBillInput>
+  }
+
+  export type BillItemCreateManyBillInputEnvelope = {
+    data: BillItemCreateManyBillInput | BillItemCreateManyBillInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReceivedItemCreateWithoutBillInput = {
+    type: $Enums.ITEMTYPE
+    date: string
+    gold_rate?: number | null
+    gold?: number | null
+    purity_weight: number
+    amount?: number | null
+    hallmark_charge?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    touch?: AddTouchCreateNestedOneWithoutReceivedItemsInput
+  }
+
+  export type ReceivedItemUncheckedCreateWithoutBillInput = {
+    id?: number
+    type: $Enums.ITEMTYPE
+    date: string
+    gold_rate?: number | null
+    gold?: number | null
+    touchId?: number | null
+    purity_weight: number
+    amount?: number | null
+    hallmark_charge?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReceivedItemCreateOrConnectWithoutBillInput = {
+    where: ReceivedItemWhereUniqueInput
+    create: XOR<ReceivedItemCreateWithoutBillInput, ReceivedItemUncheckedCreateWithoutBillInput>
+  }
+
+  export type ReceivedItemCreateManyBillInputEnvelope = {
+    data: ReceivedItemCreateManyBillInput | ReceivedItemCreateManyBillInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AddCustomerUpsertWithoutBillsInput = {
+    update: XOR<AddCustomerUpdateWithoutBillsInput, AddCustomerUncheckedUpdateWithoutBillsInput>
+    create: XOR<AddCustomerCreateWithoutBillsInput, AddCustomerUncheckedCreateWithoutBillsInput>
+    where?: AddCustomerWhereInput
+  }
+
+  export type AddCustomerUpdateToOneWithWhereWithoutBillsInput = {
+    where?: AddCustomerWhereInput
+    data: XOR<AddCustomerUpdateWithoutBillsInput, AddCustomerUncheckedUpdateWithoutBillsInput>
+  }
+
+  export type AddCustomerUpdateWithoutBillsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    transactions?: CustomerTransactionUpdateManyWithoutCustomerNestedInput
+    hallmarks?: HallmarkUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type AddCustomerUncheckedUpdateWithoutBillsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    transactions?: CustomerTransactionUncheckedUpdateManyWithoutCustomerNestedInput
+    hallmarks?: HallmarkUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type BillItemUpsertWithWhereUniqueWithoutBillInput = {
+    where: BillItemWhereUniqueInput
+    update: XOR<BillItemUpdateWithoutBillInput, BillItemUncheckedUpdateWithoutBillInput>
+    create: XOR<BillItemCreateWithoutBillInput, BillItemUncheckedCreateWithoutBillInput>
+  }
+
+  export type BillItemUpdateWithWhereUniqueWithoutBillInput = {
+    where: BillItemWhereUniqueInput
+    data: XOR<BillItemUpdateWithoutBillInput, BillItemUncheckedUpdateWithoutBillInput>
+  }
+
+  export type BillItemUpdateManyWithWhereWithoutBillInput = {
+    where: BillItemScalarWhereInput
+    data: XOR<BillItemUpdateManyMutationInput, BillItemUncheckedUpdateManyWithoutBillInput>
+  }
+
+  export type ReceivedItemUpsertWithWhereUniqueWithoutBillInput = {
+    where: ReceivedItemWhereUniqueInput
+    update: XOR<ReceivedItemUpdateWithoutBillInput, ReceivedItemUncheckedUpdateWithoutBillInput>
+    create: XOR<ReceivedItemCreateWithoutBillInput, ReceivedItemUncheckedCreateWithoutBillInput>
+  }
+
+  export type ReceivedItemUpdateWithWhereUniqueWithoutBillInput = {
+    where: ReceivedItemWhereUniqueInput
+    data: XOR<ReceivedItemUpdateWithoutBillInput, ReceivedItemUncheckedUpdateWithoutBillInput>
+  }
+
+  export type ReceivedItemUpdateManyWithWhereWithoutBillInput = {
+    where: ReceivedItemScalarWhereInput
+    data: XOR<ReceivedItemUpdateManyMutationInput, ReceivedItemUncheckedUpdateManyWithoutBillInput>
+  }
+
+  export type BillCreateWithoutBillItemsInput = {
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer: AddCustomerCreateNestedOneWithoutBillsInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutBillInput
+  }
+
+  export type BillUncheckedCreateWithoutBillItemsInput = {
+    id?: number
+    customer_id: number
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutBillInput
+  }
+
+  export type BillCreateOrConnectWithoutBillItemsInput = {
+    where: BillWhereUniqueInput
+    create: XOR<BillCreateWithoutBillItemsInput, BillUncheckedCreateWithoutBillItemsInput>
+  }
+
+  export type QcStockCreateWithoutBillItemInput = {
+    createdAt: Date | string
+    weight: number
+    stone_weight: number
+    final_weight: number
+    purity: number
+    remarks?: string | null
+    itemId: AddItemCreateNestedOneWithoutQCStockInput
+    touchId: AddTouchCreateNestedOneWithoutQCStockInput
+  }
+
+  export type QcStockUncheckedCreateWithoutBillItemInput = {
+    id?: number
+    createdAt: Date | string
+    item_id: number
+    weight: number
+    stone_weight: number
+    final_weight: number
+    touch_id: number
+    purity: number
+    remarks?: string | null
+  }
+
+  export type QcStockCreateOrConnectWithoutBillItemInput = {
+    where: QcStockWhereUniqueInput
+    create: XOR<QcStockCreateWithoutBillItemInput, QcStockUncheckedCreateWithoutBillItemInput>
+  }
+
+  export type AddItemCreateWithoutBillItemsInput = {
+    createdAt?: Date | string
+    name: string
+    casting_items?: CastingItemsCreateNestedManyWithoutItemInput
+    stock?: StockCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsCreateNestedManyWithoutFilingitemInput
+    setting_items?: SettingItemsCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutItemInput
+    QCStock?: QcStockCreateNestedManyWithoutItemIdInput
+  }
+
+  export type AddItemUncheckedCreateWithoutBillItemsInput = {
+    id?: number
+    createdAt?: Date | string
+    name: string
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutItemInput
+    stock?: StockUncheckedCreateNestedManyWithoutItemInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutFilingitemInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutItemInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutItemInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutItemIdInput
+  }
+
+  export type AddItemCreateOrConnectWithoutBillItemsInput = {
+    where: AddItemWhereUniqueInput
+    create: XOR<AddItemCreateWithoutBillItemsInput, AddItemUncheckedCreateWithoutBillItemsInput>
+  }
+
+  export type AddTouchCreateWithoutBillItemsInput = {
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
+    stock?: StockCreateNestedManyWithoutTouchInput
+    add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
+    customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
+    QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchUncheckedCreateWithoutBillItemsInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
+    stock?: StockUncheckedCreateNestedManyWithoutTouchInput
+    add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
+    customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    receivedItems?: ReceivedItemUncheckedCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchCreateOrConnectWithoutBillItemsInput = {
+    where: AddTouchWhereUniqueInput
+    create: XOR<AddTouchCreateWithoutBillItemsInput, AddTouchUncheckedCreateWithoutBillItemsInput>
+  }
+
+  export type BillUpsertWithoutBillItemsInput = {
+    update: XOR<BillUpdateWithoutBillItemsInput, BillUncheckedUpdateWithoutBillItemsInput>
+    create: XOR<BillCreateWithoutBillItemsInput, BillUncheckedCreateWithoutBillItemsInput>
+    where?: BillWhereInput
+  }
+
+  export type BillUpdateToOneWithWhereWithoutBillItemsInput = {
+    where?: BillWhereInput
+    data: XOR<BillUpdateWithoutBillItemsInput, BillUncheckedUpdateWithoutBillItemsInput>
+  }
+
+  export type BillUpdateWithoutBillItemsInput = {
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: AddCustomerUpdateOneRequiredWithoutBillsNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutBillNestedInput
+  }
+
+  export type BillUncheckedUpdateWithoutBillItemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    customer_id?: IntFieldUpdateOperationsInput | number
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutBillNestedInput
+  }
+
+  export type QcStockUpsertWithoutBillItemInput = {
+    update: XOR<QcStockUpdateWithoutBillItemInput, QcStockUncheckedUpdateWithoutBillItemInput>
+    create: XOR<QcStockCreateWithoutBillItemInput, QcStockUncheckedCreateWithoutBillItemInput>
+    where?: QcStockWhereInput
+  }
+
+  export type QcStockUpdateToOneWithWhereWithoutBillItemInput = {
+    where?: QcStockWhereInput
+    data: XOR<QcStockUpdateWithoutBillItemInput, QcStockUncheckedUpdateWithoutBillItemInput>
+  }
+
+  export type QcStockUpdateWithoutBillItemInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: AddItemUpdateOneRequiredWithoutQCStockNestedInput
+    touchId?: AddTouchUpdateOneRequiredWithoutQCStockNestedInput
+  }
+
+  export type QcStockUncheckedUpdateWithoutBillItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item_id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: FloatFieldUpdateOperationsInput | number
+    final_weight?: FloatFieldUpdateOperationsInput | number
+    touch_id?: IntFieldUpdateOperationsInput | number
+    purity?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AddItemUpsertWithoutBillItemsInput = {
+    update: XOR<AddItemUpdateWithoutBillItemsInput, AddItemUncheckedUpdateWithoutBillItemsInput>
+    create: XOR<AddItemCreateWithoutBillItemsInput, AddItemUncheckedCreateWithoutBillItemsInput>
+    where?: AddItemWhereInput
+  }
+
+  export type AddItemUpdateToOneWithWhereWithoutBillItemsInput = {
+    where?: AddItemWhereInput
+    data: XOR<AddItemUpdateWithoutBillItemsInput, AddItemUncheckedUpdateWithoutBillItemsInput>
+  }
+
+  export type AddItemUpdateWithoutBillItemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    casting_items?: CastingItemsUpdateManyWithoutItemNestedInput
+    stock?: StockUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutFilingitemNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUpdateManyWithoutItemIdNestedInput
+  }
+
+  export type AddItemUncheckedUpdateWithoutBillItemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutItemNestedInput
+    stock?: StockUncheckedUpdateManyWithoutItemNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutFilingitemNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutItemNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutItemNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutItemIdNestedInput
+  }
+
+  export type AddTouchUpsertWithoutBillItemsInput = {
+    update: XOR<AddTouchUpdateWithoutBillItemsInput, AddTouchUncheckedUpdateWithoutBillItemsInput>
+    create: XOR<AddTouchCreateWithoutBillItemsInput, AddTouchUncheckedCreateWithoutBillItemsInput>
+    where?: AddTouchWhereInput
+  }
+
+  export type AddTouchUpdateToOneWithWhereWithoutBillItemsInput = {
+    where?: AddTouchWhereInput
+    data: XOR<AddTouchUpdateWithoutBillItemsInput, AddTouchUncheckedUpdateWithoutBillItemsInput>
+  }
+
+  export type AddTouchUpdateWithoutBillItemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
+    stock?: StockUpdateManyWithoutTouchNestedInput
+    add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
+    customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
+    QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutTouchNestedInput
+  }
+
+  export type AddTouchUncheckedUpdateWithoutBillItemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
+    add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutTouchNestedInput
+  }
+
+  export type BillCreateWithoutReceivedItemsInput = {
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer: AddCustomerCreateNestedOneWithoutBillsInput
+    billItems?: BillItemCreateNestedManyWithoutBillInput
+  }
+
+  export type BillUncheckedCreateWithoutReceivedItemsInput = {
+    id?: number
+    customer_id: number
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    billItems?: BillItemUncheckedCreateNestedManyWithoutBillInput
+  }
+
+  export type BillCreateOrConnectWithoutReceivedItemsInput = {
+    where: BillWhereUniqueInput
+    create: XOR<BillCreateWithoutReceivedItemsInput, BillUncheckedCreateWithoutReceivedItemsInput>
+  }
+
+  export type AddTouchCreateWithoutReceivedItemsInput = {
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsCreateNestedManyWithoutTouchInput
+    stock?: StockCreateNestedManyWithoutTouchInput
+    add_purchase_stock?: AddPurchaseStockCreateNestedManyWithoutTouchIdInput
+    customer_transaction?: CustomerTransactionCreateNestedManyWithoutTouchInput
+    QCStock?: QcStockCreateNestedManyWithoutTouchIdInput
+    billItems?: BillItemCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchUncheckedCreateWithoutReceivedItemsInput = {
+    id?: number
+    createdAt?: Date | string
+    touch: number
+    casting_entry?: CastingEntryUncheckedCreateNestedManyWithoutTouchInput
+    casting_items?: CastingItemsUncheckedCreateNestedManyWithoutTouchInput
+    filing_items?: FilingItemsUncheckedCreateNestedManyWithoutTouchInput
+    setting_items?: SettingItemsUncheckedCreateNestedManyWithoutTouchInput
+    buffing_items?: BuffingItemsUncheckedCreateNestedManyWithoutTouchInput
+    stock?: StockUncheckedCreateNestedManyWithoutTouchInput
+    add_purchase_stock?: AddPurchaseStockUncheckedCreateNestedManyWithoutTouchIdInput
+    customer_transaction?: CustomerTransactionUncheckedCreateNestedManyWithoutTouchInput
+    QCStock?: QcStockUncheckedCreateNestedManyWithoutTouchIdInput
+    billItems?: BillItemUncheckedCreateNestedManyWithoutTouchInput
+  }
+
+  export type AddTouchCreateOrConnectWithoutReceivedItemsInput = {
+    where: AddTouchWhereUniqueInput
+    create: XOR<AddTouchCreateWithoutReceivedItemsInput, AddTouchUncheckedCreateWithoutReceivedItemsInput>
+  }
+
+  export type BillUpsertWithoutReceivedItemsInput = {
+    update: XOR<BillUpdateWithoutReceivedItemsInput, BillUncheckedUpdateWithoutReceivedItemsInput>
+    create: XOR<BillCreateWithoutReceivedItemsInput, BillUncheckedCreateWithoutReceivedItemsInput>
+    where?: BillWhereInput
+  }
+
+  export type BillUpdateToOneWithWhereWithoutReceivedItemsInput = {
+    where?: BillWhereInput
+    data: XOR<BillUpdateWithoutReceivedItemsInput, BillUncheckedUpdateWithoutReceivedItemsInput>
+  }
+
+  export type BillUpdateWithoutReceivedItemsInput = {
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: AddCustomerUpdateOneRequiredWithoutBillsNestedInput
+    billItems?: BillItemUpdateManyWithoutBillNestedInput
+  }
+
+  export type BillUncheckedUpdateWithoutReceivedItemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    customer_id?: IntFieldUpdateOperationsInput | number
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    billItems?: BillItemUncheckedUpdateManyWithoutBillNestedInput
+  }
+
+  export type AddTouchUpsertWithoutReceivedItemsInput = {
+    update: XOR<AddTouchUpdateWithoutReceivedItemsInput, AddTouchUncheckedUpdateWithoutReceivedItemsInput>
+    create: XOR<AddTouchCreateWithoutReceivedItemsInput, AddTouchUncheckedCreateWithoutReceivedItemsInput>
+    where?: AddTouchWhereInput
+  }
+
+  export type AddTouchUpdateToOneWithWhereWithoutReceivedItemsInput = {
+    where?: AddTouchWhereInput
+    data: XOR<AddTouchUpdateWithoutReceivedItemsInput, AddTouchUncheckedUpdateWithoutReceivedItemsInput>
+  }
+
+  export type AddTouchUpdateWithoutReceivedItemsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUpdateManyWithoutTouchNestedInput
+    stock?: StockUpdateManyWithoutTouchNestedInput
+    add_purchase_stock?: AddPurchaseStockUpdateManyWithoutTouchIdNestedInput
+    customer_transaction?: CustomerTransactionUpdateManyWithoutTouchNestedInput
+    QCStock?: QcStockUpdateManyWithoutTouchIdNestedInput
+    billItems?: BillItemUpdateManyWithoutTouchNestedInput
+  }
+
+  export type AddTouchUncheckedUpdateWithoutReceivedItemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: FloatFieldUpdateOperationsInput | number
+    casting_entry?: CastingEntryUncheckedUpdateManyWithoutTouchNestedInput
+    casting_items?: CastingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    filing_items?: FilingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    setting_items?: SettingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    buffing_items?: BuffingItemsUncheckedUpdateManyWithoutTouchNestedInput
+    stock?: StockUncheckedUpdateManyWithoutTouchNestedInput
+    add_purchase_stock?: AddPurchaseStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    customer_transaction?: CustomerTransactionUncheckedUpdateManyWithoutTouchNestedInput
+    QCStock?: QcStockUncheckedUpdateManyWithoutTouchIdNestedInput
+    billItems?: BillItemUncheckedUpdateManyWithoutTouchNestedInput
+  }
+
   export type CustomerTransactionCreateManyCustomerInput = {
     id?: number
     createdAt?: Date | string
@@ -59040,6 +66923,31 @@ export namespace Prisma {
     touchId?: number | null
     purity?: number | null
     goldRate?: number | null
+  }
+
+  export type BillCreateManyCustomerInput = {
+    id?: number
+    bill_no: string
+    date: string
+    time: string
+    gold_rate: number
+    total_pure: number
+    total_amount: number
+    customer_balance: number
+    grand_total: number
+    cash_balance: number
+    pure_balance: number
+    prev_hallmark: number
+    hallmark_balance: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HallmarkCreateManyCustomerInput = {
+    id?: number
+    balance?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type CustomerTransactionUpdateWithoutCustomerInput = {
@@ -59072,6 +66980,83 @@ export namespace Prisma {
     touchId?: NullableIntFieldUpdateOperationsInput | number | null
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type BillUpdateWithoutCustomerInput = {
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    billItems?: BillItemUpdateManyWithoutBillNestedInput
+    receivedItems?: ReceivedItemUpdateManyWithoutBillNestedInput
+  }
+
+  export type BillUncheckedUpdateWithoutCustomerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    billItems?: BillItemUncheckedUpdateManyWithoutBillNestedInput
+    receivedItems?: ReceivedItemUncheckedUpdateManyWithoutBillNestedInput
+  }
+
+  export type BillUncheckedUpdateManyWithoutCustomerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_no?: StringFieldUpdateOperationsInput | string
+    date?: StringFieldUpdateOperationsInput | string
+    time?: StringFieldUpdateOperationsInput | string
+    gold_rate?: FloatFieldUpdateOperationsInput | number
+    total_pure?: FloatFieldUpdateOperationsInput | number
+    total_amount?: FloatFieldUpdateOperationsInput | number
+    customer_balance?: FloatFieldUpdateOperationsInput | number
+    grand_total?: FloatFieldUpdateOperationsInput | number
+    cash_balance?: FloatFieldUpdateOperationsInput | number
+    pure_balance?: FloatFieldUpdateOperationsInput | number
+    prev_hallmark?: FloatFieldUpdateOperationsInput | number
+    hallmark_balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HallmarkUpdateWithoutCustomerInput = {
+    balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HallmarkUncheckedUpdateWithoutCustomerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HallmarkUncheckedUpdateManyWithoutCustomerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    balance?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CastingEntryCreateManyCasting_customerInput = {
@@ -59927,6 +67912,21 @@ export namespace Prisma {
     remarks?: string | null
   }
 
+  export type BillItemCreateManyAddItemInput = {
+    id?: number
+    bill_id: number
+    qc_stock_id: number
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    touchId?: number | null
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type CastingItemsUpdateWithoutItemInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumCASTINGENTRYTYPEFieldUpdateOperationsInput | $Enums.CASTINGENTRYTYPE
@@ -60153,6 +68153,7 @@ export namespace Prisma {
     purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     touchId?: AddTouchUpdateOneRequiredWithoutQCStockNestedInput
+    BillItem?: BillItemUpdateManyWithoutQcStockNestedInput
   }
 
   export type QcStockUncheckedUpdateWithoutItemIdInput = {
@@ -60164,6 +68165,7 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    BillItem?: BillItemUncheckedUpdateManyWithoutQcStockNestedInput
   }
 
   export type QcStockUncheckedUpdateManyWithoutItemIdInput = {
@@ -60175,6 +68177,50 @@ export namespace Prisma {
     touch_id?: IntFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BillItemUpdateWithoutAddItemInput = {
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bill?: BillUpdateOneRequiredWithoutBillItemsNestedInput
+    qcStock?: QcStockUpdateOneRequiredWithoutBillItemNestedInput
+    touch?: AddTouchUpdateOneWithoutBillItemsNestedInput
+  }
+
+  export type BillItemUncheckedUpdateWithoutAddItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    qc_stock_id?: IntFieldUpdateOperationsInput | number
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillItemUncheckedUpdateManyWithoutAddItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    qc_stock_id?: IntFieldUpdateOperationsInput | number
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CastingEntryCreateManyTouchInput = {
@@ -60285,6 +68331,35 @@ export namespace Prisma {
     final_weight: number
     purity: number
     remarks?: string | null
+  }
+
+  export type ReceivedItemCreateManyTouchInput = {
+    id?: number
+    bill_id: number
+    type: $Enums.ITEMTYPE
+    date: string
+    gold_rate?: number | null
+    gold?: number | null
+    purity_weight: number
+    amount?: number | null
+    hallmark_charge?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BillItemCreateManyTouchInput = {
+    id?: number
+    bill_id: number
+    qc_stock_id: number
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addItemId?: number | null
   }
 
   export type CastingEntryUpdateWithoutTouchInput = {
@@ -60624,6 +68699,7 @@ export namespace Prisma {
     purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     itemId?: AddItemUpdateOneRequiredWithoutQCStockNestedInput
+    BillItem?: BillItemUpdateManyWithoutQcStockNestedInput
   }
 
   export type QcStockUncheckedUpdateWithoutTouchIdInput = {
@@ -60635,6 +68711,7 @@ export namespace Prisma {
     final_weight?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    BillItem?: BillItemUncheckedUpdateManyWithoutQcStockNestedInput
   }
 
   export type QcStockUncheckedUpdateManyWithoutTouchIdInput = {
@@ -60646,6 +68723,150 @@ export namespace Prisma {
     final_weight?: FloatFieldUpdateOperationsInput | number
     purity?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ReceivedItemUpdateWithoutTouchInput = {
+    type?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
+    date?: StringFieldUpdateOperationsInput | string
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
+    gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity_weight?: FloatFieldUpdateOperationsInput | number
+    amount?: NullableFloatFieldUpdateOperationsInput | number | null
+    hallmark_charge?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bill?: BillUpdateOneRequiredWithoutReceivedItemsNestedInput
+  }
+
+  export type ReceivedItemUncheckedUpdateWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    type?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
+    date?: StringFieldUpdateOperationsInput | string
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
+    gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity_weight?: FloatFieldUpdateOperationsInput | number
+    amount?: NullableFloatFieldUpdateOperationsInput | number | null
+    hallmark_charge?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReceivedItemUncheckedUpdateManyWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    type?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
+    date?: StringFieldUpdateOperationsInput | string
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
+    gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity_weight?: FloatFieldUpdateOperationsInput | number
+    amount?: NullableFloatFieldUpdateOperationsInput | number | null
+    hallmark_charge?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BillItemUpdateWithoutTouchInput = {
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bill?: BillUpdateOneRequiredWithoutBillItemsNestedInput
+    qcStock?: QcStockUpdateOneRequiredWithoutBillItemNestedInput
+    AddItem?: AddItemUpdateOneWithoutBillItemsNestedInput
+  }
+
+  export type BillItemUncheckedUpdateWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    qc_stock_id?: IntFieldUpdateOperationsInput | number
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addItemId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type BillItemUncheckedUpdateManyWithoutTouchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    qc_stock_id?: IntFieldUpdateOperationsInput | number
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addItemId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type BillItemCreateManyQcStockInput = {
+    id?: number
+    bill_id: number
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    touchId?: number | null
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addItemId?: number | null
+  }
+
+  export type BillItemUpdateWithoutQcStockInput = {
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bill?: BillUpdateOneRequiredWithoutBillItemsNestedInput
+    AddItem?: AddItemUpdateOneWithoutBillItemsNestedInput
+    touch?: AddTouchUpdateOneWithoutBillItemsNestedInput
+  }
+
+  export type BillItemUncheckedUpdateWithoutQcStockInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addItemId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type BillItemUncheckedUpdateManyWithoutQcStockInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bill_id?: IntFieldUpdateOperationsInput | number
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addItemId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type CastingItemsCreateManyCastingEntryInput = {
@@ -62414,6 +70635,120 @@ export namespace Prisma {
     item_purity?: FloatFieldUpdateOperationsInput | number
     scrap_remarks?: NullableStringFieldUpdateOperationsInput | string | null
     buffing_entry_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BillItemCreateManyBillInput = {
+    id?: number
+    qc_stock_id: number
+    item_name: string
+    weight: number
+    stone_weight?: number | null
+    total_weight: number
+    touchId?: number | null
+    pure: number
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addItemId?: number | null
+  }
+
+  export type ReceivedItemCreateManyBillInput = {
+    id?: number
+    type: $Enums.ITEMTYPE
+    date: string
+    gold_rate?: number | null
+    gold?: number | null
+    touchId?: number | null
+    purity_weight: number
+    amount?: number | null
+    hallmark_charge?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BillItemUpdateWithoutBillInput = {
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    qcStock?: QcStockUpdateOneRequiredWithoutBillItemNestedInput
+    AddItem?: AddItemUpdateOneWithoutBillItemsNestedInput
+    touch?: AddTouchUpdateOneWithoutBillItemsNestedInput
+  }
+
+  export type BillItemUncheckedUpdateWithoutBillInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    qc_stock_id?: IntFieldUpdateOperationsInput | number
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addItemId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type BillItemUncheckedUpdateManyWithoutBillInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    qc_stock_id?: IntFieldUpdateOperationsInput | number
+    item_name?: StringFieldUpdateOperationsInput | string
+    weight?: FloatFieldUpdateOperationsInput | number
+    stone_weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    total_weight?: FloatFieldUpdateOperationsInput | number
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    pure?: FloatFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addItemId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ReceivedItemUpdateWithoutBillInput = {
+    type?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
+    date?: StringFieldUpdateOperationsInput | string
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
+    gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    purity_weight?: FloatFieldUpdateOperationsInput | number
+    amount?: NullableFloatFieldUpdateOperationsInput | number | null
+    hallmark_charge?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    touch?: AddTouchUpdateOneWithoutReceivedItemsNestedInput
+  }
+
+  export type ReceivedItemUncheckedUpdateWithoutBillInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
+    date?: StringFieldUpdateOperationsInput | string
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
+    gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    purity_weight?: FloatFieldUpdateOperationsInput | number
+    amount?: NullableFloatFieldUpdateOperationsInput | number | null
+    hallmark_charge?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReceivedItemUncheckedUpdateManyWithoutBillInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: EnumITEMTYPEFieldUpdateOperationsInput | $Enums.ITEMTYPE
+    date?: StringFieldUpdateOperationsInput | string
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
+    gold?: NullableFloatFieldUpdateOperationsInput | number | null
+    touchId?: NullableIntFieldUpdateOperationsInput | number | null
+    purity_weight?: FloatFieldUpdateOperationsInput | number
+    amount?: NullableFloatFieldUpdateOperationsInput | number | null
+    hallmark_charge?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
