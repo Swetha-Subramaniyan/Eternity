@@ -47,7 +47,9 @@ const Billing = () => {
 
   const fetchQcStock = async () => {
     try {
-      const response = await axios.get(`${BACKEND_SERVER_URL}/api/qcstock`);
+      const response = await axios.get(
+        `${BACKEND_SERVER_URL}/api/qcstock/filtered-qc-stock`
+      );
       setQcStock(response.data);
     } catch (error) {
       console.error("Error fetching QC stock:", error);
@@ -60,12 +62,21 @@ const Billing = () => {
         const response = await axios.get(
           `${BACKEND_SERVER_URL}/api/transactions/${selectedCustomerId}`
         );
+        console.log("sdhiohf", response);
 
-        let balance = response.data
-          .reduce((sum, item) => sum + (item.purity || 0), 0)
-          .toFixed(3);
+        let Usedbalance = response.data.reduce(
+          (sum, item) => sum + (item.usedPurity || 0),
+          0
+        );
+        let Availablebalance = response.data.reduce(
+          (sum, item) => sum + (item.purity || 0),
+          0
+        );
+        let balance = Availablebalance - Usedbalance;
 
-        setCustomerBalance(balance);
+        if (balance > 0) {
+          setCustomerBalance(balance);
+        }
       }
     } catch (error) {
       console.error("Error fetching customer balance:", error);
@@ -261,11 +272,20 @@ const Billing = () => {
     customerBalance
   );
 
+  console.log("billin", billItems);
+
+  const totalBillingPure = billItems.reduce(
+    (sum, item) => sum + (item.pure || 0),
+    0
+  );
+
   const pureBalanceValue =
     customerBalance > 0
-      ? parseFloat(totalPure) -
-        parseFloat(totalReceivedPurity) -
-        parseFloat(customerBalance)
+      ? customerBalance - totalBillingPure > 0
+        ? 0
+        :   parseFloat(totalPure) -
+          parseFloat(totalReceivedPurity) -
+          parseFloat(customerBalance)
       : parseFloat(totalPure) - parseFloat(totalReceivedPurity);
 
   let pureBalance = pureBalanceValue.toFixed(3);
@@ -319,6 +339,7 @@ const Billing = () => {
 
   const handleSave = async () => {
     try {
+
       const billData = {
         customerId: selectedCustomerId,
         date: currentDate,

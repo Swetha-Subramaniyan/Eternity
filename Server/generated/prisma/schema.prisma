@@ -32,7 +32,7 @@ enum STONEOPTION {
 model AddCustomer {
   id           Int                   @id @default(autoincrement())
   createdAt    DateTime              @default(now())
-  updatedAt    DateTime              @updatedAt
+  updatedAt    DateTime              @default(now()) @updatedAt
   name         String
   phoneNumber  String?
   address      String?
@@ -130,7 +130,7 @@ model AddPurchaseStock {
 model CustomerTransaction {
   id         Int         @id @default(autoincrement())
   createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  updatedAt  DateTime    @default(now()) @updatedAt
   date       DateTime
   value      Float
   type       String
@@ -140,12 +140,13 @@ model CustomerTransaction {
   customer   AddCustomer @relation(fields: [customerId], references: [id])
   touch      AddTouch?   @relation(fields: [touchId], references: [id])
   customerId Int
+  usedPurity Float?
 }
 
 model AddItem {
   id            Int            @id @default(autoincrement())
   createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  updatedAt     DateTime       @default(now()) @updatedAt
   name          String
   casting_items CastingItems[]
   stock         Stock[]
@@ -159,7 +160,7 @@ model AddItem {
 model AddTouch {
   id                   Int                   @id @default(autoincrement())
   createdAt            DateTime              @default(now())
-  updatedAt            DateTime              @updatedAt
+  updatedAt            DateTime              @default(now()) @updatedAt
   touch                Float
   casting_entry        CastingEntry[]
   casting_items        CastingItems[]
@@ -178,7 +179,7 @@ model AddTouch {
 model QcStock {
   id           Int        @id @default(autoincrement())
   createdAt    DateTime
-  updatedAt    DateTime @updatedAt
+  updatedAt    DateTime   @default(now()) @updatedAt
   item_id      Int
   itemId       AddItem    @relation(fields: [item_id], references: [id])
   weight       Float

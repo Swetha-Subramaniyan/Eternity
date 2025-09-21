@@ -204,7 +204,8 @@ exports.Prisma.CustomerTransactionScalarFieldEnum = {
   touchId: 'touchId',
   purity: 'purity',
   goldRate: 'goldRate',
-  customerId: 'customerId'
+  customerId: 'customerId',
+  usedPurity: 'usedPurity'
 };
 
 exports.Prisma.AddItemScalarFieldEnum = {

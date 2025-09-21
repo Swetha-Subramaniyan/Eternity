@@ -122,6 +122,37 @@ export const getQCStock = async (req, res) => {
   }
 };
 
+export const getUnUsedQCStock = async (req, res) => {
+  try {
+    // Step 1: Get all qc_stock_id already used in BillItem
+    const usedStock = await prisma.billItem.findMany({
+      select: { qc_stock_id: true },
+    });
+
+    const usedIds = usedStock.map((item) => item.qc_stock_id);
+
+    // Step 2: Fetch qcStock excluding already used ones
+    const qcStocks = await prisma.qcStock.findMany({
+      where: {
+        id: {
+          notIn: usedIds, // exclude those used in BillItem
+        },
+      },
+      include: {
+        itemId: true,
+        touchId: true,
+      },
+      orderBy: { id: "desc" },
+    });
+
+    res.json(qcStocks);
+  } catch (error) {
+    console.error("Error fetching QC Stock:", error);
+    res.status(500).json({ error: "Failed to fetch QC Stock" });
+  }
+};
+
+
 //  Update QC Stock
 export const updateQCStock = async (req, res) => {
   try {
