@@ -196,20 +196,6 @@ const CustomerTranscation = () => {
 
   console.log("filteredTransactions", filteredTransactions);
 
-  // const totals = filteredTransactions.reduce(
-  //   (acc, transaction) => {
-  //     if (transaction.type === "Cash") {
-  //       acc.totalCash += parseFloat(transaction.value) || 0;
-  //     } else if (transaction.type === "Gold") {
-  //       acc.totalPurity += parseFloat(transaction.purity) || 0;
-  //     }
-  //     return acc;
-  //   },
-  //   { totalCash: 0, totalPurity: 0 }
-  // );
-
-
-
   const totals = filteredTransactions.reduce(
     (acc, transaction) => {
       if (transaction.type === "Cash") {
@@ -220,10 +206,11 @@ const CustomerTranscation = () => {
   
       //  Always add purity if available (for total across both types)
       acc.goldTotalPurity += parseFloat(transaction.purity) || 0;
-  
+      acc.totalUsedPurity += parseFloat(transaction.usedPurity) || 0;
+
       return acc;
     },
-    { totalCash: 0, totalPurity: 0, goldTotalPurity: 0 }
+    { totalCash: 0, totalPurity: 0, goldTotalPurity: 0, totalUsedPurity: 0 }
   );
   
 
@@ -409,6 +396,7 @@ const CustomerTranscation = () => {
               <th>Type</th>
               <th>Touch</th>
               <th>Purity</th>
+              <th>Used Purity</th>
             </tr>
           </thead>
         
@@ -439,6 +427,7 @@ const CustomerTranscation = () => {
         <td>{transaction.type}</td>
         <td>{transaction.touch ? transaction.touch.touch : "-"}</td>
         <td>{transaction.purity || "-"}</td>
+        <td>{transaction.usedPurity || "-" }</td>
       </tr>
     ))
   ) : (
@@ -452,6 +441,7 @@ const CustomerTranscation = () => {
           <tfoot> 
             <tr><td colSpan={6}><b>  Total Purity ( Both Cash and Gold )</b> </td> 
             <td> <b> {totals.goldTotalPurity.toFixed(3)} g </b></td>
+            <td><b>{totals.totalUsedPurity.toFixed(3)} g</b></td>
             </tr>
           </tfoot>
         </table>
