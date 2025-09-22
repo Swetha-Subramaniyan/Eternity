@@ -140,7 +140,7 @@ const handleSave = async () => {
   
 
   const handleDelete = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this entry?");
+    const confirmDelete = window.confirm("Are you sure you want to delete this item? If you click ok this item will delete in Bill also"  );
     if (!confirmDelete) return;
   
     try {
