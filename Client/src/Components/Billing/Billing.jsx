@@ -454,7 +454,7 @@ const Billing = () => {
           </p>
 
           <div className={styles.billdetails}>Bill Details:</div>
-          <div className={styles.tablehead}>
+          <div className={styles.table}>
             <table>
               <thead>
                 <tr>
@@ -512,16 +512,16 @@ const Billing = () => {
               </tbody>
               <tfoot>
                 <tr>
-                  <td colSpan={5}>
+                  <td colSpan={5} >
                     <b>Excess Balance</b>
                   </td>
-                  <td>
+                  <td >
                     {customerBalance
                       ? parseFloat(customerBalance).toFixed(3)
                       : 0}
                   </td>
-                  <td> {customerBalance * goldRate}</td>
-                  <td> </td>
+                  <td > {customerBalance * goldRate}</td>
+                  <td > </td>
                 </tr>
                 <tr>
                   <td colSpan={5}>
@@ -532,11 +532,11 @@ const Billing = () => {
                   <td></td>
                 </tr>
                 <tr>
-                  <td colSpan={5}>
+                  <td colSpan={5} className={styles.trEven}>
                     <b>Total</b>
                   </td>
-                  <td>{(totalPure - customerBalance).toFixed(3)}</td>
-                  <td colSpan={3}>
+                  <td className={styles.trEven}>{(totalPure - customerBalance).toFixed(3)}</td>
+                  <td colSpan={3} className={styles.trEven}>
                     {(totalAmount - customerBalance * goldRate).toFixed(2)}{" "}
                     <br />
                     {totalAmount - customerBalance * goldRate >= 0
@@ -565,6 +565,8 @@ const Billing = () => {
                 setHallmarkBalance((parseFloat(prevHallmark) || 0) + value);
               }}
               style={{ marginLeft: "1rem" }}
+              autoComplete="off"
+              onWheel={(e) => e.target.blur()} 
             />
           </div>
 
@@ -577,7 +579,7 @@ const Billing = () => {
               <AddCircleOutlineIcon />
             </IconButton>
           </div>
-          <div className={styles.tablehead}>
+          <div className={styles.table}>
             <table>
               <thead>
                 <tr>
@@ -620,6 +622,8 @@ const Billing = () => {
                         onChange={(e) =>
                           handleReceivedInput(idx, "goldRate", e.target.value)
                         }
+                        autoComplete="off"
+                        onWheel={(e) => e.target.blur()}                      
                       />
                     </td>
                     <td>
@@ -631,6 +635,8 @@ const Billing = () => {
                         onChange={(e) =>
                           handleReceivedInput(idx, "gold", e.target.value)
                         }
+                        autoComplete="off"
+                        onWheel={(e) => e.target.blur()}
                       />
                     </td>
                     <td>
@@ -677,6 +683,8 @@ const Billing = () => {
                         onChange={(e) =>
                           handleReceivedInput(idx, "amount", e.target.value)
                         }
+                        autoComplete="off"
+                        onWheel={(e) => e.target.blur()}
                       />
                     </td>
                     <td>
@@ -691,6 +699,8 @@ const Billing = () => {
                             e.target.value
                           )
                         }
+                        autoComplete="off"
+                        onWheel={(e) => e.target.blur()}
                       />
                     </td>
                     <td>
@@ -705,15 +715,15 @@ const Billing = () => {
                 ))}
               </tbody>
 
-              <tfoot>
+              <tfoot className={styles.trEven}>
                 <tr>
-                  <td colSpan={5}>
+                  <td colSpan={6}>
                     <b>Total Purity</b>
                   </td>
                   <td>
                     <b>{totalReceivedPurity.toFixed(3)}</b>
                   </td>
-                  <td colSpan={2}></td>
+                  <td colSpan={3}></td>
                 </tr>
               </tfoot>
             </table>
@@ -749,7 +759,7 @@ const Billing = () => {
         <div className={styles.tablecard}>
           <h3>Available Product Weights</h3>
           <div className={styles.billdetails}>Product Details:</div>
-          <div className={styles.tablehead}>
+          <div className={styles.table}>
             <table>
               <thead>
                 <tr>

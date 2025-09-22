@@ -180,7 +180,6 @@ model QcStock {
   id           Int        @id @default(autoincrement())
   createdAt    DateTime
   updatedAt    DateTime   @default(now()) @updatedAt
-
   item_id      Int
   itemId       AddItem    @relation(fields: [item_id], references: [id])
   weight       Float
