@@ -12516,6 +12516,7 @@ export namespace Prisma {
     purity: number | null
     goldRate: number | null
     customerId: number | null
+    usedPurity: number | null
   }
 
   export type CustomerTransactionSumAggregateOutputType = {
@@ -12525,6 +12526,7 @@ export namespace Prisma {
     purity: number | null
     goldRate: number | null
     customerId: number | null
+    usedPurity: number | null
   }
 
   export type CustomerTransactionMinAggregateOutputType = {
@@ -12538,6 +12540,7 @@ export namespace Prisma {
     purity: number | null
     goldRate: number | null
     customerId: number | null
+    usedPurity: number | null
   }
 
   export type CustomerTransactionMaxAggregateOutputType = {
@@ -12551,6 +12554,7 @@ export namespace Prisma {
     purity: number | null
     goldRate: number | null
     customerId: number | null
+    usedPurity: number | null
   }
 
   export type CustomerTransactionCountAggregateOutputType = {
@@ -12564,6 +12568,7 @@ export namespace Prisma {
     purity: number
     goldRate: number
     customerId: number
+    usedPurity: number
     _all: number
   }
 
@@ -12575,6 +12580,7 @@ export namespace Prisma {
     purity?: true
     goldRate?: true
     customerId?: true
+    usedPurity?: true
   }
 
   export type CustomerTransactionSumAggregateInputType = {
@@ -12584,6 +12590,7 @@ export namespace Prisma {
     purity?: true
     goldRate?: true
     customerId?: true
+    usedPurity?: true
   }
 
   export type CustomerTransactionMinAggregateInputType = {
@@ -12597,6 +12604,7 @@ export namespace Prisma {
     purity?: true
     goldRate?: true
     customerId?: true
+    usedPurity?: true
   }
 
   export type CustomerTransactionMaxAggregateInputType = {
@@ -12610,6 +12618,7 @@ export namespace Prisma {
     purity?: true
     goldRate?: true
     customerId?: true
+    usedPurity?: true
   }
 
   export type CustomerTransactionCountAggregateInputType = {
@@ -12623,6 +12632,7 @@ export namespace Prisma {
     purity?: true
     goldRate?: true
     customerId?: true
+    usedPurity?: true
     _all?: true
   }
 
@@ -12723,6 +12733,7 @@ export namespace Prisma {
     purity: number | null
     goldRate: number | null
     customerId: number
+    usedPurity: number | null
     _count: CustomerTransactionCountAggregateOutputType | null
     _avg: CustomerTransactionAvgAggregateOutputType | null
     _sum: CustomerTransactionSumAggregateOutputType | null
@@ -12755,6 +12766,7 @@ export namespace Prisma {
     purity?: boolean
     goldRate?: boolean
     customerId?: boolean
+    usedPurity?: boolean
     customer?: boolean | AddCustomerDefaultArgs<ExtArgs>
     touch?: boolean | CustomerTransaction$touchArgs<ExtArgs>
   }, ExtArgs["result"]["customerTransaction"]>
@@ -12772,9 +12784,10 @@ export namespace Prisma {
     purity?: boolean
     goldRate?: boolean
     customerId?: boolean
+    usedPurity?: boolean
   }
 
-  export type CustomerTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "date" | "value" | "type" | "touchId" | "purity" | "goldRate" | "customerId", ExtArgs["result"]["customerTransaction"]>
+  export type CustomerTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "date" | "value" | "type" | "touchId" | "purity" | "goldRate" | "customerId" | "usedPurity", ExtArgs["result"]["customerTransaction"]>
   export type CustomerTransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | AddCustomerDefaultArgs<ExtArgs>
     touch?: boolean | CustomerTransaction$touchArgs<ExtArgs>
@@ -12797,6 +12810,7 @@ export namespace Prisma {
       purity: number | null
       goldRate: number | null
       customerId: number
+      usedPurity: number | null
     }, ExtArgs["result"]["customerTransaction"]>
     composites: {}
   }
@@ -13178,6 +13192,7 @@ export namespace Prisma {
     readonly purity: FieldRef<"CustomerTransaction", 'Float'>
     readonly goldRate: FieldRef<"CustomerTransaction", 'Float'>
     readonly customerId: FieldRef<"CustomerTransaction", 'Int'>
+    readonly usedPurity: FieldRef<"CustomerTransaction", 'Float'>
   }
     
 
@@ -43798,7 +43813,8 @@ export namespace Prisma {
     touchId: 'touchId',
     purity: 'purity',
     goldRate: 'goldRate',
-    customerId: 'customerId'
+    customerId: 'customerId',
+    usedPurity: 'usedPurity'
   };
 
   export type CustomerTransactionScalarFieldEnum = (typeof CustomerTransactionScalarFieldEnum)[keyof typeof CustomerTransactionScalarFieldEnum]
@@ -44998,6 +45014,7 @@ export namespace Prisma {
     purity?: FloatNullableFilter<"CustomerTransaction"> | number | null
     goldRate?: FloatNullableFilter<"CustomerTransaction"> | number | null
     customerId?: IntFilter<"CustomerTransaction"> | number
+    usedPurity?: FloatNullableFilter<"CustomerTransaction"> | number | null
     customer?: XOR<AddCustomerScalarRelationFilter, AddCustomerWhereInput>
     touch?: XOR<AddTouchNullableScalarRelationFilter, AddTouchWhereInput> | null
   }
@@ -45013,6 +45030,7 @@ export namespace Prisma {
     purity?: SortOrderInput | SortOrder
     goldRate?: SortOrderInput | SortOrder
     customerId?: SortOrder
+    usedPurity?: SortOrderInput | SortOrder
     customer?: AddCustomerOrderByWithRelationInput
     touch?: AddTouchOrderByWithRelationInput
     _relevance?: CustomerTransactionOrderByRelevanceInput
@@ -45032,6 +45050,7 @@ export namespace Prisma {
     purity?: FloatNullableFilter<"CustomerTransaction"> | number | null
     goldRate?: FloatNullableFilter<"CustomerTransaction"> | number | null
     customerId?: IntFilter<"CustomerTransaction"> | number
+    usedPurity?: FloatNullableFilter<"CustomerTransaction"> | number | null
     customer?: XOR<AddCustomerScalarRelationFilter, AddCustomerWhereInput>
     touch?: XOR<AddTouchNullableScalarRelationFilter, AddTouchWhereInput> | null
   }, "id">
@@ -45047,6 +45066,7 @@ export namespace Prisma {
     purity?: SortOrderInput | SortOrder
     goldRate?: SortOrderInput | SortOrder
     customerId?: SortOrder
+    usedPurity?: SortOrderInput | SortOrder
     _count?: CustomerTransactionCountOrderByAggregateInput
     _avg?: CustomerTransactionAvgOrderByAggregateInput
     _max?: CustomerTransactionMaxOrderByAggregateInput
@@ -45068,6 +45088,7 @@ export namespace Prisma {
     purity?: FloatNullableWithAggregatesFilter<"CustomerTransaction"> | number | null
     goldRate?: FloatNullableWithAggregatesFilter<"CustomerTransaction"> | number | null
     customerId?: IntWithAggregatesFilter<"CustomerTransaction"> | number
+    usedPurity?: FloatNullableWithAggregatesFilter<"CustomerTransaction"> | number | null
   }
 
   export type AddItemWhereInput = {
@@ -48017,6 +48038,7 @@ export namespace Prisma {
     type: string
     purity?: number | null
     goldRate?: number | null
+    usedPurity?: number | null
     customer: AddCustomerCreateNestedOneWithoutTransactionsInput
     touch?: AddTouchCreateNestedOneWithoutCustomer_transactionInput
   }
@@ -48032,6 +48054,7 @@ export namespace Prisma {
     purity?: number | null
     goldRate?: number | null
     customerId: number
+    usedPurity?: number | null
   }
 
   export type CustomerTransactionUpdateInput = {
@@ -48042,6 +48065,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    usedPurity?: NullableFloatFieldUpdateOperationsInput | number | null
     customer?: AddCustomerUpdateOneRequiredWithoutTransactionsNestedInput
     touch?: AddTouchUpdateOneWithoutCustomer_transactionNestedInput
   }
@@ -48057,6 +48081,7 @@ export namespace Prisma {
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
     customerId?: IntFieldUpdateOperationsInput | number
+    usedPurity?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type CustomerTransactionCreateManyInput = {
@@ -48070,6 +48095,7 @@ export namespace Prisma {
     purity?: number | null
     goldRate?: number | null
     customerId: number
+    usedPurity?: number | null
   }
 
   export type CustomerTransactionUpdateManyMutationInput = {
@@ -48080,6 +48106,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    usedPurity?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type CustomerTransactionUncheckedUpdateManyInput = {
@@ -48093,6 +48120,7 @@ export namespace Prisma {
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
     customerId?: IntFieldUpdateOperationsInput | number
+    usedPurity?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type AddItemCreateInput = {
@@ -51153,6 +51181,7 @@ export namespace Prisma {
     purity?: SortOrder
     goldRate?: SortOrder
     customerId?: SortOrder
+    usedPurity?: SortOrder
   }
 
   export type CustomerTransactionAvgOrderByAggregateInput = {
@@ -51162,6 +51191,7 @@ export namespace Prisma {
     purity?: SortOrder
     goldRate?: SortOrder
     customerId?: SortOrder
+    usedPurity?: SortOrder
   }
 
   export type CustomerTransactionMaxOrderByAggregateInput = {
@@ -51175,6 +51205,7 @@ export namespace Prisma {
     purity?: SortOrder
     goldRate?: SortOrder
     customerId?: SortOrder
+    usedPurity?: SortOrder
   }
 
   export type CustomerTransactionMinOrderByAggregateInput = {
@@ -51188,6 +51219,7 @@ export namespace Prisma {
     purity?: SortOrder
     goldRate?: SortOrder
     customerId?: SortOrder
+    usedPurity?: SortOrder
   }
 
   export type CustomerTransactionSumOrderByAggregateInput = {
@@ -51197,6 +51229,7 @@ export namespace Prisma {
     purity?: SortOrder
     goldRate?: SortOrder
     customerId?: SortOrder
+    usedPurity?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -57886,6 +57919,7 @@ export namespace Prisma {
     type: string
     purity?: number | null
     goldRate?: number | null
+    usedPurity?: number | null
     touch?: AddTouchCreateNestedOneWithoutCustomer_transactionInput
   }
 
@@ -57899,6 +57933,7 @@ export namespace Prisma {
     touchId?: number | null
     purity?: number | null
     goldRate?: number | null
+    usedPurity?: number | null
   }
 
   export type CustomerTransactionCreateOrConnectWithoutCustomerInput = {
@@ -58013,6 +58048,7 @@ export namespace Prisma {
     purity?: FloatNullableFilter<"CustomerTransaction"> | number | null
     goldRate?: FloatNullableFilter<"CustomerTransaction"> | number | null
     customerId?: IntFilter<"CustomerTransaction"> | number
+    usedPurity?: FloatNullableFilter<"CustomerTransaction"> | number | null
   }
 
   export type BillUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -60192,6 +60228,7 @@ export namespace Prisma {
     type: string
     purity?: number | null
     goldRate?: number | null
+    usedPurity?: number | null
     customer: AddCustomerCreateNestedOneWithoutTransactionsInput
   }
 
@@ -60205,6 +60242,7 @@ export namespace Prisma {
     purity?: number | null
     goldRate?: number | null
     customerId: number
+    usedPurity?: number | null
   }
 
   export type CustomerTransactionCreateOrConnectWithoutTouchInput = {
@@ -67392,6 +67430,7 @@ export namespace Prisma {
     touchId?: number | null
     purity?: number | null
     goldRate?: number | null
+    usedPurity?: number | null
   }
 
   export type BillCreateManyCustomerInput = {
@@ -67427,6 +67466,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    usedPurity?: NullableFloatFieldUpdateOperationsInput | number | null
     touch?: AddTouchUpdateOneWithoutCustomer_transactionNestedInput
   }
 
@@ -67440,6 +67480,7 @@ export namespace Prisma {
     touchId?: NullableIntFieldUpdateOperationsInput | number | null
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    usedPurity?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type CustomerTransactionUncheckedUpdateManyWithoutCustomerInput = {
@@ -67452,6 +67493,7 @@ export namespace Prisma {
     touchId?: NullableIntFieldUpdateOperationsInput | number | null
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    usedPurity?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type BillUpdateWithoutCustomerInput = {
@@ -68802,6 +68844,7 @@ export namespace Prisma {
     purity?: number | null
     goldRate?: number | null
     customerId: number
+    usedPurity?: number | null
   }
 
   export type QcStockCreateManyTouchIdInput = {
@@ -69153,6 +69196,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    usedPurity?: NullableFloatFieldUpdateOperationsInput | number | null
     customer?: AddCustomerUpdateOneRequiredWithoutTransactionsNestedInput
   }
 
@@ -69166,6 +69210,7 @@ export namespace Prisma {
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
     customerId?: IntFieldUpdateOperationsInput | number
+    usedPurity?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type CustomerTransactionUncheckedUpdateManyWithoutTouchInput = {
@@ -69178,6 +69223,7 @@ export namespace Prisma {
     purity?: NullableFloatFieldUpdateOperationsInput | number | null
     goldRate?: NullableFloatFieldUpdateOperationsInput | number | null
     customerId?: IntFieldUpdateOperationsInput | number
+    usedPurity?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type QcStockUpdateWithoutTouchIdInput = {

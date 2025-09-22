@@ -1,6 +1,33 @@
 import { PrismaClient } from "../generated/prisma/index.js";
 const prisma = new PrismaClient();
 
+
+const  allocatePurity = (transactions, totalPureToUse) => {
+  let remainingPurity = totalPureToUse;
+  const updates = [];
+
+  for (const tx of transactions) {
+    if (remainingPurity <= 0) break;
+
+    const currentUsed = tx.usedPurity || 0;
+    const available = (tx.purity || 0) - currentUsed;
+
+    if (available <= 0) continue; 
+
+    const purityToConsume = Math.min(available, remainingPurity);
+
+    updates.push({
+      id: tx.id,
+      newUsedPurity: currentUsed + purityToConsume,
+    });
+
+    remainingPurity -= purityToConsume;
+  }
+
+  return updates;
+}
+
+
 export const createBill = async (req, res) => {
   try {
     const {
@@ -23,7 +50,21 @@ export const createBill = async (req, res) => {
 
     console.log("Received bill data:", req.body);
 
-   const latestBill = await prisma.bill.findFirst({
+     const transactions = await prisma.customerTransaction.findMany({
+      where: { customerId: parseInt(customerId) },
+      orderBy: { date: "asc" }, 
+    });
+
+    const updates = allocatePurity(transactions, parseFloat(totalPure));
+
+    for (const u of updates) {
+      await prisma.customerTransaction.update({
+        where: { id: u.id },
+        data: { usedPurity: u.newUsedPurity },
+      });
+    }
+
+    const latestBill = await prisma.bill.findFirst({
       orderBy: { createdAt: "desc" },
     });
 
@@ -58,7 +99,7 @@ export const createBill = async (req, res) => {
             touchId: parseFloat(item.touchId),
             pure: parseFloat(item.pure),
             amount: parseFloat(item.amount),
-             addItemId: parseInt(item.itemId.id),
+            addItemId: parseInt(item.itemId.id),
           })),
         },
         receivedItems: {
@@ -73,7 +114,6 @@ export const createBill = async (req, res) => {
             hallmark_charge: item.hallmarkCharge
               ? parseFloat(item.hallmarkCharge)
               : null,
-           
           })),
         },
       },
@@ -111,13 +151,12 @@ export const createBill = async (req, res) => {
           balance: parseFloat(hallmarkBalance),
         },
       });
-    } 
+    }
 
     res.status(201).json({
       message: "Bill created successfully",
-       bill, 
+      bill,
     });
-
   } catch (error) {
     console.error("Error creating bill:", error);
     res.status(500).json({ error: "Internal server error" });
