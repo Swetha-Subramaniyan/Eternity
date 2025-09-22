@@ -186,6 +186,7 @@
   font-weight: 500;
   color: #444;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 5px solid #3a3a54;
 
 }
 
@@ -209,3 +210,4 @@
   align-items: center;
   margin-bottom: 1rem;
 }
+
