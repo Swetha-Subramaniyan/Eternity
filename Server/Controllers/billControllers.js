@@ -55,6 +55,9 @@ export const createBill = async (req, res) => {
       orderBy: { date: "asc" }, 
     });
 
+     console.log("Received bill data:",transactions);
+
+
     const updates = allocatePurity(transactions, parseFloat(totalPure));
 
     for (const u of updates) {

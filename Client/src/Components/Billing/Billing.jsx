@@ -283,7 +283,7 @@ const Billing = () => {
     customerBalance > 0
       ? customerBalance - totalBillingPure > 0
         ? 0
-        :   parseFloat(totalPure) -
+        : parseFloat(totalPure) -
           parseFloat(totalReceivedPurity) -
           parseFloat(customerBalance)
       : parseFloat(totalPure) - parseFloat(totalReceivedPurity);
@@ -339,7 +339,6 @@ const Billing = () => {
 
   const handleSave = async () => {
     try {
-
       const billData = {
         customerId: selectedCustomerId,
         date: currentDate,
@@ -369,6 +368,7 @@ const Billing = () => {
       console.log("Bill saved successfully:", response.data);
       alert("Bill data saved successfully!");
 
+      fetchQcStock();
       setSelectedCustomer("");
       setSelectedCustomerId(null);
       setSelectedProduct("");
