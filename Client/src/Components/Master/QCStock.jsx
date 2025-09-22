@@ -16,6 +16,9 @@ const QCStock = () => {
   const [items, setItems] = useState([]);
   const [touches, setTouches] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
   const today = new Date().toISOString().split("T")[0];
   const [formData, setFormData] = useState({
@@ -148,14 +151,46 @@ const handleSave = async () => {
     }
   };
 
-  const filteredEntries = entries.filter((entry) =>
-    entry.itemId?.name?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  
+  // const filteredEntries = entries.filter((entry) =>
+  //   entry.itemId?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+// Filtered entries based on jewel name, date range, and status
+const filteredEntries = entries.filter((entry) => {
+  const matchesName =
+    entry.itemId?.name?.toLowerCase().includes(searchTerm.toLowerCase());
+
+  const entryDate = entry.updatedAt ? new Date(entry.updatedAt) : null;
+  const matchesFromDate = fromDate ? entryDate >= new Date(fromDate) : true;
+  // const matchesToDate = toDate ? entryDate <= new Date(toDate) : true;
+
+    // Set toDate to end of day
+    const matchesToDate = toDate
+    ? entryDate <= new Date(new Date(toDate).setHours(23, 59, 59, 999))
+    : true;
+
+  const matchesStatus =
+    statusFilter === "Moved"
+      ? entry.status === "Moved"
+      : statusFilter === "Not Moved"
+      ? entry.status === "Not Moved"
+      : true;
+
+  return matchesName && matchesFromDate && matchesToDate && matchesStatus;
+});
+
+  // Calculate totals
+const totalWeight = filteredEntries.reduce((sum, entry) => sum + (entry.weight || 0), 0);
+const totalStoneWeight = filteredEntries.reduce((sum, entry) => sum + (entry.stone_weight || 0), 0);
+const totalFinalWeight = filteredEntries.reduce((sum, entry) => sum + (entry.final_weight || 0), 0);
+const totalPurity = filteredEntries.reduce((sum, entry) => sum + (entry.purity || 0), 0);
+
 
   return (
     <>
      <MasterNavbar/>
+     <div> 
+
+      <Box display="flex" gap={2} alignItems="center" >
       <Button
         style={{
           backgroundColor: "#F5F5F5",
@@ -163,45 +198,91 @@ const handleSave = async () => {
           borderColor: "#25274D",
           borderStyle: "solid",
           borderWidth: "2px",
-          margin: "3rem 0 0 4rem",
+          margin: "3rem 0 0 5rem",
         }}
         variant="contained"
         onClick={handleOpen}
       >
         Add QC Stock
-      </Button>
-
-<TextField
-            placeholder="Search by Jewel Name"
-            variant="outlined"
-            size="small"
-            sx={{ marginLeft: "55.5rem", mt:'3rem' }}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Button
-            style={{
-              backgroundColor: "#F5F5F5",
-              color: "black",
-              borderColor: "#25274D",
-              borderStyle: "solid",
-              borderWidth: "2px",
-              marginLeft: "1.2rem",
-              marginTop:'3rem'
-              
-            }}
-            onClick={() => setSearchTerm("")}
+      </Button> 
+<div style={{marginTop:'3rem', display:'flex', gap:'1rem', marginLeft:'20rem'}}> 
+        <TextField
+          label="From Date"
+          type="date"
+          size="small"
+          value={fromDate}
+          onChange={(e) => setFromDate(e.target.value)}
+          InputLabelProps={{ shrink: true }}
+        />
+        <TextField
+          label="To Date"
+          type="date"
+          size="small"
+          value={toDate}
+          onChange={(e) => setToDate(e.target.value)}
+          InputLabelProps={{ shrink: true }}
+        />
+        <FormControl size="small" sx={{ minWidth: 150 }}>
+          <InputLabel>Status</InputLabel>
+          <Select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            label="Status"
           >
-            Reset
-          </Button>
+            <MenuItem value="">All</MenuItem>
+            <MenuItem value="Moved">Moved</MenuItem>
+            <MenuItem value="Not Moved">Not Moved</MenuItem>
+          </Select>
+        </FormControl>
 
+        <TextField
+          placeholder="Search by Jewel Name"
+          variant="outlined"
+          size="small"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          InputProps={{
+            startAdornment: <InputAdornment position="start"><Search /></InputAdornment>,
+          }}
+        />
+        <Button
+          variant="outlined"
+          onClick={() => {
+            setSearchTerm("");
+            setFromDate("");
+            setToDate("");
+            setStatusFilter("");
+          }}
+        >
+          Reset
+        </Button>
+        </div>
+      </Box>
+      </div>
+  
+      <div className={styles.summarySection}>
+        <h4>Summary</h4>
+
+        <div className={styles.summaryGrid}>
+
+        <div className={styles.summaryItem}>
+            <span>Total Weight :</span>
+            <span>{totalWeight}</span>
+        </div>
+    <div className={styles.summaryItem}>
+            <span>Total Stone Weight :</span>
+            <span> {totalStoneWeight}</span>
+    </div>
+    <div className={styles.summaryItem}>
+            <span>Total Final Weight :</span>
+            <span>{totalFinalWeight}</span>
+    </div>
+    <div className={styles.summaryItem}>
+            <span>Total Purity :</span>
+            <span>{totalPurity}</span>
+    </div>
+        </div>
+      </div> 
 
                 <Dialog
   open={open}
@@ -336,6 +417,7 @@ const handleSave = async () => {
               <th>Touch</th>
               <th>Purity</th>
               <th>Remarks</th>
+              <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -373,6 +455,7 @@ const formattedUpdatedTime = updatedDateObj
                     <td>{entry.touchId?.touch}</td>
                     <td>{entry.purity}</td>
                     <td>{entry.remarks}</td>
+                    <td>{entry.status}</td>
                     <td>
                       <Edit
                         style={{ cursor: "pointer" }}
@@ -389,12 +472,13 @@ const formattedUpdatedTime = updatedDateObj
               })
             ) : (
               <tr>
-                <td colSpan="11" style={{ textAlign: "center" }}>
+                <td colSpan="12" style={{ textAlign: "center" }}>
                   Jewel Name not found
                 </td>
               </tr>
             )}
           </tbody>
+     
         </table>
       </div>
     </>
@@ -402,3 +486,4 @@ const formattedUpdatedTime = updatedDateObj
 };
 
 export default QCStock;
+

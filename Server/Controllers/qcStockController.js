@@ -105,22 +105,42 @@ export const createQCStock = async (req, res) => {
   
 
 //  Get All QC Stocks
+
 export const getQCStock = async (req, res) => {
   try {
     const qcStocks = await prisma.qcStock.findMany({
       include: {
         itemId: true,
         touchId: true,
+        BillItem: {
+          include: {
+            bill: {
+              include: { customer: true },
+            },
+          },
+        },
       },
       orderBy: { id: "desc" },
     });
 
-    res.json(qcStocks);
+    // Add computed status field
+    const formatted = qcStocks.map((stock) => {
+      // Check if BillItem exists and has at least one item
+      const hasBillItems = stock.BillItem && stock.BillItem.length > 0;
+      
+      return {
+        ...stock,
+        status: hasBillItems ? "Moved" : "Not Moved",
+      };
+    });
+
+    res.json(formatted);
   } catch (error) {
     console.error("Error fetching QC Stock:", error);
     res.status(500).json({ error: "Failed to fetch QC Stock" });
   }
 };
+
 
 export const getUnUsedQCStock = async (req, res) => {
   try {
