@@ -180,7 +180,6 @@ model QcStock {
   id           Int        @id @default(autoincrement())
   createdAt    DateTime
   updatedAt    DateTime   @default(now()) @updatedAt
-
   item_id      Int
   itemId       AddItem    @relation(fields: [item_id], references: [id])
   weight       Float
@@ -556,7 +555,7 @@ model Bill {
   bill_no          String
   date             String
   time             String
-  gold_rate        Float
+  gold_rate        Float?
   total_pure       Float
   total_amount     Float
   customer_balance Float

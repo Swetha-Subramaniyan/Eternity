@@ -40561,7 +40561,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -40658,7 +40658,7 @@ export namespace Prisma {
       bill_no: string
       date: string
       time: string
-      gold_rate: number
+      gold_rate: number | null
       total_pure: number
       total_amount: number
       customer_balance: number
@@ -47142,7 +47142,7 @@ export namespace Prisma {
     bill_no?: StringFilter<"Bill"> | string
     date?: StringFilter<"Bill"> | string
     time?: StringFilter<"Bill"> | string
-    gold_rate?: FloatFilter<"Bill"> | number
+    gold_rate?: FloatNullableFilter<"Bill"> | number | null
     total_pure?: FloatFilter<"Bill"> | number
     total_amount?: FloatFilter<"Bill"> | number
     customer_balance?: FloatFilter<"Bill"> | number
@@ -47164,7 +47164,7 @@ export namespace Prisma {
     bill_no?: SortOrder
     date?: SortOrder
     time?: SortOrder
-    gold_rate?: SortOrder
+    gold_rate?: SortOrderInput | SortOrder
     total_pure?: SortOrder
     total_amount?: SortOrder
     customer_balance?: SortOrder
@@ -47190,7 +47190,7 @@ export namespace Prisma {
     bill_no?: StringFilter<"Bill"> | string
     date?: StringFilter<"Bill"> | string
     time?: StringFilter<"Bill"> | string
-    gold_rate?: FloatFilter<"Bill"> | number
+    gold_rate?: FloatNullableFilter<"Bill"> | number | null
     total_pure?: FloatFilter<"Bill"> | number
     total_amount?: FloatFilter<"Bill"> | number
     customer_balance?: FloatFilter<"Bill"> | number
@@ -47212,7 +47212,7 @@ export namespace Prisma {
     bill_no?: SortOrder
     date?: SortOrder
     time?: SortOrder
-    gold_rate?: SortOrder
+    gold_rate?: SortOrderInput | SortOrder
     total_pure?: SortOrder
     total_amount?: SortOrder
     customer_balance?: SortOrder
@@ -47239,7 +47239,7 @@ export namespace Prisma {
     bill_no?: StringWithAggregatesFilter<"Bill"> | string
     date?: StringWithAggregatesFilter<"Bill"> | string
     time?: StringWithAggregatesFilter<"Bill"> | string
-    gold_rate?: FloatWithAggregatesFilter<"Bill"> | number
+    gold_rate?: FloatNullableWithAggregatesFilter<"Bill"> | number | null
     total_pure?: FloatWithAggregatesFilter<"Bill"> | number
     total_amount?: FloatWithAggregatesFilter<"Bill"> | number
     customer_balance?: FloatWithAggregatesFilter<"Bill"> | number
@@ -50115,7 +50115,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate?: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -50137,7 +50137,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate?: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -50156,7 +50156,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
@@ -50178,7 +50178,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
@@ -50199,7 +50199,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate?: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -50216,7 +50216,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
@@ -50235,7 +50235,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
@@ -57950,7 +57950,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate?: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -57970,7 +57970,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate?: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -58076,7 +58076,7 @@ export namespace Prisma {
     bill_no?: StringFilter<"Bill"> | string
     date?: StringFilter<"Bill"> | string
     time?: StringFilter<"Bill"> | string
-    gold_rate?: FloatFilter<"Bill"> | number
+    gold_rate?: FloatNullableFilter<"Bill"> | number | null
     total_pure?: FloatFilter<"Bill"> | number
     total_amount?: FloatFilter<"Bill"> | number
     customer_balance?: FloatFilter<"Bill"> | number
@@ -66940,7 +66940,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate?: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -66961,7 +66961,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate?: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -67093,7 +67093,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
@@ -67114,7 +67114,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
@@ -67248,7 +67248,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate?: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -67269,7 +67269,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate?: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -67341,7 +67341,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
@@ -67362,7 +67362,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
@@ -67438,7 +67438,7 @@ export namespace Prisma {
     bill_no: string
     date: string
     time: string
-    gold_rate: number
+    gold_rate?: number | null
     total_pure: number
     total_amount: number
     customer_balance: number
@@ -67500,7 +67500,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
@@ -67520,7 +67520,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
@@ -67540,7 +67540,7 @@ export namespace Prisma {
     bill_no?: StringFieldUpdateOperationsInput | string
     date?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
-    gold_rate?: FloatFieldUpdateOperationsInput | number
+    gold_rate?: NullableFloatFieldUpdateOperationsInput | number | null
     total_pure?: FloatFieldUpdateOperationsInput | number
     total_amount?: FloatFieldUpdateOperationsInput | number
     customer_balance?: FloatFieldUpdateOperationsInput | number
