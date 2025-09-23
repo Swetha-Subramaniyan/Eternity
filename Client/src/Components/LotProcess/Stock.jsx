@@ -4,6 +4,8 @@ import { BACKEND_SERVER_URL } from "../../../Config/config";
 import Navbar from "../Navbar/Navbar";
 import { Button, TextField } from "@mui/material";
 import styles from "./Stock.module.css";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 
 
@@ -110,6 +112,110 @@ const Stock = () => {
     calculateSummary(stockItems);
   };
 
+
+  //  Download PDF logic
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text("Stock Report", doc.internal.pageSize.getWidth() / 2, 15, {
+      align: "center",
+    });
+
+    // Summary Section
+    if (Object.keys(touchSummary).length > 0) {
+      doc.setFontSize(12);
+      doc.text("Summary", 14, 25);
+      
+
+      const summaryData = Object.entries(touchSummary).map(([touch, weight]) => [
+        `Touch ${touch}`,
+        weight.toFixed(2),
+      ]);
+
+      autoTable(doc, {
+        startY: 30,
+        head: [["Touch", "Total Weight"]],
+        body: summaryData,
+        theme: "grid",
+        styles: { halign: "center" },
+        headStyles: { fillColor: [56, 56, 62] },
+      });
+    }
+
+    // Table Section
+    const tableColumn = [
+      "S.No",
+      "Date",
+      "Time",
+      "Name",
+      "Item",
+      "Weight",
+      "Touch",
+      "Purity",
+      "Remarks",
+      "Process",
+    ];
+
+    const tableRows = filteredItems.map((item, index) => {
+      const createdDate = new Date(item.createdAt);
+      const dateString = createdDate.toLocaleDateString();
+      const timeString = createdDate.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      const customerName =
+        item.castingItem?.castingEntry?.casting_customer?.name ||
+        item.filingItem?.filing_entry?.filing_person?.name ||
+        item.settingItem?.settingEntryId?.setting_person?.name ||
+        item.buffingItem?.buffingEntryId?.buffing_person?.name ||
+        item.purchaseId?.SupplierId?.name ||
+        item.customer?.name ||
+        item.transactionCustomer?.name ||
+        "-";
+
+      const itemName =
+        item.item?.name || item.purchaseId?.item || item.item_type || "-";
+
+      const processName = item.castingItem
+        ? "Casting"
+        : item.filingItem
+        ? "Filing"
+        : item.settingItem
+        ? "Setting"
+        : item.buffingItem
+        ? "Buffing"
+        : item.purchaseId
+        ? "Purchase"
+        : "Customer Transaction";
+
+      return [
+        index + 1,
+        dateString,
+        timeString,
+        customerName,
+        itemName,
+        item.weight ?? "-",
+        item.touch?.touch ?? item.touch_id ?? "-",
+        item.item_purity ?? "-",
+        item.remarks || "-",
+        processName,
+      ];
+    });
+
+    autoTable(doc, {
+      head: [tableColumn],
+      body: tableRows,
+      startY: doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 50,
+      theme: "grid",
+      styles: { fontSize: 9, halign: "center" },
+      headStyles: { fillColor: [56, 56, 62] },
+    });
+
+    doc.save("Stock_Report.pdf");
+  };
+
   return (
     <>
       <Navbar />
@@ -161,6 +267,9 @@ const Stock = () => {
           </Button>
           <Button variant="outlined" onClick={resetFilters}>
             Reset
+          </Button>
+          <Button variant="contained" color="primary" onClick={downloadPDF} style={{marginLeft:'31rem'}}>
+            Download PDF
           </Button>
         </div>
 

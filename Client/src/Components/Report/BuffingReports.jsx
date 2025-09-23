@@ -4,6 +4,8 @@ import axios from "axios";
 import { Button, TextField, Stack } from "@mui/material";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import styles from "./BuffingReports.module.css";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const BuffingReports = () => {
   const [fromDate, setFromDate] = useState("");
@@ -13,34 +15,14 @@ const BuffingReports = () => {
   const [persons, setPersons] = useState([]);
   const [selectedPerson, setSelectedPerson] = useState("");
 
-  // useEffect(() => {
-  //   const fetchBuffing = async () => {
-  //     try {
-  //       const res = await axios.get( `${BACKEND_SERVER_URL}/api/buffingentry/get-report-entries` );
-  //       const data = res.data || [];
-
-  //       setEntries(data);
-  //       setFiltered(data);
-
-  //       const unique = [...new Set(data.map((e) => e.buffing_person_name).filter(Boolean))];
-  //       setPersons(unique);
-  //     } catch (err) {
-  //       console.error("Error fetching buffing entries:", err);
-  //     }
-  //   };
-  //   fetchBuffing();
-  // }, []);
-
 
   useEffect(() => {
     const fetchBuffing = async () => {
       try {
-        const res = await axios.get(
-          `${BACKEND_SERVER_URL}/api/buffingentry/get-report-entries`
-        );
+        const res = await axios.get( `${BACKEND_SERVER_URL}/api/buffingentry/get-report-entries` );
         const data = res.data || [];
   
-        // 🔍 Filter out entries where buffingTotalBalance is not empty
+        //  Filter out entries where buffingTotalBalance is not empty
         const nonEmptyBalanceEntries = data.filter(
           (entry) =>
             Array.isArray(entry.buffingTotalBalance) &&
@@ -97,6 +79,108 @@ const BuffingReports = () => {
     return acc;
   }, { receipt: 0, scrap: 0, balance: 0 });
 
+
+
+
+
+// Inside BuffingReports component, after totals calculation
+const handleDownloadPDF = () => {
+  const doc = new jsPDF();
+
+  // --- Title ---
+  doc.setFontSize(16);
+  doc.text(
+    "Buffing Report Details",
+    doc.internal.pageSize.getWidth() / 2,
+    15,
+    { align: "center" }
+  );
+
+  // --- Summary Section ---
+  const summaryY = 25;
+  doc.setFontSize(10);
+  doc.text(`Total Receipt Weight: ${totals.receipt.toFixed(2)}`, 14, summaryY);
+  doc.text(`Total Scrap Weight: ${totals.scrap.toFixed(2)}`, 90, summaryY);
+  doc.text(`Total Balance: ${totals.balance.toFixed(2)}`, 160, summaryY);
+
+  // --- Table Columns ---
+  const tableColumn = [
+    "S.No",
+    "Date",
+    "Time",
+    "Person",
+    "Lot Number",
+    "Item",
+    "Weight",
+    "Touch",
+    "Purity",
+    "Remarks",
+    "Receipt Wt",
+    "Total Scrap Wt",
+    "Balance",
+    "Wastage",
+  ];
+
+  const tableRows = [];
+
+  filtered.forEach((entry, idx) => {
+    const items = entry.lotBuffingMapper || [];
+    const balance = entry.buffingTotalBalance?.[0] || {};
+
+    if (items.length > 0) {
+      items.forEach((fi, i) => {
+        tableRows.push([
+          i === 0 ? idx + 1 : "",
+          i === 0
+            ? new Date(entry.createdAt).toLocaleDateString()
+            : "",
+          i === 0
+            ? new Date(entry.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+            : "",
+          i === 0 ? entry.buffing_person_name : "",
+          i === 0 ? fi.lot_number || "-" : "",
+          fi.filing_item_name || "-",
+          fi.weight || "-",
+          fi.touch || "-",
+          fi.item_purity || "-",
+          fi.remarks || "-",
+          i === 0 ? (balance.receipt_weight?.toFixed(2) ?? "-") : "",
+          i === 0 ? (balance.total_scrap_weight?.toFixed(2) ?? "-") : "",
+          i === 0 ? (balance.balance?.toFixed(2) ?? "-") : "",
+          i === 0 ? (balance.wastage ? "Yes" : "No") : "",
+        ]);
+      });
+    } else {
+      tableRows.push([
+        idx + 1,
+        new Date(entry.createdAt).toLocaleDateString(),
+        new Date(entry.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        entry.buffing_person_name || "-",
+        "-",
+        "No Filing Items",
+        "-", "-", "-", "-",
+        balance.receipt_weight?.toFixed(2) ?? "-",
+        balance.total_scrap_weight?.toFixed(2) ?? "-",
+        balance.balance?.toFixed(2) ?? "-",
+        balance.wastage ? "Yes" : "No",
+      ]);
+    }
+  });
+
+  // --- AutoTable for table ---
+  autoTable(doc, {
+    startY: summaryY + 10,
+    head: [tableColumn],
+    body: tableRows,
+    styles: { fontSize: 8 },
+    margin: { left: 5, right: 5 },
+    tableWidth: "auto",
+  });
+
+  doc.save("Buffing_Report.pdf");
+};
+
+
   return (
     <>
       <Navbar />
@@ -135,6 +219,15 @@ const BuffingReports = () => {
         </TextField>
              <Button variant="outlined" onClick={handleFilter}>Filter</Button>
         <Button variant="outlined" onClick={reset}>Reset</Button>
+        <Button
+  style={{ marginLeft: "39rem" }}
+  variant="contained"
+  color="primary"
+  onClick={handleDownloadPDF}
+>
+  Download as PDF
+</Button>
+
         </div>
       
       <div className={styles.summarySection}>

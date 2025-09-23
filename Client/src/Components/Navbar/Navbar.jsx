@@ -147,11 +147,11 @@ function Navbar() {
                 Customer Report
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link className={styles.dropdownItem} to="/stockreport">
                 Stock Report
               </Link>
-            </li>
+            </li> */}
             {/* <li>
               <Link className={styles.dropdownItem} to="/receiptreport">
                 Receipt Report

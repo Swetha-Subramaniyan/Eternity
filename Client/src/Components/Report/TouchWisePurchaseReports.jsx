@@ -20,6 +20,9 @@ import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import Navbar from "../Navbar/Navbar";
 import styles from "./TouchWisePurchaseReport.module.css";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+
 
 
 const TouchWisePurchaseReport = () => {
@@ -137,6 +140,87 @@ const TouchWisePurchaseReport = () => {
   const touchSummary = calculateTouchSummary();
   const overallTotals = calculateOverallTotals();
 
+
+
+  const exportPDF = () => {
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text("Process Report Details", doc.internal.pageSize.getWidth() / 2, 15, {
+      align: "center",
+    });
+  
+    //  Overall Summary
+    autoTable(doc, {
+      startY: 25,
+      head: [["Total Purchases", "Total Weight", "Total Value"]],
+      body: [[
+        overallTotals.count,
+        overallTotals.totalWeight.toFixed(2),
+        overallTotals.totalValue.toFixed(2),
+        // `₹${overallTotals.totalValue.toFixed(2)}`,
+        
+      ]],
+      styles: { halign: "center" },
+      headStyles: { fillColor: [41, 128, 185] },
+    });
+  
+    //  Touch-wise Summary
+    if (Object.keys(touchSummary).length > 0) {
+      const summaryRows = Object.entries(touchSummary).map(([touch, data]) => [
+        `Touch ${touch}`,
+        data.count,
+        data.totalWeight.toFixed(2),
+        data.totalValue.toFixed(2),
+        // `₹${data.totalValue.toFixed(2)}`,
+      ]);
+  
+      autoTable(doc, {
+        startY: doc.lastAutoTable.finalY + 10,
+        head: [["Touch", "Purchases", "Weight", "Value"]],
+        body: summaryRows,
+        styles: { halign: "center" },
+        headStyles: { fillColor: [39, 174, 96] },
+      });
+    }
+  
+    //  Purchases Table
+    const tableColumn = [
+      "S.No",
+      "Date",
+      "Supplier",
+      "Item",
+      "Touch",
+      "Weight",
+      "Rate",
+      "Value",
+      "Remarks",
+    ];
+  
+    const tableRows = purchases.map((purchase, index) => [
+      index + 1,
+      new Date(purchase.createdAt).toLocaleDateString(),
+      purchase.SupplierId?.name || "-",
+      purchase.item,
+      purchase.TouchId?.touch || purchase.touch_id,
+      purchase.weight,
+      purchase.rate,
+      purchase.totalValue,
+      // `₹${purchase.totalValue}`,
+      purchase.remarks || "-",
+    ]);
+  
+    autoTable(doc, {
+      startY: doc.lastAutoTable.finalY + 10,
+      head: [tableColumn],
+      body: tableRows,
+      styles: { fontSize: 8, halign: "center" },
+      headStyles: { fillColor: [52, 73, 94] },
+    });
+  
+    doc.save("Purchase_Report.pdf");
+  };
+  
+
   return (
     <>
       <Navbar />
@@ -151,6 +235,7 @@ const TouchWisePurchaseReport = () => {
           spacing={2}
           alignItems="center"
           mb={3}
+          ml={3}
           flexWrap="wrap"
         >
           <TextField
@@ -203,6 +288,15 @@ const TouchWisePurchaseReport = () => {
           <Button variant="outlined" onClick={handleReset}>
             Reset
           </Button>
+          <Button
+  variant="contained"
+  color="primary"
+  onClick={exportPDF}
+  style={{marginLeft:'28rem'}}
+>
+  Download as PDF
+</Button>
+
         </Stack>
 
         <div className={styles.summarySection}>
