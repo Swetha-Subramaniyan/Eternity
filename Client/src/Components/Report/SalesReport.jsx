@@ -12,6 +12,9 @@ import {
 } from "@mui/material";
 import styles from "./SalesReport.module.css";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+
 
 const SalesReport = () => {
   const [invoices, setInvoices] = useState([]);
@@ -119,6 +122,62 @@ const resetFilters = () => {
 
   
 
+
+// Inside your SalesReport component
+const downloadPDF = () => {
+  const doc = new jsPDF();
+  
+  // doc.setFontSize(14);
+  // doc.text("Daily Sales Report", 14, 15);
+  doc.setFontSize(16);
+  doc.text("Daily Sales Report", doc.internal.pageSize.getWidth() / 2, 15, {
+    align: "center",
+  });
+
+  // --- Summary Section ---
+  const summaryY = 25;
+  doc.setFontSize(10);
+  doc.text(`Total Weight: ${totalWeight}`, 14, summaryY);
+  doc.text(`Total Purity: ${totalPurity}`, 80, summaryY);
+  doc.text(`Total Amount: ${totalAmount}`, 150, summaryY);
+  doc.text(`Total Amount Received: ${totalAmountReceived}`, 14, summaryY + 6);
+  doc.text(`Total Pure Received: ${totalPureReceived}`, 80, summaryY + 6);
+  doc.text(`Total Cash Balance: ${totalCashBalance}`, 150, summaryY + 6);
+  doc.text(`Total Pure Balance: ${totalPureBalance.toFixed(3)}`, 14, summaryY + 12);
+
+  // --- Invoice Table ---
+  const columns = [
+    "S.No", "Invoice No", "Date", "Customer", "Total Weight", 
+    "Total Purity", "Total Amount", "Amount Received", "Pure Received",
+    "Cash Balance", "Pure Balance"
+  ];
+
+  const rows = invoices.map((inv, index) => [
+    index + 1,
+    inv.bill_no,
+    new Date(inv.updatedAt).toLocaleDateString("en-GB"),
+    inv.customer?.name || "-",
+    inv.gold_rate,
+    inv.total_pure,
+    inv.total_amount,
+    inv.amount_received || "-",
+    inv.pure_received || "-",
+    inv.cash_balance,
+    inv.pure_balance.toFixed(3)
+  ]);
+
+  autoTable(doc, {
+    startY: summaryY + 20, // start below summary
+    head: [columns],
+    body: rows,
+    styles: { fontSize: 8 },
+  
+  });
+
+  doc.save("SalesReport.pdf");
+};
+
+
   return (
     <>
       <Navbar />
@@ -169,6 +228,15 @@ const resetFilters = () => {
   <Button variant="outlined" color="primary" onClick={resetFilters}>
     Reset
   </Button>
+  <Button
+  variant="contained"
+  color="primary"
+  onClick={downloadPDF}
+  sx={{ marginLeft:'34.7rem'}}
+>
+  Download PDF
+</Button>
+
 </div>
         {/* Summary */}
         <div className={styles.summarySection}>
@@ -253,7 +321,7 @@ const resetFilters = () => {
                 </tr>
               ))}
             </tbody>
-            <tfoot className={styles.trEven}>
+            {/* <tfoot className={styles.trEven}>
               <tr>
                 <td colSpan={4} style={{ fontWeight: "bold" }}>Total</td>
                 <td>{totalWeight}</td>
@@ -265,7 +333,7 @@ const resetFilters = () => {
                 <td>{totalPureBalance .toFixed(3)}</td>
                 <td></td>
               </tr>
-            </tfoot>
+            </tfoot> */}
           </table>
         </div>
       </div>

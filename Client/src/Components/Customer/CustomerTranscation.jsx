@@ -458,6 +458,10 @@ const CustomerTranscation = () => {
       <span>Total Purity (Gold only):</span>
       <span>{totals.totalPurity.toFixed(3)} g</span>
     </div>
+    <div className={styles.totalRow}>
+      <span>Available Purity (Not Used):</span>
+      <span>{totals.goldTotalPurity. toFixed(3) - totals.totalUsedPurity.toFixed(3)} g</span>
+    </div>
   
   </div>
 )}

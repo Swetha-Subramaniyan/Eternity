@@ -1,16 +1,4 @@
-// import React from 'react'
-// import Navbar from '../Navbar/Navbar'
 
-// const StockReport = () => {
-//   return (
-//     <> 
-//     <Navbar/>
-//     <div>StockReport</div>
-//     </>
-//   )
-// }
-
-// export default StockReport
 
 // src/components/Reports/StockReport.jsx
 import React, { useEffect, useState } from "react";

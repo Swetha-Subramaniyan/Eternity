@@ -6,7 +6,8 @@ import { BACKEND_SERVER_URL } from "../../../Config/config";
 import MasterNavbar from "./MasterNavbar";
 import { Edit, Delete, Search  } from "@mui/icons-material";
 import { TextField, MenuItem, Button, Box, InputAdornment,  FormControl,   InputLabel, Select,  Dialog,  DialogTitle,  DialogContent } from "@mui/material";
-
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const QCStock = () => {
   const [open, setOpen] = useState(false);
@@ -151,9 +152,6 @@ const handleSave = async () => {
     }
   };
 
-  // const filteredEntries = entries.filter((entry) =>
-  //   entry.itemId?.name?.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
 // Filtered entries based on jewel name, date range, and status
 const filteredEntries = entries.filter((entry) => {
   const matchesName =
@@ -161,13 +159,7 @@ const filteredEntries = entries.filter((entry) => {
 
   const entryDate = entry.updatedAt ? new Date(entry.updatedAt) : null;
   const matchesFromDate = fromDate ? entryDate >= new Date(fromDate) : true;
-  // const matchesToDate = toDate ? entryDate <= new Date(toDate) : true;
-
-    // Set toDate to end of day
-    const matchesToDate = toDate
-    ? entryDate <= new Date(new Date(toDate).setHours(23, 59, 59, 999))
-    : true;
-
+  const matchesToDate = toDate? entryDate <= new Date(new Date(toDate).setHours(23, 59, 59, 999)) : true;
   const matchesStatus =
     statusFilter === "Moved"
       ? entry.status === "Moved"
@@ -185,9 +177,101 @@ const totalFinalWeight = filteredEntries.reduce((sum, entry) => sum + (entry.fin
 const totalPurity = filteredEntries.reduce((sum, entry) => sum + (entry.purity || 0), 0);
 
 
+
+
+
+const handleDownloadPDF = () => {
+  const doc = new jsPDF();
+
+   // Title centered
+   doc.setFontSize(16);
+   const pageWidth = doc.internal.pageSize.getWidth();
+   const title = "QC Stock Report";
+   const textWidth = doc.getTextWidth(title);
+   const xPos = (pageWidth - textWidth) / 2; // center horizontally
+   doc.text(title, xPos, 15);
+
+  // Summary
+  doc.setFontSize(10);
+  doc.text("Summary:", 14, 25);
+  doc.text(`Total Weight: ${totalWeight}`, 14, 32);
+  doc.text(`Total Stone Weight: ${totalStoneWeight}`, 14, 39);
+  doc.text(`Total Final Weight: ${totalFinalWeight}`, 14, 46);
+  doc.text(`Total Purity: ${totalPurity}`, 14, 53);
+
+  // Table
+  const tableColumn = [
+    "S.No",
+    "Date",
+    "Time",
+    "Jewel Name",
+    "Weight",
+    "Stone Wt",
+    "Final Wt",
+    "Touch",
+    "Purity",
+    "Remarks",
+    "Status",
+  ];
+
+  const tableRows = filteredEntries.map((entry, index) => {
+    const updatedDateObj = entry.updatedAt ? new Date(entry.updatedAt) : null;
+
+    const formattedUpdatedDate = updatedDateObj
+      ? updatedDateObj.toLocaleDateString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        })
+      : "—";
+
+    const formattedUpdatedTime = updatedDateObj
+      ? updatedDateObj.toLocaleTimeString("en-IN", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        })
+      : "—";
+
+    return [
+      index + 1,
+      formattedUpdatedDate,
+      formattedUpdatedTime,
+      entry.itemId?.name || "",
+      entry.weight || "",
+      entry.stone_weight || "",
+      entry.final_weight || "",
+      entry.touchId?.touch || "",
+      entry.purity || "",
+      entry.remarks || "",
+      entry.status || "",
+    ];
+  });
+
+  autoTable(doc, {
+    startY: 60,
+    head: [tableColumn],
+    body: tableRows,
+    styles: { fontSize: 8 },
+  });
+
+  doc.save("QCStock_Report.pdf");
+};
+
+// const handlePrint = () => {
+//   const printContent = document.getElementById("printable-section");
+//   const WindowPrint = window.open("", "", "width=1200,height=800");
+//   WindowPrint.document.write("<html><head><title>QC Stock Report</title></head><body>");
+//   WindowPrint.document.write(printContent.innerHTML);
+//   WindowPrint.document.write("</body></html>");
+//   WindowPrint.document.close();
+//   WindowPrint.print();
+// };
+
   return (
     <>
      <MasterNavbar/>
+     <div id="printable-section">
      <div> 
 
       <Box display="flex" gap={2} alignItems="center" >
@@ -205,6 +289,7 @@ const totalPurity = filteredEntries.reduce((sum, entry) => sum + (entry.purity |
       >
         Add QC Stock
       </Button> 
+ 
 <div style={{marginTop:'3rem', display:'flex', gap:'1rem', marginLeft:'20rem'}}> 
         <TextField
           label="From Date"
@@ -480,7 +565,27 @@ const formattedUpdatedTime = updatedDateObj
           </tbody>
      
         </table>
-      </div>
+ </div>
+        </div>
+        {/* PDF & Print Buttons */}
+<div style={{ margin: "1rem 0 2rem 5rem", display: "flex", gap: "1rem" }}>
+  <Button
+    variant="contained"
+    color="primary"
+    onClick={handleDownloadPDF}
+  >
+    Download PDF
+  </Button>
+  {/* <Button
+    variant="outlined"
+    color="secondary"
+    onClick={handlePrint}
+  >
+    Print
+  </Button> */}
+</div>
+
+     
     </>
   );
 };

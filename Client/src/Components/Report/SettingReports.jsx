@@ -4,6 +4,8 @@ import axios from "axios";
 import { Button, TextField , Stack } from "@mui/material";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import styles from "./SettingReports.module.css";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const SettingReports = () => {
   const [fromDatee, setFromDatee] = useState("");
@@ -12,6 +14,7 @@ const SettingReports = () => {
   const [filteredEntries, setFilteredEntries] = useState([]);
   const [selectedPerson, setSelectedPerson] = useState("");
   const [persons, setPersons] = useState([]);
+  
   
   useEffect(() => {
     const fetchEntries = async () => {
@@ -94,6 +97,120 @@ const SettingReports = () => {
   };
 
 
+
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+
+    // Title
+  doc.setFontSize(16);
+  doc.text("Setting Report Details", doc.internal.pageSize.getWidth() / 2, 15, {
+    align: "center",
+  });
+
+      // Summary Section
+  const summaryY = 25; // Y position to start summary
+  doc.setFontSize(10);
+  doc.text(`Total Stone Weight: ${totals.stoneWeight.toFixed(2)}`, 14, summaryY);
+  doc.text(`Total Stone Count: ${totals.stoneCount.toFixed(2)}`, 80, summaryY);
+  doc.text(`Total Receipt Weight: ${totals.receiptWeight.toFixed(2)}`, 150, summaryY);
+  doc.text(`Total Product Weight: ${totals.productWeight.toFixed(2)}`, 14, summaryY + 6);
+  doc.text(`Total Scrap Weight: ${totals.scrapWeight.toFixed(2)}`, 80, summaryY + 6);
+  doc.text(`Total Current Balance: ${totals.currentBalance.toFixed(2)}`, 150, summaryY + 6);
+  doc.text(`Total Balance: ${totals.balance.toFixed(2)}`, 14, summaryY + 12);
+
+    // Table columns
+    const columns = [
+      "S.No", "Date", "Time", "Person", "Lot Number",
+      "Item", "Weight", "Touch", "Purity", "Remarks",
+      "Stone Wt", "Stone Count", "Receipt Wt", "Wastage",
+      "Scrap Item", "Scrap Item Qty", "Total Product Wt",
+      "Current Balance Wt", "Total Scrap Wt", "Balance"
+    ];
+
+    // Table rows
+    const rows = [];
+    filteredEntries.forEach((entry, index) => {
+      const filingItems = entry.lotSettingMapper || [];
+      const settingBalance = entry.settingTotalBalance?.[0] || {};
+
+      if (filingItems.length > 0) {
+        filingItems.forEach((fi, i) => {
+          const row = [];
+          if (i === 0) {
+            row.push(
+              index + 1,
+              new Date(entry.createdAt).toLocaleDateString(),
+              new Date(entry.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+              entry.setting_person_name,
+              fi.lot_number
+            );
+          } else {
+            row.push("", "", "", "", "");
+          }
+
+          row.push(
+            fi.filing_item_name || "",
+            fi.weight || "",
+            fi.touch || "",
+            fi.item_purity || "",
+            fi.remarks || ""
+          );
+
+          if (i === 0) {
+            row.push(
+              settingBalance.stone_weight || 0,
+              settingBalance.stone_count || 0,
+              settingBalance.receipt_weight || 0,
+              settingBalance.wastage ? "Yes" : "No",
+              (entry.scrapItems || []).map((si) => si.itemName).join(", ") || "-",
+              (entry.scrapItems || []).length || 0,
+              settingBalance.total_product_weight?.toFixed(2) || 0,
+              settingBalance.current_balance_weight?.toFixed(2) || 0,
+              settingBalance.total_scrap_weight?.toFixed(2) || 0,
+              settingBalance.balance?.toFixed(2) || 0
+            );
+          } else {
+            row.push(...Array(10).fill(""));
+          }
+
+          rows.push(row);
+        });
+      } else {
+        // If no filing items
+        rows.push([
+          index + 1,
+          new Date(entry.createdAt).toLocaleDateString(),
+          new Date(entry.createdAt).toLocaleTimeString(),
+          entry.setting_person_name,
+          "-",
+          ...Array(5).fill("No Filing Items"),
+          settingBalance.stone_weight || 0,
+          settingBalance.stone_count || 0,
+          settingBalance.receipt_weight || 0,
+          settingBalance.wastage ? "Yes" : "No",
+          "-",
+          0,
+          settingBalance.total_product_weight?.toFixed(2) || 0,
+          settingBalance.current_balance_weight?.toFixed(2) || 0,
+          settingBalance.total_scrap_weight?.toFixed(2) || 0,
+          settingBalance.balance?.toFixed(2) || 0
+        ]);
+      }
+    });
+
+    autoTable(doc, {
+      startY: 40,
+      head: [columns],
+      body: rows,
+      styles: { fontSize: 7 },
+      margin: { left: 1, right: 1, top: 20 },
+      tableWidth: "auto",
+    });
+
+    doc.save("SettingReport.pdf");
+  };
+
+
   return (
     <>
       <Navbar />
@@ -141,6 +258,9 @@ const SettingReports = () => {
         </Button>
         <Button variant="outlined" onClick={resetFilter}>
           Reset
+        </Button>
+        <Button variant="contained" color="primary" onClick={downloadPDF}   style={{ marginLeft: "34rem" }}>
+          Download as PDF
         </Button>
       </Stack>
 

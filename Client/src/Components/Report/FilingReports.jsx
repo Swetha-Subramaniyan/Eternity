@@ -4,6 +4,9 @@ import axios from "axios";
 import { BACKEND_SERVER_URL } from "../../../Config/config";
 import Navbar from "../Navbar/Navbar";
 import styles from "./FilingReports.module.css";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+
 
 const FilingReports = () => {
   const [entries, setEntries] = useState([]);
@@ -95,6 +98,160 @@ const FilingReports = () => {
 
   const totals = calculateTotals();
 
+
+
+
+   //  Added: PDF Download
+   const handleDownloadPDF = () => {
+    const doc = new jsPDF();
+
+    // Title in center
+    doc.setFontSize(16);
+    doc.text("Filing Report Details", doc.internal.pageSize.getWidth() / 2, 15, {
+      align: "center",
+    });
+
+     // --- Summary Section ---
+  const summaryY = 25; // starting Y for summary
+  doc.setFontSize(10);
+
+  doc.text(
+    `Total Casting Weight: ${totals.castingWeight.toFixed(2)}`,
+    14,
+    summaryY
+  );
+  doc.text(
+    `Total Product Weight: ${totals.productWeight.toFixed(2)}`,
+    70,
+    summaryY
+  );
+  doc.text(
+    `Total Scrap Weight: ${totals.scrapWeight.toFixed(2)}`,
+    140,
+    summaryY
+  );
+
+  doc.text(`Total Wastage: ${totals.wastage.toFixed(2)}`, 14, summaryY + 6);
+  doc.text(`Total Balance: ${totals.balance.toFixed(2)}`, 70, summaryY + 6);
+
+    // Prepare table columns
+    const tableColumn = [
+      "S.No",
+      "Date",
+      "Time",
+      "Person",
+      "Lot No",
+      "Casting Item",
+      "Casting Wt",
+      "Item Name",
+      "Purity",
+      "Touch",
+      "Type",
+      "Has Stone",
+      "Next Process",
+      "Product Wt",
+      "Scrap Wt",
+      "Wastage",
+      "Balance",
+    ];
+
+    const tableRows = [];
+
+    entries.forEach((entry, index) => {
+      const lotInfo = entry.lotFilingMapper?.[0] || {};
+      const balanceData = entry.filingTotalBalance?.[0] || {};
+      const filingItems = entry.filingItems || [];
+
+      if (filingItems.length > 0) {
+        filingItems.forEach((item, i) => {
+          tableRows.push([
+            i === 0 ? index + 1 : "",
+            i === 0
+              ? entry.createdAt
+                ? new Date(entry.createdAt).toLocaleDateString()
+                : "-"
+              : "",
+            i === 0
+              ? entry.createdAt
+                ? new Date(entry.createdAt).toLocaleTimeString()
+                : "-"
+              : "",
+            i === 0 ? entry.filing_person_name || "-" : "",
+            i === 0 ? lotInfo.lot_number || "-" : "",
+            i === 0 ? entry.item_name || "-" : "",
+            i === 0
+              ? entry.casting_item_weight
+                ? entry.casting_item_weight.toFixed(2)
+                : "-"
+              : "",
+            item?.filingitem?.name || "-",
+            item?.item_purity || "-",
+            item?.touch?.touch || "-",
+            item?.type || "-",
+            item?.stone_option === "WithStone" ? "Yes" : "No",
+            item?.stone_option === "WithStone" ? "Setting" : "Buffing",
+            i === 0
+              ? balanceData.total_product_weight?.toFixed(2) || "-"
+              : "",
+            i === 0
+              ? balanceData.total_scrap_weight?.toFixed(2) || "-"
+              : "",
+            i === 0
+              ? entry?.filingTotalBalance?.[0]?.wastage != null
+                ? entry.filingTotalBalance[0].wastage === true
+                  ? "Yes"
+                  : "No"
+                : "-"
+              : "",
+            i === 0 ? balanceData.balance?.toFixed(2) || "-" : "",
+          ]);
+        });
+      } else {
+        tableRows.push([
+          index + 1,
+          entry.createdAt
+            ? new Date(entry.createdAt).toLocaleDateString()
+            : "-",
+          entry.createdAt
+            ? new Date(entry.createdAt).toLocaleTimeString()
+            : "-",
+          entry.filing_person_name || "-",
+          lotInfo.lot_number || "-",
+          entry.item_name || "-",
+          entry.casting_item_weight
+            ? entry.casting_item_weight.toFixed(2)
+            : "-",
+          "-",
+          "-",
+          "-",
+          "-",
+          "-",
+          "-",
+          balanceData.total_product_weight?.toFixed(2) || "-",
+          balanceData.total_scrap_weight?.toFixed(2) || "-",
+          entry?.filingTotalBalance?.[0]?.wastage != null
+            ? entry.filingTotalBalance[0].wastage === true
+              ? "Yes"
+              : "No"
+            : "-",
+          balanceData.balance?.toFixed(2) || "-",
+        ]);
+      }
+    });
+
+    // AutoTable from row 25
+    autoTable(doc, {
+      startY: 35,
+      head: [tableColumn],
+      body: tableRows,
+      styles: { fontSize: 8 },
+      margin: { left: 1, right: 1, top: 20 },
+      tableWidth: "auto",
+    });
+
+    doc.save("Filing_Report.pdf");
+  };
+
   return (
     <>
       <Navbar />
@@ -144,6 +301,15 @@ const FilingReports = () => {
         </Button>
         <Button variant="outlined" onClick={handleReset} >
           Reset
+        </Button>
+           {/*  Added PDF download button */}
+           <Button
+          style={{ marginLeft: "32rem" }}
+          variant="contained"
+          color="primary"
+          onClick={handleDownloadPDF}
+        >
+          Download as PDF
         </Button>
       </Stack>
 
